@@ -28,8 +28,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="New class wrapping NSRegularExpression to make it easier to use.">
-      <change beforePath="$PROJECT_DIR$/Package.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Package.swift" afterDir="false" />
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Added providers to Package.swift">
+      <change beforePath="$PROJECT_DIR$/.idea/Rubicon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Rubicon.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Text/RegularExpression.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Text/RegularExpression.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,14 +230,9 @@
       <workItem from="1611107732149" duration="1449000" />
       <workItem from="1611149855338" duration="263000" />
       <workItem from="1611150503796" duration="243000" />
-      <workItem from="1611150786731" duration="227000" />
-    </task>
-    <task id="LOCAL-00052" summary="Added Utf32CharInputStream.">
-      <created>1605037674261</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1605037674261</updated>
+      <workItem from="1611150786731" duration="1056000" />
+      <workItem from="1611151987224" duration="3894000" />
+      <workItem from="1611159097796" duration="2111000" />
     </task>
     <task id="LOCAL-00053" summary="Added Utf32CharInputStream.">
       <created>1605189173291</created>
@@ -573,7 +570,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611150921612</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="Added providers to Package.swift">
+      <created>1611151049014</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1611151049014</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -606,7 +610,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added two's compliment function. ~~" />
     <MESSAGE value="Range extension" />
     <MESSAGE value="nilCheck" />
     <MESSAGE value="Revamped the binary tree collection." />
@@ -631,7 +634,8 @@
     <MESSAGE value="Backed out package providers because it was causing an error." />
     <MESSAGE value="New class wrapping NSRegularExpression to make it easier to use." />
     <MESSAGE value="Initial Commit. I just wanted to clean everything up and basically start over." />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit. I just wanted to clean everything up and basically start over." />
+    <MESSAGE value="Added providers to Package.swift" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added providers to Package.swift" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="CidrCoverage/Rubicon/Rubicon Tests.json" NAME="Rubicon Tests Coverage Results" MODIFIED="1608608581698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="llvm-cov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

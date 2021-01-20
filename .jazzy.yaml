@@ -1,0 +1,13 @@
+{
+  "clean": false,
+  "sdk": "macosx",
+  "author": "Galen Rhodes",
+  "author_url": "https://blog.projectgalen.com",
+  "github_url": "https://github.com/GalenRhodes/Rubicon",
+  "github_file_prefix": "https://github.com/GalenRhodes/Rubicon/blob/master",
+  "theme": "apple",
+  "use_safe_filenames": true,
+  "min_acl": "public",
+  "undocumented_text": "",
+  "title": "Rubicon©",
+},

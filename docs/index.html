@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubicon - Rubicon</title>
+    <link rel="stylesheet" type="text/css" href="/Rubicon/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/Rubicon/">
+            <strong>
+                Rubicon
+            </strong>
+            <span>Documentation</span>
+        </a>
+        <sup>Beta</sup>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#classes">Classes</a></li><li><a href="#structures">Structures</a></li><li><a href="#enumerations">Enumerations</a></li><li><a href="#protocols">Protocols</a></li><li><a href="#typealiases">Typealiases</a></li><li><a href="#functions">Functions</a></li><li><a href="#variables">Variables</a></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+                <section id="classes">
+        <h2>Classes</h2>
+        <dl>
+            <dt class="class">
+    <a href="/Rubicon/BinaryTreeDictionary" title="class - BinaryTreeDictionary">
+        Binary​Tree​Dictionary
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="class">
+    <a href="/Rubicon/BinaryTreeNode" title="class - BinaryTreeNode">
+        Binary​Tree​Node
+    </a>
+</dt>
+<dd>
+    <p>Implements a single node for a classic Red/Black Binary Tree.</p>
+
+</dd>
+<dt class="class">
+    <a href="/Rubicon/EasyByteBuffer" title="class - EasyByteBuffer">
+        Easy​Byte​Buffer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="class">
+    <a href="/Rubicon/RingByteBuffer" title="class - RingByteBuffer">
+        Ring​Byte​Buffer
+    </a>
+</dt>
+<dd>
+    <p>This class is a simple wrapper around a <code><a href="https://developer.apple.com/documentation/foundation/data/">Data</a></code> object that allows for treating the data like a stream
+of bytes. The three basic operations are <code>get(buffer:maxLength:)</code>, <code>append(buffer:length:)</code>, and <code>prepend(buffer:length:)</code>.</p>
+
+</dd>
+<dt class="class">
+    <a href="/Rubicon/CString" title="class - CString">
+        CString
+    </a>
+</dt>
+<dd>
+    <p>This is a class to help with the conversion between C strings and the Swift <code><a href="https://developer.apple.com/documentation/swift/string/">String</a></code> class. One note
+about the use of signed and unsigned chars. Some C functions make a distinction between a signed char (usually the default - when only the lower 7-bits are significant) and an
+unsigned char (usually in conjunction with the UTF-8 character encoding scheme). This class has methods to handle both.</p>
+
+</dd>
+<dt class="class">
+    <a href="/Rubicon/Conditional" title="class - Conditional">
+        Conditional
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="class">
+    <a href="/Rubicon/PGThread" title="class - PGThread">
+        PGThread
+    </a>
+</dt>
+<dd>
+    <p>A subclass of <code>Thread</code> that allows the closure to be set after it has been created.</p>
+
+</dd>
+<dt class="class">
+    <a href="/Rubicon/Fixed2DArray" title="class - Fixed2DArray">
+        Fixed2DArray
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="class">
+    <a href="/Rubicon/IConv" title="class - IConv">
+        IConv
+    </a>
+</dt>
+<dd>
+    <p>This class represents a wrapper around the libiconv functions.</p>
+
+</dd>
+<dt class="class">
+    <a href="/Rubicon/NanoTimer" title="class - NanoTimer">
+        Nano​Timer
+    </a>
+</dt>
+<dd>
+    <p>If running, calls the provided <code>block</code> on a separate thread every <code>nanos</code> nanoseconds.</p>
+
+</dd>
+<dt class="class">
+    <a href="/Rubicon/IConvCharInputStream" title="class - IConvCharInputStream">
+        IConv​Char​Input​Stream
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="class">
+    <a href="/Rubicon/UTF8CharInputStream" title="class - UTF8CharInputStream">
+        UTF8Char​Input​Stream
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="class">
+    <a href="/Rubicon/MarkInputStream" title="class - MarkInputStream">
+        Mark​Input​Stream
+    </a>
+</dt>
+<dd>
+    <p>An <code><a href="https://developer.apple.com/documentation/foundation/inputstream">input stream</a></code> that you can mark places in with a call to <code>markSet()</code> and to return to with a
+call to <code>markRelease()</code>.</p>
+
+</dd>
+<dt class="class">
+    <a href="/Rubicon/RegularExpression" title="class - RegularExpression">
+        Regular​Expression
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="class">
+    <a href="/Rubicon/RegularExpression_Match" title="class - RegularExpression.Match">
+        Regular​Expression.​Match
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="class">
+    <a href="/Rubicon/RegularExpression_Match_Iterator" title="class - RegularExpression.Match.Iterator">
+        Regular​Expression.​Match.​Iterator
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="class">
+    <a href="/Rubicon/RegularExpression_Group" title="class - RegularExpression.Group">
+        Regular​Expression.​Group
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="class">
+    <a href="/Rubicon/RegularExpression_NamedGroup" title="class - RegularExpression.NamedGroup">
+        Regular​Expression.​Named​Group
+    </a>
+</dt>
+<dd>
+    
+</dd>
+        </dl>
+    </section>
+    <section id="structures">
+        <h2>Structures</h2>
+        <dl>
+            <dt class="structure">
+    <a href="/Rubicon/BinaryTreeDictionary_Iterator" title="structure - BinaryTreeDictionary.Iterator">
+        Binary​Tree​Dictionary.​Iterator
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="structure">
+    <a href="/Rubicon/BinaryTreeDictionary_Keys" title="structure - BinaryTreeDictionary.Keys">
+        Binary​Tree​Dictionary.​Keys
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="structure">
+    <a href="/Rubicon/BinaryTreeDictionary_Values" title="structure - BinaryTreeDictionary.Values">
+        Binary​Tree​Dictionary.​Values
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="structure">
+    <a href="/Rubicon/StringXForm" title="structure - StringXForm">
+        String​XForm
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="structure">
+    <a href="/Rubicon/OStringXForm" title="structure - OStringXForm">
+        OString​XForm
+    </a>
+</dt>
+<dd>
+    
+</dd>
+        </dl>
+    </section>
+    <section id="enumerations">
+        <h2>Enumerations</h2>
+        <dl>
+            <dt class="enumeration">
+    <a href="/Rubicon/BinaryTreeNode_NodeColor" title="enumeration - BinaryTreeNode.NodeColor">
+        Binary​Tree​Node.​Node​Color
+    </a>
+</dt>
+<dd>
+    <p>Possible node colors.</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="/Rubicon/RingByteBufferError" title="enumeration - RingByteBufferError">
+        Ring​Byte​Buffer​Error
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="/Rubicon/CErrors" title="enumeration - CErrors">
+        CErrors
+    </a>
+</dt>
+<dd>
+    <p>Allows wrapping the errors returned by calls to the Standard C Library so they can be thrown as exceptions.</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="/Rubicon/StreamError" title="enumeration - StreamError">
+        Stream​Error
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="/Rubicon/IConv_Results" title="enumeration - IConv.Results">
+        IConv.​Results
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="/Rubicon/NanoTimerError" title="enumeration - NanoTimerError">
+        Nano​Timer​Error
+    </a>
+</dt>
+<dd>
+    <p>Nano timer errors.</p>
+
+</dd>
+<dt class="enumeration">
+    <a href="/Rubicon/StringXForm_XForms" title="enumeration - StringXForm.XForms">
+        String​XForm.​XForms
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="/Rubicon/OStringXForm_XForms" title="enumeration - OStringXForm.XForms">
+        OString​XForm.​XForms
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="enumeration">
+    <a href="/Rubicon/SortOrdering" title="enumeration - SortOrdering">
+        Sort​Ordering
+    </a>
+</dt>
+<dd>
+    <p>Values that indicate should be sorted against another object.</p>
+
+</dd>
+        </dl>
+    </section>
+    <section id="protocols">
+        <h2>Protocols</h2>
+        <dl>
+            <dt class="protocol">
+    <a href="/Rubicon/Closable" title="protocol - Closable">
+        Closable
+    </a>
+</dt>
+<dd>
+    <p>A protocol that classes and structs can adopt to indicate that they can be closed and indicate their closed status.</p>
+
+</dd>
+<dt class="protocol">
+    <a href="/Rubicon/LockCondition" title="protocol - LockCondition">
+        Lock​Condition
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="protocol">
+    <a href="/Rubicon/Locking" title="protocol - Locking">
+        Locking
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="protocol">
+    <a href="/Rubicon/CharInputStream" title="protocol - CharInputStream">
+        Char​Input​Stream
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="protocol">
+    <a href="/Rubicon/CharStream" title="protocol - CharStream">
+        Char​Stream
+    </a>
+</dt>
+<dd>
+    
+</dd>
+        </dl>
+    </section>
+    <section id="typealiases">
+        <h2>Typealiases</h2>
+        <dl>
+            <dt class="typealias">
+    <a href="/Rubicon/CCharPointer" title="typealias - CCharPointer">
+        CChar​Pointer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/CCharBuffer" title="typealias - CCharBuffer">
+        CChar​Buffer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/CCharROPointer" title="typealias - CCharROPointer">
+        CChar​ROPointer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/CCharROBuffer" title="typealias - CCharROBuffer">
+        CChar​ROBuffer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/BytePointer" title="typealias - BytePointer">
+        Byte​Pointer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/ByteBuffer" title="typealias - ByteBuffer">
+        Byte​Buffer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/ByteROPointer" title="typealias - ByteROPointer">
+        Byte​ROPointer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/ByteROBuffer" title="typealias - ByteROBuffer">
+        Byte​ROBuffer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/WordPointer" title="typealias - WordPointer">
+        Word​Pointer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/WordROPointer" title="typealias - WordROPointer">
+        Word​ROPointer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/WordBuffer" title="typealias - WordBuffer">
+        Word​Buffer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/WordROBuffer" title="typealias - WordROBuffer">
+        Word​ROBuffer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/DWordPointer" title="typealias - DWordPointer">
+        DWord​Pointer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/DWordROPointer" title="typealias - DWordROPointer">
+        DWord​ROPointer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/DWordBuffer" title="typealias - DWordBuffer">
+        DWord​Buffer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/DWordROBuffer" title="typealias - DWordROBuffer">
+        DWord​ROBuffer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/QWordPointer" title="typealias - QWordPointer">
+        QWord​Pointer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/QWordROPointer" title="typealias - QWordROPointer">
+        QWord​ROPointer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/QWordBuffer" title="typealias - QWordBuffer">
+        QWord​Buffer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/QWordROBuffer" title="typealias - QWordROBuffer">
+        QWord​ROBuffer
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/RecursiveLock" title="typealias - RecursiveLock">
+        Recursive​Lock
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/MutexLock" title="typealias - MutexLock">
+        Mutex​Lock
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/PGThreadBlock" title="typealias - PGThreadBlock">
+        PGThread​Block
+    </a>
+</dt>
+<dd>
+    <p>The closure type for <code>PGThread</code> and <code>NanoTimer</code></p>
+
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/RegEx" title="typealias - RegEx">
+        Reg​Ex
+    </a>
+</dt>
+<dd>
+    <p>Because that's a LONG freaking name to type.</p>
+
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/RegExResult" title="typealias - RegExResult">
+        Reg​ExResult
+    </a>
+</dt>
+<dd>
+    <p>Because that's a LONG freaking name to type.</p>
+
+</dd>
+<dt class="typealias">
+    <a href="/Rubicon/CFByteOrderEnum" title="typealias - CFByteOrderEnum">
+        CFByte​Order​Enum
+    </a>
+</dt>
+<dd>
+    
+</dd>
+        </dl>
+    </section>
+    <section id="functions">
+        <h2>Functions</h2>
+        <dl>
+            <dt class="function">
+    <a href="/Rubicon/discardMutablePointer(_:_:)" title="function - discardMutablePointer(_:_:)">
+        discard​Mutable​Pointer(_:​_:​)
+    </a>
+</dt>
+<dd>
+    <p>Deinitialzies and deallocates an <code><a href="https://developer.apple.com/documentation/swift/UnsaveMutablePointer">UnsaveMutablePointer</a></code> in one call.</p>
+
+</dd>
+<dt class="function">
+    <a href="/Rubicon/discardMutableRawPointer(_:_:_:)" title="function - discardMutableRawPointer(_:_:_:)">
+        discard​Mutable​Raw​Pointer(_:​_:​_:​)
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="function">
+    <a href="/Rubicon/createMutablePointer(capacity:initialValue:)" title="function - createMutablePointer(capacity:initialValue:)">
+        create​Mutable​Pointer(capacity:​initial​Value:​)
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="function">
+    <a href="/Rubicon/createMutablePointer(capacity:)" title="function - createMutablePointer(capacity:)">
+        create​Mutable​Pointer(capacity:​)
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="function">
+    <a href="/Rubicon/createMutableRawPointer(capacity:type:initialValue:)" title="function - createMutableRawPointer(capacity:type:initialValue:)">
+        create​Mutable​Raw​Pointer(capacity:​type:​initial​Value:​)
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="function">
+    <a href="/Rubicon/createMutableRawPointer(capacity:type:)" title="function - createMutableRawPointer(capacity:type:)">
+        create​Mutable​Raw​Pointer(capacity:​type:​)
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="function">
+    <a href="/Rubicon/streamStatusGood(_:)" title="function - streamStatusGood(_:)">
+        stream​Status​Good(_:​)
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="function">
+    <a href="/Rubicon/regexML(pattern:)" title="function - regexML(pattern:)">
+        regex​ML(pattern:​)
+    </a>
+</dt>
+<dd>
+    <p>Convienience function to build an instance of <code><a href="https://developer.apple.com/documentation/foundation/nsregularexpression/">RegEx</a></code> that includes the option to have
+anchors ('^' and '$') match the beginning and end of lines instead of the entire input.</p>
+
+</dd>
+<dt class="function">
+    <a href="/Rubicon/getSysTime(delta:)" title="function - getSysTime(delta:)">
+        get​Sys​Time(delta:​)
+    </a>
+</dt>
+<dd>
+    <p>Get the system time in nanoseconds.</p>
+
+</dd>
+<dt class="function">
+    <a href="/Rubicon/absoluteTimeSpecFrom(date:)" title="function - absoluteTimeSpecFrom(date:)">
+        absolute​Time​Spec​From(date:​)
+    </a>
+</dt>
+<dd>
+    <p>Takes a date at some point in the future and converts it to a timespec struct relative to the epoch.</p>
+
+</dd>
+<dt class="function">
+    <a href="/Rubicon/timeIntervalFrom(date:)" title="function - timeIntervalFrom(date:)">
+        time​Interval​From(date:​)
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="function">
+    <a href="/Rubicon/StrError(_:)" title="function - StrError(_:)">
+        Str​Error(_:​)
+    </a>
+</dt>
+<dd>
+    <p>Cover function for the C standard library function <code>strerror(int)</code>. Returns a Swift <code><a href="https://developer.apple.com/documentation/swift/string/">String</a></code>.</p>
+
+</dd>
+<dt class="function">
+    <a href="/Rubicon/testOSFatalError(_:_:)" title="function - testOSFatalError(_:_:)">
+        test​OSFatal​Error(_:​_:​)
+    </a>
+</dt>
+<dd>
+    <p>Test the result of a C standard library function call to see if an error has occurred. If so then throw a fatal error with the message of the error. Usually any
+non-<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> value is considered an error. In some cases though a non-<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> error is
+just informational and in those cases you can tell this function to ignore those as well.</p>
+
+</dd>
+<dt class="function">
+    <a href="/Rubicon/cStrLen(cStringPtr:length:)" title="function - cStrLen(cStringPtr:length:)">
+        cStr​Len(cString​Ptr:​length:​)
+    </a>
+</dt>
+<dd>
+    <p>Get the length of a <code>nil</code>-terminated C string of type 'signed char' (Int8).</p>
+
+</dd>
+<dt class="function">
+    <a href="/Rubicon/cStrLen(cStringPtr:length:)" title="function - cStrLen(cStringPtr:length:)">
+        cStr​Len(cString​Ptr:​length:​)
+    </a>
+</dt>
+<dd>
+    <p>Get the length of a <code>nil</code>-terminated C string of type 'unsigned char' (UInt8).</p>
+
+</dd>
+<dt class="function">
+    <a href="/Rubicon/NanoSleep(seconds:nanos:)" title="function - NanoSleep(seconds:nanos:)">
+        Nano​Sleep(seconds:​nanos:​)
+    </a>
+</dt>
+<dd>
+    <p>The <code>NanoSleep(seconds:nanos:)</code> function causes the calling thread to sleep for the amount of time specified in the <code>seconds</code> and <code>nanos</code> parameters (the actual time slept may
+be longer, due to system latencies and possible limitations in the timer resolution of the hardware). An unmasked signal will cause <code>NanoSleep(seconds:nanos:)</code> to terminate
+the sleep early, regardless of the <code>SA_RESTART</code> value on the interrupting signal.</p>
+
+</dd>
+<dt class="function">
+    <a href="/Rubicon/NanoSleep2(seconds:nanos:)" title="function - NanoSleep2(seconds:nanos:)">
+        Nano​Sleep2(seconds:​nanos:​)
+    </a>
+</dt>
+<dd>
+    <p>The <code>NanoSleep(seconds:nanos:)</code> function causes the calling thread to sleep for the amount of time specified in the <code>seconds</code> and <code>nanos</code> parameters (the actual time slept may
+be longer, due to system latencies and possible limitations in the timer resolution of the hardware). An unmasked signal will cause <code>NanoSleep(seconds:nanos:)</code> to terminate
+the sleep early, regardless of the <code>SA_RESTART</code> value on the interrupting signal.</p>
+
+</dd>
+<dt class="function">
+    <a href="/Rubicon/toHex(_:pad:)" title="function - toHex(_:pad:)">
+        to​Hex(_:​pad:​)
+    </a>
+</dt>
+<dd>
+    <p>Returns a <code><a href="https://developer.apple.com/documentation/swift/string/">String</a></code> that represents the given integer in hexadecimal format.</p>
+
+</dd>
+<dt class="function">
+    <a href="/Rubicon/toBinary(_:sep:pad:)" title="function - toBinary(_:sep:pad:)">
+        to​Binary(_:​sep:​pad:​)
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="function">
+    <a href="/Rubicon/nilCheck(_:whenNotNil:whenNil:)" title="function - nilCheck(_:whenNotNil:whenNil:)">
+        nil​Check(_:​when​Not​Nil:​when​Nil:​)
+    </a>
+</dt>
+<dd>
+    <p><code><a href="https://developer.apple.com/documentation/swift/optional/">Optional</a></code> conditional. To test an optional for <code>nil</code> you can use an <code>if</code> statement like this:</p>
+
+</dd>
+<dt class="function">
+    <a href="/Rubicon/fixLength(_:)" title="function - fixLength(_:)">
+        fix​Length(_:​)
+    </a>
+</dt>
+<dd>
+    <p>If the <code>maxLength</code> is less than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then return the largest integer possible
+(<code><a href="https://developer.apple.com/documentation/swift/int/1540171-max">Int.max</a></code>) otherwise returns the value of <code>maxLength</code>.</p>
+
+</dd>
+<dt class="function">
+    <a href="/Rubicon/value(_:isOneOf:)" title="function - value(_:isOneOf:)">
+        value(_:​is​One​Of:​)
+    </a>
+</dt>
+<dd>
+    
+</dd>
+        </dl>
+    </section>
+    <section id="variables">
+        <h2>Variables</h2>
+        <dl>
+            <dt class="variable">
+    <a href="/Rubicon/UnicodeReplacementChar" title="variable - UnicodeReplacementChar">
+        Unicode​Replacement​Char
+    </a>
+</dt>
+<dd>
+    
+</dd>
+<dt class="variable">
+    <a href="/Rubicon/BasicBufferSize" title="variable - BasicBufferSize">
+        Basic​Buffer​Size
+    </a>
+</dt>
+<dd>
+    <p>A good size for a basic buffer.</p>
+
+</dd>
+<dt class="variable">
+    <a href="/Rubicon/OneSecondNanos" title="variable - OneSecondNanos">
+        One​Second​Nanos
+    </a>
+</dt>
+<dd>
+    <p>The number of nanoseconds in one second.</p>
+
+</dd>
+<dt class="variable">
+    <a href="/Rubicon/OneSecondMicros" title="variable - OneSecondMicros">
+        One​Second​Micros
+    </a>
+</dt>
+<dd>
+    <p>The number of microseconds in one second.</p>
+
+</dd>
+<dt class="variable">
+    <a href="/Rubicon/OneSecondMillis" title="variable - OneSecondMillis">
+        One​Second​Millis
+    </a>
+</dt>
+<dd>
+    <p>The number of milliseconds in one second.</p>
+
+</dd>
+        </dl>
+    </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2021-01-19T20:18:48-0500">January 19, 2021</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+</p>
+    </footer>
+</body>
+</html>

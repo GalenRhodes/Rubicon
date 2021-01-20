@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE Person [
+        <!ENTITY % qt "(gsr:LastName,gsr:FirstName,MiddleName,pgx:dob,bob:info,usa:family,(garfield|odie),ack:Batman,foo?,bar?)">
+        <!ENTITY smiley "🤩">
+        <!ENTITY compname "Triple Dog Dare Media">
+        <!ENTITY copyright "🤪 2017 by Triple Dog Dare Media Incorporated 🤩">
+        <!ATTLIST MiddleName preferred (YES|NO) "NO">
+        <!ATTLIST gsr:LastName pgx:type CDATA "English">
+        <!ATTLIST pgx:dob pgx:type (Gregorian|Julian) "Gregorian">
+        <!ATTLIST bob:dob pgx:type (Gregorian|Julian) "Julian">
+        <!ATTLIST bob:info gsr:region (USA|UK|CAN) "USA">
+        <!ATTLIST bob:info type CDATA "">
+        <!ATTLIST gsr:LastName gsr:type CDATA "">
+        <!ATTLIST bob:info id ID #REQUIRED><!-- Default can also be "#IMPLIED" -->
+        <!ELEMENT gsr:Person (gsr:LastName,gsr:FirstName,MiddleName,pgx:dob,bob:info,usa:family,(garfield|odie),ack:Batman,foo?,bar?)>
+        <!ELEMENT foo (ack:Batman)>
+        <!ELEMENT bar (#PCDATA|usa:family)*>
+        <!ELEMENT garfield EMPTY>
+        <!ELEMENT odie ANY>
+        <!ELEMENT gsr:LastName (#PCDATA)>
+        <!ELEMENT gsr:FirstName (#PCDATA)>
+        <!ELEMENT MiddleName (#PCDATA)>
+        <!ELEMENT usa:family (#PCDATA)>
+        <!ELEMENT bob:info (bob:dob,ack:nickname*)>
+        <!ELEMENT bob:dob (#PCDATA)>
+        <!ELEMENT pgx:dob (#PCDATA)>
+        <!ELEMENT ack:nickname (#PCDATA)>
+        <!ELEMENT ack:Batman (#PCDATA)>
+        ]>
+<gsr:Person xmlns="urn:Canada"
+            xmlns:gsr="urn:GalenSherardRhodes"
+            xmlns:usa="urn:UnitedStatesOfAmerica"
+            xmlns:pgx="http://pgx.galenrhodes.com"
+            xmlns:ack="urn:dccommics">
+    <gsr:LastName pgx:type="German" gsr:type="nickname">Rhodes</gsr:LastName>
+    <gsr:FirstName>Galen</gsr:FirstName>
+    <MiddleName preferred="YES">Sherard</MiddleName>
+    <pgx:dob pgx:type="Julian">12 December 1967</pgx:dob>
+    <bob:info xmlns:bob="urn:minions" xmlns:ack="urn:bill.the.cat" id="1" type="demo" gsr:region="UK">
+        <bob:dob pgx:type="Gregorian">25 November 1970</bob:dob>
+        <ack:nickname>&smiley;Glenn&smiley;</ack:nickname>
+    </bob:info>
+    <usa:family>Galen &copyright; Rhodes</usa:family>
+    <garfield/>
+    <ack:Batman>Wonder Woman</ack:Batman>
+</gsr:Person>

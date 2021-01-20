@@ -1,0 +1,13 @@
+**/.DS_Store
+/.build/
+/bin/
+/build.sh
+/build/
+/df.tar.bz2
+/docfixer.sh
+/DocumentArchive.tar
+/Library/
+/Package.resolved
+/Rubicon.framework/
+**/grhodes.xcuserdatad/
+/runlog.txt

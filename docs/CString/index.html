@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubicon - CString</title>
+    <link rel="stylesheet" type="text/css" href="/Rubicon/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/Rubicon/">
+            <strong>
+                Rubicon
+            </strong>
+            <span>Documentation</span>
+        </a>
+        <sup>Beta</sup>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#initializers">Initializers</a><ul><li class="initializer"><a href="#cstring.init(string:)">init(string:​)</a></li><li class="initializer"><a href="#cstring.init()">init()</a></li><li class="initializer"><a href="#cstring.init(bytebuffer:hasnullterminator:encoding:)">init(byte​Buffer:​has​Null​Terminator:​encoding:​)</a></li><li class="initializer"><a href="#cstring.init(charbuffer:hasnullterminator:encoding:)">init(char​Buffer:​has​Null​Terminator:​encoding:​)</a></li><li class="initializer"><a href="#cstring.init(cstring:length:encoding:)">init(cString:​length:​encoding:​)</a></li><li class="initializer"><a href="#cstring.init(cstring:length:encoding:)">init(cString:​length:​encoding:​)</a></li><li class="initializer"><a href="#cstring.init(utf8string:length:encoding:)">init(utf8String:​length:​encoding:​)</a></li><li class="initializer"><a href="#cstring.init(utf8string:length:encoding:)">init(utf8String:​length:​encoding:​)</a></li></ul></li><li><a href="#properties">Properties</a><ul><li class="variable"><a href="#cstring.encoding">encoding</a></li><li class="variable"><a href="#cstring.string">string</a></li></ul></li><li><a href="#methods">Methods</a><ul><li class="function"><a href="#cstring.withcstring(_:)">with​CString(_:​)</a></li><li class="function"><a href="#cstring.withutf8string(_:)">with​UTF8String(_:​)</a></li><li class="function"><a href="#cstring.withnullterminatedcstring(_:)">with​Null​Terminated​CString(_:​)</a></li><li class="function"><a href="#cstring.withnullterminatedutf8string(_:)">with​Null​Terminated​UTF8String(_:​)</a></li><li class="function"><a href="#cstring.newutf8bufferof(length:_:)">new​Utf8Buffer​Of(length:​_:​)</a></li><li class="function"><a href="#cstring.newccharbufferof(length:encoding:_:)">new​CChar​Buffer​Of(length:​encoding:​_:​)</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Class</small>
+    <code class="name">CString</code>
+</h1>
+
+<html><body><pre class="highlight"><code><span class="attribute">open</span> <span class="keyword">class</span> <span class="type">CString</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>This is a class to help with the conversion between C strings and the Swift <code><a href="https://developer.apple.com/documentation/swift/string/">String</a></code> class. One note
+about the use of signed and unsigned chars. Some C functions make a distinction between a signed char (usually the default - when only the lower 7-bits are significant) and an
+unsigned char (usually in conjunction with the UTF-8 character encoding scheme). This class has methods to handle both.</p>
+
+</div>
+
+    <section id="initializers">
+        <h2>Initializers</h2>
+
+        <div role="article" class="initializer" id="cstring.init(string:)">
+    <h3>
+        <code>init(string:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">string</span>: <span class="type">String</span>)</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Initialize this object with the given Swift <code><a href="https://developer.apple.com/documentation/swift/string/">String</a></code>. The characters of the
+<code><a href="https://developer.apple.com/documentation/swift/string/">String</a></code> will be encoded as a series of UTF-8 bytes.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>string</th>
+    <td><code class="type">String</code></td>
+    <td><p>the string.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+</div>
+<div role="article" class="initializer" id="cstring.init()">
+    <h3>
+        <code>init()</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="attribute">convenience</span> <span class="keyword">init</span>()</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Initialize this object as an empty string with the UTF-8 encoding.</p>
+
+</div>
+</div>
+<div role="article" class="initializer" id="cstring.init(bytebuffer:hasnullterminator:encoding:)">
+    <h3>
+        <code>init(byte​Buffer:​has​Null​Terminator:​encoding:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">byteBuffer</span>: <span class="type">UnsafeBufferPointer</span>&lt;<span class="type">UInt8</span>&gt;, <span class="variable">hasNullTerminator</span>: <span class="type">Bool</span> = <span class="keyword">false</span>, <span class="variable">encoding</span>: <span class="type">String</span>.<span class="type">Encoding</span> = <span class="variable">String</span>.<span class="type">Encoding</span>.<span class="type">utf8</span>)</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Initialize this object with the contents of the byte (unsigned char) buffer. The bytes will be interpreted as a series of characters encoded with the given character
+encoding.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>byte​Buffer</th>
+    <td><code class="type">Unsafe​Buffer​Pointer&lt;UInt8&gt;</code></td>
+    <td><p>the byte buffer.</p>
+</td>
+</tr>
+<tr>
+    <th>has​Null​Terminator</th>
+    <td><code class="type">Bool</code></td>
+    <td><p><code>true</code> if the buffer includes a <code>nil</code> terminating character. Defaults to <code>false</code>.</p>
+</td>
+</tr>
+<tr>
+    <th>encoding</th>
+    <td><code class="type">String.​Encoding</code></td>
+    <td><p>the character encoding used. Defaults to UTF-8.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+</div>
+<div role="article" class="initializer" id="cstring.init(charbuffer:hasnullterminator:encoding:)">
+    <h3>
+        <code>init(char​Buffer:​has​Null​Terminator:​encoding:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">charBuffer</span>: <span class="type">UnsafeBufferPointer</span>&lt;<span class="type">CChar</span>&gt;, <span class="variable">hasNullTerminator</span>: <span class="type">Bool</span> = <span class="keyword">false</span>, <span class="variable">encoding</span>: <span class="type">String</span>.<span class="type">Encoding</span> = <span class="variable">String</span>.<span class="type">Encoding</span>.<span class="type">utf8</span>)</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Initialize this object with the contents of the character (signed char) buffer. The characters will be interpreted as a series of characters encoded with the given
+character encoding.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>char​Buffer</th>
+    <td><code class="type">Unsafe​Buffer​Pointer&lt;CChar&gt;</code></td>
+    <td><p>the character buffer.</p>
+</td>
+</tr>
+<tr>
+    <th>has​Null​Terminator</th>
+    <td><code class="type">Bool</code></td>
+    <td><p><code>true</code> if the buffer includes a <code>nil</code> terminating character. Defaults to <code>false</code>.</p>
+</td>
+</tr>
+<tr>
+    <th>encoding</th>
+    <td><code class="type">String.​Encoding</code></td>
+    <td><p>the character encoding used. Defaults to UTF-8.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+</div>
+<div role="article" class="initializer" id="cstring.init(cstring:length:encoding:)">
+    <h3>
+        <code>init(cString:​length:​encoding:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">cString</span>: <span class="type">UnsafePointer</span>&lt;<span class="type">CChar</span>&gt;, <span class="variable">length</span>: <span class="type">Int</span> = -<span class="number literal">1</span>, <span class="variable">encoding</span>: <span class="type">String</span>.<span class="type">Encoding</span> = <span class="variable">String</span>.<span class="type">Encoding</span>.<span class="type">utf8</span>)</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Initializes this object with the contents of the immutable character (signed char) from the given pointer. If length is not given or is less than
+<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then the string MUST be <code>nil</code> terminated. If the length is less than
+<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> and the string is NOT <code>nil</code> terminated then the behavior of this initializer is undefined.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>cString</th>
+    <td><code class="type">Unsafe​Pointer&lt;CChar&gt;</code></td>
+    <td><p>the pointer to the characters.</p>
+</td>
+</tr>
+<tr>
+    <th>length</th>
+    <td><code class="type">Int</code></td>
+    <td><p>the length of the string. If less than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then the string MUST be <code>nil</code> terminated.</p>
+</td>
+</tr>
+<tr>
+    <th>encoding</th>
+    <td><code class="type">String.​Encoding</code></td>
+    <td><p>the character encoding used. Defaults to UTF-8.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+</div>
+<div role="article" class="initializer" id="cstring.init(cstring:length:encoding:)">
+    <h3>
+        <code>init(cString:​length:​encoding:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">cString</span>: <span class="type">UnsafeMutablePointer</span>&lt;<span class="type">CChar</span>&gt;, <span class="variable">length</span>: <span class="type">Int</span> = -<span class="number literal">1</span>, <span class="variable">encoding</span>: <span class="type">String</span>.<span class="type">Encoding</span> = <span class="variable">String</span>.<span class="type">Encoding</span>.<span class="type">utf8</span>)</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Initializes this object with the contents of the mutable character (signed char) from the given pointer. If length is not given or is less than
+<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then the string MUST be <code>nil</code> terminated. If the length is less than
+<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> and the string is NOT <code>nil</code> terminated then the behavior of this initializer is undefined.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>cString</th>
+    <td><code class="type">Unsafe​Mutable​Pointer&lt;CChar&gt;</code></td>
+    <td><p>the pointer to the characters.</p>
+</td>
+</tr>
+<tr>
+    <th>length</th>
+    <td><code class="type">Int</code></td>
+    <td><p>the length of the string. If less than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then the string MUST be <code>nil</code> terminated.</p>
+</td>
+</tr>
+<tr>
+    <th>encoding</th>
+    <td><code class="type">String.​Encoding</code></td>
+    <td><p>the character encoding used. Defaults to UTF-8.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+</div>
+<div role="article" class="initializer" id="cstring.init(utf8string:length:encoding:)">
+    <h3>
+        <code>init(utf8String:​length:​encoding:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">utf8String</span>: <a href="/Rubicon/ByteROPointer"><span class="type">ByteROPointer</span></a>, <span class="variable">length</span>: <span class="type">Int</span> = -<span class="number literal">1</span>, <span class="variable">encoding</span>: <span class="type">String</span>.<span class="type">Encoding</span> = <span class="variable">String</span>.<span class="type">Encoding</span>.<span class="type">utf8</span>)</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Initializes this object with the contents of the immutable bytes (unsigned char) from the given pointer. If length is not given or is less than
+<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then the string MUST be <code>nil</code> terminated. If the length is less than
+<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> and the string is NOT <code>nil</code> terminated then the behavior of this initializer is undefined.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>cString</th>
+    <td></td>
+    <td><p>the pointer to the bytes.</p>
+</td>
+</tr>
+<tr>
+    <th>length</th>
+    <td><code class="type">Int</code></td>
+    <td><p>the length of the string. If less than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then the string MUST be <code>nil</code> terminated.</p>
+</td>
+</tr>
+<tr>
+    <th>encoding</th>
+    <td><code class="type">String.​Encoding</code></td>
+    <td><p>the character encoding used. Defaults to UTF-8.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+</div>
+<div role="article" class="initializer" id="cstring.init(utf8string:length:encoding:)">
+    <h3>
+        <code>init(utf8String:​length:​encoding:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">utf8String</span>: <a href="/Rubicon/BytePointer"><span class="type">BytePointer</span></a>, <span class="variable">length</span>: <span class="type">Int</span> = -<span class="number literal">1</span>, <span class="variable">encoding</span>: <span class="type">String</span>.<span class="type">Encoding</span> = <span class="variable">String</span>.<span class="type">Encoding</span>.<span class="type">utf8</span>)</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Initializes this object with the contents of the mutable bytes (unsigned char) from the given pointer. If length is not given or is less than
+<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then the string MUST be <code>nil</code> terminated. If the length is less than
+<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> and the string is NOT <code>nil</code> terminated then the behavior of this initializer is undefined.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>cString</th>
+    <td></td>
+    <td><p>the pointer to the bytes.</p>
+</td>
+</tr>
+<tr>
+    <th>length</th>
+    <td><code class="type">Int</code></td>
+    <td><p>the length of the string. If less than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then the string MUST be <code>nil</code> terminated.</p>
+</td>
+</tr>
+<tr>
+    <th>encoding</th>
+    <td><code class="type">String.​Encoding</code></td>
+    <td><p>the character encoding used. Defaults to UTF-8.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+</div>
+    </section>
+    <section id="properties">
+        <h2>Properties</h2>
+
+        <div role="article" class="variable" id="cstring.encoding">
+    <h3>
+        <code>encoding</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">let</span> <span class="variable">encoding</span>: <span class="type">String</span>.<span class="type">Encoding</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>The character encoding of the string.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="cstring.string">
+    <h3>
+        <code>string</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">string</span>: <span class="type">String</span>?</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>The C string converted to a Swift <code><a href="https://developer.apple.com/documentation/swift/string/">String</a></code>. If the string cannot be decoded using the provided
+encoding then this field will be <code>nil</code>.</p>
+
+</div>
+</div>
+    </section>
+    <section id="methods">
+        <h2>Methods</h2>
+
+        <div role="article" class="function" id="cstring.withcstring(_:)">
+    <h3>
+        <code>with​CString(_:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">withCString</span>&lt;<span class="variable">T</span>&gt;(<span class="keyword">_</span> <span class="variable">block</span>: (<span class="type">UnsafeBufferPointer</span>&lt;<span class="type">CChar</span>&gt;) <span class="keyword">throws</span> -&gt; <span class="type">T</span>) <span class="keyword">rethrows</span> -&gt; <span class="type">T</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Execute the block with an <code><a href="https://developer.apple.com/documentation/swift/unsafebufferpointer/">UnsafeBufferPointer</a></code> of
+<code><a href="https://developer.apple.com/documentation/swift/int8/">Int8</a></code> characters.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>block</th>
+    <td><code class="type">(Unsafe​Buffer​Pointer&lt;CChar&gt;) throws -&gt; T</code></td>
+    <td><p>the block to execute.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Throws</h4>
+  <p>any error thrown by the block.</p>
+
+  <h4>Returns</h4>
+  <p>the value returned by the block.</p>
+
+</div>
+<div role="article" class="function" id="cstring.withutf8string(_:)">
+    <h3>
+        <code>with​UTF8String(_:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">withUTF8String</span>&lt;<span class="variable">T</span>&gt;(<span class="keyword">_</span> <span class="variable">block</span>: (<span class="type">UnsafeBufferPointer</span>&lt;<span class="type">UInt8</span>&gt;) <span class="keyword">throws</span> -&gt; <span class="type">T</span>) <span class="keyword">rethrows</span> -&gt; <span class="type">T</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Execute the block with an <code><a href="https://developer.apple.com/documentation/swift/unsafebufferpointer/">UnsafeBufferPointer</a></code> of UTF-8 encoded characters.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>block</th>
+    <td><code class="type">(Unsafe​Buffer​Pointer&lt;UInt8&gt;) throws -&gt; T</code></td>
+    <td><p>the block to execute.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Throws</h4>
+  <p>any error thrown by the block.</p>
+
+  <h4>Returns</h4>
+  <p>the value returned by the block.</p>
+
+</div>
+<div role="article" class="function" id="cstring.withnullterminatedcstring(_:)">
+    <h3>
+        <code>with​Null​Terminated​CString(_:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">withNullTerminatedCString</span>&lt;<span class="variable">T</span>&gt;(<span class="keyword">_</span> <span class="variable">block</span>: (<span class="type">UnsafePointer</span>&lt;<span class="type">CChar</span>&gt;, <span class="type">Int</span>) <span class="keyword">throws</span> -&gt; <span class="type">T</span>) <span class="keyword">rethrows</span> -&gt; <span class="type">T</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Execute the block with an UnsafePointer of <code><a href="https://developer.apple.com/documentation/swift/int8/">Int8</a></code> characters.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>block</th>
+    <td><code class="type">(Unsafe​Pointer&lt;CChar&gt;, Int) throws -&gt; T</code></td>
+    <td><p>the block to execute.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Throws</h4>
+  <p>any error thrown by the block.</p>
+
+  <h4>Returns</h4>
+  <p>the value returned by the block.</p>
+
+</div>
+<div role="article" class="function" id="cstring.withnullterminatedutf8string(_:)">
+    <h3>
+        <code>with​Null​Terminated​UTF8String(_:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">withNullTerminatedUTF8String</span>&lt;<span class="variable">T</span>&gt;(<span class="keyword">_</span> <span class="variable">block</span>: (<a href="/Rubicon/ByteROPointer"><span class="type">ByteROPointer</span></a>, <span class="type">Int</span>) <span class="keyword">throws</span> -&gt; <span class="type">T</span>) <span class="keyword">rethrows</span> -&gt; <span class="type">T</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Execute the block with an UnsafePointer of UTF-8 characters.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>block</th>
+    <td><code class="type">(Byte​ROPointer, Int) throws -&gt; T</code></td>
+    <td><p>the block to execute.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Throws</h4>
+  <p>any error thrown by the block.</p>
+
+  <h4>Returns</h4>
+  <p>the value returned by the block.</p>
+
+</div>
+<div role="article" class="function" id="cstring.newutf8bufferof(length:_:)">
+    <h3>
+        <code>new​Utf8Buffer​Of(length:​_:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">newUtf8BufferOf</span>(<span class="variable">length</span>: <span class="type">Int</span>, <span class="keyword">_</span> <span class="variable">block</span>: (<a href="/Rubicon/BytePointer"><span class="type">BytePointer</span></a>, <span class="type">Int</span>) <span class="keyword">throws</span> -&gt; <span class="type">Int</span>) -&gt; <a href="/Rubicon/CString"><span class="type">CString</span></a>?</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Create a new CString and do something with it right away. So, for example, instead of having to do this:</p>
+
+</div>
+<div class="discussion">
+    <pre>
+   let buffer = UnsafeMutablePointer<Int8>.allocate(capacity: 256)
+   defer { buffer.deallocate() }
+   guard strerror_r(code, buffer, 255) == 0 else { return "Unknown Error: \(code)" }
+   let str = String(utf8String: buffer) ?? "Unknown Error: \(code)"
+</pre>
+
+<p>You can, instead, do this:</p>
+
+<pre>
+    let str = (CString.newUtf8BufferOf(length: 255) { ((strerror_r(code, $0, $1) == 0) ? strlen($0) : -1) })?.string ?? "Unknown Error: \(code)"
+</pre>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>length</th>
+    <td><code class="type">Int</code></td>
+    <td><p>The length of the buffer to create NOT INCLUDING the <code>nil</code> terminator.</p>
+</td>
+</tr>
+<tr>
+    <th>block</th>
+    <td><code class="type">(Byte​Pointer, Int) throws -&gt; Int</code></td>
+    <td><p>the closure that will get executed. The buffer and it's length, NOT INCLUDING the <code>nil</code> terminator, will be passed to the closure. Upon success the closure should return the actual length of the C string in the buffer, NOT INCLUDING, the <code>nil</code> terminator. If there was an error then the closure should return -1 to indicate that the buffer does not contain a valid C string.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Returns</h4>
+  <p>an instance of CString or <code>nil</code> if -1 was returned from the closure.</p>
+
+</div>
+<div role="article" class="function" id="cstring.newccharbufferof(length:encoding:_:)">
+    <h3>
+        <code>new​CChar​Buffer​Of(length:​encoding:​_:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">newCCharBufferOf</span>(<span class="variable">length</span>: <span class="type">Int</span>, <span class="variable">encoding</span>: <span class="type">String</span>.<span class="type">Encoding</span> = <span class="variable">String</span>.<span class="type">Encoding</span>.<span class="type">utf8</span>, <span class="keyword">_</span> <span class="variable">block</span>: (<span class="type">UnsafeMutablePointer</span>&lt;<span class="type">CChar</span>&gt;, <span class="type">Int</span>) <span class="keyword">throws</span> -&gt; <span class="type">Int</span>) -&gt; <a href="/Rubicon/CString"><span class="type">CString</span></a>?</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Create a new CString and do something with it right away. So, for example, instead of having to do this:</p>
+
+</div>
+<div class="discussion">
+    <pre>
+   let buffer = UnsafeMutablePointer<Int8>.allocate(capacity: 256)
+   defer { buffer.deallocate() }
+   guard strerror_r(code, buffer, 255) == 0 else { return "Unknown Error: \(code)" }
+   let str = String(cString: buffer, encoding: String.Encoding.windowsCP1250) ?? "Unknown Error: \(code)"
+</pre>
+
+<p>You can, instead, do this:</p>
+
+<pre>
+    let str = (CString.newCCharBufferOf(length: 255, encoding: String.Encoding.windowsCP1250) { ((strerror_r(code, $0, $1) == 0) ? strlen($0) : -1) })?.string ?? "Unknown Error: \(code)"
+</pre>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>length</th>
+    <td><code class="type">Int</code></td>
+    <td><p>The length of the buffer to create NOT INCLUDING the <code>nil</code> terminator.</p>
+</td>
+</tr>
+<tr>
+    <th>encoding</th>
+    <td><code class="type">String.​Encoding</code></td>
+    <td><p>the encoding that the characters are expected to be in. Defaults to UTF-8.</p>
+</td>
+</tr>
+<tr>
+    <th>block</th>
+    <td><code class="type">(Unsafe​Mutable​Pointer&lt;CChar&gt;, Int) throws -&gt; Int</code></td>
+    <td><p>the closure that will get executed. The buffer and it's length, NOT INCLUDING the <code>nil</code> terminator, will be passed to the closure. Upon success the closure should return the actual length of the C string in the buffer, NOT INCLUDING, the <code>nil</code> terminator. If there was an error then the closure should return -1 to indicate that the buffer does not contain a valid C string.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Returns</h4>
+  <p>an instance of CString or <code>nil</code> if -1 was returned from the closure.</p>
+
+</div>
+    </section>
+
+
+
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2021-01-19T20:18:46-0500">January 19, 2021</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+</p>
+    </footer>
+</body>
+</html>

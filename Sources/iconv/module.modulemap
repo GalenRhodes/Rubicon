@@ -1,0 +1,4 @@
+module iconv {
+    umbrella header "iconv.h"
+    link "iconv"
+}

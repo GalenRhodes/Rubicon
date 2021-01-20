@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubicon - cStrLen(cStringPtr:length:)</title>
+    <link rel="stylesheet" type="text/css" href="/Rubicon/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/Rubicon/">
+            <strong>
+                Rubicon
+            </strong>
+            <span>Documentation</span>
+        </a>
+        <sup>Beta</sup>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol/>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+<small>Function</small>
+<span class="name">cStr​Len(cString​Ptr:​length:​)</span>
+</h1>
+
+<html><body><pre class="highlight"><code><span class="attribute">@</span><span class="attribute">inlinable</span> <span class="keyword">public</span> <span class="keyword">func</span> <span class="function">cStrLen</span>(<span class="variable">cStringPtr</span>: <span class="type">UnsafePointer</span>&lt;<span class="type">Int8</span>&gt;, <span class="variable">length</span>: <span class="type">Int</span> = -<span class="number literal">1</span>) -&gt; <span class="type">Int</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Get the length of a <code>nil</code>-terminated C string of type 'signed char' (Int8).</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>cString​Ptr</th>
+    <td><code class="type">Unsafe​Pointer&lt;Int8&gt;</code></td>
+    <td><p>the C string.</p>
+</td>
+</tr>
+<tr>
+    <th>length</th>
+    <td><code class="type">Int</code></td>
+    <td><p>the maximum possible length of the string. If less than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> (the default) then there is no maximum. This is dangerous - only use this is you are sure there is a <code>nil</code>-terminator.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Returns</h4>
+  <p>the length of the string.</p>
+
+<html><body><pre class="highlight"><code><span class="attribute">@</span><span class="attribute">inlinable</span> <span class="keyword">public</span> <span class="keyword">func</span> <span class="function">cStrLen</span>(<span class="variable">cStringPtr</span>: <a href="/Rubicon/ByteROPointer"><span class="type">ByteROPointer</span></a>, <span class="variable">length</span>: <span class="type">Int</span> = -<span class="number literal">1</span>) -&gt; <span class="type">Int</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Get the length of a <code>nil</code>-terminated C string of type 'unsigned char' (UInt8).</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>cString​Ptr</th>
+    <td><code class="type">Byte​ROPointer</code></td>
+    <td><p>the C string.</p>
+</td>
+</tr>
+<tr>
+    <th>length</th>
+    <td><code class="type">Int</code></td>
+    <td><p>the maximum possible length of the string. If less than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> (the default) then there is no maximum. This is dangerous - only use this is you are sure there is a <code>nil</code>-terminator.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+  <h4>Returns</h4>
+  <p>the length of the string.</p>
+
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2021-01-19T20:18:48-0500">January 19, 2021</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="New class wrapping NSRegularExpression to make it easier to use." />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="macos_macos_x86_64" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Rebase.Settings">
+    <option name="NEW_BASE" value="0.3.0" />
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="amon5vo6" />
+  </component>
+  <component name="ProjectId" id="1hVLdn4q9dZBJYcN1EOQjI95yyx" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="flattenPackages" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+    <option name="sortByType" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="Rubicon" />
+    <property name="OverrideImplement.combined" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT&#10;Swift" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Swift" />
+  </component>
+  <component name="RunManager" selected="Application.DocFixer">
+    <configuration name="DocFixer Remote" type="AppleRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--project $(PROJECT_NAME) --remote-host galenrhodes.com --remote-user $(USER) --remote-path /var/www/html/$(PROJECT_NAME) --swift-doc-format HTML Sources/$(PROJECT_NAME)" REDIRECT_INPUT="false" ELEVATE="false" WORKING_DIR="file://$(SRCROOT)" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Rubicon" TARGET_NAME="DocFixer" CONFIG_NAME="Release" SCHEME_NAME="DocFixer Remote" IS_LOCATION_SIMULATION_ALLOWED="true" LOCATION_SCENARIO_ID="com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier" LOCATION_SCENARIO_TYPE="1" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" RUN_TARGET_PROJECT_NAME="Rubicon" RUN_TARGET_NAME="DocFixer" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
+      <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
+        <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
+      </EXTENSION>
+      <embedded_app_extension_list />
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.DocFixer" />
+      <item itemvalue="Application.Rubicon" />
+      <item itemvalue="Application.DocFixer Remote" />
+      <item itemvalue="XCTest.Rubicon Tests" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="" />
+      <created>1600091407163</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600091407163</updated>
+      <workItem from="1600091409983" duration="8032000" />
+      <workItem from="1600109199849" duration="1531000" />
+      <workItem from="1600291213758" duration="7320000" />
+      <workItem from="1600438759278" duration="13288000" />
+      <workItem from="1600706473668" duration="57000" />
+      <workItem from="1600706559912" duration="7691000" />
+      <workItem from="1600865075575" duration="366000" />
+      <workItem from="1600905988726" duration="4867000" />
+      <workItem from="1600969788833" duration="673000" />
+      <workItem from="1600970711206" duration="772000" />
+      <workItem from="1600971504746" duration="422000" />
+      <workItem from="1600973016743" duration="2407000" />
+      <workItem from="1601038298651" duration="613000" />
+      <workItem from="1601049016307" duration="2190000" />
+      <workItem from="1601137551411" duration="391000" />
+      <workItem from="1601162389734" duration="628000" />
+      <workItem from="1601213348867" duration="383000" />
+      <workItem from="1601219120920" duration="25267000" />
+      <workItem from="1601334226415" duration="36003000" />
+      <workItem from="1601421485953" duration="63000" />
+      <workItem from="1601421564461" duration="3392000" />
+      <workItem from="1601429139084" duration="2918000" />
+      <workItem from="1601470930145" duration="3606000" />
+      <workItem from="1601479361970" duration="100000" />
+      <workItem from="1601479483986" duration="48000" />
+      <workItem from="1601479788757" duration="763000" />
+      <workItem from="1601486841409" duration="267000" />
+      <workItem from="1601487342130" duration="486000" />
+      <workItem from="1601487901282" duration="7158000" />
+      <workItem from="1601555367972" duration="5259000" />
+      <workItem from="1601570010543" duration="10784000" />
+      <workItem from="1601640337042" duration="609000" />
+      <workItem from="1601652147705" duration="1030000" />
+      <workItem from="1601749906854" duration="1390000" />
+      <workItem from="1601898955618" duration="3778000" />
+      <workItem from="1602072564301" duration="5027000" />
+      <workItem from="1602081313399" duration="2956000" />
+      <workItem from="1602170874860" duration="724000" />
+      <workItem from="1602209810998" duration="2311000" />
+      <workItem from="1602296719431" duration="2474000" />
+      <workItem from="1602718851096" duration="278000" />
+      <workItem from="1602719166555" duration="4691000" />
+      <workItem from="1602790968467" duration="10673000" />
+      <workItem from="1602853815120" duration="22970000" />
+      <workItem from="1603023677473" duration="7453000" />
+      <workItem from="1603036935979" duration="10418000" />
+      <workItem from="1603397687768" duration="1105000" />
+      <workItem from="1603418928695" duration="651000" />
+      <workItem from="1603741075482" duration="1381000" />
+      <workItem from="1603957847116" duration="1823000" />
+      <workItem from="1603962792739" duration="726000" />
+      <workItem from="1603983406675" duration="1561000" />
+      <workItem from="1604329170899" duration="531000" />
+      <workItem from="1604597039237" duration="1467000" />
+      <workItem from="1604612065170" duration="40000" />
+      <workItem from="1604675215664" duration="1590000" />
+      <workItem from="1604680910722" duration="189000" />
+      <workItem from="1604779915742" duration="622000" />
+      <workItem from="1604785934527" duration="2825000" />
+      <workItem from="1604940622812" duration="36379000" />
+      <workItem from="1605102321772" duration="6201000" />
+      <workItem from="1605183523184" duration="5686000" />
+      <workItem from="1605204012772" duration="254000" />
+      <workItem from="1605204899828" duration="1012000" />
+      <workItem from="1605276989586" duration="3574000" />
+      <workItem from="1605385220064" duration="2079000" />
+      <workItem from="1605460054184" duration="5987000" />
+      <workItem from="1605720866291" duration="25910000" />
+      <workItem from="1606072007468" duration="879000" />
+      <workItem from="1606342329661" duration="32858000" />
+      <workItem from="1606749795058" duration="68000" />
+      <workItem from="1606749922743" duration="20970000" />
+      <workItem from="1606847555225" duration="13993000" />
+      <workItem from="1606916866028" duration="14379000" />
+      <workItem from="1606947791851" duration="24591000" />
+      <workItem from="1607351402555" duration="453000" />
+      <workItem from="1607353234379" duration="18332000" />
+      <workItem from="1607384678191" duration="13868000" />
+      <workItem from="1607523675870" duration="44848000" />
+      <workItem from="1607702899973" duration="4479000" />
+      <workItem from="1607712519579" duration="10762000" />
+      <workItem from="1607967150766" duration="5417000" />
+      <workItem from="1608050760277" duration="978000" />
+      <workItem from="1608055445992" duration="35775000" />
+      <workItem from="1608215574223" duration="3987000" />
+      <workItem from="1608224104994" duration="8843000" />
+      <workItem from="1608241789318" duration="1077000" />
+      <workItem from="1608299897786" duration="15070000" />
+      <workItem from="1608497733254" duration="19330000" />
+      <workItem from="1608655456789" duration="8913000" />
+      <workItem from="1608992676902" duration="7946000" />
+      <workItem from="1609032667644" duration="4747000" />
+      <workItem from="1609342793951" duration="8839000" />
+      <workItem from="1609440098632" duration="2212000" />
+      <workItem from="1609526654282" duration="12468000" />
+      <workItem from="1609764348038" duration="15027000" />
+      <workItem from="1609852253342" duration="16481000" />
+      <workItem from="1609946317132" duration="10646000" />
+      <workItem from="1610022879165" duration="8036000" />
+      <workItem from="1610037030708" duration="185000" />
+      <workItem from="1610135695579" duration="462000" />
+      <workItem from="1610195795835" duration="2260000" />
+      <workItem from="1610397186765" duration="2292000" />
+      <workItem from="1610459621135" duration="20764000" />
+      <workItem from="1610498447255" duration="16446000" />
+      <workItem from="1610570309897" duration="1280000" />
+      <workItem from="1610995710746" duration="70000" />
+      <workItem from="1611107732149" duration="1449000" />
+      <workItem from="1611149855338" duration="263000" />
+      <workItem from="1611150503796" duration="243000" />
+    </task>
+    <task id="LOCAL-00051" summary="Added Utf32CharInputStream.">
+      <created>1605037442007</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1605037442007</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Added Utf32CharInputStream.">
+      <created>1605037674261</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1605037674261</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Added Utf32CharInputStream.">
+      <created>1605189173291</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1605189173291</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Added typealiases:&#10;&#10;public typealias QWordPointer   = UnsafeMutablePointer&lt;UInt64&gt;&#10;public typealias QWordROPointer = UnsafePointer&lt;UInt64&gt;&#10;public typealias QWordBuffer    = UnsafeMutableBufferPointer&lt;UInt64&gt;&#10;public typealias QWordROBuffer  = UnsafeBufferPointer&lt;UInt64&gt;">
+      <created>1605204208275</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1605204208276</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Added missing method to CharInputStream protocol.">
+      <created>1605205906972</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1605205906972</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Added alternative methods to get single byte/character.">
+      <created>1605281780140</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1605281780140</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Added alternative methods to get single byte/character.">
+      <created>1605364587720</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1605364587720</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Added alternative methods to get single byte/character.">
+      <created>1605385644402</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1605385644403</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Bug fixes...">
+      <created>1605461640961</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1605461640962</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Bug fixes...">
+      <created>1605464818735</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1605464818735</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Bug fixes...">
+      <created>1605467222237</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1605467222237</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Cleaned up and optimised ByteInputStream, AscIICharInputStream, StringCharInputStream, Utf8CharInputStream, Utf16CharInputStream, and Utf32CharInputStream.">
+      <created>1605799054494</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1605799054494</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Cleaned up and optimised ByteInputStream, AscIICharInputStream, StringCharInputStream, Utf8CharInputStream, Utf16CharInputStream, and Utf32CharInputStream.">
+      <created>1605818980574</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1605818980574</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Bug fix.">
+      <created>1606072252299</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1606072252299</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Cleaned up and optimised ByteInputStream, AscIICharInputStream, StringCharInputStream, Utf8CharInputStream, Utf16CharInputStream, and Utf32CharInputStream.">
+      <created>1606917171874</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1606917171874</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Cleaned up and optimised ByteInputStream, AscIICharInputStream, StringCharInputStream, Utf8CharInputStream, Utf16CharInputStream, and Utf32CharInputStream.">
+      <created>1607028757054</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1607028757054</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Based the CharInputStream implementations on iconv.  See the class IConvCharInputStream.swift.">
+      <created>1607351787328</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1607351787329</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
+      <created>1607526501723</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1607526501724</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
+      <created>1607526511230</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1607526511230</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
+      <created>1608666969042</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1608666969043</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
+      <created>1608667254868</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1608667254868</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
+      <created>1609086605388</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1609086605388</updated>
+    </task>
+    <task id="LOCAL-00073" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
+      <created>1609088331078</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1609088331078</updated>
+    </task>
+    <task id="LOCAL-00074" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
+      <created>1609089805667</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1609089805667</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
+      <created>1609354603242</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1609354603243</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
+      <created>1609356042593</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1609356042593</updated>
+    </task>
+    <task id="LOCAL-00077" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
+      <created>1609356107429</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1609356107429</updated>
+    </task>
+    <task id="LOCAL-00078" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
+      <created>1609356192390</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1609356192390</updated>
+    </task>
+    <task id="LOCAL-00079" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
+      <created>1609356485902</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1609356485902</updated>
+    </task>
+    <task id="LOCAL-00080" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
+      <created>1609356745290</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1609356745290</updated>
+    </task>
+    <task id="LOCAL-00081" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
+      <created>1609356949625</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1609356949625</updated>
+    </task>
+    <task id="LOCAL-00082" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
+      <created>1609357073007</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1609357073007</updated>
+    </task>
+    <task id="LOCAL-00083" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
+      <created>1609357214068</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1609357214068</updated>
+    </task>
+    <task id="LOCAL-00084" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
+      <created>1609357329765</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1609357329766</updated>
+    </task>
+    <task id="LOCAL-00085" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
+      <created>1609357456996</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1609357456996</updated>
+    </task>
+    <task id="LOCAL-00086" summary="Created a wrapper around libiconv functions.">
+      <created>1609967625702</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1609967625702</updated>
+    </task>
+    <task id="LOCAL-00087" summary="Created a wrapper around libiconv functions.">
+      <created>1609967700107</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1609967700107</updated>
+    </task>
+    <task id="LOCAL-00088" summary="Dictionary that implements a classic Red/Black binary tree.">
+      <created>1610546682514</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1610546682515</updated>
+    </task>
+    <task id="LOCAL-00089" summary="Dictionary that implements a classic Red/Black binary tree.">
+      <created>1610570521605</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1610570521605</updated>
+    </task>
+    <task id="LOCAL-00090" summary="Dictionary that implements a classic Red/Black binary tree.">
+      <created>1610570536732</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1610570536733</updated>
+    </task>
+    <task id="LOCAL-00091" summary="Added Package providers for Ubuntu and Centos for the libc6.">
+      <created>1611074120067</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1611074120067</updated>
+    </task>
+    <task id="LOCAL-00092" summary="Fixed IConvCharInputStream so that close() is called when the object is disposed of unless autoClose is set to false.">
+      <created>1611074313358</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1611074313358</updated>
+    </task>
+    <task id="LOCAL-00093" summary="Backed out package providers because it was causing an error.">
+      <created>1611075370971</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1611075370971</updated>
+    </task>
+    <task id="LOCAL-00094" summary="New class wrapping NSRegularExpression to make it easier to use.">
+      <created>1611105611942</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1611105611942</updated>
+    </task>
+    <task id="LOCAL-00095" summary="New class wrapping NSRegularExpression to make it easier to use.">
+      <created>1611108608496</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1611108608496</updated>
+    </task>
+    <task id="LOCAL-00096" summary="New class wrapping NSRegularExpression to make it easier to use.">
+      <created>1611145401319</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1611145401319</updated>
+    </task>
+    <task id="LOCAL-00097" summary="New class wrapping NSRegularExpression to make it easier to use.">
+      <created>1611145662052</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1611145662052</updated>
+    </task>
+    <task id="LOCAL-00098" summary="New class wrapping NSRegularExpression to make it easier to use.">
+      <created>1611150010763</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1611150010764</updated>
+    </task>
+    <task id="LOCAL-00099" summary="New class wrapping NSRegularExpression to make it easier to use.">
+      <created>1611150015887</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1611150015887</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="Added two's compliment function. ^!" />
+    <MESSAGE value="Added two's compliment function. ~~" />
+    <MESSAGE value="Range extension" />
+    <MESSAGE value="nilCheck" />
+    <MESSAGE value="Revamped the binary tree collection." />
+    <MESSAGE value="Added method all(where:) -&gt; [Element] to Array via extension." />
+    <MESSAGE value="Imported the RingBuffer source files right into the project because the Xcode 12 tools that 3rd party apps use were having troubles with the RingBuffer package." />
+    <MESSAGE value="Reverted because Xcode didn't like that! Going to try a different route." />
+    <MESSAGE value="Added default value to String.matchGroup" />
+    <MESSAGE value="New extensions to Data and String to allow creation from an InputStream." />
+    <MESSAGE value="Added Utf32CharInputStream." />
+    <MESSAGE value="Added typealiases:&#10;&#10;public typealias QWordPointer   = UnsafeMutablePointer&lt;UInt64&gt;&#10;public typealias QWordROPointer = UnsafePointer&lt;UInt64&gt;&#10;public typealias QWordBuffer    = UnsafeMutableBufferPointer&lt;UInt64&gt;&#10;public typealias QWordROBuffer  = UnsafeBufferPointer&lt;UInt64&gt;" />
+    <MESSAGE value="Added missing method to CharInputStream protocol." />
+    <MESSAGE value="Added alternative methods to get single byte/character." />
+    <MESSAGE value="Bug fixes..." />
+    <MESSAGE value="Bug fix." />
+    <MESSAGE value="Cleaned up and optimised ByteInputStream, AscIICharInputStream, StringCharInputStream, Utf8CharInputStream, Utf16CharInputStream, and Utf32CharInputStream." />
+    <MESSAGE value="Based the CharInputStream implementations on iconv.  See the class IConvCharInputStream.swift." />
+    <MESSAGE value="Rewrite of ByteInputStream so it acts as a mark/release input stream." />
+    <MESSAGE value="Created a wrapper around libiconv functions." />
+    <MESSAGE value="Dictionary that implements a classic Red/Black binary tree." />
+    <MESSAGE value="Added Package providers for Ubuntu and Centos for the libc6." />
+    <MESSAGE value="Fixed IConvCharInputStream so that close() is called when the object is disposed of unless autoClose is set to false." />
+    <MESSAGE value="Backed out package providers because it was causing an error." />
+    <MESSAGE value="New class wrapping NSRegularExpression to make it easier to use." />
+    <option name="LAST_COMMIT_MESSAGE" value="New class wrapping NSRegularExpression to make it easier to use." />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="CidrCoverage/Rubicon/Rubicon Tests.json" NAME="Rubicon Tests Coverage Results" MODIFIED="1608608581698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="llvm-cov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>

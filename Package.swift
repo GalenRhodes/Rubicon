@@ -14,7 +14,7 @@ let package = Package(
       .package(name: "RingBuffer", url: "https://github.com/GalenRhodes/RingBuffer", from: "1.0.8"),
   ],
   targets: [
-      .systemLibrary(name: "iconv"),
+      .systemLibrary(name: "iconv", providers: [ .apt([ "libc6-dev" ]) ]),
       .target(name: "Rubicon", dependencies: [ "RingBuffer", "iconv" ], exclude: [ "Info.plist" ]),
       .testTarget(name: "RubiconTests", dependencies: [ "Rubicon" ], exclude: [ "Info.plist" ], resources: [ .copy("Files") ]),
   ]

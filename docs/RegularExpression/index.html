@@ -58,7 +58,7 @@
     <h3>
         <code>init(pattern:​options:​)</code>
     </h3>
-    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">pattern</span>: <span class="type">String</span>, <span class="variable">options</span>: <span class="type">NSRegularExpression</span>.<span class="type">Options</span>) <span class="keyword">throws</span></code></pre></body></html>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">pattern</span>: <span class="type">String</span>, <span class="variable">options</span>: <span class="type">NSRegularExpression</span>.<span class="type">Options</span> = []) <span class="keyword">throws</span></code></pre></body></html>
 </div>
     </section>
     <section id="methods">
@@ -80,7 +80,7 @@
     <h3>
         <code>for​Each​Match(in:​options:​_:​)</code>
     </h3>
-    <html><body><pre class="highlight"><code><span class="attribute">open</span> <span class="keyword">func</span> <span class="function">forEachMatch</span>(<span class="variable">in</span> <span class="variable">str</span>: <span class="type">String</span>, <span class="variable">options</span>: <span class="type">NSRegularExpression</span>.<span class="type">MatchingOptions</span> = [], <span class="keyword">_</span> <span class="variable">body</span>: (<span class="type">Match</span>) -&gt; <span class="type">Bool</span>)</code></pre></body></html>
+    <html><body><pre class="highlight"><code><span class="attribute">open</span> <span class="keyword">func</span> <span class="function">forEachMatch</span>(<span class="variable">in</span> <span class="variable">str</span>: <span class="type">String</span>, <span class="variable">options</span>: <span class="type">NSRegularExpression</span>.<span class="type">MatchingOptions</span> = [], <span class="keyword">_</span> <span class="variable">body</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">Match</span>) -&gt; <span class="type">Bool</span>)</code></pre></body></html>
 </div>
     </section>
 
@@ -91,7 +91,7 @@
 
     <footer>
         <p>
-    Generated on <time datetime="2021-01-19T20:18:47-0500">January 19, 2021</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+    Generated on <time datetime="2021-01-20T11:49:01-0500">January 20, 2021</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
 </p>
     </footer>
 </body>

@@ -134,7 +134,7 @@ public typealias RegExResult = NSTextCheckingResult
 /*===============================================================================================================================================================================*/
 /// Convienience function to build an instance of <code>[RegEx](https://developer.apple.com/documentation/foundation/nsregularexpression/)</code> that includes the option to have
 /// anchors ('^' and '$') match the beginning and end of lines instead of the entire input.
-///
+/// 
 /// - Parameter pattern: the regular expression pattern.
 /// - Returns: the instance of <code>[RegEx](https://developer.apple.com/documentation/foundation/nsregularexpression/)</code>
 /// - Throws: exception if the pattern is an invalid regular expression pattern.

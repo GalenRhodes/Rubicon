@@ -28,9 +28,12 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Bug fixes">
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Removed debugging output from RingByteBuffer.">
+      <change beforePath="$PROJECT_DIR$/.idea/Rubicon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Rubicon.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/IConv.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/IConv.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,14 +234,8 @@
       <workItem from="1611150503796" duration="243000" />
       <workItem from="1611150786731" duration="1056000" />
       <workItem from="1611151987224" duration="3894000" />
-      <workItem from="1611159097796" duration="2959000" />
-    </task>
-    <task id="LOCAL-00055" summary="Added missing method to CharInputStream protocol.">
-      <created>1605205906972</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1605205906972</updated>
+      <workItem from="1611159097796" duration="3642000" />
+      <workItem from="1611239376966" duration="426000" />
     </task>
     <task id="LOCAL-00056" summary="Added alternative methods to get single byte/character.">
       <created>1605281780140</created>
@@ -576,7 +573,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611161401110</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="Removed debugging output from RingByteBuffer.">
+      <created>1611166777156</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1611166777156</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -609,7 +613,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="nilCheck" />
     <MESSAGE value="Revamped the binary tree collection." />
     <MESSAGE value="Added method all(where:) -&gt; [Element] to Array via extension." />
     <MESSAGE value="Imported the RingBuffer source files right into the project because the Xcode 12 tools that 3rd party apps use were having troubles with the RingBuffer package." />
@@ -634,7 +637,8 @@
     <MESSAGE value="Initial Commit. I just wanted to clean everything up and basically start over." />
     <MESSAGE value="Added providers to Package.swift" />
     <MESSAGE value="Bug fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fixes" />
+    <MESSAGE value="Removed debugging output from RingByteBuffer." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed debugging output from RingByteBuffer." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="CidrCoverage/Rubicon/Rubicon Tests.json" NAME="Rubicon Tests Coverage Results" MODIFIED="1608608581698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="llvm-cov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

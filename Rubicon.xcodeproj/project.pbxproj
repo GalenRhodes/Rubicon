@@ -52,6 +52,7 @@
 		83C67ACE250EC1E200C0F21E /* utf16BOMTestFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = 83C67AC9250EC1E100C0F21E /* utf16BOMTestFile.txt */; };
 		83C67AD4250EC20200C0F21E /* RubiconTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C67ACB250EC1E200C0F21E /* RubiconTests.swift */; };
 		83C67AED250EC3CF00C0F21E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C67AEB250EC3C200C0F21E /* main.swift */; };
+		83DD3B7F25B9C9FB0083BC1C /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8377FEDD2576CB7100E660D3 /* libiconv.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83DD3B7F25B9C9FB0083BC1C /* libiconv.tbd in Frameworks */,
 				835AD7A625B7BBDE002817C0 /* RingBuffer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -688,6 +690,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Sources/iconv/**";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -747,6 +750,7 @@
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Sources/iconv/**";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -774,7 +778,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.projectgalen.Rubicon;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Sources/iconv";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/Sources/RingBuffer/include";
@@ -803,7 +806,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_DISABLE_SAFETY_CHECKS = YES;
-				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Sources/iconv";
 				SWIFT_VERSION = 5.0;
 				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/Sources/RingBuffer/include";
 			};

@@ -22,7 +22,9 @@
 
 import Foundation
 import CoreFoundation
-import iconv
+#if os(Linux)
+    import iconv
+#endif
 
 /*===============================================================================================================================================================================*/
 /// This class represents a wrapper around the libiconv functions.

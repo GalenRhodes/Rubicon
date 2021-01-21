@@ -22,7 +22,9 @@
 
 import Foundation
 import CoreFoundation
-import iconv
+#if os(Linux)
+    import iconv
+#endif
 
 /*===============================================================================================================================================================================*/
 /// There is a possibility that the endian of the system is not known. In that case we default to `little` endian because that's the most common these days.

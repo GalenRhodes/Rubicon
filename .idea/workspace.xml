@@ -28,12 +28,12 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Removed debugging output from RingByteBuffer.">
-      <change beforePath="$PROJECT_DIR$/.idea/Rubicon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Rubicon.iml" afterDir="false" />
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Fixed issue with System Library module and JetBrains' AppCode IDE.">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Rubicon_Tests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Rubicon_Tests.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/Rubicon Tests.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/Rubicon Tests.xcscheme" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/IConv.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/IConv.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/IConvTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/RubiconTests/IConvTests.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +97,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Swift" />
   </component>
-  <component name="RunManager" selected="Application.DocFixer">
+  <component name="RunManager" selected="XCTest.Rubicon Tests">
     <configuration name="DocFixer Remote" type="AppleRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--project $(PROJECT_NAME) --remote-host galenrhodes.com --remote-user $(USER) --remote-path /var/www/html/$(PROJECT_NAME) --swift-doc-format HTML Sources/$(PROJECT_NAME)" REDIRECT_INPUT="false" ELEVATE="false" WORKING_DIR="file://$(SRCROOT)" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Rubicon" TARGET_NAME="DocFixer" CONFIG_NAME="Release" SCHEME_NAME="DocFixer Remote" IS_LOCATION_SIMULATION_ALLOWED="true" LOCATION_SCENARIO_ID="com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier" LOCATION_SCENARIO_TYPE="1" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" RUN_TARGET_PROJECT_NAME="Rubicon" RUN_TARGET_NAME="DocFixer" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
       <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
         <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
@@ -235,14 +235,7 @@
       <workItem from="1611150786731" duration="1056000" />
       <workItem from="1611151987224" duration="3894000" />
       <workItem from="1611159097796" duration="3642000" />
-      <workItem from="1611239376966" duration="426000" />
-    </task>
-    <task id="LOCAL-00056" summary="Added alternative methods to get single byte/character.">
-      <created>1605281780140</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1605281780140</updated>
+      <workItem from="1611239376966" duration="7087000" />
     </task>
     <task id="LOCAL-00057" summary="Added alternative methods to get single byte/character.">
       <created>1605364587720</created>
@@ -580,7 +573,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611166777156</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="Fixed issue with System Library module and JetBrains' AppCode IDE.">
+      <created>1611240146122</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1611240146122</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -613,7 +613,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Revamped the binary tree collection." />
     <MESSAGE value="Added method all(where:) -&gt; [Element] to Array via extension." />
     <MESSAGE value="Imported the RingBuffer source files right into the project because the Xcode 12 tools that 3rd party apps use were having troubles with the RingBuffer package." />
     <MESSAGE value="Reverted because Xcode didn't like that! Going to try a different route." />
@@ -638,7 +637,8 @@
     <MESSAGE value="Added providers to Package.swift" />
     <MESSAGE value="Bug fixes" />
     <MESSAGE value="Removed debugging output from RingByteBuffer." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed debugging output from RingByteBuffer." />
+    <MESSAGE value="Fixed issue with System Library module and JetBrains' AppCode IDE." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue with System Library module and JetBrains' AppCode IDE." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="CidrCoverage/Rubicon/Rubicon Tests.json" NAME="Rubicon Tests Coverage Results" MODIFIED="1608608581698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="llvm-cov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

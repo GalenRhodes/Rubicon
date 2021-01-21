@@ -28,7 +28,7 @@
             </BuildableReference>
             <SelectedTests>
                <Test
-                  Identifier = "IConvTests">
+                  Identifier = "IConvTests/testIConvList">
                </Test>
             </SelectedTests>
          </TestableReference>

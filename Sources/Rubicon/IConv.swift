@@ -130,4 +130,51 @@ open class IConv {
 
         return stop
     }
+
+    public static func getEncodingsList() -> [String] {
+        let data = UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>.allocate(capacity: MaxEncodings)
+        data.initialize(repeating: nil, count: MaxEncodings)
+
+        defer {
+            for i in (0 ..< MaxEncodings) { if let p: UnsafeMutablePointer<Int8> = data[i] { p.deallocate() } }
+            data.deallocate()
+        }
+
+        iconvlist({ (count: UInt32, p: UnsafePointer<UnsafePointer<Int8>?>?, d: UnsafeMutableRawPointer?) -> Int32 in
+                      if let p = p, let d = d {
+                          let _data: UnsafeMutablePointer<UnsafeMutablePointer<Int8>?> = d.bindMemory(to: UnsafeMutablePointer<Int8>?.self, capacity: MaxEncodings)
+                          for i in (0 ..< Int(count)) {
+                              if let p2: UnsafePointer<Int8> = p[i] {
+                                  guard let idx = NextSlot(_data) else { return 1 }
+                                  _data[idx] = CopyStr(p2)
+                              }
+                          }
+                      }
+                      return 0
+                  }, data)
+
+        var list = [ String ]()
+        for i in (0 ..< MaxEncodings) { if let p = data[i] { if let str = String(utf8String: p) { list.append(str) } } }
+        return list
+    }
 }
+
+fileprivate func CopyStr(_ str: UnsafePointer<Int8>) -> UnsafeMutablePointer<Int8> {
+    let len = StrLen(str)
+    let x   = UnsafeMutablePointer<Int8>.allocate(capacity: len)
+    x.initialize(from: str, count: len)
+    return x
+}
+
+fileprivate func NextSlot(_ data: UnsafeMutablePointer<UnsafeMutablePointer<Int8>?>) -> Int? {
+    for i in (0 ..< MaxEncodings) { if data[i] == nil { return i } }
+    return nil
+}
+
+fileprivate func StrLen(_ str: UnsafePointer<Int8>) -> Int {
+    var len = 0
+    while str[len] != 0 { len += 1 }
+    return len + 1
+}
+
+fileprivate let MaxEncodings: Int = 5_000

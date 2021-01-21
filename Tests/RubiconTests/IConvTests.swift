@@ -62,6 +62,13 @@ class IConvTests: XCTestCase {
         }
     }
 
+    func testIConvList() {
+        let list: [String] = IConv.getEncodingsList()
+        for i in (0 ..< list.count) {
+            print("\(i + 1)> \"\(list[i])\"")
+        }
+    }
+
     private func makeString(chars: inout [Character]) -> String {
         let str = String(chars)
         chars.removeAll(keepingCapacity: true)

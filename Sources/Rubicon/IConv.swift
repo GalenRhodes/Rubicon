@@ -93,10 +93,8 @@ open class IConv {
 
     open func convert(input: EasyByteBuffer, relocate: Bool = true, output: EasyByteBuffer) -> Results {
         let r = convert(input: input.bytes, length: input.count, output: output.bytes, maxLength: output.length)
-        let l = (input.count - r.inputBytesUsed)
-        if relocate && l > 0 && r.inputBytesUsed > 0 { memcpy(input.bytes, (input.bytes + r.inputBytesUsed), l) }
-        input.count = l
         output.count = r.outputBytesUsed
+        if relocate { input.relocateToFront(start: r.inputBytesUsed, count: (input.count - r.inputBytesUsed)) }
         return r.results
     }
 

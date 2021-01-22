@@ -38,4 +38,39 @@ open class EasyByteBuffer {
         bytes.deinitialize(count: length)
         bytes.deallocate()
     }
+
+    @discardableResult @inlinable open func relocateToFront(start idx: Int) -> Int {
+        guard count >= 0 && count <= length else { fatalError("Internal count value is invalid.") }
+        guard idx >= 0 && idx <= count else { fatalError("Start index out of bounds.") }
+
+        if idx > 0 && count > 0 {
+            count = (count - idx)
+            _relocate(start: idx, count: count)
+        }
+
+        return count
+    }
+
+    @inlinable open func relocateToFront(start idx: Int, count cc: Int) {
+        guard (idx >= 0) && (idx <= length) else { fatalError("Start index out of bounds.") }
+        guard (cc >= 0) && ((idx + cc) <= length) else { fatalError("Count is invalid.") }
+        _relocate(start: idx, count: cc)
+    }
+
+    @inlinable final func _relocate(start idx: Int, count cc: Int) {
+        if (idx > 0) && (idx < length) && (cc > 0) {
+            memmove(bytes, (bytes + idx), cc)
+        }
+    }
+
+    @discardableResult open func withBufferAs<T, V>(type: T.Type, _ body: (UnsafeMutablePointer<T>, Int, inout Int) throws -> V) rethrows -> V {
+        var tCount:  Int                     = ((count * MemoryLayout<UInt8>.stride) / MemoryLayout<T>.stride)
+        let tLength: Int                     = ((length * MemoryLayout<UInt8>.stride) / MemoryLayout<T>.stride)
+        let t1Buff:  UnsafeMutableRawPointer = UnsafeMutableRawPointer(bytes)
+        let t2Buff:  UnsafeMutablePointer<T> = t1Buff.bindMemory(to: T.self, capacity: tCount)
+
+        let res: V = try body(t2Buff, tLength, &tCount)
+        count = ((count * MemoryLayout<T>.stride) / MemoryLayout<UInt8>.stride)
+        return res
+    }
 }

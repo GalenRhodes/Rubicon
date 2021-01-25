@@ -52,9 +52,10 @@ class IConvTests: XCTestCase {
                 }
                 iconv.markRelease()
 
-                while try iconv.read(chars: &chars, maxLength: 10) > 0 {
+                while try iconv.read(chars: &chars, maxLength: 1000) > 0 {
                     print("\(makeString(chars: &chars))", terminator: "")
                 }
+                print("")
             }
         }
         catch let e {

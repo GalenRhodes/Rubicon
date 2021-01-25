@@ -26,7 +26,7 @@
     <nav>
         <div class="wrapper">
             <h2>On This Page</h2>
-            <ol><li><a href="#relationships">Relationships</a><ul><li><a href="#relationships">Nested Types</a></li></ul></li><li><a href="#nested type aliases">Nested Type Aliases</a><ul><li class="typealias"><a href="#iconv.response">Response</a></li></ul></li><li><a href="#initializers">Initializers</a><ul><li class="initializer"><a href="#iconv.init?(toencoding:fromencoding:ignoreerrors:enabletransliterate:)">init?(to​Encoding:​from​Encoding:​ignore​Errors:​enable​Transliterate:​)</a></li></ul></li><li><a href="#properties">Properties</a><ul><li class="variable"><a href="#iconv.fromencoding">from​Encoding</a></li><li class="variable"><a href="#iconv.toencoding">to​Encoding</a></li><li class="variable"><a href="#iconv.ignoreerrors">ignore​Errors</a></li><li class="variable"><a href="#iconv.enabletransliterate">enable​Transliterate</a></li></ul></li><li><a href="#methods">Methods</a><ul><li class="function"><a href="#iconv.reset()">reset()</a></li><li class="function"><a href="#iconv.convert(input:length:output:maxlength:)">convert(input:​length:​output:​max​Length:​)</a></li><li class="function"><a href="#iconv.convert(input:relocate:output:)">convert(input:​relocate:​output:​)</a></li><li class="function"><a href="#iconv.with(inputstream:do:)">with(input​Stream:​do:​)</a></li><li class="function"><a href="#iconv.getencodingslist()">get​Encodings​List()</a></li></ul></li></ol>
+            <ol><li><a href="#relationships">Relationships</a><ul><li><a href="#relationships">Nested Types</a></li></ul></li><li><a href="#nested type aliases">Nested Type Aliases</a><ul><li class="typealias"><a href="#iconv.response">Response</a></li></ul></li><li><a href="#initializers">Initializers</a><ul><li class="initializer"><a href="#iconv.init?(toencoding:fromencoding:ignoreerrors:enabletransliterate:)">init?(to​Encoding:​from​Encoding:​ignore​Errors:​enable​Transliterate:​)</a></li></ul></li><li><a href="#properties">Properties</a><ul><li class="variable"><a href="#iconv.fromencoding">from​Encoding</a></li><li class="variable"><a href="#iconv.toencoding">to​Encoding</a></li><li class="variable"><a href="#iconv.ignoreerrors">ignore​Errors</a></li><li class="variable"><a href="#iconv.enabletransliterate">enable​Transliterate</a></li></ul></li><li><a href="#methods">Methods</a><ul><li class="function"><a href="#iconv.reset()">reset()</a></li><li class="function"><a href="#iconv.convert(input:length:output:maxlength:)">convert(input:​length:​output:​max​Length:​)</a></li><li class="function"><a href="#iconv.convert(input:output:)">convert(input:​output:​)</a></li><li class="function"><a href="#iconv.with(inputstream:do:)">with(input​Stream:​do:​)</a></li><li class="function"><a href="#iconv.getencodingslist()">get​Encodings​List()</a></li></ul></li></ol>
         </div>
     </nav>
 
@@ -114,11 +114,11 @@
     </h3>
     <html><body><pre class="highlight"><code><span class="attribute">open</span> <span class="keyword">func</span> <span class="function">convert</span>(<span class="variable">input</span>: <span class="type">UnsafeRawPointer</span>, <span class="variable">length</span>: <span class="type">Int</span>, <span class="variable">output</span>: <span class="type">UnsafeMutableRawPointer</span>, <span class="variable">maxLength</span>: <span class="type">Int</span>) -&gt; <span class="type">Response</span></code></pre></body></html>
 </div>
-<div role="article" class="function" id="iconv.convert(input:relocate:output:)">
+<div role="article" class="function" id="iconv.convert(input:output:)">
     <h3>
-        <code>convert(input:​relocate:​output:​)</code>
+        <code>convert(input:​output:​)</code>
     </h3>
-    <html><body><pre class="highlight"><code><span class="attribute">open</span> <span class="keyword">func</span> <span class="function">convert</span>(<span class="variable">input</span>: <a href="/Rubicon/EasyByteBuffer"><span class="type">EasyByteBuffer</span></a>, <span class="variable">relocate</span>: <span class="type">Bool</span> = <span class="keyword">true</span>, <span class="variable">output</span>: <a href="/Rubicon/EasyByteBuffer"><span class="type">EasyByteBuffer</span></a>) -&gt; <span class="type">Results</span></code></pre></body></html>
+    <html><body><pre class="highlight"><code><span class="attribute">open</span> <span class="keyword">func</span> <span class="function">convert</span>(<span class="variable">input</span>: <a href="/Rubicon/EasyByteBuffer"><span class="type">EasyByteBuffer</span></a>, <span class="variable">output</span>: <a href="/Rubicon/EasyByteBuffer"><span class="type">EasyByteBuffer</span></a>) -&gt; <span class="type">Results</span></code></pre></body></html>
 </div>
 <div role="article" class="function" id="iconv.with(inputstream:do:)">
     <h3>
@@ -141,7 +141,7 @@
 
     <footer>
         <p>
-    Generated on <time datetime="2021-01-22T14:21:35-0500">January 22, 2021</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+    Generated on <time datetime="2021-01-25T08:46:30-0500">January 25, 2021</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
 </p>
     </footer>
 </body>

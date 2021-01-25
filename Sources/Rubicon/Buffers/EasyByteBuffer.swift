@@ -61,6 +61,7 @@ open class EasyByteBuffer {
         if (idx > 0) && (idx < length) && (cc > 0) {
             memmove(bytes, (bytes + idx), cc)
         }
+        count = cc
     }
 
     @discardableResult open func withBufferAs<T, V>(type: T.Type, _ body: (UnsafeMutablePointer<T>, Int, inout Int) throws -> V) rethrows -> V {
@@ -70,7 +71,7 @@ open class EasyByteBuffer {
         let t2Buff:  UnsafeMutablePointer<T> = t1Buff.bindMemory(to: T.self, capacity: tCount)
 
         let res: V = try body(t2Buff, tLength, &tCount)
-        count = ((count * MemoryLayout<T>.stride) / MemoryLayout<UInt8>.stride)
+        count = ((tCount * MemoryLayout<T>.stride) / MemoryLayout<UInt8>.stride)
         return res
     }
 }

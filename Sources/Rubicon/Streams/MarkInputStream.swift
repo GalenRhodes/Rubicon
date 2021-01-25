@@ -23,7 +23,6 @@
 import Foundation
 import CoreFoundation
 
-@usableFromInline let InputBufferSize:    Int = 1024                           // 1KB
 @usableFromInline let MaxInputBufferSize: Int = (InputBufferSize * 64)         // 64KB
 @usableFromInline let ReloadTriggerSize:  Int = ((MaxInputBufferSize / 4) * 3) // 48KB
 

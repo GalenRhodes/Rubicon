@@ -78,23 +78,20 @@ open class IConv {
         let inUsed:  Int           = (length - inSz)
         let outUsed: Int           = (maxLength - outSz)
 
-        if res >= 0 {
-            return (.OK, inUsed, outUsed)
-        }
-        else {
-            switch errno {
-                case E2BIG:  return (.InputTooBig, inUsed, outUsed)
-                case EINVAL: return (.IncompleteSequence, inUsed, outUsed)
-                case EILSEQ: return (.InvalidSequence, inUsed, outUsed)
-                default:     return (.OtherError, inUsed, outUsed)
-            }
+        if res >= 0 { return (.OK, inUsed, outUsed) }
+
+        switch errno {
+            case E2BIG:  return (.InputTooBig, inUsed, outUsed)
+            case EINVAL: return (.IncompleteSequence, inUsed, outUsed)
+            case EILSEQ: return (.InvalidSequence, inUsed, outUsed)
+            default:     return (.OtherError, inUsed, outUsed)
         }
     }
 
-    open func convert(input: EasyByteBuffer, relocate: Bool = true, output: EasyByteBuffer) -> Results {
+    open func convert(input: EasyByteBuffer, output: EasyByteBuffer) -> Results {
         let r = convert(input: input.bytes, length: input.count, output: output.bytes, maxLength: output.length)
         output.count = r.outputBytesUsed
-        if relocate { input.relocateToFront(start: r.inputBytesUsed, count: (input.count - r.inputBytesUsed)) }
+        input.relocateToFront(start: r.inputBytesUsed, count: (input.count - r.inputBytesUsed))
         return r.results
     }
 
@@ -117,7 +114,7 @@ open class IConv {
     private func doWithIconv(_ ioRes: Int, _ inBuff: EasyByteBuffer, _ outBuff: EasyByteBuffer, _ body: (BytePointer, Int) throws -> Bool) throws -> Bool {
         inBuff.count = ioRes
 
-        let iconvRes: Results = convert(input: inBuff, relocate: true, output: outBuff)
+        let iconvRes: Results = convert(input: inBuff, output: outBuff)
         let stop:     Bool    = try body(outBuff.bytes, outBuff.count)
 
         switch iconvRes {

@@ -45,7 +45,7 @@ extension Stream {
 
     /*===========================================================================================================================================================================*/
     /// Checks to see if the `streamStatus` is any of the given statuses.
-    ///
+    /// 
     /// - Parameter statuses: the list of statuses.
     /// - Returns: `true` if the current `streamStatus` is any of the given statuses.
     ///
@@ -70,7 +70,7 @@ extension InputStream {
     /// A better read function for <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD IS NOT THREAD SAFE!!!! This method
     /// reads from the stream in chunks so do not use this method while any other thread might be potentially reading from this stream at the same time or you will be missing
     /// data.
-    ///
+    /// 
     /// - Parameters:
     ///   - buffer: the buffer that will receive the bytes.
     ///   - maxLength: the maximum number of bytes to read.
@@ -87,7 +87,7 @@ extension InputStream {
     /// A better read function for <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD IS NOT THREAD SAFE!!!! This method
     /// reads from the stream in chunks so do not use this method while any other thread might be potentially reading from this stream at the same time or you will be missing
     /// data.
-    ///
+    /// 
     /// - Parameters:
     ///   - buffer: the buffer that will receive the bytes.
     ///   - maxLength: the maximum number of bytes to read.
@@ -104,7 +104,7 @@ extension InputStream {
     /// A better read function for <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD IS NOT THREAD SAFE!!!! This method
     /// reads from the stream in chunks so do not use this method while any other thread might be potentially reading from this stream at the same time or you will be missing
     /// data.
-    ///
+    /// 
     /// - Parameters:
     ///   - rawBuffer: the buffer that will receive the bytes.
     ///   - maxLength: the maximum number of bytes to read.
@@ -124,7 +124,7 @@ extension InputStream {
     /// A better read function for <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD IS NOT THREAD SAFE!!!! This method
     /// reads from the stream in chunks so do not use this method while any other thread might be potentially reading from this stream at the same time or you will be missing
     /// data.
-    ///
+    /// 
     /// - Parameters:
     ///   - data: the <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code> to read the bytes into.
     ///   - maxLength: the maximum number of bytes to read or -1 to read all to the end-of-file.
@@ -139,6 +139,24 @@ extension InputStream {
         return try readStream(inputStream: self, maxLength: maxLength) { (p, _, count) in
             data.append(p.assumingMemoryBound(to: UInt8.self), count: count)
         }
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Read bytes into an instance of `EasyByteBuffer`. This method assumes that the `EasyByteBuffer.count` field is being used to store the number of bytes in the buffer. The
+    /// newly read bytes will be appended to the end of the existing bytes, as denoted by the value in the `EasyByteBuffer.count` field. If `EasyByteBuffer.count` is less than
+    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0) or greater than `EasyByteBuffer.length` then a fatalError is thrown. If `EasyByteBuffer.count` is equal to
+    /// `EasyByteBuffer.length` then this method returns immediately with the value <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0).
+    /// 
+    /// - Parameter b: the `EasyByteBuffer` that will be used to store the bytes read.
+    /// - Returns: the number of bytes read into the buffer or <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0) if the buffer is full or the stream it at EOF or -1 if
+    ///            there was an I/O error.
+    ///
+    public func read(buffer b: EasyByteBuffer) -> Int {
+        guard b.count >= 0 || b.count <= b.length else { fatalError("Invalid count field in buffer.") }
+        guard b.count < b.length else { return 0 }
+        let rc = read((b.bytes + b.count), maxLength: (b.length - b.count))
+        if rc > 0 { b.count += rc }
+        return rc
     }
 }
 

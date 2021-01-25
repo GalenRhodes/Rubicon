@@ -47,7 +47,7 @@ public extension String {
     /*===========================================================================================================================================================================*/
     /// Allows creating a <code>[String](https://developer.apple.com/documentation/swift/string/)</code> from the contents of an
     /// <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream)</code>.
-    ///
+    /// 
     /// - Parameters:
     ///   - inputStream: the input stream.
     ///   - encoding: the encoding. Defaults to <code>[String.Encoding.utf8](https://developer.apple.com/documentation/swift/string/encoding/1780106-utf8)</code>
@@ -111,9 +111,9 @@ public extension String {
     /// last entry will contain all input beyond the last matched delimiter. If n is non-positive then the pattern will be applied as many times as possible and the array can have
     /// any length. If n is <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the pattern will be applied as many times as possible, the array can have any length, and
     /// trailing empty strings will be discarded.
-    ///
+    /// 
     /// The string "`boo:and:foo`", for example, yields the following results with these parameters:
-    ///
+    /// 
     /// <table class="gsr">
     ///     <thead>
     ///         <tr>
@@ -155,11 +155,11 @@ public extension String {
     ///         </tr>
     ///     </tbody>
     /// </table>
-    ///
+    /// 
     /// - Parameters:
     ///   - pattern: the delimiting regular expression
     ///   - lim: the result threshold, as described above
-    ///
+    /// 
     /// - Returns: the array of strings computed by splitting this string around matches of the given regular expression
     ///
     func split(on pattern: String, limit lim: Int = 0) -> [String] {
@@ -179,7 +179,7 @@ public extension String {
 
     /*===========================================================================================================================================================================*/
     /// The body of the closure for `split(pattern:lim:)`.
-    ///
+    /// 
     /// - Parameters:
     ///   - nsRng: the NSRange of the match.
     ///   - lim:  the limit.
@@ -208,7 +208,7 @@ public extension String {
 
     /*===========================================================================================================================================================================*/
     /// Trim the empty strings off of the array of strings. Used by `split(pattern:lim:)`.
-    ///
+    /// 
     /// - Parameter results: the array of strings.
     /// - Returns: the trimmed array.
     ///
@@ -231,7 +231,7 @@ public extension String {
 
     /*===========================================================================================================================================================================*/
     /// Returns a `[String.Index](https://developer.apple.com/documentation/swift/string/index)>` into this string from an integer offset.
-    ///
+    /// 
     /// - Parameter idx: the integer offset into the string
     /// - Returns: an instance of `[String.Index](https://developer.apple.com/documentation/swift/string/index)>`
     ///
@@ -243,7 +243,7 @@ public extension String {
     /// Returns an instance of `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` from
     /// an instance of <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code>. If
     /// <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> is invalid for this string then `nil` is returned.
-    ///
+    /// 
     /// - Parameter nsRange: the <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> to convert to
     ///                      `[Range](https://developer.apple.com/documentation/swift/range/)<Index>`
     /// - Returns: an instance of `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` or
@@ -260,23 +260,23 @@ public extension String {
     /// Returns an instance of `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` from
     /// beginning and ending UTF-16 offsets. The range will contain the <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> from the `from:` offset
     /// (inclusive) to the `to:` offset (exclusive). If the `from:` offset is larger than the `to:` offset then the values will simply be reversed.
-    ///
+    /// 
     /// If the given values are invalid for this string then `nil` is returned.
-    ///
+    /// 
     /// For example, the following statement will return an instance of
     /// `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` that covers the
     /// <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> `"the"`:
-    ///
+    /// 
     ///      `"Now is the time".range(from:7, to:10)`
-    ///
+    /// 
     /// The following statement will produce the same results as above:
-    ///
+    /// 
     ///      `"Now is the time".range(from:10, to:7)`
-    ///
+    /// 
     /// - Parameters:
     ///   - from: The UTF-16 offset for the start of the range - (inclusive)
     ///   - to: The UTF-16 offset for the end of the range - (exclusive)
-    ///
+    /// 
     /// - Returns: An instance of `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` or
     ///            `nil` if the give offsets are invalid.
     ///
@@ -287,11 +287,11 @@ public extension String {
     /*===========================================================================================================================================================================*/
     /// Returns an instance of `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` that
     /// covers the range starting at the UTF-16 offset `location:` for `length:` characters. If the given values are invalid for this string then `nil` is returned.
-    ///
+    /// 
     /// - Parameters:
     ///   - location: the UTF-16 offset for the start of the range - (inclusive)
     ///   - length: the number of characters in the range.
-    ///
+    /// 
     /// - Returns: an instance of `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` or
     ///            `nil` if the given values are invalid.
     ///
@@ -303,12 +303,12 @@ public extension String {
     /// Given an instance of <code>[RegExResult](https://developer.apple.com/documentation/foundation/nstextcheckingresult)</code> from a
     /// <code>[RegEx](https://developer.apple.com/documentation/foundation/nsregularexpression)</code> and the number of a capture group within that result, this method will
     /// return the substring represented by that group. If the group number is not valid or the group did not participate in that match then this method will return `nil`.
-    ///
+    /// 
     /// - Parameters:
     ///   - match: The [result](https://developer.apple.com/documentation/foundation/nstextcheckingresult) of a successful regular expression match.
     ///   - group: The number of a capture group in that result.
     ///   - defStr: The default value that is returned if the range does not exist.
-    ///
+    /// 
     /// - Returns: The substring represented by that capture group or `nil` if that group number is invalid or the capture group did not participate in that match.
     ///
     func matchGroup(match: RegExResult, group: Int = 0, default defStr: String? = nil) -> String? {
@@ -327,7 +327,7 @@ public extension String {
     /// <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of this <code>[String](https://developer.apple.com/documentation/swift/String)</code>
     /// from the `from` index up to the beginning of the <code>[NSRange](https://developer.apple.com/documentation/foundation/NSRange)</code> specified by the group in the
     /// `RegExResult`.
-    ///
+    /// 
     /// - Parameters:
     ///   - match: the instance of `RegExResult` (aka: <code>[NSTextCheckingResult](https://developer.apple.com/documentation/foundation/NSTextCheckingResult)</code>).
     ///   - group: the group number (See <code>[NSRegularExpression](https://developer.apple.com/documentation/foundation/NSRegularExpression)</code> and
@@ -357,7 +357,7 @@ public extension String {
     /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
     /// <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the given `from:` and `to:` bounds. A <code>[fatal
     /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds are invalid for the string.
-    ///
+    /// 
     /// - Parameters:
     ///   - from: The index of the start of the substring.
     ///   - to: The index (exclusive) of the end of the string.
@@ -371,7 +371,7 @@ public extension String {
     /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
     /// <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the given `from:` index for the `length:` characters. A <code>[fatal
     /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds are invalid for the string.
-    ///
+    /// 
     /// - Parameters:
     ///   - from: The index of the start of the substring.
     ///   - length: The number of characters to include in the substring.
@@ -386,7 +386,7 @@ public extension String {
     /// <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the given
     /// <code>[Range](https://developer.apple.com/documentation/swift/Range)</code>. A <code>[fatal
     /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds are invalid for the string.
-    ///
+    /// 
     /// - Parameter range: the <code>[Range](https://developer.apple.com/documentation/swift/Range)</code> of the
     ///                    <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
     /// - Returns: a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
@@ -401,7 +401,7 @@ public extension String {
     /// <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the given
     /// <code>[NSRange](https://developer.apple.com/documentation/foundation/NSRange)</code>. A <code>[fatal
     /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds are invalid for the string.
-    ///
+    /// 
     /// - Parameter nsRange: the <code>[NSRange](https://developer.apple.com/documentation/foundation/NSRange)</code> of the
     ///                      <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>
     /// - Returns: a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
@@ -416,7 +416,7 @@ public extension String {
 
     /*===========================================================================================================================================================================*/
     /// Returns the <code>[Character](https://developer.apple.com/documentation/swift/Character)</code> at the `idx`th integer position in the string.
-    ///
+    /// 
     /// - Parameter idx: the integer offset into the <code>[String](https://developer.apple.com/documentation/swift/String)</code>.
     /// - Returns: the <code>[Character](https://developer.apple.com/documentation/swift/Character)</code> at the offset indicated by `idx`.
     ///
@@ -427,7 +427,7 @@ public extension String {
     /*===========================================================================================================================================================================*/
     /// Returns the <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the given
     /// <code>[Range](https://developer.apple.com/documentation/swift/Range)</code>. A fatal error is thrown if the range is invalid for the string.
-    ///
+    /// 
     /// - Parameter range: the <code>[Range](https://developer.apple.com/documentation/swift/Range)</code> of the
     ///                    <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
     /// - Returns: the <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.

@@ -50,28 +50,28 @@ open class IConvCharInputStream: CharInputStream {
 
     public let            encodingName:      String
     //@f:0
-    @inlinable public var streamError:       Error?        { ((streamStatus == .error) ? error : nil)           }
-    @inlinable public var hasCharsAvailable: Bool          { status(in: .open, .reading, .writing)              }
-    @inlinable public var isEOF:             Bool          { !((streamStatus == .notOpen) || hasCharsAvailable) }
-    @inlinable public var streamStatus:      Stream.Status { lock.withLock { testSts(intStatus) }               }
+    @inlinable public var streamError:       Error?        { ((streamStatus == .error) ? _error : nil)                                   }
+    @inlinable public var hasCharsAvailable: Bool          { status(in: .open, .reading, .writing)                                       }
+    @inlinable public var isEOF:             Bool          { !((streamStatus == .notOpen) || hasCharsAvailable)                          }
+    @inlinable public var streamStatus:      Stream.Status { _lock.withLock { testSts(_status) }                                         }
 
-    @inlinable final  var atEnd:             Bool          { (charBuffer.isEmpty && !iConvRunning)                                       }
-    @inlinable final  var runnerGood:        Bool          { ((intStatus == .open) && inputStream.status(in: .open, .reading, .writing)) }
+    @inlinable final  var _atEnd:             Bool          { (_charBuffer.isEmpty && !_running)                                         }
+    @inlinable final  var _runnerGood:        Bool          { ((_status == .open) && _inputStream.status(in: .open, .reading, .writing)) }
     //@f:1
-    @usableFromInline var charBuffer:   [Character]   = []
-    @usableFromInline var markStack:    [MarkItem]    = []
-    @usableFromInline var error:        Error?        = nil
-    @usableFromInline var intStatus:    Stream.Status = .notOpen // We're only going to use three (3) status here: .notOpen, .open, .closed
-    @usableFromInline var iConvRunning: Bool          = false
-    @usableFromInline let lock:         Conditional   = Conditional()
-    @usableFromInline let queue:        DispatchQueue = DispatchQueue(label: UUID().uuidString, qos: .background, autoreleaseFrequency: .workItem)
-    @usableFromInline let inputStream:  InputStream
-    @usableFromInline let autoClose:    Bool
+    @usableFromInline var _charBuffer:  [Character]   = []
+    @usableFromInline var _markStack:   [MarkItem]    = []
+    @usableFromInline var _error:       Error?        = nil
+    @usableFromInline var _status:      Stream.Status = .notOpen // We're only going to use three (3) status here: .notOpen, .open, .closed
+    @usableFromInline var _running:     Bool          = false
+    @usableFromInline let _lock:        Conditional   = Conditional()
+    @usableFromInline let _queue:       DispatchQueue = DispatchQueue(label: UUID().uuidString, qos: .background, autoreleaseFrequency: .workItem)
+    @usableFromInline let _inputStream: InputStream
+    @usableFromInline let _autoClose:   Bool
 
     public init(inputStream: InputStream, autoClose: Bool = true, encodingName: String) {
-        self.inputStream = inputStream
+        self._inputStream = inputStream
         self.encodingName = encodingName.trimmed.uppercased()
-        self.autoClose = autoClose
+        self._autoClose = autoClose
     }
 
     public convenience init?(fileAtPath: String, encodingName: String) {
@@ -97,11 +97,11 @@ open class IConvCharInputStream: CharInputStream {
     /// Opens the character stream for reading.  If the stream has already been opened then calling this method does nothing.
     ///
     open func open() {
-        lock.withLock {
-            if intStatus == .notOpen {
-                intStatus = .open
-                iConvRunning = true
-                queue.async { self.iConvRunner() }
+        _lock.withLock {
+            if _status == .notOpen {
+                _status = .open
+                _running = true
+                _queue.async { self.iConvRunner() }
             }
         }
     }
@@ -111,12 +111,12 @@ open class IConvCharInputStream: CharInputStream {
     /// character stream has already been closed then calling this method does nothing. Once a character stream has been closed it can never be reopened.
     ///
     open func close() {
-        lock.withLock {
-            if intStatus != .closed {
-                intStatus = .closed
-                while iConvRunning { lock.broadcastWait() }
-                charBuffer.removeAll()
-                markStack.removeAll()
+        _lock.withLock {
+            if _status != .closed {
+                _status = .closed
+                while _running { _lock.broadcastWait() }
+                _charBuffer.removeAll()
+                _markStack.removeAll()
             }
         }
     }
@@ -128,11 +128,11 @@ open class IConvCharInputStream: CharInputStream {
     /// - Throws: if an I/O or conversion error occurs.
     ///
     open func read() throws -> Character? {
-        try lock.withLockBroadcastWait {
-            !(charBuffer.isEmpty && iConvRunning)
+        try _lock.withLockBroadcastWait {
+            !(_charBuffer.isEmpty && _running)
         } do: {
-            guard charBuffer.isEmpty else { return stash(char: charBuffer.popFirst()) }
-            guard let e = error else { return nil }
+            guard _charBuffer.isEmpty else { return stash(char: _charBuffer.popFirst()) }
+            guard let e = _error else { return nil }
             throw e
         }
     }
@@ -154,7 +154,7 @@ open class IConvCharInputStream: CharInputStream {
 
         guard maxLength > 0 else { return 0 }
 
-        return try lock.withLock {
+        return try _lock.withLock {
             var cc = 0
 
             while cc < maxLength {
@@ -171,9 +171,22 @@ open class IConvCharInputStream: CharInputStream {
     /// Marks the current position in the stream so that it can be returned to later.
     ///
     open func markSet() {
-        lock.withLock {
-            if intStatus == .open {
-                markStack.append(MarkItem())
+        _lock.withLock {
+            if _status == .open {
+                _markStack.append(MarkItem())
+            }
+        }
+    }
+
+    open func markReset() {
+        _lock.withLock {
+            if _status == .open {
+                if let ms = _markStack.last {
+                    ms.chars.removeAll(keepingCapacity: true)
+                }
+                else {
+                    _markStack.append(MarkItem())
+                }
             }
         }
     }
@@ -184,9 +197,9 @@ open class IConvCharInputStream: CharInputStream {
     /// - Parameter discard: If `true` the marked file-pointer position will be discarded instead of reset.
     ///
     open func markRelease(discard: Bool = false) {
-        lock.withLock {
-            if intStatus == .open, let ms = markStack.popLast() {
-                if !discard { charBuffer.insert(contentsOf: ms.chars, at: 0) }
+        _lock.withLock {
+            if _status == .open, let ms = _markStack.popLast() {
+                if !discard { _charBuffer.insert(contentsOf: ms.chars, at: 0) }
             }
         }
     }
@@ -195,25 +208,25 @@ open class IConvCharInputStream: CharInputStream {
     /// The background thread function that reads from the backing byte input stream.
     ///
     final func iConvRunner() {
-        lock.withLock {
+        _lock.withLock {
             if let iconv = IConv(toEncoding: EncodeToName, fromEncoding: encodingName, ignoreErrors: true, enableTransliterate: true) {
                 let inBuff:  EasyByteBuffer = EasyByteBuffer(length: InputBufferSize)
                 let outBuff: EasyByteBuffer = EasyByteBuffer(length: OutputBufferSize)
 
-                if inputStream.streamStatus == .notOpen { inputStream.open() }
+                if _inputStream.streamStatus == .notOpen { _inputStream.open() }
 
-                while runnerGood { guard iConvLoop(iconv, inBuff: inBuff, outBuff: outBuff) else { break } }
+                while _runnerGood { guard iConvLoop(iconv, inBuff: inBuff, outBuff: outBuff) else { break } }
                 //-------------------------------------------------
                 // One final time just in case there's a few bytes
                 // left over.
                 //-------------------------------------------------
                 finalIConv(iconv: iconv, inBuff: inBuff, outBuff: outBuff)
-                if autoClose { inputStream.close() }
+                if _autoClose { _inputStream.close() }
             }
             else {
-                error = getEncodingError(encodingName: encodingName)
+                _error = getEncodingError(encodingName: encodingName)
             }
-            iConvRunning = false
+            _running = false
         }
     }
 
@@ -227,26 +240,26 @@ open class IConvCharInputStream: CharInputStream {
     /// - Returns: `true` if the loop should continue and `false` if it should stop.
     ///
     final func iConvLoop(_ iconv: IConv, inBuff i: EasyByteBuffer, outBuff o: EasyByteBuffer) -> Bool {
-        while (charBuffer.count >= MaxReadAhead) && runnerGood { lock.broadcastWait() }
-        guard runnerGood else { return false }
+        while (_charBuffer.count >= MaxReadAhead) && _runnerGood { _lock.broadcastWait() }
+        guard _runnerGood else { return false }
         //-------------------------------------------------
         // Read bytes from the input stream.
         //-------------------------------------------------
-        guard inputStream.read(buffer: i) > 0 else {
-            if inputStream.streamStatus == .error { error = (inputStream.streamError ?? StreamError.UnknownError()) }
+        guard _inputStream.read(buffer: i) > 0 else {
+            if _inputStream.streamStatus == .error { _error = (_inputStream.streamError ?? StreamError.UnknownError()) }
             return false
         }
         //-------------------------------------------------
         // Decode them and store them in the `charBuffer`.
         //-------------------------------------------------
         guard value(iConv(iconv, input: i, output: o), isOneOf: .OK, .IncompleteSequence) else {
-            error = StreamError.UnknownError(description: "IConv encoding error.")
+            _error = StreamError.UnknownError(description: "IConv encoding error.")
             return false
         }
         //-------------------------------------------------
         // Give the readers a chance to read.
         //-------------------------------------------------
-        lock.broadcastWait()
+        _lock.broadcastWait()
         return true
     }
 
@@ -263,7 +276,7 @@ open class IConvCharInputStream: CharInputStream {
             // This would indicate that a final multi-byte character got cut-off so we'll
             // just stick a Unicode `bad character` marker in there to indicate so.
             //----------------------------------------------------------------------------
-            charBuffer.append(UnicodeReplacementChar)
+            _charBuffer.append(UnicodeReplacementChar)
             i.count = 0
         }
         storeCharacters(o)
@@ -301,7 +314,7 @@ open class IConvCharInputStream: CharInputStream {
     @inlinable final func storeCharacters(_ outBuff: EasyByteBuffer) {
         outBuff.withBufferAs(type: UInt32.self) { (p: UnsafeMutablePointer<UInt32>, length: Int, count: inout Int) in
             for x in (0 ..< count) {
-                charBuffer <+ Character(scalar: UnicodeScalar(p[x]))
+                _charBuffer <+ Character(scalar: UnicodeScalar(p[x]))
             }
             count = 0
         }
@@ -317,41 +330,41 @@ open class IConvCharInputStream: CharInputStream {
     /// - Throws: in the event of an I/O error or an IConv encoding error.
     ///
     @inlinable final func _read(chars: inout [Character], maxLength: Int) throws -> Int {
-        while charBuffer.isEmpty && iConvRunning { lock.broadcastWait() }
+        while _charBuffer.isEmpty && _running { _lock.broadcastWait() }
 
-        let cbcc = charBuffer.count
+        let cbcc = _charBuffer.count
 
         if cbcc == 0 {
-            guard let e = error else { return 0 }
+            guard let e = _error else { return 0 }
             throw e
         }
 
         if cbcc <= maxLength {
-            chars.append(contentsOf: charBuffer)
-            charBuffer.removeAll()
+            chars.append(contentsOf: _charBuffer)
+            _charBuffer.removeAll()
             return cbcc
         }
 
-        chars.append(contentsOf: stash(chars: charBuffer[0 ..< maxLength]))
-        charBuffer.removeFirst(maxLength)
+        chars.append(contentsOf: stash(chars: _charBuffer[0 ..< maxLength]))
+        _charBuffer.removeFirst(maxLength)
         return maxLength
     }
 
     @inlinable final func getEncodingError(encodingName: String) -> CErrors { CErrors.INVAL(description: "Unsupported character encoding: \"\(encodingName)\"") }
 
     @inlinable final func stash(char: Character?) -> Character? {
-        if let ch = char, let ms = markStack.last { ms.chars.append(ch) }
+        if let ch = char, let ms = _markStack.last { ms.chars.append(ch) }
         return char
     }
 
     @inlinable final func stash(chars: ArraySlice<Character>) -> ArraySlice<Character> {
-        if let ms = markStack.last { ms.chars.append(contentsOf: chars) }
+        if let ms = _markStack.last { ms.chars.append(contentsOf: chars) }
         return chars
     }
 
-    @inlinable final func stsOrErr(_ s: Stream.Status) -> Stream.Status { ((error == nil) ? s : .error) }
+    @inlinable final func stsOrErr(_ s: Stream.Status) -> Stream.Status { ((_error == nil) ? s : .error) }
 
-    @inlinable final func testSts(_ s: Stream.Status) -> Stream.Status { ((s == .notOpen) ? s : ((s == .open) ? (atEnd ? stsOrErr(.atEnd) : .open) : stsOrErr(.closed))) }
+    @inlinable final func testSts(_ s: Stream.Status) -> Stream.Status { ((s == .notOpen) ? s : ((s == .open) ? (_atEnd ? stsOrErr(.atEnd) : .open) : stsOrErr(.closed))) }
 
     deinit { close() }
 

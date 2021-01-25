@@ -65,6 +65,8 @@ public protocol CharInputStream: CharStream {
 
     func markSet()
 
+    func markReset()
+
     func markRelease(discard: Bool)
 }
 

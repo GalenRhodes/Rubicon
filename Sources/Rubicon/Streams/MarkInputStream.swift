@@ -187,6 +187,17 @@ open class MarkInputStream: InputStream {
         }
     }
 
+    open func markReset() {
+        _lock.withLock {
+            if let mark = _markStack.last {
+                mark.clear(keepingCapacity: true)
+            }
+            else {
+                _markStack.append(RingByteBuffer(initialCapacity: InputBufferSize))
+            }
+        }
+    }
+
     /*===========================================================================================================================================================================*/
     /// Resets the stream back to the previously marked position.
     /// 

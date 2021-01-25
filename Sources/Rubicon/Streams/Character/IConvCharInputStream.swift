@@ -196,7 +196,7 @@ open class IConvCharInputStream: CharInputStream {
     /// 
     /// - Parameter discard: If `true` the marked file-pointer position will be discarded instead of reset.
     ///
-    open func markRelease(discard: Bool = false) {
+    open func markRelease(discard: Bool) {
         _lock.withLock {
             if _status == .open, let ms = _markStack.popLast() {
                 if !discard { _charBuffer.insert(contentsOf: ms.chars, at: 0) }

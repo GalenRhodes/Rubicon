@@ -32,7 +32,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/CharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/CharInputStream.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,14 +244,7 @@
       <workItem from="1611239376966" duration="7739000" />
       <workItem from="1611323894484" duration="26252000" />
       <workItem from="1611498508363" duration="11445000" />
-      <workItem from="1611581711263" duration="12302000" />
-    </task>
-    <task id="LOCAL-00063" summary="Cleaned up and optimised ByteInputStream, AscIICharInputStream, StringCharInputStream, Utf8CharInputStream, Utf16CharInputStream, and Utf32CharInputStream.">
-      <created>1605818980574</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1605818980574</updated>
+      <workItem from="1611581711263" duration="12856000" />
     </task>
     <task id="LOCAL-00064" summary="Bug fix.">
       <created>1606072252299</created>
@@ -590,7 +582,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611601569392</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="Added:&#10;    func hasAnyPrefix(_ prefixes: String...) -&gt; Bool&#10;    func hasAnySuffix(_ suffixes: String...) -&gt; Bool">
+      <created>1611610794798</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1611610794798</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

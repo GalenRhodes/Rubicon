@@ -68,9 +68,14 @@ public protocol CharInputStream: CharStream {
     func markReset()
 
     func markRelease(discard: Bool)
+
+    func markRelease()
 }
 
 public extension CharInputStream {
+
+    @inlinable func markRelease() { markRelease(discard: false) }
+
     /*===========================================================================================================================================================================*/
     /// Read <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s from the stream.
     /// 

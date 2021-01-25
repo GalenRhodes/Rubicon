@@ -79,24 +79,7 @@ extension InputStream {
     ///            the end-of-file has been reached, the stream is closed, or the stream was never opened.
     /// - Throws: any error reported by the input stream.
     ///
-    public func read(to buffer: BytePointer, maxLength: Int) throws -> Int {
-        try read(to: UnsafeMutableRawPointer(buffer), maxLength: maxLength)
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// A better read function for <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD IS NOT THREAD SAFE!!!! This method
-    /// reads from the stream in chunks so do not use this method while any other thread might be potentially reading from this stream at the same time or you will be missing
-    /// data.
-    /// 
-    /// - Parameters:
-    ///   - buffer: the buffer that will receive the bytes.
-    ///   - maxLength: the maximum number of bytes to read.
-    ///   - fully: `true` to keep reading until either maxLength or end-of-file is reached.
-    /// - Returns: the total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if `maxLength` is <code>[zero](https://en.wikipedia.org/wiki/0)</code>,
-    ///            the end-of-file has been reached, the stream is closed, or the stream was never opened.
-    /// - Throws: any error reported by the input stream.
-    ///
-    public func read(to buffer: CCharPointer, maxLength: Int) throws -> Int {
+    @inlinable public func read(to buffer: CCharPointer, maxLength: Int) throws -> Int {
         try read(to: UnsafeMutableRawPointer(buffer), maxLength: maxLength)
     }
 
@@ -113,11 +96,21 @@ extension InputStream {
     ///            the end-of-file has been reached, the stream is closed, or the stream was never opened.
     /// - Throws: any error reported by the input stream.
     ///
-    public func read(to rawBuffer: UnsafeMutableRawPointer, maxLength: Int) throws -> Int {
+    public func read(to rp: UnsafeMutableRawPointer, maxLength: Int) throws -> Int {
         guard maxLength > 0 else { return 0 }
-        return try readStream(inputStream: self, maxLength: maxLength) { (buf: UnsafeRawPointer, cc: Int, count: Int) in
-            rawBuffer.advanced(by: cc).copyMemory(from: buf, byteCount: count)
+        let p  = rp.bindMemory(to: UInt8.self, capacity: maxLength)
+        var cc = 0
+
+        while cc < maxLength {
+            let rc = read((p + cc), maxLength: (maxLength - cc))
+            guard rc > 0 else {
+                guard rc == 0 else { throw streamError ?? StreamError.UnknownError() }
+                break
+            }
+            cc += rc
         }
+
+        return cc
     }
 
     /*===========================================================================================================================================================================*/
@@ -127,18 +120,34 @@ extension InputStream {
     /// 
     /// - Parameters:
     ///   - data: the <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code> to read the bytes into.
-    ///   - maxLength: the maximum number of bytes to read or -1 to read all to the end-of-file.
-    ///   - fully: `true` to keep reading until either maxLength or end-of-file is reached.
-    ///   - truncate: `true` to clear the data buffer before reading or `false` to append read data to the existing data.
-    /// - Returns: the total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if `maxLength` is <code>[zero](https://en.wikipedia.org/wiki/0)</code>,
-    ///            the end-of-file has been reached, the stream is closed, or the stream was never opened.
+    ///   - len: the maximum number of bytes to read or -1 to read all to the end-of-file.
+    ///   - clr: `true` to clear the data buffer before reading or `false` to append read data to the existing data.
+    /// - Returns: the total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if `len` is <code>[zero](https://en.wikipedia.org/wiki/0)</code>, the
+    ///            end-of-file has been reached, the stream is closed, or the stream was never opened.
     /// - Throws: any error reported by the input stream.
     ///
-    public func read(to data: inout Data, maxLength: Int, truncate: Bool = true) throws -> Int {
-        if truncate { data.removeAll(keepingCapacity: true) }
-        return try readStream(inputStream: self, maxLength: maxLength) { (p, _, count) in
-            data.append(p.assumingMemoryBound(to: UInt8.self), count: count)
+    public func read(to data: inout Data, maxLength len: Int, truncate clr: Bool = true) throws -> Int {
+        if clr { data.removeAll(keepingCapacity: true) }
+        guard len != 0 else { return 0 }
+
+        var cc = 0
+        let mx = ((len < 0) ? (1024 * 1024) : len)
+        let ln = ((len < 0) ? (Int.max) : len)
+        let p  = UnsafeMutablePointer<UInt8>.allocate(capacity: min(mx, ln))
+
+        defer { p.deallocate() }
+
+        while cc < ln {
+            let rc = read(p, maxLength: min(mx, (ln - cc)))
+            guard rc > 0 else {
+                guard rc == 0 else { throw streamError ?? StreamError.UnknownError() }
+                break
+            }
+            cc += rc
+            data.append(p, count: rc)
         }
+
+        return cc
     }
 
     /*===========================================================================================================================================================================*/
@@ -153,36 +162,74 @@ extension InputStream {
     ///
     public func read(buffer b: EasyByteBuffer) -> Int {
         guard b.count >= 0 || b.count <= b.length else { fatalError("Invalid count field in buffer.") }
-        guard b.count < b.length else { return 0 }
-        let rc = read((b.bytes + b.count), maxLength: (b.length - b.count))
-        if rc > 0 { b.count += rc }
-        return rc
+        let cc = b.count
+
+        while b.count < b.length {
+            let rc = read((b.bytes + b.count), maxLength: (b.length - b.count))
+            guard rc > 0 else {
+                guard rc == 0 else { return -1 }
+                break
+            }
+            b.count += rc
+        }
+
+        return (b.count - cc)
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// A better read function for <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD IS NOT THREAD SAFE!!!! This method
+    /// reads from the stream in chunks so do not use this method while any other thread might be potentially reading from this stream at the same time or you will be missing
+    /// data.
+    /// 
+    /// - Parameters:
+    ///   - array: the <code>[Array](https://developer.apple.com/documentation/foundation/array/)</code> to read the bytes into.
+    ///   - len: the maximum number of bytes to read or -1 to read all to the end-of-file.
+    ///   - clr: `true` to clear the data buffer before reading or `false` to append read data to the existing data.
+    /// - Returns: the total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if `len` is <code>[zero](https://en.wikipedia.org/wiki/0)</code>, the
+    ///            end-of-file has been reached, the stream is closed, or the stream was never opened.
+    /// - Throws: any error reported by the input stream.
+    ///
+    @inlinable public func read(to array: inout [UInt8], maxLength len: Int, truncate clr: Bool = true) throws -> Int {
+        if clr { array.removeAll(keepingCapacity: true) }
+        var data: Data = Data()
+        let cc:   Int  = try read(to: &data, maxLength: len, truncate: false)
+        array.append(contentsOf: data)
+        return cc
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// A better read function for <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD IS NOT THREAD SAFE!!!! This method
+    /// reads from the stream in chunks so do not use this method while any other thread might be potentially reading from this stream at the same time or you will be missing
+    /// data.
+    /// 
+    /// - Parameter rbp: the <code>[UnsafeMutableRawBufferPointer](https://developer.apple.com/documentation/foundation/unsafemutablerawbufferpointer/)</code> to read the bytes
+    ///                  into.
+    /// - Returns: the total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if `len` is <code>[zero](https://en.wikipedia.org/wiki/0)</code>, the
+    ///            end-of-file has been reached, the stream is closed, or the stream was never opened.
+    /// - Throws: any error reported by the input stream.
+    ///
+    @inlinable public func read(to rbp: UnsafeMutableRawBufferPointer) throws -> Int {
+        guard let bp: UnsafeMutableRawPointer = rbp.baseAddress else { return 0 }
+        return try read(to: bp, maxLength: rbp.count)
     }
 }
 
-func readStream(inputStream: InputStream, maxLength: Int, body: (UnsafeRawPointer, Int, Int) throws -> Void) throws -> Int {
-    guard maxLength != 0 else { return 0 }
-    var bytesRead: Int         = 0
-    let maxLength: Int         = fixLength(maxLength)
-    let bSize:     Int         = min(maxLength, BasicBufferSize)
-    let buffer:    BytePointer = BytePointer.allocate(capacity: bSize)
-
-    defer { buffer.deallocate() }
-
-    repeat {
-        let result: Int = inputStream.read(buffer, maxLength: min((maxLength - bytesRead), bSize))
-        if result < 0 { throw inputStream.streamError ?? StreamError.UnknownError() }
-        if result == 0 { return bytesRead }
-        try body(buffer, bytesRead, result)
-        bytesRead += result
+extension OutputStream {
+    @inlinable public func write(from rbp: UnsafeRawBufferPointer, length: Int = -1) throws -> Int {
+        guard let rp = rbp.baseAddress else { return 0 }
+        return try write(from: rp, length: ((length < 0) ? rbp.count : min(rbp.count, length)))
     }
-    while (bytesRead < maxLength)
 
-    return bytesRead
+    @inlinable public func write(from p: UnsafeRawPointer, length: Int) throws -> Int {
+        guard length > 0 else { return 0 }
+        let wc = write(p.bindMemory(to: UInt8.self, capacity: length), maxLength: length)
+        guard wc >= 0 else { throw streamError ?? StreamError.UnknownError() }
+        return wc
+    }
 }
 
 extension Stream.Status: CustomStringConvertible {
-    public var description: String {
+    @inlinable public var description: String {
         switch self {
             case .notOpen: return "Not Open"
             case .opening: return "Opening"
@@ -199,7 +246,7 @@ extension Stream.Status: CustomStringConvertible {
 }
 
 extension Stream.Event: CustomStringConvertible {
-    public var description: String {
+    @inlinable public var description: String {
         switch self {
             case .openCompleted:     return "Open Completed"
             case .endEncountered:    return "End Encountered"

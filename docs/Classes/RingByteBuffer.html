@@ -1,0 +1,2143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>RingByteBuffer Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/RingByteBuffer" class="dashAnchor"></a>
+    <a title="RingByteBuffer Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Rubicon©</a> (59% documented)</p>
+        <p class="header-right"><a href="https://github.com/GalenRhodes/Rubicon"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        RingByteBuffer Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryTreeDictionary.html">BinaryTreeDictionary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryTreeDictionary/Iterator.html">– Iterator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryTreeDictionary/Keys.html">– Keys</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryTreeDictionary/Values.html">– Values</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryTreeNode.html">BinaryTreeNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryTreeNode/NodeColor.html">– NodeColor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CString.html">CString</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CondMutex.html">CondMutex</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Conditional.html">Conditional</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EasyByteBuffer.html">EasyByteBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Fixed2DArray.html">Fixed2DArray</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/IConv.html">IConv</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/IConv/Results.html">– Results</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/IConvCharInputStream.html">IConvCharInputStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/IConvCharInputStream/MarkItem.html">– MarkItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MarkInputStream.html">MarkInputStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NanoTimer.html">NanoTimer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PGThread.html">PGThread</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegularExpression.html">RegularExpression</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegularExpression/Match.html">– Match</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegularExpression/Group.html">– Group</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegularExpression/NamedGroup.html">– NamedGroup</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RingByteBuffer.html">RingByteBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UTF8CharInputStream.html">UTF8CharInputStream</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global%20Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/BasicBufferSize.html">BasicBufferSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/EncodeToName.html">EncodeToName</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/HalfGB.html">HalfGB</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/InputBufferSize.html">InputBufferSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/MaxInputBufferSize.html">MaxInputBufferSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/MaxReadAhead.html">MaxReadAhead</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/OneMB.html">OneMB</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/OneSecondMicros.html">OneSecondMicros</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/OneSecondMillis.html">OneSecondMillis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/OneSecondNanos.html">OneSecondNanos</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/OutputBufferSize.html">OutputBufferSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/ReloadTriggerSize.html">ReloadTriggerSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/UnicodeReplacementChar.html">UnicodeReplacementChar</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/CErrors.html">CErrors</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/NanoTimerError.html">NanoTimerError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RingByteBufferError.html">RingByteBufferError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SortOrdering.html">SortOrdering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StreamError.html">StreamError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Character.html">Character</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/CharacterSet.html">CharacterSet</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Collection.html">Collection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/DateFormatter.html">DateFormatter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/InputStream.html">InputStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSCondition.html">NSCondition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSLock.html">NSLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSRange.html">NSRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSRecursiveLock.html">NSRecursiveLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/OutputStream.html">OutputStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Range.html">Range</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/RangeReplaceableCollection.html">RangeReplaceableCollection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Stream.html">Stream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Stream/Status.html">– Status</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Stream/Event.html">– Event</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Thread.html">Thread</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions/_2B_2B_28_5F_3A_29_5F_24syxxzcSzRzluD.html">++(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_2B_2B_28_5F_3A_29_5F_24syxxzcSzRzluD.html">++(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_2B_2B_2B_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html">+++(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_2B_2B_2B_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html">+++(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/--_28_5F_3A_29_5F_24syxxzcSzRzluD.html">--(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/--_28_5F_3A_29_5F_24syxxzcSzRzluD.html">--(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/---_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html">---(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/---_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html">---(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_3C_2B_28_5F_3A_5F_3A_29_5F_24syySayxGz_5FAAtcluD.html">&lt;+(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_3C_2B_28_5F_3A_5F_3A_29_5F_24syySayxGz_5FxtcluD.html">&lt;+(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_3C_3D_3E_28_5F_3A_5F_3A_29_5F_24sy7Rubicon12SortOrderingOSayxSgG_5FAEtcSLRzluD.html">&lt;=&gt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_3C_3D_3E_28_5F_3A_5F_3A_29_5F_24sy7Rubicon12SortOrderingOxSg_5FADtcSLRzluD.html">&lt;=&gt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_3C_3F_28_5F_3A_5F_3A_29_5F_24sySbSayxG_5FAAtcSQRzluD.html">&lt;?(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_3C_3F_28_5F_3A_5F_3A_29_5F_24sySbSayxG_5FxtcSQRzluD.html">&lt;?(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/NanoSleep_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosys6UInt32V_5FADtKcD.html">NanoSleep(seconds:nanos:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/NanoSleep2_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosys6UInt32V_5FADtcD.html">NanoSleep2(seconds:nanos:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/StrError_28_5F_3A_29_5F_24sySSs5Int32VcD.html">StrError(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_5E_5E_28_5F_3A_5F_3A_29_5F_24syxx_5FxtcSzRzluD.html">^^(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/absoluteTimeSpecFrom_28date_3A_29_5F_24s4dateSo8timespecVSg10Foundation4DateV_5FtcD.html">absoluteTimeSpecFrom(date:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/cStrLen_28cStringPtr_3Alength_3A_29_5F_24s10cStringPtr6lengthSiSPys4Int8VG_5FSitcD.html">cStrLen(cStringPtr:length:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/cStrLen_28cStringPtr_3Alength_3A_29_5F_24s10cStringPtr6lengthSiSPys5UInt8VG_5FSitcD.html">cStrLen(cStringPtr:length:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/cString001_28_5F_3A_29_5F_24sySrys4Int8VGSScD.html">cString001(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/cString002_28_5F_3A_5F_3A_29_5F_24sySrys4Int8VGSRys5UInt8VG_5FSbtcD.html">cString002(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/cString003_28_5F_3A_5F_3A_29_5F_24sySrys4Int8VGSRyABG_5FSbtcD.html">cString003(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/cString004_28_29_5F_24sSrys4Int8VGycD.html">cString004()</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/createMutablePointer_28capacity_3A_29_5F_24s8capacitySpyxGSi_5FtcSzRzluD.html">createMutablePointer(capacity:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/createMutablePointer_28capacity_3AinitialValue_3A_29_5F_24s8capacity12initialValueSpyxGSi_5FxtcluD.html">createMutablePointer(capacity:initialValue:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/createMutableRawPointer_28capacity_3Atype_3A_29_5F_24s8capacity4typeSvSi_5FxmtcSzRzluD.html">createMutableRawPointer(capacity:type:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/createMutableRawPointer_28capacity_3Atype_3AinitialValue_3A_29_5F_24s8capacity4type12initialValueSvSi_5FxmxtcluD.html">createMutableRawPointer(capacity:type:initialValue:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/discardMutablePointer_28_5F_3A_5F_3A_29_5F_24syySpyxG_5FSitcluD.html">discardMutablePointer(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/discardMutableRawPointer_28_5F_3A_5F_3A_5F_3A_29_5F_24syySv_5FxmSitcluD.html">discardMutableRawPointer(_:_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/fixLength_28_5F_3A_29_5F_24syS2icD.html">fixLength(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/getSysTime_28delta_3A_29_5F_24s5deltas6UInt64VAC_5FtcD.html">getSysTime(delta:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/isBlack_28_5F_3A_29_5F_24sySb7Rubicon14BinaryTreeNodeCyxq_5FGSgcSLRzSHRzr0_5FluD.html">isBlack(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/isRed_28_5F_3A_29_5F_24sySb7Rubicon14BinaryTreeNodeCyxq_5FGSgcSLRzSHRzr0_5FluD.html">isRed(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/nilCheck_28_5F_3AwhenNotNil_3AwhenNil_3A_29_5F_24s_5F10whenNotNil0aC0q_5FxSg_5Fq_5FxKXEq_5FyKXEtKcr0_5FluD.html">nilCheck(_:whenNotNil:whenNil:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/regexML_28pattern_3A_29_5F_24s7patternSo19NSRegularExpressionCSS_5FtKcD.html">regexML(pattern:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/streamStatusGood_28_5F_3A_29_5F_24sySbSo14NSStreamStatusVcD.html">streamStatusGood(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html">testOSFatalError(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/timeIntervalFrom_28date_3A_29_5F.html">timeIntervalFrom(date:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/toBinary_28_5F_3Asep_3Apad_3A_29_5F_24s_5F3sep3padSSx_5FSSSgSitcSzRzluD.html">toBinary(_:sep:pad:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html">toHex(_:pad:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/value_28_5F_3AisOneOf_3A_29_5F_24s_5F7isOneOfSbx_5FxdtcSQRzluD.html">value(_:isOneOf:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/~~_28_5F_3A_29_5F_24syxxcs17FixedWidthIntegerRzluD.html">~~(_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CharInputStream.html">CharInputStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CharStream.html">CharStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Closable.html">Closable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/LockCondition.html">LockCondition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Locking.html">Locking</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/OStringXForm.html">OStringXForm</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OStringXForm/XForms.html">– XForms</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StringXForm.html">StringXForm</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StringXForm/XForms.html">– XForms</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases/ByteBuffer.html">ByteBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/BytePointer.html">BytePointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/ByteROBuffer.html">ByteROBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/ByteROPointer.html">ByteROPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/CCharBuffer.html">CCharBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/CCharPointer.html">CCharPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/CCharROBuffer.html">CCharROBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/CCharROPointer.html">CCharROPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/CFByteOrderEnum.html">CFByteOrderEnum</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/DWordBuffer.html">DWordBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/DWordPointer.html">DWordPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/DWordROBuffer.html">DWordROBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/DWordROPointer.html">DWordROPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/MutexLock.html">MutexLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/PGCond.html">PGCond</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/PGCond.html">PGCond</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/PGLockTime.html">PGLockTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/PGLockTime.html">PGLockTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/PGMutex.html">PGMutex</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/PGMutex.html">PGMutex</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/PGThreadBlock.html">PGThreadBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/QWordBuffer.html">QWordBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/QWordPointer.html">QWordPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/QWordROBuffer.html">QWordROBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/QWordROPointer.html">QWordROPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/RecursiveLock.html">RecursiveLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/RegEx.html">RegEx</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/RegExResult.html">RegExResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/WordBuffer.html">WordBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/WordPointer.html">WordPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/WordROBuffer.html">WordROBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/WordROPointer.html">WordROPointer</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>RingByteBuffer</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">RingByteBuffer</span></code></pre>
+
+                </div>
+              </div>
+            <p>This class is a simple wrapper around a <code><a href="https://developer.apple.com/documentation/foundation/data/">Data</a></code> object that allows for treating the data like a stream
+of bytes. The three basic operations are <code>get(buffer:maxLength:)</code>, <code>append(buffer:length:)</code>, and <code>prepend(buffer:length:)</code>.</p>
+
+<p>NOTE: This class is NOT thread safe.</p>
+
+              <div class="slightly-smaller">
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L41-L443">Show on GitHub</a>
+              </div>
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC6bufferSpySo18_st_pg_ringbuffer_VGvp"></a>
+                    <a name="//apple_ref/swift/Property/buffer" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC6bufferSpySo18_st_pg_ringbuffer_VGvp">buffer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The ring buffer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@usableFromInline</span>
+<span class="k">let</span> <span class="nv">buffer</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">PGRingBuffer</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L46">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC9availableSivp"></a>
+                    <a name="//apple_ref/swift/Property/available" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC9availableSivp">available</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The number of bytes in the available.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">available</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L51-L53">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC17hasBytesAvailableSbvp"></a>
+                    <a name="//apple_ref/swift/Property/hasBytesAvailable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC17hasBytesAvailableSbvp">hasBytesAvailable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns <code>true</code> if there are bytes in the ring buffer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">hasBytesAvailable</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L58-L60">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC8capacitySivp"></a>
+                    <a name="//apple_ref/swift/Property/capacity" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC8capacitySivp">capacity</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The total capacity of the buffer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">capacity</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L65-L67">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC8headroomSivp"></a>
+                    <a name="//apple_ref/swift/Property/headroom" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC8headroomSivp">headroom</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The room in the buffer for new bytes.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">headroom</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L72-L74">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC7isEmptySbvp"></a>
+                    <a name="//apple_ref/swift/Property/isEmpty" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC7isEmptySbvp">isEmpty</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns <code>true</code> if the buffer is empty.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">isEmpty</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L79-L81">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC15initialCapacityACSi_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(initialCapacity:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC15initialCapacityACSi_tcfc">init(initialCapacity:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new instance of <code><a href="../Typealiases/ByteBuffer.html">ByteBuffer</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">initialCapacity</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kt"><a href="../Global%20Variables/BasicBufferSize.html">BasicBufferSize</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>initialCapacity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the initial capacity of the buffer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L87-L89">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferCfd"></a>
+                    <a name="//apple_ref/swift/Method/deinit" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferCfd">deinit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">deinit</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L91-L93">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC5clear15keepingCapacityySb_tF"></a>
+                    <a name="//apple_ref/swift/Method/clear(keepingCapacity:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC5clear15keepingCapacityySb_tF">clear(keepingCapacity:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Clear the buffer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">clear</span><span class="p">(</span><span class="nv">keepingCapacity</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keepingCapacity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>true</code> if the capacity should be retained. <code>false</code> if the buffer should shrink to it&rsquo;s original size.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L100-L102">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC3get4byteSbs5UInt8Vz_tF"></a>
+                    <a name="//apple_ref/swift/Method/get(byte:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC3get4byteSbs5UInt8Vz_tF">get(byte:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Read a byte from the buffer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">get</span><span class="p">(</span><span class="nv">byte</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">UInt8</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>byte</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a pointer to the variable to receive the byte.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if the byte was retrived or <code>false</code> if the buffer was empty.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L110-L112">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC3gets5UInt8VSgyF"></a>
+                    <a name="//apple_ref/swift/Method/get()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC3gets5UInt8VSgyF">get()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Read a byte from the buffer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">get</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UInt8</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the next byte or <code>nil</code> if the buffer is empty.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L119-L122">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC3get4dest9maxLengthSiSpys5UInt8VG_SitF"></a>
+                    <a name="//apple_ref/swift/Method/get(dest:maxLength:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC3get4dest9maxLengthSiSpys5UInt8VG_SitF">get(dest:<wbr>maxLength:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get, at most, the first <code>maxLength</code> bytes from the buffer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">get</span><span class="p">(</span><span class="nv">dest</span><span class="p">:</span> <span class="kt"><a href="../Typealiases/BytePointer.html">BytePointer</a></span><span class="p">,</span> <span class="nv">maxLength</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dest</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the destination buffer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>maxLength</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the maximum number of bytes the destination buffer can hold.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the number of bytes actually gotten.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L133-L135">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC3get8destData9maxLength9overWriteSi10Foundation0G0Vz_SiSbtF"></a>
+                    <a name="//apple_ref/swift/Method/get(destData:maxLength:overWrite:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC3get8destData9maxLength9overWriteSi10Foundation0G0Vz_SiSbtF">get(destData:<wbr>maxLength:<wbr>overWrite:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get the bytes from the buffer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">get</span><span class="p">(</span><span class="nv">destData</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">maxLength</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nv">overWrite</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>destData</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The instance of <code><a href="https://developer.apple.com/documentation/foundation/data/">Data</a></code> that will receive the bytes.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>maxLength</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The maximum number of bytes to get. If -1 then all available bytes will be fetched.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>overWrite</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>true</code> if <code>destData</code> should be cleared of any existing bytes first.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The number of bytes added to <code>destData</code>.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L147-L168">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC6append04ringD0yAC_tF"></a>
+                    <a name="//apple_ref/swift/Method/append(ringBuffer:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC6append04ringD0yAC_tF">append(ringBuffer:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Append the given RingByteBuffer to this RingByteBuffer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">func</span> <span class="nf">append</span><span class="p">(</span><span class="nv">ringBuffer</span><span class="p">:</span> <span class="kt">RingByteBuffer</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ringBuffer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the source ring buffer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L175-L177">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC7prepend04ringD0yAC_tF"></a>
+                    <a name="//apple_ref/swift/Method/prepend(ringBuffer:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC7prepend04ringD0yAC_tF">prepend(ringBuffer:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Prepend the given RingByteBuffer to this RingByteBuffer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">func</span> <span class="nf">prepend</span><span class="p">(</span><span class="nv">ringBuffer</span><span class="p">:</span> <span class="kt">RingByteBuffer</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ringBuffer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the source ring buffer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L184-L186">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC6append4byteys5UInt8V_tF"></a>
+                    <a name="//apple_ref/swift/Method/append(byte:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC6append4byteys5UInt8V_tF">append(byte:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Append the given byte to the buffer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">append</span><span class="p">(</span><span class="nv">byte</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>byte</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the byte to append.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L193-L195">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC6append3src6lengthySPyxG_SitlF"></a>
+                    <a name="//apple_ref/swift/Method/append(src:length:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC6append3src6lengthySPyxG_SitlF">append(src:<wbr>length:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Append the given bytes to the buffer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="n">append</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">src</span><span class="p">:</span> <span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">length</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>src</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the source buffer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>length</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the number of bytes in the source buffer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L204-L206">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC6append6rawSrc6lengthySV_SitF"></a>
+                    <a name="//apple_ref/swift/Method/append(rawSrc:length:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC6append6rawSrc6lengthySV_SitF">append(rawSrc:<wbr>length:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Append the given bytes to the buffer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">append</span><span class="p">(</span><span class="nv">rawSrc</span><span class="p">:</span> <span class="kt">UnsafeRawPointer</span><span class="p">,</span> <span class="nv">length</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rawSrc</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the source buffer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>length</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the number of bytes in the source buffer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L215-L219">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC6append7buffSrcySRyxG_tlF"></a>
+                    <a name="//apple_ref/swift/Method/append(buffSrc:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC6append7buffSrcySRyxG_tlF">append(buffSrc:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Append the given bytes to the buffer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="n">append</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">buffSrc</span><span class="p">:</span> <span class="kt">UnsafeBufferPointer</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>buffSrc</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the source buffer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L226-L228">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC6append10rawBuffSrcySW_tF"></a>
+                    <a name="//apple_ref/swift/Method/append(rawBuffSrc:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC6append10rawBuffSrcySW_tF">append(rawBuffSrc:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Append the given bytes to the buffer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">append</span><span class="p">(</span><span class="nv">rawBuffSrc</span><span class="p">:</span> <span class="kt">UnsafeRawBufferPointer</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rawBuffSrc</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the source buffer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L235-L239">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC6append7dataSrcy10Foundation4DataV_tF"></a>
+                    <a name="//apple_ref/swift/Method/append(dataSrc:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC6append7dataSrcy10Foundation4DataV_tF">append(dataSrc:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Append the given bytes to the buffer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">append</span><span class="p">(</span><span class="nv">dataSrc</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataSrc</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the source data.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L246-L248">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC7prepend4byteys5UInt8V_tF"></a>
+                    <a name="//apple_ref/swift/Method/prepend(byte:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC7prepend4byteys5UInt8V_tF">prepend(byte:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Prepend the given byte to the buffer. This byte will be prepended so that it is the next byte that will be read via <code>get(buffer:maxLength:)</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">prepend</span><span class="p">(</span><span class="nv">byte</span><span class="p">:</span> <span class="kt">UInt8</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>byte</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the byte to prepend.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L256-L258">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC7prepend6rawSrc6lengthySV_SitF"></a>
+                    <a name="//apple_ref/swift/Method/prepend(rawSrc:length:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC7prepend6rawSrc6lengthySV_SitF">prepend(rawSrc:<wbr>length:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Prepend the given bytes to the buffer. These bytes will be prepended so that they are the next bytes that will be read via <code>get(buffer:maxLength:)</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">prepend</span><span class="p">(</span><span class="nv">rawSrc</span><span class="p">:</span> <span class="kt">UnsafeRawPointer</span><span class="p">,</span> <span class="nv">length</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rawSrc</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the source buffer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>length</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the number of bytes in the source buffer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L267-L271">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC7prepend3src6lengthySPyxG_SitlF"></a>
+                    <a name="//apple_ref/swift/Method/prepend(src:length:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC7prepend3src6lengthySPyxG_SitlF">prepend(src:<wbr>length:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Prepend the given bytes to the buffer. These bytes will be prepended so that they are the next bytes that will be read via <code>get(buffer:maxLength:)</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="n">prepend</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">src</span><span class="p">:</span> <span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">length</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>src</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the source buffer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>length</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the number of bytes in the source buffer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L280-L282">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC7prepend10rawBuffSrcySW_tF"></a>
+                    <a name="//apple_ref/swift/Method/prepend(rawBuffSrc:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC7prepend10rawBuffSrcySW_tF">prepend(rawBuffSrc:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Prepend the given bytes to the buffer. These bytes will be prepended so that they are the next bytes that will be read via <code>get(buffer:maxLength:)</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">prepend</span><span class="p">(</span><span class="nv">rawBuffSrc</span><span class="p">:</span> <span class="kt">UnsafeRawBufferPointer</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rawBuffSrc</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the source buffer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L289-L293">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC7prepend7buffSrcySRyxG_tlF"></a>
+                    <a name="//apple_ref/swift/Method/prepend(buffSrc:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC7prepend7buffSrcySRyxG_tlF">prepend(buffSrc:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Prepend the given bytes to the buffer. These bytes will be prepended so that they are the next bytes that will be read via <code>get(buffer:maxLength:)</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="n">prepend</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">buffSrc</span><span class="p">:</span> <span class="kt">UnsafeBufferPointer</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>buffSrc</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the source buffer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L300-L302">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC7prepend7srcDatay10Foundation0G0V_tF"></a>
+                    <a name="//apple_ref/swift/Method/prepend(srcData:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC7prepend7srcDatay10Foundation0G0V_tF">prepend(srcData:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Prepend the given bytes to the buffer. These bytes will be prepended so that they are the next bytes that will be read via <code>get(buffer:maxLength:)</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">prepend</span><span class="p">(</span><span class="nv">srcData</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>srcData</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the source data.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L309-L311">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC22forEachContiguousRangeyS2iSPys5UInt8VG_SitKXEKF"></a>
+                    <a name="//apple_ref/swift/Method/forEachContiguousRange(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC22forEachContiguousRangeyS2iSPys5UInt8VG_SitKXEKF">forEachContiguousRange(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get&rsquo;s the data one contiguous range at a time.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    any error thrown by the closure.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">forEachContiguousRange</span><span class="p">(</span><span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">(</span><span class="kt"><a href="../Typealiases/ByteROPointer.html">ByteROPointer</a></span><span class="p">,</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>body</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the closure to call for each block of data.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the bytes read.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L320-L341">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC6append4from9maxLengthSiSo13NSInputStreamC_SitKF"></a>
+                    <a name="//apple_ref/swift/Method/append(from:maxLength:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC6append4from9maxLengthSiSo13NSInputStreamC_SitKF">append(from:<wbr>maxLength:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Append up to maxLength bytes from the input stream to this ring buffer.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    if an I/O error occurs.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">append</span><span class="p">(</span><span class="n">from</span> <span class="nv">inputStream</span><span class="p">:</span> <span class="kt">InputStream</span><span class="p">,</span> <span class="n">maxLength</span> <span class="nv">len</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>inputStream</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the input stream.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>len</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the maximum number of bytes to read.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the number of bytes actually read.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L358-L369">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC7append1_9maxLengthSiSo13NSInputStreamC_SitKF"></a>
+                    <a name="//apple_ref/swift/Method/append1(_:maxLength:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC7append1_9maxLengthSiSo13NSInputStreamC_SitKF">append1(_:<wbr>maxLength:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">final</span> <span class="kd">func</span> <span class="nf">append1</span><span class="p">(</span><span class="n">_</span> <span class="nv">inputStream</span><span class="p">:</span> <span class="kt">InputStream</span><span class="p">,</span> <span class="n">maxLength</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L371-L382">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC7append2_9maxLengthSiSo13NSInputStreamC_SitKF"></a>
+                    <a name="//apple_ref/swift/Method/append2(_:maxLength:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC7append2_9maxLengthSiSo13NSInputStreamC_SitKF">append2(_:<wbr>maxLength:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">final</span> <span class="kd">func</span> <span class="nf">append2</span><span class="p">(</span><span class="n">_</span> <span class="nv">inputStream</span><span class="p">:</span> <span class="kt">InputStream</span><span class="p">,</span> <span class="n">maxLength</span> <span class="nv">len</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L384-L407">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC7append3_9maxLengthSiSo13NSInputStreamC_SitKF"></a>
+                    <a name="//apple_ref/swift/Method/append3(_:maxLength:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC7append3_9maxLengthSiSo13NSInputStreamC_SitKF">append3(_:<wbr>maxLength:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">final</span> <span class="kd">func</span> <span class="nf">append3</span><span class="p">(</span><span class="n">_</span> <span class="nv">inputStream</span><span class="p">:</span> <span class="kt">InputStream</span><span class="p">,</span> <span class="n">maxLength</span> <span class="nv">len</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L409-L415">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC12swapEndian16SiyF"></a>
+                    <a name="//apple_ref/swift/Method/swapEndian16()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC12swapEndian16SiyF">swapEndian16()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Swap every 2 bytes of data.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">swapEndian16</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the number of bytes swapped.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L422-L424">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC12swapEndian32SiyF"></a>
+                    <a name="//apple_ref/swift/Method/swapEndian32()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC12swapEndian32SiyF">swapEndian32()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Swap every 4 bytes of data.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">swapEndian32</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the number of bytes swapped.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L431-L433">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14RingByteBufferC12swapEndian64SiyF"></a>
+                    <a name="//apple_ref/swift/Method/swapEndian64()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC12swapEndian64SiyF">swapEndian64()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Swap every 8 bytes of data.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">swapEndian64</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the number of bytes swapped.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L440-L442">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-01-26)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

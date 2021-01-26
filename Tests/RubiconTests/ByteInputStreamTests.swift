@@ -53,11 +53,11 @@ class ByteInputStreamTests: XCTestCase {
                 print("Mark Set")
                 try doRead(stream: stream, buffer: buffer, maxLength: 100)
 
-                stream.markRelease()
+                stream.markReturn()
                 print("Mark Release")
                 try doRead(stream: stream, buffer: buffer, maxLength: 100)
 
-                stream.markRelease()
+                stream.markReturn()
                 print("Mark Release")
                 try doRead(stream: stream, buffer: buffer, maxLength: 155)
             }

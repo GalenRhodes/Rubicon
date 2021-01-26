@@ -48,9 +48,9 @@ class IConvTests: XCTestCase {
                     if try iconv.read(chars: &chars, maxLength: 10) > 0 {
                         print("More Marked Text: \"\(makeString(chars: &chars))\"")
                     }
-                    iconv.markRelease()
+                    iconv.markReturn()
                 }
-                iconv.markRelease()
+                iconv.markReturn()
 
                 while try iconv.read(chars: &chars, maxLength: 1000) > 0 {
                     print("\(makeString(chars: &chars))", terminator: "")

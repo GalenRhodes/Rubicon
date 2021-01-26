@@ -168,41 +168,31 @@ open class IConvCharInputStream: CharInputStream {
     }
 
     /*===========================================================================================================================================================================*/
-    /// Marks the current position in the stream so that it can be returned to later.
+    /// Marks the current point in the stream so that it can be returned to later. You can set more than one mark but all operations happen on the most recently set mark.
     ///
-    open func markSet() {
-        _lock.withLock {
-            if _status == .open {
-                _markStack.append(MarkItem())
-            }
-        }
-    }
-
-    open func markReset() {
-        _lock.withLock {
-            if _status == .open {
-                if let ms = _markStack.last {
-                    ms.chars.removeAll(keepingCapacity: true)
-                }
-                else {
-                    _markStack.append(MarkItem())
-                }
-            }
-        }
-    }
+    open func markSet() { _lock.withLock { if _status == .open { _markStack.append(MarkItem()) } } }
 
     /*===========================================================================================================================================================================*/
-    /// Returns to a previously marked position in the stream.
-    /// 
-    /// - Parameter discard: If `true` the marked file-pointer position will be discarded instead of reset.
+    /// Removes the most recently set mark WITHOUT returning to it.
     ///
-    open func markRelease(discard: Bool) {
-        _lock.withLock {
-            if _status == .open, let ms = _markStack.popLast() {
-                if !discard { _charBuffer.insert(contentsOf: ms.chars, at: 0) }
-            }
-        }
-    }
+    open func markDelete() { withTopMarkDo { _ in true } }
+
+    /*===========================================================================================================================================================================*/
+    /// Updates the most recently set mark to the current position. If there was no previously set mark then a new one is created. This is functionally equivalent to performing a
+    /// `markDelete()` followed immediately by a `markSet()`.
+    ///
+    open func markUpdate() { withTopMarkDo { _ in false } }
+
+    /*===========================================================================================================================================================================*/
+    /// Returns to the most recently set mark WITHOUT removing it. If there was no previously set mark then a new one is created. This is functionally equivalent to performing a
+    /// `markReturn()` followed immediately by a `markSet()`.
+    ///
+    open func markReset() { withTopMarkDo { _charBuffer.insert(contentsOf: $0, at: 0); return false } }
+
+    /*===========================================================================================================================================================================*/
+    /// Removes and returns to the most recently set mark.
+    ///
+    open func markReturn() { withTopMarkDo { _charBuffer.insert(contentsOf: $0, at: 0); return true } }
 
     /*===========================================================================================================================================================================*/
     /// The background thread function that reads from the backing byte input stream.
@@ -350,16 +340,55 @@ open class IConvCharInputStream: CharInputStream {
         return maxLength
     }
 
+    /*===========================================================================================================================================================================*/
+    /// Get a `CErrors.INVAL(description:)` error with an unsupported character encoding message.
+    /// 
+    /// - Parameter encodingName: the name of the character encoding.
+    /// - Returns: the error.
+    ///
     @inlinable final func getEncodingError(encodingName: String) -> CErrors { CErrors.INVAL(description: "Unsupported character encoding: \"\(encodingName)\"") }
 
+    /*===========================================================================================================================================================================*/
+    /// Stash the character onto the most recently set `MarkItem`. If there is no set `MarkItem` then nothing happens.
+    /// 
+    /// - Parameter char: the character.
+    /// - Returns: the same character.
+    ///
     @inlinable final func stash(char: Character?) -> Character? {
         if let ch = char, let ms = _markStack.last { ms.chars.append(ch) }
         return char
     }
 
-    @inlinable final func stash(chars: ArraySlice<Character>) -> ArraySlice<Character> {
+    /*===========================================================================================================================================================================*/
+    /// Stash the sequence of characters onto the most recently set `MarkItem`. If there is no set `MarkItem` then nothing happens.
+    /// 
+    /// - Parameter chars: the sequence of characters.
+    /// - Returns: the same sequence of characters.
+    ///
+    @inlinable final func stash<S>(chars: S) -> S where S: Sequence, S.Element == Character {
         if let ms = _markStack.last { ms.chars.append(contentsOf: chars) }
         return chars
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Take the most recently set `MarkItem` and execute the closure with the array of characters contained in it. If the return value of the closure is `true` then that
+    /// `MarkItem` is also removed from the stack, otherwise it is kept. If there is no previous set `MarkItem` then the body of the closure is executed with an empty array and if
+    /// the closure returns `false` then a new `MarkItem` is placed on the stack, otherwise nothing else happens.
+    /// 
+    /// - Parameter body: the closure.
+    ///
+    @inlinable func withTopMarkDo(_ body: ([Character]) -> Bool) {
+        _lock.withLock {
+            if _status == .open {
+                if let ms = _markStack.last {
+                    if body(ms.chars) { _markStack.removeLast() }
+                    ms.chars.removeAll(keepingCapacity: true)
+                }
+                else if !body([]) {
+                    _markStack.append(MarkItem())
+                }
+            }
+        }
     }
 
     @inlinable final func stsOrErr(_ s: Stream.Status) -> Stream.Status { ((_error == nil) ? s : .error) }
@@ -369,9 +398,13 @@ open class IConvCharInputStream: CharInputStream {
     deinit { close() }
 
     /*===========================================================================================================================================================================*/
-    /// Holds the characters saved during a mark.
+    /// Holds the characters saved during a mark. @f:0
     ///
-    @usableFromInline class MarkItem { @usableFromInline var chars: [Character] = [] }
+    @usableFromInline class MarkItem {
+        @usableFromInline var chars: [Character] = []
+        @usableFromInline init() {}
+    }
+    //@f:1
 }
 
 open class UTF8CharInputStream: IConvCharInputStream {

@@ -63,18 +63,35 @@ public protocol CharInputStream: CharStream {
     ///
     func read(chars: inout [Character], maxLength: Int) throws -> Int
 
+    /*===========================================================================================================================================================================*/
+    /// Marks the current point in the stream so that it can be returned to later. You can set more than one mark but all operations happen on the most recently set mark.
+    ///
     func markSet()
 
+    /*===========================================================================================================================================================================*/
+    /// Removes and returns to the most recently set mark.
+    ///
+    func markReturn()
+
+    /*===========================================================================================================================================================================*/
+    /// Removes the most recently set mark WITHOUT returning to it.
+    ///
+    func markDelete()
+
+    /*===========================================================================================================================================================================*/
+    /// Returns to the most recently set mark WITHOUT removing it. If there was no previously set mark then a new one is created. This is functionally equivalent to performing a
+    /// `markReturn()` followed immediately by a `markSet()`.
+    ///
     func markReset()
 
-    func markRelease(discard: Bool)
-
-    func markRelease()
+    /*===========================================================================================================================================================================*/
+    /// Updates the most recently set mark to the current position. If there was no previously set mark then a new one is created. This is functionally equivalent to performing a
+    /// `markDelete()` followed immediately by a `markSet()`.
+    ///
+    func markUpdate()
 }
 
 public extension CharInputStream {
-
-    @inlinable func markRelease() { markRelease(discard: false) }
 
     /*===========================================================================================================================================================================*/
     /// Read <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s from the stream.

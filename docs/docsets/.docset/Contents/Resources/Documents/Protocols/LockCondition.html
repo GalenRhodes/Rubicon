@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>LockCondition Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/LockCondition" class="dashAnchor"></a>
+    <a title="LockCondition Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Rubicon©</a> (59% documented)</p>
+        <p class="header-right"><a href="https://github.com/GalenRhodes/Rubicon"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        LockCondition Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryTreeDictionary.html">BinaryTreeDictionary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryTreeDictionary/Iterator.html">– Iterator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryTreeDictionary/Keys.html">– Keys</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryTreeDictionary/Values.html">– Values</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryTreeNode.html">BinaryTreeNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryTreeNode/NodeColor.html">– NodeColor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CString.html">CString</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CondMutex.html">CondMutex</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Conditional.html">Conditional</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EasyByteBuffer.html">EasyByteBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Fixed2DArray.html">Fixed2DArray</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/IConv.html">IConv</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/IConv/Results.html">– Results</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/IConvCharInputStream.html">IConvCharInputStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/IConvCharInputStream/MarkItem.html">– MarkItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MarkInputStream.html">MarkInputStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NanoTimer.html">NanoTimer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PGThread.html">PGThread</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegularExpression.html">RegularExpression</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegularExpression/Match.html">– Match</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegularExpression/Group.html">– Group</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegularExpression/NamedGroup.html">– NamedGroup</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RingByteBuffer.html">RingByteBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UTF8CharInputStream.html">UTF8CharInputStream</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global%20Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/BasicBufferSize.html">BasicBufferSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/EncodeToName.html">EncodeToName</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/HalfGB.html">HalfGB</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/InputBufferSize.html">InputBufferSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/MaxInputBufferSize.html">MaxInputBufferSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/MaxReadAhead.html">MaxReadAhead</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/OneMB.html">OneMB</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/OneSecondMicros.html">OneSecondMicros</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/OneSecondMillis.html">OneSecondMillis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/OneSecondNanos.html">OneSecondNanos</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/OutputBufferSize.html">OutputBufferSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/ReloadTriggerSize.html">ReloadTriggerSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/UnicodeReplacementChar.html">UnicodeReplacementChar</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/CErrors.html">CErrors</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/NanoTimerError.html">NanoTimerError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RingByteBufferError.html">RingByteBufferError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SortOrdering.html">SortOrdering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StreamError.html">StreamError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Character.html">Character</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/CharacterSet.html">CharacterSet</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Collection.html">Collection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/DateFormatter.html">DateFormatter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/InputStream.html">InputStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSCondition.html">NSCondition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSLock.html">NSLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSRange.html">NSRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSRecursiveLock.html">NSRecursiveLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/OutputStream.html">OutputStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Range.html">Range</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/RangeReplaceableCollection.html">RangeReplaceableCollection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Stream.html">Stream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Stream/Status.html">– Status</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Stream/Event.html">– Event</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Thread.html">Thread</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions/_2B_2B_28_5F_3A_29_5F_24syxxzcSzRzluD.html">++(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_2B_2B_28_5F_3A_29_5F_24syxxzcSzRzluD.html">++(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_2B_2B_2B_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html">+++(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_2B_2B_2B_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html">+++(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/--_28_5F_3A_29_5F_24syxxzcSzRzluD.html">--(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/--_28_5F_3A_29_5F_24syxxzcSzRzluD.html">--(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/---_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html">---(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/---_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html">---(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_3C_2B_28_5F_3A_5F_3A_29_5F_24syySayxGz_5FAAtcluD.html">&lt;+(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_3C_2B_28_5F_3A_5F_3A_29_5F_24syySayxGz_5FxtcluD.html">&lt;+(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_3C_3D_3E_28_5F_3A_5F_3A_29_5F_24sy7Rubicon12SortOrderingOSayxSgG_5FAEtcSLRzluD.html">&lt;=&gt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_3C_3D_3E_28_5F_3A_5F_3A_29_5F_24sy7Rubicon12SortOrderingOxSg_5FADtcSLRzluD.html">&lt;=&gt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_3C_3F_28_5F_3A_5F_3A_29_5F_24sySbSayxG_5FAAtcSQRzluD.html">&lt;?(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_3C_3F_28_5F_3A_5F_3A_29_5F_24sySbSayxG_5FxtcSQRzluD.html">&lt;?(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/NanoSleep_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosys6UInt32V_5FADtKcD.html">NanoSleep(seconds:nanos:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/NanoSleep2_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosys6UInt32V_5FADtcD.html">NanoSleep2(seconds:nanos:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/StrError_28_5F_3A_29_5F_24sySSs5Int32VcD.html">StrError(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_5E_5E_28_5F_3A_5F_3A_29_5F_24syxx_5FxtcSzRzluD.html">^^(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/absoluteTimeSpecFrom_28date_3A_29_5F_24s4dateSo8timespecVSg10Foundation4DateV_5FtcD.html">absoluteTimeSpecFrom(date:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/cStrLen_28cStringPtr_3Alength_3A_29_5F_24s10cStringPtr6lengthSiSPys4Int8VG_5FSitcD.html">cStrLen(cStringPtr:length:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/cStrLen_28cStringPtr_3Alength_3A_29_5F_24s10cStringPtr6lengthSiSPys5UInt8VG_5FSitcD.html">cStrLen(cStringPtr:length:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/cString001_28_5F_3A_29_5F_24sySrys4Int8VGSScD.html">cString001(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/cString002_28_5F_3A_5F_3A_29_5F_24sySrys4Int8VGSRys5UInt8VG_5FSbtcD.html">cString002(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/cString003_28_5F_3A_5F_3A_29_5F_24sySrys4Int8VGSRyABG_5FSbtcD.html">cString003(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/cString004_28_29_5F_24sSrys4Int8VGycD.html">cString004()</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/createMutablePointer_28capacity_3A_29_5F_24s8capacitySpyxGSi_5FtcSzRzluD.html">createMutablePointer(capacity:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/createMutablePointer_28capacity_3AinitialValue_3A_29_5F_24s8capacity12initialValueSpyxGSi_5FxtcluD.html">createMutablePointer(capacity:initialValue:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/createMutableRawPointer_28capacity_3Atype_3A_29_5F_24s8capacity4typeSvSi_5FxmtcSzRzluD.html">createMutableRawPointer(capacity:type:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/createMutableRawPointer_28capacity_3Atype_3AinitialValue_3A_29_5F_24s8capacity4type12initialValueSvSi_5FxmxtcluD.html">createMutableRawPointer(capacity:type:initialValue:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/discardMutablePointer_28_5F_3A_5F_3A_29_5F_24syySpyxG_5FSitcluD.html">discardMutablePointer(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/discardMutableRawPointer_28_5F_3A_5F_3A_5F_3A_29_5F_24syySv_5FxmSitcluD.html">discardMutableRawPointer(_:_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/fixLength_28_5F_3A_29_5F_24syS2icD.html">fixLength(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/getSysTime_28delta_3A_29_5F_24s5deltas6UInt64VAC_5FtcD.html">getSysTime(delta:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/isBlack_28_5F_3A_29_5F_24sySb7Rubicon14BinaryTreeNodeCyxq_5FGSgcSLRzSHRzr0_5FluD.html">isBlack(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/isRed_28_5F_3A_29_5F_24sySb7Rubicon14BinaryTreeNodeCyxq_5FGSgcSLRzSHRzr0_5FluD.html">isRed(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/nilCheck_28_5F_3AwhenNotNil_3AwhenNil_3A_29_5F_24s_5F10whenNotNil0aC0q_5FxSg_5Fq_5FxKXEq_5FyKXEtKcr0_5FluD.html">nilCheck(_:whenNotNil:whenNil:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/regexML_28pattern_3A_29_5F_24s7patternSo19NSRegularExpressionCSS_5FtKcD.html">regexML(pattern:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/streamStatusGood_28_5F_3A_29_5F_24sySbSo14NSStreamStatusVcD.html">streamStatusGood(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html">testOSFatalError(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/timeIntervalFrom_28date_3A_29_5F.html">timeIntervalFrom(date:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/toBinary_28_5F_3Asep_3Apad_3A_29_5F_24s_5F3sep3padSSx_5FSSSgSitcSzRzluD.html">toBinary(_:sep:pad:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html">toHex(_:pad:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/value_28_5F_3AisOneOf_3A_29_5F_24s_5F7isOneOfSbx_5FxdtcSQRzluD.html">value(_:isOneOf:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/~~_28_5F_3A_29_5F_24syxxcs17FixedWidthIntegerRzluD.html">~~(_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CharInputStream.html">CharInputStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CharStream.html">CharStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Closable.html">Closable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/LockCondition.html">LockCondition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Locking.html">Locking</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/OStringXForm.html">OStringXForm</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OStringXForm/XForms.html">– XForms</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StringXForm.html">StringXForm</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StringXForm/XForms.html">– XForms</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases/ByteBuffer.html">ByteBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/BytePointer.html">BytePointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/ByteROBuffer.html">ByteROBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/ByteROPointer.html">ByteROPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/CCharBuffer.html">CCharBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/CCharPointer.html">CCharPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/CCharROBuffer.html">CCharROBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/CCharROPointer.html">CCharROPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/CFByteOrderEnum.html">CFByteOrderEnum</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/DWordBuffer.html">DWordBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/DWordPointer.html">DWordPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/DWordROBuffer.html">DWordROBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/DWordROPointer.html">DWordROPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/MutexLock.html">MutexLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/PGCond.html">PGCond</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/PGCond.html">PGCond</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/PGLockTime.html">PGLockTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/PGLockTime.html">PGLockTime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/PGMutex.html">PGMutex</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/PGMutex.html">PGMutex</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/PGThreadBlock.html">PGThreadBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/QWordBuffer.html">QWordBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/QWordPointer.html">QWordPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/QWordROBuffer.html">QWordROBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/QWordROPointer.html">QWordROPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/RecursiveLock.html">RecursiveLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/RegEx.html">RegEx</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/RegExResult.html">RegExResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/WordBuffer.html">WordBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/WordPointer.html">WordPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/WordROBuffer.html">WordROBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/WordROPointer.html">WordROPointer</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>LockCondition</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">LockCondition</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Locking.html">Locking</a></span></code></pre>
+
+                </div>
+              </div>
+            
+              <div class="slightly-smaller">
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L30-L62">Show on GitHub</a>
+              </div>
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon13LockConditionP4waityyF"></a>
+                    <a name="//apple_ref/swift/Method/wait()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon13LockConditionP4waityyF">wait()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">wait</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon13LockConditionP4wait5untilSb10Foundation4DateV_tF"></a>
+                    <a name="//apple_ref/swift/Method/wait(until:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon13LockConditionP4wait5untilSb10Foundation4DateV_tF">wait(until:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">wait</span><span class="p">(</span><span class="n">until</span> <span class="nv">limit</span><span class="p">:</span> <span class="kt">Date</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon13LockConditionP6signalyyF"></a>
+                    <a name="//apple_ref/swift/Method/signal()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon13LockConditionP6signalyyF">signal()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">signal</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon13LockConditionP9broadcastyyF"></a>
+                    <a name="//apple_ref/swift/Method/broadcast()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon13LockConditionP9broadcastyyF">broadcast()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">broadcast</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon13LockConditionP04withB4Wait015broadcastBeforeE0_ySb_SbyXEtF"></a>
+                    <a name="//apple_ref/swift/Method/withLockWait(broadcastBeforeWait:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon13LockConditionP04withB4Wait015broadcastBeforeE0_ySb_SbyXEtF">withLockWait(broadcastBeforeWait:<wbr>_:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">withLockWait</span><span class="p">(</span><span class="nv">broadcastBeforeWait</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">cond</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon13LockConditionP04withB4Wait015broadcastBeforeE0_2doqd__Sb_SbyXEqd__yKXEtKlF"></a>
+                    <a name="//apple_ref/swift/Method/withLockWait(broadcastBeforeWait:_:do:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon13LockConditionP04withB4Wait015broadcastBeforeE0_2doqd__Sb_SbyXEqd__yKXEtKlF">withLockWait(broadcastBeforeWait:<wbr>_:<wbr>do:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">withLockWait</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">broadcastBeforeWait</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">cond</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">,</span> <span class="k">do</span> <span class="nv">block</span><span class="p">:</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">T</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon13LockConditionP04withB4Wait5until015broadcastBeforeE0_Sb10Foundation4DateV_S2byXEtF"></a>
+                    <a name="//apple_ref/swift/Method/withLockWait(until:broadcastBeforeWait:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon13LockConditionP04withB4Wait5until015broadcastBeforeE0_Sb10Foundation4DateV_S2byXEtF">withLockWait(until:<wbr>broadcastBeforeWait:<wbr>_:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">withLockWait</span><span class="p">(</span><span class="n">until</span> <span class="nv">limit</span><span class="p">:</span> <span class="kt">Date</span><span class="p">,</span> <span class="nv">broadcastBeforeWait</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">cond</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon13LockConditionP04withB4Wait5until015broadcastBeforeE0_2doqd__Sg10Foundation4DateV_S2byXEqd__yKXEtKlF"></a>
+                    <a name="//apple_ref/swift/Method/withLockWait(until:broadcastBeforeWait:_:do:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon13LockConditionP04withB4Wait5until015broadcastBeforeE0_2doqd__Sg10Foundation4DateV_S2byXEqd__yKXEtKlF">withLockWait(until:<wbr>broadcastBeforeWait:<wbr>_:<wbr>do:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">withLockWait</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">until</span> <span class="nv">limit</span><span class="p">:</span> <span class="kt">Date</span><span class="p">,</span> <span class="nv">broadcastBeforeWait</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="n">_</span> <span class="nv">cond</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">,</span> <span class="k">do</span> <span class="nv">block</span><span class="p">:</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon13LockConditionP04withB4WaityySbyXEF"></a>
+                    <a name="//apple_ref/swift/Method/withLockWait(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon13LockConditionP04withB4WaityySbyXEF">withLockWait(_:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">withLockWait</span><span class="p">(</span><span class="n">_</span> <span class="nv">cond</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon13LockConditionP04withB4Wait_2doqd__SbyXE_qd__yKXEtKlF"></a>
+                    <a name="//apple_ref/swift/Method/withLockWait(_:do:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon13LockConditionP04withB4Wait_2doqd__SbyXE_qd__yKXEtKlF">withLockWait(_:<wbr>do:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">withLockWait</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">cond</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">,</span> <span class="k">do</span> <span class="nv">block</span><span class="p">:</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">T</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon13LockConditionP04withB4Wait5until_Sb10Foundation4DateV_SbyXEtF"></a>
+                    <a name="//apple_ref/swift/Method/withLockWait(until:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon13LockConditionP04withB4Wait5until_Sb10Foundation4DateV_SbyXEtF">withLockWait(until:<wbr>_:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">withLockWait</span><span class="p">(</span><span class="n">until</span> <span class="nv">limit</span><span class="p">:</span> <span class="kt">Date</span><span class="p">,</span> <span class="n">_</span> <span class="nv">cond</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon13LockConditionP04withB4Wait5until_2doqd__Sg10Foundation4DateV_SbyXEqd__yKXEtKlF"></a>
+                    <a name="//apple_ref/swift/Method/withLockWait(until:_:do:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon13LockConditionP04withB4Wait5until_2doqd__Sg10Foundation4DateV_SbyXEqd__yKXEtKlF">withLockWait(until:<wbr>_:<wbr>do:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">withLockWait</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">until</span> <span class="nv">limit</span><span class="p">:</span> <span class="kt">Date</span><span class="p">,</span> <span class="n">_</span> <span class="nv">cond</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">,</span> <span class="k">do</span> <span class="nv">block</span><span class="p">:</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon13LockConditionP04withB13BroadcastWaityySbyXEF"></a>
+                    <a name="//apple_ref/swift/Method/withLockBroadcastWait(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon13LockConditionP04withB13BroadcastWaityySbyXEF">withLockBroadcastWait(_:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">withLockBroadcastWait</span><span class="p">(</span><span class="n">_</span> <span class="nv">cond</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon13LockConditionP04withB13BroadcastWait_2doqd__SbyXE_qd__yKXEtKlF"></a>
+                    <a name="//apple_ref/swift/Method/withLockBroadcastWait(_:do:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon13LockConditionP04withB13BroadcastWait_2doqd__SbyXE_qd__yKXEtKlF">withLockBroadcastWait(_:<wbr>do:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">withLockBroadcastWait</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">cond</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">,</span> <span class="k">do</span> <span class="nv">block</span><span class="p">:</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">T</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon13LockConditionP04withB13BroadcastWait5until_Sb10Foundation4DateV_SbyXEtF"></a>
+                    <a name="//apple_ref/swift/Method/withLockBroadcastWait(until:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon13LockConditionP04withB13BroadcastWait5until_Sb10Foundation4DateV_SbyXEtF">withLockBroadcastWait(until:<wbr>_:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">withLockBroadcastWait</span><span class="p">(</span><span class="n">until</span> <span class="nv">limit</span><span class="p">:</span> <span class="kt">Date</span><span class="p">,</span> <span class="n">_</span> <span class="nv">cond</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon13LockConditionP04withB13BroadcastWait5until_2doqd__Sg10Foundation4DateV_SbyXEqd__yKXEtKlF"></a>
+                    <a name="//apple_ref/swift/Method/withLockBroadcastWait(until:_:do:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon13LockConditionP04withB13BroadcastWait5until_2doqd__Sg10Foundation4DateV_SbyXEqd__yKXEtKlF">withLockBroadcastWait(until:<wbr>_:<wbr>do:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="n">withLockBroadcastWait</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">until</span> <span class="nv">limit</span><span class="p">:</span> <span class="kt">Date</span><span class="p">,</span> <span class="n">_</span> <span class="nv">cond</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">,</span> <span class="k">do</span> <span class="nv">block</span><span class="p">:</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon13LockConditionPAAE13broadcastWaityyF"></a>
+                    <a name="//apple_ref/swift/Method/broadcastWait()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon13LockConditionPAAE13broadcastWaityyF">broadcastWait()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">broadcastWait</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L105-L108">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon13LockConditionPAAE13broadcastWait5untilSb10Foundation4DateV_tF"></a>
+                    <a name="//apple_ref/swift/Method/broadcastWait(until:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon13LockConditionPAAE13broadcastWait5untilSb10Foundation4DateV_tF">broadcastWait(until:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">broadcastWait</span><span class="p">(</span><span class="n">until</span> <span class="nv">limit</span><span class="p">:</span> <span class="kt">Date</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L110-L113">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon13LockConditionPAAE10signalWaityyF"></a>
+                    <a name="//apple_ref/swift/Method/signalWait()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon13LockConditionPAAE10signalWaityyF">signalWait()</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">signalWait</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L115-L118">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon13LockConditionPAAE10signalWait5untilSb10Foundation4DateV_tF"></a>
+                    <a name="//apple_ref/swift/Method/signalWait(until:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon13LockConditionPAAE10signalWait5untilSb10Foundation4DateV_tF">signalWait(until:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">signalWait</span><span class="p">(</span><span class="n">until</span> <span class="nv">limit</span><span class="p">:</span> <span class="kt">Date</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Conditional.swift#L120-L123">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-01-26)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

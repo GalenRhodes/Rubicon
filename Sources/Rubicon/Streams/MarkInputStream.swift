@@ -181,32 +181,29 @@ open class MarkInputStream: InputStream {
     /*===========================================================================================================================================================================*/
     /// Marks the current position in the stream.
     ///
-    open func markSet() {
-        _lock.withLock {
-            _markStack.append(RingByteBuffer(initialCapacity: InputBufferSize))
-        }
-    }
+    open func markSet() { _lock.withLock { _markStack.append(RingByteBuffer(initialCapacity: InputBufferSize)) } }
 
-    open func markReset() {
-        _lock.withLock {
-            if let mark = _markStack.last {
-                mark.clear(keepingCapacity: true)
-            }
-            else {
-                _markStack.append(RingByteBuffer(initialCapacity: InputBufferSize))
-            }
-        }
-    }
+    open func markUpdate() { _markUpdateOrReset(reset: false) }
+
+    open func markReset() { _markUpdateOrReset(reset: true) }
 
     /*===========================================================================================================================================================================*/
     /// Resets the stream back to the previously marked position.
     /// 
     /// - Parameter discard: If `true` the marked file-pointer position will be discarded instead of reset.
     ///
-    open func markRelease(discard: Bool = false) {
+    open func markReturn() { _lock.withLock { if let mark = _markStack.popLast() { _ring.prepend(ringBuffer: mark) } } }
+
+    open func markDelete() { _lock.withLock { if !_markStack.isEmpty { _markStack.removeLast() } } }
+
+    private final func _markUpdateOrReset(reset: Bool) {
         _lock.withLock {
-            if let mark = _markStack.popLast() {
-                if !discard { _ring.prepend(ringBuffer: mark) }
+            if let mark = _markStack.last {
+                if reset { _ring.prepend(ringBuffer: mark) }
+                mark.clear(keepingCapacity: true)
+            }
+            else {
+                _markStack.append(RingByteBuffer(initialCapacity: InputBufferSize))
             }
         }
     }

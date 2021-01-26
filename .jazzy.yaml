@@ -1,5 +1,5 @@
 {
-  "clean": false,
+  "clean": true,
   "sdk": "macosx",
   "author": "Galen Rhodes",
   "author_url": "https://blog.projectgalen.com",
@@ -7,7 +7,10 @@
   "github_file_prefix": "https://github.com/GalenRhodes/Rubicon/blob/master",
   "theme": "apple",
   "use_safe_filenames": true,
-  "min_acl": "public",
+  "min_acl": "internal",
   "undocumented_text": "",
   "title": "Rubicon©",
+  "swift_build_tool": "xcodebuild",
+  "build_tool_arguments": [ "-scheme", "Rubicon", ],
+  "separate_global_declarations": true,
 },

@@ -28,23 +28,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Updated documentation.">
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="CharInputStream will now track the current line and column.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/CharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/CharInputStream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream/MarkItem.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream/MarkItem.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/UTF8CharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/UTF8CharInputStream.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Protocols/CharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Protocols/CharInputStream.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream/MarkItem.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream/MarkItem.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/UTF8CharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/UTF8CharInputStream.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/CharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/CharInputStream.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/search.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/search.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/docSet.dsidx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/docSet.dsidx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.tgz" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.tgz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/search.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/search.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/undocumented.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/undocumented.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/String.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/String.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -249,14 +235,7 @@
       <workItem from="1611239376966" duration="7739000" />
       <workItem from="1611323894484" duration="26252000" />
       <workItem from="1611498508363" duration="11445000" />
-      <workItem from="1611581711263" duration="24301000" />
-    </task>
-    <task id="LOCAL-00066" summary="Cleaned up and optimised ByteInputStream, AscIICharInputStream, StringCharInputStream, Utf8CharInputStream, Utf16CharInputStream, and Utf32CharInputStream.">
-      <created>1607028757054</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1607028757054</updated>
+      <workItem from="1611581711263" duration="25472000" />
     </task>
     <task id="LOCAL-00067" summary="Based the CharInputStream implementations on iconv.  See the class IConvCharInputStream.swift.">
       <created>1607351787328</created>
@@ -594,7 +573,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611676929277</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="CharInputStream will now track the current line and column.">
+      <created>1611686694487</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1611686694487</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -627,7 +613,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added Utf32CharInputStream." />
     <MESSAGE value="Added typealiases:&#10;&#10;public typealias QWordPointer   = UnsafeMutablePointer&lt;UInt64&gt;&#10;public typealias QWordROPointer = UnsafePointer&lt;UInt64&gt;&#10;public typealias QWordBuffer    = UnsafeMutableBufferPointer&lt;UInt64&gt;&#10;public typealias QWordROBuffer  = UnsafeBufferPointer&lt;UInt64&gt;" />
     <MESSAGE value="Added missing method to CharInputStream protocol." />
     <MESSAGE value="Added alternative methods to get single byte/character." />
@@ -652,7 +637,8 @@
     <MESSAGE value="Performance improvements to IConvCharInputStream." />
     <MESSAGE value="Added:&#10;    func hasAnyPrefix(_ prefixes: String...) -&gt; Bool&#10;    func hasAnySuffix(_ suffixes: String...) -&gt; Bool" />
     <MESSAGE value="Updated documentation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated documentation." />
+    <MESSAGE value="CharInputStream will now track the current line and column." />
+    <option name="LAST_COMMIT_MESSAGE" value="CharInputStream will now track the current line and column." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="CidrCoverage/Rubicon/Rubicon Tests.json" NAME="Rubicon Tests Coverage Results" MODIFIED="1608608581698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="llvm-cov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

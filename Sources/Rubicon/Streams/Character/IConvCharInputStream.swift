@@ -47,26 +47,34 @@ import CoreFoundation
 @usableFromInline let OutputBufferSize: Int    = ((InputBufferSize * MemoryLayout<UInt32>.stride) + MemoryLayout<UInt32>.stride)
 
 open class IConvCharInputStream: CharInputStream {
-
-    public let            encodingName:      String
     //@f:0
-    @inlinable public var streamError:       Error?        { ((streamStatus == .error) ? _error : nil)                                   }
-    @inlinable public var hasCharsAvailable: Bool          { status(in: .open, .reading, .writing)                                       }
-    @inlinable public var isEOF:             Bool          { !((streamStatus == .notOpen) || hasCharsAvailable)                          }
-    @inlinable public var streamStatus:      Stream.Status { _lock.withLock { testSts(_status) }                                         }
+    public let            encodingName:      String
 
-    @inlinable final  var _atEnd:             Bool          { (_charBuffer.isEmpty && !_running)                                         }
-    @inlinable final  var _runnerGood:        Bool          { ((_status == .open) && _inputStream.status(in: .open, .reading, .writing)) }
+    @inlinable public var streamError:       Error?        { ((streamStatus == .error) ? _error : nil)                                            }
+    @inlinable public var hasCharsAvailable: Bool          { status(in: .open, .reading, .writing)                                                }
+    @inlinable public var isEOF:             Bool          { !((streamStatus == .notOpen) || hasCharsAvailable)                                   }
+    @inlinable public var streamStatus:      Stream.Status { _lock.withLock { testSts(_status) }                                                  }
+    @inlinable public var lineNumber:        Int           { _lock.withLock { _lineNumber   }                                                     }
+    @inlinable public var columnNumber:      Int           { _lock.withLock { _columnNumber }                                                     }
+    @inlinable public var tabWidth:          Int           { get { _lock.withLock { _tabWidth } } set { _lock.withLock { _tabWidth = newValue } } }
+
+    @inlinable final  var _atEnd:            Bool          { (_charBuffer.isEmpty && !_running)                                                   }
+    @inlinable final  var _runnerGood:       Bool          { ((_status == .open) && _inputStream.status(in: .open, .reading, .writing))           }
+
+    @usableFromInline var _lineNumber:       Int           = 1
+    @usableFromInline var _columnNumber:     Int           = 1
+    @usableFromInline var _tabWidth:         Int           = 8
+    @usableFromInline var _prevChar:         Character?    = nil
+    @usableFromInline var _charBuffer:       [Character]   = []
+    @usableFromInline var _markStack:        [MarkItem]    = []
+    @usableFromInline var _error:            Error?        = nil
+    @usableFromInline var _status:           Stream.Status = .notOpen // We're only going to use three (3) status here: .notOpen, .open, .closed
+    @usableFromInline var _running:          Bool          = false
+    @usableFromInline let _lock:             Conditional   = Conditional()
+    @usableFromInline let _queue:            DispatchQueue = DispatchQueue(label: UUID().uuidString, qos: .background, autoreleaseFrequency: .workItem)
+    @usableFromInline let _inputStream:      InputStream
+    @usableFromInline let _autoClose:        Bool
     //@f:1
-    @usableFromInline var _charBuffer:  [Character]   = []
-    @usableFromInline var _markStack:   [MarkItem]    = []
-    @usableFromInline var _error:       Error?        = nil
-    @usableFromInline var _status:      Stream.Status = .notOpen // We're only going to use three (3) status here: .notOpen, .open, .closed
-    @usableFromInline var _running:     Bool          = false
-    @usableFromInline let _lock:        Conditional   = Conditional()
-    @usableFromInline let _queue:       DispatchQueue = DispatchQueue(label: UUID().uuidString, qos: .background, autoreleaseFrequency: .workItem)
-    @usableFromInline let _inputStream: InputStream
-    @usableFromInline let _autoClose:   Bool
 
     public init(inputStream: InputStream, autoClose: Bool = true, encodingName: String) {
         self._inputStream = inputStream
@@ -170,29 +178,29 @@ open class IConvCharInputStream: CharInputStream {
     /*===========================================================================================================================================================================*/
     /// Marks the current point in the stream so that it can be returned to later. You can set more than one mark but all operations happen on the most recently set mark.
     ///
-    open func markSet() { _lock.withLock { if _status == .open { _markStack.append(MarkItem()) } } }
+    open func markSet() { _lock.withLock { if _status == .open { _markStack.append(MarkItem(_lineNumber, _columnNumber, _prevChar)) } } }
 
     /*===========================================================================================================================================================================*/
     /// Removes the most recently set mark WITHOUT returning to it.
     ///
-    open func markDelete() { withTopMarkDo { _ in true } }
+    open func markDelete() { markDeleteOrUpdate(delete: true) }
 
     /*===========================================================================================================================================================================*/
     /// Updates the most recently set mark to the current position. If there was no previously set mark then a new one is created. This is functionally equivalent to performing a
     /// `markDelete()` followed immediately by a `markSet()`.
     ///
-    open func markUpdate() { withTopMarkDo { _ in false } }
+    open func markUpdate() { markDeleteOrUpdate(delete: false) }
 
     /*===========================================================================================================================================================================*/
     /// Returns to the most recently set mark WITHOUT removing it. If there was no previously set mark then a new one is created. This is functionally equivalent to performing a
     /// `markReturn()` followed immediately by a `markSet()`.
     ///
-    open func markReset() { withTopMarkDo { _charBuffer.insert(contentsOf: $0, at: 0); return false } }
+    open func markReset() { markReturnOrReset(reset: true) }
 
     /*===========================================================================================================================================================================*/
     /// Removes and returns to the most recently set mark.
     ///
-    open func markReturn() { withTopMarkDo { _charBuffer.insert(contentsOf: $0, at: 0); return true } }
+    open func markReturn() { markReturnOrReset(reset: false) }
 
     /*===========================================================================================================================================================================*/
     /// The background thread function that reads from the backing byte input stream.
@@ -355,8 +363,11 @@ open class IConvCharInputStream: CharInputStream {
     /// - Returns: the same character.
     ///
     @inlinable final func stash(char: Character?) -> Character? {
-        if let ch = char, let ms = _markStack.last { ms.chars.append(ch) }
-        return char
+        if let ch = char {
+            if let ms = _markStack.last { ms.chars.append(ch) }
+            return advanceLineAndColumn(ch)
+        }
+        return nil
     }
 
     /*===========================================================================================================================================================================*/
@@ -367,7 +378,37 @@ open class IConvCharInputStream: CharInputStream {
     ///
     @inlinable final func stash<S>(chars: S) -> S where S: Sequence, S.Element == Character {
         if let ms = _markStack.last { ms.chars.append(contentsOf: chars) }
+        for ch in chars { advanceLineAndColumn(ch) }
         return chars
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Based on the provided character, advance the line and column values.
+    /// 
+    /// - Parameter ch: the character just read from the stream.
+    /// - Returns: the same character.
+    ///
+    @discardableResult @inlinable final func advanceLineAndColumn(_ ch: Character) -> Character {
+        switch ch {
+            case "\t":
+                _columnNumber = (((_columnNumber + _tabWidth) / _tabWidth) * _tabWidth)
+            case "\n":
+                if let lc = _prevChar, lc == "\r" { break }
+                fallthrough
+            case "\r":
+                _lineNumber++
+                _columnNumber = 1
+            case Character(UnicodeScalar(11)):
+                _lineNumber += (((_lineNumber + _tabWidth) / _tabWidth) * _tabWidth)
+                _columnNumber = 1
+            case Character(UnicodeScalar(12)):
+                _lineNumber += 24
+                _columnNumber = 1
+            default:
+                _columnNumber++
+        }
+        _prevChar = ch
+        return ch
     }
 
     /*===========================================================================================================================================================================*/
@@ -377,19 +418,47 @@ open class IConvCharInputStream: CharInputStream {
     /// 
     /// - Parameter body: the closure.
     ///
-    @inlinable func withTopMarkDo(_ body: ([Character]) -> Bool) {
+    @inlinable func withTopMarkDo(_ body: ([Character], Int, Int, Character?) -> Bool) {
         _lock.withLock {
             if _status == .open {
                 if let ms = _markStack.last {
-                    if body(ms.chars) { _markStack.removeLast() }
-                    ms.chars.removeAll(keepingCapacity: true)
+                    if body(ms.chars, ms.line, ms.column, ms.lastChar) {
+                        _markStack.removeLast()
+                    }
+                    else {
+                        ms.chars.removeAll(keepingCapacity: true)
+                        ms.line = _lineNumber
+                        ms.column = _columnNumber
+                    }
                 }
-                else if !body([]) {
-                    _markStack.append(MarkItem())
+                else if !body([], 0, 0, nil) {
+                    _markStack.append(MarkItem(_lineNumber, _columnNumber, _prevChar))
                 }
             }
         }
     }
+
+    /*===========================================================================================================================================================================*/
+    /// Perform either a `markReturn()` or a `markReset()` (which is just a `markReturn()` followed by a `markSet()`).
+    /// 
+    /// - Parameter reset: if `true` then we're performing a `markReset()`, otherwise we're performing a `markRestore()`.
+    ///
+    @inlinable final func markReturnOrReset(reset: Bool) {
+        withTopMarkDo { (chs: [Character], l: Int, c: Int, lc: Character?) -> Bool in
+            _charBuffer.insert(contentsOf: chs, at: 0)
+            _lineNumber = l
+            _columnNumber = c
+            _prevChar = lc
+            return !reset
+        }
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Perform either a `markDelete()` or a `markUpdate()` (which is just a `markDelete()` followed by a `markSet()`).
+    /// 
+    /// - Parameter delete: `true` if we're performing a `markDelete()`, otherwise we're performing a `markUpdate()`.
+    ///
+    @inlinable final func markDeleteOrUpdate(delete: Bool) { withTopMarkDo { _, _, _, _ in delete } }
 
     @inlinable final func stsOrErr(_ s: Stream.Status) -> Stream.Status { ((_error == nil) ? s : .error) }
 
@@ -402,7 +471,10 @@ open class IConvCharInputStream: CharInputStream {
     ///
     @usableFromInline class MarkItem {
         @usableFromInline var chars: [Character] = []
-        @usableFromInline init() {}
+        @usableFromInline var line: Int
+        @usableFromInline var column: Int
+        @usableFromInline var lastChar: Character?
+        @usableFromInline init(_ l: Int, _ c: Int, _ lc: Character?) { line = l; column = c; lastChar = lc }
     }
     //@f:1
 }

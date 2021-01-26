@@ -29,7 +29,7 @@ public protocol CharInputStream: CharStream {
     /*===========================================================================================================================================================================*/
     /// `true` if the stream is at the end-of-file.
     ///
-    var isEOF: Bool { get }
+    var isEOF:             Bool { get }
 
     /*===========================================================================================================================================================================*/
     /// `true` if the stream has characters ready to be read.
@@ -39,7 +39,22 @@ public protocol CharInputStream: CharStream {
     /*===========================================================================================================================================================================*/
     /// The error.
     ///
-    var streamError: Error? { get }
+    var streamError:       Error? { get }
+
+    /*===========================================================================================================================================================================*/
+    /// The current line number.
+    ///
+    var lineNumber:        Int { get }
+
+    /*===========================================================================================================================================================================*/
+    /// The current column number.
+    ///
+    var columnNumber:      Int { get }
+
+    /*===========================================================================================================================================================================*/
+    /// The number of spaces in each tab stop.
+    ///
+    var tabWidth:          Int { get set }
 
     /*===========================================================================================================================================================================*/
     /// Read one character.
@@ -105,5 +120,12 @@ public extension CharInputStream {
     ///
     @inlinable func read(chars: inout [Character]) throws -> Int {
         try read(chars: &chars, maxLength: -1)
+    }
+
+    @inlinable func append(to chars: inout [Character], maxLength len: Int = -1) throws -> Int {
+        var newChars: [Character] = []
+        let cc                    = try read(chars: &newChars, maxLength: len)
+        if cc > 0 { chars.append(contentsOf: newChars) }
+        return cc
     }
 }

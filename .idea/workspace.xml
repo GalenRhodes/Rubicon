@@ -28,113 +28,23 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Added:&#10;    func hasAnyPrefix(_ prefixes: String...) -&gt; Bool&#10;    func hasAnySuffix(_ suffixes: String...) -&gt; Bool">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/DocFixer_Remote.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/DocFixer__Jazzy_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/DocFixer__swift_doc_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer (swift-doc).xcscheme" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer Remote.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Rubicon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Rubicon.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/DocFixer.xml" beforeDir="false" />
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Updated documentation.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.jazzy.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.jazzy.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer (Jazzy).xcscheme" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/CharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/CharInputStream.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/ByteInputStreamTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/RubiconTests/ByteInputStreamTests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/IConvTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/RubiconTests/IConvTests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/BasicBufferSize/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/BasicBufferSize/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/BinaryTreeDictionary/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/BinaryTreeDictionary/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/BinaryTreeDictionary_Iterator/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/BinaryTreeDictionary_Iterator/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/BinaryTreeDictionary_Keys/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/BinaryTreeDictionary_Keys/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/BinaryTreeDictionary_Values/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/BinaryTreeDictionary_Values/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/BinaryTreeNode/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/BinaryTreeNode/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/BinaryTreeNode_NodeColor/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/BinaryTreeNode_NodeColor/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/ByteBuffer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ByteBuffer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/BytePointer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/BytePointer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/ByteROBuffer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ByteROBuffer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/ByteROPointer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ByteROPointer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CCharBuffer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CCharBuffer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CCharPointer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CCharPointer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CCharROBuffer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CCharROBuffer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CCharROPointer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CCharROPointer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CErrors/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CErrors/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CFByteOrderEnum/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CFByteOrderEnum/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CString/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CString/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CharInputStream/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CharInputStream/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/CharStream/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CharStream/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Closable/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Closable/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Conditional/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Conditional/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/DWordBuffer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/DWordBuffer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/DWordPointer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/DWordPointer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/DWordROBuffer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/DWordROBuffer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/DWordROPointer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/DWordROPointer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/EasyByteBuffer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/EasyByteBuffer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Fixed2DArray/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Fixed2DArray/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/IConv/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/IConv/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/IConvCharInputStream/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/IConvCharInputStream/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/IConv_Results/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/IConv_Results/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/LockCondition/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/LockCondition/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Locking/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Locking/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/MarkInputStream/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/MarkInputStream/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/MutexLock/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/MutexLock/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/NanoSleep(seconds:nanos:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/NanoSleep(seconds:nanos:)/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/NanoSleep2(seconds:nanos:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/NanoSleep2(seconds:nanos:)/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/NanoTimer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/NanoTimer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/NanoTimerError/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/NanoTimerError/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/OStringXForm/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/OStringXForm/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/OStringXForm_XForms/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/OStringXForm_XForms/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/OneSecondMicros/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/OneSecondMicros/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/OneSecondMillis/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/OneSecondMillis/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/OneSecondNanos/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/OneSecondNanos/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/PGThread/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/PGThread/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/PGThreadBlock/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/PGThreadBlock/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/QWordBuffer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/QWordBuffer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/QWordPointer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/QWordPointer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/QWordROBuffer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/QWordROBuffer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/QWordROPointer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/QWordROPointer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/RecursiveLock/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/RecursiveLock/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/RegEx/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/RegEx/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/RegExResult/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/RegExResult/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/RegularExpression/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/RegularExpression/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/RegularExpression_Group/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/RegularExpression_Group/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/RegularExpression_Match/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/RegularExpression_Match/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/RegularExpression_Match_Iterator/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/RegularExpression_Match_Iterator/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/RegularExpression_NamedGroup/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/RegularExpression_NamedGroup/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/RingByteBuffer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/RingByteBuffer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/RingByteBufferError/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/RingByteBufferError/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/SortOrdering/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/SortOrdering/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/StrError(_:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/StrError(_:)/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/StreamError/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/StreamError/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/StringXForm/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/StringXForm/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/StringXForm_XForms/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/StringXForm_XForms/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/UTF8CharInputStream/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/UTF8CharInputStream/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/UnicodeReplacementChar/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/UnicodeReplacementChar/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/WordBuffer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/WordBuffer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/WordPointer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/WordPointer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/WordROBuffer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/WordROBuffer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/WordROPointer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/WordROPointer/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/absoluteTimeSpecFrom(date:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/absoluteTimeSpecFrom(date:)/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/cStrLen(cStringPtr:length:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/cStrLen(cStringPtr:length:)/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/createMutablePointer(capacity:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/createMutablePointer(capacity:)/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/createMutablePointer(capacity:initialValue:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/createMutablePointer(capacity:initialValue:)/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/createMutableRawPointer(capacity:type:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/createMutableRawPointer(capacity:type:)/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/createMutableRawPointer(capacity:type:initialValue:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/createMutableRawPointer(capacity:type:initialValue:)/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/discardMutablePointer(_:_:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/discardMutablePointer(_:_:)/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/discardMutableRawPointer(_:_:_:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/discardMutableRawPointer(_:_:_:)/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/fixLength(_:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/fixLength(_:)/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/getSysTime(delta:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/getSysTime(delta:)/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/nilCheck(_:whenNotNil:whenNil:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/nilCheck(_:whenNotNil:whenNil:)/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/regexML(pattern:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/regexML(pattern:)/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/streamStatusGood(_:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/streamStatusGood(_:)/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/testOSFatalError(_:_:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/testOSFatalError(_:_:)/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/timeIntervalFrom(date:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/timeIntervalFrom(date:)/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/toBinary(_:sep:pad:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/toBinary(_:sep:pad:)/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/toHex(_:pad:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/toHex(_:pad:)/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/value(_:isOneOf:)/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/value(_:isOneOf:)/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream/MarkItem.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream/MarkItem.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/UTF8CharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/UTF8CharInputStream.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Protocols/CharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Protocols/CharInputStream.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream/MarkItem.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream/MarkItem.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/UTF8CharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/UTF8CharInputStream.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/CharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/CharInputStream.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/search.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/search.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/docSet.dsidx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/docSet.dsidx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.tgz" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.tgz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/search.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/search.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/undocumented.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/undocumented.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -339,14 +249,7 @@
       <workItem from="1611239376966" duration="7739000" />
       <workItem from="1611323894484" duration="26252000" />
       <workItem from="1611498508363" duration="11445000" />
-      <workItem from="1611581711263" duration="18710000" />
-    </task>
-    <task id="LOCAL-00065" summary="Cleaned up and optimised ByteInputStream, AscIICharInputStream, StringCharInputStream, Utf8CharInputStream, Utf16CharInputStream, and Utf32CharInputStream.">
-      <created>1606917171874</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1606917171874</updated>
+      <workItem from="1611581711263" duration="24301000" />
     </task>
     <task id="LOCAL-00066" summary="Cleaned up and optimised ByteInputStream, AscIICharInputStream, StringCharInputStream, Utf8CharInputStream, Utf16CharInputStream, and Utf32CharInputStream.">
       <created>1607028757054</created>
@@ -684,7 +587,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611611289553</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="Updated documentation.">
+      <created>1611676929276</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1611676929277</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -717,7 +627,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="New extensions to Data and String to allow creation from an InputStream." />
     <MESSAGE value="Added Utf32CharInputStream." />
     <MESSAGE value="Added typealiases:&#10;&#10;public typealias QWordPointer   = UnsafeMutablePointer&lt;UInt64&gt;&#10;public typealias QWordROPointer = UnsafePointer&lt;UInt64&gt;&#10;public typealias QWordBuffer    = UnsafeMutableBufferPointer&lt;UInt64&gt;&#10;public typealias QWordROBuffer  = UnsafeBufferPointer&lt;UInt64&gt;" />
     <MESSAGE value="Added missing method to CharInputStream protocol." />
@@ -742,7 +651,8 @@
     <MESSAGE value="Bug fixes." />
     <MESSAGE value="Performance improvements to IConvCharInputStream." />
     <MESSAGE value="Added:&#10;    func hasAnyPrefix(_ prefixes: String...) -&gt; Bool&#10;    func hasAnySuffix(_ suffixes: String...) -&gt; Bool" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added:&#10;    func hasAnyPrefix(_ prefixes: String...) -&gt; Bool&#10;    func hasAnySuffix(_ suffixes: String...) -&gt; Bool" />
+    <MESSAGE value="Updated documentation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated documentation." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="CidrCoverage/Rubicon/Rubicon Tests.json" NAME="Rubicon Tests Coverage Results" MODIFIED="1608608581698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="llvm-cov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

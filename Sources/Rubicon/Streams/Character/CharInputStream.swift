@@ -104,6 +104,8 @@ public protocol CharInputStream: CharStream {
     /// `markDelete()` followed immediately by a `markSet()`.
     ///
     func markUpdate()
+
+    func markBackup(count: Int) -> Int
 }
 
 public extension CharInputStream {

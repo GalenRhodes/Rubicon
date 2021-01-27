@@ -1654,14 +1654,21 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
-      "line": 109,
+      "line": 108,
+      "symbol": "CharInputStream.markBackup(count:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
+      "line": 111,
       "symbol": "CharInputStream",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
-      "line": 125,
+      "line": 127,
       "symbol": "CharInputStream.append(to:maxLength:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -1711,223 +1718,293 @@
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
       "line": 64,
-      "symbol": "IConvCharInputStream._lineNumber",
+      "symbol": "IConvCharInputStream._position",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
       "line": 65,
-      "symbol": "IConvCharInputStream._columnNumber",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 66,
       "symbol": "IConvCharInputStream._tabWidth",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 67,
-      "symbol": "IConvCharInputStream._prevChar",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 68,
+      "line": 66,
       "symbol": "IConvCharInputStream._charBuffer",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 69,
+      "line": 67,
       "symbol": "IConvCharInputStream._markStack",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 70,
+      "line": 68,
       "symbol": "IConvCharInputStream._error",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 71,
+      "line": 69,
       "symbol": "IConvCharInputStream._status",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 72,
+      "line": 70,
       "symbol": "IConvCharInputStream._running",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 73,
+      "line": 71,
       "symbol": "IConvCharInputStream._lock",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 74,
+      "line": 72,
       "symbol": "IConvCharInputStream._queue",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 75,
+      "line": 73,
       "symbol": "IConvCharInputStream._inputStream",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 76,
+      "line": 74,
       "symbol": "IConvCharInputStream._autoClose",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 79,
+      "line": 77,
       "symbol": "IConvCharInputStream.init(inputStream:autoClose:encodingName:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 85,
+      "line": 83,
       "symbol": "IConvCharInputStream.init(fileAtPath:encodingName:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 90,
+      "line": 88,
       "symbol": "IConvCharInputStream.init(url:encodingName:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 95,
+      "line": 93,
       "symbol": "IConvCharInputStream.init(data:encodingName:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 99,
+      "line": 97,
       "symbol": "IConvCharInputStream.status(in:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 463,
+      "line": 203,
+      "symbol": "IConvCharInputStream.markBackup(count:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
+      "line": 437,
+      "symbol": "IConvCharInputStream.restoreMarkChars(markChars:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
+      "line": 445,
+      "symbol": "IConvCharInputStream.getChars(markChars:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
+      "line": 461,
       "symbol": "IConvCharInputStream.stsOrErr(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 465,
+      "line": 463,
       "symbol": "IConvCharInputStream.testSts(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 467,
+      "line": 465,
       "symbol": "IConvCharInputStream.deinit",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
+      "line": 471,
+      "symbol": "IConvCharInputStream.Position.line",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
+      "line": 472,
+      "symbol": "IConvCharInputStream.Position.column",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
       "line": 473,
-      "symbol": "IConvCharInputStream.MarkItem.chars",
+      "symbol": "IConvCharInputStream.Position.prevChar",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
       "line": 474,
-      "symbol": "IConvCharInputStream.MarkItem.line",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 475,
-      "symbol": "IConvCharInputStream.MarkItem.column",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 476,
-      "symbol": "IConvCharInputStream.MarkItem.lastChar",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 477,
-      "symbol": "IConvCharInputStream.MarkItem.init(_:_:_:)",
+      "symbol": "IConvCharInputStream.Position.init(line:column:prevChar:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 482,
+      "line": 475,
+      "symbol": "IConvCharInputStream.Position.copy()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
+      "line": 477,
+      "symbol": "IConvCharInputStream.Position.update(character:tabWidth:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
+      "line": 490,
+      "symbol": "IConvCharInputStream.Position.newLine(count:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
+      "line": 500,
+      "symbol": "IConvCharInputStream.MarkChar.char",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
+      "line": 501,
+      "symbol": "IConvCharInputStream.MarkChar.position",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
+      "line": 502,
+      "symbol": "IConvCharInputStream.MarkChar.init(char:position:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
+      "line": 509,
+      "symbol": "IConvCharInputStream.MarkItem.chars",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
+      "line": 510,
+      "symbol": "IConvCharInputStream.MarkItem.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
+      "line": 511,
+      "symbol": "IConvCharInputStream.MarkItem.append(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
+      "line": 512,
+      "symbol": "IConvCharInputStream.MarkItem.removeAll()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
+      "line": 516,
       "symbol": "UTF8CharInputStream",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 483,
+      "line": 517,
       "symbol": "UTF8CharInputStream.InputEnc",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 485,
+      "line": 519,
       "symbol": "UTF8CharInputStream.init(inputStream:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 487,
+      "line": 521,
       "symbol": "UTF8CharInputStream.init(data:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 489,
+      "line": 523,
       "symbol": "UTF8CharInputStream.init(fileAtPath:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 494,
+      "line": 528,
       "symbol": "UTF8CharInputStream.init(url:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

@@ -54,17 +54,15 @@ open class IConvCharInputStream: CharInputStream {
     @inlinable public var hasCharsAvailable: Bool          { status(in: .open, .reading, .writing)                                                }
     @inlinable public var isEOF:             Bool          { !((streamStatus == .notOpen) || hasCharsAvailable)                                   }
     @inlinable public var streamStatus:      Stream.Status { _lock.withLock { testSts(_status) }                                                  }
-    @inlinable public var lineNumber:        Int           { _lock.withLock { _lineNumber   }                                                     }
-    @inlinable public var columnNumber:      Int           { _lock.withLock { _columnNumber }                                                     }
+    @inlinable public var lineNumber:        Int           { _lock.withLock { _position.line   }                                                  }
+    @inlinable public var columnNumber:      Int           { _lock.withLock { _position.column }                                                  }
     @inlinable public var tabWidth:          Int           { get { _lock.withLock { _tabWidth } } set { _lock.withLock { _tabWidth = newValue } } }
 
     @inlinable final  var _atEnd:            Bool          { (_charBuffer.isEmpty && !_running)                                                   }
     @inlinable final  var _runnerGood:       Bool          { ((_status == .open) && _inputStream.status(in: .open, .reading, .writing))           }
 
-    @usableFromInline var _lineNumber:       Int           = 1
-    @usableFromInline var _columnNumber:     Int           = 1
+    @usableFromInline var _position:         Position      = Position(line: 1, column: 1, prevChar: nil)
     @usableFromInline var _tabWidth:         Int           = 8
-    @usableFromInline var _prevChar:         Character?    = nil
     @usableFromInline var _charBuffer:       [Character]   = []
     @usableFromInline var _markStack:        [MarkItem]    = []
     @usableFromInline var _error:            Error?        = nil
@@ -178,7 +176,7 @@ open class IConvCharInputStream: CharInputStream {
     /*===========================================================================================================================================================================*/
     /// Marks the current point in the stream so that it can be returned to later. You can set more than one mark but all operations happen on the most recently set mark.
     ///
-    open func markSet() { _lock.withLock { if _status == .open { _markStack.append(MarkItem(_lineNumber, _columnNumber, _prevChar)) } } }
+    open func markSet() { _lock.withLock { if _status == .open { _markStack.append(MarkItem()) } } }
 
     /*===========================================================================================================================================================================*/
     /// Removes the most recently set mark WITHOUT returning to it.
@@ -201,6 +199,18 @@ open class IConvCharInputStream: CharInputStream {
     /// Removes and returns to the most recently set mark.
     ///
     open func markReturn() { markReturnOrReset(reset: false) }
+
+    open func markBackup(count: Int) -> Int {
+        _lock.withLock {
+            if let m = _markStack.last {
+                let mcount = m.chars.count
+                let cc     = min(count, mcount)
+                if cc > 0 { return restoreMarkChars(markChars: m.chars[(mcount - cc) ..< mcount]) }
+            }
+
+            return 0
+        }
+    }
 
     /*===========================================================================================================================================================================*/
     /// The background thread function that reads from the backing byte input stream.
@@ -364,8 +374,8 @@ open class IConvCharInputStream: CharInputStream {
     ///
     @inlinable final func stash(char: Character?) -> Character? {
         if let ch = char {
-            if let ms = _markStack.last { ms.chars.append(ch) }
-            return advanceLineAndColumn(ch)
+            if let ms = _markStack.last { ms.append(ch, _position) }
+            return _position.update(character: ch, tabWidth: _tabWidth)
         }
         return nil
     }
@@ -376,39 +386,19 @@ open class IConvCharInputStream: CharInputStream {
     /// - Parameter chars: the sequence of characters.
     /// - Returns: the same sequence of characters.
     ///
-    @inlinable final func stash<S>(chars: S) -> S where S: Sequence, S.Element == Character {
-        if let ms = _markStack.last { ms.chars.append(contentsOf: chars) }
-        for ch in chars { advanceLineAndColumn(ch) }
-        return chars
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Based on the provided character, advance the line and column values.
-    /// 
-    /// - Parameter ch: the character just read from the stream.
-    /// - Returns: the same character.
-    ///
-    @discardableResult @inlinable final func advanceLineAndColumn(_ ch: Character) -> Character {
-        switch ch {
-            case "\t":
-                _columnNumber = (((_columnNumber + _tabWidth) / _tabWidth) * _tabWidth)
-            case "\n":
-                if let lc = _prevChar, lc == "\r" { break }
-                fallthrough
-            case "\r":
-                _lineNumber++
-                _columnNumber = 1
-            case Character(UnicodeScalar(11)):
-                _lineNumber += (((_lineNumber + _tabWidth) / _tabWidth) * _tabWidth)
-                _columnNumber = 1
-            case Character(UnicodeScalar(12)):
-                _lineNumber += 24
-                _columnNumber = 1
-            default:
-                _columnNumber++
+    @inlinable final func stash<C>(chars: C) -> C where C: Collection, C.Element == Character {
+        if chars.isEmpty {
+            if let ms = _markStack.last {
+                for ch in chars {
+                    ms.append(ch, _position)
+                    _ = _position.update(character: ch, tabWidth: _tabWidth)
+                }
+            }
+            else {
+                for ch in chars { _ = _position.update(character: ch, tabWidth: _tabWidth) }
+            }
         }
-        _prevChar = ch
-        return ch
+        return chars
     }
 
     /*===========================================================================================================================================================================*/
@@ -418,21 +408,15 @@ open class IConvCharInputStream: CharInputStream {
     /// 
     /// - Parameter body: the closure.
     ///
-    @inlinable func withTopMarkDo(_ body: ([Character], Int, Int, Character?) -> Bool) {
+    @inlinable func withTopMarkDo(_ body: ([MarkChar]) -> Bool) {
         _lock.withLock {
             if _status == .open {
                 if let ms = _markStack.last {
-                    if body(ms.chars, ms.line, ms.column, ms.lastChar) {
-                        _markStack.removeLast()
-                    }
-                    else {
-                        ms.chars.removeAll(keepingCapacity: true)
-                        ms.line = _lineNumber
-                        ms.column = _columnNumber
-                    }
+                    if body(ms.chars) { _markStack.removeLast() }
+                    else { ms.removeAll() }
                 }
-                else if !body([], 0, 0, nil) {
-                    _markStack.append(MarkItem(_lineNumber, _columnNumber, _prevChar))
+                else if !body([]) {
+                    _markStack.append(MarkItem())
                 }
             }
         }
@@ -444,13 +428,27 @@ open class IConvCharInputStream: CharInputStream {
     /// - Parameter reset: if `true` then we're performing a `markReset()`, otherwise we're performing a `markRestore()`.
     ///
     @inlinable final func markReturnOrReset(reset: Bool) {
-        withTopMarkDo { (chs: [Character], l: Int, c: Int, lc: Character?) -> Bool in
-            _charBuffer.insert(contentsOf: chs, at: 0)
-            _lineNumber = l
-            _columnNumber = c
-            _prevChar = lc
+        withTopMarkDo { (chs: [MarkChar]) -> Bool in
+            restoreMarkChars(markChars: chs)
             return !reset
         }
+    }
+
+    @discardableResult @inlinable final func restoreMarkChars<C>(markChars: C) -> Int where C: RandomAccessCollection, C.Element == MarkChar, C.Index == Int {
+        guard !markChars.isEmpty else { return 0 }
+        let first = markChars[0]
+        _charBuffer.insert(contentsOf: getChars(markChars: markChars), at: 0)
+        _position = first.position
+        return markChars.count
+    }
+
+    @inlinable final func getChars<C>(markChars: C) -> [Character] where C: Collection, C.Element == MarkChar {
+        var c: [Character] = []
+        if !markChars.isEmpty {
+            c.reserveCapacity(markChars.count)
+            for mc in markChars { c <+ mc.char }
+        }
+        return c
     }
 
     /*===========================================================================================================================================================================*/
@@ -458,7 +456,7 @@ open class IConvCharInputStream: CharInputStream {
     /// 
     /// - Parameter delete: `true` if we're performing a `markDelete()`, otherwise we're performing a `markUpdate()`.
     ///
-    @inlinable final func markDeleteOrUpdate(delete: Bool) { withTopMarkDo { _, _, _, _ in delete } }
+    @inlinable final func markDeleteOrUpdate(delete: Bool) { withTopMarkDo { _ in delete } }
 
     @inlinable final func stsOrErr(_ s: Stream.Status) -> Stream.Status { ((_error == nil) ? s : .error) }
 
@@ -467,16 +465,52 @@ open class IConvCharInputStream: CharInputStream {
     deinit { close() }
 
     /*===========================================================================================================================================================================*/
-    /// Holds the characters saved during a mark. @f:0
+    /// Holds a saved character's position.
     ///
-    @usableFromInline class MarkItem {
-        @usableFromInline var chars: [Character] = []
-        @usableFromInline var line: Int
-        @usableFromInline var column: Int
-        @usableFromInline var lastChar: Character?
-        @usableFromInline init(_ l: Int, _ c: Int, _ lc: Character?) { line = l; column = c; lastChar = lc }
+    @usableFromInline final class Position { //@f:0
+        public var line: Int
+        public var column: Int
+        public var prevChar: Character?
+        public init(line l: Int, column c: Int, prevChar p: Character?) { line = l; column = c; prevChar = p }
+        @inlinable public final func copy() -> Position { Position(line: line, column: column, prevChar: prevChar) }
+        //@f:1
+        @inlinable public final func update(character ch: Character, tabWidth tab: Int) -> Character {
+            switch ch {
+                case "\t":     column = (((column + tab) / tab) * tab)
+                case "\n":     if prevChar != "\r" { newLine(count: 1) }
+                case "\r":     newLine(count: 1)
+                case "\u{0b}": newLine(count: ((((line + tab) / tab) * tab) - line))
+                case "\u{0c}": newLine(count: 24)
+                default:       column++
+            }
+            prevChar = ch
+            return ch
+        }
+
+        @inlinable final func newLine(count: Int) {
+            line += count
+            column = 1
+        }
     }
-    //@f:1
+
+    /*===========================================================================================================================================================================*/
+    /// Holds a saved character and it's position.
+    ///
+    @usableFromInline @frozen struct MarkChar { //@f:0
+        @usableFromInline let char:     Character
+        @usableFromInline let position: Position
+        @usableFromInline init(char ch: Character, position pos: Position) { char = ch; position = pos.copy() }
+    } //@f:1
+
+    /*===========================================================================================================================================================================*/
+    /// Holds the characters saved during a mark.
+    ///
+    @usableFromInline class MarkItem { //@f:0
+        @usableFromInline var chars: [MarkChar] = []
+        @usableFromInline init() {}
+        @inlinable final func append(_ char: Character, _ pos: Position) { chars.append(MarkChar(char: char, position: pos)) }
+        @inlinable final func removeAll() { chars.removeAll(keepingCapacity: true) }
+    } //@f:1
 }
 
 open class UTF8CharInputStream: IConvCharInputStream {

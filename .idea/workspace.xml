@@ -103,7 +103,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="XCTest.Rubicon Tests">
+  <component name="RunManager" selected="Application.DocFixer (Jazzy)">
     <list>
       <item itemvalue="Application.DocFixer Remote" />
       <item itemvalue="Application.DocFixer (swift-doc)" />

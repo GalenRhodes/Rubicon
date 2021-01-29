@@ -50,6 +50,9 @@
 		83C67ACE250EC1E200C0F21E /* utf16BOMTestFile.txt in Resources */ = {isa = PBXBuildFile; fileRef = 83C67AC9250EC1E100C0F21E /* utf16BOMTestFile.txt */; };
 		83C67AD4250EC20200C0F21E /* RubiconTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C67ACB250EC1E200C0F21E /* RubiconTests.swift */; };
 		83C67AED250EC3CF00C0F21E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C67AEB250EC3C200C0F21E /* main.swift */; };
+		83F8D66625C47E6B004DD445 /* RingBuffer in Frameworks */ = {isa = PBXBuildFile; productRef = 83BA732E254ABED0009B8351 /* RingBuffer */; };
+		83F8D66725C47E6B004DD445 /* PGDocFixer in Frameworks */ = {isa = PBXBuildFile; productRef = 83C67AEF250EC40E00C0F21E /* PGDocFixer */; };
+		83F8D66925C47EC0004DD445 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F8D66825C47E99004DD445 /* libiconv.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +145,7 @@
 		83C67ADE250EC34B00C0F21E /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		83C67AE4250EC39F00C0F21E /* DocFixer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DocFixer; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C67AEB250EC3C200C0F21E /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		83F8D66825C47E99004DD445 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +153,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83F8D66925C47EC0004DD445 /* libiconv.tbd in Frameworks */,
+				83F8D66625C47E6B004DD445 /* RingBuffer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83F8D66725C47E6B004DD445 /* PGDocFixer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +240,7 @@
 		8377FEDC2576CB7000E660D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83F8D66825C47E99004DD445 /* libiconv.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -434,7 +442,7 @@
 			);
 			name = Rubicon;
 			packageProductDependencies = (
-				83BA732E254ABED0009B8351,
+				83BA732E254ABED0009B8351 /* RingBuffer */,
 			);
 			productName = Rubicon;
 			productReference = 83C67A72250EC02000C0F21E /* Rubicon.framework */;
@@ -475,7 +483,7 @@
 			);
 			name = DocFixer;
 			packageProductDependencies = (
-				83C67AEF250EC40E00C0F21E,
+				83C67AEF250EC40E00C0F21E /* PGDocFixer */,
 			);
 			productName = DocFixer;
 			productReference = 83C67AE4250EC39F00C0F21E /* DocFixer */;
@@ -513,8 +521,8 @@
 			);
 			mainGroup = 83C67A68250EC02000C0F21E;
 			packageReferences = (
-				83C67AEE250EC40E00C0F21E,
-				83BA732D254ABED0009B8351,
+				83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer" */,
+				83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer" */,
 			);
 			productRefGroup = 83C67A73250EC02000C0F21E /* Products */;
 			projectDirPath = "";
@@ -907,7 +915,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		83BA732D254ABED0009B8351 = {
+		83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/GalenRhodes/RingBuffer.git";
 			requirement = {
@@ -915,7 +923,7 @@
 				minimumVersion = 1.0.6;
 			};
 		};
-		83C67AEE250EC40E00C0F21E = {
+		83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/GalenRhodes/PGDocFixer.git";
 			requirement = {
@@ -926,14 +934,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		83BA732E254ABED0009B8351 = {
+		83BA732E254ABED0009B8351 /* RingBuffer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 83BA732D254ABED0009B8351;
+			package = 83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer" */;
 			productName = RingBuffer;
 		};
-		83C67AEF250EC40E00C0F21E = {
+		83C67AEF250EC40E00C0F21E /* PGDocFixer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 83C67AEE250EC40E00C0F21E;
+			package = 83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer" */;
 			productName = PGDocFixer;
 		};
 /* End XCSwiftPackageProductDependency section */

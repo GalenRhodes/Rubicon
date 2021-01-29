@@ -129,7 +129,7 @@ open class IConvCharInputStream: CharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Read one character from the input stream.
-    /// 
+    ///
     /// - Returns: the character read or `nil` if the stream is closed (or not opened in the first place) or the end of input has been reached.
     /// - Throws: if an I/O or conversion error occurs.
     ///
@@ -145,7 +145,7 @@ open class IConvCharInputStream: CharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Read characters from the stream. Any existing values in the array will be cleared first.
-    /// 
+    ///
     /// - Parameters:
     ///   - chars: the array to receive the characters.
     ///   - maxLength: the maximum number of characters to receive. If -1 then all characters are read until the end of input.
@@ -248,7 +248,7 @@ open class IConvCharInputStream: CharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// The loop that reads bytes from the underlying input stream and converts them using IConv into characters.
-    /// 
+    ///
     /// - Parameters:
     ///   - iconv: the instance of IConv
     ///   - i: the input buffer.
@@ -281,7 +281,7 @@ open class IConvCharInputStream: CharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Converts the data from the input stream to UTF-32 characters and stores them in the `charBuffer` for a final time.
-    /// 
+    ///
     /// - Parameters
     ///   - input: the input buffer.
     ///   - output: the output buffer.
@@ -300,7 +300,7 @@ open class IConvCharInputStream: CharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Converts the data from the input stream to UTF-32 characters and stores them in the `charBuffer`.
-    /// 
+    ///
     /// - Parameters
     ///   - iconv: the instance of `IConv`.
     ///   - input: the input buffer.
@@ -322,7 +322,7 @@ open class IConvCharInputStream: CharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Take `count` UTF-32 characters from the buffer and store them in the `charBuffer`.
-    /// 
+    ///
     /// - Parameters:
     ///   - buffer: the buffer.
     ///   - count: the number of UTF-32 characters.
@@ -338,7 +338,7 @@ open class IConvCharInputStream: CharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Read multiple characters from the `charBuffer`.
-    /// 
+    ///
     /// - Parameters:
     ///   - chars: the receiving array of <code>[Character](https://developer.apple.com/documentation/swift/character/)</code>`s
     ///   - maxLength: the maximum number of characters to read.
@@ -356,7 +356,7 @@ open class IConvCharInputStream: CharInputStream {
         }
 
         if cbcc <= maxLength {
-            chars.append(contentsOf: _charBuffer)
+            chars.append(contentsOf: stash(chars: _charBuffer))
             _charBuffer.removeAll()
             return cbcc
         }
@@ -368,7 +368,7 @@ open class IConvCharInputStream: CharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Get a `CErrors.INVAL(description:)` error with an unsupported character encoding message.
-    /// 
+    ///
     /// - Parameter encodingName: the name of the character encoding.
     /// - Returns: the error.
     ///
@@ -376,7 +376,7 @@ open class IConvCharInputStream: CharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Stash the character onto the most recently set `MarkItem`. If there is no set `MarkItem` then nothing happens.
-    /// 
+    ///
     /// - Parameter char: the character.
     /// - Returns: the same character.
     ///
@@ -390,7 +390,7 @@ open class IConvCharInputStream: CharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Stash the sequence of characters onto the most recently set `MarkItem`. If there is no set `MarkItem` then nothing happens.
-    /// 
+    ///
     /// - Parameter chars: the sequence of characters.
     /// - Returns: the same sequence of characters.
     ///
@@ -413,7 +413,7 @@ open class IConvCharInputStream: CharInputStream {
     /// Take the most recently set `MarkItem` and execute the closure with the array of characters contained in it. If the return value of the closure is `true` then that
     /// `MarkItem` is also removed from the stack, otherwise it is kept. If there is no previous set `MarkItem` then the body of the closure is executed with an empty array and if
     /// the closure returns `false` then a new `MarkItem` is placed on the stack, otherwise nothing else happens.
-    /// 
+    ///
     /// - Parameter body: the closure.
     ///
     @inlinable func withTopMarkDo(_ body: ([MarkChar]) -> Bool) {
@@ -432,7 +432,7 @@ open class IConvCharInputStream: CharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Perform either a `markReturn()` or a `markReset()` (which is just a `markReturn()` followed by a `markSet()`).
-    /// 
+    ///
     /// - Parameter reset: if `true` then we're performing a `markReset()`, otherwise we're performing a `markRestore()`.
     ///
     @inlinable final func markReturnOrReset(reset: Bool) {
@@ -461,7 +461,7 @@ open class IConvCharInputStream: CharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Perform either a `markDelete()` or a `markUpdate()` (which is just a `markDelete()` followed by a `markSet()`).
-    /// 
+    ///
     /// - Parameter delete: `true` if we're performing a `markDelete()`, otherwise we're performing a `markUpdate()`.
     ///
     @inlinable final func markDeleteOrUpdate(delete: Bool) { withTopMarkDo { _ in delete } }

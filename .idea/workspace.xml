@@ -29,7 +29,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Fix false message in AppCode.">
-      <change beforePath="$PROJECT_DIR$/.idea/Rubicon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Rubicon.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" afterDir="false" />
     </list>
@@ -243,6 +242,7 @@
       <workItem from="1611941519516" duration="253000" />
       <workItem from="1611941836075" duration="394000" />
       <workItem from="1611948663372" duration="375000" />
+      <workItem from="1611951519025" duration="167000" />
     </task>
     <task id="LOCAL-00074" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
       <created>1609089805667</created>

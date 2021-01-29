@@ -28,10 +28,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Added String.getCharacters(splitClusters:) -&gt; [Character].">
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Fix false message in AppCode.">
+      <change beforePath="$PROJECT_DIR$/.idea/Rubicon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Rubicon.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/IConv.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/IConv.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -242,14 +241,8 @@
       <workItem from="1611862534559" duration="1153000" />
       <workItem from="1611938984816" duration="871000" />
       <workItem from="1611941519516" duration="253000" />
-      <workItem from="1611941836075" duration="46000" />
-    </task>
-    <task id="LOCAL-00073" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
-      <created>1609088331078</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1609088331078</updated>
+      <workItem from="1611941836075" duration="394000" />
+      <workItem from="1611948663372" duration="375000" />
     </task>
     <task id="LOCAL-00074" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
       <created>1609089805667</created>
@@ -587,7 +580,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611939480615</updated>
     </task>
-    <option name="localTasksCounter" value="122" />
+    <task id="LOCAL-00122" summary="Fix false message in AppCode.">
+      <created>1611942173132</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1611942173132</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -620,7 +620,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Cleaned up and optimised ByteInputStream, AscIICharInputStream, StringCharInputStream, Utf8CharInputStream, Utf16CharInputStream, and Utf32CharInputStream." />
     <MESSAGE value="Based the CharInputStream implementations on iconv.  See the class IConvCharInputStream.swift." />
     <MESSAGE value="Rewrite of ByteInputStream so it acts as a mark/release input stream." />
     <MESSAGE value="Created a wrapper around libiconv functions." />
@@ -645,7 +644,8 @@
     <MESSAGE value="Added CharInputStream.markBackup() -&gt; Int" />
     <MESSAGE value="Added String.getCharacters(splitClusters:) -&gt; [Character]." />
     <MESSAGE value="Debugging Package Dependencies." />
-    <option name="LAST_COMMIT_MESSAGE" value="Debugging Package Dependencies." />
+    <MESSAGE value="Fix false message in AppCode." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix false message in AppCode." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="CidrCoverage/Rubicon/Rubicon Tests.json" NAME="Rubicon Tests Coverage Results" MODIFIED="1608608581698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="llvm-cov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

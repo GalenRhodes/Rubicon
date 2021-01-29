@@ -395,17 +395,18 @@ open class IConvCharInputStream: CharInputStream {
     /// - Returns: the same sequence of characters.
     ///
     @inlinable final func stash<C>(chars: C) -> C where C: Collection, C.Element == Character {
-        if chars.isEmpty {
-            if let ms = _markStack.last {
-                for ch in chars {
-                    ms.append(ch, _position)
-                    _ = _position.update(character: ch, tabWidth: _tabWidth)
-                }
-            }
-            else {
-                for ch in chars { _ = _position.update(character: ch, tabWidth: _tabWidth) }
+        guard !chars.isEmpty else { return chars }
+
+        if let ms = _markStack.last {
+            for ch in chars {
+                ms.append(ch, _position)
+                _ = _position.update(character: ch, tabWidth: _tabWidth)
             }
         }
+        else {
+            for ch in chars { _ = _position.update(character: ch, tabWidth: _tabWidth) }
+        }
+
         return chars
     }
 

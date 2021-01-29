@@ -28,7 +28,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Fix false message in AppCode.">
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Bug fix in IConvCharInputStream._read(chars: inout [Character], maxLength: Int) throws -&gt; Int">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" afterDir="false" />
     </list>
@@ -242,14 +242,8 @@
       <workItem from="1611941519516" duration="253000" />
       <workItem from="1611941836075" duration="394000" />
       <workItem from="1611948663372" duration="375000" />
-      <workItem from="1611951519025" duration="167000" />
-    </task>
-    <task id="LOCAL-00074" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
-      <created>1609089805667</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1609089805667</updated>
+      <workItem from="1611951519025" duration="261000" />
+      <workItem from="1611952514763" duration="108000" />
     </task>
     <task id="LOCAL-00075" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
       <created>1609354603242</created>
@@ -587,7 +581,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611942173132</updated>
     </task>
-    <option name="localTasksCounter" value="123" />
+    <task id="LOCAL-00123" summary="Bug fix in IConvCharInputStream._read(chars: inout [Character], maxLength: Int) throws -&gt; Int">
+      <created>1611951696007</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1611951696007</updated>
+    </task>
+    <option name="localTasksCounter" value="124" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -620,7 +621,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Based the CharInputStream implementations on iconv.  See the class IConvCharInputStream.swift." />
     <MESSAGE value="Rewrite of ByteInputStream so it acts as a mark/release input stream." />
     <MESSAGE value="Created a wrapper around libiconv functions." />
     <MESSAGE value="Dictionary that implements a classic Red/Black binary tree." />
@@ -645,7 +645,8 @@
     <MESSAGE value="Added String.getCharacters(splitClusters:) -&gt; [Character]." />
     <MESSAGE value="Debugging Package Dependencies." />
     <MESSAGE value="Fix false message in AppCode." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix false message in AppCode." />
+    <MESSAGE value="Bug fix in IConvCharInputStream._read(chars: inout [Character], maxLength: Int) throws -&gt; Int" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fix in IConvCharInputStream._read(chars: inout [Character], maxLength: Int) throws -&gt; Int" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="CidrCoverage/Rubicon/Rubicon Tests.json" NAME="Rubicon Tests Coverage Results" MODIFIED="1608608581698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="llvm-cov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

@@ -65,13 +65,21 @@ open class EasyByteBuffer {
     }
 
     @discardableResult open func withBufferAs<T, V>(type: T.Type, _ body: (UnsafeMutablePointer<T>, Int, inout Int) throws -> V) rethrows -> V {
-        var tCount:  Int                     = ((count * MemoryLayout<UInt8>.stride) / MemoryLayout<T>.stride)
-        let tLength: Int                     = ((length * MemoryLayout<UInt8>.stride) / MemoryLayout<T>.stride)
-        let t1Buff:  UnsafeMutableRawPointer = UnsafeMutableRawPointer(bytes)
-        let t2Buff:  UnsafeMutablePointer<T> = t1Buff.bindMemory(to: T.self, capacity: tCount)
+        var c = fromBytes(type: T.self, count)
+        let l = fromBytes(type: T.self, length)
+        let r = try body(UnsafeMutableRawPointer(bytes).bindMemory(to: T.self, capacity: l), l, &c)
+        count = toBytes(type: T.self, c)
+        return r
+    }
 
-        let res: V = try body(t2Buff, tLength, &tCount)
-        count = ((tCount * MemoryLayout<T>.stride) / MemoryLayout<UInt8>.stride)
-        return res
+    @discardableResult @inlinable open func withBufferAs<T, V>(type: T.Type, _ body: (UnsafeMutableBufferPointer<T>, inout Int) throws -> V) rethrows -> V {
+        var c = fromBytes(type: T.self, count)
+        let r = try body(UnsafeMutableBufferPointer<T>(start: UnsafeMutableRawPointer(bytes).bindMemory(to: T.self, capacity: c), count: c), &c)
+        count = toBytes(type: T.self, c)
+        return r
     }
 }
+
+@inlinable func fromBytes<T>(type: T.Type, _ value: Int) -> Int { ((value * MemoryLayout<UInt8>.stride) / MemoryLayout<T>.stride) }
+
+@inlinable func toBytes<T>(type: T.Type, _ value: Int) -> Int { ((value * MemoryLayout<T>.stride) / MemoryLayout<UInt8>.stride) }

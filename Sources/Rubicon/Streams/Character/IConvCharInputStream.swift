@@ -93,10 +93,7 @@ open class IConvCharInputStream: CharInputStream {
         self.init(inputStream: InputStream(data: data), encodingName: encodingName)
     }
 
-    open func status(in statuses: Status...) -> Bool {
-        for st in statuses { if streamStatus == st { return true } }
-        return false
-    }
+    open func status(in statuses: Status...) -> Bool { statuses.isAny { $0 == streamStatus } }
 
     /*===========================================================================================================================================================================*/
     /// Opens the character stream for reading.  If the stream has already been opened then calling this method does nothing.
@@ -133,13 +130,7 @@ open class IConvCharInputStream: CharInputStream {
     /// - Throws: if an I/O or conversion error occurs.
     ///
     open func read() throws -> Character? {
-        try _lock.withLockBroadcastWait {
-            !(_charBuffer.isEmpty && _run)
-        } do: {
-            guard _charBuffer.isEmpty else { return stash(char: _charBuffer.popFirst()) }
-            guard let e = _err else { return nil }
-            throw e
-        }
+        try _lock.withLockBroadcastWait { !(_charBuffer.isEmpty && _run) } do: { (_charBuffer.isEmpty ? try handleError(nil) : stash(char: _charBuffer.popFirst())) }
     }
 
     /*===========================================================================================================================================================================*/
@@ -147,28 +138,30 @@ open class IConvCharInputStream: CharInputStream {
     /// 
     /// - Parameters:
     ///   - chars: the array to receive the characters.
-    ///   - maxLength: the maximum number of characters to receive. If -1 then all characters are read until the end of input.
+    ///   - len: the maximum number of characters to receive. If -1 then all characters are read until the end of input.
     /// - Returns: the number of characters actually read. If the stream is closed (or not opened) or the end of input has been reached then
     ///            <code>[zero](https://en.wikipedia.org/wiki/0)</code> `0` is returned.
     /// - Throws: if an I/O or conversion error occurs.
     ///
-    open func read(chars: inout [Character], maxLength: Int) throws -> Int {
+    open func read(chars: inout [Character], maxLength len: Int) throws -> Int {
         chars.removeAll(keepingCapacity: true)
-        let maxLength: Int = fixLength(maxLength)
+        let maxLength: Int = fixLength(len)
         guard maxLength > 0 else { return 0 }
 
         return try _lock.withLock {
             var cc: Int = 0
             while cc < maxLength {
                 while _charBuffer.isEmpty && _run { _lock.broadcastWait() }
-                if _charBuffer.isEmpty {
-                    if let e = _err { throw e }
-                    return cc
-                }
+                if _charBuffer.isEmpty { return try handleError(cc) }
                 cc += _copy(&chars, count: (maxLength - cc))
             }
             return cc
         }
+    }
+
+    @inlinable final func handleError<T>(_ v: T) throws -> T {
+        if let e = _err { throw e }
+        return v
     }
 
     /*===========================================================================================================================================================================*/
@@ -180,15 +173,12 @@ open class IConvCharInputStream: CharInputStream {
     /// - Returns: the number of characters actually copied.
     ///
     @inlinable final func _copy(_ chars: inout [Character], count: Int) -> Int {
-        let bc = _charBuffer.count
-        if count < bc {
-            chars.append(contentsOf: _charBuffer[0 ..< count])
-            _charBuffer.removeFirst(count)
-            return count
-        }
-        chars.append(contentsOf: _charBuffer)
-        _charBuffer.removeAll(keepingCapacity: true)
-        return bc
+        let cc   = min(_charBuffer.count, count)
+        let sIdx = _charBuffer.startIndex
+        let eIdx = _charBuffer.index(sIdx, offsetBy: cc)
+        chars.append(contentsOf: stash(chars: _charBuffer[sIdx ..< eIdx]))
+        _charBuffer.removeFirst(cc)
+        return cc
     }
 
     /*===========================================================================================================================================================================*/

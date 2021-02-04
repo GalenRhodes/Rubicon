@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>nilCheck(_:whenNotNil:whenNil:) Function Reference</title>
+    <title>nilCheck(_:_:whenNilDo:) Function Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -13,8 +13,8 @@
     <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Function/nilCheck(_:whenNotNil:whenNil:)" class="dashAnchor"></a>
-    <a title="nilCheck(_:whenNotNil:whenNil:) Function Reference"></a>
+    <a name="//apple_ref/swift/Function/nilCheck(_:_:whenNilDo:)" class="dashAnchor"></a>
+    <a title="nilCheck(_:_:whenNilDo:) Function Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Rubicon©</a> (58% documented)</p>
@@ -30,7 +30,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        nilCheck(_:whenNotNil:whenNil:) Function Reference
+        nilCheck(_:_:whenNilDo:) Function Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -354,7 +354,7 @@
                 <a href="../Functions/isRed_28_5F_3A_29_5F_24sySb7Rubicon14BinaryTreeNodeCyxq_5FGSgcSLRzSHRzr0_5FluD.html">isRed(_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions/nilCheck_28_5F_3AwhenNotNil_3AwhenNil_3A_29_5F_24s_5F10whenNotNil0aC0q_5FxSg_5Fq_5FxKXEq_5FyKXEtKcr0_5FluD.html">nilCheck(_:whenNotNil:whenNil:)</a>
+                <a href="../Functions/nilCheck_28_5F_3A_5F_3AwhenNilDo_3A_29_5F_24s_5F_5F9whenNilDoq_5FxSg_5Fq_5FxKXEq_5FyKXEtKcr0_5FluD.html">nilCheck(_:_:whenNilDo:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions/regexML_28pattern_3A_29_5F_24s7patternSo19NSRegularExpressionCSS_5FtKcD.html">regexML(pattern:)</a>
@@ -528,12 +528,12 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>nilCheck(_:whenNotNil:whenNil:)</h1>
+            <h1>nilCheck(_:_:whenNilDo:)</h1>
               <div class="declaration">
                 <div class="language">
                   
                   <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="n">nilCheck</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">obj</span><span class="p">:</span> <span class="kt">S</span><span class="p">?,</span> <span class="n">whenNotNil</span> <span class="nv">b1</span><span class="p">:</span> <span class="p">(</span><span class="kt">S</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">,</span> <span class="n">whenNil</span> <span class="nv">b2</span><span class="p">:</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">T</span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">nilCheck</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">obj</span><span class="p">:</span> <span class="kt">S</span><span class="p">?,</span> <span class="n">_</span> <span class="nv">b1</span><span class="p">:</span> <span class="p">(</span><span class="kt">S</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">,</span> <span class="n">whenNilDo</span> <span class="nv">b2</span><span class="p">:</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">T</span></code></pre>
 
                 </div>
               </div>
@@ -547,11 +547,17 @@
 </code></pre>
 
 <p>This is fine but I wanted to do the same thing with a conditional expression like this:</p>
-<pre class="highlight swift"><code>   <span class="k">let</span> <span class="nv">x</span> <span class="o">=</span> <span class="p">(</span><span class="k">let</span> <span class="nv">v</span> <span class="o">=</span> <span class="n">possiblyNil</span> <span class="p">?</span> <span class="n">v</span><span class="o">.</span><span class="nv">name</span> <span class="p">:</span> <span class="s">"no name"</span><span class="p">)</span> <span class="c1">// This will not compile. :(</span>
+<pre class="highlight swift"><code>    <span class="k">let</span> <span class="nv">x</span> <span class="o">=</span> <span class="p">(</span><span class="k">let</span> <span class="nv">v</span> <span class="o">=</span> <span class="n">possiblyNil</span> <span class="p">?</span> <span class="n">v</span><span class="o">.</span><span class="nv">name</span> <span class="p">:</span> <span class="s">"no name"</span><span class="p">)</span> <span class="c1">// This will not compile. 😩</span>
 </code></pre>
 
+<p>I know I could always do this:</p>
+<pre class="highlight swift"><code>    <span class="k">let</span> <span class="nv">x</span> <span class="o">=</span> <span class="p">((</span><span class="n">possiblyNil</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">?</span> <span class="s">"no name"</span> <span class="p">:</span> <span class="n">v</span><span class="o">!.</span><span class="n">name</span><span class="p">)</span> <span class="c1">// This will compile.</span>
+</code></pre>
+
+<p>But the OCD side of me really dislikes that &lsquo;!&rsquo; being there even though I know it will never cause a fatal error. It just rubs up against that nerve seeing it there. 🤢</p>
+
 <p>So I created this function to simulate the functionality of the above using closures.</p>
-<pre class="highlight swift"><code>    <span class="k">let</span> <span class="nv">x</span> <span class="o">=</span> <span class="nf">nilCheck</span><span class="p">(</span><span class="n">possiblyNil</span><span class="p">,</span> <span class="p">{</span> <span class="nv">$0</span><span class="o">.</span><span class="n">name</span> <span class="p">},</span> <span class="p">{</span> <span class="s">"no name"</span> <span class="p">})</span> <span class="c1">// This will compile. :D</span>
+<pre class="highlight swift"><code>    <span class="k">let</span> <span class="nv">x</span> <span class="o">=</span> <span class="nf">nilCheck</span><span class="p">(</span><span class="n">possiblyNil</span><span class="p">)</span> <span class="p">{</span> <span class="nv">$0</span><span class="o">.</span><span class="n">name</span> <span class="p">},</span> <span class="nv">whenNilDo</span><span class="p">:</span> <span class="p">{</span> <span class="s">"no name"</span> <span class="p">}</span> <span class="c1">// This will compile. 😁</span>
 </code></pre>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
@@ -578,7 +584,7 @@
                       <tr>
                         <td>
                           <code>
-                          <em>isNotNil</em>
+                          <em>b1</em>
                           </code>
                         </td>
                         <td>
@@ -590,7 +596,7 @@
                       <tr>
                         <td>
                           <code>
-                          <em>isNil</em>
+                          <em>b2</em>
                           </code>
                         </td>
                         <td>
@@ -607,7 +613,7 @@
                 <p>the value returned from whichever closure is executed.</p>
               </div>
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Tools.swift#L456-L463">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Tools.swift#L462">Show on GitHub</a>
               </div>
           </section>
           <section class="section task-group-section">

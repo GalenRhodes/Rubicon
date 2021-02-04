@@ -437,30 +437,29 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 /// 
 /// This is fine but I wanted to do the same thing with a conditional expression like this:
 /// ```
-///    let x = (let v = possiblyNil ? v.name : "no name") // This will not compile. :(
+///     let x = (let v = possiblyNil ? v.name : "no name") // This will not compile. 😩
 /// ```
+/// 
+/// I know I could always do this:
+/// ```
+///     let x = ((possiblyNil == nil) ? "no name" : v!.name) // This will compile.
+/// ```
+/// But the OCD side of me really dislikes that '!' being there even though I know it will never cause a fatal error. It just rubs up against that nerve seeing it there. 🤢
 /// 
 /// So I created this function to simulate the functionality of the above using closures.
 /// 
 /// ```
-///     let x = nilCheck(possiblyNil, { $0.name }, { "no name" }) // This will compile. :D
+///     let x = nilCheck(possiblyNil) { $0.name }, whenNilDo: { "no name" } // This will compile. 😁
 /// ```
 /// 
 /// - Parameters:
 ///   - obj: the expression to test for `nil`.
-///   - isNotNil: the closure to execute if `obj` is NOT `nil`. The unwrapped value of `obj` is passed to the closure.
-///   - isNil: the closure to execute if `obj` IS `nil`.
+///   - b1: the closure to execute if `obj` is NOT `nil`. The unwrapped value of `obj` is passed to the closure.
+///   - b2: the closure to execute if `obj` IS `nil`.
 /// - Returns: the value returned from whichever closure is executed.
 /// - Throws: any exception thrown by whichever closure is executed.
 ///
-@inlinable public func nilCheck<S, T>(_ obj: S?, whenNotNil b1: (S) throws -> T, whenNil b2: () throws -> T) rethrows -> T {
-    if let _obj: S = obj {
-        return try b1(_obj)
-    }
-    else {
-        return try b2()
-    }
-}
+@inlinable public func nilCheck<S, T>(_ obj: S?, _ b1: (S) throws -> T, whenNilDo b2: () throws -> T) rethrows -> T { try ((obj == nil) ? b2() : b1(obj!)) }
 
 /*===============================================================================================================================================================================*/
 /// If the `maxLength` is less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then return the largest integer possible
@@ -469,11 +468,6 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 /// - Parameter maxLength: the length to fix.
 /// - Returns: either the value of `maxLength` or <code>[Int.max](https://developer.apple.com/documentation/swift/int/1540171-max)</code>.
 ///
-@inlinable public func fixLength(_ maxLength: Int) -> Int {
-    ((maxLength < 0) ? Int.max : maxLength)
-}
+@inlinable public func fixLength(_ maxLength: Int) -> Int { ((maxLength < 0) ? Int.max : maxLength) }
 
-@inlinable public func value<T: Equatable>(_ value: T, isOneOf: T...) -> Bool {
-    for v in isOneOf { if value == v { return true } }
-    return false
-}
+@inlinable public func value<T: Equatable>(_ value: T, isOneOf: T...) -> Bool { isOneOf.isAny { value == $0 } }

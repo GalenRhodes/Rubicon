@@ -29,12 +29,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Bug fix in func stash&lt;C&gt;(chars: C) -&gt; C where C: Collection, C.Element == Character">
-      <change afterPath="$PROJECT_DIR$/Tests/Working/test.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/EasyByteBuffer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/EasyByteBuffer.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Test1.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Working/old.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Array.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Array.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Element.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Element.html" afterDir="false" />
@@ -65,6 +61,7 @@
       <change beforePath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream/MarkChar.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream/MarkChar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream/MarkItem.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream/MarkItem.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream/Position.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream/Position.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream/Status.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream/Status.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/MarkInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/MarkInputStream.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/NanoTimer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/NanoTimer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/PGThread.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/PGThread.html" afterDir="false" />
@@ -132,6 +129,7 @@
       <change beforePath="$PROJECT_DIR$/docs/Functions/discardMutablePointer_28_5F_3A_5F_3A_29_5F_24syySpyxG_5FSitcluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/discardMutablePointer_28_5F_3A_5F_3A_29_5F_24syySpyxG_5FSitcluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/discardMutableRawPointer_28_5F_3A_5F_3A_5F_3A_29_5F_24syySv_5FxmSitcluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/discardMutableRawPointer_28_5F_3A_5F_3A_5F_3A_29_5F_24syySv_5FxmSitcluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/fixLength_28_5F_3A_29_5F_24syS2icD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/fixLength_28_5F_3A_29_5F_24syS2icD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/fromBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/fromBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/getSysTime_28delta_3A_29_5F_24s5deltas6UInt64VAC_5FtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/getSysTime_28delta_3A_29_5F_24s5deltas6UInt64VAC_5FtcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/isBlack_28_5F_3A_29_5F_24sySb7Rubicon14BinaryTreeNodeCyxq_5FGSgcSLRzSHRzr0_5FluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/isBlack_28_5F_3A_29_5F_24sySb7Rubicon14BinaryTreeNodeCyxq_5FGSgcSLRzSHRzr0_5FluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/isRed_28_5F_3A_29_5F_24sySb7Rubicon14BinaryTreeNodeCyxq_5FGSgcSLRzSHRzr0_5FluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/isRed_28_5F_3A_29_5F_24sySb7Rubicon14BinaryTreeNodeCyxq_5FGSgcSLRzSHRzr0_5FluD.html" afterDir="false" />
@@ -141,6 +139,7 @@
       <change beforePath="$PROJECT_DIR$/docs/Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/timeIntervalFrom_28date_3A_29_5F.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/timeIntervalFrom_28date_3A_29_5F.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/toBinary_28_5F_3Asep_3Apad_3A_29_5F_24s_5F3sep3padSSx_5FSSSgSitcSzRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/toBinary_28_5F_3Asep_3Apad_3A_29_5F_24s_5F3sep3padSSx_5FSSSgSitcSzRzluD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/toBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/toBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/value_28_5F_3AisOneOf_3A_29_5F_24s_5F7isOneOfSbx_5FxdtcSQRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/value_28_5F_3AisOneOf_3A_29_5F_24s_5F7isOneOfSbx_5FxdtcSQRzluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/~~_28_5F_3A_29_5F_24syxxcs17FixedWidthIntegerRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/~~_28_5F_3A_29_5F_24syxxcs17FixedWidthIntegerRzluD.html" afterDir="false" />
@@ -229,6 +228,7 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream/MarkChar.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream/MarkChar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream/MarkItem.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream/MarkItem.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream/Position.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream/Position.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream/Status.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream/Status.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/MarkInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/MarkInputStream.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/NanoTimer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/NanoTimer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/PGThread.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/PGThread.html" afterDir="false" />
@@ -296,6 +296,7 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/discardMutablePointer_28_5F_3A_5F_3A_29_5F_24syySpyxG_5FSitcluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/discardMutablePointer_28_5F_3A_5F_3A_29_5F_24syySpyxG_5FSitcluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/discardMutableRawPointer_28_5F_3A_5F_3A_5F_3A_29_5F_24syySv_5FxmSitcluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/discardMutableRawPointer_28_5F_3A_5F_3A_5F_3A_29_5F_24syySv_5FxmSitcluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/fixLength_28_5F_3A_29_5F_24syS2icD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/fixLength_28_5F_3A_29_5F_24syS2icD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/fromBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/fromBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/getSysTime_28delta_3A_29_5F_24s5deltas6UInt64VAC_5FtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/getSysTime_28delta_3A_29_5F_24s5deltas6UInt64VAC_5FtcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/isBlack_28_5F_3A_29_5F_24sySb7Rubicon14BinaryTreeNodeCyxq_5FGSgcSLRzSHRzr0_5FluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/isBlack_28_5F_3A_29_5F_24sySb7Rubicon14BinaryTreeNodeCyxq_5FGSgcSLRzSHRzr0_5FluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/isRed_28_5F_3A_29_5F_24sySb7Rubicon14BinaryTreeNodeCyxq_5FGSgcSLRzSHRzr0_5FluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/isRed_28_5F_3A_29_5F_24sySb7Rubicon14BinaryTreeNodeCyxq_5FGSgcSLRzSHRzr0_5FluD.html" afterDir="false" />
@@ -305,6 +306,7 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/timeIntervalFrom_28date_3A_29_5F.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/timeIntervalFrom_28date_3A_29_5F.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/toBinary_28_5F_3Asep_3Apad_3A_29_5F_24s_5F3sep3padSSx_5FSSSgSitcSzRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/toBinary_28_5F_3Asep_3Apad_3A_29_5F_24s_5F3sep3padSSx_5FSSSgSitcSzRzluD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/toBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/toBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/value_28_5F_3AisOneOf_3A_29_5F_24s_5F7isOneOfSbx_5FxdtcSQRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/value_28_5F_3AisOneOf_3A_29_5F_24s_5F7isOneOfSbx_5FxdtcSQRzluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/~~_28_5F_3A_29_5F_24syxxcs17FixedWidthIntegerRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/~~_28_5F_3A_29_5F_24syxxcs17FixedWidthIntegerRzluD.html" afterDir="false" />
@@ -369,7 +371,6 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.tgz" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.tgz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/search.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/search.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/undocumented.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/undocumented.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -585,14 +586,9 @@
       <workItem from="1611952514763" duration="337000" />
       <workItem from="1612042532763" duration="10015000" />
       <workItem from="1612178970174" duration="4592000" />
-      <workItem from="1612318959807" duration="3243000" />
-    </task>
-    <task id="LOCAL-00076" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
-      <created>1609356042593</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1609356042593</updated>
+      <workItem from="1612318959807" duration="3350000" />
+      <workItem from="1612358879674" duration="685000" />
+      <workItem from="1612444358128" duration="723000" />
     </task>
     <task id="LOCAL-00077" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
       <created>1609356107429</created>
@@ -930,7 +926,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611952773243</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL-00125" summary="Bug fix in func stash&lt;C&gt;(chars: C) -&gt; C where C: Collection, C.Element == Character">
+      <created>1612322396755</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1612322396755</updated>
+    </task>
+    <option name="localTasksCounter" value="126" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -69,4 +69,30 @@ extension Collection {
         }
         return temp
     }
+
+    /*===========================================================================================================================================================================*/
+    /// Iterates over the collection executing the closure for each element. If the closure returns `true` for an element then iteration halts and `true` is returned. If the
+    /// closure returns `false` for all the elements then `false` is returned.
+    /// 
+    /// - Parameter body: the closure which takes the element as it's only parameter and returns a boolean.
+    /// - Returns: `false` if the closure returns `false` for all the elements in the collection.
+    /// - Throws: any error thrown by the closure.
+    ///
+    @inlinable public func isAny(predicate body: (Element) throws -> Bool) rethrows -> Bool {
+        for e in self { if try body(e) { return true } }
+        return false
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Iterates over the collection executing the closure for each element. If the closure returns `false` for an element then iteration halts and `false` is returned. If the
+    /// closure returns `true` for all the elements then `true` is returned.
+    /// 
+    /// - Parameter body: the closure which takes the element as it's only parameter and returns a boolean.
+    /// - Returns: `true` if the closure returns `true` for all the elements in the collection.
+    /// - Throws: any error thrown by the closure.
+    ///
+    @inlinable public func areAll(predicate body: (Element) throws -> Bool) rethrows -> Bool {
+        for e in self { guard try body(e) else { return false } }
+        return true
+    }
 }

@@ -27,6 +27,11 @@ public let UnicodeReplacementChar: Character = "�"
 public protocol CharInputStream: CharStream {
 
     /*===========================================================================================================================================================================*/
+    /// The number of marks on the stream.
+    ///
+    var markCount:         Int { get }
+
+    /*===========================================================================================================================================================================*/
     /// `true` if the stream is at the end-of-file.
     ///
     var isEOF:             Bool { get }
@@ -113,6 +118,27 @@ public protocol CharInputStream: CharStream {
     /// - Returns: the number of characters actually backed out in case there weren't `count` characters available.
     ///
     @discardableResult func markBackup(count: Int) -> Int
+
+    /*===========================================================================================================================================================================*/
+    /// Push a single character back onto the input stream so that it becomes the next character read.
+    /// 
+    /// - Parameter char: the character.
+    ///
+    func push(char: Character)
+
+    /*===========================================================================================================================================================================*/
+    /// Push an array of characters back onto the input stream so that they become the next characters read.
+    /// 
+    /// - Parameter chars: the characters.
+    ///
+    func push(chars: [Character])
+
+    /*===========================================================================================================================================================================*/
+    /// Push a string back onto the input stream so that they become the next characters read. Grapheme clusters are NOT broken up.
+    /// 
+    /// - Parameter string: the string of characters.
+    ///
+    func push(string: String)
 }
 
 public extension CharInputStream {

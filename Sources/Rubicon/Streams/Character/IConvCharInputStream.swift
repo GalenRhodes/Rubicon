@@ -52,13 +52,14 @@ open class IConvCharInputStream: CharInputStream {
     //@f:0
     public let            encodingName:      String
 
-    @inlinable public var streamError:       Error? { ((streamStatus == .error) ? _err : nil)                                                                                               }
-    @inlinable public var hasCharsAvailable: Bool   { status(in: .open, .reading, .writing)                                                                                                 }
-    @inlinable public var isEOF:             Bool   { !((streamStatus == .notOpen) || hasCharsAvailable)                                                                                    }
-    @inlinable public var streamStatus:      Status { _lock.withLock { ((_st == .notOpen) ? _st : ((_st == .open) ? ((_charBuffer.isEmpty && !_run) ? stE(.atEnd) : .open) : stE(.closed))) }                                                  }
-    @inlinable public var lineNumber:        Int    { _lock.withLock { _position.line   }                                                                                                   }
-    @inlinable public var columnNumber:      Int    { _lock.withLock { _position.column }                                                                                                   }
-    @inlinable public var tabWidth:          Int    { get { _lock.withLock { _tabWidth } } set { _lock.withLock { _tabWidth = newValue } }                                                  }
+    @inlinable public var markCount:         Int    { _lock.withLock { _markStack.count }                                                                                                     }
+    @inlinable public var streamError:       Error? { ((streamStatus == .error) ? _err : nil)                                                                                                 }
+    @inlinable public var hasCharsAvailable: Bool   { status(in: .open, .reading, .writing)                                                                                                   }
+    @inlinable public var isEOF:             Bool   { !((streamStatus == .notOpen) || hasCharsAvailable)                                                                                      }
+    @inlinable public var streamStatus:      Status { _lock.withLock { ((_st == .notOpen) ? _st : ((_st == .open) ? ((_charBuffer.isEmpty && !_run) ? stE(.atEnd) : .open) : stE(.closed))) } }
+    @inlinable public var lineNumber:        Int    { _lock.withLock { _position.line   }                                                                                                     }
+    @inlinable public var columnNumber:      Int    { _lock.withLock { _position.column }                                                                                                     }
+    @inlinable public var tabWidth:          Int    { get { _lock.withLock { _tabWidth } } set { _lock.withLock { _tabWidth = newValue } }                                                    }
 
     @usableFromInline lazy var _queue:       DispatchQueue = DispatchQueue(label: UUID().uuidString, qos: .background, autoreleaseFrequency: .workItem)
     @usableFromInline      var _position:    Position      = Position(line: 1, column: 1, prevChar: nil)
@@ -158,6 +159,27 @@ open class IConvCharInputStream: CharInputStream {
             return cc
         }
     }
+
+    /*===========================================================================================================================================================================*/
+    /// Push a single character back onto the input stream so that it becomes the next character read.
+    /// 
+    /// - Parameter char: the character.
+    ///
+    open func push(char: Character) { _lock.withLock { _charBuffer.insert(char, at: 0) } }
+
+    /*===========================================================================================================================================================================*/
+    /// Push an array of characters back onto the input stream so that they become the next characters read.
+    /// 
+    /// - Parameter chars: the characters.
+    ///
+    open func push(chars: [Character]) { _lock.withLock { _charBuffer.insert(contentsOf: chars, at: 0) } }
+
+    /*===========================================================================================================================================================================*/
+    /// Push a string back onto the input stream so that they become the next characters read. Grapheme clusters are NOT broken up.
+    /// 
+    /// - Parameter string: the string of characters.
+    ///
+    open func push(string: String) { _lock.withLock { _charBuffer.insert(contentsOf: string, at: 0) } }
 
     @inlinable final func handleError<T>(_ v: T) throws -> T {
         if let e = _err { throw e }

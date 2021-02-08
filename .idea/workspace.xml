@@ -28,10 +28,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Added Collection.areAll(predicate:) and Collection.isAny(predicate:).">
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Bug fix in IConvCharInputStream.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/CharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/CharInputStream.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -250,14 +250,8 @@
       <workItem from="1612318959807" duration="3350000" />
       <workItem from="1612358879674" duration="685000" />
       <workItem from="1612444358128" duration="1201000" />
-      <workItem from="1612448818533" duration="2303000" />
-    </task>
-    <task id="LOCAL-00078" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
-      <created>1609356192390</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1609356192390</updated>
+      <workItem from="1612448818533" duration="3160000" />
+      <workItem from="1612806847115" duration="679000" />
     </task>
     <task id="LOCAL-00079" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
       <created>1609356485902</created>
@@ -595,7 +589,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612445170752</updated>
     </task>
-    <option name="localTasksCounter" value="127" />
+    <task id="LOCAL-00127" summary="Bug fix in IConvCharInputStream.">
+      <created>1612452272045</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1612452272046</updated>
+    </task>
+    <option name="localTasksCounter" value="128" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -628,7 +629,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Dictionary that implements a classic Red/Black binary tree." />
     <MESSAGE value="Added Package providers for Ubuntu and Centos for the libc6." />
     <MESSAGE value="Fixed IConvCharInputStream so that close() is called when the object is disposed of unless autoClose is set to false." />
     <MESSAGE value="Backed out package providers because it was causing an error." />
@@ -653,7 +653,8 @@
     <MESSAGE value="Bug fix in IConvCharInputStream._read(chars: inout [Character], maxLength: Int) throws -&gt; Int" />
     <MESSAGE value="Bug fix in func stash&lt;C&gt;(chars: C) -&gt; C where C: Collection, C.Element == Character" />
     <MESSAGE value="Added Collection.areAll(predicate:) and Collection.isAny(predicate:)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Collection.areAll(predicate:) and Collection.isAny(predicate:)." />
+    <MESSAGE value="Bug fix in IConvCharInputStream." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fix in IConvCharInputStream." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="CidrCoverage/Rubicon/Rubicon Tests.json" NAME="Rubicon Tests Coverage Results" MODIFIED="1608608581698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="llvm-cov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

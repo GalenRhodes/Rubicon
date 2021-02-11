@@ -205,17 +205,120 @@ open class RegularExpression {
         nsRegex.numberOfMatches(in: str, options: MatchingOptions.convert(from: options), range: nsRange(range, string: str))
     }
 
+    /*===========================================================================================================================================================================*/
+    /// Returns the range of the first match.
+    /// 
+    /// - Parameters:
+    ///   - str: the search string.
+    ///   - options: The matching options to use. See `RegularExpression.MatchingOptions` for possible values.
+    ///   - range: the range of the string to search.
+    /// - Returns: the range of the first match of `nil` if the match was not found.
+    ///
     open func rangeOfFirstMatch(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil) -> Range<String.Index>? {
         str.range(nsRange: nsRegex.rangeOfFirstMatch(in: str, options: MatchingOptions.convert(from: options), range: nsRange(range, string: str)))
     }
 
+    /*===========================================================================================================================================================================*/
+    /// Returns the first `RegularExpression.Match` found in the search string.
+    /// 
+    /// - Parameters:
+    ///   - str: the search string.
+    ///   - options: The matching options to use. See `RegularExpression.MatchingOptions` for possible values.
+    ///   - range: the range of the string to search.
+    /// - Returns: the first `RegularExpression.Match` found in the search string or `nil` if the match was not found.
+    ///
     open func firstMatch(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil) -> Match? {
         guard let match = nsRegex.firstMatch(in: str, options: MatchingOptions.convert(from: options), range: nsRange(range, string: str)) else { return nil }
         return Match(str, match: match)
     }
 
+    /*===========================================================================================================================================================================*/
+    /// Returns all of the `RegularExpression.Match`s found in the search string.
+    /// 
+    /// - Parameters:
+    ///   - str: the search string.
+    ///   - options: The matching options to use. See `RegularExpression.MatchingOptions` for possible values.
+    ///   - range: the range of the string to search.
+    /// - Returns: an array of `RegularExpression.Match`s found in the search string or an empty array if the match was not found.
+    ///
     open func matches(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil) -> [Match] {
         nsRegex.matches(in: str, options: MatchingOptions.convert(from: options), range: nsRange(range, string: str)).map { Match(str, match: $0) }
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Enumerates the string allowing the Block to handle each regular expression match.
+    /// 
+    /// This method is the fundamental matching method for regular expressions and is suitable for overriding by subclassers. There are additional convenience methods for
+    /// returning all the matches as an array, the total number of matches, the first match, and the range of the first match.
+    /// 
+    /// By default, the Block iterator method calls the Block precisely once for each match, with a non-`nil` match and the appropriate flags. The client may then stop the
+    /// operation by returning `true` from the block instead of `false`.
+    /// 
+    /// If the `RegularExpression.MatchingOptions.reportProgress` matching option is specified, the Block will also be called periodically during long-running match operations,
+    /// with `nil` result and progress matching flag set in the Block’s flags parameter, at which point the client may again stop the operation by returning `true` instead of
+    /// `false`.
+    /// 
+    /// If the `RegularExpression.MatchingOptions.reportCompletion` matching option is specified, the Block object will be called once after matching is complete, with `nil`
+    /// result and the completed matching flag is set in the flags passed to the Block, plus any additional relevant `RegularExpression.MatchingFlags` from among
+    /// `RegularExpression.MatchingFlags.hitEnd`, `RegularExpression.MatchingFlags.requiredEnd`, or `RegularExpression.MatchingFlags.internalError`.
+    /// 
+    /// `RegularExpression.MatchingFlags.progress` and `RegularExpression.MatchingFlags.completed` matching flags have no effect for methods other than this method.
+    /// 
+    /// The `RegularExpression.MatchingFlags.hitEnd` matching flag is set in the flags passed to the Block if the current match operation reached the end of the search range. The
+    /// `RegularExpression.MatchingFlags.requiredEnd` matching flag is set in the flags passed to the Block if the current match depended on the location of the end of the search
+    /// range.
+    /// 
+    /// The `RegularExpression.MatchingFlags` matching flag is set in the flags passed to the block if matching failed due to an internal error (such as an expression requiring
+    /// exponential memory allocations) without examining the entire search range.
+    /// 
+    /// The `RegularExpression.Options.anchored`, `RegularExpression.Options.withTransparentBounds`, and `RegularExpression.Options.withoutAnchoringBounds` regular expression
+    /// options, specified in the options property specified when the regular expression instance is created, can apply to any match or replace method.
+    /// 
+    /// If `RegularExpression.Options.anchored` matching option is specified, matches are limited to those at the start of the search range.
+    /// 
+    /// If `RegularExpression.Options.withTransparentBounds` matching option is specified, matching may examine parts of the string beyond the bounds of the search range, for
+    /// purposes such as word boundary detection, lookahead, etc.
+    /// 
+    /// If `RegularExpression.Options.withoutAnchoringBounds` matching option is specified, ^ and $ will not automatically match the beginning and end of the search range, but
+    /// will still match the beginning and end of the entire string.
+    /// 
+    /// `RegularExpression.Options.withTransparentBounds` and `RegularExpression.Options.withoutAnchoringBounds` matching options have no effect if the search range covers the
+    /// entire string.
+    /// 
+    /// - Parameters:
+    ///   - str: the search string.
+    ///   - options: The matching options to report. See `RegularExpression.MatchingOptions` for the supported values.
+    ///   - range: the range of the string to search.
+    ///   - body: the Block that is called for each match found in the search string. The Block takes two (2) parameters&#58; <dl><dt><b><i>match</i></b></dt><dd>An instance of
+    ///           `RegularExpression.Match` or `nil` if the Block is simply being called with the flags `RegularExpression.MatchingFlags.completed`,
+    ///           `RegularExpression.MatchingFlags.hitEnd`, or `RegularExpression.MatchingFlags.internalError`</dd> <dt><b><i>flags</i></b></dt><dd>An array of
+    ///           `RegularExpression.MatchingFlags`.</dd></dl> The closure returns `true` to stop the enumeration or `false` to continue to the next match.
+    ///
+    open func forEachMatch(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: (Match?, [MatchingFlags]) -> Bool) {
+        nsRegex.enumerateMatches(in: str, options: MatchingOptions.convert(from: options), range: nsRange(range, string: str)) { result, flags, stop in
+            let match: Match? = ((result == nil) ? nil : Match(str, match: result!))
+            stop.pointee = (body(match, MatchingFlags.convert(from: flags)) ? true : false)
+        }
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Enumerates the string allowing the Block to handle each regular expression match.
+    /// 
+    /// This method is the fundamental matching method for regular expressions and is suitable for overriding by subclassers. There are additional convenience methods for
+    /// returning all the matches as an array, the total number of matches, the first match, and the range of the first match.
+    /// 
+    /// By default, the Block iterator method calls the Block precisely once for each match, with an array of the `RegularExpression.Group`s representing each capture group. The
+    /// client may then stop the operation by returning `true` from the block instead of `false`.
+    /// 
+    /// - Parameters:
+    ///   - str: the search string.
+    ///   - options: The matching options to report. See `RegularExpression.MatchingOptions` for the supported values.
+    ///   - range: the range of the string to search.
+    ///   - body: the closure that is called for each match found in the search string. The closure takes one parameter which is an array of `RegularExpression.Group` objects
+    ///           representing each capture group and returns `true` to stop the enumeration or `false` to continue to the next match.
+    ///
+    open func forEachMatchGroup(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: ([Group]) -> Bool) {
+        forEachMatch(in: str, options: options, range: range) { match, _ in ((match != nil) && body(match!.groups)) }
     }
 
     /*===========================================================================================================================================================================*/
@@ -225,25 +328,10 @@ open class RegularExpression {
     ///   - str: the search string.
     ///   - options: The matching options to report. See `RegularExpression.MatchingOptions` for the supported values.
     ///   - range: the range of the string to search.
-    ///   - body: the Block that is called for each match found in the search string. The Block takes three (2) parameters: 1) An instance of `RegularExpression.Match` or `nil` if
-    ///                                                                                                                     the Block is simply being called with the flags
-    ///                                                                                                                     `RegularExpression.MatchingFlags.completed`,
-    ///                                                                                                                     `RegularExpression.MatchingFlags.hitEnd`, or
-    ///                                                                                                                     `RegularExpression.MatchingFlags.internalError`; 2) An
-    ///                                                                                                                     array of `RegularExpression.MatchingFlags`. The Block
-    ///                                                                                                                     returns `true` to end the search early.
+    ///   - body: the closure that is called for each match found in the search string. The closure takes one parameter which is an array of Strings representing each capture
+    ///           group and returns `true` to stop the enumeration or `false` to continue to the next match. Any of the strings in the array may be `nil` if that capture group did
+    ///           not participate in the match.
     ///
-    open func forEachMatch(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: (Match?, [MatchingFlags]) -> Bool) {
-        nsRegex.enumerateMatches(in: str, options: MatchingOptions.convert(from: options), range: nsRange(range, string: str)) { result, flags, stop in
-            let match: Match? = ((result == nil) ? nil : Match(str, match: result!))
-            stop.pointee = (body(match, MatchingFlags.convert(from: flags)) ? true : false)
-        }
-    }
-
-    open func forEachMatchGroup(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: ([Group]) -> Bool) {
-        forEachMatch(in: str, options: options, range: range) { match, _ in ((match != nil) && body(match!.groups)) }
-    }
-
     open func forEachMatchString(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: ([String?]) -> Bool) {
         forEachMatchGroup(in: str, options: options, range: range) { groups in body(groups.map { $0.subString }) }
     }
@@ -262,25 +350,39 @@ open class RegularExpression {
     ///
     open func stringByReplacingMatches(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, withTemplate templ: String) -> (String, Int) {
         let mStr = NSMutableString(string: str)
-        let cc = nsRegex.replaceMatches(in: mStr, options: MatchingOptions.convert(from: options), range: nsRange(range, string: str), withTemplate: templ)
+        let cc   = nsRegex.replaceMatches(in: mStr, options: MatchingOptions.convert(from: options), range: nsRange(range, string: str), withTemplate: templ)
         return (String(mStr), cc)
     }
 
+    /*===========================================================================================================================================================================*/
+    /// This class encapsulates all of the capture groups of a single match.
+    ///
     public final class Match: Sequence, Collection {
         public typealias Element = Group
         public typealias Index = Int
 
-        public let string:     String
-        public var startIndex: Index { groups.startIndex }
-        public var endIndex:   Index { groups.endIndex }
-        public var count:      Int { groups.count }
+        /*=======================================================================================================================================================================*/
+        /// The search string.
+        ///
+        public let            string:     String
+        /*=======================================================================================================================================================================*/
+        /// The start index of the entire match within the search string.
+        ///
+        @inlinable public var startIndex: Index { groups.startIndex }
+        /*=======================================================================================================================================================================*/
+        /// The end index of the entire match within the search string.
+        ///
+        @inlinable public var endIndex:   Index { groups.endIndex }
+        /*=======================================================================================================================================================================*/
+        /// The number of capture groups.
+        ///
+        @inlinable public var count:      Int { groups.count }
 
         @usableFromInline let nsMatch:    NSTextCheckingResult
         @usableFromInline var namedCache: [String: NamedGroup] = [:]
-
         @usableFromInline lazy var groups: [Group] = getGroups()
 
-        public init(_ str: String, match: NSTextCheckingResult) {
+        @inlinable init(_ str: String, match: NSTextCheckingResult) {
             self.nsMatch = match
             self.string = str
         }
@@ -291,47 +393,97 @@ open class RegularExpression {
             return grps
         }
 
-        @inlinable public subscript(name: String) -> NamedGroup {
+        /*=======================================================================================================================================================================*/
+        /// Returns a named capture group.
+        /// 
+        /// - Parameter name: the name of the capture group
+        /// - Returns: the named capture group or `nil` if the capture group does not exist.
+        ///
+        @inlinable public subscript(name: String) -> NamedGroup? {
             if let ng = namedCache[name] { return ng }
-            let ng = NamedGroup(self, name: name, range: nsMatch.range(withName: name))
+            let range = nsMatch.range(withName: name)
+
+            guard range.location != NSNotFound else { return nil }
+
+            let ng = NamedGroup(self, name: name, range: range)
             namedCache[name] = ng
             return ng
         }
 
-        public subscript(position: Index) -> Element { groups[position] }
+        /*=======================================================================================================================================================================*/
+        /// Returns the capture group for the given index.
+        /// 
+        /// - Parameter position: the index which must be between `startIndex` <= index < `endIndex`.
+        /// - Returns: the capture group.
+        ///
+        @inlinable public subscript(position: Index) -> Element { groups[position] }
 
-        public func index(after i: Index) -> Index { groups.index(after: i) }
+        /*=======================================================================================================================================================================*/
+        /// The index after the one given.
+        /// 
+        /// - Parameter i: the index.
+        /// - Returns: the next index.
+        ///
+        @inlinable public func index(after i: Index) -> Index { groups.index(after: i) }
 
-        public func makeIterator() -> Iterator { Iterator(match: self) }
+        /*=======================================================================================================================================================================*/
+        /// Returns an iterator over all the capture groups.
+        /// 
+        /// - Returns: an iterator.
+        ///
+        @inlinable public func makeIterator() -> Iterator { Iterator(match: self) }
 
+        /*=======================================================================================================================================================================*/
+        /// The iterator class.
+        ///
         public final class Iterator: IteratorProtocol {
             public typealias Element = Group
 
             @usableFromInline var index: Int = 0
             @usableFromInline let match: Match
 
-            public init(match: Match) { self.match = match }
+            @inlinable init(match: Match) { self.match = match }
 
+            /*===================================================================================================================================================================*/
+            /// Get the next element.
+            /// 
+            /// - Returns: the next element or `nil` if there are no more elements.
+            ///
             @inlinable public func next() -> Element? { (index < match.groups.endIndex ? match.groups[index++] : nil) }
         }
     }
 
+    /*===========================================================================================================================================================================*/
+    /// This class encapsulates a single capture group.
+    ///
     public class Group {
-        let match: Match
+        @usableFromInline let match: Match
 
+        /*=======================================================================================================================================================================*/
+        /// The range of the search string for this capture group of `nil` if this capture group did not participate in the match.
+        ///
         public let range: Range<String.Index>?
+        /*=======================================================================================================================================================================*/
+        /// The substring of the search string for this capture group of `nil` if this capture group did not participate in the match.
+        ///
         public internal(set) lazy var subString: String? = ((range == nil) ? nil : String(match.string[range!]))
 
-        public init(_ match: Match, range: NSRange) {
+        @inlinable init(_ match: Match, range: NSRange) {
             self.match = match
             self.range = ((range.location == NSNotFound) ? nil : (String.Index(utf16Offset: range.lowerBound, in: match.string) ..< String.Index(utf16Offset: range.upperBound, in: match.string)))
         }
     }
 
+    /*===========================================================================================================================================================================*/
+    /// This class encapsulates a single named capture group.
+    ///
     public class NamedGroup: Group {
+        /*=======================================================================================================================================================================*/
+        /// The name of the capture group.
+        ///
         public let name: String
 
-        public init(_ match: Match, name: String, range: NSRange) {
+        @inlinable init(_ match: Match, name: String, range: NSRange) {
             self.name = name
             super.init(match, range: range)
         }

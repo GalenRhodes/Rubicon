@@ -40,4 +40,5 @@ public extension NSRange {
     func strRange(string: String) -> Range<String.Index>? {
         Range<String.Index>(self, in: string)
     }
+
 }

@@ -22,26 +22,14 @@
 
 import Foundation
 
-let chars: [Character] = [ "🇺🇸", "\r\n" ]
+let str: String = "Galen 🇺🇸 Rhodes"
 
-for ch in chars {
-    for s: Unicode.Scalar in ch.unicodeScalars {
-        if s.properties.isWhitespace { print("Character: \".\"", terminator: "")}
-        else { print("Character: \"\(Character(s)) \"", terminator: "") }
-        print("; isEmoji = \(s.properties.isEmoji)", terminator: "")
-        print("; isEmojiModifierBase = \(s.properties.isEmojiModifierBase)", terminator: "")
-        print("; isEmojiModifier = \(s.properties.isEmojiModifier)", terminator: "")
-        print("; isEmojiPresentation = \(s.properties.isEmojiPresentation)", terminator: "")
-        print("; isGraphemeBase = \(s.properties.isGraphemeBase)", terminator: "")
-        print("; isGraphemeExtend = \(s.properties.isGraphemeExtend)", terminator: "")
-        print("; isDiacritic = \(s.properties.isDiacritic)", terminator: "")
-        print("; isExtender = \(s.properties.isExtender)", terminator: "")
-        print("; isFullCompositionExclusion = \(s.properties.isFullCompositionExclusion)", terminator: "")
-        print("")
-    }
-}
+let nsRange = NSRange(str.startIndex ..< str.index(str.startIndex, offsetBy: 9), in: str)
+let range = (String.Index(utf16Offset: nsRange.lowerBound, in: str) ..< String.Index(utf16Offset: nsRange.upperBound, in: str))
 
+let str2 = String(str[range])
 
-
+print("\(str)")
+print("\(str2)")
 
 //

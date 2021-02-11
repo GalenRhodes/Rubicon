@@ -70,14 +70,17 @@ public extension String {
     /// - Returns: `true` if the pattern matches this entire string exactly once.
     /// - Throws: if the pattern is malformed.
     ///
-    func matches(pattern: String) throws -> Bool {
-        let regex = try RegularExpression(pattern: pattern)
-        if let match = regex.firstMatch(in: self) {
-            if let r = match[0].range {
-                return (r.lowerBound == startIndex) && (r.upperBound == endIndex)
+    @inlinable func matches(pattern: String) throws -> Bool {
+        var e: Error? = nil
+        if let regex = RegularExpression(pattern: pattern, error: &e) {
+            if let match = regex.firstMatch(in: self) {
+                if let r = match[0].range {
+                    return (r.lowerBound == startIndex) && (r.upperBound == endIndex)
+                }
             }
+            return false
         }
-        return false
+        throw e!
     }
 
     /*===========================================================================================================================================================================*/
@@ -88,7 +91,7 @@ public extension String {
     ///   - inputStream: the input stream.
     ///   - encoding: the encoding. Defaults to <code>[String.Encoding.utf8](https://developer.apple.com/documentation/swift/string/encoding/1780106-utf8)</code>
     ///
-    init?(inputStream: InputStream, encoding: String.Encoding = String.Encoding.utf8) {
+    @inlinable init?(inputStream: InputStream, encoding: String.Encoding = String.Encoding.utf8) {
         if inputStream.status(in: .notOpen) {
             inputStream.open()
         }
@@ -103,37 +106,39 @@ public extension String {
     /*===========================================================================================================================================================================*/
     /// This property returns `true` if the string is empty after trimming whitespaces, newlines, and control characters.
     ///
-    var isTrimEmpty: Bool {
+    @inlinable var isTrimEmpty: Bool {
         self.trimmed.isEmpty
     }
 
     /*===========================================================================================================================================================================*/
     /// This property returns an instance of <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> that covers the entire string.
     ///
-    var fullNSRange: NSRange {
+    @inlinable var fullNSRange: NSRange {
         NSRange(fullRange, in: self)
     }
 
     /*===========================================================================================================================================================================*/
     /// Returns an array that cover the entire string.
     ///
-    var fullRange:   Range<String.Index> {
+    @inlinable var fullRange:   Range<String.Index> {
         (startIndex ..< endIndex)
     }
 
     /*===========================================================================================================================================================================*/
     /// This property returns a copy of the string with whitespaces, newlines, and control characters trimmed from both ends of the string.
     ///
-    var trimmed:     String {
+    @inlinable var trimmed:     String {
         self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlinesAndControlCharacters)
     }
 
     /*===========================================================================================================================================================================*/
     /// A copy of this string with '+' characters replaced with spaces and percent encodings decoded.
     ///
-    var urlDecoded:  String {
+    @inlinable var urlDecoded:  String {
         self.replacingOccurrences(of: "+", with: " ").removingPercentEncoding ?? self
     }
+
+    @inlinable func nsRange(_ range: Range<String.Index>) -> NSRange { NSRange(range, in: self) }
 
     /*===========================================================================================================================================================================*/
     /// Splits this string around matches of the given regular expression. This method works [just like it does in

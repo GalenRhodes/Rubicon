@@ -84,6 +84,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1117D057FC73A6200E871B09 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
 		1117D0EA61DED76C4431AAB7 /* CondMutex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CondMutex.swift; sourceTree = "<group>"; };
 		1117D142AFC8171D31FCF975 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		1117D14B363B54E578A54336 /* PGThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGThread.swift; sourceTree = "<group>"; };
@@ -407,6 +408,7 @@
 				83C67A90250EC15200C0F21E /* LICENSE */,
 				83C67A8F250EC15200C0F21E /* README.md */,
 				1117DF108631813F676A7FE5 /* .jazzy.yaml */,
+				1117D057FC73A6200E871B09 /* .gitignore */,
 			);
 			name = Other;
 			sourceTree = "<group>";

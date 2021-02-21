@@ -63,7 +63,7 @@ open class MarkInputStream: InputStream {
 
     /*===========================================================================================================================================================================*/
     /// Main initializer. Initializes this stream with the backing stream.
-    ///
+    /// 
     /// - Parameters
     ///   - inputStream: The backing input stream.
     ///   - autoClose: If `false` the backing stream will NOT be closed when this stream is closed or destroyed. The default is `true`.
@@ -77,7 +77,7 @@ open class MarkInputStream: InputStream {
     /*===========================================================================================================================================================================*/
     /// Initializes and returns an `MarkInputStream` object for reading from a given <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code> object. The
     /// stream must be opened before it can be used.
-    ///
+    /// 
     /// - Parameter data: The data object from which to read. The contents of data are copied.
     ///
     public override convenience init(data: Data) {
@@ -86,7 +86,7 @@ open class MarkInputStream: InputStream {
 
     /*===========================================================================================================================================================================*/
     /// Initializes and returns an NSInputStream object that reads data from the file at a given URL.
-    ///
+    /// 
     /// - Parameter url: The URL to the file.
     ///
     public override convenience init?(url: URL) {
@@ -96,7 +96,7 @@ open class MarkInputStream: InputStream {
 
     /*===========================================================================================================================================================================*/
     /// Initializes and returns an NSInputStream object that reads data from the file at a given path.
-    ///
+    /// 
     /// - Parameter path: The path to the file.
     ///
     public convenience init?(fileAtPath path: String) {
@@ -108,7 +108,7 @@ open class MarkInputStream: InputStream {
 
     /*===========================================================================================================================================================================*/
     /// Reads up to a given number of bytes into a given buffer.
-    ///
+    /// 
     /// - Parameters:
     ///   - buffer: A data buffer. The buffer must be large enough to contain the number of bytes specified by len.
     ///   - len: The maximum number of bytes to read.
@@ -129,7 +129,7 @@ open class MarkInputStream: InputStream {
     /*===========================================================================================================================================================================*/
     /// Returns by reference a pointer to a read buffer and, by reference, the number of bytes available, and returns a Boolean value that indicates whether the buffer is
     /// available.
-    ///
+    /// 
     /// - Parameters:
     ///   - buffer: Upon return, contains a pointer to a read buffer. The buffer is only valid until the next stream operation is performed.
     ///   - len: Upon return, contains the number of bytes available.
@@ -215,20 +215,15 @@ open class MarkInputStream: InputStream {
         _lock.withLock { _running = false }
     }
 
-    private final func inLoad() -> Bool {
-        _lock.withLockBroadcastWait { ((_ring.available < ReloadTriggerSize) || !_running) } do: { doBufferRead() }
-    }
+    private final func inLoad() -> Bool { _lock.withLockBroadcastWait { ((_ring.available < ReloadTriggerSize) || !_running) } do: { doBufferRead() } }
 
-    private final func preLoad() -> Bool {
-        _lock.withLock { doBufferRead() }
-    }
+    private final func preLoad() -> Bool { _lock.withLock { doBufferRead() } }
 
     private final func doBufferRead() -> Bool {
         do {
             if _running && _stream.hasBytesAvailable {
                 let y = (MaxInputBufferSize - _ring.available)
-                let x = try _ring.append(from: _stream, maxLength: y)
-                return (x == y)
+                return try (_ring.append(from: _stream, maxLength: y) == y)
             }
         }
         catch {}

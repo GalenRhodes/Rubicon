@@ -50,9 +50,10 @@ open class MarkInputStream: InputStream {
     ///
     open          var markCount:         Int    { _lock.withLock { _markStack.count } }
 
+    @usableFromInline var _markStack: [RingByteBuffer] = []
+    @usableFromInline var _ring:      RingByteBuffer   = RingByteBuffer(initialCapacity: InputBufferSize)
+
     private      var _running:   Bool             = false
-    private      var _markStack: [RingByteBuffer] = []
-    private      var _ring:      RingByteBuffer   = RingByteBuffer(initialCapacity: InputBufferSize)
     private lazy var _thread:    DispatchQueue    = DispatchQueue(label: UUID().uuidString, qos: .utility)
     private      var _lastBuff:  EasyByteBuffer!  = nil
     private      let _lock:      Conditional      = Conditional()
@@ -62,7 +63,7 @@ open class MarkInputStream: InputStream {
 
     /*===========================================================================================================================================================================*/
     /// Main initializer. Initializes this stream with the backing stream.
-    /// 
+    ///
     /// - Parameters
     ///   - inputStream: The backing input stream.
     ///   - autoClose: If `false` the backing stream will NOT be closed when this stream is closed or destroyed. The default is `true`.
@@ -76,7 +77,7 @@ open class MarkInputStream: InputStream {
     /*===========================================================================================================================================================================*/
     /// Initializes and returns an `MarkInputStream` object for reading from a given <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code> object. The
     /// stream must be opened before it can be used.
-    /// 
+    ///
     /// - Parameter data: The data object from which to read. The contents of data are copied.
     ///
     public override convenience init(data: Data) {
@@ -85,7 +86,7 @@ open class MarkInputStream: InputStream {
 
     /*===========================================================================================================================================================================*/
     /// Initializes and returns an NSInputStream object that reads data from the file at a given URL.
-    /// 
+    ///
     /// - Parameter url: The URL to the file.
     ///
     public override convenience init?(url: URL) {
@@ -95,7 +96,7 @@ open class MarkInputStream: InputStream {
 
     /*===========================================================================================================================================================================*/
     /// Initializes and returns an NSInputStream object that reads data from the file at a given path.
-    /// 
+    ///
     /// - Parameter path: The path to the file.
     ///
     public convenience init?(fileAtPath path: String) {
@@ -107,7 +108,7 @@ open class MarkInputStream: InputStream {
 
     /*===========================================================================================================================================================================*/
     /// Reads up to a given number of bytes into a given buffer.
-    /// 
+    ///
     /// - Parameters:
     ///   - buffer: A data buffer. The buffer must be large enough to contain the number of bytes specified by len.
     ///   - len: The maximum number of bytes to read.
@@ -120,9 +121,7 @@ open class MarkInputStream: InputStream {
         return waitForData { (avail: Int) -> Int in
             guard avail > 0 else { return ((_stream.streamStatus == .atEnd) ? 0 : -1) }
             let cc = _ring.get(dest: buffer, maxLength: len)
-            if let m = _markStack.last {
-                m.append(src: buffer, length: cc)
-            }
+            if let m = _markStack.last { m.append(src: buffer, length: cc) }
             return cc
         }
     }
@@ -130,7 +129,7 @@ open class MarkInputStream: InputStream {
     /*===========================================================================================================================================================================*/
     /// Returns by reference a pointer to a read buffer and, by reference, the number of bytes available, and returns a Boolean value that indicates whether the buffer is
     /// available.
-    /// 
+    ///
     /// - Parameters:
     ///   - buffer: Upon return, contains a pointer to a read buffer. The buffer is only valid until the next stream operation is performed.
     ///   - len: Upon return, contains the number of bytes available.
@@ -147,9 +146,7 @@ open class MarkInputStream: InputStream {
 
             _lastBuff = EasyByteBuffer(length: avail)
             len.pointee = _ring.get(dest: _lastBuff.bytes, maxLength: avail)
-            if let m = _markStack.last {
-                m.append(src: _lastBuff.bytes, length: len.pointee)
-            }
+            if let m = _markStack.last { m.append(src: _lastBuff.bytes, length: len.pointee) }
             buffer.pointee = _lastBuff.bytes
             return true
         }
@@ -181,67 +178,49 @@ open class MarkInputStream: InputStream {
     /*===========================================================================================================================================================================*/
     /// Marks the current position in the stream.
     ///
-    open func markSet() { _lock.withLock { _markStack.append(RingByteBuffer(initialCapacity: InputBufferSize)) } }
+    open func markSet() { _lock.withLock { _markSet() } }
 
-    open func markUpdate() { _markUpdateOrReset(reset: false) }
+    open func markReturn() { _lock.withLock { _markReturn() } }
 
-    open func markReset() { _markUpdateOrReset(reset: true) }
+    open func markDelete() { _lock.withLock { _markDelete() } }
 
-    /*===========================================================================================================================================================================*/
-    /// Resets the stream back to the previously marked position.
-    /// 
-    /// - Parameter discard: If `true` the marked file-pointer position will be discarded instead of reset.
-    ///
-    open func markReturn() { _lock.withLock { if let mark = _markStack.popLast() { _ring.prepend(ringBuffer: mark) } } }
 
-    open func markDelete() { _lock.withLock { if !_markStack.isEmpty { _markStack.removeLast() } } }
-
-    private final func _markUpdateOrReset(reset: Bool) {
+    open func markUpdate() {
         _lock.withLock {
-            if let mark = _markStack.last {
-                if reset { _ring.prepend(ringBuffer: mark) }
-                mark.clear(keepingCapacity: true)
-            }
-            else {
-                _markStack.append(RingByteBuffer(initialCapacity: InputBufferSize))
-            }
+            _markDelete()
+            _markSet()
         }
     }
 
-    private func waitForData<T>(_ body: (Int) throws -> T) rethrows -> T {
-        try _lock.withLockBroadcastWait {
-            _ring.hasBytesAvailable || !_running
-        } do: {
-            try body(_stream.streamStatus == .closed ? 0 : _ring.available)
+    open func markReset() {
+        _lock.withLock {
+            _markReturn()
+            _markSet()
         }
+    }
+
+    @inlinable final func _markSet() { _markStack.append(RingByteBuffer(initialCapacity: InputBufferSize)) }
+
+    @inlinable final func _markReturn() { if let mark = _markStack.popLast() { _ring.prepend(ringBuffer: mark) } }
+
+    @inlinable final func _markDelete() { if let six = _markStack.popLast() { if let siy = _markStack.last { siy.append(ringBuffer: six) } } }
+
+    private func waitForData<T>(_ body: (Int) throws -> T) rethrows -> T {
+        try _lock.withLockBroadcastWait { _ring.hasBytesAvailable || !_running } do: { try body(_stream.streamStatus == .closed ? 0 : _ring.available) }
     }
 
     private final func readerThread() {
-        while _running && _stream.status(in: .notOpen, .opening) {
-            NanoSleep2(nanos: 5000000)
-        }
-        if preLoad() {
-            while _running && _stream.hasBytesAvailable {
-                guard inLoad() else { break }
-            }
-        }
-        _lock.withLock {
-            _running = false
-        }
+        while _running && _stream.status(in: .notOpen, .opening) { NanoSleep2(nanos: 5000000) }
+        if preLoad() { while _running && _stream.hasBytesAvailable { guard inLoad() else { break } } }
+        _lock.withLock { _running = false }
     }
 
     private final func inLoad() -> Bool {
-        _lock.withLockBroadcastWait {
-            ((_ring.available < ReloadTriggerSize) || !_running)
-        } do: {
-            doBufferRead()
-        }
+        _lock.withLockBroadcastWait { ((_ring.available < ReloadTriggerSize) || !_running) } do: { doBufferRead() }
     }
 
     private final func preLoad() -> Bool {
-        _lock.withLock {
-            doBufferRead()
-        }
+        _lock.withLock { doBufferRead() }
     }
 
     private final func doBufferRead() -> Bool {

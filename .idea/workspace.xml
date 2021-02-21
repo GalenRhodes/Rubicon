@@ -28,9 +28,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Finished RegularExpression.">
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Bug fix to IConvCharInputStream's markDelete so characters aren't lost to when nested inside another mark.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,14 +253,8 @@
       <workItem from="1612806847115" duration="2178000" />
       <workItem from="1612964878487" duration="2013000" />
       <workItem from="1613051837230" duration="24468000" />
-      <workItem from="1613866457541" duration="4576000" />
-    </task>
-    <task id="LOCAL-00083" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
-      <created>1609357214068</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1609357214068</updated>
+      <workItem from="1613866457541" duration="5387000" />
+      <workItem from="1613926986868" duration="2780000" />
     </task>
     <task id="LOCAL-00084" summary="Rewrite of ByteInputStream so it acts as a mark/release input stream.">
       <created>1609357329765</created>
@@ -598,7 +592,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613076298809</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="Bug fix to IConvCharInputStream's markDelete so characters aren't lost to when nested inside another mark.">
+      <created>1613871203120</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1613871203120</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -631,7 +632,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="New class wrapping NSRegularExpression to make it easier to use." />
     <MESSAGE value="Initial Commit. I just wanted to clean everything up and basically start over." />
     <MESSAGE value="Added providers to Package.swift" />
     <MESSAGE value="Bug fixes" />
@@ -656,7 +656,8 @@
     <MESSAGE value="Added the ability to push characters back onto the CharInputStream without having to set a mark." />
     <MESSAGE value="Finishing RegularExpression." />
     <MESSAGE value="Finished RegularExpression." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished RegularExpression." />
+    <MESSAGE value="Bug fix to IConvCharInputStream's markDelete so characters aren't lost to when nested inside another mark." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fix to IConvCharInputStream's markDelete so characters aren't lost to when nested inside another mark." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="CidrCoverage/Rubicon/Rubicon Tests.json" NAME="Rubicon Tests Coverage Results" MODIFIED="1608608581698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="llvm-cov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

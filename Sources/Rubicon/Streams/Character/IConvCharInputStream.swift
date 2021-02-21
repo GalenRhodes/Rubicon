@@ -181,61 +181,55 @@ open class IConvCharInputStream: CharInputStream {
     ///
     open func push(string: String) { _lock.withLock { _charBuffer.insert(contentsOf: string, at: 0) } }
 
-    @inlinable final func handleError<T>(_ v: T) throws -> T {
-        if let e = _err { throw e }
-        return v
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Copy characters from the buffer into the given character array.
-    /// 
-    /// - Parameters:
-    ///   - chars: the receiving array.
-    ///   - count: the number of characters to copy.
-    /// - Returns: the number of characters actually copied.
-    ///
-    @inlinable final func _copy(_ chars: inout [Character], count: Int) -> Int {
-        let cc   = min(_charBuffer.count, count)
-        let sIdx = _charBuffer.startIndex
-        let eIdx = _charBuffer.index(sIdx, offsetBy: cc)
-        chars.append(contentsOf: stash(chars: _charBuffer[sIdx ..< eIdx]))
-        _charBuffer.removeFirst(cc)
-        return cc
-    }
-
     /*===========================================================================================================================================================================*/
     /// Marks the current point in the stream so that it can be returned to later. You can set more than one mark but all operations happen on the most recently set mark.
     ///
-    open func markSet() { _lock.withLock { if _st == .open { _markStack.append(MarkItem()) } } }
+    open func markSet() { _lock.withLock { if _st == .open { _markSet() } } }
+
+    /*===========================================================================================================================================================================*/
+    /// Removes and returns to the most recently set mark.
+    ///
+    open func markReturn() { _lock.withLock { if _st == .open { _markReturn() } } }
 
     /*===========================================================================================================================================================================*/
     /// Removes the most recently set mark WITHOUT returning to it.
     ///
-    open func markDelete() { markDeleteOrUpdate(delete: true) }
+    open func markDelete() { _lock.withLock { if _st == .open { _markDelete() } } }
 
     /*===========================================================================================================================================================================*/
     /// Updates the most recently set mark to the current position. If there was no previously set mark then a new one is created. This is functionally equivalent to performing a
     /// `markDelete()` followed immediately by a `markSet()`.
     ///
-    open func markUpdate() { markDeleteOrUpdate(delete: false) }
+    open func markUpdate() {
+        _lock.withLock {
+            if _st == .open {
+                _markDelete()
+                _markSet()
+            }
+        }
+    }
 
     /*===========================================================================================================================================================================*/
     /// Returns to the most recently set mark WITHOUT removing it. If there was no previously set mark then a new one is created. This is functionally equivalent to performing a
     /// `markReturn()` followed immediately by a `markSet()`.
     ///
-    open func markReset() { markReturnOrReset(reset: true) }
-
-    /*===========================================================================================================================================================================*/
-    /// Removes and returns to the most recently set mark.
-    ///
-    open func markReturn() { markReturnOrReset(reset: false) }
-
-    open func markBackup(count cc: Int) -> Int {
+    open func markReset() {
         _lock.withLock {
-            if let m = _markStack.last {
-                let eIdx = m.count
-                let sIdx = (eIdx - min(cc, eIdx))
-                return restoreMarkChars(markChars: m.chars[sIdx ..< eIdx])
+            if _st == .open {
+                _markReturn()
+                _markSet()
+            }
+        }
+    }
+
+    @discardableResult open func markBackup(count cc: Int) -> Int {
+        _lock.withLock {
+            if _st == .open {
+                if let m = _markStack.last {
+                    let eIdx = m.chars.endIndex
+                    let sIdx = (eIdx - min(cc, m.chars.count))
+                    return restoreMarkChars(markChars: m.chars[sIdx ..< eIdx])
+                }
             }
             return 0
         }
@@ -403,55 +397,43 @@ open class IConvCharInputStream: CharInputStream {
         return chars
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Take the most recently set `MarkItem` and execute the closure with the array of characters contained in it. If the return value of the closure is `true` then that
-    /// `MarkItem` is also removed from the stack, otherwise it is kept. If there is no previous set `MarkItem` then the body of the closure is executed with an empty array and if
-    /// the closure returns `false` then a new `MarkItem` is placed on the stack, otherwise nothing else happens.
-    /// 
-    /// - Parameter body: the closure.
-    ///
-    @inlinable func withTopMarkDo(_ body: ([MarkChar]) -> Bool) {
-        _lock.withLock {
-            if _st == .open {
-                if let ms = _markStack.last {
-                    if body(ms.chars) { _markStack.removeLast() }
-                    else { ms.removeAll() }
-                }
-                else if !body([]) {
-                    _markStack.append(MarkItem())
-                }
-            }
-        }
-    }
+    @inlinable final func _markSet() { _markStack.append(MarkItem()) }
 
-    /*===========================================================================================================================================================================*/
-    /// Perform either a `markReturn()` or a `markReset()` (which is just a `markReturn()` followed by a `markSet()`).
-    /// 
-    /// - Parameter reset: if `true` then we're performing a `markReset()`, otherwise we're performing a `markRestore()`.
-    ///
-    @inlinable final func markReturnOrReset(reset: Bool) {
-        withTopMarkDo { (chs: [MarkChar]) -> Bool in
-            restoreMarkChars(markChars: chs)
-            return !reset
-        }
-    }
+    @inlinable final func _markReturn() { if let msx = _markStack.popLast() { restoreMarkChars(markChars: msx.chars) } }
 
-    @discardableResult @inlinable final func restoreMarkChars<C>(markChars: C) -> Int where C: RandomAccessCollection, C.Element == MarkChar, C.Index == Int {
-        guard !markChars.isEmpty else { return 0 }
-        let first = markChars[markChars.startIndex]
-        _charBuffer.insert(contentsOf: markChars.map({ $0.char }), at: _charBuffer.startIndex)
-        _position = first.position
+    @inlinable final func _markDelete() { if let msx = _markStack.popLast() { if let msy = _markStack.last { msy.append(from: msx) } } }
+
+    @inlinable @discardableResult final func restoreMarkChars<C>(markChars: C) -> Int where C: RandomAccessCollection, C.Element == MarkChar, C.Index == Int {
+        if let f = markChars.first {
+            _charBuffer.insert(contentsOf: markChars.map({ $0.char }), at: _charBuffer.startIndex)
+            _position = f.position
+        }
         return markChars.count
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Perform either a `markDelete()` or a `markUpdate()` (which is just a `markDelete()` followed by a `markSet()`).
-    /// 
-    /// - Parameter delete: `true` if we're performing a `markDelete()`, otherwise we're performing a `markUpdate()`.
-    ///
-    @inlinable final func markDeleteOrUpdate(delete: Bool) { withTopMarkDo { _ in delete } }
-
     @inlinable final func stE(_ s: Status) -> Status { ((_err == nil) ? s : .error) }
+
+    @inlinable final func handleError<T>(_ v: T) throws -> T {
+        if let e = _err { throw e }
+        return v
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Copy characters from the buffer into the given character array.
+    /// 
+    /// - Parameters:
+    ///   - chars: the receiving array.
+    ///   - count: the number of characters to copy.
+    /// - Returns: the number of characters actually copied.
+    ///
+    @inlinable final func _copy(_ chars: inout [Character], count: Int) -> Int {
+        let cc   = min(_charBuffer.count, count)
+        let sIdx = _charBuffer.startIndex
+        let eIdx = _charBuffer.index(sIdx, offsetBy: cc)
+        chars.append(contentsOf: stash(chars: _charBuffer[sIdx ..< eIdx]))
+        _charBuffer.removeFirst(cc)
+        return cc
+    }
 
     deinit { close() }
 
@@ -486,25 +468,28 @@ open class IConvCharInputStream: CharInputStream {
         }
     }
 
+    //@f:0
     /*===========================================================================================================================================================================*/
     /// Holds a saved character and it's position.
     ///
-    @usableFromInline @frozen struct MarkChar { //@f:0
+    @usableFromInline @frozen struct MarkChar {
         @usableFromInline let char:     Character
         @usableFromInline let position: Position
         @usableFromInline init(char ch: Character, position pos: Position) { char = ch; position = pos.copy() }
-    } //@f:1
+    }
 
     /*===========================================================================================================================================================================*/
     /// Holds the characters saved during a mark.
     ///
-    @usableFromInline class MarkItem { //@f:0
+    @usableFromInline class MarkItem {
         @usableFromInline var chars: [MarkChar] = []
         @inlinable final var count: Int { chars.count }
         @usableFromInline init() {}
         @inlinable final func append(_ char: Character, _ pos: Position) { chars.append(MarkChar(char: char, position: pos)) }
+        @inlinable final func append(from item: MarkItem) { chars.append(contentsOf: item.chars) }
         @inlinable final func removeAll() { chars.removeAll(keepingCapacity: true) }
-    } //@f:1
+    }
+    //@f:1
 }
 
 open class UTF8CharInputStream: IConvCharInputStream {

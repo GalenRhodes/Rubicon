@@ -469,7 +469,7 @@
               </div>
             
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L49-L508">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L49-L493">Show on GitHub</a>
               </div>
           </section>
           <section class="section task-group-section">
@@ -1241,7 +1241,37 @@ character stream has already been closed then calling this method does nothing. 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L209">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L187">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon20IConvCharInputStreamC10markReturnyyF"></a>
+                    <a name="//apple_ref/swift/Method/markReturn()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon20IConvCharInputStreamC10markReturnyyF">markReturn()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes and returns to the most recently set mark.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">markReturn</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L192">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1271,7 +1301,7 @@ character stream has already been closed then calling this method does nothing. 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L214">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L197">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1302,7 +1332,7 @@ character stream has already been closed then calling this method does nothing. 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L220">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L203-L210">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1333,37 +1363,7 @@ character stream has already been closed then calling this method does nothing. 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L226">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon20IConvCharInputStreamC10markReturnyyF"></a>
-                    <a name="//apple_ref/swift/Method/markReturn()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon20IConvCharInputStreamC10markReturnyyF">markReturn()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Removes and returns to the most recently set mark.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">markReturn</span><span class="p">()</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L231">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L216-L223">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1387,12 +1387,13 @@ character stream has already been closed then calling this method does nothing. 
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">markBackup</span><span class="p">(</span><span class="n">count</span> <span class="nv">cc</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">markBackup</span><span class="p">(</span><span class="n">count</span> <span class="nv">cc</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L233-L242">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L225-L236">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1402,7 +1403,7 @@ character stream has already been closed then calling this method does nothing. 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-02-11)</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-02-20)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

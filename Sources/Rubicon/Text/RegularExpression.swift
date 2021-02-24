@@ -366,17 +366,25 @@ open class RegularExpression {
         ///
         public let            string:     String
         /*=======================================================================================================================================================================*/
-        /// The start index of the entire match within the search string.
+        /// The index of the first group group.
         ///
         @inlinable public var startIndex: Index { groups.startIndex }
         /*=======================================================================================================================================================================*/
-        /// The end index of the entire match within the search string.
+        /// The index just past the last capture group.
         ///
         @inlinable public var endIndex:   Index { groups.endIndex }
         /*=======================================================================================================================================================================*/
         /// The number of capture groups.
         ///
         @inlinable public var count:      Int { groups.count }
+        /*=======================================================================================================================================================================*/
+        /// The range within the search string for the entire match.
+        ///
+        public lazy var range:     Range<String.Index> = (Range<String.Index>(nsMatch.range, in: string) ?? string.fullRange)
+        /*=======================================================================================================================================================================*/
+        /// The sub-string of the entire match region.
+        ///
+        public lazy var subString: String              = String(string[range])
 
         @usableFromInline let nsMatch:    NSTextCheckingResult
         @usableFromInline var namedCache: [String: NamedGroup] = [:]

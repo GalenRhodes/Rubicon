@@ -449,10 +449,10 @@ open class IConvCharInputStream: CharInputStream {
 
         @discardableResult @inlinable public final func update(character ch: Character, tabWidth tab: Int) -> Character {
             switch ch {
-                case "\t":         column = (((column + tab) / tab) * tab)
+                case "\t":         column = (((((column - 1) + tab) / tab) * tab) + 1)
                 case "\n":         if prevChar != "\r" { newLine() }
                 case "\r", "\r\n": newLine()
-                case "\u{0b}":     newLine(count: ((((line + tab) / tab) * tab) - line))
+                case "\u{0b}":     newLine(count: ((((((line - 1) + tab) / tab) * tab) + 1) - line))
                 case "\u{0c}":     newLine(count: 24)
                 default:           column++
             }

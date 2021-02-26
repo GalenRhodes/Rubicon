@@ -248,6 +248,10 @@ open class RegularExpression {
     /*===========================================================================================================================================================================*/
     /// Enumerates the string allowing the Block to handle each regular expression match.
     /// 
+    /// <b>NOTE:</b> Having this as a throwing function rather than a rethrowing function is not ideal but given that NSRegularExpression doesn't allow the closure to throw
+    /// anything sort of removes that option from us. At least I haven't found an easy way around it. So I decided to have to have this method `throws` and in the future, if we
+    /// can fix this issue, make it `rethrows` then.
+    /// 
     /// This method is the fundamental matching method for regular expressions and is suitable for overriding by subclassers. There are additional convenience methods for
     /// returning all the matches as an array, the total number of matches, the first match, and the range of the first match.
     /// 
@@ -294,11 +298,18 @@ open class RegularExpression {
     ///           `RegularExpression.MatchingFlags.hitEnd`, or `RegularExpression.MatchingFlags.internalError`</dd> <dt><b><i>flags</i></b></dt><dd>An array of
     ///           `RegularExpression.MatchingFlags`.</dd></dl> The closure returns `true` to stop the enumeration or `false` to continue to the next match.
     ///
-    open func forEachMatch(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: (Match?, [MatchingFlags]) -> Bool) {
+    open func forEachMatch(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: (Match?, [MatchingFlags]) throws -> Bool) throws {
+        var error: Error? = nil
         nsRegex.enumerateMatches(in: str, options: MatchingOptions.convert(from: options), range: nsRange(range, string: str)) { result, flags, stop in
-            let match: Match? = ((result == nil) ? nil : Match(str, match: result!))
-            stop.pointee = (body(match, MatchingFlags.convert(from: flags)) ? true : false)
+            do {
+                stop.pointee = try (body(((result == nil) ? nil : Match(str, match: result!)), MatchingFlags.convert(from: flags)) ? true : false)
+            }
+            catch let e {
+                error = e
+                stop.pointee = true
+            }
         }
+        if let e = error { throw e }
     }
 
     /*===========================================================================================================================================================================*/
@@ -317,8 +328,8 @@ open class RegularExpression {
     ///   - body: the closure that is called for each match found in the search string. The closure takes one parameter which is an array of `RegularExpression.Group` objects
     ///           representing each capture group and returns `true` to stop the enumeration or `false` to continue to the next match.
     ///
-    open func forEachMatchGroup(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: ([Group]) -> Bool) {
-        forEachMatch(in: str, options: options, range: range) { match, _ in ((match != nil) && body(match!.groups)) }
+    open func forEachMatchGroup(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: ([Group]) throws -> Bool) throws {
+        try forEachMatch(in: str, options: options, range: range) { match, _ in try ((match != nil) && body(match!.groups)) }
     }
 
     /*===========================================================================================================================================================================*/
@@ -332,8 +343,8 @@ open class RegularExpression {
     ///           group and returns `true` to stop the enumeration or `false` to continue to the next match. Any of the strings in the array may be `nil` if that capture group did
     ///           not participate in the match.
     ///
-    open func forEachMatchString(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: ([String?]) -> Bool) {
-        forEachMatchGroup(in: str, options: options, range: range) { groups in body(groups.map { $0.subString }) }
+    open func forEachMatchString(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: ([String?]) throws -> Bool) throws {
+        try forEachMatchGroup(in: str, options: options, range: range) { groups in try body(groups.map { $0.subString }) }
     }
 
     /*===========================================================================================================================================================================*/
@@ -352,6 +363,37 @@ open class RegularExpression {
         let mStr = NSMutableString(string: str)
         let cc   = nsRegex.replaceMatches(in: mStr, options: MatchingOptions.convert(from: options), range: nsRange(range, string: str), withTemplate: templ)
         return (String(mStr), cc)
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// This method will perform a find-and-replace on the provided string by calling the closure for each match found in the source string and replacing it with the string
+    /// returned by the closure.
+    /// 
+    /// - Parameters:
+    ///   - str: the source string.
+    ///   - options: the match options.
+    ///   - range: the range of the string to search in. If `nil` then the entire string will be searched.
+    ///   - body: the closure that will return the replacement string. It is called once for each match found in the source string.
+    /// - Returns: a tuple with the modified string and the number of replacements made.
+    /// - Throws: if the closure throws an error.
+    ///
+    open func stringByReplacingMatches(in str: String, options: [MatchingOptions] = [], range: Range<String.Index>? = nil, using body: (Match) throws -> String) throws -> (String, Int) {
+        var out: String       = ""
+        var cc:  Int          = 0
+        var idx: String.Index = str.startIndex
+
+        try forEachMatch(in: str, options: options, range: range) { m, _ in
+            if let m = m {
+                out.append(contentsOf: str[idx ..< m.range.lowerBound])
+                out.append(contentsOf: try body(m))
+                idx = m.range.upperBound
+                cc += 1
+            }
+            return false
+        }
+
+        if idx < str.endIndex { out.append(contentsOf: str[idx ..< str.endIndex]) }
+        return (out, cc)
     }
 
     /*===========================================================================================================================================================================*/

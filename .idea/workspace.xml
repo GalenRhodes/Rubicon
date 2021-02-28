@@ -28,10 +28,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="RegularExpression.Match.range &amp; RegularExpression.Match.subString">
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Bug Fixes and changes to RegularExpression.">
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Collections/DynamicFixedArray.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Text/RegularExpression.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Text/RegularExpression.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Fixed2DArray.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Fixed2DArray.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +87,7 @@
     <option name="sortByType" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="" />
+    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="Rubicon" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -260,14 +261,8 @@
       <workItem from="1614171889224" duration="1288000" />
       <workItem from="1614194970593" duration="338000" />
       <workItem from="1614199192862" duration="968000" />
-      <workItem from="1614343884214" duration="957000" />
-    </task>
-    <task id="LOCAL-00087" summary="Created a wrapper around libiconv functions.">
-      <created>1609967700107</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1609967700107</updated>
+      <workItem from="1614343884214" duration="1165000" />
+      <workItem from="1614453672418" duration="7916000" />
     </task>
     <task id="LOCAL-00088" summary="Dictionary that implements a classic Red/Black binary tree.">
       <created>1610546682514</created>
@@ -605,7 +600,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614195149750</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="Bug Fixes and changes to RegularExpression.">
+      <created>1614345196006</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1614345196007</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -638,7 +640,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Bug fixes" />
     <MESSAGE value="Removed debugging output from RingByteBuffer." />
     <MESSAGE value="Fixed issue with System Library module and JetBrains' AppCode IDE." />
     <MESSAGE value="Added public static func getEncodingsList() -&gt; [String] to IConv class." />
@@ -663,7 +664,8 @@
     <MESSAGE value="Bug fix to IConvCharInputStream's markDelete so characters aren't lost to when nested inside another mark." />
     <MESSAGE value="Bug fix to MarkInputStream's markDelete so characters aren't lost to when nested inside another mark." />
     <MESSAGE value="RegularExpression.Match.range &amp; RegularExpression.Match.subString" />
-    <option name="LAST_COMMIT_MESSAGE" value="RegularExpression.Match.range &amp; RegularExpression.Match.subString" />
+    <MESSAGE value="Bug Fixes and changes to RegularExpression." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug Fixes and changes to RegularExpression." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="CidrCoverage/Rubicon/Rubicon Tests.json" NAME="Rubicon Tests Coverage Results" MODIFIED="1608608581698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="llvm-cov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

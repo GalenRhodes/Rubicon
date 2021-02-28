@@ -365,6 +365,76 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Collections/DynamicFixedArray.swift",
+      "line": 25,
+      "symbol": "DynamicFixedArray",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Collections/DynamicFixedArray.swift",
+      "line": 27,
+      "symbol": "DynamicFixedArray.count",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Collections/DynamicFixedArray.swift",
+      "line": 28,
+      "symbol": "DynamicFixedArray.dimensions",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Collections/DynamicFixedArray.swift",
+      "line": 30,
+      "symbol": "DynamicFixedArray.lastArray",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Collections/DynamicFixedArray.swift",
+      "line": 31,
+      "symbol": "DynamicFixedArray.firstArray",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Collections/DynamicFixedArray.swift",
+      "line": 32,
+      "symbol": "DynamicFixedArray.last",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Collections/DynamicFixedArray.swift",
+      "line": 33,
+      "symbol": "DynamicFixedArray.first",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Collections/DynamicFixedArray.swift",
+      "line": 37,
+      "symbol": "DynamicFixedArray.init(dimensions:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Collections/DynamicFixedArray.swift",
+      "line": 48,
+      "symbol": "DynamicFixedArray.lastArray(at:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Collections/DynamicFixedArray.swift",
+      "line": 55,
+      "symbol": "DynamicFixedArray.subscript(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.subscript",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Conditional.swift",
       "line": 30,
       "symbol": "LockCondition",
@@ -1006,41 +1076,6 @@
       "line": 141,
       "symbol": "String.nsRange(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Fixed2DArray.swift",
-      "line": 25,
-      "symbol": "Fixed2DArray",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Fixed2DArray.swift",
-      "line": 27,
-      "symbol": "Fixed2DArray.rowCount",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Fixed2DArray.swift",
-      "line": 28,
-      "symbol": "Fixed2DArray.columnCount",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Fixed2DArray.swift",
-      "line": 31,
-      "symbol": "Fixed2DArray.init(rows:cols:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Fixed2DArray.swift",
-      "line": 39,
-      "symbol": "Fixed2DArray.subscript(_:_:)",
-      "symbol_kind": "source.lang.swift.decl.function.subscript",
       "warning": "undocumented"
     },
     {

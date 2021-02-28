@@ -11,6 +11,7 @@
 		1117D0438E55FD170186888E /* CharStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D4E1FE7DC31ACC3EDD25 /* CharStream.swift */; };
 		1117D3008024F764302749E5 /* ByteInputStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D318A95900138BE2E023 /* ByteInputStreamTests.swift */; };
 		1117D3BF4199C365362CA9FC /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D142AFC8171D31FCF975 /* Character.swift */; };
+		1117D4302066214D581AB6FC /* DynamicFixedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D67CB2830A48B5C56761 /* DynamicFixedArray.swift */; };
 		1117D46F0FC21E611EACD4BB /* BinaryTreeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD043B53015865ED9D07 /* BinaryTreeDictionary.swift */; };
 		1117D4C32D14386C18A3BA71 /* NSRecursiveLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D5A35016104371C4BA58 /* NSRecursiveLock.swift */; };
 		1117D4E52C7BBAEBD59B32C8 /* MathTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA2A40FD9973202012F3 /* MathTools.swift */; };
@@ -27,7 +28,6 @@
 		1117D8974555204639F771FD /* iconv.h in Headers */ = {isa = PBXBuildFile; fileRef = 1117D8F31A530CDA758E62B8 /* iconv.h */; };
 		1117D950F78C930E935486EF /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D9A1691382C37AA03237 /* Thread.swift */; };
 		1117DB2981DA9EEA1794C0A9 /* PGThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D14B363B54E578A54336 /* PGThread.swift */; };
-		1117DB2A3A175922208A6589 /* Fixed2DArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DF5E826A8EFBDBB20294 /* Fixed2DArray.swift */; };
 		1117DBFD0136FF0A2ACD0D79 /* IConvTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA2F1C8056B3B0A261D7 /* IConvTests.swift */; };
 		1117DC5BF2A398C1D36EA0E7 /* RegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DC953EC772053F764FDE /* RegularExpression.swift */; };
 		1117DCE0103535AB78E61F30 /* EasyByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DCE45D8C3792B5C8F79B /* EasyByteBuffer.swift */; };
@@ -98,6 +98,7 @@
 		1117D4E1FE7DC31ACC3EDD25 /* CharStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharStream.swift; sourceTree = "<group>"; };
 		1117D545C41CE3C16FAD6B9F /* NSLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLock.swift; sourceTree = "<group>"; };
 		1117D5A35016104371C4BA58 /* NSRecursiveLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRecursiveLock.swift; sourceTree = "<group>"; };
+		1117D67CB2830A48B5C56761 /* DynamicFixedArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicFixedArray.swift; sourceTree = "<group>"; };
 		1117D6A7CE94A310891BDE0F /* CErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CErrors.swift; sourceTree = "<group>"; };
 		1117D6BDC8F2F10000144C4E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		1117D7B71073B174FA3D0D97 /* MarkInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkInputStream.swift; sourceTree = "<group>"; };
@@ -119,7 +120,6 @@
 		1117DF108631813F676A7FE5 /* .jazzy.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .jazzy.yaml; sourceTree = "<group>"; };
 		1117DF3E94A76767AA3C37E3 /* Rubicon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rubicon.h; sourceTree = "<group>"; };
 		1117DF5398773AE150F0A585 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		1117DF5E826A8EFBDBB20294 /* Fixed2DArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixed2DArray.swift; sourceTree = "<group>"; };
 		83C67A72250EC02000C0F21E /* Rubicon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Rubicon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C67A7B250EC02000C0F21E /* RubiconTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RubiconTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C67A82250EC02000C0F21E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -220,6 +220,14 @@
 			path = Text;
 			sourceTree = "<group>";
 		};
+		1117DB14239DD393F0EBC28C /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				1117D67CB2830A48B5C56761 /* DynamicFixedArray.swift */,
+			);
+			path = Collections;
+			sourceTree = "<group>";
+		};
 		1117DBFCEA7B7EF6F06A23BC /* Other */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,9 +298,9 @@
 				1117D6A7CE94A310891BDE0F /* CErrors.swift */,
 				1117DA2A40FD9973202012F3 /* MathTools.swift */,
 				1117D5A7C2902ADC8BC04837 /* PropertyWrappers */,
-				1117DF5E826A8EFBDBB20294 /* Fixed2DArray.swift */,
 				1117DBA5E17D99182B126130 /* IConv.swift */,
 				1117D74468AC5E657D36D37E /* Text */,
+				1117DB14239DD393F0EBC28C /* Collections */,
 			);
 			path = Rubicon;
 			sourceTree = "<group>";
@@ -594,7 +602,6 @@
 				1117D5A62408843E13FA3F8D /* MarkInputStream.swift in Sources */,
 				1117D78FA7573ACB14D9AB9A /* StringXForm.swift in Sources */,
 				1117D55B3354E36F71C28FC1 /* CondMutex.swift in Sources */,
-				1117DB2A3A175922208A6589 /* Fixed2DArray.swift in Sources */,
 				1117DCE0103535AB78E61F30 /* EasyByteBuffer.swift in Sources */,
 				1117D0438E55FD170186888E /* CharStream.swift in Sources */,
 				1117D6C58C8DF1A23EE40B26 /* IConvCharInputStream.swift in Sources */,
@@ -602,6 +609,7 @@
 				1117D03DA3BBC27101EC56EB /* BinaryTreeNode.swift in Sources */,
 				1117D46F0FC21E611EACD4BB /* BinaryTreeDictionary.swift in Sources */,
 				1117DC5BF2A398C1D36EA0E7 /* RegularExpression.swift in Sources */,
+				1117D4302066214D581AB6FC /* DynamicFixedArray.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

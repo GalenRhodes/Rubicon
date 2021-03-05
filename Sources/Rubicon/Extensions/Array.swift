@@ -22,6 +22,10 @@
 
 import Foundation
 
+@inlinable func == <T: Equatable>(lhs: ArraySlice<T>, rhs: [T]) -> Bool { ((lhs.count == rhs.count) && (lhs == rhs[rhs.startIndex ..< rhs.endIndex])) }
+
+@inlinable func == <T: Equatable>(lhs: [T], rhs: ArraySlice<T>) -> Bool { ((lhs.count == rhs.count) && (lhs[lhs.startIndex ..< lhs.endIndex] == rhs)) }
+
 extension RangeReplaceableCollection {
     /*===========================================================================================================================================================================*/
     /// Pops the first element off the collection. If the collection is empty then returns `nil`.
@@ -95,4 +99,16 @@ extension Collection {
         for e in self { guard try body(e) else { return false } }
         return true
     }
+}
+
+extension Array {
+    @inlinable public func last(count cc: Int) -> ArraySlice<Element> { self[index(endIndex, offsetBy: -Swift.min(cc, count)) ..< endIndex] }
+
+    @inlinable public func first(count cc: Int) -> ArraySlice<Element> { self[startIndex ..< index(startIndex, offsetBy: Swift.min(cc, count))] }
+}
+
+extension ArraySlice {
+    @inlinable public func last(count cc: Int) -> ArraySlice<Element> { self[index(endIndex, offsetBy: -Swift.min(cc, count)) ..< endIndex] }
+
+    @inlinable public func first(count cc: Int) -> ArraySlice<Element> { self[startIndex ..< index(startIndex, offsetBy: Swift.min(cc, count))] }
 }

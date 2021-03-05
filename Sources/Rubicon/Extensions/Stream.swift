@@ -257,3 +257,13 @@ extension Stream.Event: CustomStringConvertible {
         }
     }
 }
+
+extension InputStream {
+    @inlinable public func read() throws -> UInt8? {
+        var byte: UInt8 = 0
+        let res:  Int   = read(&byte, maxLength: 1)
+        guard res >= 0 else { throw streamError ?? StreamError.UnknownError() }
+        guard res > 0 else { return nil }
+        return byte
+    }
+}

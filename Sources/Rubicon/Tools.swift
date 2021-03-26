@@ -224,18 +224,16 @@ public enum SortOrdering: Int {
     /*===========================================================================================================================================================================*/
     /// One object comes before another object.
     ///
-    case LessThan = -1
+    case LessThan    = -1
     /*===========================================================================================================================================================================*/
     /// One object holds the same place as another object.
     ///
-    case EqualTo = 0
+    case EqualTo     = 0
     /*===========================================================================================================================================================================*/
     /// One object comes after another object.
     ///
     case GreaterThan = 1
 }
-
-
 
 /*===============================================================================================================================================================================*/
 /// Operator for appending new elements to an <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> container.
@@ -275,8 +273,7 @@ infix operator <?: ComparisonPrecedence
 /// - Returns: `true` if the <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> contains the object.
 ///
 @inlinable public func <? <T: Equatable>(lhs: [T], rhs: T) -> Bool {
-    lhs.contains {
-        (obj: T) in
+    lhs.contains { (obj: T) in
         rhs == obj
     }
 }
@@ -402,6 +399,16 @@ public func toHex<T: BinaryInteger>(_ n: T, pad: Int = 0) -> String {
     return "\(spd)0x\(str)"
 }
 
+/*===============================================================================================================================================================================*/
+/// Simple function to convert an integer number into a string represented as a series of ones - "1" - or zeros - "0" starting with the high bits first and the low bits to the
+/// right.
+/// 
+/// - Parameters:
+///   - n: the integer number.
+///   - sep: the string will be grouped into octets separated by a space unless you provide a separator string in this field.
+///   - pad: the number of places to left pad the string with zeros.
+/// - Returns: the string.
+///
 public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0) -> String {
     var str: String = ""
     var n:   T      = n
@@ -470,4 +477,20 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 ///
 @inlinable public func fixLength(_ maxLength: Int) -> Int { ((maxLength < 0) ? Int.max : maxLength) }
 
+/*===============================================================================================================================================================================*/
+/// Tests one value to see if it is one of the listed values. Instead of doing this:
+/// ```
+///     if number == 1 || number == 5 || number == 99 { /* do something */ }
+/// ```
+/// 
+/// You can now do this:
+/// ```
+///     if value(number, isOneOf: 1, 5, 99) { /* do something */ }
+/// ```
+/// 
+/// - Parameters:
+///   - value: the value to be tested.
+///   - isOneOf: the desired values.
+/// - Returns: `true` of the value is one of the desired values.
+///
 @inlinable public func value<T: Equatable>(_ value: T, isOneOf: T...) -> Bool { isOneOf.isAny { value == $0 } }

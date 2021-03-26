@@ -22,7 +22,19 @@
 
 import Foundation
 import CoreFoundation
+#if os(Windows)
+    import WinSDK
+#endif
 
+/*===============================================================================================================================================================================*/
+/// RegularExpression is a replacement for NSRegularExpression that is much more Swift friendly.
+/// 
+/// A Note about the methods that take closures: I know that having these methods as throws rather than a rethrows is not ideal but given that NSRegularExpression, which we’re
+/// actually using underneath, doesn’t allow it’s closure to be throws sort of leaves us no choice. At least I haven’t found an easy way around it. So I decided to have these
+/// methods as throws and in the future, if we can fix this issue, make them rethrows then.
+/// 
+/// BLOG Post with Examples: [I, Introvert - A Better RegularExpression](https://blog.projectgalen.com/2021/02/12/a-better-regularexpression/)
+///
 open class RegularExpression {
 
     /*===========================================================================================================================================================================*/
@@ -520,7 +532,7 @@ open class RegularExpression {
 
         @inlinable init(_ match: Match, range: NSRange) {
             self.match = match
-            self.range = ((range.location == NSNotFound) ? nil : (String.Index(utf16Offset: range.lowerBound, in: match.string) ..< String.Index(utf16Offset: range.upperBound, in: match.string)))
+            self.range = ((range.location == NSNotFound) ? nil : Range<String.Index>(range, in: match.string))
         }
     }
 

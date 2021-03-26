@@ -140,8 +140,8 @@ open class IConv {
                           let _data: UnsafeMutablePointer<UnsafeMutablePointer<Int8>?> = d.bindMemory(to: UnsafeMutablePointer<Int8>?.self, capacity: MaxEncodings)
                           for i in (0 ..< Int(count)) {
                               if let p2: UnsafePointer<Int8> = p[i] {
-                                  guard let idx = NextSlot(_data) else { return 1 }
-                                  _data[idx] = CopyStr(p2)
+                                  guard let z = NextSlot(_data) else { return 1 }
+                                  _data[z] = CopyStr(p2)
                               }
                           }
                       }

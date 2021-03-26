@@ -44,10 +44,6 @@ open class BinaryTreeNode<K: Comparable & Hashable, V> {
 
     //@f:0
     /*===========================================================================================================================================================================*/
-    /// The color of this node.
-    ///
-    public private(set) var color:      NodeColor
-    /*===========================================================================================================================================================================*/
     /// The node's key. Must implement <code>[Comparable](https://developer.apple.com/documentation/swift/Comparable)</code>.
     ///
     public private(set) var key:        K
@@ -55,6 +51,10 @@ open class BinaryTreeNode<K: Comparable & Hashable, V> {
     /// The node's value.
     ///
     public              var value:      V
+    /*===========================================================================================================================================================================*/
+    /// The color of this node.
+    ///
+    public private(set) var color:      NodeColor
     /*===========================================================================================================================================================================*/
     /// The count for this node. Includes this node and all child nodes.
     ///
@@ -73,17 +73,33 @@ open class BinaryTreeNode<K: Comparable & Hashable, V> {
     public private(set) var parentNode: BinaryTreeNode<K, V>? = nil
 
     /*===========================================================================================================================================================================*/
+    /// The grandparent node.
+    ///
+    @inlinable public var grandParentNode: BinaryTreeNode<K, V>? { parentNode?.parentNode }
+    /*===========================================================================================================================================================================*/
+    /// The sibling node.
+    ///
+    @inlinable public var siblingNode:     BinaryTreeNode<K, V>? { (isLeftChild ? parentNode?.rightNode : (isRightChild ? parentNode?.leftNode : nil)) }
+    /*===========================================================================================================================================================================*/
+    /// The uncle node.
+    ///
+    @inlinable public var uncleNode:       BinaryTreeNode<K, V>? { parentNode?.siblingNode }
+    /*===========================================================================================================================================================================*/
     /// Is this node the left child node?
     ///
-    @inlinable open var isLeftChild:  Bool                  { (self === parentNode?.leftNode) }
+    @inlinable public var isLeftChild:     Bool                  { (self === parentNode?.leftNode) }
+    /*===========================================================================================================================================================================*/
+    /// Is this node the right child node?
+    ///
+    @inlinable public var isRightChild:    Bool                  { (self === parentNode?.rightNode) }
     /*===========================================================================================================================================================================*/
     /// Is this node the root node?
     ///
-    @inlinable open var isRootNode:   Bool                  { (parentNode == nil) }
+    @inlinable public var isRootNode:      Bool                  { (parentNode == nil) }
     /*===========================================================================================================================================================================*/
     /// The root node.
     ///
-    @inlinable open var rootNode:     BinaryTreeNode<K, V>  { (parentNode?.rootNode ?? self) }
+    @inlinable public var rootNode:        BinaryTreeNode<K, V>  { (parentNode?.rootNode ?? self) }
     //@f:1
 
     /*===========================================================================================================================================================================*/
@@ -118,7 +134,7 @@ open class BinaryTreeNode<K: Comparable & Hashable, V> {
     /// - Parameter key: the key. Must implement <code>[Comparable](https://developer.apple.com/documentation/swift/Comparable)</code>.
     /// - Returns: the node with the given key or `nil` if no such node exists.
     ///
-    open func find(key: K) -> BinaryTreeNode<K, V>? {
+    public func find(key: K) -> BinaryTreeNode<K, V>? {
         switch key <=> self.key {
             case .LessThan:    return leftNode?.find(key: key)
             case .EqualTo:     return self
@@ -134,7 +150,7 @@ open class BinaryTreeNode<K: Comparable & Hashable, V> {
     ///   - value: the value.
     /// - Returns: the root node after insertion. Due to possible re-balancing this root node may not be the same as before the insert operation.
     ///
-    open func insert(key: K, value: V) -> BinaryTreeNode<K, V> {
+    public func insert(key: K, value: V) -> BinaryTreeNode<K, V> {
         switch key <=> self.key {
             case .EqualTo:
                 self.value = value
@@ -156,23 +172,37 @@ open class BinaryTreeNode<K: Comparable & Hashable, V> {
     /// - Returns: the root node or `nil` if this node was the only node in the tree. The root node returned may not be the same root node as before the remove operation if this
     ///            node was the root node or if a re-balancing took place.
     ///
-    open func remove() -> BinaryTreeNode<K, V>? {
+    public func remove() -> BinaryTreeNode<K, V>? {
         if let ln = leftNode, let _ = rightNode {
+            //-------------------------
+            // I have two child nodes.
+            //-------------------------
             let n = ln.rightMost
             key = n.key
             value = n.value
             return n.remove()
         }
         else if let c = (leftNode ?? rightNode) {
+            //--------------------------------------------------
+            // I have one child node. Replace me with my child.
+            //--------------------------------------------------
             c.color = .Black
             replace(with: c)
             return c.rootNode
         }
-        else {
+        else if let p = parentNode {
+            //--------------------------------------------
+            // I have no children but I do have a parent.
+            //--------------------------------------------
             if color == .Black { removeReBalance() }
-            let p = parentNode
             replace(with: nil)
-            return p?.rootNode
+            return p.rootNode
+        }
+        else {
+            //--------------------------------------
+            // I'm the only node so I just go away.
+            //--------------------------------------
+            return nil
         }
     }
 
@@ -184,7 +214,7 @@ open class BinaryTreeNode<K: Comparable & Hashable, V> {
     /// - Returns: the node or `nil` if the closure never returns `true`.
     /// - Throws: any exception thrown by the closure.
     ///
-    open func node(for body: (K, V) throws -> Bool) rethrows -> BinaryTreeNode<K, V>? { try iterate { node -> BinaryTreeNode<K, V>? in (try body(node.key, node.value) ? node : nil) } }
+    public func node(for body: (K, V) throws -> Bool) rethrows -> BinaryTreeNode<K, V>? { try iterate { node -> BinaryTreeNode<K, V>? in (try body(node.key, node.value) ? node : nil) } }
 
     /*===========================================================================================================================================================================*/
     /// Traverses the tree in-order calling the closure with the key and value of each node. If the closure returns `true` then the traversal stops and `true` is returned. If all
@@ -194,7 +224,7 @@ open class BinaryTreeNode<K: Comparable & Hashable, V> {
     /// - Returns: `true` if the closure returns `true`, otherwise returns `false` after all the nodes have been visited.
     /// - Throws: any exception thrown by the closure.
     ///
-    open func forEach(do body: (K, V) throws -> Bool) rethrows -> Bool { (try iterate { node -> Bool? in try body(node.key, node.value) }) ?? false }
+    public func forEach(do body: (K, V) throws -> Bool) rethrows -> Bool { (try iterate { node -> Bool? in try body(node.key, node.value) }) ?? false }
 
     /*===========================================================================================================================================================================*/
     /// Returns the node with the given index.
@@ -202,7 +232,7 @@ open class BinaryTreeNode<K: Comparable & Hashable, V> {
     /// - Parameter index: the index.
     /// - Returns: the node with the given index or `nil` if no such node exists.
     ///
-    open func node(for index: Int) -> BinaryTreeNode<K, V>? {
+    public func node(for index: Int) -> BinaryTreeNode<K, V>? {
         switch index <=> self.index {
             case .LessThan:    return leftNode?.node(for: index)
             case .EqualTo:     return self
@@ -214,63 +244,27 @@ open class BinaryTreeNode<K: Comparable & Hashable, V> {
     /// Perform a re-balance after the insertion of a new node. - Step 1
     ///
     final func insertReBalance() {
-        if let p = parentNode { insertReBalance02(parent: p) }
-        else { color = .Black }
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Perform a re-balance after the insertion of a new node. - Step 2
-    /// 
-    /// - Parameter p: the parent node.
-    ///
-    private func insertReBalance02(parent p: BinaryTreeNode<K, V>) {
-        if p.color == .Red {
-            guard let g = p.parentNode else { fatalError("Missing grandparent.") }
-            insertReBalance03(selfLeft: (self === p.leftNode), parentLeft: (p === g.leftNode), parent: p, grandParent: g)
+        if let p = parentNode {
+            if p.color == .Red {
+                guard let g = grandParentNode else { fatalError("Missing grandparent.") }
+                if let u = uncleNode, u.color == .Red {
+                    p.color = .Black
+                    u.color = .Black
+                    g.color = .Red
+                    g.insertReBalance()
+                }
+                else if isLeftChild == p.isRightChild {
+                    p.rotate(left: p.isLeftChild)
+                    g.rotate(left: p.isRightChild)
+                }
+                else {
+                    g.rotate(left: isRightChild)
+                }
+            }
         }
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Perform a re-balance after the insertion of a new node. - Step 3
-    /// 
-    /// - Parameters:
-    ///   - sl: `true` if this node is the left child node.
-    ///   - pl: `true` if the parent node is the left child node.
-    ///   - p: the parent node.
-    ///   - g: the grandparent node.
-    ///
-    func insertReBalance03(selfLeft sl: Bool, parentLeft pl: Bool, parent p: BinaryTreeNode<K, V>, grandParent g: BinaryTreeNode<K, V>) {
-        if let u = (pl ? g.rightNode : g.leftNode), u.color == .Red { insertReBalance04a(parent: p, uncle: u, grandParent: g) }
-        else { insertReBalance04b(selfLeft: sl, parentLeft: pl, parent: p, grandParent: g) }
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Perform a re-balance after the insertion of a new node. - Step 4a
-    /// 
-    /// - Parameters:
-    ///   - p: the parent node.
-    ///   - u: the uncle node.
-    ///   - g: the grandparent node.
-    ///
-    func insertReBalance04a(parent p: BinaryTreeNode<K, V>, uncle u: BinaryTreeNode<K, V>, grandParent g: BinaryTreeNode<K, V>) {
-        p.color = .Black
-        u.color = .Black
-        g.color = .Red
-        g.insertReBalance()
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Perform a re-balance after the insertion of a new node. - Step 4b
-    /// 
-    /// - Parameters:
-    ///   - sl: `true` if this node is the left child node.
-    ///   - pl: `true` if the parent node is the left child node.
-    ///   - p: the parent node.
-    ///   - g: the grandparent node.
-    ///
-    func insertReBalance04b(selfLeft sl: Bool, parentLeft pl: Bool, parent p: BinaryTreeNode<K, V>, grandParent g: BinaryTreeNode<K, V>) {
-        if sl == !pl { p.rotate(left: pl) }
-        g.rotate(left: !pl)
+        else {
+            color = .Black
+        }
     }
 
     /*===========================================================================================================================================================================*/

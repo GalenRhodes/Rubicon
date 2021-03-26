@@ -17,7 +17,6 @@
 		1117D4E52C7BBAEBD59B32C8 /* MathTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA2A40FD9973202012F3 /* MathTools.swift */; };
 		1117D551FA986D18AC3C604B /* Conditional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD6F29A83E7E9C004F89 /* Conditional.swift */; };
 		1117D55B3354E36F71C28FC1 /* CondMutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D0EA61DED76C4431AAB7 /* CondMutex.swift */; };
-		1117D57946E22F7ABCFE65B7 /* IConv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DBA5E17D99182B126130 /* IConv.swift */; };
 		1117D5A62408843E13FA3F8D /* MarkInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D7B71073B174FA3D0D97 /* MarkInputStream.swift */; };
 		1117D5D7FE2E89FF48053D67 /* CStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D8B11BE277A0D478E764 /* CStrings.swift */; };
 		1117D603D6D7533B3DEA082A /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D1A70559C6B301B833C0 /* Range.swift */; };
@@ -33,6 +32,7 @@
 		1117DCE0103535AB78E61F30 /* EasyByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DCE45D8C3792B5C8F79B /* EasyByteBuffer.swift */; };
 		1117DD4EFDE8572C3C5CEF4A /* CErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D6A7CE94A310891BDE0F /* CErrors.swift */; };
 		1117DE59DC8B9DF9FB6B2EEA /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D171B17D5316F74F3936 /* test.swift */; };
+		1117DF27B358A367D4C2876E /* IConv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D88BD3FB3246B1DFB316 /* IConv.swift */; };
 		83C67A7C250EC02000C0F21E /* Rubicon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C67A72250EC02000C0F21E /* Rubicon.framework */; };
 		83C67AB2250EC19800C0F21E /* Closable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C67A97250EC19700C0F21E /* Closable.swift */; };
 		83C67AB3250EC19800C0F21E /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C67A98250EC19700C0F21E /* Tools.swift */; };
@@ -102,13 +102,13 @@
 		1117D6A7CE94A310891BDE0F /* CErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CErrors.swift; sourceTree = "<group>"; };
 		1117D6BDC8F2F10000144C4E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		1117D7B71073B174FA3D0D97 /* MarkInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkInputStream.swift; sourceTree = "<group>"; };
+		1117D88BD3FB3246B1DFB316 /* IConv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IConv.swift; sourceTree = "<group>"; };
 		1117D8B11BE277A0D478E764 /* CStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CStrings.swift; sourceTree = "<group>"; };
 		1117D8F31A530CDA758E62B8 /* iconv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iconv.h; sourceTree = "<group>"; };
 		1117D9A1691382C37AA03237 /* Thread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
 		1117DA2A40FD9973202012F3 /* MathTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathTools.swift; sourceTree = "<group>"; };
 		1117DA2F1C8056B3B0A261D7 /* IConvTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IConvTests.swift; sourceTree = "<group>"; };
 		1117DA84761CE0531CC2B150 /* StringXForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringXForm.swift; sourceTree = "<group>"; };
-		1117DBA5E17D99182B126130 /* IConv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IConv.swift; sourceTree = "<group>"; };
 		1117DC953EC772053F764FDE /* RegularExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegularExpression.swift; sourceTree = "<group>"; };
 		1117DCE45D8C3792B5C8F79B /* EasyByteBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasyByteBuffer.swift; sourceTree = "<group>"; };
 		1117DD043B53015865ED9D07 /* BinaryTreeDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryTreeDictionary.swift; sourceTree = "<group>"; };
@@ -216,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				1117DC953EC772053F764FDE /* RegularExpression.swift */,
+				1117D88BD3FB3246B1DFB316 /* IConv.swift */,
 			);
 			path = Text;
 			sourceTree = "<group>";
@@ -244,13 +245,6 @@
 				1117D8F31A530CDA758E62B8 /* iconv.h */,
 			);
 			path = iconv;
-			sourceTree = "<group>";
-		};
-		1117DC58039C638AC884EBDD /* Tools */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tools;
 			sourceTree = "<group>";
 		};
 		8377FEDC2576CB7000E660D3 /* Frameworks */ = {
@@ -298,7 +292,6 @@
 				1117D6A7CE94A310891BDE0F /* CErrors.swift */,
 				1117DA2A40FD9973202012F3 /* MathTools.swift */,
 				1117D5A7C2902ADC8BC04837 /* PropertyWrappers */,
-				1117DBA5E17D99182B126130 /* IConv.swift */,
 				1117D74468AC5E657D36D37E /* Text */,
 				1117DB14239DD393F0EBC28C /* Collections */,
 			);
@@ -388,7 +381,6 @@
 			isa = PBXGroup;
 			children = (
 				83C67AAA250EC19800C0F21E /* CharInputStream.swift */,
-				1117DC58039C638AC884EBDD /* Tools */,
 				1117D4E1FE7DC31ACC3EDD25 /* CharStream.swift */,
 				1117D48068F75B12E30F5E83 /* IConvCharInputStream.swift */,
 			);
@@ -605,11 +597,11 @@
 				1117DCE0103535AB78E61F30 /* EasyByteBuffer.swift in Sources */,
 				1117D0438E55FD170186888E /* CharStream.swift in Sources */,
 				1117D6C58C8DF1A23EE40B26 /* IConvCharInputStream.swift in Sources */,
-				1117D57946E22F7ABCFE65B7 /* IConv.swift in Sources */,
 				1117D03DA3BBC27101EC56EB /* BinaryTreeNode.swift in Sources */,
 				1117D46F0FC21E611EACD4BB /* BinaryTreeDictionary.swift in Sources */,
 				1117DC5BF2A398C1D36EA0E7 /* RegularExpression.swift in Sources */,
 				1117D4302066214D581AB6FC /* DynamicFixedArray.swift in Sources */,
+				1117DF27B358A367D4C2876E /* IConv.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

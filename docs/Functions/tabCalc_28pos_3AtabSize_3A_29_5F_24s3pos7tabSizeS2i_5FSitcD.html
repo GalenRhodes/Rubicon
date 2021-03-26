@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>OStringXForm Structure Reference</title>
+    <title>tabCalc(pos:tabSize:) Function Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -13,8 +13,8 @@
     <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Struct/OStringXForm" class="dashAnchor"></a>
-    <a title="OStringXForm Structure Reference"></a>
+    <a name="//apple_ref/swift/Function/tabCalc(pos:tabSize:)" class="dashAnchor"></a>
+    <a title="tabCalc(pos:tabSize:) Function Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Rubicon©</a> (68% documented)</p>
@@ -30,7 +30,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        OStringXForm Structure Reference
+        tabCalc(pos:tabSize:) Function Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -477,121 +477,21 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>OStringXForm</h1>
+            <h1>tabCalc(pos:tabSize:)</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">@propertyWrapper</span>
-<span class="kd">public</span> <span class="kd">struct</span> <span class="kt">OStringXForm</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">tabCalc</span><span class="p">(</span><span class="n">pos</span> <span class="nv">i</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">tabSize</span> <span class="nv">sz</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
 
                 </div>
               </div>
             
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/PropertyWrappers/StringXForm.swift#L67-L108">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L">Show on GitHub</a>
               </div>
           </section>
           <section class="section task-group-section">
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon12OStringXFormV6XFormsO"></a>
-                    <a name="//apple_ref/swift/Enum/XForms" class="dashAnchor"></a>
-                    <a class="direct-link" href="../Structs/OStringXForm/XForms.html">XForms</a>
-                    </code>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon12OStringXFormV12wrappedValueSSSgvp"></a>
-                    <a name="//apple_ref/swift/Property/wrappedValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon12OStringXFormV12wrappedValueSSSgvp">wrappedValue</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/PropertyWrappers/StringXForm.swift#L78-L96">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon12OStringXFormVyACSayAC6XFormsOGcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon12OStringXFormVyACSayAC6XFormsOGcfc">init(_:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="n">_</span> <span class="nv">xform</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/OStringXForm/XForms.html">XForms</a></span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/PropertyWrappers/StringXForm.swift#L98-L101">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon12OStringXFormV12wrappedValue_ACSSSg_SayAC6XFormsOGtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(wrappedValue:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon12OStringXFormV12wrappedValue_ACSSSg_SayAC6XFormsOGtcfc">init(wrappedValue:<wbr>_:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">wrappedValue</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="n">_</span> <span class="nv">xform</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/OStringXForm/XForms.html">XForms</a></span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/PropertyWrappers/StringXForm.swift#L103-L107">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
           </section>
         </section>
         <section id="footer">

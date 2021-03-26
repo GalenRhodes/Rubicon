@@ -530,6 +530,7 @@ extension String {
 @inlinable public func tabCalc(pos i: Int, tabSize sz: Int = 4) -> Int { (((((i - 1) + sz) / sz) * sz) + 1) }
 
 infix operator ==~: ComparisonPrecedence
+infix operator !=~: ComparisonPrecedence
 
 extension StringProtocol {
     /*===========================================================================================================================================================================*/
@@ -558,4 +559,14 @@ extension StringProtocol {
     /// - Returns: `true` if they are equal when compared case insensitively.
     ///
     @inlinable public static func ==~(lhs: Self, rhs: Self) -> Bool { (lhs.localizedCaseInsensitiveCompare(rhs) == ComparisonResult.orderedSame) }
+
+    /*===========================================================================================================================================================================*/
+    /// Case insensitive NOT equals.
+    /// 
+    /// - Parameters:
+    ///   - lhs: the left-hand string
+    ///   - rhs: the right-hand string
+    /// - Returns: `true` if they are not equal when compared case insensitively.
+    ///
+    @inlinable public static func !=~(lhs: Self, rhs: Self) -> Bool { (lhs.localizedCaseInsensitiveCompare(rhs) != ComparisonResult.orderedSame) }
 }

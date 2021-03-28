@@ -309,9 +309,9 @@ infix operator <=>: ComparisonPrecedence
 /// ```
 ///     func foo(str1: String, str2: String) {
 ///         switch str1 <=> str2 {
-///             case .Before: print("'\(str1)' comes before '\(str2)'")
-///             case .Same:   print("'\(str1)' is the same as '\(str2)'")
-///             case .After:  print("'\(str1)' comes after '\(str2)'")
+///             case .LessThan:    print("'\(str1)' comes before '\(str2)'")
+///             case .EqualTo:     print("'\(str1)' is the same as '\(str2)'")
+///             case .GreaterThan: print("'\(str1)' comes after '\(str2)'")
 ///         }
 ///     }
 /// ```
@@ -320,8 +320,8 @@ infix operator <=>: ComparisonPrecedence
 ///   - l: The left hand operand
 ///   - r: The right hand operand
 /// 
-/// - Returns: `SortOrdering.Before`, `SortOrdering.Same`, `SortOrdering.After` as the left-hand operand should be sorted before, at the same place as, or after the right-hand
-///            operand.
+/// - Returns: `SortOrdering.LessThan`, `SortOrdering.EqualTo`, `SortOrdering.GreaterThan` as the left-hand operand should be sorted before, at the same place as, or after the
+///            right-hand operand.
 ///
 @inlinable public func <=> <T: Comparable>(l: T?, r: T?) -> SortOrdering {
     (l == nil ? (r == nil ? .EqualTo : .LessThan) : (r == nil ? .GreaterThan : (l! < r! ? .LessThan : (l! > r! ? .GreaterThan : .EqualTo))))
@@ -342,16 +342,16 @@ infix operator <=>: ComparisonPrecedence
 ///     let array3: [Int] = [ 1, 2, 3 ]
 ///     let array4: [Int] = [ 1, 2, 5, 6 ]
 /// 
-///     let result1: SortOrdering = array1 <=> array2 // result1 is set to `SortOrdering.Same`
-///     let result2: SortOrdering = array1 <=> array3 // result2 is set to `SortOrdering.After`
-///     let result3: SortOrdering = array1 <=> array4 // result3 is set to `SortOrdering.Before`
+///     let result1: SortOrdering = array1 <=> array2 // result1 is set to `SortOrdering.EqualTo`
+///     let result2: SortOrdering = array1 <=> array3 // result2 is set to `SortOrdering.GreaterThan`
+///     let result3: SortOrdering = array1 <=> array4 // result3 is set to `SortOrdering.LessThan`
 /// ```
 /// 
 /// - Parameters:
 ///   - l: The left hand array operand
 ///   - r: The right hand array operand
 /// 
-/// - Returns: `SortOrdering.Before`, `SortOrdering.Same`, `SortOrdering.After` as the left-hand array comes before, in the same place as, or after the right-hand array.
+/// - Returns: `SortOrdering.LessThan`, `SortOrdering.EqualTo`, `SortOrdering.GreaterThan` as the left-hand array comes before, in the same place as, or after the right-hand array.
 ///
 @inlinable public func <=> <T: Comparable>(l: [T?], r: [T?]) -> SortOrdering {
     var cc: SortOrdering = (l.count <=> r.count)

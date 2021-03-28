@@ -28,9 +28,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Created operator ==~ to allow easy case insensitive string equality.">
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Created operator !=~ to allow easy case insensitive string inequality.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/String.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/String.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -266,14 +266,8 @@
       <workItem from="1615898440800" duration="254000" />
       <workItem from="1616167295449" duration="4238000" />
       <workItem from="1616426817217" duration="1280000" />
-      <workItem from="1616762132594" duration="3564000" />
-    </task>
-    <task id="LOCAL-00092" summary="Fixed IConvCharInputStream so that close() is called when the object is disposed of unless autoClose is set to false.">
-      <created>1611074313358</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1611074313358</updated>
+      <workItem from="1616762132594" duration="4441000" />
+      <workItem from="1616927343227" duration="323000" />
     </task>
     <task id="LOCAL-00093" summary="Backed out package providers because it was causing an error.">
       <created>1611075370971</created>
@@ -611,7 +605,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616766540661</updated>
     </task>
-    <option name="localTasksCounter" value="141" />
+    <task id="LOCAL-00141" summary="Created operator !=~ to allow easy case insensitive string inequality.">
+      <created>1616767819501</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1616767819501</updated>
+    </task>
+    <option name="localTasksCounter" value="142" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -644,7 +645,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added public static func getEncodingsList() -&gt; [String] to IConv class." />
     <MESSAGE value="Bug fixes." />
     <MESSAGE value="Performance improvements to IConvCharInputStream." />
     <MESSAGE value="Added:&#10;    func hasAnyPrefix(_ prefixes: String...) -&gt; Bool&#10;    func hasAnySuffix(_ suffixes: String...) -&gt; Bool" />
@@ -669,7 +669,8 @@
     <MESSAGE value="Bug Fixes and changes to RegularExpression." />
     <MESSAGE value="Extensions to the String, StringProtocol, InputStream, Array, and ArraySlice classes/structs." />
     <MESSAGE value="Created operator ==~ to allow easy case insensitive string equality." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created operator ==~ to allow easy case insensitive string equality." />
+    <MESSAGE value="Created operator !=~ to allow easy case insensitive string inequality." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created operator !=~ to allow easy case insensitive string inequality." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="CidrCoverage/Rubicon/Rubicon Tests.json" NAME="Rubicon Tests Coverage Results" MODIFIED="1608608581698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="llvm-cov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

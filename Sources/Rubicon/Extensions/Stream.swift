@@ -28,6 +28,7 @@ public enum StreamError: Error {
     case NoMark(description: String = "No previous mark to release.")
     case Closed(description: String = "The stream has been closed.")
     case NotOpen(description: String = "The stream is not open.")
+    case FileNotFound(description: String = "File not found.")
 }
 
 @inlinable public func streamStatusGood(_ st: Stream.Status) -> Bool { value(st, isOneOf: .open, .opening, .reading, .writing) }

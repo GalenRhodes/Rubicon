@@ -223,7 +223,6 @@ extension BinaryTreeDictionary: Equatable where V: Equatable {
 
         return true
     }
-
 }
 
 extension BinaryTreeDictionary: Hashable where V: Hashable {
@@ -239,5 +238,4 @@ extension BinaryTreeDictionary: Hashable where V: Hashable {
             }
         }
     }
-
 }

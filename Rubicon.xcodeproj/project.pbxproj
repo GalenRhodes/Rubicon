@@ -24,6 +24,7 @@
 		1117D74784A19EC684B6F858 /* Rubicon.h in Headers */ = {isa = PBXBuildFile; fileRef = 1117DF3E94A76767AA3C37E3 /* Rubicon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1117D78FA7573ACB14D9AB9A /* StringXForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA84761CE0531CC2B150 /* StringXForm.swift */; };
 		1117D7C7D25FDB87F0E87004 /* NSLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D545C41CE3C16FAD6B9F /* NSLock.swift */; };
+		1117D87015D5A6D05CA3688C /* SimpleIConvCharInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D81C98C71BC7BD4F245B /* SimpleIConvCharInputStream.swift */; };
 		1117D8974555204639F771FD /* iconv.h in Headers */ = {isa = PBXBuildFile; fileRef = 1117D8F31A530CDA758E62B8 /* iconv.h */; };
 		1117D950F78C930E935486EF /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D9A1691382C37AA03237 /* Thread.swift */; };
 		1117DB2981DA9EEA1794C0A9 /* PGThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D14B363B54E578A54336 /* PGThread.swift */; };
@@ -102,6 +103,7 @@
 		1117D6A7CE94A310891BDE0F /* CErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CErrors.swift; sourceTree = "<group>"; };
 		1117D6BDC8F2F10000144C4E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		1117D7B71073B174FA3D0D97 /* MarkInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkInputStream.swift; sourceTree = "<group>"; };
+		1117D81C98C71BC7BD4F245B /* SimpleIConvCharInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleIConvCharInputStream.swift; sourceTree = "<group>"; };
 		1117D88BD3FB3246B1DFB316 /* IConv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IConv.swift; sourceTree = "<group>"; };
 		1117D8B11BE277A0D478E764 /* CStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CStrings.swift; sourceTree = "<group>"; };
 		1117D8F31A530CDA758E62B8 /* iconv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iconv.h; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 				83C67AAA250EC19800C0F21E /* CharInputStream.swift */,
 				1117D4E1FE7DC31ACC3EDD25 /* CharStream.swift */,
 				1117D48068F75B12E30F5E83 /* IConvCharInputStream.swift */,
+				1117D81C98C71BC7BD4F245B /* SimpleIConvCharInputStream.swift */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -602,6 +605,7 @@
 				1117DC5BF2A398C1D36EA0E7 /* RegularExpression.swift in Sources */,
 				1117D4302066214D581AB6FC /* DynamicFixedArray.swift in Sources */,
 				1117DF27B358A367D4C2876E /* IConv.swift in Sources */,
+				1117D87015D5A6D05CA3688C /* SimpleIConvCharInputStream.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

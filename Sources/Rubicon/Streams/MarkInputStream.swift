@@ -23,7 +23,8 @@
 import Foundation
 import CoreFoundation
 
-@usableFromInline let MaxInputBufferSize: Int = (InputBufferSize * 64)         // 64KB
+@usableFromInline let InputBufferSize:    Int = 1_024                          //  1KB
+@usableFromInline let MaxInputBufferSize: Int = 65_536                         // 64KB
 @usableFromInline let ReloadTriggerSize:  Int = ((MaxInputBufferSize / 4) * 3) // 48KB
 
 /*===============================================================================================================================================================================*/
@@ -183,7 +184,6 @@ open class MarkInputStream: InputStream {
     open func markReturn() { _lock.withLock { _markReturn() } }
 
     open func markDelete() { _lock.withLock { _markDelete() } }
-
 
     open func markUpdate() {
         _lock.withLock {

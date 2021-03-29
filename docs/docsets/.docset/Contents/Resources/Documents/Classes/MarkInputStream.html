@@ -17,7 +17,7 @@
     <a title="MarkInputStream Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Rubicon©</a> (68% documented)</p>
+        <p><a href="../index.html">Rubicon©</a> (69% documented)</p>
         <p class="header-right"><a href="https://github.com/GalenRhodes/Rubicon"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right">
           <form role="search" action="../search.json">
@@ -112,7 +112,7 @@
                 <a href="../Classes/RingByteBuffer.html">RingByteBuffer</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/UTF8CharInputStream.html">UTF8CharInputStream</a>
+                <a href="../Classes/SimpleIConvCharInputStream.html">SimpleIConvCharInputStream</a>
               </li>
             </ul>
           </li>
@@ -121,6 +121,18 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Global%20Variables/BasicBufferSize.html">BasicBufferSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/CR_5FCHARACTER.html">CR_CHARACTER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/LFCR_5FCHARACTER.html">LFCR_CHARACTER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/LF_5FCHARACTER.html">LF_CHARACTER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/LINE_5FFEED_5FCODEPOINT.html">LINE_FEED_CODEPOINT</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Global%20Variables/OneSecondMicros.html">OneSecondMicros</a>
@@ -336,10 +348,16 @@
                 <a href="../Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html">testOSFatalError(_:_:)</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Functions/textPositionUpdate_28_5F_3Aposition_3AtabSize_3A_29_5F_24s_5F8position7tabSizeSi_5FSitSJ_5FSi_5FSitSitcD.html">textPositionUpdate(_:position:tabSize:)</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Functions/timeIntervalFrom_28date_3A_29_5F.html">timeIntervalFrom(date:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions/toBinary_28_5F_3Asep_3Apad_3A_29_5F_24s_5F3sep3padSSx_5FSSSgSitcSzRzluD.html">toBinary(_:sep:pad:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/toChar_28codePoint_3A_29_5F_24s9codePointSJs6UInt32V_5FtcD.html">toChar(codePoint:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html">toHex(_:pad:)</a>
@@ -369,6 +387,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/Locking.html">Locking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SimpleCharInputStream.html">SimpleCharInputStream</a>
               </li>
             </ul>
           </li>
@@ -489,7 +510,7 @@
 call to <code>markRelease()</code>.</p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L33-L232">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L34-L232">Show on GitHub</a>
               </div>
           </section>
           <section class="section task-group-section">
@@ -521,7 +542,7 @@ call to <code>markRelease()</code>.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L39">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L40">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -551,7 +572,7 @@ call to <code>markRelease()</code>.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L43">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L44">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -581,7 +602,7 @@ call to <code>markRelease()</code>.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L47">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L48">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -611,7 +632,7 @@ call to <code>markRelease()</code>.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L51">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L52">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -641,7 +662,7 @@ call to <code>markRelease()</code>.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L71-L75">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L72-L76">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -691,7 +712,7 @@ stream must be opened before it can be used.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L83-L85">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L84-L86">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -740,7 +761,7 @@ stream must be opened before it can be used.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L92-L95">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L93-L96">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -789,7 +810,7 @@ stream must be opened before it can be used.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L102-L105">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L103-L106">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -856,7 +877,7 @@ stream must be opened before it can be used.</p>
                                                          streamError.</li></ul></p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L119-L127">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L120-L128">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -922,7 +943,7 @@ available.</p>
                         <p><code>true</code> if the buffer is available, otherwise <code>false</code>.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L138-L153">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L139-L154">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -952,7 +973,7 @@ available.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L158-L165">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L159-L166">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -983,7 +1004,7 @@ been scheduled on a run loop, closing the stream implicitly removes the stream f
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L171-L176">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L172-L177">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1013,7 +1034,7 @@ been scheduled on a run loop, closing the stream implicitly removes the stream f
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L181">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L182">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1139,7 +1160,7 @@ been scheduled on a run loop, closing the stream implicitly removes the stream f
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-03-28)</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-03-29)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

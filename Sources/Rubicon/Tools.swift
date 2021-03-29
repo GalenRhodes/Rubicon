@@ -494,3 +494,5 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 /// - Returns: `true` of the value is one of the desired values.
 ///
 @inlinable public func value<T: Equatable>(_ value: T, isOneOf: T...) -> Bool { isOneOf.isAny { value == $0 } }
+
+@inlinable public func toChar(codePoint: UInt32) -> Character { Character(scalar: UnicodeScalar(codePoint)) }

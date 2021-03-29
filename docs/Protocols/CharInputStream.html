@@ -17,7 +17,7 @@
     <a title="CharInputStream Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Rubicon©</a> (68% documented)</p>
+        <p><a href="../index.html">Rubicon©</a> (69% documented)</p>
         <p class="header-right"><a href="https://github.com/GalenRhodes/Rubicon"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right">
           <form role="search" action="../search.json">
@@ -112,7 +112,7 @@
                 <a href="../Classes/RingByteBuffer.html">RingByteBuffer</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/UTF8CharInputStream.html">UTF8CharInputStream</a>
+                <a href="../Classes/SimpleIConvCharInputStream.html">SimpleIConvCharInputStream</a>
               </li>
             </ul>
           </li>
@@ -121,6 +121,18 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Global%20Variables/BasicBufferSize.html">BasicBufferSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/CR_5FCHARACTER.html">CR_CHARACTER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/LFCR_5FCHARACTER.html">LFCR_CHARACTER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/LF_5FCHARACTER.html">LF_CHARACTER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/LINE_5FFEED_5FCODEPOINT.html">LINE_FEED_CODEPOINT</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Global%20Variables/OneSecondMicros.html">OneSecondMicros</a>
@@ -336,10 +348,16 @@
                 <a href="../Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html">testOSFatalError(_:_:)</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Functions/textPositionUpdate_28_5F_3Aposition_3AtabSize_3A_29_5F_24s_5F8position7tabSizeSi_5FSitSJ_5FSi_5FSitSitcD.html">textPositionUpdate(_:position:tabSize:)</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Functions/timeIntervalFrom_28date_3A_29_5F.html">timeIntervalFrom(date:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions/toBinary_28_5F_3Asep_3Apad_3A_29_5F_24s_5F3sep3padSSx_5FSSSgSitcSzRzluD.html">toBinary(_:sep:pad:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/toChar_28codePoint_3A_29_5F_24s9codePointSJs6UInt32V_5FtcD.html">toChar(codePoint:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html">toHex(_:pad:)</a>
@@ -369,6 +387,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/Locking.html">Locking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SimpleCharInputStream.html">SimpleCharInputStream</a>
               </li>
             </ul>
           </li>
@@ -481,13 +502,13 @@
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">CharInputStream</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/CharStream.html">CharStream</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">CharInputStream</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/SimpleCharInputStream.html">SimpleCharInputStream</a></span></code></pre>
 
                 </div>
               </div>
             
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L27-L137">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L61-L118">Show on GitHub</a>
               </div>
           </section>
           <section class="section task-group-section">
@@ -518,67 +539,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L32">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon15CharInputStreamP5isEOFSbvp"></a>
-                    <a name="//apple_ref/swift/Property/isEOF" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon15CharInputStreamP5isEOFSbvp">isEOF</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p><code>true</code> if the stream is at the end-of-file.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">isEOF</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L37">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon15CharInputStreamP17hasCharsAvailableSbvp"></a>
-                    <a name="//apple_ref/swift/Property/hasCharsAvailable" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon15CharInputStreamP17hasCharsAvailableSbvp">hasCharsAvailable</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p><code>true</code> if the stream has characters ready to be read.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">hasCharsAvailable</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L42">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L66">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -608,7 +569,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L47">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L71">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -638,7 +599,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L52">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L76">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -668,119 +629,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L57">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon15CharInputStreamP4readSJSgyKF"></a>
-                    <a name="//apple_ref/swift/Method/read()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon15CharInputStreamP4readSJSgyKF">read()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Read one character.</p>
-<div class="aside aside-throws">
-    <p class="aside-title">Throws</p>
-    if an I/O error occurs.
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">read</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Character</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>the next character or <code>nil</code> if EOF.</p>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L65">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon15CharInputStreamP4read5chars9maxLengthSiSaySJGz_SitKF"></a>
-                    <a name="//apple_ref/swift/Method/read(chars:maxLength:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon15CharInputStreamP4read5chars9maxLengthSiSaySJGz_SitKF">read(chars:<wbr>maxLength:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Read <code><a href="https://developer.apple.com/documentation/swift/Character">Character</a></code>s from the stream.</p>
-<div class="aside aside-throws">
-    <p class="aside-title">Throws</p>
-    if an I/O error occurs.
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">read</span><span class="p">(</span><span class="nv">chars</span><span class="p">:</span> <span class="k">inout</span> <span class="p">[</span><span class="kt">Character</span><span class="p">],</span> <span class="nv">maxLength</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>chars</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the <code><a href="https://developer.apple.com/documentation/swift/Array">Array</a></code> to receive the
-   <code><a href="https://developer.apple.com/documentation/swift/Character">Character</a></code>s.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>maxLength</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the maximum number of <code><a href="https://developer.apple.com/documentation/swift/Character">Character</a></code>s to receive. If -1 then all
-       <code><a href="https://developer.apple.com/documentation/swift/Character">Character</a></code>s are read until the end-of-file.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>the number of <code><a href="https://developer.apple.com/documentation/swift/Character">Character</a></code>s read. Will return 0
-       (<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code>) if the stream is at end-of-file.</p>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L79">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L81">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -810,7 +659,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L84">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L86">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -840,7 +689,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L89">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L91">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -870,7 +719,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L94">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L96">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -901,7 +750,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L100">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L102">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -932,7 +781,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L106">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L108">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -987,251 +836,7 @@ this method does nothing.</p>
                         <p>the number of characters actually backed out in case there weren&rsquo;t <code>count</code> characters available.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L115">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon15CharInputStreamP4push4charySJ_tF"></a>
-                    <a name="//apple_ref/swift/Method/push(char:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon15CharInputStreamP4push4charySJ_tF">push(char:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Push a single character back onto the input stream so that it becomes the next character read.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">push</span><span class="p">(</span><span class="nv">char</span><span class="p">:</span> <span class="kt">Character</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>char</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the character.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L122">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon15CharInputStreamP4push5charsySaySJG_tF"></a>
-                    <a name="//apple_ref/swift/Method/push(chars:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon15CharInputStreamP4push5charsySaySJG_tF">push(chars:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Push an array of characters back onto the input stream so that they become the next characters read.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">push</span><span class="p">(</span><span class="nv">chars</span><span class="p">:</span> <span class="p">[</span><span class="kt">Character</span><span class="p">])</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>chars</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the characters.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L129">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon15CharInputStreamP4push6stringySS_tF"></a>
-                    <a name="//apple_ref/swift/Method/push(string:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon15CharInputStreamP4push6stringySS_tF">push(string:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Push a string back onto the input stream so that they become the next characters read. Grapheme clusters are NOT broken up.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">push</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>string</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the string of characters.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L136">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon15CharInputStreamPAAE4read5charsSiSaySJGz_tKF"></a>
-                    <a name="//apple_ref/swift/Method/read(chars:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon15CharInputStreamPAAE4read5charsSiSaySJGz_tKF">read(chars:<wbr>)</a>
-                    </code>
-                      <span class="declaration-note">
-                        Extension method
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Read <code><a href="https://developer.apple.com/documentation/swift/Character">Character</a></code>s from the stream.</p>
-<div class="aside aside-throws">
-    <p class="aside-title">Throws</p>
-    if an I/O error occurs.
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">func</span> <span class="nf">read</span><span class="p">(</span><span class="nv">chars</span><span class="p">:</span> <span class="k">inout</span> <span class="p">[</span><span class="kt">Character</span><span class="p">])</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>chars</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the <code><a href="https://developer.apple.com/documentation/swift/Array">Array</a></code> to receive the
-   <code><a href="https://developer.apple.com/documentation/swift/Character">Character</a></code>s.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>the number of <code><a href="https://developer.apple.com/documentation/swift/Character">Character</a></code>s read. Will return 0
-       (<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code>) if the stream is at end-of-file.</p>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L151-L153">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon15CharInputStreamPAAE6append2to9maxLengthSiSaySJGz_SitKF"></a>
-                    <a name="//apple_ref/swift/Method/append(to:maxLength:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon15CharInputStreamPAAE6append2to9maxLengthSiSaySJGz_SitKF">append(to:<wbr>maxLength:<wbr>)</a>
-                    </code>
-                      <span class="declaration-note">
-                        Extension method
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">func</span> <span class="nf">append</span><span class="p">(</span><span class="n">to</span> <span class="nv">chars</span><span class="p">:</span> <span class="k">inout</span> <span class="p">[</span><span class="kt">Character</span><span class="p">],</span> <span class="n">maxLength</span> <span class="nv">len</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L155-L160">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L117">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1274,7 +879,7 @@ this method does nothing.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-03-28)</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-03-29)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

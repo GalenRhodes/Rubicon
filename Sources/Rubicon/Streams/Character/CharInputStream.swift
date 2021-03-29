@@ -24,13 +24,7 @@ import Foundation
 
 public let UnicodeReplacementChar: Character = "�"
 
-public protocol CharInputStream: CharStream {
-
-    /*===========================================================================================================================================================================*/
-    /// The number of marks on the stream.
-    ///
-    var markCount:         Int { get }
-
+public protocol SimpleCharInputStream: CharStream {
     /*===========================================================================================================================================================================*/
     /// `true` if the stream is at the end-of-file.
     ///
@@ -42,23 +36,8 @@ public protocol CharInputStream: CharStream {
     var hasCharsAvailable: Bool { get }
 
     /*===========================================================================================================================================================================*/
-    /// The current line number.
-    ///
-    var lineNumber:        Int { get }
-
-    /*===========================================================================================================================================================================*/
-    /// The current column number.
-    ///
-    var columnNumber:      Int { get }
-
-    /*===========================================================================================================================================================================*/
-    /// The number of spaces in each tab stop.
-    ///
-    var tabWidth:          Int { get set }
-
-    /*===========================================================================================================================================================================*/
     /// Read one character.
-    /// 
+    ///
     /// - Returns: the next character or `nil` if EOF.
     /// - Throws: if an I/O error occurs.
     ///
@@ -66,7 +45,7 @@ public protocol CharInputStream: CharStream {
 
     /*===========================================================================================================================================================================*/
     /// Read <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s from the stream.
-    /// 
+    ///
     /// - Parameters:
     ///   - chars: the <code>[Array](https://developer.apple.com/documentation/swift/Array)</code> to receive the
     ///            <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s.
@@ -77,6 +56,29 @@ public protocol CharInputStream: CharStream {
     /// - Throws: if an I/O error occurs.
     ///
     func read(chars: inout [Character], maxLength: Int) throws -> Int
+}
+
+public protocol CharInputStream: SimpleCharInputStream {
+
+    /*===========================================================================================================================================================================*/
+    /// The number of marks on the stream.
+    ///
+    var markCount:    Int { get }
+
+    /*===========================================================================================================================================================================*/
+    /// The current line number.
+    ///
+    var lineNumber:   Int { get }
+
+    /*===========================================================================================================================================================================*/
+    /// The current column number.
+    ///
+    var columnNumber: Int { get }
+
+    /*===========================================================================================================================================================================*/
+    /// The number of spaces in each tab stop.
+    ///
+    var tabWidth:     Int { get set }
 
     /*===========================================================================================================================================================================*/
     /// Marks the current point in the stream so that it can be returned to later. You can set more than one mark but all operations happen on the most recently set mark.
@@ -108,56 +110,22 @@ public protocol CharInputStream: CharStream {
     /*===========================================================================================================================================================================*/
     /// Backs out the last `count` characters from the most recently set mark without actually removing the entire mark. You have to have previously called `markSet()` otherwise
     /// this method does nothing.
-    /// 
+    ///
     /// - Parameter count: the number of characters to back out.
     /// - Returns: the number of characters actually backed out in case there weren't `count` characters available.
     ///
     @discardableResult func markBackup(count: Int) -> Int
-
-    /*===========================================================================================================================================================================*/
-    /// Push a single character back onto the input stream so that it becomes the next character read.
-    /// 
-    /// - Parameter char: the character.
-    ///
-    func push(char: Character)
-
-    /*===========================================================================================================================================================================*/
-    /// Push an array of characters back onto the input stream so that they become the next characters read.
-    /// 
-    /// - Parameter chars: the characters.
-    ///
-    func push(chars: [Character])
-
-    /*===========================================================================================================================================================================*/
-    /// Push a string back onto the input stream so that they become the next characters read. Grapheme clusters are NOT broken up.
-    /// 
-    /// - Parameter string: the string of characters.
-    ///
-    func push(string: String)
 }
 
-public extension CharInputStream {
-
-    /*===========================================================================================================================================================================*/
-    /// Read <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s from the stream.
-    /// 
-    /// - Parameters:
-    ///   - chars: the <code>[Array](https://developer.apple.com/documentation/swift/Array)</code> to receive the
-    ///            <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s.
-    /// - Returns: the number of <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s read. Will return 0
-    ///            (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) if the stream is at end-of-file.
-    /// - Throws: if an I/O error occurs.
-    ///
-    @inlinable func read(chars: inout [Character]) throws -> Int {
-        try read(chars: &chars, maxLength: -1)
-    }
-
+public extension SimpleCharInputStream {
     @inlinable func append(to chars: inout [Character], maxLength len: Int = -1) throws -> Int {
         var newChars: [Character] = []
         let cc                    = try read(chars: &newChars, maxLength: len)
         if cc > 0 { chars.append(contentsOf: newChars) }
         return cc
     }
+}
 
+public extension CharInputStream {
     @discardableResult func markBackup() -> Int { markBackup(count: 1) }
 }

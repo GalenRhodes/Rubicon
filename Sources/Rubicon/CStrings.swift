@@ -44,8 +44,7 @@ open class CString {
     /// encoding then this field will be `nil`.
     ///
     public var string: String? {
-        cString.withMemoryRebound(to: UInt8.self) {
-            (p: UnsafeMutableBufferPointer<UInt8>) in
+        cString.withMemoryRebound(to: UInt8.self) { (p: UnsafeMutableBufferPointer<UInt8>) in
             String(bytes: p, encoding: encoding)
         }
     }
@@ -53,7 +52,7 @@ open class CString {
     /*===========================================================================================================================================================================*/
     /// Initialize this object with the given Swift <code>[String](https://developer.apple.com/documentation/swift/string/)</code>. The characters of the
     /// <code>[String](https://developer.apple.com/documentation/swift/string/)</code> will be encoded as a series of UTF-8 bytes.
-    /// 
+    ///
     /// - Parameter string: the string.
     ///
     public init(string: String) {
@@ -71,7 +70,7 @@ open class CString {
     /*===========================================================================================================================================================================*/
     /// Initialize this object with the contents of the byte (unsigned char) buffer. The bytes will be interpreted as a series of characters encoded with the given character
     /// encoding.
-    /// 
+    ///
     /// - Parameters:
     ///   - byteBuffer: the byte buffer.
     ///   - hasNullTerminator: `true` if the buffer includes a `nil` terminating character. Defaults to `false`.
@@ -85,7 +84,7 @@ open class CString {
     /*===========================================================================================================================================================================*/
     /// Initialize this object with the contents of the character (signed char) buffer. The characters will be interpreted as a series of characters encoded with the given
     /// character encoding.
-    /// 
+    ///
     /// - Parameters:
     ///   - charBuffer: the character buffer.
     ///   - hasNullTerminator: `true` if the buffer includes a `nil` terminating character. Defaults to `false`.
@@ -100,7 +99,7 @@ open class CString {
     /// Initializes this object with the contents of the immutable character (signed char) from the given pointer. If length is not given or is less than
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the string MUST be `nil` terminated. If the length is less than
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> and the string is NOT `nil` terminated then the behavior of this initializer is undefined.
-    /// 
+    ///
     /// - Parameters:
     ///   - cString: the pointer to the characters.
     ///   - length: the length of the string. If less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the string MUST be `nil` terminated.
@@ -119,7 +118,7 @@ open class CString {
     /// Initializes this object with the contents of the mutable character (signed char) from the given pointer. If length is not given or is less than
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the string MUST be `nil` terminated. If the length is less than
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> and the string is NOT `nil` terminated then the behavior of this initializer is undefined.
-    /// 
+    ///
     /// - Parameters:
     ///   - cString: the pointer to the characters.
     ///   - length: the length of the string. If less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the string MUST be `nil` terminated.
@@ -136,7 +135,7 @@ open class CString {
     /// Initializes this object with the contents of the immutable bytes (unsigned char) from the given pointer. If length is not given or is less than
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the string MUST be `nil` terminated. If the length is less than
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> and the string is NOT `nil` terminated then the behavior of this initializer is undefined.
-    /// 
+    ///
     /// - Parameters:
     ///   - cString: the pointer to the bytes.
     ///   - length: the length of the string. If less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the string MUST be `nil` terminated.
@@ -144,8 +143,7 @@ open class CString {
     ///
     public init(utf8String: ByteROPointer, length: Int = -1, encoding: String.Encoding = String.Encoding.utf8) {
         let length: Int = (cStrLen(cStringPtr: utf8String) + 1)
-        let s: CCharBuffer = utf8String.withMemoryRebound(to: CChar.self, capacity: length) {
-            (p: CCharROPointer) -> CCharBuffer in
+        let s: CCharBuffer = utf8String.withMemoryRebound(to: CChar.self, capacity: length) { (p: CCharROPointer) -> CCharBuffer in
             let p2: CCharROPointer = p
             return CCharBuffer(start: UnsafeMutablePointer(mutating: p2), count: length)
         }
@@ -158,7 +156,7 @@ open class CString {
     /// Initializes this object with the contents of the mutable bytes (unsigned char) from the given pointer. If length is not given or is less than
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the string MUST be `nil` terminated. If the length is less than
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> and the string is NOT `nil` terminated then the behavior of this initializer is undefined.
-    /// 
+    ///
     /// - Parameters:
     ///   - cString: the pointer to the bytes.
     ///   - length: the length of the string. If less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the string MUST be `nil` terminated.
@@ -166,8 +164,7 @@ open class CString {
     ///
     public init(utf8String: BytePointer, length: Int = -1, encoding: String.Encoding = String.Encoding.utf8) {
         let length: Int = (cStrLen(cStringPtr: utf8String) + 1)
-        let s: CCharBuffer = utf8String.withMemoryRebound(to: CChar.self, capacity: length) {
-            (p: CCharPointer) -> CCharBuffer in
+        let s: CCharBuffer = utf8String.withMemoryRebound(to: CChar.self, capacity: length) { (p: CCharPointer) -> CCharBuffer in
             CCharBuffer(start: p, count: length)
         }
         self.cString = s
@@ -177,7 +174,7 @@ open class CString {
 
     /*===========================================================================================================================================================================*/
     /// Used internally.
-    /// 
+    ///
     /// - Parameters:
     ///   - cString: the characters.
     ///   - length: the number of characters.
@@ -195,7 +192,7 @@ open class CString {
     /*===========================================================================================================================================================================*/
     /// Execute the block with an <code>[UnsafeBufferPointer](https://developer.apple.com/documentation/swift/unsafebufferpointer/)</code> of
     /// <code>[Int8](https://developer.apple.com/documentation/swift/int8/)</code> characters.
-    /// 
+    ///
     /// - Parameter block: the block to execute.
     /// - Returns: the value returned by the block.
     /// - Throws: any error thrown by the block.
@@ -206,21 +203,20 @@ open class CString {
 
     /*===========================================================================================================================================================================*/
     /// Execute the block with an <code>[UnsafeBufferPointer](https://developer.apple.com/documentation/swift/unsafebufferpointer/)</code> of UTF-8 encoded characters.
-    /// 
+    ///
     /// - Parameter block: the block to execute.
     /// - Returns: the value returned by the block.
     /// - Throws: any error thrown by the block.
     ///
     public func withUTF8String<T>(_ block: (UnsafeBufferPointer<UInt8>) throws -> T) rethrows -> T {
-        try cString.withMemoryRebound(to: UInt8.self) {
-            (p: UnsafeMutableBufferPointer<UInt8>) in
+        try cString.withMemoryRebound(to: UInt8.self) { (p: UnsafeMutableBufferPointer<UInt8>) in
             try block(UnsafeBufferPointer(p))
         }
     }
 
     /*===========================================================================================================================================================================*/
     /// Execute the block with an UnsafePointer of <code>[Int8](https://developer.apple.com/documentation/swift/int8/)</code> characters.
-    /// 
+    ///
     /// - Parameter block: the block to execute.
     /// - Returns: the value returned by the block.
     /// - Throws: any error thrown by the block.
@@ -235,14 +231,13 @@ open class CString {
 
     /*===========================================================================================================================================================================*/
     /// Execute the block with an UnsafePointer of UTF-8 characters.
-    /// 
+    ///
     /// - Parameter block: the block to execute.
     /// - Returns: the value returned by the block.
     /// - Throws: any error thrown by the block.
     ///
     public func withNullTerminatedUTF8String<T>(_ block: (ByteROPointer, Int) throws -> T) rethrows -> T {
-        try cString.withMemoryRebound(to: UInt8.self) {
-            (p1: ByteBuffer) in
+        try cString.withMemoryRebound(to: UInt8.self) { (p1: ByteBuffer) in
             if let p2: BytePointer = p1.baseAddress {
                 return try block(p2, cString.count - 1)
             }
@@ -253,20 +248,20 @@ open class CString {
 
     /*===========================================================================================================================================================================*/
     /// Create a new CString and do something with it right away. So, for example, instead of having to do this:
-    /// 
+    ///
     /// <pre>
     ///    let buffer = UnsafeMutablePointer<Int8>.allocate(capacity: 256)
     ///    defer { buffer.deallocate() }
     ///    guard strerror_r(code, buffer, 255) == 0 else { return "Unknown Error: \(code)" }
     ///    let str = String(utf8String: buffer) ?? "Unknown Error: \(code)"
     /// </pre>
-    /// 
+    ///
     /// You can, instead, do this:
-    /// 
+    ///
     /// <pre>
     ///     let str = (CString.newUtf8BufferOf(length: 255) { ((strerror_r(code, $0, $1) == 0) ? strlen($0) : -1) })?.string ?? "Unknown Error: \(code)"
     /// </pre>
-    /// 
+    ///
     /// - Parameters:
     ///   - length: The length of the buffer to create NOT INCLUDING the `nil` terminator.
     ///   - block: the closure that will get executed. The buffer and it's length, NOT INCLUDING the `nil` terminator, will be passed to the closure. Upon success the closure
@@ -275,10 +270,8 @@ open class CString {
     /// - Returns: an instance of CString or `nil` if -1 was returned from the closure.
     ///
     public static func newUtf8BufferOf(length: Int, _ block: (BytePointer, Int) throws -> Int) -> CString? {
-        newCCharBufferOf(length: length) {
-            (p: UnsafeMutablePointer<CChar>, pLength: Int) in
-            try p.withMemoryRebound(to: UInt8.self, capacity: pLength + 1) {
-                (p2: BytePointer) in
+        newCCharBufferOf(length: length) { (p: UnsafeMutablePointer<CChar>, pLength: Int) in
+            try p.withMemoryRebound(to: UInt8.self, capacity: pLength + 1) { (p2: BytePointer) in
                 try block(p2, pLength)
             }
         }
@@ -286,20 +279,20 @@ open class CString {
 
     /*===========================================================================================================================================================================*/
     /// Create a new CString and do something with it right away. So, for example, instead of having to do this:
-    /// 
+    ///
     /// <pre>
     ///    let buffer = UnsafeMutablePointer<Int8>.allocate(capacity: 256)
     ///    defer { buffer.deallocate() }
     ///    guard strerror_r(code, buffer, 255) == 0 else { return "Unknown Error: \(code)" }
     ///    let str = String(cString: buffer, encoding: String.Encoding.windowsCP1250) ?? "Unknown Error: \(code)"
     /// </pre>
-    /// 
+    ///
     /// You can, instead, do this:
-    /// 
+    ///
     /// <pre>
     ///     let str = (CString.newCCharBufferOf(length: 255, encoding: String.Encoding.windowsCP1250) { ((strerror_r(code, $0, $1) == 0) ? strlen($0) : -1) })?.string ?? "Unknown Error: \(code)"
     /// </pre>
-    /// 
+    ///
     /// - Parameters:
     ///   - length: The length of the buffer to create NOT INCLUDING the `nil` terminator.
     ///   - encoding: the encoding that the characters are expected to be in. Defaults to UTF-8.
@@ -331,7 +324,7 @@ open class CString {
                 }
             }
             catch {
-/* Do Nothing */
+                /* Do Nothing */
             }
         }
 
@@ -356,15 +349,13 @@ open class CString {
 }
 
 @inlinable func cString002(_ byteBuffer: ByteROBuffer, _ hasNullTerminator: Bool) -> CCharBuffer {
-    byteBuffer.withMemoryRebound(to: CChar.self) {
-        (p2: CCharROBuffer) in
+    byteBuffer.withMemoryRebound(to: CChar.self) { (p2: CCharROBuffer) in
         cString003(p2, hasNullTerminator)
     }
 }
 
 @inlinable func cString001(_ string: String) -> CCharBuffer {
-    string.utf8.withContiguousStorageIfAvailable({
-        (p1: ByteROBuffer) -> CCharBuffer in
+    string.utf8.withContiguousStorageIfAvailable({ (p1: ByteROBuffer) -> CCharBuffer in
         cString002(p1, false)
     }) ?? cString004()
 }

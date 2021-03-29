@@ -27,7 +27,7 @@ public extension Data {
     /*===========================================================================================================================================================================*/
     /// Allows creating of a <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code> struct from an <code>[input
     /// stream](https://developer.apple.com/documentation/foundation/inputstream)</code>.
-    /// 
+    ///
     /// - Parameter inputStream: the <code>[input stream](https://developer.apple.com/documentation/foundation/inputstream)</code>.
     ///
     init?(inputStream: InputStream) {
@@ -45,14 +45,13 @@ public extension Data {
     /*===========================================================================================================================================================================*/
     /// For some reason `withUnsafeMutableBytes<T>(block:)` was deprecated on the grounds that the [Data](https://developer.apple.com/documentation/foundation/data/) object could
     /// have a <code>[zero](https://en.wikipedia.org/wiki/0)</code> length.
-    /// 
+    ///
     /// - Parameter block: the closure.
     /// - Returns: the results of executing the closure.
     /// - Throws: any exception thrown by the closure.
     ///
     @discardableResult mutating func withUnsafeMutableBytes2<T>(_ block: (BytePointer) throws -> T) rethrows -> T {
-        try withUnsafeMutableBytes {
-            (ptr1: UnsafeMutableRawBufferPointer) in
+        try withUnsafeMutableBytes { (ptr1: UnsafeMutableRawBufferPointer) in
             if let ptr3: BytePointer = ptr1.bindMemory(to: UInt8.self).baseAddress {
                 return try block(ptr3)
             }
@@ -64,14 +63,13 @@ public extension Data {
     /*===========================================================================================================================================================================*/
     /// For some reason `withUnsafeBytes<T>(block:)` was deprecated on the grounds that the [Data](https://developer.apple.com/documentation/foundation/data/) object could have a
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> length.
-    /// 
+    ///
     /// - Parameter block: the closure.
     /// - Returns: the results of executing the closure.
     /// - Throws: any exception thrown by the closure.
     ///
     @discardableResult func withUnsafeBytes2<T>(_ block: (ByteROPointer) throws -> T) rethrows -> T {
-        try withUnsafeBytes {
-            (ptr1: UnsafeRawBufferPointer) in
+        try withUnsafeBytes { (ptr1: UnsafeRawBufferPointer) in
             if let ptr2: ByteROPointer = ptr1.bindMemory(to: UInt8.self).baseAddress {
                 return try block(ptr2)
             }

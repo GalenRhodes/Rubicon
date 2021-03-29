@@ -22,14 +22,10 @@
 
 import Foundation
 
-let str: String = "Galen 🇺🇸 Rhodes"
+let str: String = "\r\n"
 
-let nsRange = NSRange(str.startIndex ..< str.index(str.startIndex, offsetBy: 9), in: str)
-let range = (String.Index(utf16Offset: nsRange.lowerBound, in: str) ..< String.Index(utf16Offset: nsRange.upperBound, in: str))
-
-let str2 = String(str[range])
-
-print("\(str)")
-print("\(str2)")
+for a in str.unicodeScalars {
+    print("Scalar: \(a.value)")
+}
 
 //

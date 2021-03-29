@@ -757,7 +757,7 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
         #if os(macOS) || os(tvOS) || os(iOS) || os(watchOS)
             // These only exist on Apple OS'.
             switch self {
-//@f:0
+              //@f:0
                 case .AUTH          : return StrError(EAUTH)           /* Authentication error                            */
                 case .BADARCH       : return StrError(EBADARCH)        /* Bad CPU type in executable                      */
                 case .BADEXEC       : return StrError(EBADEXEC)        /* Bad executable                                  */
@@ -784,7 +784,7 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
 
         #if os(Linux)
             switch self {
-//@f:0
+              //@f:0
                 case .ADV        : return StrError(EADV)         /* Advertise error                                 */
                 case .BADE       : return StrError(EBADE)        /* Invalid exchange                                */
                 case .BADFD      : return StrError(EBADFD)       /* File descriptor in bad state                    */
@@ -843,7 +843,7 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
     ///
     public var errorCode:   Int32 {
         switch self {
-//@f:0
+          //@f:0
             case .ACCES         : return EACCES          /* Permission denied                               */
             case .ADDRINUSE     : return EADDRINUSE      /* Address already in use                          */
             case .ADDRNOTAVAIL  : return EADDRNOTAVAIL   /* Can't assign requested address                  */
@@ -940,7 +940,7 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
         #if os(macOS) || os(tvOS) || os(iOS) || os(watchOS)
             // These only exist on Apple OS'.
             switch self {
-//@f:0
+              //@f:0
                 case .AUTH          : return EAUTH           /* Authentication error                            */
                 case .BADARCH       : return EBADARCH        /* Bad CPU type in executable                      */
                 case .BADEXEC       : return EBADEXEC        /* Bad executable                                  */
@@ -967,7 +967,7 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
 
         #if os(Linux)
             switch self {
-//@f:0
+              //@f:0
                 case .ADV        : return EADV         /* Advertise error                                 */
                 case .BADE       : return EBADE        /* Invalid exchange                                */
                 case .BADFD      : return EBADFD       /* File descriptor in bad state                    */
@@ -1026,7 +1026,7 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
     ///
     public var description: String {
         switch self {
-//@f:0
+          //@f:0
             case .ACCES(         description: let desc): return desc /* Permission denied                               */
             case .ADDRINUSE(     description: let desc): return desc /* Address already in use                          */
             case .ADDRNOTAVAIL(  description: let desc): return desc /* Can't assign requested address                  */
@@ -1123,7 +1123,7 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
         #if os(macOS) || os(tvOS) || os(iOS) || os(watchOS)
             // These only exist on Apple OS'.
             switch self {
-//@f:0
+              //@f:0
                 case .AUTH(          description: let desc): return desc /* Authentication error                            */
                 case .BADARCH(       description: let desc): return desc /* Bad CPU type in executable                      */
                 case .BADEXEC(       description: let desc): return desc /* Bad executable                                  */
@@ -1149,7 +1149,7 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
 
         #if os(Linux)
             switch self {
-//@f:0
+              //@f:0
                 case .ADV(        description: let desc): return desc /* Advertise error                                 */
                 case .BADE(       description: let desc): return desc /* Invalid exchange                                */
                 case .BADFD(      description: let desc): return desc /* File descriptor in bad state                    */
@@ -1205,13 +1205,13 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
 
     /*===========================================================================================================================================================================*/
     /// Returns the error for the given code.
-    /// 
+    ///
     /// - Parameter code: the OS error code.
     /// - Returns: the matching error.
     ///
     public static func getErrorFor(code: Int32) -> CErrors {
         switch code {
-//@f:0
+          //@f:0
             case EACCES         : return CErrors.ACCES()          /* Permission denied                               */
             case EADDRINUSE     : return CErrors.ADDRINUSE()      /* Address already in use                          */
             case EADDRNOTAVAIL  : return CErrors.ADDRNOTAVAIL()   /* Can't assign requested address                  */
@@ -1308,7 +1308,7 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
         #if os(macOS) || os(tvOS) || os(iOS) || os(watchOS)
             // These only exist on Apple OS'.
             switch code {
-//@f:0
+              //@f:0
                 case EAUTH          : return CErrors.AUTH()           /* Authentication error                            */
                 case EBADARCH       : return CErrors.BADARCH()        /* Bad CPU type in executable                      */
                 case EBADEXEC       : return CErrors.BADEXEC()        /* Bad executable                                  */
@@ -1335,7 +1335,7 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
 
         #if os(Linux)
             switch code {
-//@f:0
+              //@f:0
                 case EADV        : return CErrors.ADV()         /* Advertise error                                 */
                 case EBADE       : return CErrors.BADE()        /* Invalid exchange                                */
                 case EBADFD      : return CErrors.BADFD()       /* File descriptor in bad state                    */

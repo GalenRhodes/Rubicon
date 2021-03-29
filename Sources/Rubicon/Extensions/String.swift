@@ -529,6 +529,16 @@ extension String {
 
 @inlinable public func tabCalc(pos i: Int, tabSize sz: Int = 4) -> Int { (((((i - 1) + sz) / sz) * sz) + 1) }
 
+@inlinable public func textPositionUpdate(_ char: Character, position pos: (Int, Int), tabSize sz: Int = 4) -> (Int, Int) {
+    switch char {
+        case "\n", "\r", "\r\n": return (pos.0 + 1, 1)
+        case "\t":               return (pos.0, tabCalc(pos: pos.1, tabSize: sz))
+        case "\u{0c}":           return (pos.0 + 24, 1)
+        case "\u{0b}":           return (tabCalc(pos: pos.0, tabSize: sz), pos.1)
+        default:                 return (pos.0, pos.1 + 1)
+    }
+}
+
 infix operator ==~: ComparisonPrecedence
 infix operator !=~: ComparisonPrecedence
 
@@ -558,7 +568,7 @@ extension StringProtocol {
     ///   - rhs: the right-hand string
     /// - Returns: `true` if they are equal when compared case insensitively.
     ///
-    @inlinable public static func ==~(lhs: Self, rhs: Self) -> Bool { (lhs.localizedCaseInsensitiveCompare(rhs) == ComparisonResult.orderedSame) }
+    @inlinable public static func ==~ (lhs: Self, rhs: Self) -> Bool { (lhs.localizedCaseInsensitiveCompare(rhs) == ComparisonResult.orderedSame) }
 
     /*===========================================================================================================================================================================*/
     /// Case insensitive NOT equals.
@@ -568,5 +578,5 @@ extension StringProtocol {
     ///   - rhs: the right-hand string
     /// - Returns: `true` if they are not equal when compared case insensitively.
     ///
-    @inlinable public static func !=~(lhs: Self, rhs: Self) -> Bool { (lhs.localizedCaseInsensitiveCompare(rhs) != ComparisonResult.orderedSame) }
+    @inlinable public static func !=~ (lhs: Self, rhs: Self) -> Bool { (lhs.localizedCaseInsensitiveCompare(rhs) != ComparisonResult.orderedSame) }
 }

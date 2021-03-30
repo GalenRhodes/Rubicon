@@ -28,24 +28,20 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Corrected some documentation.">
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" afterDir="false" />
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Created SimpleCharInputStream and SimpleIConvCharInputStream.">
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleCharInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/BinaryTree/BinaryTreeDictionary.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/BinaryTree/BinaryTreeDictionary.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/CErrors.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/CErrors.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/CStrings.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/CStrings.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Data.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Data.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/NSRange.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/NSRange.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Stream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Stream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/String.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/String.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/CharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/CharInputStream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/CharStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/CharStream.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Working/test.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Working/test.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Text/IConv.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Text/IConv.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Element.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Element.html" afterDir="false" />
@@ -72,7 +68,6 @@
       <change beforePath="$PROJECT_DIR$/docs/Classes/IConv/Response.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/IConv/Response.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/IConv/Results.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/IConv/Results.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream/Status.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/MarkInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/MarkInputStream.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/NanoTimer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/NanoTimer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/PGThread.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/PGThread.html" afterDir="false" />
@@ -88,7 +83,7 @@
       <change beforePath="$PROJECT_DIR$/docs/Classes/RegularExpression/NamedGroup.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/RegularExpression/NamedGroup.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/RegularExpression/Options.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/RegularExpression/Options.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/RingByteBuffer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/RingByteBuffer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/UTF8CharInputStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/SimpleIConvCharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/SimpleIConvCharInputStream.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Enums.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Enums.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Enums/CErrors.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Enums/CErrors.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Enums/NanoTimerError.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Enums/NanoTimerError.html" afterDir="false" />
@@ -150,13 +145,19 @@
       <change beforePath="$PROJECT_DIR$/docs/Functions/streamStatusGood_28_5F_3A_29_5F_24sySbSo14NSStreamStatusVcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/streamStatusGood_28_5F_3A_29_5F_24sySbSo14NSStreamStatusVcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/tabCalc_28pos_3AtabSize_3A_29_5F_24s3pos7tabSizeS2i_5FSitcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/tabCalc_28pos_3AtabSize_3A_29_5F_24s3pos7tabSizeS2i_5FSitcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/textPositionUpdate_28_5F_3Aposition_3AtabSize_3A_29_5F_24s_5F8position7tabSizeSi_5FSitSJ_5FSi_5FSitSitcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/textPositionUpdate_28_5F_3Aposition_3AtabSize_3A_29_5F_24s_5F8position7tabSizeSi_5FSitSJ_5FSi_5FSitSitcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/timeIntervalFrom_28date_3A_29_5F.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/timeIntervalFrom_28date_3A_29_5F.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/toBinary_28_5F_3Asep_3Apad_3A_29_5F_24s_5F3sep3padSSx_5FSSSgSitcSzRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/toBinary_28_5F_3Asep_3Apad_3A_29_5F_24s_5F3sep3padSSx_5FSSSgSitcSzRzluD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/toChar_28codePoint_3A_29_5F_24s9codePointSJs6UInt32V_5FtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/toChar_28codePoint_3A_29_5F_24s9codePointSJs6UInt32V_5FtcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/value_28_5F_3AisOneOf_3A_29_5F_24s_5F7isOneOfSbx_5FxdtcSQRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/value_28_5F_3AisOneOf_3A_29_5F_24s_5F7isOneOfSbx_5FxdtcSQRzluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/~~_28_5F_3A_29_5F_24syxxcs17FixedWidthIntegerRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/~~_28_5F_3A_29_5F_24syxxcs17FixedWidthIntegerRzluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Global Variables.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Global Variables.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Global Variables/BasicBufferSize.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Global Variables/BasicBufferSize.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Global Variables/CR_5FCHARACTER.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Global Variables/CR_5FCHARACTER.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Global Variables/LFCR_5FCHARACTER.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Global Variables/LFCR_5FCHARACTER.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Global Variables/LF_5FCHARACTER.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Global Variables/LF_5FCHARACTER.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Global Variables/LINE_5FFEED_5FCODEPOINT.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Global Variables/LINE_5FFEED_5FCODEPOINT.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Global Variables/OneSecondMicros.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Global Variables/OneSecondMicros.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Global Variables/OneSecondMillis.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Global Variables/OneSecondMillis.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Global Variables/OneSecondNanos.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Global Variables/OneSecondNanos.html" afterDir="false" />
@@ -167,6 +168,7 @@
       <change beforePath="$PROJECT_DIR$/docs/Protocols/Closable.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Protocols/Closable.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Protocols/LockCondition.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Protocols/LockCondition.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Protocols/Locking.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Protocols/Locking.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Protocols/SimpleCharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Protocols/SimpleCharInputStream.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Structs.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Structs.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Structs/OStringXForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Structs/OStringXForm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Structs/OStringXForm/XForms.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Structs/OStringXForm/XForms.html" afterDir="false" />
@@ -226,7 +228,6 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConv/Response.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConv/Response.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConv/Results.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConv/Results.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream/Status.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/MarkInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/MarkInputStream.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/NanoTimer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/NanoTimer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/PGThread.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/PGThread.html" afterDir="false" />
@@ -242,7 +243,7 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RegularExpression/NamedGroup.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RegularExpression/NamedGroup.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RegularExpression/Options.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RegularExpression/Options.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RingByteBuffer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RingByteBuffer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/UTF8CharInputStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/SimpleIConvCharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/SimpleIConvCharInputStream.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/CErrors.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/CErrors.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/NanoTimerError.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/NanoTimerError.html" afterDir="false" />
@@ -304,13 +305,19 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/streamStatusGood_28_5F_3A_29_5F_24sySbSo14NSStreamStatusVcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/streamStatusGood_28_5F_3A_29_5F_24sySbSo14NSStreamStatusVcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/tabCalc_28pos_3AtabSize_3A_29_5F_24s3pos7tabSizeS2i_5FSitcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/tabCalc_28pos_3AtabSize_3A_29_5F_24s3pos7tabSizeS2i_5FSitcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/textPositionUpdate_28_5F_3Aposition_3AtabSize_3A_29_5F_24s_5F8position7tabSizeSi_5FSitSJ_5FSi_5FSitSitcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/textPositionUpdate_28_5F_3Aposition_3AtabSize_3A_29_5F_24s_5F8position7tabSizeSi_5FSitSJ_5FSi_5FSitSitcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/timeIntervalFrom_28date_3A_29_5F.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/timeIntervalFrom_28date_3A_29_5F.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/toBinary_28_5F_3Asep_3Apad_3A_29_5F_24s_5F3sep3padSSx_5FSSSgSitcSzRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/toBinary_28_5F_3Asep_3Apad_3A_29_5F_24s_5F3sep3padSSx_5FSSSgSitcSzRzluD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/toChar_28codePoint_3A_29_5F_24s9codePointSJs6UInt32V_5FtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/toChar_28codePoint_3A_29_5F_24s9codePointSJs6UInt32V_5FtcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/value_28_5F_3AisOneOf_3A_29_5F_24s_5F7isOneOfSbx_5FxdtcSQRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/value_28_5F_3AisOneOf_3A_29_5F_24s_5F7isOneOfSbx_5FxdtcSQRzluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/~~_28_5F_3A_29_5F_24syxxcs17FixedWidthIntegerRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/~~_28_5F_3A_29_5F_24syxxcs17FixedWidthIntegerRzluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/BasicBufferSize.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/BasicBufferSize.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/CR_5FCHARACTER.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/CR_5FCHARACTER.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/LFCR_5FCHARACTER.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/LFCR_5FCHARACTER.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/LF_5FCHARACTER.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/LF_5FCHARACTER.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/LINE_5FFEED_5FCODEPOINT.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/LINE_5FFEED_5FCODEPOINT.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/OneSecondMicros.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/OneSecondMicros.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/OneSecondMillis.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/OneSecondMillis.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/OneSecondNanos.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/OneSecondNanos.html" afterDir="false" />
@@ -321,6 +328,7 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/Closable.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/Closable.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/LockCondition.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/LockCondition.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/Locking.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/Locking.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/SimpleCharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/SimpleCharInputStream.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/OStringXForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/OStringXForm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/OStringXForm/XForms.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/OStringXForm/XForms.html" afterDir="false" />
@@ -600,14 +608,8 @@
       <workItem from="1616928680230" duration="26000" />
       <workItem from="1616939049593" duration="41000" />
       <workItem from="1616939697620" duration="3243000" />
-      <workItem from="1617017326424" duration="24589000" />
-    </task>
-    <task id="LOCAL-00094" summary="New class wrapping NSRegularExpression to make it easier to use.">
-      <created>1611105611942</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1611105611942</updated>
+      <workItem from="1617017326424" duration="25155000" />
+      <workItem from="1617104242870" duration="6518000" />
     </task>
     <task id="LOCAL-00095" summary="New class wrapping NSRegularExpression to make it easier to use.">
       <created>1611108608496</created>
@@ -945,7 +947,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616927830209</updated>
     </task>
-    <option name="localTasksCounter" value="143" />
+    <task id="LOCAL-00143" summary="Created SimpleCharInputStream and SimpleIConvCharInputStream.">
+      <created>1617048811259</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1617048811259</updated>
+    </task>
+    <option name="localTasksCounter" value="144" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -978,7 +987,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Performance improvements to IConvCharInputStream." />
     <MESSAGE value="Added:&#10;    func hasAnyPrefix(_ prefixes: String...) -&gt; Bool&#10;    func hasAnySuffix(_ suffixes: String...) -&gt; Bool" />
     <MESSAGE value="Updated documentation." />
     <MESSAGE value="CharInputStream will now track the current line and column." />
@@ -1003,7 +1011,8 @@
     <MESSAGE value="Created operator ==~ to allow easy case insensitive string equality." />
     <MESSAGE value="Created operator !=~ to allow easy case insensitive string inequality." />
     <MESSAGE value="Corrected some documentation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected some documentation." />
+    <MESSAGE value="Created SimpleCharInputStream and SimpleIConvCharInputStream." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created SimpleCharInputStream and SimpleIConvCharInputStream." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="CidrCoverage/Rubicon/Rubicon Tests.json" NAME="Rubicon Tests Coverage Results" MODIFIED="1608608581698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="llvm-cov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

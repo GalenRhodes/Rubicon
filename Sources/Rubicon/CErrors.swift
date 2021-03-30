@@ -1205,7 +1205,7 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
 
     /*===========================================================================================================================================================================*/
     /// Returns the error for the given code.
-    ///
+    /// 
     /// - Parameter code: the OS error code.
     /// - Returns: the matching error.
     ///

@@ -31,24 +31,20 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     /*===========================================================================================================================================================================*/
     /// The current line number.
     ///
-    @inlinable open var lineNumber:                 Int  { xlock.withLock { line                                          } }
+    @inlinable open var lineNumber:                 Int           { lock.withLock { line                                          } }
     /*===========================================================================================================================================================================*/
     /// The current column number.
     ///
-    @inlinable open var columnNumber:               Int  { xlock.withLock { column                                        } }
+    @inlinable open var columnNumber:               Int           { lock.withLock { column                                        } }
     /*===========================================================================================================================================================================*/
     /// The number of marks on the stream.
     ///
-    @inlinable open var markCount:                  Int  { xlock.withLock { markStack.count                               } }
+    @inlinable open var markCount:                  Int           { lock.withLock { markStack.count                               } }
 
-    /*===========================================================================================================================================================================*/
-    /// `true` if the stream is at the end-of-file.
-    ///
-    @inlinable open override var isEOF:             Bool { xlock.withLock { (super.isEOF && xbuffer.isEmpty)              } }
     /*===========================================================================================================================================================================*/
     /// `true` if the stream has characters ready to be read.
     ///
-    @inlinable open override var hasCharsAvailable: Bool { xlock.withLock { (super.hasCharsAvailable || !xbuffer.isEmpty) } }
+    @inlinable open override var hasCharsAvailable: Bool          { lock.withLock { (hasChars || !xbuffer.isEmpty) } }
     // @f:1
 
     /*===========================================================================================================================================================================*/
@@ -59,23 +55,19 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     /*===========================================================================================================================================================================*/
     /// The current line number.
     ///
-    @usableFromInline var line:      Int           = 1
+    @usableFromInline      var line:      Int           = 1
     /*===========================================================================================================================================================================*/
     /// The current column number.
     ///
-    @usableFromInline var column:    Int           = 1
+    @usableFromInline      var column:    Int           = 1
     /*===========================================================================================================================================================================*/
     /// The mark stack.
     ///
-    @usableFromInline var markStack: [MarkItem]    = []
+    @usableFromInline      var markStack: [MarkItem]    = []
     /*===========================================================================================================================================================================*/
     /// The character buffer to hold restored characters.
     ///
-    @usableFromInline var xbuffer:   [Character]   = []
-    /*===========================================================================================================================================================================*/
-    /// A recursive lock.
-    ///
-    @usableFromInline let xlock:     RecursiveLock = RecursiveLock()
+    @usableFromInline      var xbuffer:   [Character]   = []
 
     /*===========================================================================================================================================================================*/
     /// Create a new instance of this character input stream from an existing byte input stream.
@@ -94,8 +86,8 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     /// - Throws: if an I/O error occurs.
     ///
     @inlinable open override func read() throws -> Character? {
-        try xlock.withLock {
-            if let ch = try _read() {
+        try lock.withLock {
+            if let ch = try __read() {
                 if let mi = markStack.last { (line, column) = mi.add(line, column, tabWidth, ch) }
                 else { (line, column) = textPositionUpdate(ch, position: (line, column), tabSize: tabWidth) }
                 return ch
@@ -117,7 +109,7 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     /// - Throws: if an I/O error occurs.
     ///
     @inlinable open override func read(chars: inout [Character], maxLength: Int) throws -> Int {
-        try xlock.withLock {
+        try lock.withLock {
             let cc = try _read(chars: &chars, maxLength: maxLength)
             if cc > 0 {
                 if let mi = markStack.last { for ch in chars { (line, column) = mi.add(line, column, tabWidth, ch) } }
@@ -130,29 +122,29 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     /*===========================================================================================================================================================================*/
     /// Marks the current point in the stream so that it can be returned to later. You can set more than one mark but all operations happen on the most recently set mark.
     ///
-    @inlinable open func markSet() { xlock.withLock { markStack <+ MarkItem() } }
+    @inlinable open func markSet() { lock.withLock { markStack <+ MarkItem() } }
 
     /*===========================================================================================================================================================================*/
     /// Removes and returns to the most recently set mark.
     ///
-    @inlinable open func markReturn() { xlock.withLock { _markReturn() } }
+    @inlinable open func markReturn() { lock.withLock { _markReturn() } }
 
     /*===========================================================================================================================================================================*/
     /// Removes the most recently set mark WITHOUT returning to it.
     ///
-    @inlinable open func markDelete() { xlock.withLock { _ = markStack.popLast() } }
+    @inlinable open func markDelete() { lock.withLock { _ = markStack.popLast() } }
 
     /*===========================================================================================================================================================================*/
     /// Returns to the most recently set mark WITHOUT removing it. If there was no previously set mark then a new one is created. This is functionally equivalent to performing a
     /// `markReturn()` followed immediately by a `markSet()`.
     ///
-    @inlinable open func markReset() { xlock.withLock { _markReturn(); markStack <+ MarkItem() } }
+    @inlinable open func markReset() { lock.withLock { _markReturn(); markStack <+ MarkItem() } }
 
     /*===========================================================================================================================================================================*/
     /// Updates the most recently set mark to the current position. If there was no previously set mark then a new one is created. This is functionally equivalent to performing a
     /// `markDelete()` followed immediately by a `markSet()`.
     ///
-    @inlinable open func markUpdate() { xlock.withLock { _ = markStack.popLast(); markStack <+ MarkItem() } }
+    @inlinable open func markUpdate() { lock.withLock { _ = markStack.popLast(); markStack <+ MarkItem() } }
 
     /*===========================================================================================================================================================================*/
     /// Backs out the last `count` characters from the most recently set mark without actually removing the entire mark. You have to have previously called `markSet()` otherwise
@@ -163,7 +155,7 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     ///
     @discardableResult open func markBackup(count: Int) -> Int {
         if count > 0 {
-            return xlock.withLock {
+            return lock.withLock {
                 if let mi = markStack.last {
                     for cc in (0 ..< count) {
                         guard let data = mi.data.popLast() else { return cc }
@@ -176,6 +168,24 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
             }
         }
         return 0
+    }
+
+    @inlinable open override func open() {
+        lock.withLock {
+            line = 1
+            column = 1
+            _open()
+        }
+    }
+
+    @inlinable open override func close() {
+        lock.withLock {
+            _close()
+            markStack.removeAll(keepingCapacity: false)
+            xbuffer.removeAll(keepingCapacity: false)
+            line = 0
+            column = 0
+        }
     }
 
     /*===========================================================================================================================================================================*/
@@ -195,8 +205,8 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     /// - Returns: the next character or `nil` if EOF.
     /// - Throws: if an I/O error occurs.
     ///
-    @inlinable func _read() throws -> Character? {
-        if xbuffer.isEmpty { return try super.read() }
+    @inlinable func __read() throws -> Character? {
+        if xbuffer.isEmpty { return try _read() }
         return xbuffer.popFirst()
     }
 
@@ -212,7 +222,7 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     ///            (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) if the stream is at end-of-file.
     /// - Throws: if an I/O error occurs.
     ///
-    @usableFromInline func _read(chars: inout [Character], maxLength: Int) throws -> Int {
+    @usableFromInline func __read(chars: inout [Character], maxLength: Int) throws -> Int {
         if !chars.isEmpty { chars.removeAll(keepingCapacity: true) }
 
         let cc1 = xbuffer.count
@@ -225,7 +235,7 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
         let cc2 = chars.count
         if cc2 < maxLength {
             var xchars: [Character] = []
-            let cc3:    Int         = try super.read(chars: &xchars, maxLength: (maxLength - cc2))
+            let cc3:    Int         = try _read(chars: &xchars, maxLength: (maxLength - cc2))
             if cc3 > 0 { chars.append(contentsOf: xchars) }
         }
 

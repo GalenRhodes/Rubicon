@@ -32,7 +32,7 @@ public extension NSRange {
     /// <code>[String](https://developer.apple.com/documentation/swift/string)</code>. Returns `nil` if this
     /// <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> is not valid for the given
     /// [String](https://developer.apple.com/documentation/swift/string)</code>.
-    ///
+    /// 
     /// - Parameter string: the <code>[String](https://developer.apple.com/documentation/swift/string)</code>.
     /// - Returns: the slice range for the given string based on this <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> or `nil` if this
     ///            <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> is not valid.

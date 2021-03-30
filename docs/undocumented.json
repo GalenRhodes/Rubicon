@@ -100,7 +100,7 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/BinaryTree/BinaryTreeDictionary.swift",
-      "line": 229,
+      "line": 228,
       "symbol": "BinaryTreeDictionary",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
@@ -1241,49 +1241,21 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
-      "line": 25,
-      "symbol": "UnicodeReplacementChar",
-      "symbol_kind": "source.lang.swift.decl.var.global",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
-      "line": 27,
-      "symbol": "SimpleCharInputStream",
-      "symbol_kind": "source.lang.swift.decl.protocol",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
-      "line": 61,
+      "line": 26,
       "symbol": "CharInputStream",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
-      "line": 120,
-      "symbol": "SimpleCharInputStream",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
-      "line": 121,
-      "symbol": "SimpleCharInputStream.append(to:maxLength:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
-      "line": 129,
+      "line": 85,
       "symbol": "CharInputStream",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
-      "line": 130,
+      "line": 86,
       "symbol": "CharInputStream.markBackup()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -1314,6 +1286,27 @@
       "line": 29,
       "symbol": "IConvCharInputStream",
       "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/SimpleCharInputStream.swift",
+      "line": 21,
+      "symbol": "UnicodeReplacementChar",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/SimpleCharInputStream.swift",
+      "line": 23,
+      "symbol": "SimpleCharInputStream",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/SimpleCharInputStream.swift",
+      "line": 72,
+      "symbol": "SimpleCharInputStream",
+      "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
@@ -1381,121 +1374,44 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/IConv.swift",
-      "line": 34,
-      "symbol": "IConv.Response",
-      "symbol_kind": "source.lang.swift.decl.typealias",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/IConv.swift",
-      "line": 36,
-      "symbol": "IConv.fromEncoding",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/IConv.swift",
-      "line": 37,
-      "symbol": "IConv.toEncoding",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/IConv.swift",
-      "line": 38,
-      "symbol": "IConv.ignoreErrors",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/IConv.swift",
-      "line": 39,
-      "symbol": "IConv.enableTransliterate",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/IConv.swift",
-      "line": 41,
-      "symbol": "IConv.Results",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/IConv.swift",
-      "line": 42,
+      "line": 64,
       "symbol": "IConv.Results.OK",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/IConv.swift",
-      "line": 43,
+      "line": 65,
       "symbol": "IConv.Results.IncompleteSequence",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/IConv.swift",
-      "line": 44,
+      "line": 66,
       "symbol": "IConv.Results.InputTooBig",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/IConv.swift",
-      "line": 45,
+      "line": 67,
       "symbol": "IConv.Results.InvalidSequence",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/IConv.swift",
-      "line": 46,
-      "symbol": "IConv.Results.OtherError",
+      "line": 68,
+      "symbol": "IConv.Results.UnknownEncoding",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/IConv.swift",
-      "line": 51,
-      "symbol": "IConv.init(toEncoding:fromEncoding:ignoreErrors:enableTransliterate:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/IConv.swift",
-      "line": 65,
-      "symbol": "IConv.reset()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/IConv.swift",
-      "line": 72,
-      "symbol": "IConv.convert(input:length:output:maxLength:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/IConv.swift",
-      "line": 91,
-      "symbol": "IConv.convert(input:output:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/IConv.swift",
-      "line": 98,
-      "symbol": "IConv.with(inputStream:do:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/IConv.swift",
-      "line": 129,
-      "symbol": "IConv.getEncodingsList()",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "line": 69,
+      "symbol": "IConv.Results.OtherError",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {

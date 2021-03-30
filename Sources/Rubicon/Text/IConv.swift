@@ -31,50 +31,99 @@ import CoreFoundation
 ///
 open class IConv {
 
+    /*===========================================================================================================================================================================*/
+    /// The response from IConv.
+    ///
     public typealias Response = (results: Results, inputBytesUsed: Int, outputBytesUsed: Int)
 
+    /*===========================================================================================================================================================================*/
+    /// A list of all the available character encodings on this system.
+    ///
+    public static var encodingsList: [String] = getEncodingsList()
+    /*===========================================================================================================================================================================*/
+    /// The name of the source character encoding.
+    ///
     public let fromEncoding:        String
+    /*===========================================================================================================================================================================*/
+    /// The name of the target character encoding.
+    ///
     public let toEncoding:          String
+    /*===========================================================================================================================================================================*/
+    /// If `true` then IConv will ignore invalid character encodings.
+    ///
     public let ignoreErrors:        Bool
+    /*===========================================================================================================================================================================*/
+    /// If `true` then IConv will enable transliteration.
+    ///
     public let enableTransliterate: Bool
 
+    /*===========================================================================================================================================================================*/
+    /// Enumeration of the possible results of the conversion.
+    ///
     public enum Results: Equatable {
         case OK
         case IncompleteSequence
         case InputTooBig
         case InvalidSequence
+        case UnknownEncoding
         case OtherError
     }
 
-    var handle: iconv_t!
+    lazy var handle: iconv_t? = iconv_open("\(toEncoding)\(ignoreErrors ? "//IGNORE" : "")\(enableTransliterate ? "//TRANSLIT" : "")", "\(fromEncoding)")
 
-    public init?(toEncoding: String, fromEncoding: String, ignoreErrors: Bool = false, enableTransliterate: Bool = false) {
+    /*===========================================================================================================================================================================*/
+    /// Create a new instance of IConv.
+    /// 
+    /// - Parameters:
+    ///   - toEncoding: the target encoding name.
+    ///   - fromEncoding: the source encoding name.
+    ///   - ignoreErrors: `true` if encoding errors should be ignored. The default is `false`.
+    ///   - enableTransliterate: `true` if transliteration should be enabled. The default is `false`.
+    ///
+    public init(toEncoding: String, fromEncoding: String, ignoreErrors: Bool = false, enableTransliterate: Bool = false) {
         self.toEncoding = toEncoding
         self.fromEncoding = fromEncoding
         self.ignoreErrors = ignoreErrors
         self.enableTransliterate = enableTransliterate
-
-        handle = iconv_open("\(self.toEncoding)\(ignoreErrors ? "//IGNORE" : "")\(enableTransliterate ? "//TRANSLIT" : "")", "\(self.fromEncoding)")
-        guard let h = handle, h != (iconv_t)(bitPattern: -1) else { return nil }
     }
 
     deinit {
-        iconv_close(handle)
+        if let h = handle, h != (iconv_t)(bitPattern: -1) { iconv_close(h) }
     }
 
+    /*===========================================================================================================================================================================*/
+    /// Reset the converter.
+    /// 
+    /// - Returns: `Results.OK` if successful. `Results.OtherError` if not successful.
+    ///
     open func reset() -> Results {
+        guard let h = handle, h != (iconv_t)(bitPattern: -1) else { return .UnknownEncoding }
+
         var inSz:  Int = 0
         var outSz: Int = 0
-        let r:     Int = iconv(handle, nil, &inSz, nil, &outSz)
+        let r:     Int = iconv(h, nil, &inSz, nil, &outSz)
+
         return ((r == -1) ? .OtherError : .OK)
     }
 
+    /*===========================================================================================================================================================================*/
+    /// Convert the contents of the `input` buffer and store in the `output` buffer.
+    /// 
+    /// - Parameters:
+    ///   - input: the input buffer.
+    ///   - length: the number of bytes in the input buffer.
+    ///   - output: the output buffer.
+    ///   - maxLength: the maximum number of bytes the output buffer can hold.
+    /// - Returns: the response.
+    ///
     open func convert(input: UnsafeRawPointer, length: Int, output: UnsafeMutableRawPointer, maxLength: Int) -> Response {
+        guard let h = handle, h != (iconv_t)(bitPattern: -1) else { return (.UnknownEncoding, 0, 0) }
+
         var inSz:    Int           = length
         var outSz:   Int           = maxLength
         var inP:     CCharPointer? = UnsafeMutableRawPointer(mutating: input).bindMemory(to: CChar.self, capacity: inSz)
         var outP:    CCharPointer? = output.bindMemory(to: CChar.self, capacity: outSz)
-        let res:     Int           = iconv(handle, &inP, &inSz, &outP, &outSz)
+        let res:     Int           = iconv(h, &inP, &inSz, &outP, &outSz)
         let inUsed:  Int           = (length - inSz)
         let outUsed: Int           = (maxLength - outSz)
 
@@ -88,6 +137,14 @@ open class IConv {
         }
     }
 
+    /*===========================================================================================================================================================================*/
+    /// Convert the contents of the `input` buffer and store in the `output` buffer.
+    /// 
+    /// - Parameters:
+    ///   - input: the input buffer.
+    ///   - output: the output buffer.
+    /// - Returns: the results.
+    ///
     open func convert(input: EasyByteBuffer, output: EasyByteBuffer) -> Results {
         let r = convert(input: input.bytes, length: input.count, output: output.bytes, maxLength: output.length)
         output.count = r.outputBytesUsed
@@ -95,6 +152,15 @@ open class IConv {
         return r.results
     }
 
+    /*===========================================================================================================================================================================*/
+    /// Convert the contents of the input stream. This method reads the input stream in 1,024 byte chunks, converts those bytes, and then calls the give closure with the results
+    /// of that conversion.
+    /// 
+    /// - Parameters:
+    ///   - inputStream: the input stream.
+    ///   - body: the closure to handle each converted chunk.
+    /// - Throws: if an I/O error occurs or a conversion error occurs.
+    ///
     open func with(inputStream: InputStream, do body: (BytePointer, Int) throws -> Bool) throws {
         if inputStream.streamStatus == .notOpen { inputStream.open() }
 
@@ -111,6 +177,17 @@ open class IConv {
         else if ioRes < 0 { throw inputStream.streamError ?? StreamError.UnknownError() }
     }
 
+    /*===========================================================================================================================================================================*/
+    /// Convert a chunk of data.
+    /// 
+    /// - Parameters:
+    ///   - ioRes: the number of bytes read from the input stream.
+    ///   - inBuff: the input buffer.
+    ///   - outBuff: the output buffer.
+    ///   - body: the closure to call with the converted data.
+    /// - Returns: `true` if the conversion whould be halted.
+    /// - Throws: if an I/O error occurs or a conversion error occurs.
+    ///
     private func doWithIconv(_ ioRes: Int, _ inBuff: EasyByteBuffer, _ outBuff: EasyByteBuffer, _ body: (BytePointer, Int) throws -> Bool) throws -> Bool {
         inBuff.count = ioRes
 
@@ -126,7 +203,12 @@ open class IConv {
         return stop
     }
 
-    public static func getEncodingsList() -> [String] {
+    /*===========================================================================================================================================================================*/
+    /// Get the list of available encodings.
+    /// 
+    /// - Returns: an array of strings.
+    ///
+    private static func getEncodingsList() -> [String] {
         let data = UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>.allocate(capacity: MaxEncodings)
         data.initialize(repeating: nil, count: MaxEncodings)
 
@@ -148,12 +230,18 @@ open class IConv {
                       return 0
                   }, data)
 
-        var list = [ String ]()
-        for i in (0 ..< MaxEncodings) { if let p = data[i] { if let str = String(utf8String: p) { list.append(str) } } }
+        var list: [String] = []
+        for i in (0 ..< MaxEncodings) { if let p = data[i] { if let str = String(utf8String: p) { list <+ str } } }
         return list
     }
 }
 
+/*===============================================================================================================================================================================*/
+/// Copy a NULL terminated C string.
+/// 
+/// - Parameter str: a pointer to the C string.
+/// - Returns: the copy of the C string.
+///
 fileprivate func CopyStr(_ str: UnsafePointer<Int8>) -> UnsafeMutablePointer<Int8> {
     let len = StrLen(str)
     let x   = UnsafeMutablePointer<Int8>.allocate(capacity: len)
@@ -161,15 +249,30 @@ fileprivate func CopyStr(_ str: UnsafePointer<Int8>) -> UnsafeMutablePointer<Int
     return x
 }
 
+/*===============================================================================================================================================================================*/
+/// Get the next free index.
+/// 
+/// - Parameter data: the data array.
+/// - Returns: the next free index or `nil` if the array is full.
+///
 fileprivate func NextSlot(_ data: UnsafeMutablePointer<UnsafeMutablePointer<Int8>?>) -> Int? {
     for i in (0 ..< MaxEncodings) { if data[i] == nil { return i } }
     return nil
 }
 
+/*===============================================================================================================================================================================*/
+/// Get the length of a NULL terminated C string.
+/// 
+/// - Parameter str: the C string.
+/// - Returns: it's length.
+///
 fileprivate func StrLen(_ str: UnsafePointer<Int8>) -> Int {
     var len = 0
     while str[len] != 0 { len += 1 }
     return len + 1
 }
 
+/*===============================================================================================================================================================================*/
+/// The maximum number of encoding names to list.
+///
 fileprivate let MaxEncodings: Int = 5_000

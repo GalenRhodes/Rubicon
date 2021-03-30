@@ -21,42 +21,7 @@
  *//************************************************************************/
 
 import Foundation
-
-public let UnicodeReplacementChar: Character = "�"
-
-public protocol SimpleCharInputStream: CharStream {
-    /*===========================================================================================================================================================================*/
-    /// `true` if the stream is at the end-of-file.
-    ///
-    var isEOF:             Bool { get }
-
-    /*===========================================================================================================================================================================*/
-    /// `true` if the stream has characters ready to be read.
-    ///
-    var hasCharsAvailable: Bool { get }
-
-    /*===========================================================================================================================================================================*/
-    /// Read one character.
-    ///
-    /// - Returns: the next character or `nil` if EOF.
-    /// - Throws: if an I/O error occurs.
-    ///
-    func read() throws -> Character?
-
-    /*===========================================================================================================================================================================*/
-    /// Read <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s from the stream.
-    ///
-    /// - Parameters:
-    ///   - chars: the <code>[Array](https://developer.apple.com/documentation/swift/Array)</code> to receive the
-    ///            <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s.
-    ///   - maxLength: the maximum number of <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s to receive. If -1 then all
-    ///                <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s are read until the end-of-file.
-    /// - Returns: the number of <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s read. Will return 0
-    ///            (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) if the stream is at end-of-file.
-    /// - Throws: if an I/O error occurs.
-    ///
-    func read(chars: inout [Character], maxLength: Int) throws -> Int
-}
+import CoreFoundation
 
 public protocol CharInputStream: SimpleCharInputStream {
 
@@ -110,20 +75,11 @@ public protocol CharInputStream: SimpleCharInputStream {
     /*===========================================================================================================================================================================*/
     /// Backs out the last `count` characters from the most recently set mark without actually removing the entire mark. You have to have previously called `markSet()` otherwise
     /// this method does nothing.
-    ///
+    /// 
     /// - Parameter count: the number of characters to back out.
     /// - Returns: the number of characters actually backed out in case there weren't `count` characters available.
     ///
     @discardableResult func markBackup(count: Int) -> Int
-}
-
-public extension SimpleCharInputStream {
-    @inlinable func append(to chars: inout [Character], maxLength len: Int = -1) throws -> Int {
-        var newChars: [Character] = []
-        let cc                    = try read(chars: &newChars, maxLength: len)
-        if cc > 0 { chars.append(contentsOf: newChars) }
-        return cc
-    }
 }
 
 public extension CharInputStream {

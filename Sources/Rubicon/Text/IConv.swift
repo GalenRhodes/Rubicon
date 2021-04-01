@@ -73,7 +73,7 @@ open class IConv {
 
     /*===========================================================================================================================================================================*/
     /// Create a new instance of IConv.
-    /// 
+    ///
     /// - Parameters:
     ///   - toEncoding: the target encoding name.
     ///   - fromEncoding: the source encoding name.
@@ -93,7 +93,7 @@ open class IConv {
 
     /*===========================================================================================================================================================================*/
     /// Reset the converter.
-    /// 
+    ///
     /// - Returns: `Results.OK` if successful. `Results.OtherError` if not successful.
     ///
     open func reset() -> Results {
@@ -108,7 +108,7 @@ open class IConv {
 
     /*===========================================================================================================================================================================*/
     /// Convert the contents of the `input` buffer and store in the `output` buffer.
-    /// 
+    ///
     /// - Parameters:
     ///   - input: the input buffer.
     ///   - length: the number of bytes in the input buffer.
@@ -139,7 +139,7 @@ open class IConv {
 
     /*===========================================================================================================================================================================*/
     /// Convert the contents of the `input` buffer and store in the `output` buffer.
-    /// 
+    ///
     /// - Parameters:
     ///   - input: the input buffer.
     ///   - output: the output buffer.
@@ -155,7 +155,7 @@ open class IConv {
     /*===========================================================================================================================================================================*/
     /// Convert the contents of the input stream. This method reads the input stream in 1,024 byte chunks, converts those bytes, and then calls the give closure with the results
     /// of that conversion.
-    /// 
+    ///
     /// - Parameters:
     ///   - inputStream: the input stream.
     ///   - body: the closure to handle each converted chunk.
@@ -179,7 +179,7 @@ open class IConv {
 
     /*===========================================================================================================================================================================*/
     /// Convert a chunk of data.
-    /// 
+    ///
     /// - Parameters:
     ///   - ioRes: the number of bytes read from the input stream.
     ///   - inBuff: the input buffer.
@@ -205,7 +205,7 @@ open class IConv {
 
     /*===========================================================================================================================================================================*/
     /// Get the list of available encodings.
-    /// 
+    ///
     /// - Returns: an array of strings.
     ///
     private static func getEncodingsList() -> [String] {
@@ -231,14 +231,15 @@ open class IConv {
                   }, data)
 
         var list: [String] = []
-        for i in (0 ..< MaxEncodings) { if let p = data[i] { if let str = String(utf8String: p) { list <+ str } } }
+        for i in (0 ..< MaxEncodings) { if let p = data[i] { if let str = String(utf8String: p) { list <+ str.uppercased() } } }
+        list.sort()
         return list
     }
 }
 
 /*===============================================================================================================================================================================*/
 /// Copy a NULL terminated C string.
-/// 
+///
 /// - Parameter str: a pointer to the C string.
 /// - Returns: the copy of the C string.
 ///
@@ -251,7 +252,7 @@ fileprivate func CopyStr(_ str: UnsafePointer<Int8>) -> UnsafeMutablePointer<Int
 
 /*===============================================================================================================================================================================*/
 /// Get the next free index.
-/// 
+///
 /// - Parameter data: the data array.
 /// - Returns: the next free index or `nil` if the array is full.
 ///
@@ -262,7 +263,7 @@ fileprivate func NextSlot(_ data: UnsafeMutablePointer<UnsafeMutablePointer<Int8
 
 /*===============================================================================================================================================================================*/
 /// Get the length of a NULL terminated C string.
-/// 
+///
 /// - Parameter str: the C string.
 /// - Returns: it's length.
 ///

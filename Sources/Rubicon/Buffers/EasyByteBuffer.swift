@@ -64,7 +64,7 @@ open class EasyByteBuffer {
         count = cc
     }
 
-    @discardableResult open func withBufferAs<T, V>(type: T.Type, _ body: (UnsafeMutablePointer<T>, Int, inout Int) throws -> V) rethrows -> V {
+    @discardableResult @inlinable open func withBufferAs<T, V>(type: T.Type, _ body: (UnsafeMutablePointer<T>, Int, inout Int) throws -> V) rethrows -> V {
         var c = fromBytes(type: T.self, count)
         let l = fromBytes(type: T.self, length)
         let r = try body(UnsafeMutableRawPointer(bytes).bindMemory(to: T.self, capacity: l), l, &c)

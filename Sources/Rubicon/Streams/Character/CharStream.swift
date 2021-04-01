@@ -39,7 +39,11 @@ public protocol CharStream {
     ///
     var streamStatus: Stream.Status { get }
 
+    /// Open the stream.
+    ///
     func open()
 
+    /// Close the stream.
+    ///
     func close()
 }

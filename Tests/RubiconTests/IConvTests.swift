@@ -35,28 +35,27 @@ class IConvTests: XCTestCase {
         do {
             let fileName: String = "Tests/RubiconTests/Files/Test_UTF-8.xml"
 
-            if let iconv = IConvCharInputStream(fileAtPath: fileName, encodingName: "UTF-8") {
-                iconv.open()
-                defer { iconv.close() }
+            let iconv = try IConvCharInputStream(filename: fileName, encodingName: "UTF-8")
+            iconv.open()
+            defer { iconv.close() }
 
-                var chars: [Character] = []
+            var chars: [Character] = []
+            iconv.markSet()
+            if try iconv.read(chars: &chars, maxLength: 10) > 0 {
+                print("Marked Text: \"\(makeString(chars: &chars))\"")
+
                 iconv.markSet()
                 if try iconv.read(chars: &chars, maxLength: 10) > 0 {
-                    print("Marked Text: \"\(makeString(chars: &chars))\"")
-
-                    iconv.markSet()
-                    if try iconv.read(chars: &chars, maxLength: 10) > 0 {
-                        print("More Marked Text: \"\(makeString(chars: &chars))\"")
-                    }
-                    iconv.markReturn()
+                    print("More Marked Text: \"\(makeString(chars: &chars))\"")
                 }
                 iconv.markReturn()
-
-                while try iconv.read(chars: &chars, maxLength: 1000) > 0 {
-                    print("\(makeString(chars: &chars))", terminator: "")
-                }
-                print("")
             }
+            iconv.markReturn()
+
+            while try iconv.read(chars: &chars, maxLength: 1000) > 0 {
+                print("\(makeString(chars: &chars))", terminator: "")
+            }
+            print("")
         }
         catch let e {
             XCTFail("ERROR: \(e)")
@@ -64,7 +63,7 @@ class IConvTests: XCTestCase {
     }
 
     func testIConvList() {
-        let list: [String] = IConv.getEncodingsList()
+        let list: [String] = IConv.encodingsList
         for i in (0 ..< list.count) {
             print("\(i + 1)> \"\(list[i])\"")
         }

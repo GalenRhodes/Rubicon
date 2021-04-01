@@ -1,4 +1,4 @@
-/*
+/*===============================================================================================================================================================================*
  *     PROJECT: Rubicon
  *    FILENAME: SimpleIConvCharInputStream.swift
  *         IDE: AppCode
@@ -13,7 +13,7 @@
  * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO
  * EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
  * AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- *//*============================================================================================================================================================================*/
+ *===============================================================================================================================================================================*/
 
 import Foundation
 import CoreFoundation
@@ -48,19 +48,19 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
     /*===========================================================================================================================================================================*/
     /// `true` if the stream has characters ready to be read.
     ///
-    open                     var hasCharsAvailable: Bool          { lock.withLock { hasChars               } }
+    @inlinable public  final var hasCharsAvailable: Bool          { lock.withLock { hasChars               } }
     /*===========================================================================================================================================================================*/
     /// `true` if the stream is at the end-of-file.
     ///
-    open                     var isEOF:             Bool          { !hasCharsAvailable                       }
+    @inlinable public  final var isEOF:             Bool          { !hasCharsAvailable                       }
     /*===========================================================================================================================================================================*/
     /// The error.
     ///
-    open                     var streamError:       Error?        { lock.withLock { (isOpen ? error : nil) } }
+    @inlinable public  final var streamError:       Error?        { lock.withLock { (isOpen ? error : nil) } }
     /*===========================================================================================================================================================================*/
     /// The status of the `CharInputStream`.
     ///
-    open                     var streamStatus:      Stream.Status { lock.withLock { effectiveStatus        } }
+    @inlinable public  final var streamStatus:      Stream.Status { lock.withLock { effectiveStatus        } }
     /*===========================================================================================================================================================================*/
     /// Conditional lock used by the stream.
     ///
@@ -78,18 +78,19 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
     @usableFromInline        var status:            Stream.Status = .notOpen
     @usableFromInline   lazy var queue:             DispatchQueue = DispatchQueue(label: UUID().uuidString, qos: .utility, autoreleaseFrequency: .workItem)
 
-    @inlinable               var isOpen:            Bool          { (status == .open)                        }
-    @inlinable               var hasError:          Bool          { (error != nil)                           }
-    @inlinable               var isGood:            Bool          { (isOpen && !hasError)                    }
-    @inlinable               var isRunning:         Bool          { (isGood && running)                      }
-    @inlinable               var waitForMore:       Bool          { (buffer.isEmpty && isRunning)            }
-    @inlinable               var hasChars:          Bool          { (isGood && (running || !buffer.isEmpty)) }
-    @inlinable               var effectiveStatus:   Stream.Status { ((isOpen && hasError) ? .error : status) }
+    @inlinable         final var isOpen:            Bool          { (status == .open)                                                     }
+    @inlinable         final var hasError:          Bool          { (error != nil)                                                        }
+    @inlinable         final var isGood:            Bool          { (isOpen && !hasError)                                                 }
+    @inlinable         final var isRunning:         Bool          { (isGood && running)                                                   }
+    @inlinable         final var waitForMore:       Bool          { (buffer.isEmpty && isRunning)                                         }
+    @inlinable         final var fooChars:          Bool          { (running || !buffer.isEmpty)                                          }
+    @inlinable         final var hasChars:          Bool          { (isGood && fooChars)                                                  }
+    @inlinable         final var effectiveStatus:   Stream.Status { (isOpen ? (hasError ? .error : (fooChars ? .open : .atEnd)) : status) }
     //@f:1
 
     /*===========================================================================================================================================================================*/
     /// Create a new instance of this character input stream from an existing byte input stream.
-    /// 
+    ///
     /// - Parameters:
     ///   - inputStream: the underlying byte input stream.
     ///   - encodingName: the name of the incoming character encoding.
@@ -103,7 +104,7 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Create a new instance of this character input stream to read bytes from a file.
-    /// 
+    ///
     /// - Parameters:
     ///   - filename: the filename to read.
     ///   - encodingName:
@@ -116,7 +117,7 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Create a new instance of this character input stream to read bytes from a URL.
-    /// 
+    ///
     /// - Parameters:
     ///   - url: the URL to read from.
     ///   - encodingName:
@@ -129,7 +130,7 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Create a new instance of this character input stream to read bytes from a data object.
-    /// 
+    ///
     /// - Parameters:
     ///   - data: the data to read.
     ///   - encodingName:
@@ -140,7 +141,7 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Create a new instance of this character input stream to read characters from the given string.
-    /// 
+    ///
     /// - Parameter string: the string to read characters from.
     ///
     public convenience init(string: String) {
@@ -149,9 +150,11 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
         self.init(inputStream: InputStream(data: data), encodingName: "UTF-8")
     }
 
+    deinit { _close() }
+
     /*===========================================================================================================================================================================*/
     /// Check to see if the `streamStatus` is any of the given values.
-    /// 
+    ///
     /// - Parameter values: the values to check for.
     /// - Returns: `true` if the `streamStatus` is any of the given values.
     ///
@@ -159,7 +162,7 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Check to see if the `streamStatus` is any of the given values.
-    /// 
+    ///
     /// - Parameter values: the values to check for.
     /// - Returns: `true` if the `streamStatus` is any of the given values.
     ///
@@ -167,13 +170,13 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Read one character from the input stream.
-    /// 
+    ///
     /// - Returns: the character read or `nil` if the stream is closed (or not opened in the first place) or the end of input has been reached.
     /// - Throws: if an I/O or conversion error occurs.
     ///
     open func read() throws -> Character? { try lock.withLock { try _read() } }
 
-    @inlinable func _read() throws -> Character? {
+    private func _read() throws -> Character? {
         while waitForMore { lock.broadcastWait() }
         if let e = error { throw e }
         if status != .open { return nil }
@@ -182,7 +185,7 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Read characters from the stream. Any existing values in the array will be cleared first.
-    /// 
+    ///
     /// - Parameters:
     ///   - chars: the array to receive the characters.
     ///   - len: the maximum number of characters to receive. If -1 then all characters are read until the end of input.
@@ -192,7 +195,7 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
     ///
     open func read(chars: inout [Character], maxLength: Int) throws -> Int { try lock.withLock { try _read(chars: &chars, maxLength: maxLength) } }
 
-    @usableFromInline func _read(chars: inout [Character], maxLength: Int) throws -> Int {
+    private func _read(chars: inout [Character], maxLength: Int) throws -> Int {
         if !chars.isEmpty { chars.removeAll(keepingCapacity: true) }
 
         var cc: Int = 0
@@ -225,12 +228,12 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
     ///
     open func open() { lock.withLock { _open() } }
 
-    @usableFromInline func _open() {
+    private func _open() {
         if status == .notOpen {
             error = nil
             running = true
             status = .open
-            queue.async { self.background() }
+            queue.async { [weak self] in self?.background() }
         }
     }
 
@@ -240,7 +243,7 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
     ///
     open func close() { lock.withLock { _close() } }
 
-    @usableFromInline func _close() {
+    private func _close() {
         if isOpen {
             status = .closed
             while running { lock.broadcastWait() }
@@ -255,16 +258,10 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
         lock.withLock {
             do {
                 if inputStream.streamStatus == .notOpen { inputStream.open() }
-                defer {
-                    running = false
-                    if autoClose { inputStream.close() }
-                }
-
-                let iconv                        = IConv(toEncoding: ENCODE_TO_NAME, fromEncoding: encodingName, ignoreErrors: true, enableTransliterate: true)
-                let inputBuffer:  EasyByteBuffer = EasyByteBuffer(length: INPUT_BUFFER_SIZE)
-                let outputBuffer: EasyByteBuffer = EasyByteBuffer(length: OUTPUT_BUFFER_SIZE)
-                let hangingCR:    Bool           = try backgroundLoop(iconv, inputBuffer: inputBuffer, outputBuffer: outputBuffer)
-                convertFinal(iconv, inputBuffer: inputBuffer, outputBuffer: outputBuffer, hangingCR: hangingCR)
+                defer { running = false; if autoClose { inputStream.close() } }
+                try backgroundIconv(IConv(toEncoding: ENCODE_TO_NAME, fromEncoding: encodingName, ignoreErrors: true, enableTransliterate: true),
+                                    input: EasyByteBuffer(length: INPUT_BUFFER_SIZE),
+                                    output: EasyByteBuffer(length: OUTPUT_BUFFER_SIZE))
             }
             catch let e {
                 error = e
@@ -273,8 +270,21 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
     }
 
     /*===========================================================================================================================================================================*/
+    /// Do the character encoding conversion in the background.
+    ///
+    /// - Parameters:
+    ///   - iconv: the instance of `IConv`
+    ///   - inputBuffer: the input buffer.
+    ///   - outputBuffer: the output buffer.
+    /// - Throws: if an I/O or conversion error occurs.
+    ///
+    private func backgroundIconv(_ iconv: IConv, input inputBuffer: EasyByteBuffer, output outputBuffer: EasyByteBuffer) throws {
+        convertFinal(iconv, inputBuffer: inputBuffer, outputBuffer: outputBuffer, hangingCR: try iconvLoop(iconv, inputBuffer: inputBuffer, outputBuffer: outputBuffer))
+    }
+
+    /*===========================================================================================================================================================================*/
     /// The main loop of the background reading/converting thread.
-    /// 
+    ///
     /// - Parameters:
     ///   - iconv: the handle to the IConv
     ///   - inputBuffer: The input buffer.
@@ -282,12 +292,11 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
     /// - Returns: `true` if there was a hanging carriage-return.
     /// - Throws: if there was an I/O or conversion error.
     ///
-    @usableFromInline func backgroundLoop(_ iconv: IConv, inputBuffer: EasyByteBuffer, outputBuffer: EasyByteBuffer) throws -> Bool {
+    private func iconvLoop(_ iconv: IConv, inputBuffer: EasyByteBuffer, outputBuffer: EasyByteBuffer) throws -> Bool {
         var cr: Bool = false
 
         while isRunning {
             while (buffer.count >= MAX_READ_AHEAD) && isRunning { lock.broadcastWait() }
-            guard isRunning else { break }
             guard try read(inputBuffer) else { break }
             cr = try convert(iconv, inputBuffer: inputBuffer, outputBuffer: outputBuffer, hangingCR: cr)
         }
@@ -297,14 +306,14 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Perform one last conversion on anything left in the input buffer.
-    /// 
+    ///
     /// - Parameters:
     ///   - iconv: the handle to the IConv
     ///   - inputBuffer: The input buffer.
     ///   - outputBuffer: The output buffer.
     ///   - cr: If there was a hanging carriage-return in the previous call to this method.
     ///
-    @usableFromInline func convertFinal(_ iconv: IConv, inputBuffer: EasyByteBuffer, outputBuffer: EasyByteBuffer, hangingCR cr: Bool) {
+    private func convertFinal(_ iconv: IConv, inputBuffer: EasyByteBuffer, outputBuffer: EasyByteBuffer, hangingCR cr: Bool) {
         if inputBuffer.count > 0 {
             _ = iconv.convert(input: inputBuffer, output: outputBuffer)
             if storeConvertedChars(outputBuffer, hangingCR: cr) { buffer <+ "\r" }
@@ -317,7 +326,7 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Convert the bytes in the input buffer to UTF-32 code-points and store them in the output buffer.
-    /// 
+    ///
     /// - Parameters:
     ///   - iconv: the handle to the IConv
     ///   - inputBuffer: The input buffer.
@@ -326,7 +335,7 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
     /// - Returns: `true` if there was a hanging carriage-return in this call.
     /// - Throws: if there was an I/O error or an error during conversion.
     ///
-    @usableFromInline func convert(_ iconv: IConv, inputBuffer: EasyByteBuffer, outputBuffer: EasyByteBuffer, hangingCR: Bool) throws -> Bool {
+    private func convert(_ iconv: IConv, inputBuffer: EasyByteBuffer, outputBuffer: EasyByteBuffer, hangingCR: Bool) throws -> Bool {
         var resp: IConv.Results = .InputTooBig
         var cr:   Bool          = hangingCR
 
@@ -341,12 +350,13 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Read a set of bytes from the underlying input stream so they can be converted to characters.
-    /// 
+    ///
     /// - Parameter ib: the input buffer.
     /// - Returns: `true` if at least one byte was read.
     /// - Throws: if an I/O error occurred.
     ///
-    @inlinable func read(_ ib: EasyByteBuffer) throws -> Bool {
+    private func read(_ ib: EasyByteBuffer) throws -> Bool {
+        guard isRunning else { return false }
         let rc = inputStream.read(buffer: ib)
         guard rc >= 0 else { throw inputStream.streamError ?? StreamError.UnknownError() }
         return (rc > 0)
@@ -356,13 +366,13 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
     /// Store the converted characters to the character buffer. CR/LF code-point pairs are automatically converted to single "\r\n" grapheme clusters. If the last code-point is a
     /// carriage-return ("\r") then this method returns `true` so that the next time it's called it can see if the first code-point in that set is a line-feed code-point ("\n") so
     /// that the two can be converted into a single grapheme cluster.
-    /// 
+    ///
     /// - Parameters:
     ///   - ob: the output buffer containing the UTF-32 code-points.
     ///   - cr: if there was a hanging carriage-return after the last time this method was called.
     /// - Returns: `true` if there was a hanging carriage-return this time.
     ///
-    @inlinable func storeConvertedChars(_ ob: EasyByteBuffer, hangingCR cr: Bool) -> Bool {
+    private func storeConvertedChars(_ ob: EasyByteBuffer, hangingCR cr: Bool) -> Bool {
         ob.withBufferAs(type: UInt32.self) { (b: UnsafeMutableBufferPointer<UInt32>, c: inout Int) in
             var i = b.startIndex
             let j = b.endIndex
@@ -395,7 +405,7 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// Get the error indicating an unsupported character encoding.
-    /// 
+    ///
     /// - Returns: the error.
     ///
     private func BadEncodingError() -> CErrors {

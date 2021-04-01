@@ -44,7 +44,7 @@ class RubiconTests: XCTestCase {
         print("UInt64:  size = \(MemoryLayout<UInt64>.size);  alignment = \(MemoryLayout<UInt64>.alignment);  stride = \(MemoryLayout<UInt64>.stride);")
         print("Double:  size = \(MemoryLayout<Double>.size);  alignment = \(MemoryLayout<Double>.alignment);  stride = \(MemoryLayout<Double>.stride);")
         print("Float:   size = \(MemoryLayout<Float>.size);  alignment = \(MemoryLayout<Float>.alignment);  stride = \(MemoryLayout<Float>.stride);")
-        print("Float80: size = \(MemoryLayout<Float80>.size); alignment = \(MemoryLayout<Float80>.alignment); stride = \(MemoryLayout<Float80>.stride);")
+        // print("Float80: size = \(MemoryLayout<Float80>.size); alignment = \(MemoryLayout<Float80>.alignment); stride = \(MemoryLayout<Float80>.stride);")
     }
 
     //    func testPerformanceExample() {

@@ -75,13 +75,13 @@ public protocol CharInputStream: SimpleCharInputStream {
     /*===========================================================================================================================================================================*/
     /// Backs out the last `count` characters from the most recently set mark without actually removing the entire mark. You have to have previously called `markSet()` otherwise
     /// this method does nothing.
-    /// 
+    ///
     /// - Parameter count: the number of characters to back out.
     /// - Returns: the number of characters actually backed out in case there weren't `count` characters available.
     ///
     @discardableResult func markBackup(count: Int) -> Int
 }
 
-public extension CharInputStream {
-    @discardableResult func markBackup() -> Int { markBackup(count: 1) }
+extension CharInputStream {
+    @discardableResult @inlinable public func markBackup() -> Int { markBackup(count: 1) }
 }

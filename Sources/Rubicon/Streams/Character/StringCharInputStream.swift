@@ -18,37 +18,37 @@
 import Foundation
 import CoreFoundation
 
-public class StringCharInputStream: SimpleStringCharInputStream, CharInputStream {
+open class StringCharInputStream: SimpleStringCharInputStream, CharInputStream {
     //@f:0
-    @inlinable public final var markCount:    Int                              { lock.withLock { mstk.count } }
-    @inlinable public final var lineNumber:   Int32                            { lock.withLock { pos.0      } }
-    @inlinable public final var columnNumber: Int32                            { lock.withLock { pos.1      } }
-               public       var tabWidth:     Int8                             = 4
-    @usableFromInline       var pos:          (Int32, Int32)                   = (0, 0)
-    @usableFromInline       var mstk:         [((Int32, Int32), String.Index)] = []
+    @inlinable open   var markCount:    Int                              { lock.withLock { mstk.count } }
+    @inlinable open   var lineNumber:   Int32                            { lock.withLock { pos.0      } }
+    @inlinable open   var columnNumber: Int32                            { lock.withLock { pos.1      } }
+    open              var tabWidth:     Int8                             = 4
+    @usableFromInline var pos:          (Int32, Int32)                   = (0, 0)
+    @usableFromInline var mstk:         [((Int32, Int32), String.Index)] = []
     //@f:1
 
     public override init(string: String) { super.init(string: string) }
 
-    public func markSet() { lock.withLock { _markSet() } }
+    open func markSet() { lock.withLock { _markSet() } }
 
-    public func markReturn() { lock.withLock { _markReturn() } }
+    open func markReturn() { lock.withLock { _markReturn() } }
 
-    public func markDelete() { lock.withLock { _markDelete() } }
+    open func markDelete() { lock.withLock { _markDelete() } }
 
-    public func markReset() { lock.withLock { _markReturn(); _markSet() } }
+    open func markReset() { lock.withLock { _markReturn(); _markSet() } }
 
-    public func markUpdate() { lock.withLock { _markDelete(); _markSet() } }
+    open func markUpdate() { lock.withLock { _markDelete(); _markSet() } }
 
-    @discardableResult public func markBackup(count: Int) -> Int { lock.withLock { _markBackup(count: count) } }
+    @discardableResult open func markBackup(count: Int) -> Int { lock.withLock { _markBackup(count: count) } }
 
-    @inlinable final func _markSet() { mstk <+ (pos, index) }
+    func _markSet() { mstk <+ (pos, index) }
 
-    @inlinable final func _markDelete() { _ = mstk.popLast() }
+    func _markDelete() { _ = mstk.popLast() }
 
-    @inlinable final func _markReturn() { if let mi = mstk.popLast() { (pos, index) = mi } }
+    func _markReturn() { if let mi = mstk.popLast() { (pos, index) = mi } }
 
-    @inlinable final func _markBackup(count: Int) -> Int {
+    func _markBackup(count: Int) -> Int {
         guard count > 0, let mi = mstk.last else { return 0 }
         var idx1 = mi.1
         let idx2 = (string.index(index, offsetBy: -count, limitedBy: idx1) ?? idx1)

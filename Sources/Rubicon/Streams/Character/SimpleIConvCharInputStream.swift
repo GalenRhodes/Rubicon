@@ -48,23 +48,19 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
     /*===========================================================================================================================================================================*/
     /// `true` if the stream has characters ready to be read.
     ///
-    @inlinable open         var hasCharsAvailable: Bool           { lock.withLock { hasChars               } }
+    open                     var hasCharsAvailable: Bool          { lock.withLock { hasChars               } }
     /*===========================================================================================================================================================================*/
     /// `true` if the stream is at the end-of-file.
     ///
-    @inlinable public  final var isEOF:             Bool          { !hasCharsAvailable                       }
+    open                     var isEOF:             Bool          { !hasCharsAvailable                       }
     /*===========================================================================================================================================================================*/
     /// The error.
     ///
-    @inlinable public  final var streamError:       Error?        { lock.withLock { (isOpen ? error : nil) } }
+    open                     var streamError:       Error?        { lock.withLock { (isOpen ? error : nil) } }
     /*===========================================================================================================================================================================*/
     /// The status of the `CharInputStream`.
     ///
-    @inlinable public  final var streamStatus:      Stream.Status { lock.withLock { effectiveStatus        } }
-    /*===========================================================================================================================================================================*/
-    /// Conditional lock used by the stream.
-    ///
-    public private(set) lazy var lock:              Conditional   = Conditional()
+    open                     var streamStatus:      Stream.Status { lock.withLock { effectiveStatus        } }
     /*===========================================================================================================================================================================*/
     /// The human readable name of the encoding.
     ///
@@ -77,6 +73,7 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
     @usableFromInline        var buffer:            [Character]   = []
     @usableFromInline        var status:            Stream.Status = .notOpen
     @usableFromInline   lazy var queue:             DispatchQueue = DispatchQueue(label: UUID().uuidString, qos: .utility, autoreleaseFrequency: .workItem)
+    @usableFromInline   lazy var lock:              Conditional   = Conditional()
 
     @inlinable         final var isOpen:            Bool          { (status == .open)                                                     }
     @inlinable         final var hasError:          Bool          { (error != nil)                                                        }
@@ -401,14 +398,5 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
 
             return cr
         }
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Get the error indicating an unsupported character encoding.
-    /// 
-    /// - Returns: the error.
-    ///
-    private func BadEncodingError() -> CErrors {
-        CErrors.INVAL(description: "Unsupported character encoding: \"\(encodingName)\"")
     }
 }

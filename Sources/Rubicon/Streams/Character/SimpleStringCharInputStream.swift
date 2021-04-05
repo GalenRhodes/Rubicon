@@ -18,20 +18,21 @@
 import Foundation
 import CoreFoundation
 
-public class SimpleStringCharInputStream: SimpleCharInputStream {
+open class SimpleStringCharInputStream: SimpleCharInputStream {
     //@f:0
-    public                  let encodingName:      String        = "UTF-32"
-    public                  let streamError:       Error?        = nil
+    public let encodingName: String = "UTF-32"
+    public let streamError:  Error? = nil
 
-    @inlinable public final var streamStatus:      Stream.Status { lock.withLock { ((status == .open) ? ((index < eIdx) ? .open : .atEnd) : status) } }
-    @inlinable public final var hasCharsAvailable: Bool          { lock.withLock { ((status == .open) && (index < eIdx))                            } }
-    @inlinable public final var isEOF:             Bool          { !hasCharsAvailable                                                                 }
+    open var streamStatus:      Stream.Status { lock.withLock { ((status == .open) ? ((index < eIdx) ? .open : .atEnd) : status) } }
+    open var hasCharsAvailable: Bool          { lock.withLock { ((status == .open) && (index < eIdx))                            } }
+    open var isEOF:             Bool          { !hasCharsAvailable                                                                 }
 
-    @usableFromInline       let string:            String
-    @usableFromInline       let eIdx:              String.Index
-    @usableFromInline       var index:             String.Index
-    @usableFromInline       var status:            Stream.Status = .notOpen
-    @usableFromInline       let lock:              RecursiveLock = RecursiveLock()
+    @usableFromInline let string: String
+    @usableFromInline let eIdx:   String.Index
+    @usableFromInline var index:  String.Index
+    @usableFromInline var status: Stream.Status = .notOpen
+    @usableFromInline let lock:   RecursiveLock = RecursiveLock()
+
     //@f:1
 
     public init(string: String) {
@@ -40,13 +41,13 @@ public class SimpleStringCharInputStream: SimpleCharInputStream {
         self.index = self.string.startIndex
     }
 
-    public func read() throws -> Character? { try lock.withLock { try _read() } }
+    open func read() throws -> Character? { try lock.withLock { try _read() } }
 
-    public func read(chars: inout [Character], maxLength: Int) throws -> Int { try lock.withLock { try _read(chars: &chars, maxLength: maxLength) } }
+    open func read(chars: inout [Character], maxLength: Int) throws -> Int { try lock.withLock { try _read(chars: &chars, maxLength: maxLength) } }
 
-    public func open() { lock.withLock { _open() } }
+    open func open() { lock.withLock { _open() } }
 
-    public func close() { lock.withLock { _close() } }
+    open func close() { lock.withLock { _close() } }
 
     func _open() {
         if status == .notOpen {

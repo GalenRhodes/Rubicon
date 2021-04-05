@@ -31,43 +31,28 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     /*===========================================================================================================================================================================*/
     /// The current line number.
     ///
-    @inlinable open var lineNumber:                 Int           { lock.withLock { line                                          } }
+    @inlinable   open var lineNumber:   Int32          { lock.withLock { pos.0      } }
     /*===========================================================================================================================================================================*/
     /// The current column number.
     ///
-    @inlinable open var columnNumber:               Int           { lock.withLock { column                                        } }
+    @inlinable   open var columnNumber: Int32          { lock.withLock { pos.1      } }
     /*===========================================================================================================================================================================*/
     /// The number of marks on the stream.
     ///
-    @inlinable open var markCount:                  Int           { lock.withLock { markStack.count                               } }
-
-    /*===========================================================================================================================================================================*/
-    /// `true` if the stream has characters ready to be read.
-    ///
-    @inlinable open override var hasCharsAvailable: Bool          { lock.withLock { (hasChars || !xbuffer.isEmpty) } }
-    // @f:1
-
+    @inlinable   open var markCount:    Int            { lock.withLock { mstk.count } }
     /*===========================================================================================================================================================================*/
     /// The number of spaces in each tab stop.
     ///
-    open var tabWidth: Int = 4
-
+                 open var tabWidth:     Int8           = 4
     /*===========================================================================================================================================================================*/
     /// The current line number.
     ///
-    @usableFromInline      var line:      Int           = 1
-    /*===========================================================================================================================================================================*/
-    /// The current column number.
-    ///
-    @usableFromInline      var column:    Int           = 1
+    @usableFromInline var pos:          (Int32, Int32) = (0, 0)
     /*===========================================================================================================================================================================*/
     /// The mark stack.
     ///
-    @usableFromInline      var markStack: [MarkItem]    = []
-    /*===========================================================================================================================================================================*/
-    /// The character buffer to hold restored characters.
-    ///
-    @usableFromInline      var xbuffer:   [Character]   = []
+    @usableFromInline var mstk:         [MarkItem]     = []
+    // @f:1
 
     /*===========================================================================================================================================================================*/
     /// Create a new instance of this character input stream from an existing byte input stream.
@@ -80,71 +65,31 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     public override init(inputStream: InputStream, encodingName: String, autoClose: Bool) { super.init(inputStream: inputStream, encodingName: encodingName, autoClose: autoClose) }
 
     /*===========================================================================================================================================================================*/
-    /// Read one character.
-    /// 
-    /// - Returns: the next character or `nil` if EOF.
-    /// - Throws: if an I/O error occurs.
-    ///
-    @inlinable open override func read() throws -> Character? {
-        try lock.withLock {
-            if let ch = try __read() {
-                if let mi = markStack.last { (line, column) = mi.add(line, column, tabWidth, ch) }
-                else { (line, column) = textPositionUpdate(ch, position: (line, column), tabSize: tabWidth) }
-                return ch
-            }
-            return nil
-        }
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Read <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s from the stream.
-    /// 
-    /// - Parameters:
-    ///   - chars: the <code>[Array](https://developer.apple.com/documentation/swift/Array)</code> to receive the
-    ///            <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s.
-    ///   - maxLength: the maximum number of <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s to receive. If -1 then all
-    ///                <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s are read until the end-of-file.
-    /// - Returns: the number of <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s read. Will return 0
-    ///            (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) if the stream is at end-of-file.
-    /// - Throws: if an I/O error occurs.
-    ///
-    @inlinable open override func read(chars: inout [Character], maxLength: Int) throws -> Int {
-        try lock.withLock {
-            let cc = try _read(chars: &chars, maxLength: maxLength)
-            if cc > 0 {
-                if let mi = markStack.last { for ch in chars { (line, column) = mi.add(line, column, tabWidth, ch) } }
-                else { for ch in chars { (line, column) = textPositionUpdate(ch, position: (line, column), tabSize: tabWidth) } }
-            }
-            return cc
-        }
-    }
-
-    /*===========================================================================================================================================================================*/
     /// Marks the current point in the stream so that it can be returned to later. You can set more than one mark but all operations happen on the most recently set mark.
     ///
-    @inlinable open func markSet() { lock.withLock { markStack <+ MarkItem() } }
+    open func markSet() { lock.withLock { _markSet() } }
 
     /*===========================================================================================================================================================================*/
     /// Removes and returns to the most recently set mark.
     ///
-    @inlinable open func markReturn() { lock.withLock { _markReturn() } }
+    open func markReturn() { lock.withLock { _markReturn() } }
 
     /*===========================================================================================================================================================================*/
     /// Removes the most recently set mark WITHOUT returning to it.
     ///
-    @inlinable open func markDelete() { lock.withLock { _ = markStack.popLast() } }
+    open func markDelete() { lock.withLock { _markDelete() } }
 
     /*===========================================================================================================================================================================*/
     /// Returns to the most recently set mark WITHOUT removing it. If there was no previously set mark then a new one is created. This is functionally equivalent to performing a
     /// `markReturn()` followed immediately by a `markSet()`.
     ///
-    @inlinable open func markReset() { lock.withLock { _markReturn(); markStack <+ MarkItem() } }
+    open func markReset() { lock.withLock { _markReturn(); _markSet() } }
 
     /*===========================================================================================================================================================================*/
     /// Updates the most recently set mark to the current position. If there was no previously set mark then a new one is created. This is functionally equivalent to performing a
     /// `markDelete()` followed immediately by a `markSet()`.
     ///
-    @inlinable open func markUpdate() { lock.withLock { _ = markStack.popLast(); markStack <+ MarkItem() } }
+    open func markUpdate() { lock.withLock { _markDelete(); _markSet() } }
 
     /*===========================================================================================================================================================================*/
     /// Backs out the last `count` characters from the most recently set mark without actually removing the entire mark. You have to have previously called `markSet()` otherwise
@@ -153,50 +98,58 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     /// - Parameter count: the number of characters to back out.
     /// - Returns: the number of characters actually backed out in case there weren't `count` characters available.
     ///
-    @discardableResult open func markBackup(count: Int) -> Int {
-        if count > 0 {
-            return lock.withLock {
-                if let mi = markStack.last {
-                    for cc in (0 ..< count) {
-                        guard let data = mi.data.popLast() else { return cc }
-                        line = data.0
-                        column = data.1
-                        xbuffer.insert(data.2, at: 0)
-                    }
-                }
-                return 0
-            }
-        }
-        return 0
+    @discardableResult open func markBackup(count: Int) -> Int { lock.withLock { _markBackup(count: count) } }
+
+    /*===========================================================================================================================================================================*/
+    /// Open the stream for reading.
+    ///
+    override func _open() {
+        pos = (1, 1)
+        super._open()
     }
 
-    @inlinable open override func open() {
-        lock.withLock {
-            line = 1
-            column = 1
-            _open()
-        }
+    /*===========================================================================================================================================================================*/
+    /// Close the stream.
+    ///
+    override func _close() {
+        super._close()
+        mstk.removeAll(keepingCapacity: false)
+        pos = (0, 0)
     }
 
-    @inlinable open override func close() {
-        lock.withLock {
-            _close()
-            markStack.removeAll(keepingCapacity: false)
-            xbuffer.removeAll(keepingCapacity: false)
-            line = 0
-            column = 0
-        }
-    }
+    /*===========================================================================================================================================================================*/
+    /// Marks the current point in the stream so that it can be returned to later. You can set more than one mark but all operations happen on the most recently set mark.
+    ///
+    @inlinable final func _markSet() { mstk <+ MarkItem(pos: pos) }
+
+    /*===========================================================================================================================================================================*/
+    /// Removes the most recently set mark WITHOUT returning to it.
+    ///
+    @inlinable final func _markDelete() { _ = mstk.popLast() }
 
     /*===========================================================================================================================================================================*/
     /// Removes and returns to the most recently set mark.
     ///
-    @inlinable func _markReturn() {
-        if let mi = markStack.popLast(), let data = mi.data.first {
-            line = data.0
-            column = data.1
-            xbuffer.insert(contentsOf: mi.data.map({ $0.2 }), at: 0)
+    @inlinable final func _markReturn() {
+        if let mi = mstk.popLast() {
+            pos = mi.pos
+            buffer.insert(contentsOf: mi.chars, at: 0)
         }
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Backs out the last `count` characters from the most recently set mark without actually removing the entire mark. You have to have previously called `markSet()` otherwise
+    /// this method does nothing.
+    /// 
+    /// - Parameter count: the number of characters to back out.
+    /// - Returns: the number of characters actually backed out in case there weren't `count` characters available.
+    ///
+    @inlinable final func _markBackup(count: Int) -> Int {
+        guard var mi = mstk.last else { return 0 }
+        let data = mi.getLast(count: count)
+        pos = data.1
+        buffer.insert(contentsOf: data.2, at: 0)
+        return data.0
     }
 
     /*===========================================================================================================================================================================*/
@@ -205,9 +158,11 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     /// - Returns: the next character or `nil` if EOF.
     /// - Throws: if an I/O error occurs.
     ///
-    @inlinable func __read() throws -> Character? {
-        if xbuffer.isEmpty { return try _read() }
-        return xbuffer.popFirst()
+    override func _read() throws -> Character? {
+        guard let ch = try super._read() else { return nil }
+        if var mi = mstk.last { mi.add(&pos, ch, tabWidth) }
+        else { textPositionUpdate(ch, pos: &pos, tabWidth: tabWidth) }
+        return ch
     }
 
     /*===========================================================================================================================================================================*/
@@ -222,37 +177,42 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     ///            (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) if the stream is at end-of-file.
     /// - Throws: if an I/O error occurs.
     ///
-    @usableFromInline func __read(chars: inout [Character], maxLength: Int) throws -> Int {
-        if !chars.isEmpty { chars.removeAll(keepingCapacity: true) }
-
-        let cc1 = xbuffer.count
-        if cc1 > 0 {
-            let r = (0 ..< min(maxLength, cc1))
-            chars.append(contentsOf: xbuffer[r])
-            xbuffer.removeSubrange(r)
-        }
-
-        let cc2 = chars.count
-        if cc2 < maxLength {
-            var xchars: [Character] = []
-            let cc3:    Int         = try _read(chars: &xchars, maxLength: (maxLength - cc2))
-            if cc3 > 0 { chars.append(contentsOf: xchars) }
-        }
-
-        return chars.count
+    override func _read(chars: inout [Character], maxLength: Int) throws -> Int {
+        let cc = try super._read(chars: &chars, maxLength: maxLength)
+        guard cc > 0 else { return cc }
+        if var mi = mstk.last { for ch in chars { mi.add(&pos, ch, tabWidth) } }
+        else { for ch in chars { textPositionUpdate(ch, pos: &pos, tabWidth: tabWidth) } }
+        return cc
     }
 
     /*===========================================================================================================================================================================*/
     /// A class to hold the marked place in the input stream.
     ///
-    @usableFromInline class MarkItem {
-        @usableFromInline var data: [(Int, Int, Character)] = []
+    @frozen @usableFromInline struct MarkItem {
+        //@f:0
+        @usableFromInline let pos:   (Int32, Int32)
+        @usableFromInline var data:  [((Int32, Int32), Character)] = []
+        @inlinable        var chars: [Character]                   { data.map { $0.1 } }
+        //@f:1
 
-        @inlinable init() {}
+        @inlinable init(pos: (Int32, Int32)) { self.pos = pos }
 
-        @inlinable func add(_ line: Int, _ column: Int, _ sz: Int, _ char: Character) -> (Int, Int) {
-            data <+ (line, column, char)
-            return textPositionUpdate(char, position: (line, column), tabSize: sz)
+        @inlinable mutating func add(_ pos: inout (Int32, Int32), _ char: Character, _ tab: Int8) {
+            data <+ (pos, char)
+            textPositionUpdate(char, pos: &pos, tabWidth: tab)
+        }
+
+        @inlinable mutating func getLast(count: Int) -> (Int, (Int32, Int32), [Character]) {
+            let i = min(count, data.count)
+            guard i > 0 else { return (0, pos, []) }
+
+            let j = data.endIndex
+            let k = (j - i)
+            let l = (k ..< j)
+            let m = (i, data[k].0, data[l].map { $0.1 })
+
+            data.removeSubrange(l)
+            return m
         }
     }
 }

@@ -33,17 +33,17 @@ public protocol CharInputStream: SimpleCharInputStream {
     /*===========================================================================================================================================================================*/
     /// The current line number.
     ///
-    var lineNumber:   Int { get }
+    var lineNumber:   Int32 { get }
 
     /*===========================================================================================================================================================================*/
     /// The current column number.
     ///
-    var columnNumber: Int { get }
+    var columnNumber: Int32 { get }
 
     /*===========================================================================================================================================================================*/
     /// The number of spaces in each tab stop.
     ///
-    var tabWidth:     Int { get set }
+    var tabWidth:     Int8 { get set }
 
     /*===========================================================================================================================================================================*/
     /// Marks the current point in the stream so that it can be returned to later. You can set more than one mark but all operations happen on the most recently set mark.
@@ -75,7 +75,7 @@ public protocol CharInputStream: SimpleCharInputStream {
     /*===========================================================================================================================================================================*/
     /// Backs out the last `count` characters from the most recently set mark without actually removing the entire mark. You have to have previously called `markSet()` otherwise
     /// this method does nothing.
-    ///
+    /// 
     /// - Parameter count: the number of characters to back out.
     /// - Returns: the number of characters actually backed out in case there weren't `count` characters available.
     ///

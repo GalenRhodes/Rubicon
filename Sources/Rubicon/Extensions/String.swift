@@ -494,9 +494,9 @@ extension String {
     ///   - tx: the tab size. Defaults to 4.
     /// - Returns: the position (line, column) of the index within the string.
     ///
-    @inlinable public func positionOfIndex(_ idx: Index, position pos: (Int, Int) = (1, 1), tabSize tx: Int = 4) -> (Int, Int) {
-        var line:   Int                       = pos.0
-        var column: Int                       = pos.1
+    @inlinable public func positionOfIndex(_ idx: Index, position pos: (Int32, Int32) = (1, 1), tabSize tx: Int8 = 4) -> (Int32, Int32) {
+        var line:   Int32                     = pos.0
+        var column: Int32                     = pos.1
         let rx:     RegularExpression         = RegularExpression(pattern: "(?:\\R|\\u000b|\\u000c)")!
         let ms:     [RegularExpression.Match] = rx.matches(in: self)
         var lIdx:   String.Index              = startIndex
@@ -527,9 +527,9 @@ extension String {
     }
 }
 
-@inlinable public func tabCalc(pos i: Int, tabSize sz: Int = 4) -> Int { (((((i - 1) + sz) / sz) * sz) + 1) }
+@inlinable public func tabCalc(pos i: Int32, tabSize sz: Int8 = 4) -> Int32 { let s = Int32(sz); return (((((i - 1) + s) / s) * s) + 1) }
 
-@inlinable public func textPositionUpdate(_ char: Character, position pos: (Int, Int), tabSize sz: Int = 4) -> (Int, Int) {
+@inlinable public func textPositionUpdate(_ char: Character, position pos: (Int32, Int32), tabWidth sz: Int8 = 4) -> (Int32, Int32) {
     switch char {
         case "\n", "\r", "\r\n": return (pos.0 + 1, 1)
         case "\t":               return (pos.0, tabCalc(pos: pos.1, tabSize: sz))
@@ -538,6 +538,8 @@ extension String {
         default:                 return (pos.0, pos.1 + 1)
     }
 }
+
+@inlinable public func textPositionUpdate(_ char: Character, pos: inout (Int32, Int32), tabWidth sz: Int8 = 4) { pos = textPositionUpdate(char, position: pos, tabWidth: sz) }
 
 infix operator ==~: ComparisonPrecedence
 infix operator !=~: ComparisonPrecedence

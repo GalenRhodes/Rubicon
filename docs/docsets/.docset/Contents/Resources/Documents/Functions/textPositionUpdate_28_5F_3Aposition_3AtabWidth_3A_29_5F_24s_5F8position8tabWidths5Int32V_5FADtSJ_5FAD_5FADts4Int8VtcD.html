@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>textPositionUpdate(_:position:tabSize:) Function Reference</title>
+    <title>textPositionUpdate(_:position:tabWidth:) Function Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -13,11 +13,11 @@
     <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Function/textPositionUpdate(_:position:tabSize:)" class="dashAnchor"></a>
-    <a title="textPositionUpdate(_:position:tabSize:) Function Reference"></a>
+    <a name="//apple_ref/swift/Function/textPositionUpdate(_:position:tabWidth:)" class="dashAnchor"></a>
+    <a title="textPositionUpdate(_:position:tabWidth:) Function Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Rubicon©</a> (70% documented)</p>
+        <p><a href="../index.html">Rubicon©</a> (71% documented)</p>
         <p class="header-right"><a href="https://github.com/GalenRhodes/Rubicon"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right">
           <form role="search" action="../search.json">
@@ -30,7 +30,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        textPositionUpdate(_:position:tabSize:) Function Reference
+        textPositionUpdate(_:position:tabWidth:) Function Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -113,6 +113,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/SimpleIConvCharInputStream.html">SimpleIConvCharInputStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SimpleStringCharInputStream.html">SimpleStringCharInputStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StringCharInputStream.html">StringCharInputStream</a>
               </li>
             </ul>
           </li>
@@ -342,13 +348,16 @@
                 <a href="../Functions/streamStatusGood_28_5F_3A_29_5F_24sySbSo14NSStreamStatusVcD.html">streamStatusGood(_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions/tabCalc_28pos_3AtabSize_3A_29_5F_24s3pos7tabSizeS2i_5FSitcD.html">tabCalc(pos:tabSize:)</a>
+                <a href="../Functions/tabCalc_28pos_3AtabSize_3A_29_5F_24s3pos7tabSizes5Int32VAD_5Fs4Int8VtcD.html">tabCalc(pos:tabSize:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html">testOSFatalError(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions/textPositionUpdate_28_5F_3Aposition_3AtabSize_3A_29_5F_24s_5F8position7tabSizeSi_5FSitSJ_5FSi_5FSitSitcD.html">textPositionUpdate(_:position:tabSize:)</a>
+                <a href="../Functions/textPositionUpdate_28_5F_3Apos_3AtabWidth_3A_29_5F_24s_5F3pos8tabWidthySJ_5Fs5Int32V_5FADtzs4Int8VtcD.html">textPositionUpdate(_:pos:tabWidth:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/textPositionUpdate_28_5F_3Aposition_3AtabWidth_3A_29_5F_24s_5F8position8tabWidths5Int32V_5FADtSJ_5FAD_5FADts4Int8VtcD.html">textPositionUpdate(_:position:tabWidth:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions/timeIntervalFrom_28date_3A_29_5F.html">timeIntervalFrom(date:)</a>
@@ -498,12 +507,12 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>textPositionUpdate(_:position:tabSize:)</h1>
+            <h1>textPositionUpdate(_:position:tabWidth:)</h1>
               <div class="declaration">
                 <div class="language">
                   
                   <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">textPositionUpdate</span><span class="p">(</span><span class="n">_</span> <span class="nv">char</span><span class="p">:</span> <span class="kt">Character</span><span class="p">,</span> <span class="n">position</span> <span class="nv">pos</span><span class="p">:</span> <span class="p">(</span><span class="kt">Int</span><span class="p">,</span> <span class="kt">Int</span><span class="p">),</span> <span class="n">tabSize</span> <span class="nv">sz</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="kt">Int</span><span class="p">,</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">textPositionUpdate</span><span class="p">(</span><span class="n">_</span> <span class="nv">char</span><span class="p">:</span> <span class="kt">Character</span><span class="p">,</span> <span class="n">position</span> <span class="nv">pos</span><span class="p">:</span> <span class="p">(</span><span class="kt">Int32</span><span class="p">,</span> <span class="kt">Int32</span><span class="p">),</span> <span class="n">tabWidth</span> <span class="nv">sz</span><span class="p">:</span> <span class="kt">Int8</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="kt">Int32</span><span class="p">,</span> <span class="kt">Int32</span><span class="p">)</span></code></pre>
 
                 </div>
               </div>
@@ -516,7 +525,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-03-30)</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-04-05)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

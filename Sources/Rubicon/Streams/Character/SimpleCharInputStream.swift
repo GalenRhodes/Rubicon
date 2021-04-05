@@ -33,7 +33,7 @@ public protocol SimpleCharInputStream: CharStream {
 
     /*===========================================================================================================================================================================*/
     /// Read one character.
-    ///
+    /// 
     /// - Returns: the next character or `nil` if EOF.
     /// - Throws: if an I/O error occurs.
     ///
@@ -41,7 +41,7 @@ public protocol SimpleCharInputStream: CharStream {
 
     /*===========================================================================================================================================================================*/
     /// Read <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s from the stream.
-    ///
+    /// 
     /// - Parameters:
     ///   - chars: the <code>[Array](https://developer.apple.com/documentation/swift/Array)</code> to receive the
     ///            <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s. This array will be cleared before the new characters are added to it.
@@ -56,7 +56,7 @@ public protocol SimpleCharInputStream: CharStream {
     /*===========================================================================================================================================================================*/
     /// Read <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s from the stream and append them to the given character array. This method is
     /// identical to `read(chars:,maxLength:)` except that the receiving array is not cleared before the data is read.
-    ///
+    /// 
     /// - Parameters:
     ///   - chars: the <code>[Array](https://developer.apple.com/documentation/swift/Array)</code> to receive the
     ///            <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s.
@@ -73,7 +73,7 @@ extension SimpleCharInputStream {
     /*===========================================================================================================================================================================*/
     /// Read <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s from the stream and append them to the given character array. This method is
     /// identical to `read(chars:,maxLength:)` except that the receiving array is not cleared before the data is read.
-    ///
+    /// 
     /// - Parameters:
     ///   - chars: the <code>[Array](https://developer.apple.com/documentation/swift/Array)</code> to receive the
     ///            <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s.

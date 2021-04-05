@@ -18,19 +18,21 @@
 import Foundation
 import CoreFoundation
 
-open class SimpleStringCharInputStream: SimpleCharInputStream {
-    public let encodingName: String = "UTF-32"
-    public let streamError:  Error? = nil
+public class SimpleStringCharInputStream: SimpleCharInputStream {
+    //@f:0
+    public                  let encodingName:      String        = "UTF-32"
+    public                  let streamError:       Error?        = nil
 
-    public private(set) var streamStatus: Stream.Status = .notOpen
+    @inlinable public final var streamStatus:      Stream.Status { lock.withLock { ((status == .open) ? ((index < eIdx) ? .open : .atEnd) : status) } }
+    @inlinable public final var hasCharsAvailable: Bool          { lock.withLock { ((status == .open) && (index < eIdx))                            } }
+    @inlinable public final var isEOF:             Bool          { !hasCharsAvailable                                                                 }
 
-    open var isEOF:             Bool { !hasCharsAvailable }
-    open var hasCharsAvailable: Bool { lock.withLock { ((streamStatus == .open) && (index < eIdx)) } }
-
-    private let string: String
-    private let eIdx:   String.Index
-    private var index:  String.Index
-    private let lock:   RecursiveLock = RecursiveLock()
+    @usableFromInline       let string:            String
+    @usableFromInline       let eIdx:              String.Index
+    @usableFromInline       var index:             String.Index
+    @usableFromInline       var status:            Stream.Status = .notOpen
+    @usableFromInline       let lock:              RecursiveLock = RecursiveLock()
+    //@f:1
 
     public init(string: String) {
         self.string = string
@@ -38,34 +40,36 @@ open class SimpleStringCharInputStream: SimpleCharInputStream {
         self.index = self.string.startIndex
     }
 
-    open func read() throws -> Character? {
-        lock.withLock {
-            guard streamStatus == .open && index < eIdx else { return nil }
-            let i = index
-            string.formIndex(after: &index)
-            return string[i]
+    public func read() throws -> Character? { try lock.withLock { try _read() } }
+
+    public func read(chars: inout [Character], maxLength: Int) throws -> Int { try lock.withLock { try _read(chars: &chars, maxLength: maxLength) } }
+
+    public func open() { lock.withLock { _open() } }
+
+    public func close() { lock.withLock { _close() } }
+
+    func _open() {
+        if status == .notOpen {
+            index = string.startIndex
+            status = .open
         }
     }
 
-    open func read(chars: inout [Character], maxLength: Int) throws -> Int {
-        lock.withLock {
-            guard streamStatus == .open && index < eIdx && maxLength != 0 else { return 0 }
-            if !chars.isEmpty { chars.removeAll(keepingCapacity: true) }
-            let i = (string.index(index, offsetBy: (maxLength < 0 ? Int.max : maxLength), limitedBy: eIdx) ?? eIdx)
-            chars.append(contentsOf: string[index ..< i])
-            index = i
-            return chars.count
-        }
+    func _close() { if status == .open { status = .closed } }
+
+    func _read() throws -> Character? {
+        guard status == .open && index < eIdx else { return nil }
+        let i = index
+        string.formIndex(after: &index)
+        return string[i]
     }
 
-    open func open() {
-        lock.withLock {
-            if streamStatus == .notOpen {
-                index = string.startIndex
-                streamStatus = .open
-            }
-        }
+    func _read(chars: inout [Character], maxLength: Int) throws -> Int {
+        guard status == .open && index < eIdx && maxLength != 0 else { return 0 }
+        if !chars.isEmpty { chars.removeAll(keepingCapacity: true) }
+        let i = (string.index(index, offsetBy: (maxLength < 0 ? Int.max : maxLength), limitedBy: eIdx) ?? eIdx)
+        chars.append(contentsOf: string[index ..< i])
+        index = i
+        return chars.count
     }
-
-    open func close() { lock.withLock { if streamStatus == .open { streamStatus = .closed } } }
 }

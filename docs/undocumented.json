@@ -1123,7 +1123,14 @@
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/String.swift",
       "line": 532,
-      "symbol": "textPositionUpdate(_:position:tabSize:)",
+      "symbol": "textPositionUpdate(_:position:tabWidth:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/String.swift",
+      "line": 542,
+      "symbol": "textPositionUpdate(_:pos:tabWidth:)",
       "symbol_kind": "source.lang.swift.decl.function.free",
       "warning": "undocumented"
     },
@@ -1268,20 +1275,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharStream.swift",
-      "line": 42,
-      "symbol": "CharStream.open()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharStream.swift",
-      "line": 44,
-      "symbol": "CharStream.close()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
       "line": 29,
       "symbol": "IConvCharInputStream",
@@ -1342,6 +1335,34 @@
       "line": 46,
       "symbol": "SimpleIConvCharInputStream",
       "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift",
+      "line": 21,
+      "symbol": "SimpleStringCharInputStream",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift",
+      "line": 37,
+      "symbol": "SimpleStringCharInputStream.init(string:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/StringCharInputStream.swift",
+      "line": 21,
+      "symbol": "StringCharInputStream",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/StringCharInputStream.swift",
+      "line": 31,
+      "symbol": "StringCharInputStream.init(string:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {

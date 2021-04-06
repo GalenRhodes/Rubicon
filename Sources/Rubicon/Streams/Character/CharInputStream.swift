@@ -23,27 +23,24 @@
 import Foundation
 import CoreFoundation
 
+public typealias TextPosition = (lineNumber: Int32, columnNumber: Int32)
+
 public protocol CharInputStream: SimpleCharInputStream {
 
     /*===========================================================================================================================================================================*/
     /// The number of marks on the stream.
     ///
-    var markCount:    Int { get }
+    var markCount: Int { get }
 
     /*===========================================================================================================================================================================*/
-    /// The current line number.
+    /// The current line and column numbers.
     ///
-    var lineNumber:   Int32 { get }
-
-    /*===========================================================================================================================================================================*/
-    /// The current column number.
-    ///
-    var columnNumber: Int32 { get }
+    var position:  TextPosition { get }
 
     /*===========================================================================================================================================================================*/
     /// The number of spaces in each tab stop.
     ///
-    var tabWidth:     Int8 { get set }
+    var tabWidth:  Int8 { get set }
 
     /*===========================================================================================================================================================================*/
     /// Marks the current point in the stream so that it can be returned to later. You can set more than one mark but all operations happen on the most recently set mark.

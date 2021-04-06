@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>textPositionUpdate(_:position:tabWidth:) Function Reference</title>
+    <title>TextPosition Type Alias Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -13,8 +13,8 @@
     <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Function/textPositionUpdate(_:position:tabWidth:)" class="dashAnchor"></a>
-    <a title="textPositionUpdate(_:position:tabWidth:) Function Reference"></a>
+    <a name="//apple_ref/swift/Alias/TextPosition" class="dashAnchor"></a>
+    <a title="TextPosition Type Alias Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Rubicon©</a> (71% documented)</p>
@@ -30,7 +30,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        textPositionUpdate(_:position:tabWidth:) Function Reference
+        TextPosition Type Alias Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -354,10 +354,7 @@
                 <a href="../Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html">testOSFatalError(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions/textPositionUpdate_28_5F_3Apos_3AtabWidth_3A_29_5F_24s_5F3pos8tabWidthySJ_5Fs5Int32V_5FADtzs4Int8VtcD.html">textPositionUpdate(_:pos:tabWidth:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions/textPositionUpdate_28_5F_3Aposition_3AtabWidth_3A_29_5F_24s_5F8position8tabWidths5Int32V_5FADtSJ_5FAD_5FADts4Int8VtcD.html">textPositionUpdate(_:position:tabWidth:)</a>
+                <a href="../Functions/textPositionUpdate_28_5F_3Apos_3AtabWidth_3A_29_5F_24s_5F3pos8tabWidthySJ_5Fs5Int32V10lineNumber_5FAD06columnF0tzs4Int8VtcD.html">textPositionUpdate(_:pos:tabWidth:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions/timeIntervalFrom_28date_3A_29_5F.html">timeIntervalFrom(date:)</a>
@@ -489,6 +486,9 @@
                 <a href="../Typealiases/RegExResult.html">RegExResult</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Typealiases/TextPosition.html">TextPosition</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Typealiases/WordBuffer.html">WordBuffer</a>
               </li>
               <li class="nav-group-task">
@@ -507,18 +507,17 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>textPositionUpdate(_:position:tabWidth:)</h1>
+            <h1>TextPosition</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">textPositionUpdate</span><span class="p">(</span><span class="n">_</span> <span class="nv">char</span><span class="p">:</span> <span class="kt">Character</span><span class="p">,</span> <span class="n">position</span> <span class="nv">pos</span><span class="p">:</span> <span class="p">(</span><span class="kt">Int32</span><span class="p">,</span> <span class="kt">Int32</span><span class="p">),</span> <span class="n">tabWidth</span> <span class="nv">sz</span><span class="p">:</span> <span class="kt">Int8</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="kt">Int32</span><span class="p">,</span> <span class="kt">Int32</span><span class="p">)</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">TextPosition</span> <span class="o">=</span> <span class="p">(</span><span class="nv">lineNumber</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">,</span> <span class="nv">columnNumber</span><span class="p">:</span> <span class="kt">Int32</span><span class="p">)</span></code></pre>
 
                 </div>
               </div>
             
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L532-L540">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/CharInputStream.swift#L">Show on GitHub</a>
               </div>
           </section>
           <section class="section task-group-section">

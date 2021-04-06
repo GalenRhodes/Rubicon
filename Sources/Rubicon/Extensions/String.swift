@@ -490,56 +490,32 @@ extension String {
     /// 
     /// - Parameters:
     ///   - idx: the index.
-    ///   - pos: the starting position. Defaults to (1, 1).
+    ///   - position: the starting position. Defaults to (1, 1).
     ///   - tx: the tab size. Defaults to 4.
     /// - Returns: the position (line, column) of the index within the string.
     ///
-    @inlinable public func positionOfIndex(_ idx: Index, position pos: (Int32, Int32) = (1, 1), tabSize tx: Int8 = 4) -> (Int32, Int32) {
-        var line:   Int32                     = pos.0
-        var column: Int32                     = pos.1
-        let rx:     RegularExpression         = RegularExpression(pattern: "(?:\\R|\\u000b|\\u000c)")!
-        let ms:     [RegularExpression.Match] = rx.matches(in: self)
-        var lIdx:   String.Index              = startIndex
-        let eIdx:   String.Index              = ((idx < endIndex) ? idx : endIndex)
-
-        for x in (0 ..< ms.count) {
-            let m    = ms[x]
-            let uIdx = m.range.upperBound
-
-            if idx < uIdx { break }
-
-            switch m.subString {
-                case "\u{0b}": line = tabCalc(pos: line, tabSize: tx)
-                case "\u{0c}": line += 24
-                default:       line += 1
-            }
-
-            column = 1
-            lIdx = uIdx
+    @inlinable public func positionOfIndex(_ idx: Index, position: TextPosition = (1, 1), tabSize tx: Int8 = 4) -> TextPosition {
+        var idx = idx
+        var pos = position
+        while idx < endIndex {
+            textPositionUpdate(self[idx], pos: &pos, tabWidth: tx)
+            formIndex(after: &idx)
         }
-
-        while lIdx < eIdx {
-            column = ((self[lIdx] == "\t") ? tabCalc(pos: column, tabSize: tx) : (column + 1))
-            formIndex(after: &lIdx)
-        }
-
-        return (line, column)
+        return pos
     }
 }
 
 @inlinable public func tabCalc(pos i: Int32, tabSize sz: Int8 = 4) -> Int32 { let s = Int32(sz); return (((((i - 1) + s) / s) * s) + 1) }
 
-@inlinable public func textPositionUpdate(_ char: Character, position pos: (Int32, Int32), tabWidth sz: Int8 = 4) -> (Int32, Int32) {
+@inlinable public func textPositionUpdate(_ char: Character, pos: inout TextPosition, tabWidth sz: Int8 = 4) {
     switch char {
-        case "\n", "\r", "\r\n": return (pos.0 + 1, 1)
-        case "\t":               return (pos.0, tabCalc(pos: pos.1, tabSize: sz))
-        case "\u{0c}":           return (pos.0 + 24, 1)
-        case "\u{0b}":           return (tabCalc(pos: pos.0, tabSize: sz), pos.1)
-        default:                 return (pos.0, pos.1 + 1)
+        case "\n", "\r", "\r\n": pos = (pos.0 + 1, 1)
+        case "\t":               pos = (pos.0, tabCalc(pos: pos.1, tabSize: sz))
+        case "\u{0c}":           pos = (pos.0 + 24, 1)
+        case "\u{0b}":           pos = (tabCalc(pos: pos.0, tabSize: sz), pos.1)
+        default:                 pos = (pos.0, pos.1 + 1)
     }
 }
-
-@inlinable public func textPositionUpdate(_ char: Character, pos: inout (Int32, Int32), tabWidth sz: Int8 = 4) { pos = textPositionUpdate(char, position: pos, tabWidth: sz) }
 
 infix operator ==~: ComparisonPrecedence
 infix operator !=~: ComparisonPrecedence

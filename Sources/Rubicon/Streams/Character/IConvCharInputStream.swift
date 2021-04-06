@@ -31,27 +31,23 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     /*===========================================================================================================================================================================*/
     /// The current line number.
     ///
-    @inlinable   open var lineNumber:   Int32          { lock.withLock { pos.0      } }
-    /*===========================================================================================================================================================================*/
-    /// The current column number.
-    ///
-    @inlinable   open var columnNumber: Int32          { lock.withLock { pos.1      } }
+    @inlinable   open var position:  TextPosition { lock.withLock { pos        } }
     /*===========================================================================================================================================================================*/
     /// The number of marks on the stream.
     ///
-    @inlinable   open var markCount:    Int            { lock.withLock { mstk.count } }
+    @inlinable   open var markCount: Int          { lock.withLock { mstk.count } }
     /*===========================================================================================================================================================================*/
     /// The number of spaces in each tab stop.
     ///
-                 open var tabWidth:     Int8           = 4
+                 open var tabWidth:  Int8         = 4
     /*===========================================================================================================================================================================*/
     /// The current line number.
     ///
-    @usableFromInline var pos:          (Int32, Int32) = (0, 0)
+    @usableFromInline var pos:       TextPosition = (0, 0)
     /*===========================================================================================================================================================================*/
     /// The mark stack.
     ///
-    @usableFromInline var mstk:         [MarkItem]     = []
+    @usableFromInline var mstk:      [MarkItem]   = []
     // @f:1
 
     /*===========================================================================================================================================================================*/
@@ -191,19 +187,19 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     ///
     @frozen @usableFromInline struct MarkItem {
         //@f:0
-        @usableFromInline let pos:   (Int32, Int32)
-        @usableFromInline var data:  [((Int32, Int32), Character)] = []
-        @inlinable        var chars: [Character]                   { data.map { $0.1 } }
+        @usableFromInline let pos:   TextPosition
+        @usableFromInline var data:  [(TextPosition, Character)] = []
+        @inlinable        var chars: [Character]                 { data.map { $0.1 } }
         //@f:1
 
-        @inlinable init(pos: (Int32, Int32)) { self.pos = pos }
+        @inlinable init(pos: TextPosition) { self.pos = pos }
 
-        @inlinable mutating func add(_ pos: inout (Int32, Int32), _ char: Character, _ tab: Int8) {
+        @inlinable mutating func add(_ pos: inout TextPosition, _ char: Character, _ tab: Int8) {
             data <+ (pos, char)
             textPositionUpdate(char, pos: &pos, tabWidth: tab)
         }
 
-        @inlinable mutating func getLast(count: Int) -> (Int, (Int32, Int32), [Character]) {
+        @inlinable mutating func getLast(count: Int) -> (Int, TextPosition, [Character]) {
             let i = min(count, data.count)
             guard i > 0 else { return (0, pos, []) }
 

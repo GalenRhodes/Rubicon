@@ -175,8 +175,8 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
 
     func _read() throws -> Character? {
         while waitForMore { lock.broadcastWait() }
+        guard isOpen else { return nil }
         if let e = error { throw e }
-        if status != .open { return nil }
         return buffer.popFirst()
     }
 
@@ -194,27 +194,45 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
 
     func _read(chars: inout [Character], maxLength: Int) throws -> Int {
         if !chars.isEmpty { chars.removeAll(keepingCapacity: true) }
+        return try _append(to: &chars, maxLength: maxLength)
+    }
 
+    /*===========================================================================================================================================================================*/
+    /// Read <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s from the stream and append them to the given character array. This method is
+    /// identical to `read(chars:,maxLength:)` except that the receiving array is not cleared before the data is read.
+    /// 
+    /// - Parameters:
+    ///   - chars: the <code>[Array](https://developer.apple.com/documentation/swift/Array)</code> to receive the
+    ///            <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s.
+    ///   - maxLength: the maximum number of <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s to receive. If -1 then all
+    ///                <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s are read until the end-of-file.
+    /// - Returns: the number of <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s read. Will return 0
+    ///            (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) if the stream is at end-of-file.
+    /// - Throws: if an I/O error occurs.
+    ///
+    open func append(to chars: inout [Character], maxLength: Int) throws -> Int { try lock.withLock { try _append(to: &chars, maxLength: maxLength) } }
+
+    func _append(to chars: inout [Character], maxLength: Int) throws -> Int {
         var cc: Int = 0
+        let ln: Int = ((maxLength < 0) ? Int.max : maxLength)
 
-        while (cc < maxLength) && hasChars {
+        while (cc < ln) && hasChars {
             while waitForMore { lock.broadcastWait() }
 
-            if let e = error {
-                throw e
+            guard isOpen else { break }
+            if let e = error { throw e }
+
+            if buffer.isEmpty {
+                guard isRunning else { break }
             }
-            else if isOpen && !buffer.isEmpty {
-                let l = min(buffer.count, (maxLength - cc))
+            else {
+                let l = min(buffer.count, (ln - cc))
                 let r = (0 ..< l)
 
                 chars.append(contentsOf: buffer[r])
                 buffer.removeSubrange(r)
                 cc += l
             }
-            else {
-                break
-            }
-            // cc += try __read(&chars, maxLength: (maxLength - cc))
         }
 
         return cc

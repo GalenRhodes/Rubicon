@@ -166,7 +166,8 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     }
 
     /*===========================================================================================================================================================================*/
-    /// Read <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s from the stream.
+    /// Read <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s from the stream and append them to the given character array. This method is
+    /// identical to `read(chars:,maxLength:)` except that the receiving array is not cleared before the data is read.
     /// 
     /// - Parameters:
     ///   - chars: the <code>[Array](https://developer.apple.com/documentation/swift/Array)</code> to receive the
@@ -177,8 +178,8 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     ///            (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) if the stream is at end-of-file.
     /// - Throws: if an I/O error occurs.
     ///
-    override func _read(chars: inout [Character], maxLength: Int) throws -> Int {
-        let cc = try super._read(chars: &chars, maxLength: maxLength)
+    override func _append(to chars: inout [Character], maxLength: Int) throws -> Int {
+        let cc = try super._append(to: &chars, maxLength: maxLength)
         guard cc > 0 else { return cc }
         if var mi = mstk.last { for ch in chars { mi.add(&pos, ch, tabWidth) } }
         else { for ch in chars { textPositionUpdate(ch, pos: &pos, tabWidth: tabWidth) } }

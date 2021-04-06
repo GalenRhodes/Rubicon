@@ -1346,7 +1346,7 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift",
-      "line": 38,
+      "line": 43,
       "symbol": "SimpleStringCharInputStream.init(string:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

@@ -66,7 +66,7 @@ public protocol SimpleCharInputStream: CharStream {
     ///            (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) if the stream is at end-of-file.
     /// - Throws: if an I/O error occurs.
     ///
-    func append(to chars: inout [Character], maxLength len: Int) throws -> Int
+    func append(to chars: inout [Character], maxLength: Int) throws -> Int
 }
 
 extension SimpleCharInputStream {
@@ -84,7 +84,7 @@ extension SimpleCharInputStream {
     /// - Throws: if an I/O error occurs.
     ///
     @inlinable public func append(to chars: inout [Character], maxLength len: Int = -1) throws -> Int {
-        var newChars = [ Character ]()
+        var newChars = Array<Character>()
         let cc       = try read(chars: &newChars, maxLength: ((len < 0) ? Int.max : len))
         if cc > 0 { chars.append(contentsOf: newChars) }
         return cc

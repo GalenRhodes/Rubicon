@@ -20,19 +20,24 @@ import CoreFoundation
 
 open class SimpleStringCharInputStream: SimpleCharInputStream {
     //@f:0
+    /*===========================================================================================================================================================================*/
+    /// Just for looks.  Encoding is always UTF-32.
+    ///
     public let encodingName: String = "UTF-32"
+    /*===========================================================================================================================================================================*/
+    /// Just for looks.  Errors will never happen.
+    ///
     public let streamError:  Error? = nil
 
     open var streamStatus:      Stream.Status { lock.withLock { ((status == .open) ? ((index < eIdx) ? .open : .atEnd) : status) } }
     open var hasCharsAvailable: Bool          { lock.withLock { ((status == .open) && (index < eIdx))                            } }
-    open var isEOF:             Bool          { !hasCharsAvailable                                                                 }
+    open var isEOF:             Bool          { lock.withLock { ((status != .open) || (index == eIdx))                           } }
 
     @usableFromInline let string: String
     @usableFromInline let eIdx:   String.Index
     @usableFromInline var index:  String.Index
     @usableFromInline var status: Stream.Status = .notOpen
     @usableFromInline let lock:   RecursiveLock = RecursiveLock()
-
     //@f:1
 
     public init(string: String) {
@@ -41,20 +46,19 @@ open class SimpleStringCharInputStream: SimpleCharInputStream {
         self.index = self.string.startIndex
     }
 
+    deinit { _close() }
+
     open func read() throws -> Character? { try lock.withLock { try _read() } }
 
     open func read(chars: inout [Character], maxLength: Int) throws -> Int { try lock.withLock { try _read(chars: &chars, maxLength: maxLength) } }
+
+    open func append(to chars: inout [Character], maxLength: Int) throws -> Int { try lock.withLock { try _append(to: &chars, maxLength: maxLength) } }
 
     open func open() { lock.withLock { _open() } }
 
     open func close() { lock.withLock { _close() } }
 
-    func _open() {
-        if status == .notOpen {
-            index = string.startIndex
-            status = .open
-        }
-    }
+    func _open() { if status == .notOpen { status = .open } }
 
     func _close() { if status == .open { status = .closed } }
 
@@ -66,11 +70,18 @@ open class SimpleStringCharInputStream: SimpleCharInputStream {
     }
 
     func _read(chars: inout [Character], maxLength: Int) throws -> Int {
-        guard status == .open && index < eIdx && maxLength != 0 else { return 0 }
         if !chars.isEmpty { chars.removeAll(keepingCapacity: true) }
-        let i = (string.index(index, offsetBy: (maxLength < 0 ? Int.max : maxLength), limitedBy: eIdx) ?? eIdx)
+        return try _append(to: &chars, maxLength: maxLength)
+    }
+
+    func _append(to chars: inout [Character], maxLength: Int) throws -> Int {
+        guard status == .open && maxLength != 0 && index < eIdx else { return 0 }
+
+        let c = chars.count
+        let i = (string.index(index, offsetBy: ((maxLength < 0) ? Int.max : maxLength), limitedBy: eIdx) ?? eIdx)
+
         chars.append(contentsOf: string[index ..< i])
         index = i
-        return chars.count
+        return (chars.count - c)
     }
 }

@@ -78,8 +78,8 @@ open class StringCharInputStream: SimpleStringCharInputStream, CharInputStream {
         return ch
     }
 
-    override func _read(chars: inout [Character], maxLength: Int) throws -> Int {
-        let cc = try super._read(chars: &chars, maxLength: maxLength)
+    override func _append(to chars: inout [Character], maxLength: Int) throws -> Int {
+        let cc = try super._append(to: &chars, maxLength: maxLength)
         guard cc > 0 else { return 0 }
         for ch in chars { textPositionUpdate(ch, pos: &pos, tabWidth: tabWidth) }
         return cc

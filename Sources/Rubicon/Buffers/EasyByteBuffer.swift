@@ -24,9 +24,11 @@ import Foundation
 
 open class EasyByteBuffer {
 
+    //@f:0
     public let bytes:  BytePointer
     public let length: Int
-    open var   count:  Int = 0
+    open   var count:  Int = 0
+    //@f:1
 
     public init(length: Int) {
         self.length = length
@@ -39,7 +41,7 @@ open class EasyByteBuffer {
         bytes.deallocate()
     }
 
-    @discardableResult @inlinable open func relocateToFront(start idx: Int) -> Int {
+    @discardableResult open func relocateToFront(start idx: Int) -> Int {
         guard count >= 0 && count <= length else { fatalError("Internal count value is invalid.") }
         guard idx >= 0 && idx <= count else { fatalError("Start index out of bounds.") }
 
@@ -51,20 +53,20 @@ open class EasyByteBuffer {
         return count
     }
 
-    @inlinable open func relocateToFront(start idx: Int, count cc: Int) {
+    open func relocateToFront(start idx: Int, count cc: Int) {
         guard (idx >= 0) && (idx <= length) else { fatalError("Start index out of bounds.") }
         guard (cc >= 0) && ((idx + cc) <= length) else { fatalError("Count is invalid.") }
         _relocate(start: idx, count: cc)
     }
 
-    @inlinable final func _relocate(start idx: Int, count cc: Int) {
+    final func _relocate(start idx: Int, count cc: Int) {
         if (idx > 0) && (idx < length) && (cc > 0) {
             memmove(bytes, (bytes + idx), cc)
         }
         count = cc
     }
 
-    @discardableResult @inlinable open func withBufferAs<T, V>(type: T.Type, _ body: (UnsafeMutablePointer<T>, Int, inout Int) throws -> V) rethrows -> V {
+    @discardableResult open func withBufferAs<T, V>(type: T.Type, _ body: (UnsafeMutablePointer<T>, Int, inout Int) throws -> V) rethrows -> V {
         var c = fromBytes(type: T.self, count)
         let l = fromBytes(type: T.self, length)
         let r = try body(UnsafeMutableRawPointer(bytes).bindMemory(to: T.self, capacity: l), l, &c)
@@ -72,7 +74,7 @@ open class EasyByteBuffer {
         return r
     }
 
-    @discardableResult @inlinable open func withBufferAs<T, V>(type: T.Type, _ body: (UnsafeMutableBufferPointer<T>, inout Int) throws -> V) rethrows -> V {
+    @discardableResult open func withBufferAs<T, V>(type: T.Type, _ body: (UnsafeMutableBufferPointer<T>, inout Int) throws -> V) rethrows -> V {
         var c = fromBytes(type: T.self, count)
         let r = try body(UnsafeMutableBufferPointer<T>(start: UnsafeMutableRawPointer(bytes).bindMemory(to: T.self, capacity: c), count: c), &c)
         count = toBytes(type: T.self, c)
@@ -80,6 +82,6 @@ open class EasyByteBuffer {
     }
 }
 
-@inlinable func fromBytes<T>(type: T.Type, _ value: Int) -> Int { ((value * MemoryLayout<UInt8>.stride) / MemoryLayout<T>.stride) }
+func fromBytes<T>(type: T.Type, _ value: Int) -> Int { ((value * MemoryLayout<UInt8>.stride) / MemoryLayout<T>.stride) }
 
-@inlinable func toBytes<T>(type: T.Type, _ value: Int) -> Int { ((value * MemoryLayout<T>.stride) / MemoryLayout<UInt8>.stride) }
+func toBytes<T>(type: T.Type, _ value: Int) -> Int { ((value * MemoryLayout<T>.stride) / MemoryLayout<UInt8>.stride) }

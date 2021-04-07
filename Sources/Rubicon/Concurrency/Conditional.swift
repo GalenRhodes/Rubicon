@@ -102,22 +102,22 @@ extension LockCondition {
         try withLockWait(until: limit, broadcastBeforeWait: true, cond, do: block)
     }
 
-    @inlinable public func broadcastWait() {
+    public func broadcastWait() {
         broadcast()
         wait()
     }
 
-    @inlinable public func broadcastWait(until limit: Date) -> Bool {
+    public func broadcastWait(until limit: Date) -> Bool {
         broadcast()
         return wait(until: limit)
     }
 
-    @inlinable public func signalWait() {
+    public func signalWait() {
         signal()
         wait()
     }
 
-    @inlinable public func signalWait(until limit: Date) -> Bool {
+    public func signalWait(until limit: Date) -> Bool {
         signal()
         return wait(until: limit)
     }
@@ -212,19 +212,19 @@ open class Conditional: LockCondition {
         return try block()
     }
 
-    @inlinable final func bcastUnlock() {
+    final func bcastUnlock() {
         broadcast()
         unlock()
     }
 
-    @discardableResult @inlinable final func bcastWait(until limit: Date? = nil, willBroadcast bcast: Bool) -> Bool {
+    @discardableResult final func bcastWait(until limit: Date? = nil, willBroadcast bcast: Bool) -> Bool {
         if bcast { broadcast() }
         if let limit = limit { return wait(until: limit) }
         wait()
         return true
     }
 
-    @inlinable final func PGGetLockTime(from date: Date) -> PGLockTime? {
+    final func PGGetLockTime(from date: Date) -> PGLockTime? {
         #if os(Windows)
             return timeIntervalFrom(date: date)
         #else

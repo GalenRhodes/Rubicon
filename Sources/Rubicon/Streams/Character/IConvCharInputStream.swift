@@ -31,23 +31,23 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     /*===========================================================================================================================================================================*/
     /// The current line number.
     ///
-    @inlinable   open var position:  TextPosition { lock.withLock { pos        } }
+    open     var position:  TextPosition { lock.withLock { pos        } }
     /*===========================================================================================================================================================================*/
     /// The number of marks on the stream.
     ///
-    @inlinable   open var markCount: Int          { lock.withLock { mstk.count } }
+    open     var markCount: Int          { lock.withLock { mstk.count } }
     /*===========================================================================================================================================================================*/
     /// The number of spaces in each tab stop.
     ///
-                 open var tabWidth:  Int8         = 4
+    open     var tabWidth:  Int8         = 4
     /*===========================================================================================================================================================================*/
     /// The current line number.
     ///
-    @usableFromInline var pos:       TextPosition = (0, 0)
+    internal var pos:       TextPosition = (0, 0)
     /*===========================================================================================================================================================================*/
     /// The mark stack.
     ///
-    @usableFromInline var mstk:      [MarkItem]   = []
+    internal var mstk:      [MarkItem]   = []
     // @f:1
 
     /*===========================================================================================================================================================================*/
@@ -116,17 +116,17 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     /*===========================================================================================================================================================================*/
     /// Marks the current point in the stream so that it can be returned to later. You can set more than one mark but all operations happen on the most recently set mark.
     ///
-    @inlinable final func _markSet() { mstk <+ MarkItem(pos: pos) }
+    func _markSet() { mstk <+ MarkItem(pos: pos) }
 
     /*===========================================================================================================================================================================*/
     /// Removes the most recently set mark WITHOUT returning to it.
     ///
-    @inlinable final func _markDelete() { _ = mstk.popLast() }
+    func _markDelete() { _ = mstk.popLast() }
 
     /*===========================================================================================================================================================================*/
     /// Removes and returns to the most recently set mark.
     ///
-    @inlinable final func _markReturn() {
+    func _markReturn() {
         if let mi = mstk.popLast() {
             pos = mi.pos
             buffer.insert(contentsOf: mi.chars, at: 0)
@@ -140,7 +140,7 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     /// - Parameter count: the number of characters to back out.
     /// - Returns: the number of characters actually backed out in case there weren't `count` characters available.
     ///
-    @inlinable final func _markBackup(count: Int) -> Int {
+    func _markBackup(count: Int) -> Int {
         guard var mi = mstk.last else { return 0 }
         let data = mi.getLast(count: count)
         pos = data.1
@@ -185,21 +185,21 @@ open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
     /*===========================================================================================================================================================================*/
     /// A class to hold the marked place in the input stream.
     ///
-    @frozen @usableFromInline struct MarkItem {
+    struct MarkItem {
         //@f:0
-        @usableFromInline let pos:   TextPosition
-        @usableFromInline var data:  [(TextPosition, Character)] = []
-        @inlinable        var chars: [Character]                 { data.map { $0.1 } }
+        let pos:   TextPosition
+        var data:  [(TextPosition, Character)] = []
+        var chars: [Character]                 { data.map { $0.1 } }
         //@f:1
 
-        @inlinable init(pos: TextPosition) { self.pos = pos }
+        init(pos: TextPosition) { self.pos = pos }
 
-        @inlinable mutating func add(_ pos: inout TextPosition, _ char: Character, _ tab: Int8) {
+        mutating func add(_ pos: inout TextPosition, _ char: Character, _ tab: Int8) {
             data <+ (pos, char)
             textPositionUpdate(char, pos: &pos, tabWidth: tab)
         }
 
-        @inlinable mutating func getLast(count: Int) -> (Int, TextPosition, [Character]) {
+        mutating func getLast(count: Int) -> (Int, TextPosition, [Character]) {
             let i = min(count, data.count)
             guard i > 0 else { return (0, pos, []) }
 

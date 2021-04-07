@@ -19,15 +19,15 @@ import Foundation
 import CoreFoundation
 
 open class StringCharInputStream: SimpleStringCharInputStream, CharInputStream {
-    @usableFromInline typealias MarkItem = (TextPosition, String.Index)
+    typealias MarkItem = (TextPosition, String.Index)
 
     //@f:0
-    @inlinable open   var markCount: Int          { lock.withLock { mstk.count } }
-    @inlinable open   var position:  TextPosition { lock.withLock { pos        } }
-    open              var tabWidth:  Int8         = 4
+    open     var markCount: Int          { lock.withLock { mstk.count } }
+    open     var position:  TextPosition { lock.withLock { pos        } }
+    open     var tabWidth:  Int8         = 4
 
-    @usableFromInline var pos:       TextPosition = (0, 0)
-    @usableFromInline var mstk:      [MarkItem]   = []
+    internal var pos:       TextPosition = (0, 0)
+    internal var mstk:      [MarkItem]   = []
     //@f:1
 
     public override init(string: String) { super.init(string: string) }

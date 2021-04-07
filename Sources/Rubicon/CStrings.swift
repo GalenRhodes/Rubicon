@@ -32,7 +32,7 @@ open class CString {
     /*===========================================================================================================================================================================*/
     /// internal buffer.
     ///
-    @usableFromInline let cString: CCharBuffer
+    let cString: CCharBuffer
 
     /*===========================================================================================================================================================================*/
     /// The character encoding of the string.
@@ -180,7 +180,7 @@ open class CString {
     ///   - length: the number of characters.
     ///   - encoding: the encoding.
     ///
-    @inlinable init(_ cString: CCharPointer, length: Int, encoding: String.Encoding) {
+    init(_ cString: CCharPointer, length: Int, encoding: String.Encoding) {
         self.cString = CCharBuffer(start: cString, count: length + 1)
         self.encoding = encoding
     }
@@ -332,13 +332,13 @@ open class CString {
     }
 }
 
-@inlinable func cString004() -> CCharBuffer {
+func cString004() -> CCharBuffer {
     let cb: CCharBuffer = CCharBuffer.allocate(capacity: 1)
     cb.initialize(repeating: 0)
     return cb
 }
 
-@inlinable func cString003(_ charBuffer: CCharROBuffer, _ hasNullTerminator: Bool) -> CCharBuffer {
+func cString003(_ charBuffer: CCharROBuffer, _ hasNullTerminator: Bool) -> CCharBuffer {
     let p2c:  Int         = charBuffer.count
     let cstr: CCharBuffer = CCharBuffer.allocate(capacity: hasNullTerminator ? p2c : (p2c + 1))
     let _                 = cstr.initialize(from: charBuffer)
@@ -348,13 +348,13 @@ open class CString {
     return cstr
 }
 
-@inlinable func cString002(_ byteBuffer: ByteROBuffer, _ hasNullTerminator: Bool) -> CCharBuffer {
+func cString002(_ byteBuffer: ByteROBuffer, _ hasNullTerminator: Bool) -> CCharBuffer {
     byteBuffer.withMemoryRebound(to: CChar.self) { (p2: CCharROBuffer) in
         cString003(p2, hasNullTerminator)
     }
 }
 
-@inlinable func cString001(_ string: String) -> CCharBuffer {
+func cString001(_ string: String) -> CCharBuffer {
     string.utf8.withContiguousStorageIfAvailable({ (p1: ByteROBuffer) -> CCharBuffer in
         cString002(p1, false)
     }) ?? cString004()

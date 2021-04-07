@@ -37,27 +37,27 @@ extension String {
     /*===========================================================================================================================================================================*/
     /// This property returns `true` if the string is empty after trimming whitespaces, newlines, and control characters.
     ///
-    @inlinable public var isTrimEmpty: Bool { self.trimmed.isEmpty }
+    public var isTrimEmpty: Bool { self.trimmed.isEmpty }
 
     /*===========================================================================================================================================================================*/
     /// This property returns an instance of <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> that covers the entire string.
     ///
-    @inlinable public var fullNSRange: NSRange { NSRange(fullRange, in: self) }
+    public var fullNSRange: NSRange { NSRange(fullRange, in: self) }
 
     /*===========================================================================================================================================================================*/
     /// Returns an array that cover the entire string.
     ///
-    @inlinable public var fullRange:   Range<String.Index> { (startIndex ..< endIndex) }
+    public var fullRange:   Range<String.Index> { (startIndex ..< endIndex) }
 
     /*===========================================================================================================================================================================*/
     /// This property returns a copy of the string with whitespaces, newlines, and control characters trimmed from both ends of the string.
     ///
-    @inlinable public var trimmed:     String { self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlinesAndControlCharacters) }
+    public var trimmed:     String { self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlinesAndControlCharacters) }
 
     /*===========================================================================================================================================================================*/
     /// A copy of this string with '+' characters replaced with spaces and percent encodings decoded.
     ///
-    @inlinable public var urlDecoded:  String { self.replacingOccurrences(of: "+", with: " ").removingPercentEncoding ?? self }
+    public var urlDecoded:  String { self.replacingOccurrences(of: "+", with: " ").removingPercentEncoding ?? self }
 
     /*===========================================================================================================================================================================*/
     /// Allows creating a <code>[String](https://developer.apple.com/documentation/swift/string/)</code> from the contents of an
@@ -67,7 +67,7 @@ extension String {
     ///   - inputStream: the input stream.
     ///   - encoding: the encoding. Defaults to <code>[String.Encoding.utf8](https://developer.apple.com/documentation/swift/string/encoding/1780106-utf8)</code>
     ///
-    @inlinable public init?(inputStream: InputStream, encoding: String.Encoding = String.Encoding.utf8) {
+    public init?(inputStream: InputStream, encoding: String.Encoding = String.Encoding.utf8) {
         if inputStream.status(in: .notOpen) {
             inputStream.open()
         }
@@ -85,7 +85,7 @@ extension String {
     /// - Parameter range: the range.
     /// - Returns: the NSRange.
     ///
-    @inlinable public func nsRange(_ range: Range<String.Index>) -> NSRange { NSRange(range, in: self) }
+    public func nsRange(_ range: Range<String.Index>) -> NSRange { NSRange(range, in: self) }
 
     /*===========================================================================================================================================================================*/
     /// Checks to see if this string has any of the given prefixes.
@@ -93,7 +93,7 @@ extension String {
     /// - Parameter prefixes: the list of prefixes.
     /// - Returns: `true` if this string has any of the prefixes.
     ///
-    @inlinable public func hasAnyPrefix(_ prefixes: String...) -> Bool {
+    public func hasAnyPrefix(_ prefixes: String...) -> Bool {
         for p in prefixes { if hasPrefix(p) { return true } }
         return false
     }
@@ -104,7 +104,7 @@ extension String {
     /// - Parameter suffixes: the list of suffixes.
     /// - Returns: `true` if this string has any of the suffixes.
     ///
-    @inlinable public func hasAnySuffix(_ suffixes: String...) -> Bool {
+    public func hasAnySuffix(_ suffixes: String...) -> Bool {
         for s in suffixes { if hasSuffix(s) { return true } }
         return false
     }
@@ -119,7 +119,7 @@ extension String {
     /// - Parameter splitClusters: `true` if [Grapheme Clusters](https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html#ID293) should be broken apart.
     /// - Returns: the array of characters.
     ///
-    @inlinable public func getCharacters(splitClusters: Bool = true) -> [Character] {
+    public func getCharacters(splitClusters: Bool = true) -> [Character] {
         var characters: [Character] = []
         for char in self {
             if splitClusters { for scalar in char.unicodeScalars { characters <+ Character(scalar) } }
@@ -135,7 +135,7 @@ extension String {
     /// - Returns: `true` if the pattern matches this entire string exactly once.
     /// - Throws: if the pattern is malformed.
     ///
-    @inlinable public func matches(pattern: String) throws -> Bool {
+    public func matches(pattern: String) throws -> Bool {
         var e: Error? = nil
         if let regex = RegularExpression(pattern: pattern, error: &e) {
             if let match = regex.firstMatch(in: self) {
@@ -284,7 +284,7 @@ extension String {
     /// - Parameter idx: the integer offset into the string
     /// - Returns: an instance of `[String.Index](https://developer.apple.com/documentation/swift/string/index)>`
     ///
-    @inlinable public func index(idx: Int) -> String.Index {
+    public func index(idx: Int) -> String.Index {
         index(startIndex, offsetBy: idx)
     }
 
@@ -298,7 +298,7 @@ extension String {
     /// - Returns: an instance of `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` or
     ///            `nil` if the <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> was invalid for this string.
     ///
-    @inlinable public func range(nsRange: NSRange) -> Range<String.Index>? {
+    public func range(nsRange: NSRange) -> Range<String.Index>? {
         guard nsRange.location != NSNotFound else {
             return nil
         }
@@ -329,7 +329,7 @@ extension String {
     /// - Returns: An instance of `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` or
     ///            `nil` if the give offsets are invalid.
     ///
-    @inlinable public func range(from: Int, to: Int) -> Range<String.Index>? {
+    public func range(from: Int, to: Int) -> Range<String.Index>? {
         ((from > to) ? (index(idx: to) ..< index(idx: from)) : (index(idx: from) ..< index(idx: to)))
     }
 
@@ -344,7 +344,7 @@ extension String {
     /// - Returns: an instance of `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` or
     ///            `nil` if the given values are invalid.
     ///
-    @inlinable public func range(location: Int, length: Int) -> Range<String.Index>? {
+    public func range(location: Int, length: Int) -> Range<String.Index>? {
         (index(idx: location) ..< index(idx: (location + length)))
     }
 
@@ -360,7 +360,7 @@ extension String {
     /// 
     /// - Returns: The substring represented by that capture group or `nil` if that group number is invalid or the capture group did not participate in that match.
     ///
-    @inlinable public func matchGroup(match: RegExResult, group: Int = 0, default defStr: String? = nil) -> String? {
+    public func matchGroup(match: RegExResult, group: Int = 0, default defStr: String? = nil) -> String? {
         if group >= 0 && group < match.numberOfRanges {
             let range: NSRange = match.range(at: group)
             if range.location != NSNotFound {
@@ -387,7 +387,7 @@ extension String {
     /// - Returns: an instance of <code>[String](https://developer.apple.com/documentation/swift/String)</code> containing the
     ///            <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
     ///
-    @inlinable public func preMatch(match: RegExResult, group: Int = 0, from fromIdx: inout Int) -> String? {
+    public func preMatch(match: RegExResult, group: Int = 0, from fromIdx: inout Int) -> String? {
         if group >= 0 && group < match.numberOfRanges {
             let range: NSRange = match.range(at: group)
 
@@ -412,7 +412,7 @@ extension String {
     ///   - to: The index (exclusive) of the end of the string.
     /// - Returns: the substring
     ///
-    @inlinable public func substr(from fromIdx: Int = 0, to toIdx: Int) -> String {
+    public func substr(from fromIdx: Int = 0, to toIdx: Int) -> String {
         String(self[fromIdx ..< toIdx])
     }
 
@@ -426,7 +426,7 @@ extension String {
     ///   - length: The number of characters to include in the substring.
     /// - Returns: the substring
     ///
-    @inlinable public func substr(from fromIdx: Int = 0, length: Int) -> String {
+    public func substr(from fromIdx: Int = 0, length: Int) -> String {
         substr(from: fromIdx, to: (fromIdx + length))
     }
 
@@ -441,7 +441,7 @@ extension String {
     /// - Returns: a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
     ///            <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
     ///
-    @inlinable public func substr(from fromIdx: Int) -> String {
+    public func substr(from fromIdx: Int) -> String {
         String(self[index(idx: fromIdx) ..< endIndex])
     }
 
@@ -456,7 +456,7 @@ extension String {
     /// - Returns: a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
     ///            <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
     ///
-    @inlinable public func substr(nsRange: NSRange) -> String {
+    public func substr(nsRange: NSRange) -> String {
         guard let range: Range<String.Index> = self.range(nsRange: nsRange) else {
             fatalError("NSRange values invalid for this string.")
         }
@@ -469,7 +469,7 @@ extension String {
     /// - Parameter idx: the integer offset into the <code>[String](https://developer.apple.com/documentation/swift/String)</code>.
     /// - Returns: the <code>[Character](https://developer.apple.com/documentation/swift/Character)</code> at the offset indicated by `idx`.
     ///
-    @inlinable public subscript(_ idx: Int) -> Character {
+    public subscript(_ idx: Int) -> Character {
         self[self.index(self.startIndex, offsetBy: idx)]
     }
 
@@ -481,7 +481,7 @@ extension String {
     ///                    <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
     /// - Returns: the <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
     ///
-    @inlinable public subscript(_ range: Range<Int>) -> Substring {
+    public subscript(_ range: Range<Int>) -> Substring {
         self[index(idx: range.lowerBound) ..< index(idx: range.upperBound)]
     }
 
@@ -494,7 +494,7 @@ extension String {
     ///   - tx: the tab size. Defaults to 4.
     /// - Returns: the position (line, column) of the index within the string.
     ///
-    @inlinable public func positionOfIndex(_ idx: Index, position: TextPosition = (1, 1), tabSize tx: Int8 = 4) -> TextPosition {
+    public func positionOfIndex(_ idx: Index, position: TextPosition = (1, 1), tabSize tx: Int8 = 4) -> TextPosition {
         var idx = idx
         var pos = position
         while idx < endIndex {
@@ -505,9 +505,9 @@ extension String {
     }
 }
 
-@inlinable public func tabCalc(pos i: Int32, tabSize sz: Int8 = 4) -> Int32 { let s = Int32(sz); return (((((i - 1) + s) / s) * s) + 1) }
+public func tabCalc(pos i: Int32, tabSize sz: Int8 = 4) -> Int32 { let s = Int32(sz); return (((((i - 1) + s) / s) * s) + 1) }
 
-@inlinable public func textPositionUpdate(_ char: Character, pos: inout TextPosition, tabWidth sz: Int8 = 4) {
+public func textPositionUpdate(_ char: Character, pos: inout TextPosition, tabWidth sz: Int8 = 4) {
     switch char {
         case "\n", "\r", "\r\n": pos = (pos.0 + 1, 1)
         case "\t":               pos = (pos.0, tabCalc(pos: pos.1, tabSize: sz))
@@ -529,7 +529,7 @@ extension StringProtocol {
     ///   - idx: the index in this string to start looking.
     /// - Returns: the index or `nil` if none of the characters are found.
     ///
-    @inlinable public func firstIndex(ofAnyOf chars: Character..., from idx: String.Index) -> String.Index? {
+    public func firstIndex(ofAnyOf chars: Character..., from idx: String.Index) -> String.Index? {
         var oIdx = idx
         while oIdx < endIndex {
             if chars.contains(self[oIdx]) { return oIdx }
@@ -546,7 +546,7 @@ extension StringProtocol {
     ///   - rhs: the right-hand string
     /// - Returns: `true` if they are equal when compared case insensitively.
     ///
-    @inlinable public static func ==~ (lhs: Self, rhs: Self) -> Bool { (lhs.localizedCaseInsensitiveCompare(rhs) == ComparisonResult.orderedSame) }
+    public static func ==~ (lhs: Self, rhs: Self) -> Bool { (lhs.localizedCaseInsensitiveCompare(rhs) == ComparisonResult.orderedSame) }
 
     /*===========================================================================================================================================================================*/
     /// Case insensitive NOT equals.
@@ -556,5 +556,5 @@ extension StringProtocol {
     ///   - rhs: the right-hand string
     /// - Returns: `true` if they are not equal when compared case insensitively.
     ///
-    @inlinable public static func !=~ (lhs: Self, rhs: Self) -> Bool { (lhs.localizedCaseInsensitiveCompare(rhs) != ComparisonResult.orderedSame) }
+    public static func !=~ (lhs: Self, rhs: Self) -> Bool { (lhs.localizedCaseInsensitiveCompare(rhs) != ComparisonResult.orderedSame) }
 }

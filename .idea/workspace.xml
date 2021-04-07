@@ -30,10 +30,32 @@
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Created SimpleCharInputStream and SimpleIConvCharInputStream.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/BinaryTree/BinaryTreeDictionary.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/BinaryTree/BinaryTreeDictionary.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/BinaryTree/BinaryTreeNode.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/BinaryTree/BinaryTreeNode.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/Buffers.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/Buffers.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/EasyByteBuffer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/EasyByteBuffer.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/CStrings.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/CStrings.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Collections/DynamicFixedArray.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Collections/DynamicFixedArray.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Conditional.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Conditional.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/NSLock.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/NSLock.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Tools/CondMutex.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Tools/CondMutex.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Array.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Array.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Range.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Range.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Stream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Stream.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/String.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/String.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/MathTools.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/MathTools.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/NanoTimer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/NanoTimer.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/CharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/CharInputStream.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleCharInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/StringCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/StringCharInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Text/IConv.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Text/IConv.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Text/RegularExpression.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Text/RegularExpression.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -280,14 +302,8 @@
       <workItem from="1617296966708" duration="2843000" />
       <workItem from="1617377976017" duration="13524000" />
       <workItem from="1617645700574" duration="1228000" />
-      <workItem from="1617650052421" duration="6140000" />
-    </task>
-    <task id="LOCAL-00101" summary="Added providers to Package.swift">
-      <created>1611151049014</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1611151049014</updated>
+      <workItem from="1617650052421" duration="6912000" />
+      <workItem from="1617808722584" duration="12669000" />
     </task>
     <task id="LOCAL-00102" summary="Bug fixes">
       <created>1611161294597</created>
@@ -625,7 +641,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617736999106</updated>
     </task>
-    <option name="localTasksCounter" value="150" />
+    <task id="LOCAL-00150" summary="Created SimpleCharInputStream and SimpleIConvCharInputStream.">
+      <created>1617743481753</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1617743481753</updated>
+    </task>
+    <option name="localTasksCounter" value="151" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

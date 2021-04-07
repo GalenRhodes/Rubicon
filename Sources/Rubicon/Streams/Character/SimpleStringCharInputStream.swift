@@ -23,21 +23,21 @@ open class SimpleStringCharInputStream: SimpleCharInputStream {
     /*===========================================================================================================================================================================*/
     /// Just for looks.  Encoding is always UTF-32.
     ///
-    public let encodingName: String = "UTF-32"
+    public   let encodingName:      String        = "UTF-32"
     /*===========================================================================================================================================================================*/
     /// Just for looks.  Errors will never happen.
     ///
-    public let streamError:  Error? = nil
+    public   let streamError:       Error?        = nil
 
-    open var streamStatus:      Stream.Status { lock.withLock { ((status == .open) ? ((index < eIdx) ? .open : .atEnd) : status) } }
-    open var hasCharsAvailable: Bool          { lock.withLock { ((status == .open) && (index < eIdx))                            } }
-    open var isEOF:             Bool          { lock.withLock { ((status != .open) || (index == eIdx))                           } }
+    open     var streamStatus:      Stream.Status { lock.withLock { ((status == .open) ? ((index < eIdx) ? .open : .atEnd) : status) } }
+    open     var hasCharsAvailable: Bool          { lock.withLock { ((status == .open) && (index < eIdx))                            } }
+    open     var isEOF:             Bool          { lock.withLock { ((status != .open) || (index == eIdx))                           } }
 
-    @usableFromInline let string: String
-    @usableFromInline let eIdx:   String.Index
-    @usableFromInline var index:  String.Index
-    @usableFromInline var status: Stream.Status = .notOpen
-    @usableFromInline let lock:   RecursiveLock = RecursiveLock()
+    internal let string:            String
+    internal let eIdx:              String.Index
+    internal var index:             String.Index
+    internal var status:            Stream.Status = .notOpen
+    internal let lock:              RecursiveLock = RecursiveLock()
     //@f:1
 
     public init(string: String) {

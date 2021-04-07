@@ -54,7 +54,7 @@ public let OneSecondMillis: UInt64 = 1_000
 /// - Parameter delta: The number of nanoseconds to add to the system time.
 /// - Returns: the system time plus the value of `delta`.
 ///
-@inlinable public func getSysTime(delta: UInt64 = 0) -> UInt64 {
+public func getSysTime(delta: UInt64 = 0) -> UInt64 {
     var ts: timespec = timespec()
     clock_gettime(CLOCK_MONOTONIC_RAW, &ts)
     return (((UInt64(ts.tv_sec) * OneSecondNanos) + UInt64(ts.tv_nsec)) + delta)
@@ -66,7 +66,7 @@ public let OneSecondMillis: UInt64 = 1_000
 /// - Parameter when: the date.
 /// - Returns: a timespec structure or `nil` if the date is in the past.
 ///
-@inlinable public func absoluteTimeSpecFrom(date when: Date) -> timespec? {
+public func absoluteTimeSpecFrom(date when: Date) -> timespec? {
     guard when.timeIntervalSinceNow > 0 else {
         return nil
     }
@@ -77,7 +77,7 @@ public let OneSecondMillis: UInt64 = 1_000
 }
 
 #if os(Windows)
-    @inlinable public func timeIntervalFrom(date when: Date) -> DWORD? {
+    public func timeIntervalFrom(date when: Date) -> DWORD? {
         let ti: TimeInterval = when.timeIntervalSinceNow
         guard ti > 0 else {
             return nil
@@ -92,7 +92,7 @@ public let OneSecondMillis: UInt64 = 1_000
 /// - Parameter code: the OS error code.
 /// - Returns: A Swift <code>[String](https://developer.apple.com/documentation/swift/string/)</code> with the OS error message.
 ///
-@inlinable public func StrError(_ code: Int32) -> String {
+public func StrError(_ code: Int32) -> String {
     (CString.newCCharBufferOf(length: 1000) {
         ((strerror_r(code, $0, $1) == 0) ? strlen($0) : -1)
     })?.string ?? "Unknown Error: \(code)"
@@ -118,7 +118,7 @@ public let OneSecondMillis: UInt64 = 1_000
 ///   - otherOk: Other values besides 0 (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) that should be considered OK and not cause a fatal error.
 /// - Returns: the value of results.
 ///
-@inlinable @discardableResult public func testOSFatalError(_ results: Int32, _ otherOk: Int32...) -> Int32 {
+@discardableResult public func testOSFatalError(_ results: Int32, _ otherOk: Int32...) -> Int32 {
     if results == 0 {
         return results
     }
@@ -139,7 +139,7 @@ public let OneSecondMillis: UInt64 = 1_000
 ///             dangerous - only use this is you are sure there is a `nil`-terminator.
 /// - Returns: the length of the string.
 ///
-@inlinable public func cStrLen(cStringPtr: UnsafePointer<Int8>, length: Int = -1) -> Int {
+public func cStrLen(cStringPtr: UnsafePointer<Int8>, length: Int = -1) -> Int {
     if length < 0 {
         return strlen(cStringPtr)
     }
@@ -162,7 +162,7 @@ public let OneSecondMillis: UInt64 = 1_000
 ///             dangerous - only use this is you are sure there is a `nil`-terminator.
 /// - Returns: the length of the string.
 ///
-@inlinable public func cStrLen(cStringPtr: ByteROPointer, length: Int = -1) -> Int {
+public func cStrLen(cStringPtr: ByteROPointer, length: Int = -1) -> Int {
     cStringPtr.withMemoryRebound(to: CChar.self, capacity: fixLength(length)) {
         cStrLen(cStringPtr: $0, length: length)
     }
@@ -248,7 +248,7 @@ infix operator <?: ComparisonPrecedence
 ///   - lhs: the <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>
 ///   - rhs: the new element
 ///
-@inlinable public func <+ <T>(lhs: inout [T], rhs: T) {
+public func <+ <T>(lhs: inout [T], rhs: T) {
     lhs.append(rhs)
 }
 
@@ -260,7 +260,7 @@ infix operator <?: ComparisonPrecedence
 ///   - lhs: the receiving <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 ///   - rhs: the source <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 ///
-@inlinable public func <+ <T>(lhs: inout [T], rhs: [T]) {
+public func <+ <T>(lhs: inout [T], rhs: [T]) {
     lhs.append(contentsOf: rhs)
 }
 
@@ -272,7 +272,7 @@ infix operator <?: ComparisonPrecedence
 ///   - rhs: the object to search for in the <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 /// - Returns: `true` if the <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> contains the object.
 ///
-@inlinable public func <? <T: Equatable>(lhs: [T], rhs: T) -> Bool {
+public func <? <T: Equatable>(lhs: [T], rhs: T) -> Bool {
     lhs.contains { (obj: T) in
         rhs == obj
     }
@@ -288,7 +288,7 @@ infix operator <?: ComparisonPrecedence
 /// - Returns: `true` if the left-hand <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> contains all of the elements in the right-hand
 ///            <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 ///
-@inlinable public func <? <T: Equatable>(lhs: [T], rhs: [T]) -> Bool {
+public func <? <T: Equatable>(lhs: [T], rhs: [T]) -> Bool {
     for o: T in rhs {
         if !(lhs <? o) {
             return false
@@ -323,7 +323,7 @@ infix operator <=>: ComparisonPrecedence
 /// - Returns: `SortOrdering.LessThan`, `SortOrdering.EqualTo`, `SortOrdering.GreaterThan` as the left-hand operand should be sorted before, at the same place as, or after the
 ///            right-hand operand.
 ///
-@inlinable public func <=> <T: Comparable>(l: T?, r: T?) -> SortOrdering {
+public func <=> <T: Comparable>(l: T?, r: T?) -> SortOrdering {
     (l == nil ? (r == nil ? .EqualTo : .LessThan) : (r == nil ? .GreaterThan : (l! < r! ? .LessThan : (l! > r! ? .GreaterThan : .EqualTo))))
 }
 
@@ -353,7 +353,7 @@ infix operator <=>: ComparisonPrecedence
 /// 
 /// - Returns: `SortOrdering.LessThan`, `SortOrdering.EqualTo`, `SortOrdering.GreaterThan` as the left-hand array comes before, in the same place as, or after the right-hand array.
 ///
-@inlinable public func <=> <T: Comparable>(l: [T?], r: [T?]) -> SortOrdering {
+public func <=> <T: Comparable>(l: [T?], r: [T?]) -> SortOrdering {
     var cc: SortOrdering = (l.count <=> r.count)
 
     if cc == .EqualTo {
@@ -466,7 +466,7 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 /// - Returns: the value returned from whichever closure is executed.
 /// - Throws: any exception thrown by whichever closure is executed.
 ///
-@inlinable public func nilCheck<S, T>(_ obj: S?, _ b1: (S) throws -> T, whenNilDo b2: () throws -> T) rethrows -> T { try ((obj == nil) ? b2() : b1(obj!)) }
+public func nilCheck<S, T>(_ obj: S?, _ b1: (S) throws -> T, whenNilDo b2: () throws -> T) rethrows -> T { try ((obj == nil) ? b2() : b1(obj!)) }
 
 /*===============================================================================================================================================================================*/
 /// If the `maxLength` is less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then return the largest integer possible
@@ -475,7 +475,7 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 /// - Parameter maxLength: the length to fix.
 /// - Returns: either the value of `maxLength` or <code>[Int.max](https://developer.apple.com/documentation/swift/int/1540171-max)</code>.
 ///
-@inlinable public func fixLength(_ maxLength: Int) -> Int { ((maxLength < 0) ? Int.max : maxLength) }
+public func fixLength(_ maxLength: Int) -> Int { ((maxLength < 0) ? Int.max : maxLength) }
 
 /*===============================================================================================================================================================================*/
 /// Tests one value to see if it is one of the listed values. Instead of doing this:
@@ -493,6 +493,6 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 ///   - isOneOf: the desired values.
 /// - Returns: `true` of the value is one of the desired values.
 ///
-@inlinable public func value<T: Equatable>(_ value: T, isOneOf: T...) -> Bool { isOneOf.isAny { value == $0 } }
+public func value<T: Equatable>(_ value: T, isOneOf: T...) -> Bool { isOneOf.isAny { value == $0 } }
 
-@inlinable public func toChar(codePoint: UInt32) -> Character { Character(scalar: UnicodeScalar(codePoint)) }
+public func toChar(codePoint: UInt32) -> Character { Character(scalar: UnicodeScalar(codePoint)) }

@@ -31,18 +31,10 @@ public enum StreamError: Error {
     case FileNotFound(description: String = "File not found.")
 }
 
-@inlinable public func streamStatusGood(_ st: Stream.Status) -> Bool { value(st, isOneOf: .open, .opening, .reading, .writing) }
-
 extension Stream {
 
-    @inlinable public var isEof:        Bool { status(in: .atEnd, .closed, .error) }
-    @inlinable public var isError:      Bool { (streamStatus == .error) }
-    @inlinable public var isOpen:       Bool { !status(in: .notOpen, .closed) }
-
-    /*===========================================================================================================================================================================*/
-    /// Returns `true` if the stream is open and not in an error state.
-    ///
-    @inlinable public var inGoodStatus: Bool { isOpen && !isEof }
+    public var isEOF:          Bool { (streamStatus == .atEnd) }
+    public var isInGoodStatus: Bool { Rubicon.value(streamStatus, isOneOf: .open, .opening, .reading, .writing) }
 
     /*===========================================================================================================================================================================*/
     /// Checks to see if the `streamStatus` is any of the given statuses.
@@ -50,7 +42,7 @@ extension Stream {
     /// - Parameter statuses: the list of statuses.
     /// - Returns: `true` if the current `streamStatus` is any of the given statuses.
     ///
-    @inlinable public func status(in statuses: Stream.Status...) -> Bool {
+    public func status(in statuses: Stream.Status...) -> Bool {
         let curr = streamStatus
         return statuses.contains { st in (st == curr) }
     }
@@ -59,7 +51,7 @@ extension Stream {
     /// If the stream has not yet been opened, open it and wait for it to be fully open - `streamStatus` !=
     /// <code>[Stream](https://developer.apple.com/documentation/foundation/stream/)</code>.Status.opening`.
     ///
-    @inlinable public func fullyOpen() {
+    public func fullyOpen() {
         if streamStatus == .notOpen { open() }
         while streamStatus == .opening {}
     }
@@ -80,7 +72,7 @@ extension InputStream {
     ///            the end-of-file has been reached, the stream is closed, or the stream was never opened.
     /// - Throws: any error reported by the input stream.
     ///
-    @inlinable public func read(to buffer: CCharPointer, maxLength: Int) throws -> Int {
+    public func read(to buffer: CCharPointer, maxLength: Int) throws -> Int {
         try read(to: UnsafeMutableRawPointer(buffer), maxLength: maxLength)
     }
 
@@ -161,16 +153,14 @@ extension InputStream {
     /// - Returns: the number of bytes read into the buffer or <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0) if the buffer is full or the stream it at EOF or -1 if
     ///            there was an I/O error.
     ///
-    public func read(buffer b: EasyByteBuffer) -> Int {
-        guard b.count >= 0 || b.count <= b.length else { fatalError("Invalid count field in buffer.") }
+    public func read(to b: EasyByteBuffer) throws -> Int {
+        guard b.count >= 0 && b.count <= b.length else { throw StreamError.UnknownError(description: "Invalid count in buffer.") }
         let cc = b.count
 
         while b.count < b.length {
             let rc = read((b.bytes + b.count), maxLength: (b.length - b.count))
-            guard rc > 0 else {
-                guard rc == 0 else { return -1 }
-                break
-            }
+            if rc < 0 { throw streamError ?? StreamError.UnknownError() }
+            if rc == 0 { break }
             b.count += rc
         }
 
@@ -190,10 +180,10 @@ extension InputStream {
     ///            end-of-file has been reached, the stream is closed, or the stream was never opened.
     /// - Throws: any error reported by the input stream.
     ///
-    @inlinable public func read(to array: inout [UInt8], maxLength len: Int, truncate clr: Bool = true) throws -> Int {
+    public func read(to array: inout [UInt8], maxLength len: Int, truncate clr: Bool = true) throws -> Int {
         if clr { array.removeAll(keepingCapacity: true) }
-        var data: Data = Data()
-        let cc:   Int  = try read(to: &data, maxLength: len, truncate: false)
+        var data = Data()
+        let cc   = try read(to: &data, maxLength: len, truncate: false)
         array.append(contentsOf: data)
         return cc
     }
@@ -209,19 +199,19 @@ extension InputStream {
     ///            end-of-file has been reached, the stream is closed, or the stream was never opened.
     /// - Throws: any error reported by the input stream.
     ///
-    @inlinable public func read(to rbp: UnsafeMutableRawBufferPointer) throws -> Int {
+    public func read(to rbp: UnsafeMutableRawBufferPointer) throws -> Int {
         guard let bp: UnsafeMutableRawPointer = rbp.baseAddress else { return 0 }
         return try read(to: bp, maxLength: rbp.count)
     }
 }
 
 extension OutputStream {
-    @inlinable public func write(from rbp: UnsafeRawBufferPointer, length: Int = -1) throws -> Int {
+    public func write(from rbp: UnsafeRawBufferPointer, length: Int = -1) throws -> Int {
         guard let rp = rbp.baseAddress else { return 0 }
         return try write(from: rp, length: ((length < 0) ? rbp.count : min(rbp.count, length)))
     }
 
-    @inlinable public func write(from p: UnsafeRawPointer, length: Int) throws -> Int {
+    public func write(from p: UnsafeRawPointer, length: Int) throws -> Int {
         guard length > 0 else { return 0 }
         let wc = write(p.bindMemory(to: UInt8.self, capacity: length), maxLength: length)
         guard wc >= 0 else { throw streamError ?? StreamError.UnknownError() }
@@ -230,7 +220,7 @@ extension OutputStream {
 }
 
 extension Stream.Status: CustomStringConvertible {
-    @inlinable public var description: String {
+    public var description: String {
         switch self {
             case .notOpen: return "Not Open"
             case .opening: return "Opening"
@@ -247,7 +237,7 @@ extension Stream.Status: CustomStringConvertible {
 }
 
 extension Stream.Event: CustomStringConvertible {
-    @inlinable public var description: String {
+    public var description: String {
         switch self {
             case .openCompleted:     return "Open Completed"
             case .endEncountered:    return "End Encountered"
@@ -260,7 +250,7 @@ extension Stream.Event: CustomStringConvertible {
 }
 
 extension InputStream {
-    @inlinable public func read() throws -> UInt8? {
+    public func read() throws -> UInt8? {
         var byte: UInt8 = 0
         let res:  Int   = read(&byte, maxLength: 1)
         guard res >= 0 else { throw streamError ?? StreamError.UnknownError() }

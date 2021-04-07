@@ -56,34 +56,34 @@ public typealias QWordROBuffer  = UnsafeBufferPointer<UInt64>
 ///   - buffer: the buffer to discard.
 ///   - count: the number of elements in the buffer to deinitialize.
 ///
-@inlinable public func discardMutablePointer<T>(_ buffer: UnsafeMutablePointer<T>, _ count: Int = 1) {
+public func discardMutablePointer<T>(_ buffer: UnsafeMutablePointer<T>, _ count: Int = 1) {
     buffer.deinitialize(count: count)
     buffer.deallocate()
 }
 
-@inlinable public func discardMutableRawPointer<T>(_ buffer: UnsafeMutableRawPointer, _ type: T.Type, _ count: Int) {
+public func discardMutableRawPointer<T>(_ buffer: UnsafeMutableRawPointer, _ type: T.Type, _ count: Int) {
     buffer.bindMemory(to: type, capacity: count).deinitialize(count: count)
     buffer.deallocate()
 }
 
-@inlinable public func createMutablePointer<T>(capacity: Int, initialValue: T) -> UnsafeMutablePointer<T> {
+public func createMutablePointer<T>(capacity: Int, initialValue: T) -> UnsafeMutablePointer<T> {
     let buffer: UnsafeMutablePointer<T> = UnsafeMutablePointer<T>.allocate(capacity: BasicBufferSize)
     buffer.initialize(repeating: initialValue, count: BasicBufferSize)
     return buffer
 }
 
-@inlinable public func createMutablePointer<T: BinaryInteger>(capacity: Int) -> UnsafeMutablePointer<T> {
+public func createMutablePointer<T: BinaryInteger>(capacity: Int) -> UnsafeMutablePointer<T> {
     let buffer: UnsafeMutablePointer<T> = UnsafeMutablePointer<T>.allocate(capacity: capacity)
     buffer.initialize(repeating: 0, count: capacity)
     return buffer
 }
 
-@inlinable public func createMutableRawPointer<T>(capacity: Int, type: T.Type, initialValue: T) -> UnsafeMutableRawPointer {
+public func createMutableRawPointer<T>(capacity: Int, type: T.Type, initialValue: T) -> UnsafeMutableRawPointer {
     let buffer: UnsafeMutableRawPointer = UnsafeMutableRawPointer.allocate(byteCount: capacity * MemoryLayout<T>.stride, alignment: MemoryLayout<T>.alignment)
     buffer.initializeMemory(as: type, repeating: initialValue, count: capacity)
     return buffer
 }
 
-@inlinable public func createMutableRawPointer<T: BinaryInteger>(capacity: Int, type: T.Type) -> UnsafeMutableRawPointer {
+public func createMutableRawPointer<T: BinaryInteger>(capacity: Int, type: T.Type) -> UnsafeMutableRawPointer {
     createMutableRawPointer(capacity: capacity, type: type, initialValue: 0)
 }

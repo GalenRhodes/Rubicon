@@ -22,9 +22,9 @@
 
 import Foundation
 
-@inlinable public func == <T: Equatable>(lhs: ArraySlice<T>, rhs: [T]) -> Bool { ((lhs.count == rhs.count) && (lhs == rhs[rhs.startIndex ..< rhs.endIndex])) }
+public func == <T: Equatable>(lhs: ArraySlice<T>, rhs: [T]) -> Bool { ((lhs.count == rhs.count) && (lhs == rhs[rhs.startIndex ..< rhs.endIndex])) }
 
-@inlinable public func == <T: Equatable>(lhs: [T], rhs: ArraySlice<T>) -> Bool { ((lhs.count == rhs.count) && (lhs[lhs.startIndex ..< lhs.endIndex] == rhs)) }
+public func == <T: Equatable>(lhs: [T], rhs: ArraySlice<T>) -> Bool { ((lhs.count == rhs.count) && (lhs[lhs.startIndex ..< lhs.endIndex] == rhs)) }
 
 extension RangeReplaceableCollection {
     /*===========================================================================================================================================================================*/
@@ -32,7 +32,7 @@ extension RangeReplaceableCollection {
     /// 
     /// - Returns: the first element off the collection or `nil` if the collection is empty.
     ///
-    @inlinable public mutating func popFirst() -> Self.Element? { (isEmpty ? nil : removeFirst()) }
+    public mutating func popFirst() -> Self.Element? { (isEmpty ? nil : removeFirst()) }
 
     /*===========================================================================================================================================================================*/
     /// Works like `removeAll(where:)` except this version returns an array containing the elements that were removed.
@@ -42,7 +42,7 @@ extension RangeReplaceableCollection {
     /// - Returns: An array containing the elements that were removed.
     /// - Throws: any error thrown by the predicate closure.
     ///
-    @inlinable public mutating func removeAllGet(where predicate: (Element) throws -> Bool) rethrows -> [Element] {
+    public mutating func removeAllGet(where predicate: (Element) throws -> Bool) rethrows -> [Element] {
         var temp: [Element] = []
         try removeAll {
             let r: Bool = try predicate($0)
@@ -64,7 +64,7 @@ extension Collection {
     /// - Returns: a new array.
     /// - Throws: any error thrown by the predicate closure.
     ///
-    @inlinable public func all(where predicate: (Element) throws -> Bool) rethrows -> [Element] {
+    public func all(where predicate: (Element) throws -> Bool) rethrows -> [Element] {
         var temp: [Element] = []
         try forEach {
             if try predicate($0) {
@@ -82,7 +82,7 @@ extension Collection {
     /// - Returns: `false` if the closure returns `false` for all the elements in the collection.
     /// - Throws: any error thrown by the closure.
     ///
-    @inlinable public func isAny(predicate body: (Element) throws -> Bool) rethrows -> Bool {
+    public func isAny(predicate body: (Element) throws -> Bool) rethrows -> Bool {
         for e in self { if try body(e) { return true } }
         return false
     }
@@ -95,20 +95,20 @@ extension Collection {
     /// - Returns: `true` if the closure returns `true` for all the elements in the collection.
     /// - Throws: any error thrown by the closure.
     ///
-    @inlinable public func areAll(predicate body: (Element) throws -> Bool) rethrows -> Bool {
+    public func areAll(predicate body: (Element) throws -> Bool) rethrows -> Bool {
         for e in self { guard try body(e) else { return false } }
         return true
     }
 }
 
 extension Array {
-    @inlinable public func last(count cc: Int) -> ArraySlice<Element> { self[index(endIndex, offsetBy: -Swift.min(cc, count)) ..< endIndex] }
+    public func last(count cc: Int) -> ArraySlice<Element> { self[index(endIndex, offsetBy: -Swift.min(cc, count)) ..< endIndex] }
 
-    @inlinable public func first(count cc: Int) -> ArraySlice<Element> { self[startIndex ..< index(startIndex, offsetBy: Swift.min(cc, count))] }
+    public func first(count cc: Int) -> ArraySlice<Element> { self[startIndex ..< index(startIndex, offsetBy: Swift.min(cc, count))] }
 }
 
 extension ArraySlice {
-    @inlinable public func last(count cc: Int) -> ArraySlice<Element> { self[index(endIndex, offsetBy: -Swift.min(cc, count)) ..< endIndex] }
+    public func last(count cc: Int) -> ArraySlice<Element> { self[index(endIndex, offsetBy: -Swift.min(cc, count)) ..< endIndex] }
 
-    @inlinable public func first(count cc: Int) -> ArraySlice<Element> { self[startIndex ..< index(startIndex, offsetBy: Swift.min(cc, count))] }
+    public func first(count cc: Int) -> ArraySlice<Element> { self[startIndex ..< index(startIndex, offsetBy: Swift.min(cc, count))] }
 }

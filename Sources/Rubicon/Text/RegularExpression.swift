@@ -422,15 +422,15 @@ open class RegularExpression {
         /*=======================================================================================================================================================================*/
         /// The index of the first group group.
         ///
-        @inlinable public var startIndex: Index { groups.startIndex }
+        public var startIndex: Index { groups.startIndex }
         /*=======================================================================================================================================================================*/
         /// The index just past the last capture group.
         ///
-        @inlinable public var endIndex:   Index { groups.endIndex }
+        public var endIndex:   Index { groups.endIndex }
         /*=======================================================================================================================================================================*/
         /// The number of capture groups.
         ///
-        @inlinable public var count:      Int { groups.count }
+        public var count:      Int { groups.count }
         /*=======================================================================================================================================================================*/
         /// The range within the search string for the entire match.
         ///
@@ -440,16 +440,16 @@ open class RegularExpression {
         ///
         public lazy var subString: String              = String(string[range])
 
-        @usableFromInline let nsMatch:    NSTextCheckingResult
-        @usableFromInline var namedCache: [String: NamedGroup] = [:]
-        @usableFromInline lazy var groups: [Group] = getGroups()
+        let nsMatch:    NSTextCheckingResult
+        var namedCache: [String: NamedGroup] = [:]
+        lazy var groups: [Group] = getGroups()
 
-        @inlinable init(_ str: String, match: NSTextCheckingResult) {
+        init(_ str: String, match: NSTextCheckingResult) {
             self.nsMatch = match
             self.string = str
         }
 
-        @inlinable func getGroups() -> [Group] {
+        func getGroups() -> [Group] {
             var grps: [Group] = []
             for x in (0 ..< nsMatch.numberOfRanges) { grps.append(Group(self, range: nsMatch.range(at: x))) }
             return grps
@@ -461,7 +461,7 @@ open class RegularExpression {
         /// - Parameter name: the name of the capture group
         /// - Returns: the named capture group or `nil` if the capture group does not exist.
         ///
-        @inlinable public subscript(name: String) -> NamedGroup? {
+        public subscript(name: String) -> NamedGroup? {
             if let ng = namedCache[name] { return ng }
             let range = nsMatch.range(withName: name)
 
@@ -478,7 +478,7 @@ open class RegularExpression {
         /// - Parameter position: the index which must be between `startIndex` <= index < `endIndex`.
         /// - Returns: the capture group.
         ///
-        @inlinable public subscript(position: Index) -> Element { groups[position] }
+        public subscript(position: Index) -> Element { groups[position] }
 
         /*=======================================================================================================================================================================*/
         /// The index after the one given.
@@ -486,14 +486,14 @@ open class RegularExpression {
         /// - Parameter i: the index.
         /// - Returns: the next index.
         ///
-        @inlinable public func index(after i: Index) -> Index { groups.index(after: i) }
+        public func index(after i: Index) -> Index { groups.index(after: i) }
 
         /*=======================================================================================================================================================================*/
         /// Returns an iterator over all the capture groups.
         /// 
         /// - Returns: an iterator.
         ///
-        @inlinable public func makeIterator() -> Iterator { Iterator(match: self) }
+        public func makeIterator() -> Iterator { Iterator(match: self) }
 
         /*=======================================================================================================================================================================*/
         /// The iterator class.
@@ -501,17 +501,17 @@ open class RegularExpression {
         public final class Iterator: IteratorProtocol {
             public typealias Element = Group
 
-            @usableFromInline var index: Int = 0
-            @usableFromInline let match: Match
+            var index: Int = 0
+            let match: Match
 
-            @inlinable init(match: Match) { self.match = match }
+            init(match: Match) { self.match = match }
 
             /*===================================================================================================================================================================*/
             /// Get the next element.
             /// 
             /// - Returns: the next element or `nil` if there are no more elements.
             ///
-            @inlinable public func next() -> Element? { (index < match.groups.endIndex ? match.groups[index++] : nil) }
+            public func next() -> Element? { (index < match.groups.endIndex ? match.groups[index++] : nil) }
         }
     }
 
@@ -519,7 +519,7 @@ open class RegularExpression {
     /// This class encapsulates a single capture group.
     ///
     public class Group {
-        @usableFromInline let match: Match
+        let match: Match
 
         /*=======================================================================================================================================================================*/
         /// The range of the search string for this capture group of `nil` if this capture group did not participate in the match.
@@ -530,7 +530,7 @@ open class RegularExpression {
         ///
         public internal(set) lazy var subString: String? = ((range == nil) ? nil : String(match.string[range!]))
 
-        @inlinable init(_ match: Match, range: NSRange) {
+        init(_ match: Match, range: NSRange) {
             self.match = match
             self.range = ((range.location == NSNotFound) ? nil : Range<String.Index>(range, in: match.string))
         }
@@ -545,13 +545,13 @@ open class RegularExpression {
         ///
         public let name: String
 
-        @inlinable init(_ match: Match, name: String, range: NSRange) {
+        init(_ match: Match, name: String, range: NSRange) {
             self.name = name
             super.init(match, range: range)
         }
     }
 
-    @inlinable final func nsRange(_ range: Range<String.Index>?, string str: String) -> _NSRange { ((range == nil) ? str.fullNSRange : str.nsRange(range!)) }
+    final func nsRange(_ range: Range<String.Index>?, string str: String) -> _NSRange { ((range == nil) ? str.fullNSRange : str.nsRange(range!)) }
 }
 
 /*===============================================================================================================================================================================*/

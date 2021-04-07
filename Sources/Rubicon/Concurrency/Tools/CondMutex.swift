@@ -26,18 +26,18 @@ import CoreFoundation
 #if os(Windows)
     import WinSDK
 
-    @usableFromInline typealias PGMutex = UnsafeMutablePointer<SRWLOCK>
-    @usableFromInline typealias PGCond = UnsafeMutablePointer<CONDITION_VARIABLE>
-    @usableFromInline typealias PGLockTime = DWORD
+    typealias PGMutex = UnsafeMutablePointer<SRWLOCK>
+    typealias PGCond = UnsafeMutablePointer<CONDITION_VARIABLE>
+    typealias PGLockTime = DWORD
 #else
     #if CYGWIN
-        @usableFromInline typealias PGMutex = UnsafeMutablePointer<pthread_mutex_t?>
-        @usableFromInline typealias PGCond = UnsafeMutablePointer<pthread_cond_t?>
+        typealias PGMutex = UnsafeMutablePointer<pthread_mutex_t?>
+        typealias PGCond = UnsafeMutablePointer<pthread_cond_t?>
     #else
-        @usableFromInline typealias PGMutex = UnsafeMutablePointer<pthread_mutex_t>
-        @usableFromInline typealias PGCond = UnsafeMutablePointer<pthread_cond_t>
+        typealias PGMutex = UnsafeMutablePointer<pthread_mutex_t>
+        typealias PGCond = UnsafeMutablePointer<pthread_cond_t>
     #endif
-    @usableFromInline typealias PGLockTime = timespec
+    typealias PGLockTime = timespec
 #endif
 
 class CondMutex {

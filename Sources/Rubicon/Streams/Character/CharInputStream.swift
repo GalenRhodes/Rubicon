@@ -80,5 +80,5 @@ public protocol CharInputStream: SimpleCharInputStream {
 }
 
 extension CharInputStream {
-    @discardableResult @inlinable public func markBackup() -> Int { markBackup(count: 1) }
+    @discardableResult public func markBackup() -> Int { markBackup(count: 1) }
 }

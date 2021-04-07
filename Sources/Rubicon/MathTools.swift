@@ -79,7 +79,7 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
 /// - Parameter operand: the integer variable.
 /// - Returns: the value of the `operand` AFTER incrementing it's value by 1.
 ///
-@discardableResult @inlinable public prefix func ++ <T: BinaryInteger>(operand: inout T) -> T {
+@discardableResult public prefix func ++ <T: BinaryInteger>(operand: inout T) -> T {
     operand += 1
     return operand
 }
@@ -90,7 +90,7 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
 /// - Parameter operand: the integer variable.
 /// - Returns: the value of the `operand` AFTER decrementing it's value by 1.
 ///
-@discardableResult @inlinable public prefix func -- <T: BinaryInteger>(operand: inout T) -> T {
+@discardableResult public prefix func -- <T: BinaryInteger>(operand: inout T) -> T {
     operand -= 1
     return operand
 }
@@ -101,7 +101,7 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
 /// - Parameter operand: the integer variable.
 /// - Returns: the value of the `operand` BEFORE incrementing it's value by 1.
 ///
-@discardableResult @inlinable public postfix func ++ <T: BinaryInteger>(operand: inout T) -> T {
+@discardableResult public postfix func ++ <T: BinaryInteger>(operand: inout T) -> T {
     let i: T = operand
     operand += 1
     return i
@@ -113,7 +113,7 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
 /// - Parameter operand: the integer variable.
 /// - Returns: the value of the `operand` BEFORE decrementing it's value by 1.
 ///
-@discardableResult @inlinable public postfix func -- <T: BinaryInteger>(operand: inout T) -> T {
+@discardableResult public postfix func -- <T: BinaryInteger>(operand: inout T) -> T {
     let i: T = operand
     operand -= 1
     return i
@@ -125,7 +125,7 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
 /// - Parameter operand: the integer variable.
 /// - Returns: the value of the `operand` AFTER incrementing it's value by 1.
 ///
-@discardableResult @inlinable public prefix func +++ <T: FixedWidthInteger>(operand: inout T) -> T {
+@discardableResult public prefix func +++ <T: FixedWidthInteger>(operand: inout T) -> T {
     operand = (operand &+ 1)
     return operand
 }
@@ -136,7 +136,7 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
 /// - Parameter operand: the integer variable.
 /// - Returns: the value of the `operand` AFTER decrementing it's value by 1.
 ///
-@discardableResult @inlinable public prefix func --- <T: FixedWidthInteger>(operand: inout T) -> T {
+@discardableResult public prefix func --- <T: FixedWidthInteger>(operand: inout T) -> T {
     operand = (operand &- 1)
     return operand
 }
@@ -147,7 +147,7 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
 /// - Parameter operand: the integer variable.
 /// - Returns: the value of the `operand` BEFORE incrementing it's value by 1.
 ///
-@discardableResult @inlinable public postfix func +++ <T: FixedWidthInteger>(operand: inout T) -> T {
+@discardableResult public postfix func +++ <T: FixedWidthInteger>(operand: inout T) -> T {
     let i: T = operand
     operand = (operand &+ 1)
     return i
@@ -159,7 +159,7 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
 /// - Parameter operand: the integer variable.
 /// - Returns: the value of the `operand` BEFORE decrementing it's value by 1.
 ///
-@discardableResult @inlinable public postfix func --- <T: FixedWidthInteger>(operand: inout T) -> T {
+@discardableResult public postfix func --- <T: FixedWidthInteger>(operand: inout T) -> T {
     let i: T = operand
     operand = (operand &- 1)
     return i

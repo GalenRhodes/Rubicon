@@ -345,9 +345,6 @@
                 <a href="../Functions/regexML_28pattern_3A_29_5F_24s7patternSo19NSRegularExpressionCSS_5FtKcD.html">regexML(pattern:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions/streamStatusGood_28_5F_3A_29_5F_24sySbSo14NSStreamStatusVcD.html">streamStatusGood(_:)</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Functions/tabCalc_28pos_3AtabSize_3A_29_5F_24s3pos7tabSizes5Int32VAD_5Fs4Int8VtcD.html">tabCalc(pos:tabSize:)</a>
               </li>
               <li class="nav-group-task">
@@ -519,7 +516,7 @@
 call to <code>markRelease()</code>.</p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L34-L232">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L34-L290">Show on GitHub</a>
               </div>
           </section>
           <section class="section task-group-section">
@@ -576,7 +573,7 @@ call to <code>markRelease()</code>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="k">var</span> <span class="nv">streamStatus</span><span class="p">:</span> <span class="kt">Status</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="k">var</span> <span class="nv">streamStatus</span><span class="p">:</span> <span class="kt">Stream</span><span class="o">.</span><span class="kt">Status</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -671,7 +668,7 @@ call to <code>markRelease()</code>.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L72-L76">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L79-L83">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -721,7 +718,7 @@ stream must be opened before it can be used.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L84-L86">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L91-L93">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -770,7 +767,7 @@ stream must be opened before it can be used.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L93-L96">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L100-L103">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -819,7 +816,7 @@ stream must be opened before it can be used.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L103-L106">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L110-L113">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -844,7 +841,7 @@ stream must be opened before it can be used.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">read</span><span class="p">(</span><span class="n">_</span> <span class="nv">buffer</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">UInt8</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">maxLength</span> <span class="nv">len</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">read</span><span class="p">(</span><span class="n">_</span> <span class="nv">buf</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">UInt8</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">maxLength</span> <span class="nv">len</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -855,7 +852,7 @@ stream must be opened before it can be used.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>buffer</em>
+                                <em>buf</em>
                                 </code>
                               </td>
                               <td>
@@ -886,7 +883,7 @@ stream must be opened before it can be used.</p>
                                                          streamError.</li></ul></p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L120-L128">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L127-L135">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -912,7 +909,7 @@ available.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">getBuffer</span><span class="p">(</span><span class="n">_</span> <span class="nv">buffer</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">UInt8</span><span class="o">&gt;</span><span class="p">?</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">length</span> <span class="nv">len</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">getBuffer</span><span class="p">(</span><span class="n">_</span> <span class="nv">buf</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">UInt8</span><span class="o">&gt;</span><span class="p">?</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">length</span> <span class="nv">len</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -923,7 +920,7 @@ available.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>buffer</em>
+                                <em>buf</em>
                                 </code>
                               </td>
                               <td>
@@ -952,7 +949,7 @@ available.</p>
                         <p><code>true</code> if the buffer is available, otherwise <code>false</code>.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L139-L154">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L146-L162">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -982,7 +979,7 @@ available.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L159-L166">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L167-L171">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1013,7 +1010,7 @@ been scheduled on a run loop, closing the stream implicitly removes the stream f
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L172-L177">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L177-L182">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1043,7 +1040,7 @@ been scheduled on a run loop, closing the stream implicitly removes the stream f
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L182">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L187-L191">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1072,7 +1069,7 @@ been scheduled on a run loop, closing the stream implicitly removes the stream f
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L193-L200">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1101,7 +1098,7 @@ been scheduled on a run loop, closing the stream implicitly removes the stream f
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L202-L208">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1130,7 +1127,7 @@ been scheduled on a run loop, closing the stream implicitly removes the stream f
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L188-L193">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L210-L219">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1159,7 +1156,7 @@ been scheduled on a run loop, closing the stream implicitly removes the stream f
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L195-L200">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L221-L231">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1169,7 +1166,7 @@ been scheduled on a run loop, closing the stream implicitly removes the stream f
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-04-06)</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-04-07)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

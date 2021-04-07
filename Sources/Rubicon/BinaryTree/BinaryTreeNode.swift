@@ -75,31 +75,31 @@ open class BinaryTreeNode<K: Comparable & Hashable, V> {
     /*===========================================================================================================================================================================*/
     /// The grandparent node.
     ///
-    @inlinable public var grandParentNode: BinaryTreeNode<K, V>? { parentNode?.parentNode }
+    public var grandParentNode: BinaryTreeNode<K, V>? { parentNode?.parentNode }
     /*===========================================================================================================================================================================*/
     /// The sibling node.
     ///
-    @inlinable public var siblingNode:     BinaryTreeNode<K, V>? { (isLeftChild ? parentNode?.rightNode : (isRightChild ? parentNode?.leftNode : nil)) }
+    public var siblingNode:     BinaryTreeNode<K, V>? { (isLeftChild ? parentNode?.rightNode : (isRightChild ? parentNode?.leftNode : nil)) }
     /*===========================================================================================================================================================================*/
     /// The uncle node.
     ///
-    @inlinable public var uncleNode:       BinaryTreeNode<K, V>? { parentNode?.siblingNode }
+    public var uncleNode:       BinaryTreeNode<K, V>? { parentNode?.siblingNode }
     /*===========================================================================================================================================================================*/
     /// Is this node the left child node?
     ///
-    @inlinable public var isLeftChild:     Bool                  { (self === parentNode?.leftNode) }
+    public var isLeftChild:     Bool                  { (self === parentNode?.leftNode) }
     /*===========================================================================================================================================================================*/
     /// Is this node the right child node?
     ///
-    @inlinable public var isRightChild:    Bool                  { (self === parentNode?.rightNode) }
+    public var isRightChild:    Bool                  { (self === parentNode?.rightNode) }
     /*===========================================================================================================================================================================*/
     /// Is this node the root node?
     ///
-    @inlinable public var isRootNode:      Bool                  { (parentNode == nil) }
+    public var isRootNode:      Bool                  { (parentNode == nil) }
     /*===========================================================================================================================================================================*/
     /// The root node.
     ///
-    @inlinable public var rootNode:        BinaryTreeNode<K, V>  { (parentNode?.rootNode ?? self) }
+    public var rootNode:        BinaryTreeNode<K, V>  { (parentNode?.rootNode ?? self) }
     //@f:1
 
     /*===========================================================================================================================================================================*/
@@ -110,7 +110,7 @@ open class BinaryTreeNode<K: Comparable & Hashable, V> {
     ///   - value: the value.
     ///   - color: the node's color.
     ///
-    @usableFromInline init(key: K, value: V, color: NodeColor) {
+    init(key: K, value: V, color: NodeColor) {
         self.key = key
         self.value = value
         self.color = color
@@ -401,7 +401,7 @@ open class BinaryTreeNode<K: Comparable & Hashable, V> {
     /// - Parameter left: if `true` the text "left" is returned, otherwise the text "right" is returned.
     /// - Returns: "left" or "right"
     ///
-    @inlinable final func sideText(_ left: Bool) -> String { (left ? "left" : "right") }
+    final func sideText(_ left: Bool) -> String { (left ? "left" : "right") }
 
     /*===========================================================================================================================================================================*/
     /// Rotates this node.
@@ -465,29 +465,29 @@ open class BinaryTreeNode<K: Comparable & Hashable, V> {
     /// - Parameter p: this nodes parent node.
     /// - Returns: this nodes index.
     ///
-    @inlinable func index(_ p: BinaryTreeNode<K, V>) -> Int { ((self === p.leftNode) ? (p.index - rightCc - 1) : (p.index + leftCc + 1)) }
+    func index(_ p: BinaryTreeNode<K, V>) -> Int { ((self === p.leftNode) ? (p.index - rightCc - 1) : (p.index + leftCc + 1)) }
 
     //@f:0
     /*===========================================================================================================================================================================*/
     /// Returns this node's right-most child node.
     ///
-    @inlinable final var rightMost: BinaryTreeNode<K, V> { (rightNode?.rightMost ?? self) }
+    final var rightMost: BinaryTreeNode<K, V> { (rightNode?.rightMost ?? self) }
     /*===========================================================================================================================================================================*/
     /// Returns this node's left-most child node.
     ///
-    @inlinable final var leftMost:  BinaryTreeNode<K, V> { (leftNode?.leftMost ?? self) }
+    final var leftMost:  BinaryTreeNode<K, V> { (leftNode?.leftMost ?? self) }
     /*===========================================================================================================================================================================*/
     /// Returns the cound of all the child nodes on this node's left side.
     ///
-    @inlinable final var leftCc:    Int                  { (leftNode?.count ?? 0) }
+    final var leftCc:    Int                  { (leftNode?.count ?? 0) }
     /*===========================================================================================================================================================================*/
     /// Returns the cound of all the child nodes on this node's right side.
     ///
-    @inlinable final var rightCc:   Int                  { (rightNode?.count ?? 0) }
+    final var rightCc:   Int                  { (rightNode?.count ?? 0) }
     /*===========================================================================================================================================================================*/
     /// Returns this node's index.
     ///
-    @inlinable final var index:     Int                  { ((parentNode == nil) ? leftCc : index(parentNode!)) }
+    final var index:     Int                  { ((parentNode == nil) ? leftCc : index(parentNode!)) }
     //@f:1
 }
 
@@ -497,7 +497,7 @@ open class BinaryTreeNode<K: Comparable & Hashable, V> {
 /// - Parameter node: the node.
 /// - Returns: `true` if the given node is black.
 ///
-@inlinable func isBlack<K: Comparable, V>(_ node: BinaryTreeNode<K, V>?) -> Bool { ((node?.color ?? .Black) == .Black) }
+func isBlack<K: Comparable, V>(_ node: BinaryTreeNode<K, V>?) -> Bool { ((node?.color ?? .Black) == .Black) }
 
 /*===============================================================================================================================================================================*/
 /// Check a node's color to see if it's red.
@@ -505,7 +505,7 @@ open class BinaryTreeNode<K: Comparable & Hashable, V> {
 /// - Parameter node: the node.
 /// - Returns: `true` if the given node is red.
 ///
-@inlinable func isRed<K: Comparable, V>(_ node: BinaryTreeNode<K, V>?) -> Bool { ((node?.color ?? .Black) == .Red) }
+func isRed<K: Comparable, V>(_ node: BinaryTreeNode<K, V>?) -> Bool { ((node?.color ?? .Black) == .Red) }
 
 extension BinaryTreeNode: Equatable where V: Equatable {
     public static func == (lhs: BinaryTreeNode<K, V>, rhs: BinaryTreeNode<K, V>) -> Bool { lhs.key == rhs.key && lhs.value == rhs.value }

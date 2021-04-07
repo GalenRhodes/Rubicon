@@ -23,11 +23,11 @@
 import Foundation
 
 public extension Range {
-    @inlinable func isInside(_ other: Range) -> Bool {
+    func isInside(_ other: Range) -> Bool {
         ((lowerBound >= other.lowerBound) && (upperBound <= other.upperBound))
     }
 
-    @inlinable func covers(_ other: Range) -> Bool {
+    func covers(_ other: Range) -> Bool {
         other.isInside(self)
     }
 }

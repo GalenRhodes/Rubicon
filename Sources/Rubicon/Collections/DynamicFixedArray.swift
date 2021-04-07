@@ -27,12 +27,12 @@ open class DynamicFixedArray<T> {
     public let count:      Int
     public let dimensions: [Int]
 
-    @inlinable open var lastArray:  ArraySlice<T?> { matrix[(count - dimensions[count - 1]) ..< count] }
-    @inlinable open var firstArray: ArraySlice<T?> { matrix[0 ..< dimensions[count - 1]] }
-    @inlinable open var last:       T? { matrix[count - 1] }
-    @inlinable open var first:      T? { matrix[0] }
+    open var lastArray:  ArraySlice<T?> { matrix[(count - dimensions[count - 1]) ..< count] }
+    open var firstArray: ArraySlice<T?> { matrix[0 ..< dimensions[count - 1]] }
+    open var last:       T? { matrix[count - 1] }
+    open var first:      T? { matrix[0] }
 
-    @usableFromInline lazy var matrix: [T?] = Array<T?>(repeating: nil, count: count)
+    lazy var matrix: [T?] = Array<T?>(repeating: nil, count: count)
 
     public init(dimensions dim: Int...) {
         guard dim.count > 0 else { fatalError("DynamicFixedArray: Must have at least 1 dimensions: \(dim.count)") }
@@ -45,14 +45,14 @@ open class DynamicFixedArray<T> {
         count = size
     }
 
-    @inlinable open func lastArray(at indexes: Int...) -> ArraySlice<T?> {
+    open func lastArray(at indexes: Int...) -> ArraySlice<T?> {
         guard indexes.count == (dimensions.count - 1) else { fatalError(msg02(indexes)) }
         let x1 = index(indexes: indexes)
         let x2 = (x1 + dimensions[count - 1])
         return matrix[x1 ..< x2]
     }
 
-    @inlinable open subscript(indexes: Int...) -> T? {
+    open subscript(indexes: Int...) -> T? {
         get {
             guard indexes.count == dimensions.count else { fatalError(msg01(indexes)) }
             return matrix[index(indexes: indexes)]
@@ -63,7 +63,7 @@ open class DynamicFixedArray<T> {
         }
     }
 
-    @inlinable final func index(indexes: [Int]) -> Int {
+    final func index(indexes: [Int]) -> Int {
         let cc = indexes.count
         let cx = (cc - 1)
 
@@ -91,27 +91,27 @@ open class DynamicFixedArray<T> {
         return idx
     }
 
-    @inlinable func msg01(_ indexes: [Int]) -> String {
+    func msg01(_ indexes: [Int]) -> String {
         "DynamicFixedArray: Number of indexes must equal number of dimensions: \(indexes.count) != \(dimensions.count)"
     }
 
-    @inlinable func msg02(_ indexes: [Int]) -> String {
+    func msg02(_ indexes: [Int]) -> String {
         "DynamicFixedArray: Number of indexes must be one less than the number of dimensions: \(indexes.count) != \(dimensions.count - 1)"
     }
 
-    @inlinable func msg03(_ idx: Int, _ value: Int, _ limit: Int) -> String {
+    func msg03(_ idx: Int, _ value: Int, _ limit: Int) -> String {
         "DynamicFixedArray: Index \(idx) is out of bounds: \(value) >= \(limit)"
     }
 
-    @inlinable func msg04(_ idx: Int, _ value: Int) -> String {
+    func msg04(_ idx: Int, _ value: Int) -> String {
         "DynamicFixedArray: Index \(idx) is out of bounds: \(value) < 0"
     }
 
-    @inlinable func msg05() -> String {
+    func msg05() -> String {
         "DynamicFixedArray: Must have at least 1 dimension."
     }
 
-    @inlinable func msg06(_ dims: Int) -> String {
+    func msg06(_ dims: Int) -> String {
         "DynamicFixedArray: Too many dimensions: \(dims) > \(dimensions.count)"
     }
 }

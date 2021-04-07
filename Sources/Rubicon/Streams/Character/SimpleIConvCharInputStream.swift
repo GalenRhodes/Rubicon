@@ -48,41 +48,41 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
     /*===========================================================================================================================================================================*/
     /// `true` if the stream has characters ready to be read.
     ///
-    open                     var hasCharsAvailable: Bool          { lock.withLock { hasChars               } }
+    open           var hasCharsAvailable: Bool          { lock.withLock { hasChars               } }
     /*===========================================================================================================================================================================*/
     /// `true` if the stream is at the end-of-file.
     ///
-    open                     var isEOF:             Bool          { !hasCharsAvailable                       }
+    open           var isEOF:             Bool          { !hasCharsAvailable                       }
     /*===========================================================================================================================================================================*/
     /// The error.
     ///
-    open                     var streamError:       Error?        { lock.withLock { (isOpen ? error : nil) } }
+    open           var streamError:       Error?        { lock.withLock { (isOpen ? error : nil) } }
     /*===========================================================================================================================================================================*/
     /// The status of the `CharInputStream`.
     ///
-    open                     var streamStatus:      Stream.Status { lock.withLock { effectiveStatus        } }
+    open           var streamStatus:      Stream.Status { lock.withLock { effectiveStatus        } }
     /*===========================================================================================================================================================================*/
     /// The human readable name of the encoding.
     ///
-    public                   let encodingName:      String
+    public         let encodingName:      String
 
-    @usableFromInline        let inputStream:       InputStream
-    @usableFromInline        let autoClose:         Bool
-    @usableFromInline        var running:           Bool          = false
-    @usableFromInline        var error:             Error?        = nil
-    @usableFromInline        var buffer:            [Character]   = []
-    @usableFromInline        var status:            Stream.Status = .notOpen
-    @usableFromInline   lazy var queue:             DispatchQueue = DispatchQueue(label: UUID().uuidString, qos: .utility, autoreleaseFrequency: .workItem)
-    @usableFromInline   lazy var lock:              Conditional   = Conditional()
+    internal       let inputStream:       InputStream
+    internal       let autoClose:         Bool
+    internal       var running:           Bool          = false
+    internal       var error:             Error?        = nil
+    internal       var buffer:            [Character]   = []
+    internal       var status:            Stream.Status = .notOpen
+    internal  lazy var queue:             DispatchQueue = DispatchQueue(label: UUID().uuidString, qos: .utility, autoreleaseFrequency: .workItem)
+    internal  lazy var lock:              Conditional   = Conditional()
 
-    @inlinable         final var isOpen:            Bool          { (status == .open)                                                     }
-    @inlinable         final var hasError:          Bool          { (error != nil)                                                        }
-    @inlinable         final var isGood:            Bool          { (isOpen && !hasError)                                                 }
-    @inlinable         final var isRunning:         Bool          { (isGood && running)                                                   }
-    @inlinable         final var waitForMore:       Bool          { (buffer.isEmpty && isRunning)                                         }
-    @inlinable         final var fooChars:          Bool          { (running || !buffer.isEmpty)                                          }
-    @inlinable         final var hasChars:          Bool          { (isGood && fooChars)                                                  }
-    @inlinable         final var effectiveStatus:   Stream.Status { (isOpen ? (hasError ? .error : (fooChars ? .open : .atEnd)) : status) }
+    internal final var isOpen:            Bool          { (status == .open)                                                     }
+    internal final var hasError:          Bool          { (error != nil)                                                        }
+    internal final var isGood:            Bool          { (isOpen && !hasError)                                                 }
+    internal final var isRunning:         Bool          { (isGood && running)                                                   }
+    internal final var waitForMore:       Bool          { (buffer.isEmpty && isRunning)                                         }
+    internal final var fooChars:          Bool          { (running || !buffer.isEmpty)                                          }
+    internal final var hasChars:          Bool          { (isGood && fooChars)                                                  }
+    internal final var effectiveStatus:   Stream.Status { (isOpen ? (hasError ? .error : (fooChars ? .open : .atEnd)) : status) }
     //@f:1
 
     /*===========================================================================================================================================================================*/
@@ -372,7 +372,7 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
     ///
     private func read(_ ib: EasyByteBuffer) throws -> Bool {
         guard isRunning else { return false }
-        let rc = inputStream.read(buffer: ib)
+        let rc = try inputStream.read(to: ib)
         guard rc >= 0 else { throw inputStream.streamError ?? StreamError.UnknownError() }
         return (rc > 0)
     }

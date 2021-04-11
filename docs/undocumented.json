@@ -911,20 +911,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/NSLock.swift",
-      "line": 103,
-      "symbol": "NSCondition.bcastUnlock()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/NSLock.swift",
-      "line": 108,
-      "symbol": "NSCondition.bcastWait(until:willBroadcast:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/PGThread.swift",
       "line": 37,
       "symbol": "PGThread.isDone",

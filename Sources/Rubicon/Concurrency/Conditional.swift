@@ -125,9 +125,9 @@ extension LockCondition {
 
 open class Conditional: LockCondition {
 
-    let cmutex: CondMutex = CondMutex()
+    private let cmutex: CondMutex = CondMutex()
     #if os(Windows) || os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-        let tmutex: CondMutex = CondMutex()
+        private let tmutex: CondMutex = CondMutex()
     #endif
 
     public var name: String? = nil
@@ -156,7 +156,7 @@ open class Conditional: LockCondition {
         cmutex.lock()
     }
 
-    public final func unlock() {
+    open func unlock() {
         cmutex.unlock()
         #if os(Windows) || os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
             tmutex.lBroadcast()
@@ -212,19 +212,19 @@ open class Conditional: LockCondition {
         return try block()
     }
 
-    final func bcastUnlock() {
+    private func bcastUnlock() {
         broadcast()
         unlock()
     }
 
-    @discardableResult final func bcastWait(until limit: Date? = nil, willBroadcast bcast: Bool) -> Bool {
+    @discardableResult private func bcastWait(until limit: Date? = nil, willBroadcast bcast: Bool) -> Bool {
         if bcast { broadcast() }
         if let limit = limit { return wait(until: limit) }
         wait()
         return true
     }
 
-    final func PGGetLockTime(from date: Date) -> PGLockTime? {
+    private func PGGetLockTime(from date: Date) -> PGLockTime? {
         #if os(Windows)
             return timeIntervalFrom(date: date)
         #else

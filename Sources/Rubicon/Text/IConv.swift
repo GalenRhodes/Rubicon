@@ -69,7 +69,7 @@ open class IConv {
         case OtherError
     }
 
-    lazy var handle: iconv_t? = iconv_open("\(toEncoding)\(ignoreErrors ? "//IGNORE" : "")\(enableTransliterate ? "//TRANSLIT" : "")", "\(fromEncoding)")
+    private lazy var handle: iconv_t? = iconv_open("\(toEncoding)\(ignoreErrors ? "//IGNORE" : "")\(enableTransliterate ? "//TRANSLIT" : "")", "\(fromEncoding)")
 
     /*===========================================================================================================================================================================*/
     /// Create a new instance of IConv.

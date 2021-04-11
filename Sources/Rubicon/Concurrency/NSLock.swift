@@ -44,21 +44,21 @@ public protocol Locking: NSLocking {
     func withLockTry<T>(_ body: () throws -> T) rethrows -> T?
 }
 
-public extension Locking {
+extension Locking {
 
-    func withLock<T>(_ body: () throws -> T) rethrows -> T {
+    public func withLock<T>(_ body: () throws -> T) rethrows -> T {
         lock()
         defer { unlock() }
         return try body()
     }
 
-    func withLock<T>(before date: Date, _ body: () throws -> T) rethrows -> T? {
+    public func withLock<T>(before date: Date, _ body: () throws -> T) rethrows -> T? {
         guard lock(before: date) else { return nil }
         defer { unlock() }
         return try body()
     }
 
-    func withLockTry<T>(_ body: () throws -> T) rethrows -> T? {
+    public func withLockTry<T>(_ body: () throws -> T) rethrows -> T? {
         guard tryLock() else { return nil }
         defer { unlock() }
         return try body()
@@ -73,39 +73,39 @@ extension NSRecursiveLock: Locking {
     public func tryLock() -> Bool { `try`() }
 }
 
-public extension NSCondition {
+extension NSCondition {
 
-    func withLock<T>(_ body: () throws -> T) rethrows -> T {
+    public func withLock<T>(_ body: () throws -> T) rethrows -> T {
         lock()
         defer { bcastUnlock() }
         return try body()
     }
 
-    func withLockWait<T>(broadcastBeforeWait bcast: Bool = false, _ cond: () -> Bool, do body: () throws -> T) rethrows -> T {
+    public func withLockWait<T>(broadcastBeforeWait bcast: Bool = false, _ cond: () -> Bool, do body: () throws -> T) rethrows -> T {
         try withLock {
             while !cond() { bcastWait(willBroadcast: bcast) }
             return try body()
         }
     }
 
-    func withLockWait(broadcastBeforeWait bcast: Bool = false, _ cond: () -> Bool) {
+    public func withLockWait(broadcastBeforeWait bcast: Bool = false, _ cond: () -> Bool) {
         withLock { while !cond() { bcastWait(willBroadcast: bcast) } }
     }
 
-    func withLockWait<T>(until limit: Date, broadcastBeforeWait bcast: Bool = false, _ cond: () -> Bool, do body: () throws -> T) rethrows -> T? {
+    public func withLockWait<T>(until limit: Date, broadcastBeforeWait bcast: Bool = false, _ cond: () -> Bool, do body: () throws -> T) rethrows -> T? {
         try withLock { try (cond() ? body() : (bcastWait(until: limit, willBroadcast: bcast) ? (cond() ? body() : nil) : nil)) }
     }
 
-    func withLockWait(until limit: Date, broadcastBeforeWait bcast: Bool = false, _ cond: () -> Bool) -> Bool {
+    public func withLockWait(until limit: Date, broadcastBeforeWait bcast: Bool = false, _ cond: () -> Bool) -> Bool {
         withLock { (cond() ? true : (bcastWait(until: limit, willBroadcast: bcast) ? cond() : false)) }
     }
 
-    final func bcastUnlock() {
+    private func bcastUnlock() {
         broadcast()
         unlock()
     }
 
-    @discardableResult final func bcastWait(until limit: Date? = nil, willBroadcast bcast: Bool) -> Bool {
+    @discardableResult private func bcastWait(until limit: Date? = nil, willBroadcast bcast: Bool) -> Bool {
         if bcast { broadcast() }
         if let limit = limit { return wait(until: limit) }
         wait()

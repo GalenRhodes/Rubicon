@@ -63,7 +63,7 @@ class CondMutex {
         mutex.deallocate()
     }
 
-    final func tryLock() -> Bool {
+    func tryLock() -> Bool {
         #if os(Windows)
             return (TryAcquireSRWLockExclusive(mutex) != 0)
         #else
@@ -71,7 +71,7 @@ class CondMutex {
         #endif
     }
 
-    final func lock() {
+    func lock() {
         #if os(Windows)
             AcquireSRWLockExclusive(mutex)
         #else
@@ -79,7 +79,7 @@ class CondMutex {
         #endif
     }
 
-    final func unlock() {
+    func unlock() {
         #if os(Windows)
             ReleaseSRWLockExclusive(mutex)
         #else
@@ -87,9 +87,9 @@ class CondMutex {
         #endif
     }
 
-    @discardableResult final func lWait(until time: PGLockTime) -> Bool { withLock { wait(until: time) } }
+    @discardableResult func lWait(until time: PGLockTime) -> Bool { withLock { wait(until: time) } }
 
-    final func wait(until time: PGLockTime) -> Bool {
+    func wait(until time: PGLockTime) -> Bool {
         #if os(Windows)
             return SleepConditionVariableSRW(timerCond, timerMutex, time, 0)
         #else
@@ -98,7 +98,7 @@ class CondMutex {
         #endif
     }
 
-    final func wait() {
+    func wait() {
         #if os(Windows)
             SleepConditionVariableSRW(cond, mutex, WinSDK.INFINITE, 0)
         #else
@@ -106,9 +106,9 @@ class CondMutex {
         #endif
     }
 
-    final func lBroadcast() { withLock { broadcast() } }
+    func lBroadcast() { withLock { broadcast() } }
 
-    final func broadcast() {
+    func broadcast() {
         #if os(Windows)
             WakeAllConditionVariable(cond)
         #else
@@ -116,7 +116,7 @@ class CondMutex {
         #endif
     }
 
-    final func signal() {
+    func signal() {
         #if os(Windows)
             WakeConditionVariable(cond)
         #else
@@ -124,7 +124,7 @@ class CondMutex {
         #endif
     }
 
-    @discardableResult final func withLock<T>(_ body: () throws -> T) rethrows -> T {
+    @discardableResult func withLock<T>(_ body: () throws -> T) rethrows -> T {
         lock()
         defer { unlock() }
         return try body()

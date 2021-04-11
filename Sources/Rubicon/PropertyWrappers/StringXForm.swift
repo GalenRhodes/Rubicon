@@ -25,8 +25,8 @@ import Foundation
 @propertyWrapper
 public struct StringXForm {
 
-    private(set) var value: String
-    let xform: [XForms]
+    private var value: String
+    private let xform: [XForms]
 
     public enum XForms {
         case lowercased
@@ -66,8 +66,8 @@ public struct StringXForm {
 @propertyWrapper
 public struct OStringXForm {
 
-    private(set) var value: String?
-    let xform: [XForms]
+    private var value: String?
+    private let xform: [XForms]
 
     public enum XForms {
         case lowercased

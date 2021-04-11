@@ -32,7 +32,7 @@ open class DynamicFixedArray<T> {
     open var last:       T? { matrix[count - 1] }
     open var first:      T? { matrix[0] }
 
-    lazy var matrix: [T?] = Array<T?>(repeating: nil, count: count)
+    private lazy var matrix: [T?] = Array<T?>(repeating: nil, count: count)
 
     public init(dimensions dim: Int...) {
         guard dim.count > 0 else { fatalError("DynamicFixedArray: Must have at least 1 dimensions: \(dim.count)") }
@@ -63,7 +63,7 @@ open class DynamicFixedArray<T> {
         }
     }
 
-    final func index(indexes: [Int]) -> Int {
+    private func index(indexes: [Int]) -> Int {
         let cc = indexes.count
         let cx = (cc - 1)
 
@@ -91,27 +91,27 @@ open class DynamicFixedArray<T> {
         return idx
     }
 
-    func msg01(_ indexes: [Int]) -> String {
+    private func msg01(_ indexes: [Int]) -> String {
         "DynamicFixedArray: Number of indexes must equal number of dimensions: \(indexes.count) != \(dimensions.count)"
     }
 
-    func msg02(_ indexes: [Int]) -> String {
+    private func msg02(_ indexes: [Int]) -> String {
         "DynamicFixedArray: Number of indexes must be one less than the number of dimensions: \(indexes.count) != \(dimensions.count - 1)"
     }
 
-    func msg03(_ idx: Int, _ value: Int, _ limit: Int) -> String {
+    private func msg03(_ idx: Int, _ value: Int, _ limit: Int) -> String {
         "DynamicFixedArray: Index \(idx) is out of bounds: \(value) >= \(limit)"
     }
 
-    func msg04(_ idx: Int, _ value: Int) -> String {
+    private func msg04(_ idx: Int, _ value: Int) -> String {
         "DynamicFixedArray: Index \(idx) is out of bounds: \(value) < 0"
     }
 
-    func msg05() -> String {
+    private func msg05() -> String {
         "DynamicFixedArray: Must have at least 1 dimension."
     }
 
-    func msg06(_ dims: Int) -> String {
+    private func msg06(_ dims: Int) -> String {
         "DynamicFixedArray: Too many dimensions: \(dims) > \(dimensions.count)"
     }
 }

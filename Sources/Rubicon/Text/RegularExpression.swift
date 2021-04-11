@@ -551,7 +551,7 @@ open class RegularExpression {
         }
     }
 
-    final func nsRange(_ range: Range<String.Index>?, string str: String) -> _NSRange { ((range == nil) ? str.fullNSRange : str.nsRange(range!)) }
+    private final func nsRange(_ range: Range<String.Index>?, string str: String) -> _NSRange { ((range == nil) ? str.fullNSRange : str.nsRange(range!)) }
 }
 
 /*===============================================================================================================================================================================*/

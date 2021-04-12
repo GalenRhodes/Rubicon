@@ -36,6 +36,20 @@ open class EasyByteBuffer {
         bytes.initialize(repeating: 0, count: length)
     }
 
+    public init?(buffer: UnsafeRawBufferPointer) {
+        length = buffer.count
+        count = length
+
+        guard length > 0 else { return nil }
+        guard let p = buffer.bindMemory(to: UInt8.self).baseAddress else { return nil }
+        bytes = BytePointer.allocate(capacity: length)
+        bytes.initialize(from: p, count: length)
+    }
+
+    open var asBuffer: UnsafeBufferPointer<UInt8> {
+        UnsafeBufferPointer<UInt8>(start: bytes, count: count)
+    }
+
     deinit {
         bytes.deinitialize(count: length)
         bytes.deallocate()

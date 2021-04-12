@@ -26,22 +26,22 @@ public let      LF_CHARACTER:        Character = "\n"
 /*===============================================================================================================================================================================*/
 /// There is a possibility that the endian of the system is not known. In that case we default to `little` endian because that's the most common these days.
 ///
-fileprivate let ENCODE_TO_NAME:      String    = "UTF-32\((CFByteOrderGetCurrent() == CFByteOrderBigEndian.rawValue) ? "BE" : "LE")"
+internal let ENCODE_TO_NAME:      String    = "UTF-32\((CFByteOrderGetCurrent() == CFByteOrderBigEndian.rawValue) ? "BE" : "LE")"
 /*===============================================================================================================================================================================*/
 /// The size of this buffer might seem excessive at first but even small SBCs are now coming with Gigabit ethernet and 4GB of RAM. Even an entry level MacMini comes with 8GB of
 /// RAM. So this buffer size is probably a bit on the small side.
 ///
-fileprivate let INPUT_BUFFER_SIZE:   Int       = 65_536
+internal let INPUT_BUFFER_SIZE:   Int       = 65_536
 /*===============================================================================================================================================================================*/
 /// The size of this buffer might seem excessive at first but even small SBCs are now coming with Gigabit ethernet and 4GB of RAM. Even an entry level MacMini comes with 8GB of
 /// RAM. So this buffer size is probably a bit on the small side.
 ///
-fileprivate let OUTPUT_BUFFER_SIZE:  Int       = ((INPUT_BUFFER_SIZE * MemoryLayout<UInt32>.stride) + MemoryLayout<UInt32>.stride)
+internal let OUTPUT_BUFFER_SIZE:  Int       = ((INPUT_BUFFER_SIZE * MemoryLayout<UInt32>.stride) + MemoryLayout<UInt32>.stride)
 /*===============================================================================================================================================================================*/
 /// The size of this buffer might seem excessive at first but even small SBCs are now coming with Gigabit ethernet and 4GB of RAM. Even an entry level MacMini comes with 8GB of
 /// RAM. So this buffer size is probably a bit on the small side.
 ///
-fileprivate let MAX_READ_AHEAD:      Int       = 262_144
+internal let MAX_READ_AHEAD:      Int       = 262_144
 
 open class SimpleIConvCharInputStream: SimpleCharInputStream {
     //@f:0

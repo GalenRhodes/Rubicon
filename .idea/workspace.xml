@@ -30,14 +30,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment=" - Bug fixes.&#10; - After reading [this article](https://www.rightpoint.com/rplabs/switch-method-dispatch-table)&#10;   I've removed all @inlinable and @usableFromInline and am just letting the compiler work it's magic to determine&#10;   what the best way to call methods and functions is.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Collections/DynamicFixedArray.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Collections/DynamicFixedArray.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Conditional.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Conditional.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/NSLock.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/NSLock.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Tools/CondMutex.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Tools/CondMutex.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/PropertyWrappers/StringXForm.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/PropertyWrappers/StringXForm.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleCharInputStream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Text/IConv.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Text/IConv.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Text/RegularExpression.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Text/RegularExpression.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/EasyByteBuffer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/EasyByteBuffer.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Element.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Element.html" afterDir="false" />
@@ -616,13 +611,8 @@
       <workItem from="1617650052421" duration="6912000" />
       <workItem from="1617808722584" duration="13667000" />
       <workItem from="1618163545562" duration="1438000" />
-    </task>
-    <task id="LOCAL-00103" summary="Bug fixes">
-      <created>1611161401110</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1611161401110</updated>
+      <workItem from="1618169059193" duration="698000" />
+      <workItem from="1618242752738" duration="4026000" />
     </task>
     <task id="LOCAL-00104" summary="Removed debugging output from RingByteBuffer.">
       <created>1611166777156</created>
@@ -960,7 +950,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617829554979</updated>
     </task>
-    <option name="localTasksCounter" value="152" />
+    <task id="LOCAL-00152" summary=" - Bug fixes.&#10; - After reading [this article](https://www.rightpoint.com/rplabs/switch-method-dispatch-table)&#10;   I've removed all @inlinable and @usableFromInline and am just letting the compiler work it's magic to determine&#10;   what the best way to call methods and functions is.">
+      <created>1618169102480</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1618169102481</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

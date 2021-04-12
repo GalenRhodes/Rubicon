@@ -46,6 +46,10 @@ open class SimpleStringCharInputStream: SimpleCharInputStream {
         self.index = self.string.startIndex
     }
 
+    public convenience init(data: Data, encodingName: String) throws {
+        self.init(string: try convertData(data, encodingName))
+    }
+
     deinit { _close() }
 
     open func read() throws -> Character? { try lock.withLock { try _read() } }
@@ -83,5 +87,23 @@ open class SimpleStringCharInputStream: SimpleCharInputStream {
         chars.append(contentsOf: string[index ..< i])
         index = i
         return (chars.count - c)
+    }
+}
+
+private func convertData(_ data: Data, _ encodingName: String) throws -> String {
+    try data.withUnsafeBytes { (pData: UnsafeRawBufferPointer) -> String in
+        guard let input = EasyByteBuffer(buffer: pData) else { return "" }
+
+        let output = EasyByteBuffer(length: ((input.length * MemoryLayout<UInt32>.stride) + MemoryLayout<UInt32>.stride))
+        let iconv  = IConv(toEncoding: "UTF-8", fromEncoding: encodingName.uppercased(), ignoreErrors: true, enableTransliterate: true)
+        let resp   = iconv.convert(input: input, output: output)
+
+        switch resp {
+            case .UnknownEncoding: throw CErrors.INVAL(description: "Unknown Character Encoding: \(encodingName)")
+            case .OtherError:      throw StreamError.UnknownError()
+            default:               break
+        }
+
+        return String(bytes: output.asBuffer, encoding: .utf8) ?? ""
     }
 }

@@ -17,7 +17,7 @@
     <a title="EasyByteBuffer Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Rubicon©</a> (71% documented)</p>
+        <p><a href="../index.html">Rubicon©</a> (70% documented)</p>
         <p class="header-right"><a href="https://github.com/GalenRhodes/Rubicon"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right">
           <form role="search" action="../search.json">
@@ -62,6 +62,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Conditional.html">Conditional</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataByteBuffer.html">DataByteBuffer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DynamicFixedArray.html">DynamicFixedArray</a>
@@ -182,6 +185,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/ArraySlice.html">ArraySlice</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/BinaryInteger.html">BinaryInteger</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Character.html">Character</a>
@@ -336,6 +342,9 @@
                 <a href="../Functions/fixLength_28_5F_3A_29_5F_24syS2icD.html">fixLength(_:)</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Functions/fromBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html">fromBytes(type:_:)</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Functions/getSysTime_28delta_3A_29_5F_24s5deltas6UInt64VAC_5FtcD.html">getSysTime(delta:)</a>
               </li>
               <li class="nav-group-task">
@@ -360,7 +369,7 @@
                 <a href="../Functions/toBinary_28_5F_3Asep_3Apad_3A_29_5F_24s_5F3sep3padSSx_5FSSSgSitcSzRzluD.html">toBinary(_:sep:pad:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions/toChar_28codePoint_3A_29_5F_24s9codePointSJs6UInt32V_5FtcD.html">toChar(codePoint:)</a>
+                <a href="../Functions/toBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html">toBytes(type:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html">toHex(_:pad:)</a>
@@ -390,6 +399,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/Locking.html">Locking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ManagedByteBuffer.html">ManagedByteBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MutableManagedByteBuffer.html">MutableManagedByteBuffer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/SimpleCharInputStream.html">SimpleCharInputStream</a>
@@ -508,13 +523,13 @@
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">EasyByteBuffer</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">EasyByteBuffer</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/MutableManagedByteBuffer.html">MutableManagedByteBuffer</a></span></code></pre>
 
                 </div>
               </div>
             
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/EasyByteBuffer.swift#L25-L97">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift#L26-L138">Show on GitHub</a>
               </div>
           </section>
           <section class="section task-group-section">
@@ -523,38 +538,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon14EasyByteBufferC5bytesSpys5UInt8VGvp"></a>
-                    <a name="//apple_ref/swift/Property/bytes" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon14EasyByteBufferC5bytesSpys5UInt8VGvp">bytes</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">bytes</span><span class="p">:</span> <span class="kt"><a href="../Typealiases/BytePointer.html">BytePointer</a></span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/EasyByteBuffer.swift#L">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon14EasyByteBufferC6lengthSivp"></a>
+                    <a name="/s:7Rubicon17ManagedByteBufferP6lengthSivp"></a>
                     <a name="//apple_ref/swift/Property/length" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon14EasyByteBufferC6lengthSivp">length</a>
+                    <a class="token" href="#/s:7Rubicon17ManagedByteBufferP6lengthSivp">length</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -573,7 +559,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/EasyByteBuffer.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift#L25">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -581,9 +567,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon14EasyByteBufferC5countSivp"></a>
+                    <a name="/s:7Rubicon17ManagedByteBufferP5countSivp"></a>
                     <a name="//apple_ref/swift/Property/count" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon14EasyByteBufferC5countSivp">count</a>
+                    <a class="token" href="#/s:7Rubicon17ManagedByteBufferP5countSivp">count</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -602,7 +588,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/EasyByteBuffer.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift#L30">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -631,7 +617,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/EasyByteBuffer.swift#L33-L37">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift#L34-L38">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -660,7 +646,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/EasyByteBuffer.swift#L39-L47">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift#L40-L48">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -668,38 +654,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon14EasyByteBufferC02asD0SRys5UInt8VGvp"></a>
-                    <a name="//apple_ref/swift/Property/asBuffer" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon14EasyByteBufferC02asD0SRys5UInt8VGvp">asBuffer</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">asBuffer</span><span class="p">:</span> <span class="kt">UnsafeBufferPointer</span><span class="o">&lt;</span><span class="kt">UInt8</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/EasyByteBuffer.swift#L49-L51">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon14EasyByteBufferC15relocateToFront5startS2i_tF"></a>
+                    <a name="/s:7Rubicon24MutableManagedByteBufferP15relocateToFront5startS2i_tF"></a>
                     <a name="//apple_ref/swift/Method/relocateToFront(start:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon14EasyByteBufferC15relocateToFront5startS2i_tF">relocateToFront(start:<wbr>)</a>
+                    <a class="token" href="#/s:7Rubicon24MutableManagedByteBufferP15relocateToFront5startS2i_tF">relocateToFront(start:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -719,7 +676,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/EasyByteBuffer.swift#L58-L68">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift#L55-L65">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -727,9 +684,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon14EasyByteBufferC15relocateToFront5start5countySi_SitF"></a>
+                    <a name="/s:7Rubicon24MutableManagedByteBufferP15relocateToFront5start5countySi_SitF"></a>
                     <a name="//apple_ref/swift/Method/relocateToFront(start:count:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon14EasyByteBufferC15relocateToFront5start5countySi_SitF">relocateToFront(start:<wbr>count:<wbr>)</a>
+                    <a class="token" href="#/s:7Rubicon24MutableManagedByteBufferP15relocateToFront5start5countySi_SitF">relocateToFront(start:<wbr>count:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -743,12 +700,192 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">relocateToFront</span><span class="p">(</span><span class="n">start</span> <span class="nv">idx</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n"><a href="../Classes/EasyByteBuffer.html#/s:7Rubicon14EasyByteBufferC5countSivp">count</a></span> <span class="nv">cc</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">relocateToFront</span><span class="p">(</span><span class="n">start</span> <span class="nv">idx</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n"><a href="../Classes/EasyByteBuffer.html#/s:7Rubicon17ManagedByteBufferP5countSivp">count</a></span> <span class="nv">cc</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/EasyByteBuffer.swift#L70-L74">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift#L67-L71">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14EasyByteBufferC9withBytesyxxSpys5UInt8VG_S2iztKXEKlF"></a>
+                    <a name="//apple_ref/swift/Method/withBytes(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14EasyByteBufferC9withBytesyxxSpys5UInt8VG_S2iztKXEKlF">withBytes(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="n">withBytes</span><span class="o">&lt;</span><span class="kt">V</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">(</span><span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">UInt8</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">Int</span><span class="p">,</span> <span class="k">inout</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">V</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">V</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift#L80-L85">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon24MutableManagedByteBufferP9withBytesyqd__qd__Srys5UInt8VG_SiztKXEKlF"></a>
+                    <a name="//apple_ref/swift/Method/withBytes(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon24MutableManagedByteBufferP9withBytesyqd__qd__Srys5UInt8VG_SiztKXEKlF">withBytes(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="n">withBytes</span><span class="o">&lt;</span><span class="kt">V</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">(</span><span class="kt">UnsafeMutableBufferPointer</span><span class="o">&lt;</span><span class="kt">UInt8</span><span class="o">&gt;</span><span class="p">,</span> <span class="k">inout</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">V</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">V</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift#L87-L92">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14EasyByteBufferC9withBytesyxxSPys5UInt8VG_SiztKXEKlF"></a>
+                    <a name="//apple_ref/swift/Method/withBytes(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14EasyByteBufferC9withBytesyxxSPys5UInt8VG_SiztKXEKlF">withBytes(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="n">withBytes</span><span class="o">&lt;</span><span class="kt">V</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">(</span><span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">UInt8</span><span class="o">&gt;</span><span class="p">,</span> <span class="k">inout</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">V</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">V</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift#L94-L99">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14EasyByteBufferC9withBytesyxxSRys5UInt8VG_SiztKXEKlF"></a>
+                    <a name="//apple_ref/swift/Method/withBytes(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14EasyByteBufferC9withBytesyxxSRys5UInt8VG_SiztKXEKlF">withBytes(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="n">withBytes</span><span class="o">&lt;</span><span class="kt">V</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">(</span><span class="kt">UnsafeBufferPointer</span><span class="o">&lt;</span><span class="kt">UInt8</span><span class="o">&gt;</span><span class="p">,</span> <span class="k">inout</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">V</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">V</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift#L101-L106">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14EasyByteBufferC04withD2As4type_q_xm_q_SRyxG_SiztKXEtKr0_lF"></a>
+                    <a name="//apple_ref/swift/Method/withBufferAs(type:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14EasyByteBufferC04withD2As4type_q_xm_q_SRyxG_SiztKXEtKr0_lF">withBufferAs(type:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="n">withBufferAs</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">(</span><span class="kt">UnsafeBufferPointer</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="k">inout</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">V</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">V</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift#L108-L114">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon14EasyByteBufferC04withD2As4type_q_xm_q_SPyxG_SiztKXEtKr0_lF"></a>
+                    <a name="//apple_ref/swift/Method/withBufferAs(type:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14EasyByteBufferC04withD2As4type_q_xm_q_SPyxG_SiztKXEtKr0_lF">withBufferAs(type:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="n">withBufferAs</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">(</span><span class="kt">UnsafePointer</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="k">inout</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">V</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">V</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift#L116-L122">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -778,7 +915,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/EasyByteBuffer.swift#L83-L89">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift#L124-L130">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -808,7 +945,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/EasyByteBuffer.swift#L91-L96">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift#L132-L137">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -818,7 +955,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-04-12)</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-04-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

@@ -18,8 +18,6 @@
 import Foundation
 import CoreFoundation
 
-public let UnicodeReplacementChar: Character = "�"
-
 public protocol SimpleCharInputStream: CharStream {
     /*===========================================================================================================================================================================*/
     /// `true` if the stream is at the end-of-file.

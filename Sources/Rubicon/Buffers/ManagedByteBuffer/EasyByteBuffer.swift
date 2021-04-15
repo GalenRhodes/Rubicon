@@ -21,18 +21,19 @@
  *//************************************************************************/
 
 import Foundation
+import CoreFoundation
 
-open class EasyByteBuffer {
-
+open class EasyByteBuffer: MutableManagedByteBuffer {
     //@f:0
-    public let bytes:  BytePointer
     public let length: Int
     open   var count:  Int = 0
     //@f:1
 
+    private let bytes: UnsafeMutablePointer<UInt8>
+
     public init(length: Int) {
         self.length = length
-        bytes = BytePointer.allocate(capacity: length)
+        bytes = UnsafeMutablePointer<UInt8>.allocate(capacity: length)
         bytes.initialize(repeating: 0, count: length)
     }
 
@@ -44,10 +45,6 @@ open class EasyByteBuffer {
         guard let p = buffer.bindMemory(to: UInt8.self).baseAddress else { return nil }
         bytes = BytePointer.allocate(capacity: length)
         bytes.initialize(from: p, count: length)
-    }
-
-    open var asBuffer: UnsafeBufferPointer<UInt8> {
-        UnsafeBufferPointer<UInt8>(start: bytes, count: count)
     }
 
     deinit {
@@ -80,22 +77,62 @@ open class EasyByteBuffer {
         count = cc
     }
 
+    @discardableResult open func withBytes<V>(_ body: (UnsafeMutablePointer<UInt8>, Int, inout Int) throws -> V) rethrows -> V {
+        var cc = count
+        let r  = try body(bytes, length, &cc)
+        count = cc.clamp(minValue: 0, maxValue: length)
+        return r
+    }
+
+    @discardableResult open func withBytes<V>(_ body: (UnsafeMutableBufferPointer<UInt8>, inout Int) throws -> V) rethrows -> V {
+        var cc = count
+        let r  = try body(UnsafeMutableBufferPointer<UInt8>(start: bytes, count: length), &cc)
+        count = cc.clamp(minValue: 0, maxValue: length)
+        return r
+    }
+
+    @discardableResult open func withBytes<V>(_ body: (UnsafePointer<UInt8>, inout Int) throws -> V) rethrows -> V {
+        var cc = count
+        let rs = try body(bytes, &cc)
+        count = cc.clamp(minValue: 0, maxValue: length)
+        return rs
+    }
+
+    @discardableResult open func withBytes<V>(_ body: (UnsafeBufferPointer<UInt8>, inout Int) throws -> V) rethrows -> V {
+        var cc = count
+        let rs = try body(UnsafeBufferPointer<UInt8>(start: bytes, count: count), &cc)
+        count = cc.clamp(minValue: 0, maxValue: length)
+        return rs
+    }
+
+    @discardableResult open func withBufferAs<T, V>(type: T.Type, _ body: (UnsafeBufferPointer<T>, inout Int) throws -> V) rethrows -> V {
+        var cc = fromBytes(type: T.self, count)
+        let bf = UnsafeBufferPointer<T>(start: UnsafeRawPointer(bytes).bindMemory(to: T.self, capacity: cc), count: cc)
+        let rs = try body(bf, &cc)
+        count = toBytes(type: T.self, cc).clamp(minValue: 0, maxValue: length)
+        return rs
+    }
+
+    @discardableResult open func withBufferAs<T, V>(type: T.Type, _ body: (UnsafePointer<T>, inout Int) throws -> V) rethrows -> V {
+        var c = fromBytes(type: T.self, count)
+        let p = UnsafeRawPointer(bytes).bindMemory(to: T.self, capacity: c)
+        let r = try body(p, &c)
+        count = toBytes(type: T.self, c).clamp(minValue: 0, maxValue: length)
+        return r
+    }
+
     @discardableResult open func withBufferAs<T, V>(type: T.Type, _ body: (UnsafeMutablePointer<T>, Int, inout Int) throws -> V) rethrows -> V {
         var c = fromBytes(type: T.self, count)
         let l = fromBytes(type: T.self, length)
         let r = try body(UnsafeMutableRawPointer(bytes).bindMemory(to: T.self, capacity: l), l, &c)
-        count = toBytes(type: T.self, c)
+        count = toBytes(type: T.self, c).clamp(minValue: 0, maxValue: length)
         return r
     }
 
     @discardableResult open func withBufferAs<T, V>(type: T.Type, _ body: (UnsafeMutableBufferPointer<T>, inout Int) throws -> V) rethrows -> V {
         var c = fromBytes(type: T.self, count)
         let r = try body(UnsafeMutableBufferPointer<T>(start: UnsafeMutableRawPointer(bytes).bindMemory(to: T.self, capacity: c), count: c), &c)
-        count = toBytes(type: T.self, c)
+        count = toBytes(type: T.self, c).clamp(minValue: 0, maxValue: length)
         return r
     }
 }
-
-func fromBytes<T>(type: T.Type, _ value: Int) -> Int { ((value * MemoryLayout<UInt8>.stride) / MemoryLayout<T>.stride) }
-
-func toBytes<T>(type: T.Type, _ value: Int) -> Int { ((value * MemoryLayout<T>.stride) / MemoryLayout<UInt8>.stride) }

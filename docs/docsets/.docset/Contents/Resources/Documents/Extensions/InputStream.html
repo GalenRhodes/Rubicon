@@ -17,7 +17,7 @@
     <a title="InputStream Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Rubicon©</a> (71% documented)</p>
+        <p><a href="../index.html">Rubicon©</a> (70% documented)</p>
         <p class="header-right"><a href="https://github.com/GalenRhodes/Rubicon"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right">
           <form role="search" action="../search.json">
@@ -62,6 +62,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Conditional.html">Conditional</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataByteBuffer.html">DataByteBuffer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DynamicFixedArray.html">DynamicFixedArray</a>
@@ -182,6 +185,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/ArraySlice.html">ArraySlice</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/BinaryInteger.html">BinaryInteger</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Character.html">Character</a>
@@ -336,6 +342,9 @@
                 <a href="../Functions/fixLength_28_5F_3A_29_5F_24syS2icD.html">fixLength(_:)</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Functions/fromBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html">fromBytes(type:_:)</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Functions/getSysTime_28delta_3A_29_5F_24s5deltas6UInt64VAC_5FtcD.html">getSysTime(delta:)</a>
               </li>
               <li class="nav-group-task">
@@ -360,7 +369,7 @@
                 <a href="../Functions/toBinary_28_5F_3Asep_3Apad_3A_29_5F_24s_5F3sep3padSSx_5FSSSgSitcSzRzluD.html">toBinary(_:sep:pad:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions/toChar_28codePoint_3A_29_5F_24s9codePointSJs6UInt32V_5FtcD.html">toChar(codePoint:)</a>
+                <a href="../Functions/toBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html">toBytes(type:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html">toHex(_:pad:)</a>
@@ -390,6 +399,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/Locking.html">Locking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ManagedByteBuffer.html">ManagedByteBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MutableManagedByteBuffer.html">MutableManagedByteBuffer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/SimpleCharInputStream.html">SimpleCharInputStream</a>
@@ -775,9 +790,9 @@ data.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:So13NSInputStreamC7RubiconE4read2toSiAC14EasyByteBufferC_tKF"></a>
+                    <a name="/s:So13NSInputStreamC7RubiconE4read2toSiAC24MutableManagedByteBuffer_p_tKF"></a>
                     <a name="//apple_ref/swift/Method/read(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So13NSInputStreamC7RubiconE4read2toSiAC14EasyByteBufferC_tKF">read(to:<wbr>)</a>
+                    <a class="token" href="#/s:So13NSInputStreamC7RubiconE4read2toSiAC24MutableManagedByteBuffer_p_tKF">read(to:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -785,17 +800,17 @@ data.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Read bytes into an instance of <code><a href="../Classes/EasyByteBuffer.html">EasyByteBuffer</a></code>. This method assumes that the <code><a href="../Classes/EasyByteBuffer.html#/s:7Rubicon14EasyByteBufferC5countSivp">EasyByteBuffer.count</a></code> field is being used to store the number of bytes in the buffer. The
-newly read bytes will be appended to the end of the existing bytes, as denoted by the value in the <code><a href="../Classes/EasyByteBuffer.html#/s:7Rubicon14EasyByteBufferC5countSivp">EasyByteBuffer.count</a></code> field. If <code><a href="../Classes/EasyByteBuffer.html#/s:7Rubicon14EasyByteBufferC5countSivp">EasyByteBuffer.count</a></code> is less than
-<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> (0) or greater than <code><a href="../Classes/EasyByteBuffer.html#/s:7Rubicon14EasyByteBufferC6lengthSivp">EasyByteBuffer.length</a></code> then a fatalError is thrown. If <code><a href="../Classes/EasyByteBuffer.html#/s:7Rubicon14EasyByteBufferC5countSivp">EasyByteBuffer.count</a></code> is equal to
-<code><a href="../Classes/EasyByteBuffer.html#/s:7Rubicon14EasyByteBufferC6lengthSivp">EasyByteBuffer.length</a></code> then this method returns immediately with the value <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> (0).</p>
+                        <p>Read bytes into an instance of <code><a href="../Classes/EasyByteBuffer.html">EasyByteBuffer</a></code>. This method assumes that the <code><a href="../Classes/EasyByteBuffer.html#/s:7Rubicon17ManagedByteBufferP5countSivp">EasyByteBuffer.count</a></code> field is being used to store the number of bytes in the buffer. The
+newly read bytes will be appended to the end of the existing bytes, as denoted by the value in the <code><a href="../Classes/EasyByteBuffer.html#/s:7Rubicon17ManagedByteBufferP5countSivp">EasyByteBuffer.count</a></code> field. If <code><a href="../Classes/EasyByteBuffer.html#/s:7Rubicon17ManagedByteBufferP5countSivp">EasyByteBuffer.count</a></code> is less than
+<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> (0) or greater than <code><a href="../Classes/EasyByteBuffer.html#/s:7Rubicon17ManagedByteBufferP6lengthSivp">EasyByteBuffer.length</a></code> then a fatalError is thrown. If <code><a href="../Classes/EasyByteBuffer.html#/s:7Rubicon17ManagedByteBufferP5countSivp">EasyByteBuffer.count</a></code> is equal to
+<code><a href="../Classes/EasyByteBuffer.html#/s:7Rubicon17ManagedByteBufferP6lengthSivp">EasyByteBuffer.length</a></code> then this method returns immediately with the value <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> (0).</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">read</span><span class="p">(</span><span class="n">to</span> <span class="nv">b</span><span class="p">:</span> <span class="kt"><a href="../Classes/EasyByteBuffer.html">EasyByteBuffer</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">read</span><span class="p">(</span><span class="n">to</span> <span class="nv">b</span><span class="p">:</span> <span class="kt"><a href="../Protocols/MutableManagedByteBuffer.html">MutableManagedByteBuffer</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -824,7 +839,7 @@ newly read bytes will be appended to the end of the existing bytes, as denoted b
        there was an I/O error.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/Stream.swift#L156-L168">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/Stream.swift#L156-L172">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -909,7 +924,7 @@ data.</p>
        end-of-file has been reached, the stream is closed, or the stream was never opened.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/Stream.swift#L183-L189">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/Stream.swift#L187-L193">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -971,7 +986,7 @@ data.</p>
        end-of-file has been reached, the stream is closed, or the stream was never opened.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/Stream.swift#L202-L205">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/Stream.swift#L206-L209">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1000,7 +1015,7 @@ data.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/Stream.swift#L253-L259">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/Stream.swift#L257-L263">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1010,7 +1025,7 @@ data.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-04-12)</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-04-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

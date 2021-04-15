@@ -17,7 +17,7 @@
     <a title="Character Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Rubicon©</a> (71% documented)</p>
+        <p><a href="../index.html">Rubicon©</a> (70% documented)</p>
         <p class="header-right"><a href="https://github.com/GalenRhodes/Rubicon"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right">
           <form role="search" action="../search.json">
@@ -62,6 +62,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Conditional.html">Conditional</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataByteBuffer.html">DataByteBuffer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DynamicFixedArray.html">DynamicFixedArray</a>
@@ -182,6 +185,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/ArraySlice.html">ArraySlice</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/BinaryInteger.html">BinaryInteger</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Character.html">Character</a>
@@ -336,6 +342,9 @@
                 <a href="../Functions/fixLength_28_5F_3A_29_5F_24syS2icD.html">fixLength(_:)</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Functions/fromBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html">fromBytes(type:_:)</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Functions/getSysTime_28delta_3A_29_5F_24s5deltas6UInt64VAC_5FtcD.html">getSysTime(delta:)</a>
               </li>
               <li class="nav-group-task">
@@ -360,7 +369,7 @@
                 <a href="../Functions/toBinary_28_5F_3Asep_3Apad_3A_29_5F_24s_5F3sep3padSSx_5FSSSgSitcSzRzluD.html">toBinary(_:sep:pad:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions/toChar_28codePoint_3A_29_5F_24s9codePointSJs6UInt32V_5FtcD.html">toChar(codePoint:)</a>
+                <a href="../Functions/toBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html">toBytes(type:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html">toHex(_:pad:)</a>
@@ -390,6 +399,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/Locking.html">Locking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ManagedByteBuffer.html">ManagedByteBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MutableManagedByteBuffer.html">MutableManagedByteBuffer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/SimpleCharInputStream.html">SimpleCharInputStream</a>
@@ -520,6 +535,55 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:SJ7RubiconE9codePointSJs6UInt32V_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(codePoint:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SJ7RubiconE9codePointSJs6UInt32V_tcfc">init(codePoint:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new <code>Character</code> from the given UTF-32 code point.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">codePoint</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>codePoint</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the code point.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/Character.swift#L36-L38">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:SJ7RubiconE6scalarSJs7UnicodeO6ScalarVSg_tcfc"></a>
                     <a name="//apple_ref/swift/Method/init(scalar:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:SJ7RubiconE6scalarSJs7UnicodeO6ScalarVSg_tcfc">init(scalar:<wbr>)</a>
@@ -530,7 +594,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Creates a new <code>Character</code> from the given <code>UnicodeScalar</code>. If the scalar is <code>nil</code> then an instance of the <code><a href="../Global%20Variables/UnicodeReplacementChar.html">UnicodeReplacementChar</a></code> (�) will be created.</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -540,8 +605,27 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>s</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the Unicode Scalar.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/Character.swift#L26-L33">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/Character.swift#L45-L52">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -551,7 +635,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-04-12)</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-04-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

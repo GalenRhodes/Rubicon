@@ -401,7 +401,7 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
                 }
 
                 while i < j {
-                    var ch = toChar(codePoint: b[i++])
+                    var ch = Character(codePoint: b[i++])
 
                     if ch == CR_CHARACTER {
                         if i < j { if b[i] == LINE_FEED_CODEPOINT { ch = LFCR_CHARACTER; i += 1 } }

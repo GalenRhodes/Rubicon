@@ -29,10 +29,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment=" - Bug fixes.&#10; - After reading [this article](https://www.rightpoint.com/rplabs/switch-method-dispatch-table)&#10;   I've removed all @inlinable and @usableFromInline and am just letting the compiler work it's magic to determine&#10;   what the best way to call methods and functions is.">
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/ManagedByteBuffer/DataByteBuffer.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/ManagedByteBuffer/ManagedByteBuffer.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/BinaryInteger.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Rubicon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Rubicon.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/EasyByteBuffer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/EasyByteBuffer.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/EasyByteBuffer.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Character.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Character.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Stream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Stream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleCharInputStream.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Text/IConv.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Text/IConv.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Element.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Element.html" afterDir="false" />
@@ -194,6 +207,7 @@
       <change beforePath="$PROJECT_DIR$/docs/Typealiases/WordPointer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/WordPointer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Typealiases/WordROBuffer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/WordROBuffer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Typealiases/WordROPointer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/WordROPointer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/badge.svg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/badge.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Element.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Element.html" afterDir="false" />
@@ -612,14 +626,11 @@
       <workItem from="1617808722584" duration="13667000" />
       <workItem from="1618163545562" duration="1438000" />
       <workItem from="1618169059193" duration="698000" />
-      <workItem from="1618242752738" duration="4026000" />
-    </task>
-    <task id="LOCAL-00104" summary="Removed debugging output from RingByteBuffer.">
-      <created>1611166777156</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1611166777156</updated>
+      <workItem from="1618242752738" duration="4670000" />
+      <workItem from="1618433709995" duration="3207000" />
+      <workItem from="1618453433659" duration="2899000" />
+      <workItem from="1618493978629" duration="127000" />
+      <workItem from="1618494129036" duration="14526000" />
     </task>
     <task id="LOCAL-00105" summary="Fixed issue with System Library module and JetBrains' AppCode IDE.">
       <created>1611240146122</created>
@@ -957,7 +968,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618169102481</updated>
     </task>
-    <option name="localTasksCounter" value="153" />
+    <task id="LOCAL-00153" summary=" - Bug fixes.&#10; - After reading [this article](https://www.rightpoint.com/rplabs/switch-method-dispatch-table)&#10;   I've removed all @inlinable and @usableFromInline and am just letting the compiler work it's magic to determine&#10;   what the best way to call methods and functions is.">
+      <created>1618248062774</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1618248062774</updated>
+    </task>
+    <option name="localTasksCounter" value="154" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

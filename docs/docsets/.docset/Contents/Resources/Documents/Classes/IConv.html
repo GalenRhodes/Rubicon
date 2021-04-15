@@ -17,7 +17,7 @@
     <a title="IConv Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Rubicon©</a> (71% documented)</p>
+        <p><a href="../index.html">Rubicon©</a> (70% documented)</p>
         <p class="header-right"><a href="https://github.com/GalenRhodes/Rubicon"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right">
           <form role="search" action="../search.json">
@@ -62,6 +62,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Conditional.html">Conditional</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataByteBuffer.html">DataByteBuffer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DynamicFixedArray.html">DynamicFixedArray</a>
@@ -182,6 +185,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/ArraySlice.html">ArraySlice</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/BinaryInteger.html">BinaryInteger</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Character.html">Character</a>
@@ -336,6 +342,9 @@
                 <a href="../Functions/fixLength_28_5F_3A_29_5F_24syS2icD.html">fixLength(_:)</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Functions/fromBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html">fromBytes(type:_:)</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Functions/getSysTime_28delta_3A_29_5F_24s5deltas6UInt64VAC_5FtcD.html">getSysTime(delta:)</a>
               </li>
               <li class="nav-group-task">
@@ -360,7 +369,7 @@
                 <a href="../Functions/toBinary_28_5F_3Asep_3Apad_3A_29_5F_24s_5F3sep3padSSx_5FSSSgSitcSzRzluD.html">toBinary(_:sep:pad:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions/toChar_28codePoint_3A_29_5F_24s9codePointSJs6UInt32V_5FtcD.html">toChar(codePoint:)</a>
+                <a href="../Functions/toBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html">toBytes(type:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html">toHex(_:pad:)</a>
@@ -390,6 +399,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/Locking.html">Locking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ManagedByteBuffer.html">ManagedByteBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MutableManagedByteBuffer.html">MutableManagedByteBuffer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/SimpleCharInputStream.html">SimpleCharInputStream</a>
@@ -515,7 +530,7 @@
             <p>This class represents a wrapper around the libiconv functions.</p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L32-L238">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L32-L240">Show on GitHub</a>
               </div>
           </section>
           <section class="section task-group-section">
@@ -900,9 +915,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon5IConvC7convert5input6outputAC7ResultsOAA14EasyByteBufferC_AJtF"></a>
+                    <a name="/s:7Rubicon5IConvC7convert5input6outputAC7ResultsOAA24MutableManagedByteBuffer_p_AaI_ptF"></a>
                     <a name="//apple_ref/swift/Method/convert(input:output:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon5IConvC7convert5input6outputAC7ResultsOAA14EasyByteBufferC_AJtF">convert(input:<wbr>output:<wbr>)</a>
+                    <a class="token" href="#/s:7Rubicon5IConvC7convert5input6outputAC7ResultsOAA24MutableManagedByteBuffer_p_AaI_ptF">convert(input:<wbr>output:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -917,7 +932,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">convert</span><span class="p">(</span><span class="nv">input</span><span class="p">:</span> <span class="kt"><a href="../Classes/EasyByteBuffer.html">EasyByteBuffer</a></span><span class="p">,</span> <span class="nv">output</span><span class="p">:</span> <span class="kt"><a href="../Classes/EasyByteBuffer.html">EasyByteBuffer</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/IConv/Results.html">Results</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">convert</span><span class="p">(</span><span class="n">input</span> <span class="nv">i</span><span class="p">:</span> <span class="kt"><a href="../Protocols/MutableManagedByteBuffer.html">MutableManagedByteBuffer</a></span><span class="p">,</span> <span class="n">output</span> <span class="nv">o</span><span class="p">:</span> <span class="kt"><a href="../Protocols/MutableManagedByteBuffer.html">MutableManagedByteBuffer</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/IConv/Results.html">Results</a></span></code></pre>
 
                         </div>
                       </div>
@@ -957,7 +972,7 @@
                         <p>the results.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L148-L153">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L148-L158">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1024,7 +1039,7 @@ of that conversion.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L164-L178">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L169-L182">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1034,7 +1049,7 @@ of that conversion.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-04-12)</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-04-15)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

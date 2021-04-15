@@ -145,11 +145,16 @@ open class IConv {
     ///   - output: the output buffer.
     /// - Returns: the results.
     ///
-    open func convert(input: EasyByteBuffer, output: EasyByteBuffer) -> Results {
-        let r = convert(input: input.bytes, length: input.count, output: output.bytes, maxLength: output.length)
-        output.count = r.outputBytesUsed
-        input.relocateToFront(start: r.inputBytesUsed, count: (input.count - r.inputBytesUsed))
-        return r.results
+    open func convert(input i: MutableManagedByteBuffer, output o: MutableManagedByteBuffer) -> Results {
+        i.withBytes { inBytes, inLen, inCount -> Results in
+            o.withBytes { outBytes, outLen, outCount -> Results in
+                let r = convert(input: inBytes, length: inCount, output: outBytes, maxLength: outLen)
+                outCount = r.outputBytesUsed
+                inCount -= r.inputBytesUsed
+                i.relocateToFront(start: r.inputBytesUsed, count: inCount)
+                return r.results
+            }
+        }
     }
 
     /*===========================================================================================================================================================================*/
@@ -166,15 +171,14 @@ open class IConv {
 
         let inBuff:  EasyByteBuffer = EasyByteBuffer(length: 1024)
         let outBuff: EasyByteBuffer = EasyByteBuffer(length: 4100)
-        var ioRes:   Int            = inputStream.read(inBuff.bytes, maxLength: inBuff.length)
+        var ioRes:   Int            = try inputStream.read(to: inBuff)
 
         while ioRes > 0 {
             if try doWithIconv(ioRes, inBuff, outBuff, body) { break }
-            ioRes = inputStream.read((inBuff.bytes + inBuff.count), maxLength: (inBuff.length - inBuff.count))
+            ioRes = try inputStream.read(to: inBuff)
         }
 
         if ioRes == 0 && inBuff.count > 0 { _ = try doWithIconv(ioRes, inBuff, outBuff, body) }
-        else if ioRes < 0 { throw inputStream.streamError ?? StreamError.UnknownError() }
     }
 
     /*===========================================================================================================================================================================*/
@@ -188,11 +192,9 @@ open class IConv {
     /// - Returns: `true` if the conversion whould be halted.
     /// - Throws: if an I/O error occurs or a conversion error occurs.
     ///
-    private func doWithIconv(_ ioRes: Int, _ inBuff: EasyByteBuffer, _ outBuff: EasyByteBuffer, _ body: (BytePointer, Int) throws -> Bool) throws -> Bool {
-        inBuff.count = ioRes
-
+    private func doWithIconv(_ ioRes: Int, _ inBuff: MutableManagedByteBuffer, _ outBuff: MutableManagedByteBuffer, _ body: (BytePointer, Int) throws -> Bool) throws -> Bool {
         let iconvRes: Results = convert(input: inBuff, output: outBuff)
-        let stop:     Bool    = try body(outBuff.bytes, outBuff.count)
+        let stop:     Bool    = try outBuff.withBytes { p, l, c -> Bool in try body(p, c) }
 
         switch iconvRes {
             case .InvalidSequence: throw CErrors.ILSEQ()

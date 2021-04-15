@@ -104,6 +104,6 @@ private func convertData(_ data: Data, _ encodingName: String) throws -> String 
             default:               break
         }
 
-        return String(bytes: output.asBuffer, encoding: .utf8) ?? ""
+        return output.withBytes { (b: UnsafeBufferPointer<UInt8>, c: inout Int) -> String in String(bytes: b, encoding: .utf8) ?? "" }
     }
 }

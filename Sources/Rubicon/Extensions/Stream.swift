@@ -153,15 +153,19 @@ extension InputStream {
     /// - Returns: the number of bytes read into the buffer or <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0) if the buffer is full or the stream it at EOF or -1 if
     ///            there was an I/O error.
     ///
-    public func read(to b: EasyByteBuffer) throws -> Int {
+    public func read(to b: MutableManagedByteBuffer) throws -> Int {
         guard b.count >= 0 && b.count <= b.length else { throw StreamError.UnknownError(description: "Invalid count in buffer.") }
         let cc = b.count
 
         while b.count < b.length {
-            let rc = read((b.bytes + b.count), maxLength: (b.length - b.count))
-            if rc < 0 { throw streamError ?? StreamError.UnknownError() }
-            if rc == 0 { break }
-            b.count += rc
+            let f = try b.withBytes { bytes, length, count -> Bool in
+                let rc = read(bytes + count, maxLength: (length - count))
+                if rc < 0 { throw streamError ?? StreamError.UnknownError() }
+                if rc == 0 { return false }
+                count += rc
+                return true
+            }
+            guard f else { break }
         }
 
         return (b.count - cc)

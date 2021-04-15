@@ -120,11 +120,13 @@ open class RingByteBuffer {
     /// - Returns: the number of bytes actually gotten.
     ///
     public final func get(dest: EasyByteBuffer) -> Int {
-        guard dest.count >= 0 && dest.count < dest.length else { return 0 }
-        let cx = dest.count
-        let cy = PGReadFromRingBuffer(buffer, (dest.bytes + cx), (dest.length - cx))
-        dest.count = (cx + cy)
-        return cy
+        dest.withBytes { bytes, length, count -> Int in
+            guard count >= 0 && count < length else { return 0 }
+            let cx = count
+            let cy = PGReadFromRingBuffer(buffer, (bytes + cx), (length - cx))
+            count = (cx + cy)
+            return cy
+        }
     }
 
     /*===========================================================================================================================================================================*/
@@ -188,9 +190,11 @@ open class RingByteBuffer {
     ///   - ezBuffer: the buffer to append bytes from.
     ///
     public final func append(src: EasyByteBuffer, reset: Bool = true) {
-        if src.count > 0 {
-            append(src: src.bytes, length: src.count)
-            if reset { src.count = 0 }
+        src.withBytes { (bytes: UnsafePointer<UInt8>, count: inout Int) -> Void in
+            if count > 0 {
+                append(src: bytes, length: count)
+                if reset { count = 0 }
+            }
         }
     }
 
@@ -283,10 +287,12 @@ open class RingByteBuffer {
     /// 
     /// - Parameter ezBuffer: the source data.
     ///
-    public final func prepend(src: EasyByteBuffer, reset: Bool = true) {
-        if src.count > 0 {
-            prepend(src: src.bytes, length: src.count)
-            if reset { src.count = 0 }
+    public final func prepend(src b: EasyByteBuffer, reset: Bool = true) {
+        b.withBytes { (bytes: UnsafePointer<UInt8>, count: inout Int) -> Void in
+            if count > 0 {
+                prepend(src: bytes, length: count)
+                if reset { count = 0 }
+            }
         }
     }
 

@@ -495,4 +495,24 @@ public func fixLength(_ maxLength: Int) -> Int { ((maxLength < 0) ? Int.max : ma
 ///
 public func value<T: Equatable>(_ value: T, isOneOf: T...) -> Bool { isOneOf.isAny { value == $0 } }
 
-public func toChar(codePoint: UInt32) -> Character { Character(scalar: UnicodeScalar(codePoint)) }
+/*===============================================================================================================================================================================*/
+/// Calculate the number of instances of a given datatype will occupy a given number of bytes. For example, if given a type of `Int64.self` and a byte count of 16 then this
+/// function will return a value of 2.
+/// 
+/// - Parameters:
+///   - type: the target datatype.
+///   - value: the number of bytes.
+/// - Returns: the number of instances of the datatype that can occupy the given number of bytes.
+///
+@inlinable public func fromBytes<T>(type: T.Type, _ value: Int) -> Int { ((value * MemoryLayout<UInt8>.stride) / MemoryLayout<T>.stride) }
+
+/*===============================================================================================================================================================================*/
+/// Calculate the number of bytes that make up a given number of instances of the given datatype. For example if given a datatype of `Int64.self` and a count of 2 then this
+/// function will return 16.
+/// 
+/// - Parameters:
+///   - type: the target datatype.
+///   - value: the number of instances of the datatype.
+/// - Returns: the number of bytes that make up that many instances of that datatype.
+///
+@inlinable public func toBytes<T>(type: T.Type, _ value: Int) -> Int { ((value * MemoryLayout<T>.stride) / MemoryLayout<UInt8>.stride) }

@@ -26,190 +26,216 @@ import CoreFoundation
     import iconv
 #endif
 
-open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
-    // @f:0
-    /*===========================================================================================================================================================================*/
-    /// The current line number.
-    ///
-    open     var position:  TextPosition { lock.withLock { pos        } }
-    /*===========================================================================================================================================================================*/
-    /// The number of marks on the stream.
-    ///
-    open     var markCount: Int          { lock.withLock { mstk.count } }
-    /*===========================================================================================================================================================================*/
-    /// The number of spaces in each tab stop.
-    ///
-    open     var tabWidth:  Int8         = 4
-    /*===========================================================================================================================================================================*/
-    /// The current line number.
-    ///
-    internal var pos:       TextPosition = (0, 0)
-    /*===========================================================================================================================================================================*/
-    /// The mark stack.
-    ///
-    internal var mstk:      [MarkItem]   = []
-    // @f:1
+open class IConvCharInputStream: CharInputStream {
 
-    /*===========================================================================================================================================================================*/
-    /// Create a new instance of this character input stream from an existing byte input stream.
-    /// 
-    /// - Parameters:
-    ///   - inputStream: the underlying byte input stream.
-    ///   - encodingName: the name of the incoming character encoding.
-    ///   - autoClose: if `true` then the underlying input stream will be closed when this stream is closed or destroyed.
-    ///
-    public override init(inputStream: InputStream, encodingName: String, autoClose: Bool) { super.init(inputStream: inputStream, encodingName: encodingName, autoClose: autoClose) }
+    private typealias MarkTuple = (char: Character, pos: TextPosition)
 
-    /*===========================================================================================================================================================================*/
-    /// Marks the current point in the stream so that it can be returned to later. You can set more than one mark but all operations happen on the most recently set mark.
-    ///
-    open func markSet() { lock.withLock { _markSet() } }
+    //@f:0
+    open         var tabWidth:          Int8          { get { lock.withLock { tab } } set { lock.withLock { tab = newValue }                                     } }
+    open         var markCount:         Int           { lock.withLock { marks.count                                                                              } }
+    open         var position:          TextPosition  { lock.withLock { pos                                                                                      } }
+    open         var streamError:       Error?        { lock.withLock { (isOpen ? error : nil)                                                                   } }
+    open         var streamStatus:      Stream.Status { lock.withLock { (isOpen ? (hasBChars ? .open : (nErr ? (isRunning ? .open : .atEnd) : .error)) : status) } }
+    open         var isEOF:             Bool          { (streamStatus == .atEnd)                                                                                   }
+    open         var hasCharsAvailable: Bool          { lock.withLock { (isOpen && (hasBChars || (nErr && isRunning)))                                           } }
+    open         var encodingName:      String        { lock.withLock { inputStream.encodingName                                                                 } }
 
-    /*===========================================================================================================================================================================*/
-    /// Removes and returns to the most recently set mark.
-    ///
-    open func markReturn() { lock.withLock { _markReturn() } }
+    private      let inputStream:       SimpleCharInputStream
+    private      var isRunning:         Bool          = false
+    private      let isReading:         AtomicValue   = AtomicValue(initialValue: false)
+    private      var buffer:            [Character]   = []
+    private      var marks:             [MarkItem]    = []
+    private      var tab:               Int8          = 4
+    private      let lock:              Conditional   = Conditional()
+    private      let rdLock:            Conditional   = Conditional()
+    private      var pos:               TextPosition  = (0, 0)
+    private      var error:             Error?        = nil
+    private      var status:            Stream.Status = .notOpen
+    private lazy var queue:             DispatchQueue = DispatchQueue(label: UUID().uuidString, qos: .utility, autoreleaseFrequency: .workItem)
 
-    /*===========================================================================================================================================================================*/
-    /// Removes the most recently set mark WITHOUT returning to it.
-    ///
-    open func markDelete() { lock.withLock { _markDelete() } }
+    private      var nErr:              Bool          { (error == nil)                }
+    private      var isOpen:            Bool          { (status == .open)             }
+    private      var noError:           Bool          { (nErr || hasBChars)           }
+    private      var isGood:            Bool          { (isOpen && noError)           }
+    private      var canWait:           Bool          { (isOpen && nErr && isRunning) }
+    private      var hasBChars:         Bool          { !buffer.isEmpty               }
+    //@f:1
 
-    /*===========================================================================================================================================================================*/
-    /// Returns to the most recently set mark WITHOUT removing it. If there was no previously set mark then a new one is created. This is functionally equivalent to performing a
-    /// `markReturn()` followed immediately by a `markSet()`.
-    ///
-    open func markReset() { lock.withLock { _markReturn(); _markSet() } }
-
-    /*===========================================================================================================================================================================*/
-    /// Updates the most recently set mark to the current position. If there was no previously set mark then a new one is created. This is functionally equivalent to performing a
-    /// `markDelete()` followed immediately by a `markSet()`.
-    ///
-    open func markUpdate() { lock.withLock { _markDelete(); _markSet() } }
-
-    /*===========================================================================================================================================================================*/
-    /// Backs out the last `count` characters from the most recently set mark without actually removing the entire mark. You have to have previously called `markSet()` otherwise
-    /// this method does nothing.
-    /// 
-    /// - Parameter count: the number of characters to back out.
-    /// - Returns: the number of characters actually backed out in case there weren't `count` characters available.
-    ///
-    @discardableResult open func markBackup(count: Int) -> Int { lock.withLock { _markBackup(count: count) } }
-
-    /*===========================================================================================================================================================================*/
-    /// Open the stream for reading.
-    ///
-    override func _open() {
-        pos = (1, 1)
-        super._open()
+    public init(inputStream: InputStream, encodingName: String, autoClose: Bool = true) {
+        self.inputStream = SimpleIConvCharInputStream(inputStream: inputStream, encodingName: encodingName, autoClose: autoClose)
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Close the stream.
-    ///
-    override func _close() {
-        super._close()
-        mstk.removeAll(keepingCapacity: false)
-        pos = (0, 0)
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Marks the current point in the stream so that it can be returned to later. You can set more than one mark but all operations happen on the most recently set mark.
-    ///
-    func _markSet() { mstk <+ MarkItem(pos: pos) }
-
-    /*===========================================================================================================================================================================*/
-    /// Removes the most recently set mark WITHOUT returning to it.
-    ///
-    func _markDelete() { _ = mstk.popLast() }
-
-    /*===========================================================================================================================================================================*/
-    /// Removes and returns to the most recently set mark.
-    ///
-    func _markReturn() {
-        if let mi = mstk.popLast() {
-            pos = mi.pos
-            buffer.insert(contentsOf: mi.chars, at: 0)
+    open func open() {
+        lock.withLock {
+            guard status == .notOpen else { return }
+            error = nil
+            pos = (1, 1)
+            status = .open
+            isRunning = true
+            isReading.value = false
+            queue.async { [weak self] in if let s = self { s.readerThread() } }
         }
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Backs out the last `count` characters from the most recently set mark without actually removing the entire mark. You have to have previously called `markSet()` otherwise
-    /// this method does nothing.
-    /// 
-    /// - Parameter count: the number of characters to back out.
-    /// - Returns: the number of characters actually backed out in case there weren't `count` characters available.
-    ///
-    func _markBackup(count: Int) -> Int {
-        guard var mi = mstk.last else { return 0 }
-        let data = mi.getLast(count: count)
-        pos = data.1
-        buffer.insert(contentsOf: data.2, at: 0)
-        return data.0
+    open func close() {
+        isReading.waitUntil(valueIs: { $0 == false }, thenWithValueSetTo: true) {
+            lock.withLock {
+                guard isOpen else { return }
+                status = .closed
+                while isRunning { lock.broadcastWait() }
+                error = nil
+                pos = (0, 0)
+            }
+        }
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Read one character.
-    /// 
-    /// - Returns: the next character or `nil` if EOF.
-    /// - Throws: if an I/O error occurs.
-    ///
-    override func _read() throws -> Character? {
-        guard let ch = try super._read() else { return nil }
-        if var mi = mstk.last { mi.add(&pos, ch, tabWidth) }
-        else { textPositionUpdate(ch, pos: &pos, tabWidth: tabWidth) }
-        return ch
+    open func read() throws -> Character? {
+        try isReading.waitUntil(valueIs: { !$0 }, thenWithValueSetTo: true) {
+            try lock.withLock {
+                while buffer.isEmpty && canWait { lock.broadcastWait() }
+
+                guard isOpen else { return nil }
+                guard noError else { throw error! }
+                guard let ch = buffer.popFirst() else { return nil }
+
+                if let mi = marks.last { mi.chars <+ (ch, pos) }
+                textPositionUpdate(ch, pos: &pos, tabWidth: tab)
+                return ch
+            }
+        }
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Read <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s from the stream and append them to the given character array. This method is
-    /// identical to `read(chars:,maxLength:)` except that the receiving array is not cleared before the data is read.
-    /// 
-    /// - Parameters:
-    ///   - chars: the <code>[Array](https://developer.apple.com/documentation/swift/Array)</code> to receive the
-    ///            <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s.
-    ///   - maxLength: the maximum number of <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s to receive. If -1 then all
-    ///                <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s are read until the end-of-file.
-    /// - Returns: the number of <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s read. Will return 0
-    ///            (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) if the stream is at end-of-file.
-    /// - Throws: if an I/O error occurs.
-    ///
-    override func _append(to chars: inout [Character], maxLength: Int) throws -> Int {
-        let cc = try super._append(to: &chars, maxLength: maxLength)
-        guard cc > 0 else { return cc }
-        if var mi = mstk.last { for ch in chars { mi.add(&pos, ch, tabWidth) } }
-        else { for ch in chars { textPositionUpdate(ch, pos: &pos, tabWidth: tabWidth) } }
-        return cc
+    open func append(to chars: inout [Character], maxLength: Int) throws -> Int {
+        try isReading.waitUntil(valueIs: { !$0 }, thenWithValueSetTo: true) {
+            try lock.withLock {
+                guard isOpen else { return 0 }
+                guard noError else { throw error! }
+
+                var cc = 0
+                let ln = fixLength(maxLength)
+
+                while cc < ln {
+                    while buffer.isEmpty && canWait { lock.broadcastWait() }
+                    guard isOpen else { break }
+                    guard noError else {
+                        if cc > 0 { break }
+                        else { throw error! }
+                    }
+                    cc += try readBufferedChars(to: &chars, maxLength: (ln - cc))
+                }
+
+                return cc
+            }
+        }
     }
 
-    /*===========================================================================================================================================================================*/
-    /// A class to hold the marked place in the input stream.
-    ///
-    struct MarkItem {
-        //@f:0
-        let pos:   TextPosition
-        var data:  [(TextPosition, Character)] = []
-        var chars: [Character]                 { data.map { $0.1 } }
-        //@f:1
+    private func readBufferedChars(to chars: inout [Character], maxLength ln: Int) throws -> Int {
+        let x = min(ln, buffer.count)
+        let r = (0 ..< x)
+        let m = marks.last
+
+        buffer[r].forEach { ch in
+            if let mi = m { mi.chars <+ (ch, pos) }
+            textPositionUpdate(ch, pos: &pos, tabWidth: tab)
+            chars <+ ch
+        }
+
+        buffer.removeSubrange(r)
+        return ln
+    }
+
+    open func markSet() {
+        lock.withLock {
+            marks <+ MarkItem(pos: pos)
+        }
+    }
+
+    open func markDelete() {
+        lock.withLock {
+            marks.popLast()
+        }
+    }
+
+    open func markReturn() {
+        lock.withLock {
+            guard let mi = marks.popLast() else { return }
+            pos = mi.pos
+            buffer.insert(contentsOf: mi.chars.map { $0.char }, at: 0)
+        }
+    }
+
+    open func markUpdate() {
+        lock.withLock {
+            if let mi = marks.last {
+                mi.pos = pos
+                mi.chars.removeAll(keepingCapacity: true)
+            }
+            else {
+                marks <+ MarkItem(pos: pos)
+            }
+        }
+    }
+
+    open func markReset() {
+        lock.withLock {
+            if let mi = marks.last {
+                pos = mi.pos
+                buffer.insert(contentsOf: mi.chars.map { $0.char }, at: 0)
+                mi.chars.removeAll(keepingCapacity: true)
+            }
+            else {
+                marks <+ MarkItem(pos: pos)
+            }
+        }
+    }
+
+    open func markBackup(count: Int) -> Int {
+        guard count > 0 else { return 0 }
+        return lock.withLock {
+            guard let mi = marks.last else { return 0 }
+            let cc = min(count, mi.chars.count)
+            let ix = (mi.chars.endIndex - cc)
+            let rn = (ix ..< mi.chars.endIndex)
+
+            pos = mi.chars[ix].pos
+            buffer.insert(contentsOf: mi.chars[rn].map { $0.char }, at: 0)
+            mi.chars.removeSubrange(rn)
+            return cc
+        }
+    }
+
+    private func readerThread() {
+        lock.withLock {
+            do {
+                defer {
+                    isRunning = false
+                    inputStream.close()
+                }
+
+                if inputStream.streamStatus == .notOpen { inputStream.open() }
+
+                guard inputStream.streamError != nil else { throw inputStream.streamError! }
+                guard inputStream.streamStatus != .closed else { return }
+
+                while isOpen {
+                    while isOpen && buffer.count >= MAX_READ_AHEAD { lock.broadcastWait() }
+                    guard try isOpen && inputStream.append(to: &buffer, maxLength: INPUT_BUFFER_SIZE) > 0 else { break }
+                    if isReading.value { lock.broadcastWait() }
+                }
+            }
+            catch let e {
+                error = e
+                #if DEBUG
+                    print("ERROR> \(e)")
+                #endif
+            }
+        }
+    }
+
+    private class MarkItem {
+        var pos:   TextPosition
+        var chars: [MarkTuple] = []
 
         init(pos: TextPosition) { self.pos = pos }
-
-        mutating func add(_ pos: inout TextPosition, _ char: Character, _ tab: Int8) {
-            data <+ (pos, char)
-            textPositionUpdate(char, pos: &pos, tabWidth: tab)
-        }
-
-        mutating func getLast(count: Int) -> (Int, TextPosition, [Character]) {
-            let i = min(count, data.count)
-            guard i > 0 else { return (0, pos, []) }
-
-            let j = data.endIndex
-            let k = (j - i)
-            let l = (k ..< j)
-            let m = (i, data[k].0, data[l].map { $0.1 })
-
-            data.removeSubrange(l)
-            return m
-        }
     }
 }

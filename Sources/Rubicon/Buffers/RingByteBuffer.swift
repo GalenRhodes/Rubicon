@@ -35,7 +35,7 @@ let HalfGB: Int = (OneMB * 512)
 /*===============================================================================================================================================================================*/
 /// This class is a simple wrapper around a <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code> object that allows for treating the data like a stream
 /// of bytes. The three basic operations are `get(buffer:maxLength:)`, `append(buffer:length:)`, and `prepend(buffer:length:)`.
-/// 
+///
 /// NOTE: This class is NOT thread safe.
 ///
 open class RingByteBuffer {
@@ -80,14 +80,14 @@ open class RingByteBuffer {
 
     /*===========================================================================================================================================================================*/
     /// Clear the buffer.
-    /// 
+    ///
     /// - Parameter keepingCapacity: `true` if the capacity should be retained. `false` if the buffer should shrink to it's original size.
     ///
     public final func clear(keepingCapacity: Bool) { PGClearRingBuffer(buffer, keepingCapacity) }
 
     /*===========================================================================================================================================================================*/
     /// Read a byte from the buffer.
-    /// 
+    ///
     /// - Parameter byte: a pointer to the variable to receive the byte.
     /// - Returns: `true` if the byte was retrived or `false` if the buffer was empty.
     ///
@@ -95,28 +95,28 @@ open class RingByteBuffer {
 
     /*===========================================================================================================================================================================*/
     /// Read a byte from the buffer.
-    /// 
+    ///
     /// - Returns: the next byte or `nil` if the buffer is empty.
     ///
     public final func get() -> UInt8? { var byte: UInt8 = 0; return ((PGReadFromRingBuffer(buffer, &byte, 1) == 1) ? byte : nil) }
 
     /*===========================================================================================================================================================================*/
     /// Get, at most, the first `maxLength` bytes from the buffer.
-    /// 
+    ///
     /// - Parameters:
     ///   - dest: the destination buffer.
     ///   - maxLength: the maximum number of bytes the destination buffer can hold.
-    /// 
+    ///
     /// - Returns: the number of bytes actually gotten.
     ///
     public final func get(dest: BytePointer, maxLength: Int) -> Int { PGReadFromRingBuffer(buffer, dest, maxLength) }
 
     /*===========================================================================================================================================================================*/
     /// Get bytes from the buffer into the instance of `EasyByteBuffer`.
-    /// 
+    ///
     /// - Parameters:
     ///   - dest: the destination buffer.
-    /// 
+    ///
     /// - Returns: the number of bytes actually gotten.
     ///
     public final func get(dest: EasyByteBuffer) -> Int {
@@ -131,12 +131,12 @@ open class RingByteBuffer {
 
     /*===========================================================================================================================================================================*/
     /// Get the bytes from the buffer.
-    /// 
+    ///
     /// - Parameters:
     ///   - destData: The instance of <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code> that will receive the bytes.
     ///   - maxLength: The maximum number of bytes to get. If -1 then all available bytes will be fetched.
     ///   - overWrite: `true` if `destData` should be cleared of any existing bytes first.
-    /// 
+    ///
     /// - Returns: The number of bytes added to `destData`.
     ///
     public final func get(dest: inout Data, maxLength: Int = -1, overWrite: Bool = true) -> Int {
@@ -162,21 +162,21 @@ open class RingByteBuffer {
 
     /*===========================================================================================================================================================================*/
     /// Append the given RingByteBuffer to this RingByteBuffer.
-    /// 
+    ///
     /// - Parameter ringBuffer: the source ring buffer.
     ///
     public final func append(src: RingByteBuffer) { PGAppendRingBufferToRingBuffer(buffer, src.buffer) }
 
     /*===========================================================================================================================================================================*/
     /// Append the given byte to the buffer.
-    /// 
+    ///
     /// - Parameter byte: the byte to append.
     ///
     public final func append(byte: UInt8) { PGAppendByteToRingBuffer(buffer, byte) }
 
     /*===========================================================================================================================================================================*/
     /// Append the given bytes to the buffer.
-    /// 
+    ///
     /// - Parameters:
     ///   - src: the source buffer.
     ///   - length: the number of bytes in the source buffer.
@@ -185,7 +185,7 @@ open class RingByteBuffer {
 
     /*===========================================================================================================================================================================*/
     /// Append the given bytes to the buffer.
-    /// 
+    ///
     /// - Parameters:
     ///   - ezBuffer: the buffer to append bytes from.
     ///
@@ -200,7 +200,7 @@ open class RingByteBuffer {
 
     /*===========================================================================================================================================================================*/
     /// Append the given bytes to the buffer.
-    /// 
+    ///
     /// - Parameters:
     ///   - rawSrc: the source buffer.
     ///   - length: the number of bytes in the source buffer.
@@ -209,28 +209,28 @@ open class RingByteBuffer {
 
     /*===========================================================================================================================================================================*/
     /// Append the given bytes to the buffer.
-    /// 
+    ///
     /// - Parameter buffSrc: the source buffer.
     ///
     public final func append<T>(src: UnsafeBufferPointer<T>) { append(src: UnsafeRawBufferPointer(src)) }
 
     /*===========================================================================================================================================================================*/
     /// Append the given bytes to the buffer.
-    /// 
+    ///
     /// - Parameter rawBuffSrc: the source buffer.
     ///
     public final func append(src: UnsafeRawBufferPointer) { if let bp: UnsafeRawPointer = src.baseAddress { append(src: bp, length: src.count) } }
 
     /*===========================================================================================================================================================================*/
     /// Append the given bytes to the buffer.
-    /// 
+    ///
     /// - Parameter dataSrc: the source data.
     ///
     public final func append(src: Data) { src.withUnsafeBytes { (p: UnsafeRawBufferPointer) in append(src: p) } }
 
     /*===========================================================================================================================================================================*/
     /// Prepend the given byte to the buffer. This byte will be prepended so that it is the next byte that will be read via `get(buffer:maxLength:)`.
-    /// 
+    ///
     /// - Parameters:
     ///   - byte: the byte to prepend.
     ///
@@ -238,14 +238,14 @@ open class RingByteBuffer {
 
     /*===========================================================================================================================================================================*/
     /// Prepend the given RingByteBuffer to this RingByteBuffer.
-    /// 
+    ///
     /// - Parameter ringBuffer: the source ring buffer.
     ///
     public final func prepend(src: RingByteBuffer) { PGPrependRingBufferToRingBuffer(buffer, src.buffer) }
 
     /*===========================================================================================================================================================================*/
     /// Prepend the given bytes to the buffer. These bytes will be prepended so that they are the next bytes that will be read via `get(buffer:maxLength:)`.
-    /// 
+    ///
     /// - Parameters:
     ///   - rawSrc: the source buffer.
     ///   - length: the number of bytes in the source buffer.
@@ -254,7 +254,7 @@ open class RingByteBuffer {
 
     /*===========================================================================================================================================================================*/
     /// Prepend the given bytes to the buffer. These bytes will be prepended so that they are the next bytes that will be read via `get(buffer:maxLength:)`.
-    /// 
+    ///
     /// - Parameters:
     ///   - src: the source buffer.
     ///   - length: the number of bytes in the source buffer.
@@ -263,28 +263,28 @@ open class RingByteBuffer {
 
     /*===========================================================================================================================================================================*/
     /// Prepend the given bytes to the buffer. These bytes will be prepended so that they are the next bytes that will be read via `get(buffer:maxLength:)`.
-    /// 
+    ///
     /// - Parameter rawBuffSrc: the source buffer.
     ///
     public final func prepend(src: UnsafeRawBufferPointer) { if let pointer: UnsafeRawPointer = src.baseAddress { prepend(src: pointer, length: src.count) } }
 
     /*===========================================================================================================================================================================*/
     /// Prepend the given bytes to the buffer. These bytes will be prepended so that they are the next bytes that will be read via `get(buffer:maxLength:)`.
-    /// 
+    ///
     /// - Parameter buffSrc: the source buffer.
     ///
     public final func prepend<T>(src: UnsafeBufferPointer<T>) { prepend(src: UnsafeRawBufferPointer(src)) }
 
     /*===========================================================================================================================================================================*/
     /// Prepend the given bytes to the buffer. These bytes will be prepended so that they are the next bytes that will be read via `get(buffer:maxLength:)`.
-    /// 
+    ///
     /// - Parameter srcData: the source data.
     ///
     public final func prepend(src: Data) { src.withUnsafeBytes { (b: UnsafeRawBufferPointer) in prepend(src: b) } }
 
     /*===========================================================================================================================================================================*/
     /// Prepend the given bytes to the buffer. These bytes will be prepended so that they are the next bytes that will be read via `get(buffer:maxLength:)`.
-    /// 
+    ///
     /// - Parameter ezBuffer: the source data.
     ///
     public final func prepend(src b: EasyByteBuffer, reset: Bool = true) {
@@ -298,7 +298,7 @@ open class RingByteBuffer {
 
     /*===========================================================================================================================================================================*/
     /// Get's the data one contiguous range at a time.
-    /// 
+    ///
     /// - Parameter body: the closure to call for each block of data.
     /// - Returns: the bytes read.
     /// - Throws: any error thrown by the closure.
@@ -330,21 +330,21 @@ open class RingByteBuffer {
 
     /*===========================================================================================================================================================================*/
     /// Swap every 2 bytes of data.
-    /// 
+    ///
     /// - Returns: the number of bytes swapped.
     ///
     public final func swapEndian16() -> Int { PGSwapRingBufferEndian16(buffer) }
 
     /*===========================================================================================================================================================================*/
     /// Swap every 4 bytes of data.
-    /// 
+    ///
     /// - Returns: the number of bytes swapped.
     ///
     public final func swapEndian32() -> Int { PGSwapRingBufferEndian32(buffer) }
 
     /*===========================================================================================================================================================================*/
     /// Swap every 8 bytes of data.
-    /// 
+    ///
     /// - Returns: the number of bytes swapped.
     ///
     public final func swapEndian64() -> Int { PGSwapRingBufferEndian64(buffer) }

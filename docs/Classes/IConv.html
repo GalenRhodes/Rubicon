@@ -17,7 +17,7 @@
     <a title="IConv Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Rubicon©</a> (70% documented)</p>
+        <p><a href="../index.html">Rubicon©</a> (68% documented)</p>
         <p class="header-right"><a href="https://github.com/GalenRhodes/Rubicon"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right">
           <form role="search" action="../search.json">
@@ -39,6 +39,12 @@
           <li class="nav-group-name">
             <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Atomic.html">Atomic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AtomicValue.html">AtomicValue</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Classes/BinaryTreeDictionary.html">BinaryTreeDictionary</a>
               </li>
@@ -91,6 +97,9 @@
                 <a href="../Classes/PGThread.html">PGThread</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/ReadWriteLock.html">ReadWriteLock</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/RegularExpression.html">RegularExpression</a>
               </li>
               <li class="nav-group-task">
@@ -123,6 +132,9 @@
               <li class="nav-group-task">
                 <a href="../Classes/StringCharInputStream.html">StringCharInputStream</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThreadLocal.html">ThreadLocal</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -132,16 +144,19 @@
                 <a href="../Global%20Variables/BasicBufferSize.html">BasicBufferSize</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Global%20Variables/CR_5FCHARACTER.html">CR_CHARACTER</a>
+                <a href="../Global%20Variables/CRLF_5FCHARACTER.html">CRLF_CHARACTER</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Global%20Variables/LFCR_5FCHARACTER.html">LFCR_CHARACTER</a>
+                <a href="../Global%20Variables/CR_5FCHARACTER.html">CR_CHARACTER</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Global%20Variables/LF_5FCHARACTER.html">LF_CHARACTER</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Global%20Variables/LINE_5FFEED_5FCODEPOINT.html">LINE_FEED_CODEPOINT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/MachineByteOrder.html">MachineByteOrder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Global%20Variables/OneSecondMicros.html">OneSecondMicros</a>
@@ -161,7 +176,13 @@
             <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Enums/ByteOrder.html">ByteOrder</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/CErrors.html">CErrors</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CharStreamError.html">CharStreamError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/NanoTimerError.html">NanoTimerError</a>
@@ -375,6 +396,9 @@
                 <a href="../Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html">toHex(_:pad:)</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Functions/value_28_5F_3AisOneOf_3A_29_5F_24s_5F7isOneOfSbx_5FSayxGtcSQRzluD.html">value(_:isOneOf:)</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Functions/value_28_5F_3AisOneOf_3A_29_5F_24s_5F7isOneOfSbx_5FxdtcSQRzluD.html">value(_:isOneOf:)</a>
               </li>
               <li class="nav-group-task">
@@ -530,7 +554,7 @@
             <p>This class represents a wrapper around the libiconv functions.</p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L32-L240">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L32-L294">Show on GitHub</a>
               </div>
           </section>
           <section class="section task-group-section">
@@ -784,7 +808,37 @@
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L83-L88">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L83-L89">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon5IConvC5closeyyF"></a>
+                    <a name="//apple_ref/swift/Method/close()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon5IConvC5closeyyF">close()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Close this instance of IConv and free it&rsquo;s resources. This is also done automatically when the object is disposed of by ARC.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">close</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L98-L103">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -818,7 +872,7 @@
                         <p><code><a href="../Classes/IConv/Results.html#/s:7Rubicon5IConvC7ResultsO2OKyA2EmF">Results.OK</a></code> if successful. <code><a href="../Classes/IConv/Results.html#/s:7Rubicon5IConvC7ResultsO10OtherErroryA2EmF">Results.OtherError</a></code> if not successful.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L99-L107">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L110-L118">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -907,7 +961,7 @@
                         <p>the response.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L119-L138">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L130-L140">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -972,7 +1026,125 @@
                         <p>the results.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L148-L158">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L150-L160">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon5IConvC12finalConvert6output9maxLengthAC7ResultsO7results_Si14inputBytesUsedSi0ekL0tSv_SitF"></a>
+                    <a name="//apple_ref/swift/Method/finalConvert(output:maxLength:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon5IConvC12finalConvert6output9maxLengthAC7ResultsO7results_Si14inputBytesUsedSi0ekL0tSv_SitF">finalConvert(output:<wbr>maxLength:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Do the final conversion step after all of the input has been processed to get any deferred conversions that might be waiting.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">finalConvert</span><span class="p">(</span><span class="nv">output</span><span class="p">:</span> <span class="kt">UnsafeMutableRawPointer</span><span class="p">,</span> <span class="nv">maxLength</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/IConv/Response.html">Response</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>output</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the output buffer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>maxLength</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the maximum length of the output buffer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>a <code><a href="../Classes/IConv/Response.html">Response</a></code> tuple.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L170-L178">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon5IConvC12finalConvert6outputAC7ResultsOAA24MutableManagedByteBuffer_p_tF"></a>
+                    <a name="//apple_ref/swift/Method/finalConvert(output:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon5IConvC12finalConvert6outputAC7ResultsOAA24MutableManagedByteBuffer_p_tF">finalConvert(output:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Do the final conversion step after all of the input has been processed to get any deferred conversions that might be waiting.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">finalConvert</span><span class="p">(</span><span class="n">output</span> <span class="nv">o</span><span class="p">:</span> <span class="kt"><a href="../Protocols/MutableManagedByteBuffer.html">MutableManagedByteBuffer</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/IConv/Results.html">Results</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>o</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the output buffer.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the <code><a href="../Classes/IConv/Results.html">Results</a></code>.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L186-L192">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1039,7 +1211,7 @@ of that conversion.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L169-L182">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/IConv.swift#L203-L216">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1049,7 +1221,7 @@ of that conversion.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-04-15)</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-04-21)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

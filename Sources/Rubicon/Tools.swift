@@ -495,6 +495,8 @@ public func fixLength(_ maxLength: Int) -> Int { ((maxLength < 0) ? Int.max : ma
 ///
 public func value<T: Equatable>(_ value: T, isOneOf: T...) -> Bool { isOneOf.isAny { value == $0 } }
 
+public func value<T: Equatable>(_ value: T, isOneOf: [T]) -> Bool { isOneOf.isAny { value == $0 } }
+
 /*===============================================================================================================================================================================*/
 /// Calculate the number of instances of a given datatype will occupy a given number of bytes. For example, if given a type of `Int64.self` and a byte count of 16 then this
 /// function will return a value of 2.

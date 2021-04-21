@@ -11,12 +11,15 @@
 		1117D0438E55FD170186888E /* CharStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D4E1FE7DC31ACC3EDD25 /* CharStream.swift */; };
 		1117D067B34035FC4DED2A5F /* StringCharInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D75AC0C7F9E876B68A79 /* StringCharInputStream.swift */; };
 		1117D3008024F764302749E5 /* ByteInputStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D318A95900138BE2E023 /* ByteInputStreamTests.swift */; };
+		1117D3B6E9FCFDAD8238B604 /* AtomicValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D2AE1568A8C3741A86AE /* AtomicValue.swift */; };
 		1117D3BF4199C365362CA9FC /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D142AFC8171D31FCF975 /* Character.swift */; };
+		1117D3E5CCF75F6ECD21A303 /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DCED9641BC9CB805ADEE /* ReadWriteLock.swift */; };
 		1117D4302066214D581AB6FC /* DynamicFixedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D67CB2830A48B5C56761 /* DynamicFixedArray.swift */; };
 		1117D46F0FC21E611EACD4BB /* BinaryTreeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD043B53015865ED9D07 /* BinaryTreeDictionary.swift */; };
 		1117D4C32D14386C18A3BA71 /* NSRecursiveLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D5A35016104371C4BA58 /* NSRecursiveLock.swift */; };
 		1117D4D610BD1CE87B0D3771 /* SimpleCharInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D2ABF7C69D75E6443601 /* SimpleCharInputStream.swift */; };
 		1117D4E52C7BBAEBD59B32C8 /* MathTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA2A40FD9973202012F3 /* MathTools.swift */; };
+		1117D52895B40B229F0C34C8 /* AtomicProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D5A6E02759A24014C1D6 /* AtomicProperty.swift */; };
 		1117D551FA986D18AC3C604B /* Conditional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD6F29A83E7E9C004F89 /* Conditional.swift */; };
 		1117D55B3354E36F71C28FC1 /* CondMutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D0EA61DED76C4431AAB7 /* CondMutex.swift */; };
 		1117D5A62408843E13FA3F8D /* MarkInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D7B71073B174FA3D0D97 /* MarkInputStream.swift */; };
@@ -27,12 +30,15 @@
 		1117D74784A19EC684B6F858 /* Rubicon.h in Headers */ = {isa = PBXBuildFile; fileRef = 1117DF3E94A76767AA3C37E3 /* Rubicon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1117D78FA7573ACB14D9AB9A /* StringXForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA84761CE0531CC2B150 /* StringXForm.swift */; };
 		1117D7C7D25FDB87F0E87004 /* NSLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D545C41CE3C16FAD6B9F /* NSLock.swift */; };
+		1117D81AC449E98F667D5F43 /* ByteOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DACFCBB5FA296F4438AB /* ByteOrder.swift */; };
 		1117D87015D5A6D05CA3688C /* SimpleIConvCharInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D81C98C71BC7BD4F245B /* SimpleIConvCharInputStream.swift */; };
 		1117D8974555204639F771FD /* iconv.h in Headers */ = {isa = PBXBuildFile; fileRef = 1117D8F31A530CDA758E62B8 /* iconv.h */; };
 		1117D950F78C930E935486EF /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D9A1691382C37AA03237 /* Thread.swift */; };
+		1117D9D892409C1C5407AA50 /* ThreadLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD3A2A9798417B58BDA0 /* ThreadLocal.swift */; };
 		1117DB2981DA9EEA1794C0A9 /* PGThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D14B363B54E578A54336 /* PGThread.swift */; };
 		1117DBFD0136FF0A2ACD0D79 /* IConvTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA2F1C8056B3B0A261D7 /* IConvTests.swift */; };
 		1117DC5BF2A398C1D36EA0E7 /* RegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DC953EC772053F764FDE /* RegularExpression.swift */; };
+		1117DCA97D6DF5A7AF4D1C09 /* ManageByteBufferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D7EC54BDB613F0DEAC88 /* ManageByteBufferTests.swift */; };
 		1117DD4EFDE8572C3C5CEF4A /* CErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D6A7CE94A310891BDE0F /* CErrors.swift */; };
 		1117DDC441FB1F14D7A8EAEB /* DataByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D6AC59E30D453F77143E /* DataByteBuffer.swift */; };
 		1117DDEE932819B049B78977 /* SimpleStringCharInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DF04833CD6B020F8A54A /* SimpleStringCharInputStream.swift */; };
@@ -98,6 +104,7 @@
 		1117D1A70559C6B301B833C0 /* Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Range.swift; sourceTree = "<group>"; };
 		1117D23ECDD215CA06E62A1A /* TimerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerTests.swift; sourceTree = "<group>"; };
 		1117D2ABF7C69D75E6443601 /* SimpleCharInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCharInputStream.swift; sourceTree = "<group>"; };
+		1117D2AE1568A8C3741A86AE /* AtomicValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomicValue.swift; sourceTree = "<group>"; };
 		1117D30B531C78190A529F36 /* Test_WINDOWS-1252.xml */ = {isa = PBXFileReference; fileEncoding = 12; lastKnownFileType = text.xml; path = "Test_WINDOWS-1252.xml"; sourceTree = "<group>"; };
 		1117D318A95900138BE2E023 /* ByteInputStreamTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteInputStreamTests.swift; sourceTree = "<group>"; };
 		1117D42A0A892A55AD7F0C6D /* BinaryTreeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryTreeNode.swift; sourceTree = "<group>"; };
@@ -106,12 +113,14 @@
 		1117D4ECADC357DE0E875BAE /* ManagedByteBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedByteBuffer.swift; sourceTree = "<group>"; };
 		1117D545C41CE3C16FAD6B9F /* NSLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLock.swift; sourceTree = "<group>"; };
 		1117D5A35016104371C4BA58 /* NSRecursiveLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRecursiveLock.swift; sourceTree = "<group>"; };
+		1117D5A6E02759A24014C1D6 /* AtomicProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomicProperty.swift; sourceTree = "<group>"; };
 		1117D67CB2830A48B5C56761 /* DynamicFixedArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicFixedArray.swift; sourceTree = "<group>"; };
 		1117D6A7CE94A310891BDE0F /* CErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CErrors.swift; sourceTree = "<group>"; };
 		1117D6AC59E30D453F77143E /* DataByteBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataByteBuffer.swift; sourceTree = "<group>"; };
 		1117D6BDC8F2F10000144C4E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		1117D75AC0C7F9E876B68A79 /* StringCharInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringCharInputStream.swift; sourceTree = "<group>"; };
 		1117D7B71073B174FA3D0D97 /* MarkInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkInputStream.swift; sourceTree = "<group>"; };
+		1117D7EC54BDB613F0DEAC88 /* ManageByteBufferTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageByteBufferTests.swift; sourceTree = "<group>"; };
 		1117D81C98C71BC7BD4F245B /* SimpleIConvCharInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleIConvCharInputStream.swift; sourceTree = "<group>"; };
 		1117D88BD3FB3246B1DFB316 /* IConv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IConv.swift; sourceTree = "<group>"; };
 		1117D8B11BE277A0D478E764 /* CStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CStrings.swift; sourceTree = "<group>"; };
@@ -120,8 +129,11 @@
 		1117DA2A40FD9973202012F3 /* MathTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathTools.swift; sourceTree = "<group>"; };
 		1117DA2F1C8056B3B0A261D7 /* IConvTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IConvTests.swift; sourceTree = "<group>"; };
 		1117DA84761CE0531CC2B150 /* StringXForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringXForm.swift; sourceTree = "<group>"; };
+		1117DACFCBB5FA296F4438AB /* ByteOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteOrder.swift; sourceTree = "<group>"; };
 		1117DC953EC772053F764FDE /* RegularExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegularExpression.swift; sourceTree = "<group>"; };
+		1117DCED9641BC9CB805ADEE /* ReadWriteLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadWriteLock.swift; sourceTree = "<group>"; };
 		1117DD043B53015865ED9D07 /* BinaryTreeDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryTreeDictionary.swift; sourceTree = "<group>"; };
+		1117DD3A2A9798417B58BDA0 /* ThreadLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadLocal.swift; sourceTree = "<group>"; };
 		1117DD6F29A83E7E9C004F89 /* Conditional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conditional.swift; sourceTree = "<group>"; };
 		1117DD948FCF13D452479F81 /* Test_UTF-8.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Test_UTF-8.xml"; sourceTree = "<group>"; };
 		1117DD9CADA8086B223523D4 /* EasyByteBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasyByteBuffer.swift; sourceTree = "<group>"; };
@@ -196,6 +208,7 @@
 				1117DD6F29A83E7E9C004F89 /* Conditional.swift */,
 				1117D545C41CE3C16FAD6B9F /* NSLock.swift */,
 				1117D23532A063A93B87DFE0 /* Tools */,
+				1117DCED9641BC9CB805ADEE /* ReadWriteLock.swift */,
 			);
 			path = Concurrency;
 			sourceTree = "<group>";
@@ -221,6 +234,8 @@
 			isa = PBXGroup;
 			children = (
 				1117DA84761CE0531CC2B150 /* StringXForm.swift */,
+				1117D5A6E02759A24014C1D6 /* AtomicProperty.swift */,
+				1117DD3A2A9798417B58BDA0 /* ThreadLocal.swift */,
 			);
 			path = PropertyWrappers;
 			sourceTree = "<group>";
@@ -317,6 +332,8 @@
 				1117D5A7C2902ADC8BC04837 /* PropertyWrappers */,
 				1117D74468AC5E657D36D37E /* Text */,
 				1117DB14239DD393F0EBC28C /* Collections */,
+				1117D2AE1568A8C3741A86AE /* AtomicValue.swift */,
+				1117DACFCBB5FA296F4438AB /* ByteOrder.swift */,
 			);
 			path = Rubicon;
 			sourceTree = "<group>";
@@ -331,6 +348,7 @@
 				1117D23ECDD215CA06E62A1A /* TimerTests.swift */,
 				1117DA2F1C8056B3B0A261D7 /* IConvTests.swift */,
 				1117D318A95900138BE2E023 /* ByteInputStreamTests.swift */,
+				1117D7EC54BDB613F0DEAC88 /* ManageByteBufferTests.swift */,
 			);
 			path = RubiconTests;
 			sourceTree = "<group>";
@@ -637,6 +655,11 @@
 				1117D6347992E68048C95BA4 /* ManagedByteBuffer.swift in Sources */,
 				1117DDC441FB1F14D7A8EAEB /* DataByteBuffer.swift in Sources */,
 				1117DFAA0AE0006304938EEC /* BinaryInteger.swift in Sources */,
+				1117D52895B40B229F0C34C8 /* AtomicProperty.swift in Sources */,
+				1117D3E5CCF75F6ECD21A303 /* ReadWriteLock.swift in Sources */,
+				1117D9D892409C1C5407AA50 /* ThreadLocal.swift in Sources */,
+				1117D3B6E9FCFDAD8238B604 /* AtomicValue.swift in Sources */,
+				1117D81AC449E98F667D5F43 /* ByteOrder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,6 +670,7 @@
 				83C67AD4250EC20200C0F21E /* RubiconTests.swift in Sources */,
 				1117DBFD0136FF0A2ACD0D79 /* IConvTests.swift in Sources */,
 				1117D3008024F764302749E5 /* ByteInputStreamTests.swift in Sources */,
+				1117DCA97D6DF5A7AF4D1C09 /* ManageByteBufferTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

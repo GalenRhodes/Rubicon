@@ -17,7 +17,7 @@
     <a title="IConvCharInputStream Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Rubicon©</a> (70% documented)</p>
+        <p><a href="../index.html">Rubicon©</a> (68% documented)</p>
         <p class="header-right"><a href="https://github.com/GalenRhodes/Rubicon"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right">
           <form role="search" action="../search.json">
@@ -39,6 +39,12 @@
           <li class="nav-group-name">
             <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Atomic.html">Atomic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AtomicValue.html">AtomicValue</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Classes/BinaryTreeDictionary.html">BinaryTreeDictionary</a>
               </li>
@@ -91,6 +97,9 @@
                 <a href="../Classes/PGThread.html">PGThread</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/ReadWriteLock.html">ReadWriteLock</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/RegularExpression.html">RegularExpression</a>
               </li>
               <li class="nav-group-task">
@@ -123,6 +132,9 @@
               <li class="nav-group-task">
                 <a href="../Classes/StringCharInputStream.html">StringCharInputStream</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThreadLocal.html">ThreadLocal</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -132,16 +144,19 @@
                 <a href="../Global%20Variables/BasicBufferSize.html">BasicBufferSize</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Global%20Variables/CR_5FCHARACTER.html">CR_CHARACTER</a>
+                <a href="../Global%20Variables/CRLF_5FCHARACTER.html">CRLF_CHARACTER</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Global%20Variables/LFCR_5FCHARACTER.html">LFCR_CHARACTER</a>
+                <a href="../Global%20Variables/CR_5FCHARACTER.html">CR_CHARACTER</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Global%20Variables/LF_5FCHARACTER.html">LF_CHARACTER</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Global%20Variables/LINE_5FFEED_5FCODEPOINT.html">LINE_FEED_CODEPOINT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/MachineByteOrder.html">MachineByteOrder</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Global%20Variables/OneSecondMicros.html">OneSecondMicros</a>
@@ -161,7 +176,13 @@
             <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Enums/ByteOrder.html">ByteOrder</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Enums/CErrors.html">CErrors</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CharStreamError.html">CharStreamError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Enums/NanoTimerError.html">NanoTimerError</a>
@@ -375,6 +396,9 @@
                 <a href="../Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html">toHex(_:pad:)</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Functions/value_28_5F_3AisOneOf_3A_29_5F_24s_5F7isOneOfSbx_5FSayxGtcSQRzluD.html">value(_:isOneOf:)</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Functions/value_28_5F_3AisOneOf_3A_29_5F_24s_5F7isOneOfSbx_5FxdtcSQRzluD.html">value(_:isOneOf:)</a>
               </li>
               <li class="nav-group-task">
@@ -523,13 +547,13 @@
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">IConvCharInputStream</span> <span class="p">:</span> <span class="kt"><a href="../Classes/SimpleIConvCharInputStream.html">SimpleIConvCharInputStream</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/CharInputStream.html">CharInputStream</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">IConvCharInputStream</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/CharInputStream.html">CharInputStream</a></span></code></pre>
 
                 </div>
               </div>
             
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L29-L215">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L29-L241">Show on GitHub</a>
               </div>
           </section>
           <section class="section task-group-section">
@@ -538,9 +562,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon20IConvCharInputStreamC8positions5Int32V10lineNumber_AF06columnI0tvp"></a>
-                    <a name="//apple_ref/swift/Property/position" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon20IConvCharInputStreamC8positions5Int32V10lineNumber_AF06columnI0tvp">position</a>
+                    <a name="/s:7Rubicon15CharInputStreamP8tabWidths4Int8Vvp"></a>
+                    <a name="//apple_ref/swift/Property/tabWidth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon15CharInputStreamP8tabWidths4Int8Vvp">tabWidth</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -548,19 +572,18 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The current line number.</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">position</span><span class="p">:</span> <span class="kt"><a href="../Typealiases/TextPosition.html">TextPosition</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">tabWidth</span><span class="p">:</span> <span class="kt">Int8</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L34">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L43">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -568,9 +591,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon20IConvCharInputStreamC9markCountSivp"></a>
+                    <a name="/s:7Rubicon15CharInputStreamP9markCountSivp"></a>
                     <a name="//apple_ref/swift/Property/markCount" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon20IConvCharInputStreamC9markCountSivp">markCount</a>
+                    <a class="token" href="#/s:7Rubicon15CharInputStreamP9markCountSivp">markCount</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -578,14 +601,42 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The number of marks on the stream.</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">markCount</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L33">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon15CharInputStreamP8positions5Int32V10lineNumber_AF06columnH0tvp"></a>
+                    <a name="//apple_ref/swift/Property/position" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon15CharInputStreamP8positions5Int32V10lineNumber_AF06columnH0tvp">position</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">position</span><span class="p">:</span> <span class="kt"><a href="../Typealiases/TextPosition.html">TextPosition</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -598,9 +649,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon20IConvCharInputStreamC8tabWidths4Int8Vvp"></a>
-                    <a name="//apple_ref/swift/Property/tabWidth" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon20IConvCharInputStreamC8tabWidths4Int8Vvp">tabWidth</a>
+                    <a name="/s:7Rubicon10CharStreamP11streamErrors0E0_pSgvp"></a>
+                    <a name="//apple_ref/swift/Property/streamError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon10CharStreamP11streamErrors0E0_pSgvp">streamError</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -608,19 +659,134 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The number of spaces in each tab stop.</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">tabWidth</span><span class="p">:</span> <span class="kt">Int8</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">streamError</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L42">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L39">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon10CharStreamP12streamStatusSo08NSStreamE0Vvp"></a>
+                    <a name="//apple_ref/swift/Property/streamStatus" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon10CharStreamP12streamStatusSo08NSStreamE0Vvp">streamStatus</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">streamStatus</span><span class="p">:</span> <span class="kt">Stream</span><span class="o">.</span><span class="kt">Status</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L44">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon21SimpleCharInputStreamP5isEOFSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isEOF" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon21SimpleCharInputStreamP5isEOFSbvp">isEOF</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">isEOF</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L25">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon21SimpleCharInputStreamP17hasCharsAvailableSbvp"></a>
+                    <a name="//apple_ref/swift/Property/hasCharsAvailable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon21SimpleCharInputStreamP17hasCharsAvailableSbvp">hasCharsAvailable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">hasCharsAvailable</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L30">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon10CharStreamP12encodingNameSSvp"></a>
+                    <a name="//apple_ref/swift/Property/encodingName" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon10CharStreamP12encodingNameSSvp">encodingName</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">encodingName</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L34">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -638,62 +804,18 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create a new instance of this character input stream from an existing byte input stream.</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">override</span> <span class="nf">init</span><span class="p">(</span><span class="nv">inputStream</span><span class="p">:</span> <span class="kt">InputStream</span><span class="p">,</span> <span class="nv">encodingName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">autoClose</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">inputStream</span><span class="p">:</span> <span class="kt">InputStream</span><span class="p">,</span> <span class="nv">encodingName</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">autoClose</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>inputStream</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the underlying byte input stream.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>encodingName</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the name of the incoming character encoding.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>autoClose</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>if <code>true</code> then the underlying input stream will be closed when this stream is closed or destroyed.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L61">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L64-L66">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -701,9 +823,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon20IConvCharInputStreamC7markSetyyF"></a>
-                    <a name="//apple_ref/swift/Method/markSet()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon20IConvCharInputStreamC7markSetyyF">markSet()</a>
+                    <a name="/s:7Rubicon10CharStreamP4openyyF"></a>
+                    <a name="//apple_ref/swift/Method/open()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon10CharStreamP4openyyF">open()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -711,8 +833,123 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Marks the current point in the stream so that it can be returned to later. You can set more than one mark but all operations happen on the most recently set mark.</p>
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">open</span><span class="p">()</span></code></pre>
 
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L68-L78">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon10CharStreamP5closeyyF"></a>
+                    <a name="//apple_ref/swift/Method/close()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon10CharStreamP5closeyyF">close()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">close</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L80-L90">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon21SimpleCharInputStreamP4readSJSgyKF"></a>
+                    <a name="//apple_ref/swift/Method/read()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon21SimpleCharInputStreamP4readSJSgyKF">read()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">read</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Character</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L92-L106">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon21SimpleCharInputStreamP6append2to9maxLengthSiSaySJGz_SitKF"></a>
+                    <a name="//apple_ref/swift/Method/append(to:maxLength:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon21SimpleCharInputStreamP6append2to9maxLengthSiSaySJGz_SitKF">append(to:<wbr>maxLength:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">append</span><span class="p">(</span><span class="n">to</span> <span class="nv">chars</span><span class="p">:</span> <span class="k">inout</span> <span class="p">[</span><span class="kt">Character</span><span class="p">],</span> <span class="nv">maxLength</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L108-L130">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon15CharInputStreamP7markSetyyF"></a>
+                    <a name="//apple_ref/swift/Method/markSet()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon15CharInputStreamP7markSetyyF">markSet()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -723,7 +960,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L66">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L147-L151">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -731,39 +968,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon20IConvCharInputStreamC10markReturnyyF"></a>
-                    <a name="//apple_ref/swift/Method/markReturn()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon20IConvCharInputStreamC10markReturnyyF">markReturn()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Removes and returns to the most recently set mark.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">markReturn</span><span class="p">()</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L71">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon20IConvCharInputStreamC10markDeleteyyF"></a>
+                    <a name="/s:7Rubicon15CharInputStreamP10markDeleteyyF"></a>
                     <a name="//apple_ref/swift/Method/markDelete()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon20IConvCharInputStreamC10markDeleteyyF">markDelete()</a>
+                    <a class="token" href="#/s:7Rubicon15CharInputStreamP10markDeleteyyF">markDelete()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -771,8 +978,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Removes the most recently set mark WITHOUT returning to it.</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -783,7 +989,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L76">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L153-L157">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -791,9 +997,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon20IConvCharInputStreamC9markResetyyF"></a>
-                    <a name="//apple_ref/swift/Method/markReset()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon20IConvCharInputStreamC9markResetyyF">markReset()</a>
+                    <a name="/s:7Rubicon15CharInputStreamP10markReturnyyF"></a>
+                    <a name="//apple_ref/swift/Method/markReturn()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon15CharInputStreamP10markReturnyyF">markReturn()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -801,20 +1007,18 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns to the most recently set mark WITHOUT removing it. If there was no previously set mark then a new one is created. This is functionally equivalent to performing a
-<code><a href="../Classes/IConvCharInputStream.html#/s:7Rubicon20IConvCharInputStreamC10markReturnyyF">markReturn()</a></code> followed immediately by a <code><a href="../Classes/IConvCharInputStream.html#/s:7Rubicon20IConvCharInputStreamC7markSetyyF">markSet()</a></code>.</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">markReset</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">markReturn</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L82">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L159-L165">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -822,9 +1026,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon20IConvCharInputStreamC10markUpdateyyF"></a>
+                    <a name="/s:7Rubicon15CharInputStreamP10markUpdateyyF"></a>
                     <a name="//apple_ref/swift/Method/markUpdate()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon20IConvCharInputStreamC10markUpdateyyF">markUpdate()</a>
+                    <a class="token" href="#/s:7Rubicon15CharInputStreamP10markUpdateyyF">markUpdate()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -832,9 +1036,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Updates the most recently set mark to the current position. If there was no previously set mark then a new one is created. This is functionally equivalent to performing a
-<code><a href="../Classes/IConvCharInputStream.html#/s:7Rubicon20IConvCharInputStreamC10markDeleteyyF">markDelete()</a></code> followed immediately by a <code><a href="../Classes/IConvCharInputStream.html#/s:7Rubicon20IConvCharInputStreamC7markSetyyF">markSet()</a></code>.</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -845,7 +1047,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L88">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L167-L177">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -853,9 +1055,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon20IConvCharInputStreamC10markBackup5countS2i_tF"></a>
-                    <a name="//apple_ref/swift/Method/markBackup(count:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon20IConvCharInputStreamC10markBackup5countS2i_tF">markBackup(count:<wbr>)</a>
+                    <a name="/s:7Rubicon15CharInputStreamP9markResetyyF"></a>
+                    <a name="//apple_ref/swift/Method/markReset()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon15CharInputStreamP9markResetyyF">markReset()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -863,44 +1065,47 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Backs out the last <code>count</code> characters from the most recently set mark without actually removing the entire mark. You have to have previously called <code><a href="../Classes/IConvCharInputStream.html#/s:7Rubicon20IConvCharInputStreamC7markSetyyF">markSet()</a></code> otherwise
-this method does nothing.</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
-<span class="kd">open</span> <span class="kd">func</span> <span class="nf">markBackup</span><span class="p">(</span><span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">markReset</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>count</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the number of characters to back out.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L179-L190">Show on GitHub</a>
                       </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>the number of characters actually backed out in case there weren&rsquo;t <code>count</code> characters available.</p>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon15CharInputStreamP10markBackup5countS2i_tF"></a>
+                    <a name="//apple_ref/swift/Method/markBackup(count:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon15CharInputStreamP10markBackup5countS2i_tF">markBackup(count:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">markBackup</span><span class="p">(</span><span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L97">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift#L192-L205">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -910,7 +1115,7 @@ this method does nothing.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-04-15)</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-04-21)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

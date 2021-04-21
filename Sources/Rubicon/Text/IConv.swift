@@ -69,7 +69,7 @@ open class IConv {
         case OtherError
     }
 
-    private lazy var handle: iconv_t? = iconv_open("\(toEncoding)\(ignoreErrors ? "//IGNORE" : "")\(enableTransliterate ? "//TRANSLIT" : "")", "\(fromEncoding)")
+    @IConvHandle private var handle: iconv_t? = nil
 
     /*===========================================================================================================================================================================*/
     /// Create a new instance of IConv.
@@ -85,10 +85,21 @@ open class IConv {
         self.fromEncoding = fromEncoding
         self.ignoreErrors = ignoreErrors
         self.enableTransliterate = enableTransliterate
+        self.handle = iconv_open("\(toEncoding)\(ignoreErrors ? "//IGNORE" : "")\(enableTransliterate ? "//TRANSLIT" : "")", "\(fromEncoding)")
     }
 
     deinit {
-        if let h = handle, h != (iconv_t)(bitPattern: -1) { iconv_close(h) }
+        close()
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Close this instance of IConv and free it's resources. This is also done automatically when the object is disposed of by ARC.
+    ///
+    open func close() {
+        if let h = handle {
+            iconv_close(h)
+            handle = nil
+        }
     }
 
     /*===========================================================================================================================================================================*/
@@ -97,7 +108,7 @@ open class IConv {
     /// - Returns: `Results.OK` if successful. `Results.OtherError` if not successful.
     ///
     open func reset() -> Results {
-        guard let h = handle, h != (iconv_t)(bitPattern: -1) else { return .UnknownEncoding }
+        guard let h = handle else { return .UnknownEncoding }
 
         var inSz:  Int = 0
         var outSz: Int = 0
@@ -117,24 +128,15 @@ open class IConv {
     /// - Returns: the response.
     ///
     open func convert(input: UnsafeRawPointer, length: Int, output: UnsafeMutableRawPointer, maxLength: Int) -> Response {
-        guard let h = handle, h != (iconv_t)(bitPattern: -1) else { return (.UnknownEncoding, 0, 0) }
+        guard let h = handle else { return (.UnknownEncoding, 0, 0) }
 
         var inSz:    Int           = length
         var outSz:   Int           = maxLength
         var inP:     CCharPointer? = UnsafeMutableRawPointer(mutating: input).bindMemory(to: CChar.self, capacity: inSz)
         var outP:    CCharPointer? = output.bindMemory(to: CChar.self, capacity: outSz)
         let res:     Int           = iconv(h, &inP, &inSz, &outP, &outSz)
-        let inUsed:  Int           = (length - inSz)
-        let outUsed: Int           = (maxLength - outSz)
 
-        if res >= 0 { return (.OK, inUsed, outUsed) }
-
-        switch errno {
-            case E2BIG:  return (.InputTooBig, inUsed, outUsed)
-            case EINVAL: return (.IncompleteSequence, inUsed, outUsed)
-            case EILSEQ: return (.InvalidSequence, inUsed, outUsed)
-            default:     return (.OtherError, inUsed, outUsed)
-        }
+        return getResponse(callResponse: res, inUsed: (length - inSz), outUsed: (maxLength - outSz))
     }
 
     /*===========================================================================================================================================================================*/
@@ -154,6 +156,38 @@ open class IConv {
                 i.relocateToFront(start: r.inputBytesUsed, count: inCount)
                 return r.results
             }
+        }
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Do the final conversion step after all of the input has been processed to get any deferred conversions that might be waiting.
+    /// 
+    /// - Parameters:
+    ///   - output: the output buffer.
+    ///   - maxLength: the maximum length of the output buffer.
+    /// - Returns: a `Response` tuple.
+    ///
+    open func finalConvert(output: UnsafeMutableRawPointer, maxLength: Int) -> Response {
+        guard let h = handle else { return (.UnknownEncoding, 0, 0) }
+
+        var outSz: Int = maxLength
+        var outP: CCharPointer? = output.bindMemory(to: CChar.self, capacity: outSz)
+        let res: Int = iconv(h, nil, nil, &outP, &outSz)
+
+        return getResponse(callResponse: res, inUsed: 0, outUsed: (maxLength - outSz))
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Do the final conversion step after all of the input has been processed to get any deferred conversions that might be waiting.
+    /// 
+    /// - Parameter o: the output buffer.
+    /// - Returns: the `Results`.
+    ///
+    open func finalConvert(output o: MutableManagedByteBuffer) -> Results {
+        o.withBytes { outBytes, outLen, outCount -> Results in
+            let r = finalConvert(output: outBytes, maxLength: outLen)
+            outCount = r.outputBytesUsed
+            return r.results
         }
     }
 
@@ -194,7 +228,7 @@ open class IConv {
     ///
     private func doWithIconv(_ ioRes: Int, _ inBuff: MutableManagedByteBuffer, _ outBuff: MutableManagedByteBuffer, _ body: (BytePointer, Int) throws -> Bool) throws -> Bool {
         let iconvRes: Results = convert(input: inBuff, output: outBuff)
-        let stop:     Bool    = try outBuff.withBytes { p, l, c -> Bool in try body(p, c) }
+        let stop: Bool = try outBuff.withBytes { p, l, c -> Bool in try body(p, c) }
 
         switch iconvRes {
             case .InvalidSequence: throw CErrors.ILSEQ()
@@ -236,6 +270,26 @@ open class IConv {
         for i in (0 ..< MaxEncodings) { if let p = data[i] { if let str = String(utf8String: p) { list <+ str.uppercased() } } }
         list.sort()
         return list
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Convert the data returned from the call to `iconv(_ :, _:, _:, _:, _:)` to a `Response` tuple.
+    /// 
+    /// - Parameters:
+    ///   - res: the results returned from the call.
+    ///   - inUsed: the number of input bytes used.
+    ///   - outUsed: the number of output bytes used.
+    /// - Returns: the `Response` tuple.
+    ///
+    private func getResponse(callResponse res: Int, inUsed: Int, outUsed: Int) -> Response {
+        if res >= 0 { return (.OK, inUsed, outUsed) }
+
+        switch errno {
+            case E2BIG:  return (.InputTooBig, inUsed, outUsed)
+            case EINVAL: return (.IncompleteSequence, inUsed, outUsed)
+            case EILSEQ: return (.InvalidSequence, inUsed, outUsed)
+            default:     return (.OtherError, inUsed, outUsed)
+        }
     }
 }
 
@@ -279,3 +333,16 @@ fileprivate func StrLen(_ str: UnsafePointer<Int8>) -> Int {
 /// The maximum number of encoding names to list.
 ///
 fileprivate let MaxEncodings: Int = 5_000
+
+/*===============================================================================================================================================================================*/
+/// A private property wrapper for the iconv handle to convert a `-1` to a `nil`.
+///
+@propertyWrapper fileprivate struct IConvHandle {
+    var wrappedValue: iconv_t? {
+        get { value }
+        set { value = ((newValue == (iconv_t)(bitPattern: -1)) ? nil : newValue) }
+    }
+    private var value: iconv_t? = nil
+
+    init(wrappedValue: iconv_t?) { self.wrappedValue = wrappedValue }
+}

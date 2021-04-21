@@ -22,6 +22,10 @@
 
 import Foundation
 
+public enum CharStreamError: Error {
+    case UnknownCharacterEncoding(description: String)
+}
+
 public protocol CharStream {
 
     /*===========================================================================================================================================================================*/

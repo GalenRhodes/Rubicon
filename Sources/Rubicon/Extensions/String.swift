@@ -134,6 +134,26 @@ extension StringProtocol {
     }
 
     /*===========================================================================================================================================================================*/
+    /// Calls the given closure on each element in the sub-sequence defined by the given match and group in the same order as a for-in loop. In this method the range of the
+    /// sub-sequence is taken from the given `RegularExpression.Match` object and an optional index for the capture group. If the group is not provided then the entire match
+    /// region is assumed.
+    /// 
+    /// - Parameters:
+    ///   - match: The `RegularExpression.Match` object from a previously executed `RegularExpression` search.
+    ///   - group: The index of a capture group (`RegularExpression.Group`) within the given match.
+    ///   - body: A closure that takes a character of the String or SubString as a parameter.
+    /// - Returns: `false` if the match or the group are `nil`, otherwise returns `true`.
+    /// - Throws: Any error thrown by the closure.
+    ///
+    @discardableResult public func forEach(match: RegularExpression.Match?, group: Int = 0, _ body: (Character) throws -> Void) rethrows -> Bool {
+        if let m = match, let r = m[group].range {
+            try forEach(inRange: r, body)
+            return true
+        }
+        return false
+    }
+
+    /*===========================================================================================================================================================================*/
     /// Get the position (line, column) of the index in the given string relative to the given starting position (line, column).
     /// 
     /// - Parameters:

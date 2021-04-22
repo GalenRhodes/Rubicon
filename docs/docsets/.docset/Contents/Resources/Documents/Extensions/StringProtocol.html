@@ -905,6 +905,91 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:Sy7RubiconE7forEach5match5group_SbAA17RegularExpressionC5MatchCSg_SiySJKXEtKF"></a>
+                    <a name="//apple_ref/swift/Method/forEach(match:group:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sy7RubiconE7forEach5match5group_SbAA17RegularExpressionC5MatchCSg_SiySJKXEtKF">forEach(match:<wbr>group:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Calls the given closure on each element in the sub-sequence defined by the given match and group in the same order as a for-in loop. In this method the range of the
+sub-sequence is taken from the given <code><a href="../Classes/RegularExpression/Match.html">RegularExpression.Match</a></code> object and an optional index for the capture group. If the group is not provided then the entire match
+region is assumed.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    Any error thrown by the closure.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">forEach</span><span class="p">(</span><span class="nv">match</span><span class="p">:</span> <span class="kt"><a href="../Classes/RegularExpression.html">RegularExpression</a></span><span class="o">.</span><span class="kt">Match</span><span class="p">?,</span> <span class="nv">group</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">(</span><span class="kt">Character</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>match</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code><a href="../Classes/RegularExpression/Match.html">RegularExpression.Match</a></code> object from a previously executed <code><a href="../Classes/RegularExpression.html">RegularExpression</a></code> search.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>group</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index of a capture group (<code><a href="../Classes/RegularExpression/Group.html">RegularExpression.Group</a></code>) within the given match.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>body</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A closure that takes a character of the String or SubString as a parameter.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>false</code> if the match or the group are <code>nil</code>, otherwise returns <code>true</code>.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L148-L154">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:Sy7RubiconE15positionOfIndex_0B07tabSizes5Int32V10lineNumber_AF06columnI0tSS0D0V_AfG_AfHts4Int8VtF"></a>
                     <a name="//apple_ref/swift/Method/positionOfIndex(_:position:tabSize:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:Sy7RubiconE15positionOfIndex_0B07tabSizes5Int32V10lineNumber_AF06columnI0tSS0D0V_AfG_AfHts4Int8VtF">positionOfIndex(_:<wbr>position:<wbr>tabSize:<wbr>)</a>
@@ -974,7 +1059,7 @@
                         <p>the position (line, column) of the index within the string.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L145-L153">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L165-L173">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1027,7 +1112,7 @@
                         <p>the <code><a href="https://developer.apple.com/documentation/swift/Character">Character</a></code> at the offset indicated by <code>idx</code>.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L161-L163">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L181-L183">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1082,7 +1167,7 @@
                         <p>the <code><a href="https://developer.apple.com/documentation/swift/Substring">Substring</a></code>.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L173-L175">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L193-L195">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1147,7 +1232,7 @@
                         <p>the index or <code>nil</code> if none of the characters are found.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L185-L192">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L205-L212">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1200,7 +1285,7 @@
                         <p>an instance of <code>[String.Index](https://developer.apple.com/documentation/swift/string/index)&gt;</code></p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L200-L202">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L220-L222">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1257,7 +1342,7 @@ an instance of <code><a href="https://developer.apple.com/documentation/foundati
        <code>nil</code> if the <code><a href="https://developer.apple.com/documentation/foundation/nsrange">NSRange</a></code> was invalid for this string.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L214-L219">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L234-L239">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1310,7 +1395,7 @@ an instance of <code><a href="https://developer.apple.com/documentation/foundati
                         <p><code>true</code> if this string has any of the prefixes.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L227-L230">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L247-L250">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1363,7 +1448,7 @@ an instance of <code><a href="https://developer.apple.com/documentation/foundati
                         <p><code>true</code> if this string has any of the suffixes.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L238-L241">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L258-L261">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1420,7 +1505,7 @@ Flag Emoji.</p>
                         <p>the array of characters.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L253-L260">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L273-L280">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1478,7 +1563,7 @@ Flag Emoji.</p>
                         <p><code>true</code> if the pattern matches this entire string exactly once.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L269-L280">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L289-L300">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1531,7 +1616,7 @@ Flag Emoji.</p>
                         <p>the NSRange.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L288">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L308">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1598,7 +1683,7 @@ error</a></code> is thrown if the bounds are invalid for the string.</p>
                         <p>the substring</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L300-L302">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L320-L322">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1665,7 +1750,7 @@ error</a></code> is thrown if the bounds are invalid for the string.</p>
                         <p>the substring</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L314-L316">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L334-L336">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1723,7 +1808,7 @@ error</a></code> is thrown if the bounds are invalid for the string.</p>
        <code><a href="https://developer.apple.com/documentation/swift/Substring">Substring</a></code>.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L329-L331">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L349-L351">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1781,7 +1866,7 @@ error</a></code> is thrown if the bounds are invalid for the string.</p>
        <code><a href="https://developer.apple.com/documentation/swift/Substring">Substring</a></code>.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L344-L349">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L364-L369">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1900,7 +1985,7 @@ trailing empty strings will be discarded.</p>
                         <p>the array of strings computed by splitting this string around matches of the given regular expression</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L414-L427">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L434-L447">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

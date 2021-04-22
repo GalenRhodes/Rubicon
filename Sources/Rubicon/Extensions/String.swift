@@ -57,13 +57,15 @@ extension String {
 
 public func tabCalc(pos i: Int32, tabSize sz: Int8 = 4) -> Int32 { let s = Int32(sz); return (((((i - 1) + s) / s) * s) + 1) }
 
-public func textPositionUpdate(_ char: Character, pos: inout TextPosition, tabWidth sz: Int8 = 4) {
+public func textPositionUpdate(_ char: Character, pos: inout TextPosition, tabWidth sz: Int8 = 4) { pos = nextCharPosition(currentPosition: pos, character: char, tabWidth: sz) }
+
+public func nextCharPosition(currentPosition pos: TextPosition, character char: Character, tabWidth sz: Int8 = 4) -> TextPosition {
     switch char {
-        case "\n", "\r", "\r\n": pos = (pos.0 + 1, 1)
-        case "\t":               pos = (pos.0, tabCalc(pos: pos.1, tabSize: sz))
-        case "\u{0c}":           pos = (pos.0 + 24, 1)
-        case "\u{0b}":           pos = (tabCalc(pos: pos.0, tabSize: sz), pos.1)
-        default:                 pos = (pos.0, pos.1 + 1)
+        case "\n", "\r", "\r\n": return (pos.0 + 1, 1)
+        case "\t":               return (pos.0, tabCalc(pos: pos.1, tabSize: sz))
+        case "\u{0c}":           return (pos.0 + 24, 1)
+        case "\u{0b}":           return (tabCalc(pos: pos.0, tabSize: sz), pos.1)
+        default:                 return (pos.0, pos.1 + 1)
     }
 }
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>&lt;?(_:_:) Function Reference</title>
+    <title>nextCharPosition(currentPosition:character:tabWidth:) Function Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -13,8 +13,8 @@
     <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Function/&lt;?(_:_:)" class="dashAnchor"></a>
-    <a title="&lt;?(_:_:) Function Reference"></a>
+    <a name="//apple_ref/swift/Function/nextCharPosition(currentPosition:character:tabWidth:)" class="dashAnchor"></a>
+    <a title="nextCharPosition(currentPosition:character:tabWidth:) Function Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Rubicon©</a> (68% documented)</p>
@@ -30,7 +30,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        &lt;?(_:_:) Function Reference
+        nextCharPosition(currentPosition:character:tabWidth:) Function Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -546,55 +546,17 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>&lt;?(_:_:)</h1>
+            <h1>nextCharPosition(currentPosition:character:tabWidth:)</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="o">&lt;</span><span class="p">?</span> <span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="p">[</span><span class="kt">T</span><span class="p">],</span> <span class="nv">rhs</span><span class="p">:</span> <span class="p">[</span><span class="kt">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">nextCharPosition</span><span class="p">(</span><span class="n">currentPosition</span> <span class="nv">pos</span><span class="p">:</span> <span class="kt"><a href="../Typealiases/TextPosition.html">TextPosition</a></span><span class="p">,</span> <span class="n">character</span> <span class="nv">char</span><span class="p">:</span> <span class="kt">Character</span><span class="p">,</span> <span class="n">tabWidth</span> <span class="nv">sz</span><span class="p">:</span> <span class="kt">Int8</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases/TextPosition.html">TextPosition</a></span></code></pre>
 
                 </div>
               </div>
-            <p>Checks to see if the left-hand <code><a href="https://developer.apple.com/documentation/swift/array/">Array</a></code> contains all of the elements in the right-hand
-<code><a href="https://developer.apple.com/documentation/swift/array/">Array</a></code>.</p>
-
-              <div>
-                <h4>Parameters</h4>
-                <table class="graybox">
-                  <tbody>
-                      <tr>
-                        <td>
-                          <code>
-                          <em>lhs</em>
-                          </code>
-                        </td>
-                        <td>
-                          <div>
-                            <p>the left-hand <code><a href="https://developer.apple.com/documentation/swift/array/">Array</a></code>.</p>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <code>
-                          <em>rhs</em>
-                          </code>
-                        </td>
-                        <td>
-                          <div>
-                            <p>the right-hand <code><a href="https://developer.apple.com/documentation/swift/array/">Array</a></code>.</p>
-                          </div>
-                        </td>
-                      </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div>
-                <h4>Return Value</h4>
-                <p><code>true</code> if the left-hand <code><a href="https://developer.apple.com/documentation/swift/array/">Array</a></code> contains all of the elements in the right-hand
-       <code><a href="https://developer.apple.com/documentation/swift/array/">Array</a></code>.</p>
-              </div>
+            
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Tools.swift#L291-L298">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L62-L70">Show on GitHub</a>
               </div>
           </section>
           <section class="section task-group-section">

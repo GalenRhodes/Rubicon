@@ -1380,6 +1380,13 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/String.swift",
+      "line": 62,
+      "symbol": "nextCharPosition(currentPosition:character:tabWidth:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/PropertyWrappers/AtomicProperty.swift",
       "line": 42,
       "symbol": "Atomic.wrappedValue",

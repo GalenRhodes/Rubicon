@@ -35,31 +35,6 @@ extension CharacterSet {
 extension String {
 
     /*===========================================================================================================================================================================*/
-    /// This property returns `true` if the string is empty after trimming whitespaces, newlines, and control characters.
-    ///
-    public var isTrimEmpty: Bool { self.trimmed.isEmpty }
-
-    /*===========================================================================================================================================================================*/
-    /// This property returns an instance of <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> that covers the entire string.
-    ///
-    public var fullNSRange: NSRange { NSRange(fullRange, in: self) }
-
-    /*===========================================================================================================================================================================*/
-    /// Returns an array that cover the entire string.
-    ///
-    public var fullRange:   Range<String.Index> { (startIndex ..< endIndex) }
-
-    /*===========================================================================================================================================================================*/
-    /// This property returns a copy of the string with whitespaces, newlines, and control characters trimmed from both ends of the string.
-    ///
-    public var trimmed:     String { self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlinesAndControlCharacters) }
-
-    /*===========================================================================================================================================================================*/
-    /// A copy of this string with '+' characters replaced with spaces and percent encodings decoded.
-    ///
-    public var urlDecoded:  String { self.replacingOccurrences(of: "+", with: " ").removingPercentEncoding ?? self }
-
-    /*===========================================================================================================================================================================*/
     /// Allows creating a <code>[String](https://developer.apple.com/documentation/swift/string/)</code> from the contents of an
     /// <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream)</code>.
     /// 
@@ -78,14 +53,170 @@ extension String {
             return nil
         }
     }
+}
+
+public func tabCalc(pos i: Int32, tabSize sz: Int8 = 4) -> Int32 { let s = Int32(sz); return (((((i - 1) + s) / s) * s) + 1) }
+
+public func textPositionUpdate(_ char: Character, pos: inout TextPosition, tabWidth sz: Int8 = 4) {
+    switch char {
+        case "\n", "\r", "\r\n": pos = (pos.0 + 1, 1)
+        case "\t":               pos = (pos.0, tabCalc(pos: pos.1, tabSize: sz))
+        case "\u{0c}":           pos = (pos.0 + 24, 1)
+        case "\u{0b}":           pos = (tabCalc(pos: pos.0, tabSize: sz), pos.1)
+        default:                 pos = (pos.0, pos.1 + 1)
+    }
+}
+
+infix operator ==~: ComparisonPrecedence
+infix operator !=~: ComparisonPrecedence
+
+extension StringProtocol {
 
     /*===========================================================================================================================================================================*/
-    /// Given a valid range for for this string, return a UTF-16 based NSRange structure.
-    /// 
-    /// - Parameter range: the range.
-    /// - Returns: the NSRange.
+    /// This property returns `true` if the string is empty after trimming whitespaces, newlines, and control characters.
     ///
-    public func nsRange(_ range: Range<String.Index>) -> NSRange { NSRange(range, in: self) }
+    public var isTrimEmpty: Bool { trimmed.isEmpty }
+
+    /*===========================================================================================================================================================================*/
+    /// Returns an array that cover the entire string.
+    ///
+    public var fullRange:   Range<String.Index> { (startIndex ..< endIndex) }
+
+    /*===========================================================================================================================================================================*/
+    /// This property returns a copy of the string with whitespaces, newlines, and control characters trimmed from both ends of the string.
+    ///
+    public var trimmed:     String { trimmingCharacters(in: CharacterSet.whitespacesAndNewlinesAndControlCharacters) }
+
+    /*===========================================================================================================================================================================*/
+    /// A copy of this string with '+' characters replaced with spaces and percent encodings decoded.
+    ///
+    public var urlDecoded:  String { replacingOccurrences(of: "+", with: " ").removingPercentEncoding ?? String(self) }
+
+    /*===========================================================================================================================================================================*/
+    /// This property returns an instance of <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> that covers the entire string.
+    ///
+    public var fullNSRange: NSRange { NSRange(fullRange, in: self) }
+
+    /*===========================================================================================================================================================================*/
+    /// Case insensitive equals.
+    /// 
+    /// - Parameters:
+    ///   - lhs: the left-hand string
+    ///   - rhs: the right-hand string
+    /// - Returns: `true` if they are equal when compared case insensitively.
+    ///
+    public static func ==~ (lhs: Self, rhs: Self) -> Bool { (lhs.localizedCaseInsensitiveCompare(rhs) == ComparisonResult.orderedSame) }
+
+    /*===========================================================================================================================================================================*/
+    /// Case insensitive NOT equals.
+    /// 
+    /// - Parameters:
+    ///   - lhs: the left-hand string
+    ///   - rhs: the right-hand string
+    /// - Returns: `true` if they are not equal when compared case insensitively.
+    ///
+    public static func !=~ (lhs: Self, rhs: Self) -> Bool { (lhs.localizedCaseInsensitiveCompare(rhs) != ComparisonResult.orderedSame) }
+
+    /*===========================================================================================================================================================================*/
+    /// Calls the given closure on each element in the sub-sequence defined by the given range in the same order as a for-in loop.
+    /// 
+    /// - Parameters:
+    ///   - inRange: The range of characters to iterate over.
+    ///   - body: A closure that takes an element of the sequence as a parameter.
+    /// - Throws: Any error thrown by the closure.
+    ///
+    public func forEach(inRange: Range<String.Index>, _ body: (Character) throws -> Void) rethrows {
+        var idx = inRange.lowerBound
+        while idx < inRange.upperBound {
+            try body(self[idx])
+            formIndex(after: &idx)
+        }
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Get the position (line, column) of the index in the given string relative to the given starting position (line, column).
+    /// 
+    /// - Parameters:
+    ///   - idx: the index.
+    ///   - position: the starting position. Defaults to (1, 1).
+    ///   - tx: the tab size. Defaults to 4.
+    /// - Returns: the position (line, column) of the index within the string.
+    ///
+    public func positionOfIndex(_ idx: Index, position: TextPosition = (1, 1), tabSize tx: Int8 = 4) -> TextPosition {
+        var idx = idx
+        var pos = position
+        while idx < endIndex {
+            textPositionUpdate(self[idx], pos: &pos, tabWidth: tx)
+            formIndex(after: &idx)
+        }
+        return pos
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Returns the <code>[Character](https://developer.apple.com/documentation/swift/Character)</code> at the `idx`th integer position in the string.
+    /// 
+    /// - Parameter idx: the integer offset into the <code>[String](https://developer.apple.com/documentation/swift/String)</code>.
+    /// - Returns: the <code>[Character](https://developer.apple.com/documentation/swift/Character)</code> at the offset indicated by `idx`.
+    ///
+    public subscript(_ idx: Int) -> Character {
+        self[self.index(self.startIndex, offsetBy: idx)]
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Returns the <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the given
+    /// <code>[Range](https://developer.apple.com/documentation/swift/Range)</code>. A fatal error is thrown if the range is invalid for the string.
+    /// 
+    /// - Parameter range: the <code>[Range](https://developer.apple.com/documentation/swift/Range)</code> of the
+    ///                    <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
+    /// - Returns: the <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
+    ///
+    public subscript(_ range: Range<Int>) -> Substring {
+        Substring(self[index(idx: range.lowerBound) ..< index(idx: range.upperBound)])
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Returns the index of the first encounter of any of the given characters starting at the given index.
+    /// 
+    /// - Parameters:
+    ///   - chars: the characters to look for.
+    ///   - idx: the index in this string to start looking.
+    /// - Returns: the index or `nil` if none of the characters are found.
+    ///
+    public func firstIndex(ofAnyOf chars: Character..., from idx: String.Index) -> String.Index? {
+        var oIdx = idx
+        while oIdx < endIndex {
+            if chars.contains(self[oIdx]) { return oIdx }
+            formIndex(after: &oIdx)
+        }
+        return nil
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Returns a `[String.Index](https://developer.apple.com/documentation/swift/string/index)>` into this string from an integer offset.
+    /// 
+    /// - Parameter idx: the integer offset into the string
+    /// - Returns: an instance of `[String.Index](https://developer.apple.com/documentation/swift/string/index)>`
+    ///
+    public func index(idx: Int) -> String.Index {
+        index(startIndex, offsetBy: idx)
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Returns an instance of `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` from
+    /// an instance of <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code>. If
+    /// <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> is invalid for this string then `nil` is returned.
+    /// 
+    /// - Parameter nsRange: the <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> to convert to
+    ///                      `[Range](https://developer.apple.com/documentation/swift/range/)<Index>`
+    /// - Returns: an instance of `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` or
+    ///            `nil` if the <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> was invalid for this string.
+    ///
+    public func range(nsRange: NSRange) -> Range<String.Index>? {
+        guard nsRange.location != NSNotFound else {
+            return nil
+        }
+        return nsRange.strRange(string: self)
+    }
 
     /*===========================================================================================================================================================================*/
     /// Checks to see if this string has any of the given prefixes.
@@ -138,7 +269,7 @@ extension String {
     public func matches(pattern: String) throws -> Bool {
         var e: Error? = nil
         if let regex = RegularExpression(pattern: pattern, error: &e) {
-            if let match = regex.firstMatch(in: self) {
+            if let match = regex.firstMatch(in: String(self)) {
                 if let r = match[0].range {
                     return (r.lowerBound == startIndex) && (r.upperBound == endIndex)
                 }
@@ -146,6 +277,75 @@ extension String {
             return false
         }
         throw e!
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Given a valid range for for this string, return a UTF-16 based NSRange structure.
+    /// 
+    /// - Parameter range: the range.
+    /// - Returns: the NSRange.
+    ///
+    public func nsRange(_ range: Range<String.Index>) -> NSRange { NSRange(range, in: self) }
+
+    /*===========================================================================================================================================================================*/
+    /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
+    /// <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the given `from:` and `to:` bounds. A <code>[fatal
+    /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds are invalid for the string.
+    /// 
+    /// - Parameters:
+    ///   - from: The index of the start of the substring.
+    ///   - to: The index (exclusive) of the end of the string.
+    /// - Returns: the substring
+    ///
+    public func substr(from fromIdx: Int = 0, to toIdx: Int) -> String {
+        String(self[fromIdx ..< toIdx])
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
+    /// <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the given `from:` index for the `length:` characters. A <code>[fatal
+    /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds are invalid for the string.
+    /// 
+    /// - Parameters:
+    ///   - from: The index of the start of the substring.
+    ///   - length: The number of characters to include in the substring.
+    /// - Returns: the substring
+    ///
+    public func substr(from fromIdx: Int = 0, length: Int) -> String {
+        substr(from: fromIdx, to: (fromIdx + length))
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
+    /// <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the given
+    /// <code>[Range](https://developer.apple.com/documentation/swift/Range)</code>. A <code>[fatal
+    /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds are invalid for the string.
+    /// 
+    /// - Parameter range: the <code>[Range](https://developer.apple.com/documentation/swift/Range)</code> of the
+    ///                    <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
+    /// - Returns: a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
+    ///            <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
+    ///
+    public func substr(from fromIdx: Int) -> String {
+        String(self[index(idx: fromIdx) ..< endIndex])
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
+    /// <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the given
+    /// <code>[NSRange](https://developer.apple.com/documentation/foundation/NSRange)</code>. A <code>[fatal
+    /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds are invalid for the string.
+    /// 
+    /// - Parameter nsRange: the <code>[NSRange](https://developer.apple.com/documentation/foundation/NSRange)</code> of the
+    ///                      <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>
+    /// - Returns: a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
+    ///            <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
+    ///
+    public func substr(nsRange: NSRange) -> String {
+        guard let range: Range<String.Index> = self.range(nsRange: nsRange) else {
+            fatalError("NSRange values invalid for this string.")
+        }
+        return String(self[range])
     }
 
     /*===========================================================================================================================================================================*/
@@ -216,14 +416,14 @@ extension String {
             var results: [String]     = []
             var last:    String.Index = startIndex
 
-            regex.enumerateMatches(in: self, range: fullNSRange) { m, _, p in if let m = m { if self.split(m.range, ((lim > 0) ? (lim - 1) : Int.max), &results, &last) { p.pointee = true } } }
+            regex.enumerateMatches(in: String(self), range: fullNSRange) { m, _, p in if let m = m { if self.split(m.range, ((lim > 0) ? (lim - 1) : Int.max), &results, &last) { p.pointee = true } } }
 
             if !results.isEmpty {
                 return ((lim == 0) ? trimSplitArray(array: &results) : results)
             }
         }
 
-        return [ self ]
+        return [ String(self) ]
     }
 
     /*===========================================================================================================================================================================*/
@@ -277,284 +477,4 @@ extension String {
 
         return results
     }
-
-    /*===========================================================================================================================================================================*/
-    /// Returns a `[String.Index](https://developer.apple.com/documentation/swift/string/index)>` into this string from an integer offset.
-    /// 
-    /// - Parameter idx: the integer offset into the string
-    /// - Returns: an instance of `[String.Index](https://developer.apple.com/documentation/swift/string/index)>`
-    ///
-    public func index(idx: Int) -> String.Index {
-        index(startIndex, offsetBy: idx)
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Returns an instance of `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` from
-    /// an instance of <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code>. If
-    /// <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> is invalid for this string then `nil` is returned.
-    /// 
-    /// - Parameter nsRange: the <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> to convert to
-    ///                      `[Range](https://developer.apple.com/documentation/swift/range/)<Index>`
-    /// - Returns: an instance of `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` or
-    ///            `nil` if the <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> was invalid for this string.
-    ///
-    public func range(nsRange: NSRange) -> Range<String.Index>? {
-        guard nsRange.location != NSNotFound else {
-            return nil
-        }
-        return nsRange.strRange(string: self)
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Returns an instance of `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` from
-    /// beginning and ending UTF-16 offsets. The range will contain the <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> from the `from:` offset
-    /// (inclusive) to the `to:` offset (exclusive). If the `from:` offset is larger than the `to:` offset then the values will simply be reversed.
-    /// 
-    /// If the given values are invalid for this string then `nil` is returned.
-    /// 
-    /// For example, the following statement will return an instance of
-    /// `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` that covers the
-    /// <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> `"the"`:
-    /// 
-    ///      `"Now is the time".range(from:7, to:10)`
-    /// 
-    /// The following statement will produce the same results as above:
-    /// 
-    ///      `"Now is the time".range(from:10, to:7)`
-    /// 
-    /// - Parameters:
-    ///   - from: The UTF-16 offset for the start of the range - (inclusive)
-    ///   - to: The UTF-16 offset for the end of the range - (exclusive)
-    /// 
-    /// - Returns: An instance of `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` or
-    ///            `nil` if the give offsets are invalid.
-    ///
-    public func range(from: Int, to: Int) -> Range<String.Index>? {
-        ((from > to) ? (index(idx: to) ..< index(idx: from)) : (index(idx: from) ..< index(idx: to)))
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Returns an instance of `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` that
-    /// covers the range starting at the UTF-16 offset `location:` for `length:` characters. If the given values are invalid for this string then `nil` is returned.
-    /// 
-    /// - Parameters:
-    ///   - location: the UTF-16 offset for the start of the range - (inclusive)
-    ///   - length: the number of characters in the range.
-    /// 
-    /// - Returns: an instance of `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` or
-    ///            `nil` if the given values are invalid.
-    ///
-    public func range(location: Int, length: Int) -> Range<String.Index>? {
-        (index(idx: location) ..< index(idx: (location + length)))
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Given an instance of <code>[RegExResult](https://developer.apple.com/documentation/foundation/nstextcheckingresult)</code> from a
-    /// <code>[RegEx](https://developer.apple.com/documentation/foundation/nsregularexpression)</code> and the number of a capture group within that result, this method will
-    /// return the substring represented by that group. If the group number is not valid or the group did not participate in that match then this method will return `nil`.
-    /// 
-    /// - Parameters:
-    ///   - match: The [result](https://developer.apple.com/documentation/foundation/nstextcheckingresult) of a successful regular expression match.
-    ///   - group: The number of a capture group in that result.
-    ///   - defStr: The default value that is returned if the range does not exist.
-    /// 
-    /// - Returns: The substring represented by that capture group or `nil` if that group number is invalid or the capture group did not participate in that match.
-    ///
-    public func matchGroup(match: RegExResult, group: Int = 0, default defStr: String? = nil) -> String? {
-        if group >= 0 && group < match.numberOfRanges {
-            let range: NSRange = match.range(at: group)
-            if range.location != NSNotFound {
-                return substr(nsRange: range)
-            }
-        }
-        return defStr
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Given an instance of `RegExResult` (aka: <code>[NSTextCheckingResult](https://developer.apple.com/documentation/foundation/NSTextCheckingResult)</code>) this method
-    /// returns a new <code>[String](https://developer.apple.com/documentation/swift/String)</code> instance that contains the
-    /// <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of this <code>[String](https://developer.apple.com/documentation/swift/String)</code>
-    /// from the `from` index up to the beginning of the <code>[NSRange](https://developer.apple.com/documentation/foundation/NSRange)</code> specified by the group in the
-    /// `RegExResult`.
-    /// 
-    /// - Parameters:
-    ///   - match: the instance of `RegExResult` (aka: <code>[NSTextCheckingResult](https://developer.apple.com/documentation/foundation/NSTextCheckingResult)</code>).
-    ///   - group: the group number (See <code>[NSRegularExpression](https://developer.apple.com/documentation/foundation/NSRegularExpression)</code> and
-    ///            <code>[NSTextCheckingResult](https://developer.apple.com/documentation/foundation/NSTextCheckingResult)</code>
-    ///   - fromIdx: the <code>[Character](https://developer.apple.com/documentation/swift/Character)</code> position in the
-    ///              <code>[String](https://developer.apple.com/documentation/swift/String)</code> to use as the lower bounds of the
-    ///              <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> range.
-    /// - Returns: an instance of <code>[String](https://developer.apple.com/documentation/swift/String)</code> containing the
-    ///            <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
-    ///
-    public func preMatch(match: RegExResult, group: Int = 0, from fromIdx: inout Int) -> String? {
-        if group >= 0 && group < match.numberOfRanges {
-            let range: NSRange = match.range(at: group)
-
-            if range.location != NSNotFound {
-                if let r: Range<Index> = self.range(from: fromIdx, to: range.location) {
-                    let s: String = String(self[r])
-                    fromIdx = range.upperBound
-                    return s
-                }
-            }
-        }
-        return nil
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
-    /// <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the given `from:` and `to:` bounds. A <code>[fatal
-    /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds are invalid for the string.
-    /// 
-    /// - Parameters:
-    ///   - from: The index of the start of the substring.
-    ///   - to: The index (exclusive) of the end of the string.
-    /// - Returns: the substring
-    ///
-    public func substr(from fromIdx: Int = 0, to toIdx: Int) -> String {
-        String(self[fromIdx ..< toIdx])
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
-    /// <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the given `from:` index for the `length:` characters. A <code>[fatal
-    /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds are invalid for the string.
-    /// 
-    /// - Parameters:
-    ///   - from: The index of the start of the substring.
-    ///   - length: The number of characters to include in the substring.
-    /// - Returns: the substring
-    ///
-    public func substr(from fromIdx: Int = 0, length: Int) -> String {
-        substr(from: fromIdx, to: (fromIdx + length))
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
-    /// <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the given
-    /// <code>[Range](https://developer.apple.com/documentation/swift/Range)</code>. A <code>[fatal
-    /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds are invalid for the string.
-    /// 
-    /// - Parameter range: the <code>[Range](https://developer.apple.com/documentation/swift/Range)</code> of the
-    ///                    <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
-    /// - Returns: a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
-    ///            <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
-    ///
-    public func substr(from fromIdx: Int) -> String {
-        String(self[index(idx: fromIdx) ..< endIndex])
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
-    /// <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the given
-    /// <code>[NSRange](https://developer.apple.com/documentation/foundation/NSRange)</code>. A <code>[fatal
-    /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds are invalid for the string.
-    /// 
-    /// - Parameter nsRange: the <code>[NSRange](https://developer.apple.com/documentation/foundation/NSRange)</code> of the
-    ///                      <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>
-    /// - Returns: a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
-    ///            <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
-    ///
-    public func substr(nsRange: NSRange) -> String {
-        guard let range: Range<String.Index> = self.range(nsRange: nsRange) else {
-            fatalError("NSRange values invalid for this string.")
-        }
-        return String(self[range])
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Returns the <code>[Character](https://developer.apple.com/documentation/swift/Character)</code> at the `idx`th integer position in the string.
-    /// 
-    /// - Parameter idx: the integer offset into the <code>[String](https://developer.apple.com/documentation/swift/String)</code>.
-    /// - Returns: the <code>[Character](https://developer.apple.com/documentation/swift/Character)</code> at the offset indicated by `idx`.
-    ///
-    public subscript(_ idx: Int) -> Character {
-        self[self.index(self.startIndex, offsetBy: idx)]
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Returns the <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the given
-    /// <code>[Range](https://developer.apple.com/documentation/swift/Range)</code>. A fatal error is thrown if the range is invalid for the string.
-    /// 
-    /// - Parameter range: the <code>[Range](https://developer.apple.com/documentation/swift/Range)</code> of the
-    ///                    <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
-    /// - Returns: the <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
-    ///
-    public subscript(_ range: Range<Int>) -> Substring {
-        self[index(idx: range.lowerBound) ..< index(idx: range.upperBound)]
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Get the position (line, column) of the index in the given string relative to the given starting position (line, column).
-    /// 
-    /// - Parameters:
-    ///   - idx: the index.
-    ///   - position: the starting position. Defaults to (1, 1).
-    ///   - tx: the tab size. Defaults to 4.
-    /// - Returns: the position (line, column) of the index within the string.
-    ///
-    public func positionOfIndex(_ idx: Index, position: TextPosition = (1, 1), tabSize tx: Int8 = 4) -> TextPosition {
-        var idx = idx
-        var pos = position
-        while idx < endIndex {
-            textPositionUpdate(self[idx], pos: &pos, tabWidth: tx)
-            formIndex(after: &idx)
-        }
-        return pos
-    }
-}
-
-public func tabCalc(pos i: Int32, tabSize sz: Int8 = 4) -> Int32 { let s = Int32(sz); return (((((i - 1) + s) / s) * s) + 1) }
-
-public func textPositionUpdate(_ char: Character, pos: inout TextPosition, tabWidth sz: Int8 = 4) {
-    switch char {
-        case "\n", "\r", "\r\n": pos = (pos.0 + 1, 1)
-        case "\t":               pos = (pos.0, tabCalc(pos: pos.1, tabSize: sz))
-        case "\u{0c}":           pos = (pos.0 + 24, 1)
-        case "\u{0b}":           pos = (tabCalc(pos: pos.0, tabSize: sz), pos.1)
-        default:                 pos = (pos.0, pos.1 + 1)
-    }
-}
-
-infix operator ==~: ComparisonPrecedence
-infix operator !=~: ComparisonPrecedence
-
-extension StringProtocol {
-    /*===========================================================================================================================================================================*/
-    /// Returns the index of the first encounter of any of the given characters starting at the given index.
-    /// 
-    /// - Parameters:
-    ///   - chars: the characters to look for.
-    ///   - idx: the index in this string to start looking.
-    /// - Returns: the index or `nil` if none of the characters are found.
-    ///
-    public func firstIndex(ofAnyOf chars: Character..., from idx: String.Index) -> String.Index? {
-        var oIdx = idx
-        while oIdx < endIndex {
-            if chars.contains(self[oIdx]) { return oIdx }
-            formIndex(after: &oIdx)
-        }
-        return nil
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Case insensitive equals.
-    /// 
-    /// - Parameters:
-    ///   - lhs: the left-hand string
-    ///   - rhs: the right-hand string
-    /// - Returns: `true` if they are equal when compared case insensitively.
-    ///
-    public static func ==~ (lhs: Self, rhs: Self) -> Bool { (lhs.localizedCaseInsensitiveCompare(rhs) == ComparisonResult.orderedSame) }
-
-    /*===========================================================================================================================================================================*/
-    /// Case insensitive NOT equals.
-    /// 
-    /// - Parameters:
-    ///   - lhs: the left-hand string
-    ///   - rhs: the right-hand string
-    /// - Returns: `true` if they are not equal when compared case insensitively.
-    ///
-    public static func !=~ (lhs: Self, rhs: Self) -> Bool { (lhs.localizedCaseInsensitiveCompare(rhs) != ComparisonResult.orderedSame) }
 }

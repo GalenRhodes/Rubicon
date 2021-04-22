@@ -37,7 +37,7 @@ public extension NSRange {
     /// - Returns: the slice range for the given string based on this <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> or `nil` if this
     ///            <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> is not valid.
     ///
-    func strRange(string: String) -> Range<String.Index>? {
+    func strRange<S: StringProtocol>(string: S) -> Range<String.Index>? {
         Range<String.Index>(self, in: string)
     }
 }

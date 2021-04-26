@@ -214,7 +214,7 @@ open class IConvCharInputStream: CharInputStream {
 
                 if inputStream.streamStatus == .notOpen { inputStream.open() }
 
-                guard inputStream.streamError != nil else { throw inputStream.streamError! }
+                guard inputStream.streamError == nil else { throw inputStream.streamError! }
                 guard inputStream.streamStatus != .closed else { return }
 
                 while isOpen {

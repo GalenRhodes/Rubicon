@@ -28,9 +28,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Added to StringProtocol.&#10;    func forEach(inRange: Range&lt;String.Index&gt;, _ body: (Character) throws -&gt; Void) rethrows&#10;    func forEach(match: RegularExpression.Match?, group: Int = 0, _ body: (Character) throws -&gt; Void) rethrows -&gt; Bool">
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Added:&#10;    public func nextCharPosition(currentPosition pos: TextPosition, character char: Character, tabWidth sz: Int8 = 4) -&gt; TextPosition">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/String.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/String.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -290,14 +290,9 @@
       <workItem from="1618695941503" duration="25691000" />
       <workItem from="1618916418310" duration="21259000" />
       <workItem from="1619024372611" duration="5699000" />
-      <workItem from="1619094275336" duration="5182000" />
-    </task>
-    <task id="LOCAL-00109" summary="Performance improvements to IConvCharInputStream.">
-      <created>1611595904693</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1611595904693</updated>
+      <workItem from="1619094275336" duration="6091000" />
+      <workItem from="1619198853871" duration="1278000" />
+      <workItem from="1619455151035" duration="38000" />
     </task>
     <task id="LOCAL-00110" summary="Added:&#10;    func hasAnyPrefix(_ prefixes: String...) -&gt; Bool&#10;    func hasAnySuffix(_ suffixes: String...) -&gt; Bool">
       <created>1611601533377</created>
@@ -635,7 +630,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619101943462</updated>
     </task>
-    <option name="localTasksCounter" value="158" />
+    <task id="LOCAL-00158" summary="Added:&#10;    public func nextCharPosition(currentPosition pos: TextPosition, character char: Character, tabWidth sz: Int8 = 4) -&gt; TextPosition">
+      <created>1619107489265</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1619107489265</updated>
+    </task>
+    <option name="localTasksCounter" value="159" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -668,7 +670,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added CharInputStream.markBackup(count:) -&gt; Int" />
     <MESSAGE value="Added CharInputStream.markBackup() -&gt; Int" />
     <MESSAGE value="Added String.getCharacters(splitClusters:) -&gt; [Character]." />
     <MESSAGE value="Debugging Package Dependencies." />
@@ -693,7 +694,8 @@
     <MESSAGE value="Major overhaul of EasyByteBuffer to make it safer to use." />
     <MESSAGE value="Added to StringProtocol.&#10;    func forEach(inRange: Range&lt;String.Index&gt;, _ body: (Character) throws -&gt; Void) rethrows" />
     <MESSAGE value="Added to StringProtocol.&#10;    func forEach(inRange: Range&lt;String.Index&gt;, _ body: (Character) throws -&gt; Void) rethrows&#10;    func forEach(match: RegularExpression.Match?, group: Int = 0, _ body: (Character) throws -&gt; Void) rethrows -&gt; Bool" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added to StringProtocol.&#10;    func forEach(inRange: Range&lt;String.Index&gt;, _ body: (Character) throws -&gt; Void) rethrows&#10;    func forEach(match: RegularExpression.Match?, group: Int = 0, _ body: (Character) throws -&gt; Void) rethrows -&gt; Bool" />
+    <MESSAGE value="Added:&#10;    public func nextCharPosition(currentPosition pos: TextPosition, character char: Character, tabWidth sz: Int8 = 4) -&gt; TextPosition" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added:&#10;    public func nextCharPosition(currentPosition pos: TextPosition, character char: Character, tabWidth sz: Int8 = 4) -&gt; TextPosition" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="CidrCoverage/Rubicon/Rubicon Tests.json" NAME="Rubicon Tests Coverage Results" MODIFIED="1608608581698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="llvm-cov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

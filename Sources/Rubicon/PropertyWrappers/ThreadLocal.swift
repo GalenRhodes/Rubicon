@@ -56,13 +56,15 @@ public class ThreadLocal<T> {
             guard pthread_key_create(&key, nil) == 0 else { fatalError("Unable to create thread local key.") }
             threadKey = key
         #endif
-        self.wrappedValue = wrappedValue
+        tlsData[getTlsId()] = wrappedValue
     }
 
     deinit {
         #if os(Windows)
+            TlsSetValue(threadKey, nil)
             TlsFree(threadKey)
         #else
+            pthread_setspecific(threadKey, nil)
             pthread_key_delete(threadKey)
         #endif
         tlsLock.withLock {

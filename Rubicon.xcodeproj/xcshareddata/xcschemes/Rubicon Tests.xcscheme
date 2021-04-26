@@ -28,7 +28,7 @@
             </BuildableReference>
             <SelectedTests>
                <Test
-                  Identifier = "IConvTests/testIConvList">
+                  Identifier = "IConvTests/testIConvCharInputStream_UTF_8">
                </Test>
             </SelectedTests>
          </TestableReference>

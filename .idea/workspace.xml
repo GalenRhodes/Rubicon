@@ -29,9 +29,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Bug fixes.">
+      <change afterPath="$PROJECT_DIR$/Tests/RubiconTests/Files/Test.dtd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/RubiconTests/Files/Test.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/RubiconTests/Files/Test2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/RubiconTests/Files/Test3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/RubiconTests/Files/Test4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/RubiconTests/Files/Test_UTF-16BE_ext.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/RubiconTests/Files/Test_UTF-16LE_ext.dtd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/RubiconTests/Files/Test_UTF-8_ext.dtd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/RubiconTests/Files/Test_UTF-8_ext.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/RubiconTests/Files/compname.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Rubicon_Tests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Rubicon_Tests.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/ReadWriteLock.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/ReadWriteLock.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/PropertyWrappers/ThreadLocal.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/PropertyWrappers/ThreadLocal.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/Rubicon Tests.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/Rubicon Tests.xcscheme" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/Files/Test_UTF-16BE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/RubiconTests/Files/Test_UTF-16BE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/Files/Test_UTF-32LE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/RubiconTests/Files/Test_UTF-32LE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/Files/Test_UTF-8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/RubiconTests/Files/Test_UTF-8.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/Files/Test_WINDOWS-1252.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/RubiconTests/Files/Test_WINDOWS-1252.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/Files/utf16BOMTestFile.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/Files/utf16NoBOMTestFile.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/Files/utf8TestFile.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +105,7 @@
     <option name="sortByType" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="RubiconTests" />
+    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -293,14 +312,7 @@
       <workItem from="1619024372611" duration="5699000" />
       <workItem from="1619094275336" duration="6091000" />
       <workItem from="1619198853871" duration="1278000" />
-      <workItem from="1619455151035" duration="1807000" />
-    </task>
-    <task id="LOCAL-00112" summary="Added:&#10;    func hasAnyPrefix(_ prefixes: String...) -&gt; Bool&#10;    func hasAnySuffix(_ suffixes: String...) -&gt; Bool">
-      <created>1611610794798</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1611610794798</updated>
+      <workItem from="1619455151035" duration="4134000" />
     </task>
     <task id="LOCAL-00113" summary="Added:&#10;    func hasAnyPrefix(_ prefixes: String...) -&gt; Bool&#10;    func hasAnySuffix(_ suffixes: String...) -&gt; Bool">
       <created>1611611289553</created>
@@ -638,7 +650,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619455741104</updated>
     </task>
-    <option name="localTasksCounter" value="161" />
+    <task id="LOCAL-00161" summary="Bug fixes.">
+      <created>1619457205503</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1619457205503</updated>
+    </task>
+    <option name="localTasksCounter" value="162" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

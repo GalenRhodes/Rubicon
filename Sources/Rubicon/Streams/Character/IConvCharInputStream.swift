@@ -65,6 +65,20 @@ open class IConvCharInputStream: CharInputStream {
         self.inputStream = SimpleIConvCharInputStream(inputStream: inputStream, encodingName: encodingName, autoClose: autoClose)
     }
 
+    public convenience init(filename: String, encodingName: String) throws {
+        guard let stream = InputStream(fileAtPath: filename) else { throw StreamError.FileNotFound(description: filename) }
+        self.init(inputStream: stream, encodingName: encodingName, autoClose: true)
+    }
+
+    public convenience init(url: URL, encodingName: String) throws {
+        guard let stream = InputStream(url: url) else { throw StreamError.FileNotFound(description: url.absoluteString) }
+        self.init(inputStream: stream, encodingName: encodingName, autoClose: true)
+    }
+
+    public convenience init(data: Data, encodingName: String) {
+        self.init(inputStream: InputStream(data: data), encodingName: encodingName, autoClose: true)
+    }
+
     open func open() {
         lock.withLock {
             guard status == .notOpen else { return }

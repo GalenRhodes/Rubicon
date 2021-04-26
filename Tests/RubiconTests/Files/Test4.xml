@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--This is a comment.-->
+<?type stupid="is" dummy="does"?>
+<!DOCTYPE gsr:Person [
+        <!ENTITY % qt "(gsr:LastName,gsr:FirstName,MiddleName,(garfield|odie),pgx:dob,bob:info,ack:Batman,usa:family,foo?,bar?)">
+        <!ELEMENT gsr:Person (gsr:LastName,gsr:FirstName,MiddleName,(garfield|odie),pgx:dob,bob:info,ack:Batman,usa:family,foo?,bar?,foobar?,gsr:goat?,gsr:lamb?,gsr:duck?,gsr:cow?,pgx:goat?,pgx:lamb?,pgx:duck?,pgx:cow?)>
+        <!ELEMENT foo (ack:Batman)>
+        <!ELEMENT foobar (ack:Batman+)>
+        <!ELEMENT bar (#PCDATA|usa:family)*>
+        <!ELEMENT pgx:goat (ack:Batman|ack:nickname|usa:family+)+>
+        <!ELEMENT pgx:lamb (ack:Batman|ack:nickname|usa:family+)?>
+        <!ELEMENT pgx:duck (ack:Batman|ack:nickname|usa:family+)*>
+        <!ELEMENT pgx:cow  (ack:Batman|ack:nickname|usa:family+)>
+        <!ELEMENT gsr:goat (ack:Batman,ack:nickname,usa:family+)+>
+        <!ELEMENT gsr:lamb (ack:Batman,ack:nickname,usa:family+)?>
+        <!ELEMENT gsr:duck (ack:Batman,ack:nickname,usa:family+)*>
+        <!ELEMENT gsr:cow  (ack:Batman,ack:nickname,usa:family+)>
+        <!ELEMENT garfield EMPTY>
+        <!ELEMENT odie ANY>
+        <!ELEMENT gsr:LastName (#PCDATA)*>
+        <!ELEMENT gsr:FirstName (#PCDATA|ack:nickname|ack:Batman)*>
+        <!ELEMENT MiddleName (#PCDATA)>
+        <!ELEMENT usa:family ((pgx:dob|ack:nickname),(ack:Batman+|bob:dob|bob:info)?)>
+        <!ELEMENT bob:info (bob:dob,ack:nickname*)>
+        <!ELEMENT bob:dob (#PCDATA)>
+        <!ELEMENT pgx:dob (#PCDATA)>
+        <!ELEMENT ack:nickname (#PCDATA)>
+        <!ELEMENT ack:Batman (#PCDATA)>
+        <!ENTITY smiley "🤩">
+        <!ENTITY compname SYSTEM "compname.txt">
+        <!ENTITY copyright "🤪 2017 by &compname; incorporated &smiley;">
+        <!ATTLIST MiddleName preferred (YES|NO) "NO">
+        <!ATTLIST gsr:LastName pgx:type CDATA #REQUIRED>
+        <!ATTLIST pgx:dob pgx:type (Gregorian|Julian) #REQUIRED>
+        <!ATTLIST bob:dob pgx:type (Gregorian|Julian) #REQUIRED>
+        <!ATTLIST bob:info type CDATA #IMPLIED>
+        <!ATTLIST bob:info gsr:region (USA|UK|CAN) #REQUIRED>
+        <!ATTLIST gsr:LastName gsr:type CDATA #IMPLIED>
+        <!ATTLIST bob:info id ID #IMPLIED>
+        ]>
+<gsr:Person xmlns:gsr="urn:GalenSherardRhodes"
+            xmlns:usa="urn:UnitedStatesOfAmerica"
+            xmlns:pgx="http://pgx.galenrhodes.com"
+            xmlns:ack="urn:dccommics"
+            xmlns="urn:Canada">
+    <gsr:LastName pgx:type="English" gsr:type="nickname">Rhodes</gsr:LastName>
+    <gsr:FirstName>Galen</gsr:FirstName>
+    <MiddleName preferred="YES">Sherard</MiddleName>
+    <garfield/>
+    <pgx:dob pgx:type="Gregorian">12 December 1967</pgx:dob>
+    <bob:info xmlns:bob="urn:minions" xmlns:ack="urn:bill.the.cat" id="1" type="demo" gsr:region="USA">
+        <bob:dob pgx:type="Gregorian">25 November 1970</bob:dob>
+        <ack:nickname>&smiley;Glenn&smiley;</ack:nickname>
+    </bob:info>
+    <ack:Batman>Wonder Woman</ack:Batman>
+    <usa:family>Galen &copyright; Rhodes</usa:family>
+</gsr:Person>

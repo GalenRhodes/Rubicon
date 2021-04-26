@@ -27,11 +27,11 @@
         <!ELEMENT ack:nickname (#PCDATA)>
         <!ELEMENT ack:Batman (#PCDATA)>
         ]>
-<gsr:Person xmlns="urn:Canada"
-            xmlns:gsr="urn:GalenSherardRhodes"
+<gsr:Person xmlns:gsr="urn:GalenSherardRhodes"
             xmlns:usa="urn:UnitedStatesOfAmerica"
             xmlns:pgx="http://pgx.galenrhodes.com"
-            xmlns:ack="urn:dccommics">
+            xmlns:ack="urn:dccommics"
+            xmlns="urn:Canada">
     <gsr:LastName pgx:type="German" gsr:type="nickname">Rhodes</gsr:LastName>
     <gsr:FirstName>Galen</gsr:FirstName>
     <MiddleName preferred="YES">Sherard</MiddleName>
@@ -44,4 +44,3 @@
     <garfield/>
     <ack:Batman>Wonder Woman</ack:Batman>
 </gsr:Person>
-

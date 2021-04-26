@@ -1514,14 +1514,14 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/PropertyWrappers/ThreadLocal.swift",
-      "line": 40,
+      "line": 41,
       "symbol": "ThreadLocal.wrappedValue",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/PropertyWrappers/ThreadLocal.swift",
-      "line": 50,
+      "line": 46,
       "symbol": "ThreadLocal.init(wrappedValue:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

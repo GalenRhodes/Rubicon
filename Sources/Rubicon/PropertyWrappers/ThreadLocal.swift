@@ -34,17 +34,13 @@ fileprivate let tlsLock:   NSLock                           = NSLock()
 ///
 @propertyWrapper
 public class ThreadLocal<T> {
-    private var tlsData:   [Int: T] = [:]
-    private let threadKey: OSThreadKey
+    private var tlsData:      [Int: T] = [:]
+    private let threadKey:    OSThreadKey
+    private let defaultValue: T
 
     public var wrappedValue: T {
-        get {
-            guard let value = tlsData[getTlsId()] else { fatalError("Thread local storage was not initialized.") }
-            return value
-        }
-        set {
-            tlsData[getTlsId()] = newValue
-        }
+        get { (tlsData[getTlsId()] ?? defaultValue) }
+        set { tlsData[getTlsId()] = newValue }
     }
 
     public init(wrappedValue: T) {
@@ -56,7 +52,7 @@ public class ThreadLocal<T> {
             guard pthread_key_create(&key, nil) == 0 else { fatalError("Unable to create thread local key.") }
             threadKey = key
         #endif
-        tlsData[getTlsId()] = wrappedValue
+        defaultValue = wrappedValue
     }
 
     deinit {

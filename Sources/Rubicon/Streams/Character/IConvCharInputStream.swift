@@ -42,12 +42,12 @@ open class IConvCharInputStream: CharInputStream {
 
     private      let inputStream:       SimpleCharInputStream
     private      var isRunning:         Bool          = false
-    private      let isReading:         AtomicValue   = AtomicValue(initialValue: false)
-    private      var buffer:            [Character]   = []
-    private      var marks:             [MarkItem]    = []
+    private lazy var isReading:         AtomicValue   = AtomicValue(initialValue: false)
+    private lazy var buffer:            [Character]   = []
+    private lazy var marks:             [MarkItem]    = []
     private      var tab:               Int8          = 4
-    private      let lock:              Conditional   = Conditional()
-    private      let rdLock:            Conditional   = Conditional()
+    private lazy var lock:              Conditional   = Conditional()
+    private lazy var rdLock:            Conditional   = Conditional()
     private      var pos:               TextPosition  = (0, 0)
     private      var error:             Error?        = nil
     private      var status:            Stream.Status = .notOpen

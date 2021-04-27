@@ -53,12 +53,12 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
 
     private      let autoClose:         Bool
     private      let inputStream:       InputStream
-    private      let lock:              Conditional   = Conditional()
+    private lazy var lock:              Conditional   = Conditional()
     private      var status:            Stream.Status = .notOpen
     private      var isRunning:         Bool          = false
-    private      var isReading:         AtomicValue   = AtomicValue(initialValue: false)
+    private lazy var isReading:         AtomicValue   = AtomicValue(initialValue: false)
     private      var error:             Error?        = nil
-    private      var buffer:            [Character]   = []
+    private lazy var buffer:            [Character]   = []
     private lazy var queue:             DispatchQueue = DispatchQueue(label: UUID().uuidString, qos: .utility, autoreleaseFrequency: .workItem)
 
     private      var isOpen:            Bool          { (status == .open)                }
@@ -117,6 +117,8 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
         lock.withLock {
             guard status == .notOpen else { return }
             status = .open
+            isRunning = true
+            isReading.value = false
             queue.async { [weak self] in if let s = self { s.readerThread() } }
         }
     }

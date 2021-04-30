@@ -28,23 +28,22 @@ class LongevityTests: XCTestCase {
 
     func testStreamLongevity() {
         do {
-//            var chars:  [Character]      = []
             let stream: IConvCharInputStream = try IConvCharInputStream(filename: "Tests/RubiconTests/Files/Test_UTF-8.xml", encodingName: "UTF-8")
             stream.open()
-            //debug("Reading character> \"\(try stream?.read() ?? " ")\"")
-            debug("Sleeping 2 seconds...")
-            sleep(2)
-//            debug("Attempting to read 1,200 characters...")
-//            _ = try (stream?.read(chars: &chars, maxLength: 1200) ?? 0)
-//            debug("\(chars.count) characters were read.")
-            debug("stream retain count - \(PGGetRetainCount(stream))")
-//            debug("Characters Read:\n\(String(chars))")
+            doSleep(seconds: 2)
+            debug("TEST> stream retain count - \(PGGetRetainCount(stream))")
+            debug("TEST> stream is about to go out of scope.")
         }
         catch let e {
-            XCTFail("ERROR> \(e)")
+            XCTFail("TEST> ERROR> \(e)")
         }
-        debug("stream = nil")
-        debug("Sleeping 20 seconds...")
-        sleep(20)
+
+        debug("TEST> stream is now out of scope.")
+        doSleep(seconds: 20)
+    }
+
+    private func doSleep(seconds: UInt32) {
+        debug("TEST> Sleeping \(seconds) seconds...")
+        sleep(seconds)
     }
 }

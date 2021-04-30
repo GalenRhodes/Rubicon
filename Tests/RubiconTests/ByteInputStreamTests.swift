@@ -71,17 +71,17 @@ class ByteInputStreamTests: XCTestCase {
     }
 
     private func doRead(stream: MarkInputStream, buffer: UnsafeMutablePointer<UInt8>, maxLength len: Int) throws {
-        let result = try stream.read(to: buffer, maxLength: len)
-
-        print("Read Result: \(result)")
-        print("Stream Status: \(stream.streamStatus)")
-
-        if result < 0, let e = stream.streamError {
-            throw e
-        }
-
-        buffer[result] = 0
-        let str = String(cString: buffer)
-        print("Data: \"\(str)\"")
+//        let result = try stream.read(to: buffer, maxLength: len)
+//
+//        print("Read Result: \(result)")
+//        print("Stream Status: \(stream.streamStatus)")
+//
+//        if result < 0, let e = stream.streamError {
+//            throw e
+//        }
+//
+//        buffer[result] = 0
+//        let str = String(cString: buffer)
+//        print("Data: \"\(str)\"")
     }
 }

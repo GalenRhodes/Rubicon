@@ -19,27 +19,55 @@ import Foundation
 import CoreFoundation
 
 open class AtomicValue<T> {
-    private var _value: T
-    private let cond:   Conditional   = Conditional()
-    private let rwLock: ReadWriteLock = ReadWriteLock()
+    private var v:    T
+    private let lock: Conditional = Conditional()
 
     open var value: T {
-        get { rwLock.withReadLock { _value } }
-        set { cond.withLock { rwLock.withWriteLock { _value = newValue } } }
+        get { lock.withLock { v } }
+        set { lock.withLock { v = newValue } }
     }
 
-    public init(initialValue: T) {
-        _value = initialValue
-    }
+    public init(initialValue: T) { v = initialValue }
 
-    open func waitUntil<V>(valueIs test: (T) -> Bool, thenWithValueSetTo val: T, _ body: () throws -> V) rethrows -> V {
-        try cond.withLock {
-            while !test(_value) { cond.broadcastWait() }
-            let v = _value
-            rwLock.withWriteLock { _value = val }
-            let r = try body()
-            rwLock.withWriteLock { _value = v }
-            return r
+    open func waitUntil(valueIn c: T..., thenWithVal val: T? = nil) where T: Equatable { waitUntil(valueIn: c) }
+
+    open func waitUntil(valueIn c: [T], thenWithVal val: T? = nil) where T: Equatable { waitUntil { check(c, for: $0) } }
+
+    open func waitUntil(predicate: (T) -> Bool, thenWithVal val: T? = nil) { waitUntil(predicate: predicate, thenWithVal: val, {}) }
+
+    /*===========================================================================================================================================================================*/
+    /// Wait Until
+    /// 
+    /// - Parameters:
+    ///   - c: The predicate values to test the variable for before the closure gets executed.
+    ///   - val: The value you want the variable set to while executing the closure.
+    ///   - cl: The closure to execute.
+    /// - Returns: The value returned by the closure.
+    /// - Throws: Any error thrown by the closure.
+    ///
+    open func waitUntil<V>(valueIn c: T..., thenWithVal val: T? = nil, _ cl: () throws -> V) rethrows -> V where T: Equatable { try waitUntil(valueIn: c, thenWithVal: val, cl) }
+
+    open func waitUntil<V>(valueIn c: [T], thenWithVal val: T? = nil, _ cl: () throws -> V) rethrows -> V where T: Equatable { try waitUntil(predicate: { check(c, for: $0) }, thenWithVal: val, cl) }
+
+    open func waitUntil<V>(predicate: (T) -> Bool, thenWithVal val: T? = nil, _ cl: () throws -> V) rethrows -> V {
+        nDebug(.In, "waitUntil")
+        defer { nDebug(.Out, "waitUntil") }
+        let vt: T = lock.withLock {
+            nDebug(.In, "Predicate Test")
+            defer { nDebug(.Out, "Predicate Test") }
+            while !predicate(v) {
+                nDebug(.In, "Wait for Predicate")
+                defer { nDebug(.Out, "Wait for Predicate") }
+                lock.broadcastWait()
+            }
+            return v
         }
+        defer { value = vt }
+        if let val = val { value = val }
+        nDebug(.In, "waitUntil executing closure")
+        defer { nDebug(.Out, "waitUntil executing closure") }
+        return try cl()
     }
+
+    private func check(_ list: [T], for x: T) -> Bool where T: Equatable { list.contains { y in (x == y) } }
 }

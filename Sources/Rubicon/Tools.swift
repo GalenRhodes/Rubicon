@@ -213,8 +213,7 @@ public func NanoSleep2(seconds: UInt32 = 0, nanos: UInt32 = 0) {
         t1 = t2
         t2.tv_sec = 0
         t2.tv_nsec = 0
-    }
-    while true
+    } while true
 }
 
 /*===============================================================================================================================================================================*/
@@ -518,3 +517,72 @@ public func value<T: Equatable>(_ value: T, isOneOf: [T]) -> Bool { isOneOf.isAn
 /// - Returns: the number of bytes that make up that many instances of that datatype.
 ///
 @inlinable public func toBytes<T>(type: T.Type, _ value: Int) -> Int { ((value * MemoryLayout<T>.stride) / MemoryLayout<UInt8>.stride) }
+
+@inlinable public func debug(_ obj: Any..., separator: String = " ", terminator: String = "\n") { debug(obj, separator: separator, terminator: terminator) }
+
+@inlinable public func debug(_ obj: [Any], separator: String = " ", terminator: String = "\n") {
+    #if DEBUG
+        if !obj.isEmpty {
+            print(obj[obj.startIndex], terminator: "")
+            for i in (obj.index(after: obj.startIndex) ..< obj.endIndex) {
+                print(separator, terminator: "")
+                print(obj[i], terminator: "")
+            }
+        }
+        print("", terminator: terminator)
+    #endif
+}
+
+private var nestLevel: Int       = 0
+private let nestLock:  MutexLock = MutexLock()
+
+public enum NestType { case None, In, Out }
+
+private func nDebugIndent(_ count: Int, _ string: inout String, _ msg: String) {
+    for _ in (0 ..< count) { string.append("    ") }
+    string.append(msg)
+}
+
+public func nDebug(_ nestType: NestType = .None, _ obj: Any..., separator: String = " ") {
+    #if DEBUG
+        nestLock.withLock {
+            var str: String = ""
+            if obj.isEmpty {
+                switch nestType {
+                    case .None: break
+                    case .In: nestLevel++
+                    case .Out: if nestLevel > 0 { nestLevel-- }
+                }
+            }
+            else {
+                switch nestType {
+                    case .None:
+                        nDebugIndent(nestLevel, &str, "  | ")
+                    case .In:
+                        nDebugIndent(nestLevel++, &str, ">>> ")
+                    case .Out:
+                        if nestLevel > 0 { nDebugIndent(--nestLevel, &str, "<<< ") }
+                        else { nDebugIndent(nestLevel, &str, "<<< ") }
+                }
+
+                str.append("\(obj[obj.startIndex])")
+                for i in (obj.index(after: obj.startIndex) ..< obj.endIndex) { str.append("\(separator)\(obj[i])") }
+            }
+            print(str)
+        }
+    #endif
+}
+
+/*===============================================================================================================================================================================*/
+/// We're going to wrap this in another function for two reasons:
+///     <ol>
+///         <li>A function call (including the one to `CFGetRetainCount()`) causes the retain count of the object to be incremented by 1 so we will adjust it.</li>
+///         <li>In case `CFGetRetainCount()` ever goes away or doesn't exist on other platforms.</li>
+///     </ol>
+/// 
+/// - Parameter obj: The object to get the retain count for.
+/// - Returns: The current retain count JUST BEFORE the call to this method.
+///
+public func PGGetRetainCount(_ obj: AnyObject) -> Int {
+    (CFGetRetainCount(obj) - 2)
+}

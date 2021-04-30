@@ -56,7 +56,6 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
     private lazy var lock:              Conditional   = Conditional()
     private      var status:            Stream.Status = .notOpen
     private      var isRunning:         Bool          = false
-    private lazy var isReading:         AtomicValue   = AtomicValue(initialValue: false)
     private      var error:             Error?        = nil
     private lazy var buffer:            [Character]   = []
     private lazy var queue:             DispatchQueue = DispatchQueue(label: UUID().uuidString, qos: .utility, autoreleaseFrequency: .workItem)
@@ -75,41 +74,37 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
     }
 
     public func read() throws -> Character? {
-        try isReading.waitUntil(valueIs: { !$0 }, thenWithValueSetTo: true) {
-            try lock.withLock {
-                while canWait && buffer.isEmpty { lock.broadcastWait() }
-                guard isOpen else { return nil }
-                guard noError else { throw error! }
-                return buffer.popFirst()
-            }
+        try lock.withLock {
+            while canWait && buffer.isEmpty { lock.broadcastWait() }
+            guard isOpen else { return nil }
+            guard noError else { throw error! }
+            return buffer.popFirst()
         }
     }
 
     public func append(to chars: inout [Character], maxLength: Int) throws -> Int {
-        try isReading.waitUntil(valueIs: { !$0 }, thenWithValueSetTo: true) {
-            try lock.withLock {
-                guard isOpen else { return 0 }
-                let ln = ((maxLength < 0) ? Int.max : maxLength)
-                var cc = 0
+        try lock.withLock {
+            guard isOpen else { return 0 }
+            let ln = ((maxLength < 0) ? Int.max : maxLength)
+            var cc = 0
 
-                while cc < maxLength {
-                    while canWait && buffer.isEmpty { lock.broadcastWait() }
+            while cc < maxLength {
+                while canWait && buffer.isEmpty { lock.broadcastWait() }
 
-                    guard isOpen else { break }
-                    guard noError else { throw error! }
-                    guard hasBChars else { break }
+                guard isOpen else { break }
+                guard noError else { throw error! }
+                guard hasBChars else { break }
 
-                    let i = min(buffer.count, (ln - cc))
-                    let r = (0 ..< i)
+                let i = min(buffer.count, (ln - cc))
+                let r = (0 ..< i)
 
-                    chars.append(contentsOf: buffer[r])
-                    buffer.removeSubrange(r)
-                    cc += i
-                    if canWait { lock.broadcastWait() }
-                }
-
-                return cc
+                chars.append(contentsOf: buffer[r])
+                buffer.removeSubrange(r)
+                cc += i
+                if canWait { lock.broadcastWait() }
             }
+
+            return cc
         }
     }
 
@@ -118,20 +113,17 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
             guard status == .notOpen else { return }
             status = .open
             isRunning = true
-            isReading.value = false
             queue.async { [weak self] in if let s = self { s.readerThread() } }
         }
     }
 
     public func close() {
-        isReading.waitUntil(valueIs: { !$0 }, thenWithValueSetTo: true) {
-            lock.withLock {
-                guard status == .open else { return }
-                status = .closed
-                while isRunning { lock.broadcastWait() }
-                buffer.removeAll()
-                error = nil
-            }
+        lock.withLock {
+            guard status == .open else { return }
+            status = .closed
+            while isRunning { lock.broadcastWait() }
+            buffer.removeAll()
+            error = nil
         }
     }
 
@@ -153,7 +145,6 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
                 while isOpen {
                     while isOpen && buffer.count >= MAX_READ_AHEAD { lock.broadcastWait() }
                     guard try readChars(iconv: iconv, input: input, output: output, hangingCR: &hangingCR) else { break }
-                    if isReading.value { lock.broadcastWait() }
                 }
 
                 if isOpen { try readerThreadEnding(iconv: iconv, input: input, output: output, hangingCR: &hangingCR) }

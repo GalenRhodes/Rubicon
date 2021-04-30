@@ -48,7 +48,7 @@ open class RingByteBuffer {
     /*===========================================================================================================================================================================*/
     /// The number of bytes in the available.
     ///
-    public final var available:         Int { PGRingBufferCount(buffer) }
+    public final var count:             Int { PGRingBufferCount(buffer) }
 
     /*===========================================================================================================================================================================*/
     /// Returns `true` if there are bytes in the ring buffer.
@@ -142,7 +142,7 @@ open class RingByteBuffer {
     public final func get(dest: inout Data, maxLength: Int = -1, overWrite: Bool = true) -> Int {
         if overWrite { dest.removeAll(keepingCapacity: true) }
 
-        let mx: Int = min(available, ((maxLength < 0) ? Int.max : maxLength))
+        let mx: Int = min(count, ((maxLength < 0) ? Int.max : maxLength))
         var cc: Int = 0
 
         if mx > 0 {
@@ -150,7 +150,7 @@ open class RingByteBuffer {
             let buff: BytePointer = BytePointer.allocate(capacity: bLen)
 
             defer { buff.deallocate() }
-            while (cc < mx) && (available > 0) {
+            while (cc < mx) && (count > 0) {
                 let x: Int = PGReadFromRingBuffer(buffer, buff, min(bLen, (mx - cc)))
                 cc += x
                 dest.append(buff, count: x)
@@ -205,7 +205,21 @@ open class RingByteBuffer {
     ///   - rawSrc: the source buffer.
     ///   - length: the number of bytes in the source buffer.
     ///
-    public final func append(src: UnsafeRawPointer, length: Int) { if length > 0 { PGAppendToRingBuffer(buffer, src, length) } }
+    public final func append(src: UnsafeRawPointer, length: Int, maxLength: Int = Int.max) {
+        if length > 0 {
+            if length >= maxLength {
+                clear(keepingCapacity: true)
+                PGAppendToRingBuffer(buffer, (src + (length - maxLength)), maxLength)
+            }
+            else {
+                PGRingBufferConsume(buffer, ((PGRingBufferCount(buffer) + length) - maxLength))
+                PGAppendToRingBuffer(buffer, src, length)
+            }
+        }
+    }
+
+    private func advanceReadPointer(_ delta: Int) {
+    }
 
     /*===========================================================================================================================================================================*/
     /// Append the given bytes to the buffer.

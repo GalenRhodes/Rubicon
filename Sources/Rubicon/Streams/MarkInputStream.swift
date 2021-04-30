@@ -26,6 +26,7 @@ import CoreFoundation
 let InputBufferSize:    Int = 1_024                          //  1KB
 let MaxInputBufferSize: Int = 65_536                         // 64KB
 let ReloadTriggerSize:  Int = ((MaxInputBufferSize / 4) * 3) // 48KB
+let ReadBufferSize:     Int = 4096
 
 /*===============================================================================================================================================================================*/
 /// An <code>[input stream](https://developer.apple.com/documentation/foundation/inputstream)</code> that you can mark places in with a call to `markSet()` and to return to with a
@@ -37,48 +38,52 @@ open class MarkInputStream: InputStream {
     /// A Boolean value that indicates whether the receiver has bytes available to read. `true` if the receiver has bytes available to read, otherwise `false`. May also return
     /// `true` if a read must be attempted in order to determine the availability of bytes.
     ///
-    open override var hasBytesAvailable: Bool                               { lock.withLock { (isGood && hasBytes)                                                  } }
+    open override var hasBytesAvailable: Bool                         { lock.withLock { effOpen    } }
     /*===========================================================================================================================================================================*/
     /// Returns the receiver’s status.
     ///
-    open override var streamStatus:      Stream.Status                      { lock.withLock { (isOpen ? (hasError ? .error : (hasBytes ? .open : .atEnd)) : status) } }
+    open override var streamStatus:      Stream.Status                { lock.withLock { effStatus  } }
     /*===========================================================================================================================================================================*/
     /// Returns an NSError object representing the stream error.
     ///
-    open override var streamError:       Error?                             { lock.withLock { ((isOpen && hasError) ? error : nil)                                  } }
+    open override var streamError:       Error?                       { lock.withLock { error      } }
     /*===========================================================================================================================================================================*/
     /// The number of marked positions for this stream.
     ///
-    open          var markCount:         Int                                { lock.withLock { mstk.count                                                            } }
+    open          var markCount:         Int                          { lock.withLock { mstk.count } }
+    public        var maxMarkLength:     Int                          = Int.max
 
-    private  lazy var buffer:            RingByteBuffer                     = RingByteBuffer(initialCapacity: InputBufferSize)
-    private  lazy var queue:             DispatchQueue                      = DispatchQueue(label: UUID().uuidString, qos: .utility)
-    private  lazy var lock:              Conditional                        = Conditional()
-    private       var mstk:              [RingByteBuffer]                   = []
-    private       var error:             Error?                             = nil
-    private       var readBuffer:        UnsafeMutableBufferPointer<UInt8>? = nil
-    private       var status:            Stream.Status                      = .notOpen
-    private       var isRunning:         Bool                               = false
-
-    private       var isOpen:            Bool                               { (status == .open)                       }
-    private       var hasError:          Bool                               { (buffer.isEmpty && (error != nil))      }
-    private       var isGood:            Bool                               { (isOpen && !hasError)                   }
-    private       var hasBytes:          Bool                               { (buffer.hasBytesAvailable || isRunning) }
-
+    private  lazy var buffer:            RingByteBuffer               = RingByteBuffer(initialCapacity: InputBufferSize)
+    private  lazy var isReading:         AtomicValue                  = AtomicValue(initialValue: false)
+    private  lazy var lock:              Conditional                  = Conditional()
+    private  lazy var mstk:              [RingByteBuffer]             = []
+    private       var readThread:        ReaderThread?                = nil
+    private       var error:             Error?                       = nil
+    private       var readBuffer:        UnsafeMutablePointer<UInt8>? = nil
+    private       var status:            Stream.Status                = .notOpen
+    private       var isRunning:         Bool                         = false
     private       let autoClose:         Bool
     private       let inputStream:       InputStream
+
+    private       var isOpen:            Bool                         { (status == .open)                  }
+    private       var effOpen:           Bool                         { (effStatus == .open)               }
+    private       var nErr:              Bool                         { (error == nil)                     }
+    private       var effStatus:         Stream.Status                { (isOpen ? (buffer.isEmpty ? (nErr ? (isRunning ? .open : .atEnd) : .error) : .open) : status) }
     //@f:1
 
     /*===========================================================================================================================================================================*/
     /// Main initializer. Initializes this stream with the backing stream.
     /// 
-    /// - Parameters
+    /// - Parameters:
     ///   - inputStream: The backing input stream.
+    ///   - maxMarkLength: The maximum distance the read pointer will be allowed to get from the mark pointer. Once the read pointer moves this many bytes past the mark pointer
+    ///                    then the mark pointer will be moved to keep up.
     ///   - autoClose: If `false` the backing stream will NOT be closed when this stream is closed or destroyed. The default is `true`.
     ///
-    public init(inputStream: InputStream, autoClose: Bool = true) {
+    public init(inputStream: InputStream, maxMarkLength: Int = Int.max, autoClose: Bool = true) {
         self.inputStream = inputStream
         self.autoClose = autoClose
+        self.maxMarkLength = max(maxMarkLength, 1)
         super.init(data: Data())
     }
 
@@ -89,7 +94,20 @@ open class MarkInputStream: InputStream {
     /// - Parameter data: The data object from which to read. The contents of data are copied.
     ///
     public override convenience init(data: Data) {
-        self.init(inputStream: InputStream(data: data))
+        self.init(inputStream: InputStream(data: data), autoClose: true)
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Initializes and returns an `MarkInputStream` object for reading from a given <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code> object. The
+    /// stream must be opened before it can be used.
+    /// 
+    /// - Parameters:
+    ///   - data: The data object from which to read. The contents of data are copied.
+    ///   - maxMarkLength: The maximum distance the read pointer will be allowed to get from the mark pointer. Once the read pointer moves this many bytes past the mark pointer
+    ///                    then the mark pointer will be moved to keep up.
+    ///
+    public convenience init(data: Data, maxMarkLength: Int = Int.max) {
+        self.init(inputStream: InputStream(data: data), maxMarkLength: maxMarkLength, autoClose: true)
     }
 
     /*===========================================================================================================================================================================*/
@@ -99,7 +117,20 @@ open class MarkInputStream: InputStream {
     ///
     public override convenience init?(url: URL) {
         guard let stream = InputStream(url: url) else { return nil }
-        self.init(inputStream: stream)
+        self.init(inputStream: stream, autoClose: true)
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Initializes and returns an NSInputStream object that reads data from the file at a given URL.
+    /// 
+    /// - Parameters:
+    ///   - url: The URL to the file.
+    ///   - maxMarkLength: The maximum distance the read pointer will be allowed to get from the mark pointer. Once the read pointer moves this many bytes past the mark pointer
+    ///                    then the mark pointer will be moved to keep up.
+    ///
+    public convenience init?(url: URL, maxMarkLength: Int = Int.max) {
+        guard let stream = InputStream(url: url) else { return nil }
+        self.init(inputStream: stream, maxMarkLength: maxMarkLength, autoClose: true)
     }
 
     /*===========================================================================================================================================================================*/
@@ -109,29 +140,36 @@ open class MarkInputStream: InputStream {
     ///
     public convenience init?(fileAtPath path: String) {
         guard let stream = InputStream(fileAtPath: path) else { return nil }
-        self.init(inputStream: stream)
+        self.init(inputStream: stream, autoClose: true)
     }
 
-    deinit { _close() }
+    /*===========================================================================================================================================================================*/
+    /// Initializes and returns an NSInputStream object that reads data from the file at a given path.
+    /// 
+    /// - Parameters:
+    ///   - path: The path to the file.
+    ///   - maxMarkLength: The maximum distance the read pointer will be allowed to get from the mark pointer. Once the read pointer moves this many bytes past the mark pointer
+    ///                    then the mark pointer will be moved to keep up.
+    ///
+    public convenience init?(fileAtPath path: String, maxMarkLength: Int = Int.max) {
+        guard let stream = InputStream(fileAtPath: path) else { return nil }
+        self.init(inputStream: stream, maxMarkLength: maxMarkLength, autoClose: true)
+    }
+
+    deinit { close() }
 
     /*===========================================================================================================================================================================*/
     /// Reads up to a given number of bytes into a given buffer.
     /// 
     /// - Parameters:
-    ///   - buf: A data buffer. The buffer must be large enough to contain the number of bytes specified by len.
-    ///   - len: The maximum number of bytes to read.
+    ///   - inputBuffer: A data buffer. The buffer must be large enough to contain the number of bytes specified by len.
+    ///   - maxLength: The maximum number of bytes to read.
     /// - Returns: A number indicating the outcome of the operation: <ul><li>A positive number indicates the number of bytes read.</li><li>0 indicates that the end of the buffer
     ///                                                              was reached.</li><li>-1 means that the operation failed; more information about the error can be obtained with
     ///                                                              streamError.</li></ul>
     ///
-    open override func read(_ buf: UnsafeMutablePointer<UInt8>, maxLength len: Int) -> Int {
-        _waitForData { (open: Bool, err: Bool, cc: Int) -> Int in
-            _resetReadBuffer()
-            guard open && !err && cc > 0 else { return ((open && err) ? -1 : 0) }
-            let i = buffer.get(dest: buf, maxLength: len)
-            if let mi = mstk.last { mi.append(src: buf, length: i) }
-            return i
-        }
+    open override func read(_ inputBuffer: UnsafeMutablePointer<UInt8>, maxLength: Int) -> Int {
+        isReading.waitUntil(valueIn: false, thenWithVal: true) { lock.withLock { read(to: inputBuffer, maxLength: maxLength) } }
     }
 
     /*===========================================================================================================================================================================*/
@@ -139,27 +177,26 @@ open class MarkInputStream: InputStream {
     /// available.
     /// 
     /// - Parameters:
-    ///   - buf: Upon return, contains a pointer to a read buffer. The buffer is only valid until the next stream operation is performed.
-    ///   - len: Upon return, contains the number of bytes available.
+    ///   - bufferPtr: Upon return, contains a pointer to a read buffer. The buffer is only valid until the next stream operation is performed.
+    ///   - lengthPtr: Upon return, contains the number of bytes available.
     /// - Returns: `true` if the buffer is available, otherwise `false`.
     ///
-    open override func getBuffer(_ buf: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>, length len: UnsafeMutablePointer<Int>) -> Bool {
-        _waitForData { (open: Bool, err: Bool, cc: Int) -> Bool in
-            _resetReadBuffer()
-            len.pointee = 0
-            buf.pointee = nil
-            guard open && !err && cc > 0 else { return false }
+    open override func getBuffer(_ bufferPtr: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>, length lengthPtr: UnsafeMutablePointer<Int>) -> Bool {
+        isReading.waitUntil(valueIn: false, thenWithVal: true) {
+            lock.withLock {
+                resetReadBuffer(bufferPtr, lengthPtr)
 
-            let b = UnsafeMutableBufferPointer<UInt8>.allocate(capacity: buffer.available)
-            guard let p = b.baseAddress else { return false }
+                let inputBuffer   = UnsafeMutablePointer<UInt8>.allocate(capacity: ReadBufferSize)
+                let countReceived = read(to: inputBuffer, maxLength: ReadBufferSize)
 
-            len.pointee = buffer.get(dest: p, maxLength: b.count)
-            guard len.pointee > 0 else { return false }
-            if let mi = mstk.last { mi.append(src: p, length: len.pointee) }
+                guard countReceived > 0 else {
+                    inputBuffer.deallocate()
+                    return false
+                }
 
-            buf.pointee = p
-            readBuffer = b
-            return true
+                setReadBuffer(inputBuffer, countReceived, bufferPtr, lengthPtr)
+                return true
+            }
         }
     }
 
@@ -168,7 +205,14 @@ open class MarkInputStream: InputStream {
     ///
     open override func open() {
         lock.withLock {
-            _open()
+            // Only open if the stream has NEVER been opened before.
+            if status == .notOpen {
+                status = .open
+                isRunning = true
+                readThread = ReaderThread(stream: self)
+                readThread!.qualityOfService = .userInitiated
+                readThread!.start()
+            }
         }
     }
 
@@ -178,121 +222,222 @@ open class MarkInputStream: InputStream {
     ///
     open override func close() {
         lock.withLock {
-            _close()
-            while isRunning { lock.broadcastWait() }
+            // Only close it if it was previously opened.
+            if status == .open {
+                status = .closed
+                // Wait for the thread to end...
+                while isRunning { lock.broadcastWait() }
+                mstk.forEach { $0.clear(keepingCapacity: false) }
+                mstk.removeAll(keepingCapacity: false)
+                buffer.clear(keepingCapacity: false)
+                resetReadBuffer()
+                error = nil
+            }
         }
     }
 
     /*===========================================================================================================================================================================*/
     /// Marks the current position in the stream.
     ///
-    open func markSet() {
+    open func markSet() { lock.withLock { if effOpen { setMark() } } }
+
+    /*===========================================================================================================================================================================*/
+    /// Returns to the last marked position in the stream.
+    ///
+    open func markReturn() { popMark { buffer.prepend(src: $0) } }
+
+    /*===========================================================================================================================================================================*/
+    /// Deletes the last marked position in the stream.
+    ///
+    open func markDelete() { popMark { _ in } }
+
+    /*===========================================================================================================================================================================*/
+    /// Effectively the same as performing a `markReturn()` followed by a `markSet()`.
+    ///
+    open func markReset() { lastMark { buffer.prepend(src: $0) } }
+
+    /*===========================================================================================================================================================================*/
+    /// Effectively the same as performing a `markDelete()` followed by a `markSet()`.
+    ///
+    open func markUpdate() { lastMark { _ in } }
+
+    /*===========================================================================================================================================================================*/
+    /// Execute the given closure on the last set mark and then move the mark to the current read-pointer.
+    /// 
+    /// - Parameter body: The closure which takes the buffer of characters after the mark.
+    ///
+    private func lastMark(_ body: (RingByteBuffer) -> Void) {
         lock.withLock {
-            mstk <+ RingByteBuffer(initialCapacity: InputBufferSize)
+            if effOpen {
+                if let rb = mstk.last {
+                    body(rb)
+                    rb.clear(keepingCapacity: true)
+                }
+                else {
+                    setMark()
+                }
+            }
         }
     }
 
-    open func markReturn() {
+    /*===========================================================================================================================================================================*/
+    /// Execute the given closure on the last set mark and then remove it.
+    /// 
+    /// - Parameter body: The closure which takes the buffer of characters after the mark.
+    ///
+    private func popMark(_ body: (RingByteBuffer) -> Void) {
         lock.withLock {
-            if let rb = mstk.popLast() {
-                buffer.prepend(src: rb)
-                rb.clear(keepingCapacity: false)
+            if effOpen {
+                if let rb = mstk.popLast() {
+                    body(rb)
+                    rb.clear(keepingCapacity: false)
+                }
             }
         }
     }
 
-    open func markDelete() {
-        lock.withLock {
-            if let rb = mstk.popLast() {
-                rb.clear(keepingCapacity: false)
+    /*===========================================================================================================================================================================*/
+    /// Set a mark at the current read pointer.
+    ///
+    private func setMark() {
+        mstk <+ RingByteBuffer(initialCapacity: InputBufferSize)
+    }
+
+    /*===========================================================================================================================================================================*/
+    /// Perform a read.
+    /// 
+    /// - Parameters:
+    ///   - buf: The receiving byte buffer.
+    ///   - len: The maximum number of bytes to read.
+    /// - Returns: The number of bytes actually read.
+    ///
+    private func read(to buf: UnsafeMutablePointer<UInt8>, maxLength len: Int) -> Int {
+        var cc = 0
+
+        if effOpen {
+            resetReadBuffer()
+
+            while cc < len {
+                // We're not looking for an error because if there was an error then isRunning would be false.
+                while isOpen && buffer.isEmpty && isRunning { lock.broadcastWait() }
+
+                guard buffer.hasBytesAvailable else {
+                    guard nErr else { return -1 }
+                    guard isOpen && isRunning else { break }
+                    continue
+                }
+
+                cc += buffer.get(dest: (buf + cc), maxLength: (len - cc))
             }
+
+            if let mi = mstk.last { mi.append(src: buf, length: cc, maxLength: maxMarkLength) }
         }
+
+        return cc
     }
 
-    open func markUpdate() {
-        lock.withLock {
-            if let rb = mstk.last {
-                rb.clear(keepingCapacity: true)
-            }
-            else {
-                mstk <+ RingByteBuffer(initialCapacity: InputBufferSize)
-            }
-        }
-    }
-
-    open func markReset() {
-        lock.withLock {
-            if let rb = mstk.last {
-                buffer.prepend(src: rb)
-                rb.clear(keepingCapacity: true)
-            }
-            else {
-                mstk <+ RingByteBuffer(initialCapacity: InputBufferSize)
-            }
-        }
-    }
-
-    private func _open() {
-        if status == .notOpen {
-            status = .open
-            isRunning = true
-            _resetFields()
-            queue.async { [weak self] in self?._readerThread() }
-        }
-    }
-
-    private func _close() {
-        if status == .open {
-            status = .closed
-            isRunning = false
-            _resetFields()
-        }
-    }
-
-    private func _resetFields() {
-        error = nil
-        _resetReadBuffer()
-        buffer.clear(keepingCapacity: false)
-        for b in mstk { b.clear(keepingCapacity: false) }
-        mstk.removeAll(keepingCapacity: false)
-    }
-
-    private func _resetReadBuffer() {
+    /*===========================================================================================================================================================================*/
+    /// Remove the current read buffer, created by a call to `getBuffer(_:length:)`, if there is one.
+    ///
+    private func resetReadBuffer() {
         if let b = readBuffer {
             b.deallocate()
             readBuffer = nil
         }
     }
 
-    private func _waitForData<T>(_ body: (Bool, Bool, Int) throws -> T) rethrows -> T {
-        try lock.withLock {
-            while buffer.isEmpty && isOpen && isRunning && !hasError { lock.broadcastWait() }
-            return try body(isOpen, hasError, buffer.available)
-        }
+    /*===========================================================================================================================================================================*/
+    /// Remove the current read buffer, created by a call to `getBuffer(_:length:)`, if there is one.
+    /// 
+    /// - Parameters:
+    ///   - bufferPtr: The pointer to a buffer to be nullified.
+    ///   - lengthPtr: The pointer to a length to be zeroed.
+    ///
+    private func resetReadBuffer(_ bufferPtr: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>, _ lengthPtr: UnsafeMutablePointer<Int>) {
+        resetReadBuffer()
+        bufferPtr.pointee = nil
+        lengthPtr.pointee = 0
     }
 
-    private func _readerThread() {
-        lock.withLock {
-            var go: Bool { isRunning && isOpen && (error == nil) }
+    /*===========================================================================================================================================================================*/
+    /// Set the read buffer.
+    /// 
+    /// - Parameters:
+    ///   - inputBuffer: The new buffer.
+    ///   - count The number of bytes in the buffer.
+    ///   - bufferPtr: The pointer to a buffer.
+    ///   - lengthPtr: The pointer to a length.
+    ///
+    private func setReadBuffer(_ inputBuffer: UnsafeMutablePointer<UInt8>, _ count: Int, _ bufferPtr: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>, _ lengthPtr: UnsafeMutablePointer<Int>) {
+        lengthPtr.pointee = count
+        bufferPtr.pointee = inputBuffer
+        readBuffer = inputBuffer
+    }
 
-            do {
-                defer { isRunning = false }
-                let rbuf = EasyByteBuffer(length: InputBufferSize)
-                if inputStream.streamStatus == .notOpen { inputStream.open() }
-                if let e = inputStream.streamError { throw e }
-                defer { if autoClose { inputStream.close() } }
+    /*===========================================================================================================================================================================*/
+    /// The background thread.
+    ///
+    private class ReaderThread: Thread {
 
-                while go {
-                    while go && (buffer.available >= MaxInputBufferSize) { lock.broadcastWait() }
+        private weak var stream: MarkInputStream?
 
-                    if go {
-                        if try inputStream.read(to: rbuf) == 0 { break }
-                        buffer.append(src: rbuf)
-                    }
+        init(stream: MarkInputStream) {
+            self.stream = stream
+            super.init()
+        }
+
+        override func main() {
+            do { try threadBody() }
+            catch let e { if let st = stream { st.error = e } }
+            endThread()
+        }
+
+        private func threadBody() throws {
+            var keepRunning = try openInputStream()
+
+            if keepRunning {
+                let bytes = UnsafeMutablePointer<UInt8>.allocate(capacity: InputBufferSize)
+                defer { bytes.deallocate() }
+
+                repeat {
+                    guard let st = stream else { break }
+                    keepRunning = try doRead(stream: st, buffer: bytes)
+                } while keepRunning
+            }
+        }
+
+        private func openInputStream() throws -> Bool {
+            var keepRunning = false
+
+            if let st = stream {
+                try st.lock.withLock {
+                    if st.inputStream.streamStatus == .notOpen { st.inputStream.open() }
+                    if let e = st.inputStream.streamError { throw e }
+                    keepRunning = st.isOpen
                 }
             }
-            catch let e {
-                error = e
+            return keepRunning
+        }
+
+        private func doRead(stream st: MarkInputStream, buffer bytes: UnsafeMutablePointer<UInt8>) throws -> Bool {
+            try st.lock.withLock {
+                while st.isOpen && (st.buffer.count > MaxInputBufferSize) { st.lock.broadcastWait() }
+                guard st.isOpen else { return false }
+
+                let cc = st.inputStream.read(bytes, maxLength: InputBufferSize)
+                if cc < 0 { throw st.inputStream.streamError ?? StreamError.UnknownError() }
+                if cc == 0 { return false }
+
+                st.buffer.append(src: bytes, length: cc)
+                if st.isReading.value { st.lock.broadcastWait() }
+                return true
+            }
+        }
+
+        private func endThread() {
+            if let st = stream {
+                if st.autoClose { st.inputStream.close() }
+                st.isRunning = false
             }
         }
     }

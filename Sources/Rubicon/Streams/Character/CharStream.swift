@@ -44,7 +44,7 @@ public protocol CharStream {
     var streamStatus: Stream.Status { get }
 
     /*===========================================================================================================================================================================*/
-    /// Open the stream.
+    /// Open the stream. Once a stream has been opened it can never be re-opened.
     ///
     func open()
 

@@ -21,25 +21,20 @@ import CoreFoundation
 #if os(Windows)
     import WinSDK
     fileprivate typealias OSRWLock = UnsafeMutablePointer<SRWLOCK>
+    fileprivate typealias OSThreadKey = DWORD
+#elseif CYGWIN
+    fileprivate typealias OSRWLock = UnsafeMutablePointer<pthread_rwlock_t?>
+    fileprivate typealias OSThreadKey = pthread_key_t
 #else
-    #if CYGWIN
-        fileprivate typealias OSRWLock = UnsafeMutablePointer<pthread_rwlock_t?>
-    #else
-        fileprivate typealias OSRWLock = UnsafeMutablePointer<pthread_rwlock_t>
-    #endif
+    fileprivate typealias OSRWLock = UnsafeMutablePointer<pthread_rwlock_t>
+    fileprivate typealias OSThreadKey = pthread_key_t
 #endif
 
 open class ReadWriteLock {
-
-    private enum RWState {
-        case None
-        case Read
-        case Write
-    }
+    private enum RWState { case None, Read, Write }
 
     @ThreadLocal private var rwState: RWState = .None
-
-    private var lock: OSRWLock
+    private var              lock:    OSRWLock
 
     public init() {
         lock = OSRWLock.allocate(capacity: 1)
@@ -48,6 +43,7 @@ open class ReadWriteLock {
         #else
             guard pthread_rwlock_init(lock, nil) == 0 else { fatalError("Unable to initialize read/write lock.") }
         #endif
+        rwState = .None
     }
 
     deinit {
@@ -77,21 +73,7 @@ open class ReadWriteLock {
             guard value(r, isOneOf: 0, EBUSY) else { fatalError("Unknown Error.") }
             success = (r == 0)
         #endif
-        rwState = .Read
-        return success
-    }
-
-    open func tryWriteLock() -> Bool {
-        guard rwState == .None else { fatalError("Thread already owns the lock  for \(rwState == .Read ? "reading" : "writing").") }
-        var success: Bool = false
-        #if os(Windows)
-            success = (TryAcquireSRWLockExclusive(lock) != 0)
-        #else
-            let r = pthread_rwlock_tryrdlock(lock)
-            guard value(r, isOneOf: 0, EBUSY) else { fatalError("Unknown Error.") }
-            success = (r == 0)
-        #endif
-        rwState = .Read
+        if success { rwState = .Read }
         return success
     }
 
@@ -105,10 +87,22 @@ open class ReadWriteLock {
         rwState = .Write
     }
 
+    open func tryWriteLock() -> Bool {
+        guard rwState == .None else { fatalError("Thread already owns the lock  for \(rwState == .Read ? "reading" : "writing").") }
+        var success: Bool = false
+        #if os(Windows)
+            success = (TryAcquireSRWLockExclusive(lock) != 0)
+        #else
+            let r = pthread_rwlock_tryrdlock(lock)
+            guard value(r, isOneOf: 0, EBUSY) else { fatalError("Unknown Error.") }
+            success = (r == 0)
+        #endif
+        if success { rwState = .Write }
+        return success
+    }
+
     open func unlock() {
         switch rwState {
-            case .None:
-                fatalError("Thread does not currently own the lock.")
             case .Read:
                 #if os(Windows)
                     ReleaseSRWLockShared(lock)
@@ -121,6 +115,8 @@ open class ReadWriteLock {
                 #else
                     pthread_rwlock_unlock(lock)
                 #endif
+            default:
+                fatalError("Thread does not currently own the lock.")
         }
         rwState = .None
     }

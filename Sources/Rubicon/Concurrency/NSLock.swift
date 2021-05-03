@@ -22,9 +22,6 @@
 
 import Foundation
 import CoreFoundation
-#if os(Windows)
-    import WinSDK
-#endif
 
 public typealias RecursiveLock = NSRecursiveLock
 public typealias MutexLock = NSLock
@@ -65,11 +62,11 @@ extension Locking {
     }
 }
 
-extension NSLock: Locking {
+extension MutexLock: Locking {
     public func tryLock() -> Bool { `try`() }
 }
 
-extension NSRecursiveLock: Locking {
+extension RecursiveLock: Locking {
     public func tryLock() -> Bool { `try`() }
 }
 

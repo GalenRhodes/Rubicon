@@ -45,7 +45,7 @@ open class NanoTimer {
     private var gate:    UInt = 0
     private var skip:    UInt = 0
 
-    private let lock:    NSRecursiveLock = NSRecursiveLock()
+    private let lock:    RecursiveLock = RecursiveLock()
     private var worker1: PGThread?       = nil
     private var worker2: PGThread?       = nil
     private let cond:    Conditional     = Conditional()
@@ -69,7 +69,7 @@ open class NanoTimer {
 
     /*==========================================================================================================*/
     /// Initializes the timer to call the `block` every `nanos` nanoseconds.
-    /// 
+    ///
     /// - Parameter nanos: the number of nanoseconds. Must be less than `OneSecondNanos`.
     ///
     public init(nanos: UInt64) {
@@ -78,7 +78,7 @@ open class NanoTimer {
 
     /*==========================================================================================================*/
     /// Initializes the timer to call the block.
-    /// 
+    ///
     /// - Parameter time:
     ///
     public init(time: timespec) {
@@ -92,7 +92,7 @@ open class NanoTimer {
     /*==========================================================================================================*/
     /// Adds a number of timer cycles to skip to the existing number. The timer will skip a number of timer
     /// firings when told to.
-    /// 
+    ///
     /// - Parameter skip: The number of cycles to skip.
     ///
     public func add(skip: UInt = 1) {

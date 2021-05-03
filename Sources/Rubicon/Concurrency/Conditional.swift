@@ -25,6 +25,17 @@ import CoreFoundation
 
 #if os(Windows)
     import WinSDK
+    typealias PGMutex = UnsafeMutablePointer<SRWLOCK>
+    typealias PGCond = UnsafeMutablePointer<CONDITION_VARIABLE>
+    typealias PGLockTime = DWORD
+#elseif CYGWIN
+    typealias PGMutex = UnsafeMutablePointer<pthread_mutex_t?>
+    typealias PGCond = UnsafeMutablePointer<pthread_cond_t?>
+    typealias PGLockTime = timespec
+#else
+    typealias PGMutex = UnsafeMutablePointer<pthread_mutex_t>
+    typealias PGCond = UnsafeMutablePointer<pthread_cond_t>
+    typealias PGLockTime = timespec
 #endif
 
 public protocol LockCondition: Locking {
@@ -230,5 +241,100 @@ open class Conditional: LockCondition {
         #else
             return absoluteTimeSpecFrom(date: date)
         #endif
+    }
+}
+
+fileprivate class CondMutex {
+    let cond:  PGCond  = PGCond.allocate(capacity: 1)
+    let mutex: PGMutex = PGMutex.allocate(capacity: 1)
+
+    init() {
+        #if os(Windows)
+            InitializeSRWLock(mutex)
+            InitializeConditionVariable(cond)
+        #else
+            pthread_mutex_init(mutex, nil)
+            pthread_cond_init(cond, nil)
+        #endif
+    }
+
+    deinit {
+        #if !os(Windows)
+            pthread_cond_destroy(cond)
+            pthread_mutex_destroy(mutex)
+        #endif
+        cond.deallocate()
+        mutex.deallocate()
+    }
+
+    func tryLock() -> Bool {
+        #if os(Windows)
+            return (TryAcquireSRWLockExclusive(mutex) != 0)
+        #else
+            return (testOSFatalError(pthread_mutex_trylock(mutex), EBUSY) == 0)
+        #endif
+    }
+
+    func lock() {
+        #if os(Windows)
+            AcquireSRWLockExclusive(mutex)
+        #else
+            testOSFatalError(pthread_mutex_lock(mutex))
+        #endif
+    }
+
+    func unlock() {
+        #if os(Windows)
+            ReleaseSRWLockExclusive(mutex)
+        #else
+            testOSFatalError(pthread_mutex_unlock(mutex))
+        #endif
+    }
+
+    @discardableResult func lWait(until time: PGLockTime) -> Bool {
+        withLock { wait(until: time) }
+    }
+
+    func lBroadcast() {
+        withLock { broadcast() }
+    }
+
+    func wait(until time: PGLockTime) -> Bool {
+        #if os(Windows)
+            return SleepConditionVariableSRW(timerCond, timerMutex, time, 0)
+        #else
+            var tm: PGLockTime = time
+            return (testOSFatalError(pthread_cond_timedwait(cond, mutex, &tm), ETIMEDOUT) == 0)
+        #endif
+    }
+
+    func wait() {
+        #if os(Windows)
+            SleepConditionVariableSRW(cond, mutex, WinSDK.INFINITE, 0)
+        #else
+            testOSFatalError(pthread_cond_wait(cond, mutex))
+        #endif
+    }
+
+    func broadcast() {
+        #if os(Windows)
+            WakeAllConditionVariable(cond)
+        #else
+            testOSFatalError(pthread_cond_broadcast(cond))
+        #endif
+    }
+
+    func signal() {
+        #if os(Windows)
+            WakeConditionVariable(cond)
+        #else
+            testOSFatalError(pthread_cond_signal(cond))
+        #endif
+    }
+
+    @discardableResult func withLock<T>(_ body: () throws -> T) rethrows -> T {
+        lock()
+        defer { unlock() }
+        return try body()
     }
 }

@@ -41,48 +41,25 @@ open class PGThread: Thread {
     /// The `block` for the thread to execute. This can only be set before the thread is executed. Attempting to set the `block` after the thread has been executed has no affect.
     /// If the thread is executed before the `block` is set then it simply terminates without doing anything.
     ///
-    public var block: PGThreadBlock = {}
+    public var block: PGThreadBlock
 
     /*===========================================================================================================================================================================*/
     /// Default initializer
     ///
     public override init() {
+        block = {}
         super.init()
     }
 
     /*===========================================================================================================================================================================*/
-    /// Initializes the thread with the given `block`.
-    /// 
-    /// - Parameter block: the `block` that will be executed in a separate thread.
-    /// 
-    ///
-    public convenience init(block: @escaping PGThreadBlock) {
-        self.init()
-        self.block = block
-    }
-
-    /*===========================================================================================================================================================================*/
-    /// Initializes the thread with the given `block` and the given `qualityOfService`.
-    /// 
-    /// - Parameters:
-    ///   - qualityOfService: the quality of service.
-    ///   - block: the `block` that will be executed in a separate thread.
-    ///
-    public convenience init(qualityOfService: QualityOfService, block: @escaping PGThreadBlock) {
-        self.init()
-        self.block = block
-        self.qualityOfService = qualityOfService
-    }
-
-    /*===========================================================================================================================================================================*/
     /// Initializes the thread with the given `closure` and if `startNow` is set to `true`, starts it right away.
-    /// 
+    ///
     /// - Parameters:
     ///   - startNow: if set to `true` the thread is created in a running state.
     ///   - qualityOfService:  the quality of service.
     ///   - block: the `block` for the thread to execute.
     ///
-    public convenience init(startNow: Bool, qualityOfService: QualityOfService = .default, block: @escaping PGThreadBlock) {
+    public convenience init(startNow: Bool = false, qualityOfService: QualityOfService = .default, block: @escaping PGThreadBlock) {
         self.init()
         self.block = block
         self.qualityOfService = qualityOfService
@@ -111,11 +88,17 @@ open class PGThread: Thread {
     /*===========================================================================================================================================================================*/
     /// Waits for the thread to finish executing.
     ///
-    public func join() { cond.withLock { if isStarted { while !isDone { cond.wait() } } } }
+    public func join() {
+        cond.withLock {
+            if isStarted {
+                while !isDone { cond.wait() }
+            }
+        }
+    }
 
     /*===========================================================================================================================================================================*/
     /// Waits until the given date for the thread to finish executing.
-    /// 
+    ///
     /// - Parameter limit: the point in time to wait until for the thread to execute. If the time is in the past then the method will return immediately.
     /// - Returns: `true` if the thread finished executing before the given time or `false` if the time was reached or the thread has not been started yet.
     ///

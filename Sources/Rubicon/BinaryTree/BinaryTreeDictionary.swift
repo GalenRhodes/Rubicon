@@ -34,7 +34,7 @@ open class BinaryTreeDictionary<K: Comparable & Hashable, V>: Sequence, Expressi
     public var endIndex:   Index { count                                     }
     //@f:1
 
-    var rootNode: BinaryTreeNode<K, V>? = nil
+    var rootNode: TreeNode<K, V>? = nil
 
     public init() {}
 
@@ -47,7 +47,7 @@ open class BinaryTreeDictionary<K: Comparable & Hashable, V>: Sequence, Expressi
         return (n.key, n.value)
     }
 
-    func nodeAtIndex(position: Index) -> BinaryTreeNode<K, V> {
+    func nodeAtIndex(position: Index) -> TreeNode<K, V> {
         guard position >= startIndex && position < endIndex else { fatalError("Index out of bounds.") }
         guard let n = rootNode?.node(for: position) else { fatalError("Index out of bounds.") }
         return n
@@ -57,7 +57,7 @@ open class BinaryTreeDictionary<K: Comparable & Hashable, V>: Sequence, Expressi
         set {
             if let value = newValue {
                 if let r = rootNode { rootNode = r.insert(key: key, value: value) }
-                else { rootNode = BinaryTreeNode(key: key, value: value, color: .Black) }
+                else { rootNode = TreeNode(key: key, value: value, color: .Black) }
             }
             else if let r = rootNode, let n = r.find(key: key) {
                 rootNode = n.remove()
@@ -75,13 +75,13 @@ open class BinaryTreeDictionary<K: Comparable & Hashable, V>: Sequence, Expressi
 
         public typealias Element = (key: K, value: V)
 
-        var stack: [BinaryTreeNode<K, V>] = []
+        var stack: [TreeNode<K, V>] = []
 
-        init(_ rootNode: BinaryTreeNode<K, V>?) {
+        init(_ rootNode: TreeNode<K, V>?) {
             pushStack(node: rootNode)
         }
 
-        mutating func pushStack(node: BinaryTreeNode<K, V>?) {
+        mutating func pushStack(node: TreeNode<K, V>?) {
             if var r = node {
                 stack.append(r)
                 while let c = r.leftNode {
@@ -230,7 +230,7 @@ extension BinaryTreeDictionary: Hashable where V: Hashable {
     public func hash(into hasher: inout Hasher) {
         if let r = rootNode {
             var cc = 0
-            _ = r.iterate { (n: BinaryTreeNode<K, V>) -> Bool? in
+            _ = r.iterate { (n: TreeNode<K, V>) -> Bool? in
                 guard cc < 1000 else { return true }
                 hasher.combine(n)
                 cc++

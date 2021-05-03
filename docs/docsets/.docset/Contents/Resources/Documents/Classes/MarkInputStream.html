@@ -572,11 +572,11 @@
 
                 </div>
               </div>
-            <p>An <code><a href="https://developer.apple.com/documentation/foundation/inputstream">input stream</a></code> that you can mark places in with a call to <code>markSet()</code> and to return to with a
-call to <code>markRelease()</code>.</p>
+            <p>An <code><a href="https://developer.apple.com/documentation/foundation/inputstream">input stream</a></code> that you can
+mark places in with a call to <code>markSet()</code> and to return to with a call to <code>markRelease()</code>.</p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L35-L444">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L35-L464">Show on GitHub</a>
               </div>
           </section>
           <section class="section task-group-section">
@@ -595,8 +595,9 @@ call to <code>markRelease()</code>.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A Boolean value that indicates whether the receiver has bytes available to read. <code>true</code> if the receiver has bytes available to read, otherwise <code>false</code>. May also return
-<code>true</code> if a read must be attempted in order to determine the availability of bytes.</p>
+                        <p>A Boolean value that indicates whether the receiver has bytes available to read. <code>true</code> if the receiver
+has bytes available to read, otherwise <code>false</code>. May also return <code>true</code> if a read must be attempted in
+order to determine the availability of bytes.</p>
 
                       </div>
                       <div class="declaration">
@@ -608,7 +609,7 @@ call to <code>markRelease()</code>.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L41">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L51">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -638,7 +639,7 @@ call to <code>markRelease()</code>.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L45">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L55">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -668,7 +669,7 @@ call to <code>markRelease()</code>.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L49">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L59">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -698,7 +699,7 @@ call to <code>markRelease()</code>.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L53">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L63">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -780,8 +781,9 @@ call to <code>markRelease()</code>.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The maximum distance the read pointer will be allowed to get from the mark pointer. Once the read pointer moves this many bytes past the mark pointer
-           then the mark pointer will be moved to keep up.</p>
+                                  <p>The maximum distance the read pointer will be allowed to get from the mark pointer.
+           Once the read pointer moves this many bytes past the mark pointer then the mark pointer
+           will be moved to keep up.</p>
                                 </div>
                               </td>
                             </tr>
@@ -793,7 +795,8 @@ call to <code>markRelease()</code>.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>If <code>false</code> the backing stream will NOT be closed when this stream is closed or destroyed. The default is <code>true</code>.</p>
+                                  <p>If <code>false</code> the backing stream will NOT be closed when this stream is closed or destroyed.
+       The default is <code>true</code>.</p>
                                 </div>
                               </td>
                             </tr>
@@ -801,7 +804,7 @@ call to <code>markRelease()</code>.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L83-L88">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L95-L100">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -819,8 +822,9 @@ call to <code>markRelease()</code>.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initializes and returns an <code>MarkInputStream</code> object for reading from a given <code><a href="https://developer.apple.com/documentation/foundation/data/">Data</a></code> object. The
-stream must be opened before it can be used.</p>
+                        <p>Initializes and returns an <code>MarkInputStream</code> object for reading from a given
+<code><a href="https://developer.apple.com/documentation/foundation/data/">Data</a></code> object. The stream must be
+opened before it can be used.</p>
 
                       </div>
                       <div class="declaration">
@@ -851,7 +855,7 @@ stream must be opened before it can be used.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L96-L98">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L109-L111">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -869,8 +873,9 @@ stream must be opened before it can be used.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initializes and returns an <code>MarkInputStream</code> object for reading from a given <code><a href="https://developer.apple.com/documentation/foundation/data/">Data</a></code> object. The
-stream must be opened before it can be used.</p>
+                        <p>Initializes and returns an <code>MarkInputStream</code> object for reading from a given
+<code><a href="https://developer.apple.com/documentation/foundation/data/">Data</a></code> object. The stream must be
+opened before it can be used.</p>
 
                       </div>
                       <div class="declaration">
@@ -905,8 +910,9 @@ stream must be opened before it can be used.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The maximum distance the read pointer will be allowed to get from the mark pointer. Once the read pointer moves this many bytes past the mark pointer
-           then the mark pointer will be moved to keep up.</p>
+                                  <p>The maximum distance the read pointer will be allowed to get from the mark pointer.
+           Once the read pointer moves this many bytes past the mark pointer then the mark pointer
+           will be moved to keep up.</p>
                                 </div>
                               </td>
                             </tr>
@@ -914,7 +920,7 @@ stream must be opened before it can be used.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L109-L111">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L124-L126">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -963,7 +969,7 @@ stream must be opened before it can be used.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L118-L121">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L133-L136">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1016,8 +1022,9 @@ stream must be opened before it can be used.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The maximum distance the read pointer will be allowed to get from the mark pointer. Once the read pointer moves this many bytes past the mark pointer
-           then the mark pointer will be moved to keep up.</p>
+                                  <p>The maximum distance the read pointer will be allowed to get from the mark pointer.
+           Once the read pointer moves this many bytes past the mark pointer then the mark pointer
+           will be moved to keep up.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1025,7 +1032,7 @@ stream must be opened before it can be used.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L131-L134">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L147-L150">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1074,7 +1081,7 @@ stream must be opened before it can be used.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L141-L144">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L157-L160">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1127,8 +1134,9 @@ stream must be opened before it can be used.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The maximum distance the read pointer will be allowed to get from the mark pointer. Once the read pointer moves this many bytes past the mark pointer
-           then the mark pointer will be moved to keep up.</p>
+                                  <p>The maximum distance the read pointer will be allowed to get from the mark pointer.
+           Once the read pointer moves this many bytes past the mark pointer then the mark pointer
+           will be moved to keep up.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1136,7 +1144,7 @@ stream must be opened before it can be used.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L154-L157">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L171-L174">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1177,7 +1185,8 @@ stream must be opened before it can be used.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>A data buffer. The buffer must be large enough to contain the number of bytes specified by len.</p>
+                                  <p>A data buffer. The buffer must be large enough to contain the number of bytes specified
+         by len.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1198,12 +1207,15 @@ stream must be opened before it can be used.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A number indicating the outcome of the operation: <ul><li>A positive number indicates the number of bytes read.</li><li>0 indicates that the end of the buffer
-                                                         was reached.</li><li>-1 means that the operation failed; more information about the error can be obtained with
-                                                         streamError.</li></ul></p>
+                        <p>A number indicating the outcome of the operation: <ul><li>A positive number indicates the
+                                                         number of bytes read.</li><li>0 indicates
+                                                         that the end of the buffer was
+                                                         reached.</li><li>-1 means that the operation
+                                                         failed; more information about the error can
+                                                         be obtained with streamError.</li></ul></p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L171-L173">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L197-L199">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1221,8 +1233,8 @@ stream must be opened before it can be used.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns by reference a pointer to a read buffer and, by reference, the number of bytes available, and returns a Boolean value that indicates whether the buffer is
-available.</p>
+                        <p>Returns by reference a pointer to a read buffer and, by reference, the number of bytes available, and
+returns a Boolean value that indicates whether the buffer is available.</p>
 
                       </div>
                       <div class="declaration">
@@ -1245,7 +1257,8 @@ available.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>Upon return, contains a pointer to a read buffer. The buffer is only valid until the next stream operation is performed.</p>
+                                  <p>Upon return, contains a pointer to a read buffer. The buffer is only valid until the next
+       stream operation is performed.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1269,7 +1282,7 @@ available.</p>
                         <p><code>true</code> if the buffer is available, otherwise <code>false</code>.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L184-L201">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L211-L228">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1287,7 +1300,8 @@ available.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Opens the receiving stream. A stream must be created before it can be opened. Once opened, a stream cannot be closed and reopened.</p>
+                        <p>Opens the receiving stream. A stream must be created before it can be opened. Once opened, a stream cannot
+be closed and reopened.</p>
 
                       </div>
                       <div class="declaration">
@@ -1299,7 +1313,7 @@ available.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L206-L217">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L234-L251">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1317,8 +1331,10 @@ available.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Closes the receiver. Closing the stream terminates the flow of bytes and releases system resources that were reserved for the stream when it was opened. If the stream has
-been scheduled on a run loop, closing the stream implicitly removes the stream from the run loop. A stream that is closed can still be queried for its properties.</p>
+                        <p>Closes the receiver. Closing the stream terminates the flow of bytes and releases system resources that
+were reserved for the stream when it was opened. If the stream has been scheduled on a run loop, closing
+the stream implicitly removes the stream from the run loop. A stream that is closed can still be queried
+for its properties.</p>
 
                       </div>
                       <div class="declaration">
@@ -1330,7 +1346,7 @@ been scheduled on a run loop, closing the stream implicitly removes the stream f
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L223-L237">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L259-L273">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1360,7 +1376,7 @@ been scheduled on a run loop, closing the stream implicitly removes the stream f
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L242">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L278">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1390,7 +1406,7 @@ been scheduled on a run loop, closing the stream implicitly removes the stream f
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L247">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L283">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1420,7 +1436,7 @@ been scheduled on a run loop, closing the stream implicitly removes the stream f
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L252">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L288">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1450,7 +1466,7 @@ been scheduled on a run loop, closing the stream implicitly removes the stream f
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L257">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L293">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1480,7 +1496,7 @@ been scheduled on a run loop, closing the stream implicitly removes the stream f
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L262">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L298">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1490,7 +1506,7 @@ been scheduled on a run loop, closing the stream implicitly removes the stream f
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-04-30)</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-05-03)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

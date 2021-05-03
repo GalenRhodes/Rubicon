@@ -28,27 +28,27 @@ import CoreFoundation
 
 public typealias CFByteOrderEnum = __CFByteOrder
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// A good size for a basic buffer.
 ///
 public let BasicBufferSize: Int    = 4096
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// The number of nanoseconds in one second.
 ///
 public let OneSecondNanos:  UInt64 = 1_000_000_000
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// The number of microseconds in one second.
 ///
 public let OneSecondMicros: UInt64 = 1_000_000
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// The number of milliseconds in one second.
 ///
 public let OneSecondMillis: UInt64 = 1_000
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// Get the system time in nanoseconds.
 /// 
 /// - Parameter delta: The number of nanoseconds to add to the system time.
@@ -60,7 +60,7 @@ public func getSysTime(delta: UInt64 = 0) -> UInt64 {
     return (((UInt64(ts.tv_sec) * OneSecondNanos) + UInt64(ts.tv_nsec)) + delta)
 }
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// Takes a date at some point in the future and converts it to a timespec struct relative to the epoch.
 /// 
 /// - Parameter when: the date.
@@ -86,11 +86,13 @@ public func absoluteTimeSpecFrom(date when: Date) -> timespec? {
     }
 #endif
 
-/*===============================================================================================================================================================================*/
-/// Cover function for the C standard library function `strerror(int)`. Returns a Swift <code>[String](https://developer.apple.com/documentation/swift/string/)</code>.
+/*==============================================================================================================*/
+/// Cover function for the C standard library function `strerror(int)`. Returns a Swift
+/// <code>[String](https://developer.apple.com/documentation/swift/string/)</code>.
 /// 
 /// - Parameter code: the OS error code.
-/// - Returns: A Swift <code>[String](https://developer.apple.com/documentation/swift/string/)</code> with the OS error message.
+/// - Returns: A Swift <code>[String](https://developer.apple.com/documentation/swift/string/)</code> with the OS
+///            error message.
 ///
 public func StrError(_ code: Int32) -> String {
     (CString.newCCharBufferOf(length: 1000) {
@@ -98,24 +100,29 @@ public func StrError(_ code: Int32) -> String {
     })?.string ?? "Unknown Error: \(code)"
 }
 
-/*===============================================================================================================================================================================*/
-/// Test the result of a C standard library function call to see if an error has occurred. If so then throw a fatal error with the message of the error. Usually any
-/// non-<code>[zero](https://en.wikipedia.org/wiki/0)</code> value is considered an error. In some cases though a non-<code>[zero](https://en.wikipedia.org/wiki/0)</code> error is
-/// just informational and in those cases you can tell this function to ignore those as well.
+/*==============================================================================================================*/
+/// Test the result of a C standard library function call to see if an error has occurred. If so then throw a
+/// fatal error with the message of the error. Usually any
+/// non-<code>[zero](https://en.wikipedia.org/wiki/0)</code> value is considered an error. In some cases though a
+/// non-<code>[zero](https://en.wikipedia.org/wiki/0)</code> error is just informational and in those cases you
+/// can tell this function to ignore those as well.
 /// 
-/// For example, in a call to `pthread_mutex_trylock(...)`, an return code of `EBUSY` simply means that the lock is already held by another thread while a code of `EINVAL` means
-/// that the mutex passed to the function was not properly initialized. So you could call this function like so:
+/// For example, in a call to `pthread_mutex_trylock(...)`, an return code of `EBUSY` simply means that the lock
+/// is already held by another thread while a code of `EINVAL` means that the mutex passed to the function was not
+/// properly initialized. So you could call this function like so:
 /// 
 /// <pre>
 ///     let locked: Bool = (testOSFatalError(pthread_mutex_trylock(mutex), EBUSY) == 0)
 /// </pre>
 /// 
-/// In this case the constant `locked` will be `true` if the thread successfully obtained ownership of the lock or `false` if another thread still owns the lock. If the return
-/// code was any other value beside 0 (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) or EBUSY then a fatal error occurs.
+/// In this case the constant `locked` will be `true` if the thread successfully obtained ownership of the lock or
+/// `false` if another thread still owns the lock. If the return code was any other value beside 0
+/// (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) or EBUSY then a fatal error occurs.
 /// 
 /// - Parameters:
 ///   - results: The results of the call.
-///   - otherOk: Other values besides 0 (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) that should be considered OK and not cause a fatal error.
+///   - otherOk: Other values besides 0 (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) that should be
+///              considered OK and not cause a fatal error.
 /// - Returns: the value of results.
 ///
 @discardableResult public func testOSFatalError(_ results: Int32, _ otherOk: Int32...) -> Int32 {
@@ -130,13 +137,14 @@ public func StrError(_ code: Int32) -> String {
     fatalError(StrError(results))
 }
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// Get the length of a `nil`-terminated C string of type 'signed char' (Int8).
 /// 
 /// - Parameters:
 ///   - cStringPtr: the C string.
-///   - length: the maximum possible length of the string. If less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> (the default) then there is no maximum. This is
-///             dangerous - only use this is you are sure there is a `nil`-terminator.
+///   - length: the maximum possible length of the string. If less than
+///             <code>[zero](https://en.wikipedia.org/wiki/0)</code> (the default) then there is no maximum. This
+///             is dangerous - only use this is you are sure there is a `nil`-terminator.
 /// - Returns: the length of the string.
 ///
 public func cStrLen(cStringPtr: UnsafePointer<Int8>, length: Int = -1) -> Int {
@@ -153,13 +161,14 @@ public func cStrLen(cStringPtr: UnsafePointer<Int8>, length: Int = -1) -> Int {
     return length
 }
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// Get the length of a `nil`-terminated C string of type 'unsigned char' (UInt8).
 /// 
 /// - Parameters:
 ///   - cStringPtr: the C string.
-///   - length: the maximum possible length of the string. If less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> (the default) then there is no maximum. This is
-///             dangerous - only use this is you are sure there is a `nil`-terminator.
+///   - length: the maximum possible length of the string. If less than
+///             <code>[zero](https://en.wikipedia.org/wiki/0)</code> (the default) then there is no maximum. This
+///             is dangerous - only use this is you are sure there is a `nil`-terminator.
 /// - Returns: the length of the string.
 ///
 public func cStrLen(cStringPtr: ByteROPointer, length: Int = -1) -> Int {
@@ -168,10 +177,12 @@ public func cStrLen(cStringPtr: ByteROPointer, length: Int = -1) -> Int {
     }
 }
 
-/*===============================================================================================================================================================================*/
-/// The `NanoSleep(seconds:nanos:)` function causes the calling thread to sleep for the amount of time specified in the `seconds` and `nanos` parameters (the actual time slept may
-/// be longer, due to system latencies and possible limitations in the timer resolution of the hardware). An unmasked signal will cause `NanoSleep(seconds:nanos:)` to terminate
-/// the sleep early, regardless of the `SA_RESTART` value on the interrupting signal.
+/*==============================================================================================================*/
+/// The `NanoSleep(seconds:nanos:)` function causes the calling thread to sleep for the amount of time specified
+/// in the `seconds` and `nanos` parameters (the actual time slept may be longer, due to system latencies and
+/// possible limitations in the timer resolution of the hardware). An unmasked signal will cause
+/// `NanoSleep(seconds:nanos:)` to terminate the sleep early, regardless of the `SA_RESTART` value on the
+/// interrupting signal.
 /// 
 /// - Parameters:
 ///   - seconds: the number of seconds to sleep.
@@ -189,10 +200,12 @@ public func NanoSleep(seconds: UInt32 = 0, nanos: UInt32 = 0) throws {
     }
 }
 
-/*===============================================================================================================================================================================*/
-/// The `NanoSleep(seconds:nanos:)` function causes the calling thread to sleep for the amount of time specified in the `seconds` and `nanos` parameters (the actual time slept may
-/// be longer, due to system latencies and possible limitations in the timer resolution of the hardware). An unmasked signal will cause `NanoSleep(seconds:nanos:)` to terminate
-/// the sleep early, regardless of the `SA_RESTART` value on the interrupting signal.
+/*==============================================================================================================*/
+/// The `NanoSleep(seconds:nanos:)` function causes the calling thread to sleep for the amount of time specified
+/// in the `seconds` and `nanos` parameters (the actual time slept may be longer, due to system latencies and
+/// possible limitations in the timer resolution of the hardware). An unmasked signal will cause
+/// `NanoSleep(seconds:nanos:)` to terminate the sleep early, regardless of the `SA_RESTART` value on the
+/// interrupting signal.
 /// 
 /// - Parameters:
 ///   - seconds: the number of seconds to sleep.
@@ -216,31 +229,32 @@ public func NanoSleep2(seconds: UInt32 = 0, nanos: UInt32 = 0) {
     } while true
 }
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// Values that indicate should be sorted against another object.
 ///
 public enum SortOrdering: Int {
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// One object comes before another object.
     ///
     case LessThan    = -1
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// One object holds the same place as another object.
     ///
     case EqualTo     = 0
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// One object comes after another object.
     ///
     case GreaterThan = 1
 }
 
-/*===============================================================================================================================================================================*/
-/// Operator for appending new elements to an <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> container.
+/*==============================================================================================================*/
+/// Operator for appending new elements to an
+/// <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> container.
 ///
 infix operator <+: AssignmentPrecedence
 infix operator <?: ComparisonPrecedence
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// Append a new element to an <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 /// 
 /// - Parameters:
@@ -251,8 +265,9 @@ public func <+ <T>(lhs: inout [T], rhs: T) {
     lhs.append(rhs)
 }
 
-/*===============================================================================================================================================================================*/
-/// Append the contents of the right-hand <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> oprand to the left-hand
+/*==============================================================================================================*/
+/// Append the contents of the right-hand
+/// <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> oprand to the left-hand
 /// <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> oprand.
 /// 
 /// - Parameters:
@@ -263,13 +278,16 @@ public func <+ <T>(lhs: inout [T], rhs: [T]) {
     lhs.append(contentsOf: rhs)
 }
 
-/*===============================================================================================================================================================================*/
-/// Checks to see if the <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> (left-hand operand) contains the right-hand operand.
+/*==============================================================================================================*/
+/// Checks to see if the <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> (left-hand
+/// operand) contains the right-hand operand.
 /// 
 /// - Parameters:
 ///   - lhs: the <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
-///   - rhs: the object to search for in the <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
-/// - Returns: `true` if the <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> contains the object.
+///   - rhs: the object to search for in the
+///          <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
+/// - Returns: `true` if the <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> contains
+///            the object.
 ///
 public func <? <T: Equatable>(lhs: [T], rhs: T) -> Bool {
     lhs.contains { (obj: T) in
@@ -277,14 +295,17 @@ public func <? <T: Equatable>(lhs: [T], rhs: T) -> Bool {
     }
 }
 
-/*===============================================================================================================================================================================*/
-/// Checks to see if the left-hand <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> contains all of the elements in the right-hand
+/*==============================================================================================================*/
+/// Checks to see if the left-hand <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>
+/// contains all of the elements in the right-hand
 /// <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 /// 
 /// - Parameters:
 ///   - lhs: the left-hand <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 ///   - rhs: the right-hand <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
-/// - Returns: `true` if the left-hand <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> contains all of the elements in the right-hand
+/// - Returns: `true` if the left-hand
+///            <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> contains all of the
+///            elements in the right-hand
 ///            <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 ///
 public func <? <T: Equatable>(lhs: [T], rhs: [T]) -> Bool {
@@ -296,13 +317,14 @@ public func <? <T: Equatable>(lhs: [T], rhs: [T]) -> Bool {
     return true
 }
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// A new operator for comparing two objects.
 ///
 infix operator <=>: ComparisonPrecedence
 
-/*===============================================================================================================================================================================*/
-/// Compares two objects to see what their `SortOrdering` is. Both objects have to conform to the [`Comparable`](https://swiftdoc.org/v5.1/protocol/comparable/) protocol.
+/*==============================================================================================================*/
+/// Compares two objects to see what their `SortOrdering` is. Both objects have to conform to the
+/// [`Comparable`](https://swiftdoc.org/v5.1/protocol/comparable/) protocol.
 /// 
 /// Usage:
 /// ```
@@ -319,19 +341,22 @@ infix operator <=>: ComparisonPrecedence
 ///   - l: The left hand operand
 ///   - r: The right hand operand
 /// 
-/// - Returns: `SortOrdering.LessThan`, `SortOrdering.EqualTo`, `SortOrdering.GreaterThan` as the left-hand operand should be sorted before, at the same place as, or after the
-///            right-hand operand.
+/// - Returns: `SortOrdering.LessThan`, `SortOrdering.EqualTo`, `SortOrdering.GreaterThan` as the left-hand
+///            operand should be sorted before, at the same place as, or after the right-hand operand.
 ///
 public func <=> <T: Comparable>(l: T?, r: T?) -> SortOrdering {
     (l == nil ? (r == nil ? .EqualTo : .LessThan) : (r == nil ? .GreaterThan : (l! < r! ? .LessThan : (l! > r! ? .GreaterThan : .EqualTo))))
 }
 
-/*===============================================================================================================================================================================*/
-/// Compares two arrays to see what their `SortOrdering` is. The objects of both arrays have to conform to the [`Comparable`](https://swiftdoc.org/v5.1/protocol/comparable/)
-/// protocol. This method first compares the number of objects in each array. If they are not the same then the function will return `SortOrdering.Before` or `SortOrdering.After`
-/// as the left-hand array has fewer or more objects than the right-hand array. If the both hold the same number of objects then the function compares each object in the left-hand
-/// array to the object in the same position in the right-hand array. In other words it compares `leftArray[0]` to `rightArray[0]`, `leftArray[1]` to `rightArray[1]` and so on
-/// until it finds the first pair of objects that do not of the same sort ordering and returns ordering. If all the objects in the same positions in both arrays are
+/*==============================================================================================================*/
+/// Compares two arrays to see what their `SortOrdering` is. The objects of both arrays have to conform to the
+/// [`Comparable`](https://swiftdoc.org/v5.1/protocol/comparable/) protocol. This method first compares the number
+/// of objects in each array. If they are not the same then the function will return `SortOrdering.Before` or
+/// `SortOrdering.After` as the left-hand array has fewer or more objects than the right-hand array. If the both
+/// hold the same number of objects then the function compares each object in the left-hand array to the object in
+/// the same position in the right-hand array. In other words it compares `leftArray[0]` to `rightArray[0]`,
+/// `leftArray[1]` to `rightArray[1]` and so on until it finds the first pair of objects that do not of the same
+/// sort ordering and returns ordering. If all the objects in the same positions in both arrays are
 /// `SortOrdering.Same` then this function returns `SortOrdering.Same`.
 /// 
 /// Example:
@@ -350,7 +375,8 @@ public func <=> <T: Comparable>(l: T?, r: T?) -> SortOrdering {
 ///   - l: The left hand array operand
 ///   - r: The right hand array operand
 /// 
-/// - Returns: `SortOrdering.LessThan`, `SortOrdering.EqualTo`, `SortOrdering.GreaterThan` as the left-hand array comes before, in the same place as, or after the right-hand array.
+/// - Returns: `SortOrdering.LessThan`, `SortOrdering.EqualTo`, `SortOrdering.GreaterThan` as the left-hand array
+///            comes before, in the same place as, or after the right-hand array.
 ///
 public func <=> <T: Comparable>(l: [T?], r: [T?]) -> SortOrdering {
     var cc: SortOrdering = (l.count <=> r.count)
@@ -367,13 +393,14 @@ public func <=> <T: Comparable>(l: [T?], r: [T?]) -> SortOrdering {
     return cc
 }
 
-/*===============================================================================================================================================================================*/
-/// Returns a <code>[String](https://developer.apple.com/documentation/swift/string/)</code> that represents the given integer in hexadecimal format.
+/*==============================================================================================================*/
+/// Returns a <code>[String](https://developer.apple.com/documentation/swift/string/)</code> that represents the
+/// given integer in hexadecimal format.
 /// 
 /// - Parameters:
 ///   - n: the integer number.
-///   - pad: 0 means no padding. negative number means the number is padded with spaces to that many places. Positive number means the number is padded with zeros to that many
-///          places.
+///   - pad: 0 means no padding. negative number means the number is padded with spaces to that many places.
+///          Positive number means the number is padded with zeros to that many places.
 /// - Returns: the <code>[String](https://developer.apple.com/documentation/swift/string/)</code>
 ///
 public func toHex<T: BinaryInteger>(_ n: T, pad: Int = 0) -> String {
@@ -398,13 +425,14 @@ public func toHex<T: BinaryInteger>(_ n: T, pad: Int = 0) -> String {
     return "\(spd)0x\(str)"
 }
 
-/*===============================================================================================================================================================================*/
-/// Simple function to convert an integer number into a string represented as a series of ones - "1" - or zeros - "0" starting with the high bits first and the low bits to the
-/// right.
+/*==============================================================================================================*/
+/// Simple function to convert an integer number into a string represented as a series of ones - "1" - or zeros -
+/// "0" starting with the high bits first and the low bits to the right.
 /// 
 /// - Parameters:
 ///   - n: the integer number.
-///   - sep: the string will be grouped into octets separated by a space unless you provide a separator string in this field.
+///   - sep: the string will be grouped into octets separated by a space unless you provide a separator string in
+///          this field.
 ///   - pad: the number of places to left pad the string with zeros.
 /// - Returns: the string.
 ///
@@ -430,8 +458,9 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
     return str
 }
 
-/*===============================================================================================================================================================================*/
-/// <code>[Optional](https://developer.apple.com/documentation/swift/optional/)</code> conditional. To test an optional for `nil` you can use an `if` statement like this:
+/*==============================================================================================================*/
+/// <code>[Optional](https://developer.apple.com/documentation/swift/optional/)</code> conditional. To test an
+/// optional for `nil` you can use an `if` statement like this:
 /// ```
 ///     if let v = possiblyNil {
 ///         /* do something with v */
@@ -450,7 +479,8 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 /// ```
 ///     let x = ((possiblyNil == nil) ? "no name" : v!.name) // This will compile.
 /// ```
-/// But the OCD side of me really dislikes that '!' being there even though I know it will never cause a fatal error. It just rubs up against that nerve seeing it there. 🤢
+/// But the OCD side of me really dislikes that '!' being there even though I know it will never cause a fatal
+/// error. It just rubs up against that nerve seeing it there. 🤢
 /// 
 /// So I created this function to simulate the functionality of the above using closures.
 /// 
@@ -467,16 +497,18 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 ///
 public func nilCheck<S, T>(_ obj: S?, _ b1: (S) throws -> T, whenNilDo b2: () throws -> T) rethrows -> T { try ((obj == nil) ? b2() : b1(obj!)) }
 
-/*===============================================================================================================================================================================*/
-/// If the `maxLength` is less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then return the largest integer possible
-/// (<code>[Int.max](https://developer.apple.com/documentation/swift/int/1540171-max)</code>) otherwise returns the value of `maxLength`.
+/*==============================================================================================================*/
+/// If the `maxLength` is less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then return the largest
+/// integer possible (<code>[Int.max](https://developer.apple.com/documentation/swift/int/1540171-max)</code>)
+/// otherwise returns the value of `maxLength`.
 /// 
 /// - Parameter maxLength: the length to fix.
-/// - Returns: either the value of `maxLength` or <code>[Int.max](https://developer.apple.com/documentation/swift/int/1540171-max)</code>.
+/// - Returns: either the value of `maxLength` or
+///            <code>[Int.max](https://developer.apple.com/documentation/swift/int/1540171-max)</code>.
 ///
 public func fixLength(_ maxLength: Int) -> Int { ((maxLength < 0) ? Int.max : maxLength) }
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// Tests one value to see if it is one of the listed values. Instead of doing this:
 /// ```
 ///     if number == 1 || number == 5 || number == 99 { /* do something */ }
@@ -496,9 +528,9 @@ public func value<T: Equatable>(_ value: T, isOneOf: T...) -> Bool { isOneOf.isA
 
 public func value<T: Equatable>(_ value: T, isOneOf: [T]) -> Bool { isOneOf.isAny { value == $0 } }
 
-/*===============================================================================================================================================================================*/
-/// Calculate the number of instances of a given datatype will occupy a given number of bytes. For example, if given a type of `Int64.self` and a byte count of 16 then this
-/// function will return a value of 2.
+/*==============================================================================================================*/
+/// Calculate the number of instances of a given datatype will occupy a given number of bytes. For example, if
+/// given a type of `Int64.self` and a byte count of 16 then this function will return a value of 2.
 /// 
 /// - Parameters:
 ///   - type: the target datatype.
@@ -507,9 +539,9 @@ public func value<T: Equatable>(_ value: T, isOneOf: [T]) -> Bool { isOneOf.isAn
 ///
 @inlinable public func fromBytes<T>(type: T.Type, _ value: Int) -> Int { ((value * MemoryLayout<UInt8>.stride) / MemoryLayout<T>.stride) }
 
-/*===============================================================================================================================================================================*/
-/// Calculate the number of bytes that make up a given number of instances of the given datatype. For example if given a datatype of `Int64.self` and a count of 2 then this
-/// function will return 16.
+/*==============================================================================================================*/
+/// Calculate the number of bytes that make up a given number of instances of the given datatype. For example if
+/// given a datatype of `Int64.self` and a count of 2 then this function will return 16.
 /// 
 /// - Parameters:
 ///   - type: the target datatype.
@@ -573,10 +605,11 @@ public func nDebug(_ nestType: NestType = .None, _ obj: Any..., separator: Strin
     #endif
 }
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// We're going to wrap this in another function for two reasons:
 ///     <ol>
-///         <li>A function call (including the one to `CFGetRetainCount()`) causes the retain count of the object to be incremented by 1 so we will adjust it.</li>
+///         <li>A function call (including the one to `CFGetRetainCount()`) causes the retain count of the object to be
+///             incremented by 1 so we will adjust it.</li>
 ///         <li>In case `CFGetRetainCount()` ever goes away or doesn't exist on other platforms.</li>
 ///     </ol>
 /// 

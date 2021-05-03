@@ -22,20 +22,22 @@
 
 import Foundation
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// Extensions to <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code>
 ///
 public extension NSRange {
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Converts this <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> into a
-    /// [Range](https://developer.apple.com/documentation/swift/range)&lt;[String.Index](https://developer.apple.com/documentation/swift/string/index)&gt; for the given
-    /// <code>[String](https://developer.apple.com/documentation/swift/string)</code>. Returns `nil` if this
-    /// <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> is not valid for the given
-    /// [String](https://developer.apple.com/documentation/swift/string)</code>.
+    /// [Range](https://developer.apple.com/documentation/swift/range)&lt;[String.Index](https://developer.apple.com/documentation/swift/string/index)&gt;
+    /// for the given <code>[String](https://developer.apple.com/documentation/swift/string)</code>. Returns `nil`
+    /// if this <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> is not valid
+    /// for the given [String](https://developer.apple.com/documentation/swift/string)</code>.
     /// 
     /// - Parameter string: the <code>[String](https://developer.apple.com/documentation/swift/string)</code>.
-    /// - Returns: the slice range for the given string based on this <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> or `nil` if this
-    ///            <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> is not valid.
+    /// - Returns: the slice range for the given string based on this
+    ///            <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> or `nil`
+    ///            if this <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> is
+    ///            not valid.
     ///
     func strRange<S: StringProtocol>(string: S) -> Range<String.Index>? {
         Range<String.Index>(self, in: string)

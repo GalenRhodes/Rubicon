@@ -27,23 +27,43 @@ class LongevityTests: XCTestCase {
     override func tearDown() {}
 
     func testStreamLongevity() {
+        let filename = "Tests/RubiconTests/Files/Test_UTF-8.xml"
+
+        if let stream = MarkInputStream(fileAtPath: filename) {
+            stream.open()
+            doSleep(seconds: 2)
+            nDebug(.None, "TEST> stream retain count - \(PGGetRetainCount(stream))")
+            nDebug(.None, "TEST> stream is about to go out of scope.")
+        }
+        else {
+            nDebug(.None, "TEST> Unable to open \"\(filename)\"")
+            XCTFail()
+        }
+
+        nDebug(.None, "TEST> stream is now out of scope.")
+        doSleep(seconds: 20)
+    }
+
+    func testCharStreamLongevity() {
         do {
             let stream: IConvCharInputStream = try IConvCharInputStream(filename: "Tests/RubiconTests/Files/Test_UTF-8.xml", encodingName: "UTF-8")
             stream.open()
             doSleep(seconds: 2)
-            debug("TEST> stream retain count - \(PGGetRetainCount(stream))")
-            debug("TEST> stream is about to go out of scope.")
+            nDebug(.None, "TEST> stream retain count - \(PGGetRetainCount(stream))")
+            nDebug(.None, "TEST> stream is about to go out of scope.")
         }
         catch let e {
-            XCTFail("TEST> ERROR> \(e)")
+            nDebug(.None, "TEST> ERROR> \(e)")
+            XCTFail()
         }
 
-        debug("TEST> stream is now out of scope.")
+        nDebug(.None, "TEST> stream is now out of scope.")
         doSleep(seconds: 20)
     }
 
     private func doSleep(seconds: UInt32) {
-        debug("TEST> Sleeping \(seconds) seconds...")
+        nDebug(.In, "TEST> Sleeping \(seconds) seconds...")
         sleep(seconds)
+        nDebug(.Out, "TEST> Finished sleeping \(seconds) seconds...")
     }
 }

@@ -23,23 +23,27 @@ public let   CRLF_CHARACTER:      Character = "\r\n"
 public let   CR_CHARACTER:        Character = "\r"
 public let   LF_CHARACTER:        Character = "\n"
 
-/*===============================================================================================================================================================================*/
-/// There is a possibility that the endian of the system is not known. In that case we default to `little` endian because that's the most common these days.
+/*==============================================================================================================*/
+/// There is a possibility that the endian of the system is not known. In that case we default to `little` endian
+/// because that's the most common these days.
 ///
 internal let ENCODE_TO_NAME:      String    = "UTF-32\((MachineByteOrder == .BigEndian) ? "BE" : "LE")"
-/*===============================================================================================================================================================================*/
-/// The size of this buffer might seem excessive at first but even small SBCs are now coming with Gigabit ethernet and 4GB of RAM. Even an entry level MacMini comes with 8GB of
-/// RAM. So this buffer size is probably a bit on the small side.
+/*==============================================================================================================*/
+/// The size of this buffer might seem excessive at first but even small SBCs are now coming with Gigabit ethernet
+/// and 4GB of RAM. Even an entry level MacMini comes with 8GB of RAM. So this buffer size is probably a bit on
+/// the small side.
 ///
 internal let INPUT_BUFFER_SIZE:   Int       = 256
-/*===============================================================================================================================================================================*/
-/// The size of this buffer might seem excessive at first but even small SBCs are now coming with Gigabit ethernet and 4GB of RAM. Even an entry level MacMini comes with 8GB of
-/// RAM. So this buffer size is probably a bit on the small side.
+/*==============================================================================================================*/
+/// The size of this buffer might seem excessive at first but even small SBCs are now coming with Gigabit ethernet
+/// and 4GB of RAM. Even an entry level MacMini comes with 8GB of RAM. So this buffer size is probably a bit on
+/// the small side.
 ///
 internal let OUTPUT_BUFFER_SIZE:  Int       = ((INPUT_BUFFER_SIZE * MemoryLayout<UInt32>.stride) + MemoryLayout<UInt32>.stride)
-/*===============================================================================================================================================================================*/
-/// The size of this buffer might seem excessive at first but even small SBCs are now coming with Gigabit ethernet and 4GB of RAM. Even an entry level MacMini comes with 8GB of
-/// RAM. So this buffer size is probably a bit on the small side.
+/*==============================================================================================================*/
+/// The size of this buffer might seem excessive at first but even small SBCs are now coming with Gigabit ethernet
+/// and 4GB of RAM. Even an entry level MacMini comes with 8GB of RAM. So this buffer size is probably a bit on
+/// the small side.
 ///
 internal let MAX_READ_AHEAD:      Int       = 65_536
 

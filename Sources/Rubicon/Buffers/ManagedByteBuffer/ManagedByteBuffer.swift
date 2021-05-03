@@ -19,13 +19,14 @@ import Foundation
 import CoreFoundation
 
 public protocol ManagedByteBuffer {
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// The total length of the buffer in bytes.
     ///
     var length: Int { get }
-    /*===========================================================================================================================================================================*/
-    /// This is an index that can be used to indicate the number valid bytes in the buffer starting at the beginning of the buffer. The methods in this protocol will all assume
-    /// that count is used for that purpose and will be updated accordingly.
+    /*==========================================================================================================*/
+    /// This is an index that can be used to indicate the number valid bytes in the buffer starting at the
+    /// beginning of the buffer. The methods in this protocol will all assume that count is used for that purpose
+    /// and will be updated accordingly.
     ///
     var count:  Int { get set }
 
@@ -46,25 +47,28 @@ public protocol MutableManagedByteBuffer: ManagedByteBuffer {
 
     @discardableResult func withBytes<V>(_ body: (UnsafeMutablePointer<UInt8>, Int, inout Int) throws -> V) rethrows -> V
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Executes the given closure with an UnsafeMutableBufferPointer representing the buffer.
     /// 
-    /// - Parameter body: The closure which takes two parameters: <ol><li>The instance of UnsafeMutableBufferPointer</li><li>The count of the valid bytes in the buffer passed by
+    /// - Parameter body: The closure which takes two parameters: <ol><li>The instance of
+    ///                                                           UnsafeMutableBufferPointer</li><li>The count of
+    ///                                                           the valid bytes in the buffer passed by
     ///                                                           reference.</li></ol>
     /// - Returns: The value returned by the closure.
     /// - Throws: Any error thrown by the closure.
     ///
     @discardableResult func withBytes<V>(_ body: (UnsafeMutableBufferPointer<UInt8>, inout Int) throws -> V) rethrows -> V
 
-    /*===========================================================================================================================================================================*/
-    /// Relocates a block of bytes to the beginning of the buffer region. The number of bytes relocated will be from the given index to the end of the buffer.
+    /*==========================================================================================================*/
+    /// Relocates a block of bytes to the beginning of the buffer region. The number of bytes relocated will be
+    /// from the given index to the end of the buffer.
     /// 
     /// - Parameter idx: the index of the first byte of the block of bytes to move to the beginning of the buffer.
     /// - Returns: the number of bytes moved.
     ///
     func relocateToFront(start idx: Int) -> Int
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Relocates a block of bytes to the beginning of the buffer region.
     /// 
     /// - Parameters:

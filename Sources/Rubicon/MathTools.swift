@@ -37,7 +37,7 @@ prefix operator ---
 postfix operator +++
 postfix operator ---
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// Returns the two's compliment of the integer value.
 /// 
 /// - Parameter n: the integer value.
@@ -47,9 +47,9 @@ public prefix func ~~ <T: FixedWidthInteger>(_ n: T) -> T {
     (~(n - 1))
 }
 
-/*===============================================================================================================================================================================*/
-/// Raise a `base` number to a `power`. This is often written as base<sup><smaller>power</smaller></sup>. Throws a fatal error if `power` is negative (less than
-/// <code>[zero](https://en.wikipedia.org/wiki/0)</code>).
+/*==============================================================================================================*/
+/// Raise a `base` number to a `power`. This is often written as base<sup><smaller>power</smaller></sup>. Throws a
+/// fatal error if `power` is negative (less than <code>[zero](https://en.wikipedia.org/wiki/0)</code>).
 /// 
 /// For example 2<sup><smaller>7</smaller></sup> is:
 /// ```
@@ -73,7 +73,7 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
     return expBySq(1, base, power)
 }
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// Implements the `++` prefix operator as found in C, C++, Objective-C, Java, and many other languages.
 /// 
 /// - Parameter operand: the integer variable.
@@ -84,7 +84,7 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
     return operand
 }
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// Implements the `--` prefix operator as found in C, C++, Objective-C, Java, and many other languages.
 /// 
 /// - Parameter operand: the integer variable.
@@ -95,7 +95,7 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
     return operand
 }
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// Implements the `++` postfix operator as found in C, C++, Objective-C, Java, and many other languages.
 /// 
 /// - Parameter operand: the integer variable.
@@ -107,7 +107,7 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
     return i
 }
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// Implements the `--` postfix operator as found in C, C++, Objective-C, Java, and many other languages.
 /// 
 /// - Parameter operand: the integer variable.
@@ -119,8 +119,9 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
     return i
 }
 
-/*===============================================================================================================================================================================*/
-/// Implements the `++` prefix operator as found in C, C++, Objective-C, Java, and many other languages. This function allows overflow.
+/*==============================================================================================================*/
+/// Implements the `++` prefix operator as found in C, C++, Objective-C, Java, and many other languages. This
+/// function allows overflow.
 /// 
 /// - Parameter operand: the integer variable.
 /// - Returns: the value of the `operand` AFTER incrementing it's value by 1.
@@ -130,8 +131,9 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
     return operand
 }
 
-/*===============================================================================================================================================================================*/
-/// Implements the `--` prefix operator as found in C, C++, Objective-C, Java, and many other languages. This function allows underflow.
+/*==============================================================================================================*/
+/// Implements the `--` prefix operator as found in C, C++, Objective-C, Java, and many other languages. This
+/// function allows underflow.
 /// 
 /// - Parameter operand: the integer variable.
 /// - Returns: the value of the `operand` AFTER decrementing it's value by 1.
@@ -141,8 +143,9 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
     return operand
 }
 
-/*===============================================================================================================================================================================*/
-/// Implements the `++` postfix operator as found in C, C++, Objective-C, Java, and many other languages. This function allows overflow.
+/*==============================================================================================================*/
+/// Implements the `++` postfix operator as found in C, C++, Objective-C, Java, and many other languages. This
+/// function allows overflow.
 /// 
 /// - Parameter operand: the integer variable.
 /// - Returns: the value of the `operand` BEFORE incrementing it's value by 1.
@@ -153,8 +156,9 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
     return i
 }
 
-/*===============================================================================================================================================================================*/
-/// Implements the `--` postfix operator as found in C, C++, Objective-C, Java, and many other languages. This function allows underflow.
+/*==============================================================================================================*/
+/// Implements the `--` postfix operator as found in C, C++, Objective-C, Java, and many other languages. This
+/// function allows underflow.
 /// 
 /// - Parameter operand: the integer variable.
 /// - Returns: the value of the `operand` BEFORE decrementing it's value by 1.

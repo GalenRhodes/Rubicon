@@ -22,26 +22,29 @@
 
 import Foundation
 
-/*===============================================================================================================================================================================*/
-/// This is a class to help with the conversion between C strings and the Swift <code>[String](https://developer.apple.com/documentation/swift/string/)</code> class. One note
-/// about the use of signed and unsigned chars. Some C functions make a distinction between a signed char (usually the default - when only the lower 7-bits are significant) and an
-/// unsigned char (usually in conjunction with the UTF-8 character encoding scheme). This class has methods to handle both.
+/*==============================================================================================================*/
+/// This is a class to help with the conversion between C strings and the Swift
+/// <code>[String](https://developer.apple.com/documentation/swift/string/)</code> class. One note about the use
+/// of signed and unsigned chars. Some C functions make a distinction between a signed char (usually the default -
+/// when only the lower 7-bits are significant) and an unsigned char (usually in conjunction with the UTF-8
+/// character encoding scheme). This class has methods to handle both.
 ///
 open class CString {
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// internal buffer.
     ///
     let cString: CCharBuffer
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// The character encoding of the string.
     ///
     public let encoding: String.Encoding
 
-    /*===========================================================================================================================================================================*/
-    /// The C string converted to a Swift <code>[String](https://developer.apple.com/documentation/swift/string/)</code>. If the string cannot be decoded using the provided
-    /// encoding then this field will be `nil`.
+    /*==========================================================================================================*/
+    /// The C string converted to a Swift
+    /// <code>[String](https://developer.apple.com/documentation/swift/string/)</code>. If the string cannot be
+    /// decoded using the provided encoding then this field will be `nil`.
     ///
     public var string: String? {
         cString.withMemoryRebound(to: UInt8.self) { (p: UnsafeMutableBufferPointer<UInt8>) in
@@ -49,9 +52,11 @@ open class CString {
         }
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Initialize this object with the given Swift <code>[String](https://developer.apple.com/documentation/swift/string/)</code>. The characters of the
-    /// <code>[String](https://developer.apple.com/documentation/swift/string/)</code> will be encoded as a series of UTF-8 bytes.
+    /*==========================================================================================================*/
+    /// Initialize this object with the given Swift
+    /// <code>[String](https://developer.apple.com/documentation/swift/string/)</code>. The characters of the
+    /// <code>[String](https://developer.apple.com/documentation/swift/string/)</code> will be encoded as a series
+    /// of UTF-8 bytes.
     /// 
     /// - Parameter string: the string.
     ///
@@ -60,16 +65,16 @@ open class CString {
         encoding = String.Encoding.utf8
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Initialize this object as an empty string with the UTF-8 encoding.
     ///
     public convenience init() {
         self.init(string: "")
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Initialize this object with the contents of the byte (unsigned char) buffer. The bytes will be interpreted as a series of characters encoded with the given character
-    /// encoding.
+    /*==========================================================================================================*/
+    /// Initialize this object with the contents of the byte (unsigned char) buffer. The bytes will be interpreted
+    /// as a series of characters encoded with the given character encoding.
     /// 
     /// - Parameters:
     ///   - byteBuffer: the byte buffer.
@@ -81,9 +86,9 @@ open class CString {
         self.encoding = encoding
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Initialize this object with the contents of the character (signed char) buffer. The characters will be interpreted as a series of characters encoded with the given
-    /// character encoding.
+    /*==========================================================================================================*/
+    /// Initialize this object with the contents of the character (signed char) buffer. The characters will be
+    /// interpreted as a series of characters encoded with the given character encoding.
     /// 
     /// - Parameters:
     ///   - charBuffer: the character buffer.
@@ -95,14 +100,17 @@ open class CString {
         self.encoding = encoding
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Initializes this object with the contents of the immutable character (signed char) from the given pointer. If length is not given or is less than
-    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the string MUST be `nil` terminated. If the length is less than
-    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> and the string is NOT `nil` terminated then the behavior of this initializer is undefined.
+    /*==========================================================================================================*/
+    /// Initializes this object with the contents of the immutable character (signed char) from the given pointer.
+    /// If length is not given or is less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the
+    /// string MUST be `nil` terminated. If the length is less than
+    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> and the string is NOT `nil` terminated then the
+    /// behavior of this initializer is undefined.
     /// 
     /// - Parameters:
     ///   - cString: the pointer to the characters.
-    ///   - length: the length of the string. If less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the string MUST be `nil` terminated.
+    ///   - length: the length of the string. If less than <code>[zero](https://en.wikipedia.org/wiki/0)</code>
+    ///             then the string MUST be `nil` terminated.
     ///   - encoding: the character encoding used. Defaults to UTF-8.
     ///
     public init(cString: UnsafePointer<CChar>, length: Int = -1, encoding: String.Encoding = String.Encoding.utf8) {
@@ -114,14 +122,17 @@ open class CString {
         self.encoding = encoding
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Initializes this object with the contents of the mutable character (signed char) from the given pointer. If length is not given or is less than
-    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the string MUST be `nil` terminated. If the length is less than
-    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> and the string is NOT `nil` terminated then the behavior of this initializer is undefined.
+    /*==========================================================================================================*/
+    /// Initializes this object with the contents of the mutable character (signed char) from the given pointer.
+    /// If length is not given or is less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the
+    /// string MUST be `nil` terminated. If the length is less than
+    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> and the string is NOT `nil` terminated then the
+    /// behavior of this initializer is undefined.
     /// 
     /// - Parameters:
     ///   - cString: the pointer to the characters.
-    ///   - length: the length of the string. If less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the string MUST be `nil` terminated.
+    ///   - length: the length of the string. If less than <code>[zero](https://en.wikipedia.org/wiki/0)</code>
+    ///             then the string MUST be `nil` terminated.
     ///   - encoding: the character encoding used. Defaults to UTF-8.
     ///
     public init(cString: UnsafeMutablePointer<CChar>, length: Int = -1, encoding: String.Encoding = String.Encoding.utf8) {
@@ -131,14 +142,17 @@ open class CString {
         self.encoding = encoding
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Initializes this object with the contents of the immutable bytes (unsigned char) from the given pointer. If length is not given or is less than
-    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the string MUST be `nil` terminated. If the length is less than
-    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> and the string is NOT `nil` terminated then the behavior of this initializer is undefined.
+    /*==========================================================================================================*/
+    /// Initializes this object with the contents of the immutable bytes (unsigned char) from the given pointer.
+    /// If length is not given or is less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the
+    /// string MUST be `nil` terminated. If the length is less than
+    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> and the string is NOT `nil` terminated then the
+    /// behavior of this initializer is undefined.
     /// 
     /// - Parameters:
     ///   - cString: the pointer to the bytes.
-    ///   - length: the length of the string. If less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the string MUST be `nil` terminated.
+    ///   - length: the length of the string. If less than <code>[zero](https://en.wikipedia.org/wiki/0)</code>
+    ///             then the string MUST be `nil` terminated.
     ///   - encoding: the character encoding used. Defaults to UTF-8.
     ///
     public init(utf8String: ByteROPointer, length: Int = -1, encoding: String.Encoding = String.Encoding.utf8) {
@@ -152,14 +166,16 @@ open class CString {
         self.encoding = encoding
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Initializes this object with the contents of the mutable bytes (unsigned char) from the given pointer. If length is not given or is less than
-    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the string MUST be `nil` terminated. If the length is less than
-    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> and the string is NOT `nil` terminated then the behavior of this initializer is undefined.
+    /*==========================================================================================================*/
+    /// Initializes this object with the contents of the mutable bytes (unsigned char) from the given pointer. If
+    /// length is not given or is less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the string
+    /// MUST be `nil` terminated. If the length is less than <code>[zero](https://en.wikipedia.org/wiki/0)</code>
+    /// and the string is NOT `nil` terminated then the behavior of this initializer is undefined.
     /// 
     /// - Parameters:
     ///   - cString: the pointer to the bytes.
-    ///   - length: the length of the string. If less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the string MUST be `nil` terminated.
+    ///   - length: the length of the string. If less than <code>[zero](https://en.wikipedia.org/wiki/0)</code>
+    ///             then the string MUST be `nil` terminated.
     ///   - encoding: the character encoding used. Defaults to UTF-8.
     ///
     public init(utf8String: BytePointer, length: Int = -1, encoding: String.Encoding = String.Encoding.utf8) {
@@ -172,7 +188,7 @@ open class CString {
         self.encoding = encoding
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Used internally.
     /// 
     /// - Parameters:
@@ -189,9 +205,10 @@ open class CString {
         cString.deallocate()
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Execute the block with an <code>[UnsafeBufferPointer](https://developer.apple.com/documentation/swift/unsafebufferpointer/)</code> of
-    /// <code>[Int8](https://developer.apple.com/documentation/swift/int8/)</code> characters.
+    /*==========================================================================================================*/
+    /// Execute the block with an
+    /// <code>[UnsafeBufferPointer](https://developer.apple.com/documentation/swift/unsafebufferpointer/)</code>
+    /// of <code>[Int8](https://developer.apple.com/documentation/swift/int8/)</code> characters.
     /// 
     /// - Parameter block: the block to execute.
     /// - Returns: the value returned by the block.
@@ -201,8 +218,10 @@ open class CString {
         try block(UnsafeBufferPointer(cString))
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Execute the block with an <code>[UnsafeBufferPointer](https://developer.apple.com/documentation/swift/unsafebufferpointer/)</code> of UTF-8 encoded characters.
+    /*==========================================================================================================*/
+    /// Execute the block with an
+    /// <code>[UnsafeBufferPointer](https://developer.apple.com/documentation/swift/unsafebufferpointer/)</code>
+    /// of UTF-8 encoded characters.
     /// 
     /// - Parameter block: the block to execute.
     /// - Returns: the value returned by the block.
@@ -214,8 +233,9 @@ open class CString {
         }
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Execute the block with an UnsafePointer of <code>[Int8](https://developer.apple.com/documentation/swift/int8/)</code> characters.
+    /*==========================================================================================================*/
+    /// Execute the block with an UnsafePointer of
+    /// <code>[Int8](https://developer.apple.com/documentation/swift/int8/)</code> characters.
     /// 
     /// - Parameter block: the block to execute.
     /// - Returns: the value returned by the block.
@@ -229,7 +249,7 @@ open class CString {
         return try block(&nullChar, 0)
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Execute the block with an UnsafePointer of UTF-8 characters.
     /// 
     /// - Parameter block: the block to execute.
@@ -246,7 +266,7 @@ open class CString {
         }
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Create a new CString and do something with it right away. So, for example, instead of having to do this:
     /// 
     /// <pre>
@@ -264,9 +284,11 @@ open class CString {
     /// 
     /// - Parameters:
     ///   - length: The length of the buffer to create NOT INCLUDING the `nil` terminator.
-    ///   - block: the closure that will get executed. The buffer and it's length, NOT INCLUDING the `nil` terminator, will be passed to the closure. Upon success the closure
-    ///            should return the actual length of the C string in the buffer, NOT INCLUDING, the `nil` terminator. If there was an error then the closure should return -1 to
-    ///            indicate that the buffer does not contain a valid C string.
+    ///   - block: the closure that will get executed. The buffer and it's length, NOT INCLUDING the `nil`
+    ///            terminator, will be passed to the closure. Upon success the closure should return the actual
+    ///            length of the C string in the buffer, NOT INCLUDING, the `nil` terminator. If there was an
+    ///            error then the closure should return -1 to indicate that the buffer does not contain a valid C
+    ///            string.
     /// - Returns: an instance of CString or `nil` if -1 was returned from the closure.
     ///
     public static func newUtf8BufferOf(length: Int, _ block: (BytePointer, Int) throws -> Int) -> CString? {
@@ -277,7 +299,7 @@ open class CString {
         }
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Create a new CString and do something with it right away. So, for example, instead of having to do this:
     /// 
     /// <pre>
@@ -296,9 +318,11 @@ open class CString {
     /// - Parameters:
     ///   - length: The length of the buffer to create NOT INCLUDING the `nil` terminator.
     ///   - encoding: the encoding that the characters are expected to be in. Defaults to UTF-8.
-    ///   - block: the closure that will get executed. The buffer and it's length, NOT INCLUDING the `nil` terminator, will be passed to the closure. Upon success the closure
-    ///            should return the actual length of the C string in the buffer, NOT INCLUDING, the `nil` terminator. If there was an error then the closure should return -1 to
-    ///            indicate that the buffer does not contain a valid C string.
+    ///   - block: the closure that will get executed. The buffer and it's length, NOT INCLUDING the `nil`
+    ///            terminator, will be passed to the closure. Upon success the closure should return the actual
+    ///            length of the C string in the buffer, NOT INCLUDING, the `nil` terminator. If there was an
+    ///            error then the closure should return -1 to indicate that the buffer does not contain a valid C
+    ///            string.
     /// - Returns: an instance of CString or `nil` if -1 was returned from the closure.
     ///
     public static func newCCharBufferOf(length: Int, encoding: String.Encoding = String.Encoding.utf8, _ block: (UnsafeMutablePointer<CChar>, Int) throws -> Int) -> CString? {

@@ -572,12 +572,14 @@
 
                 </div>
               </div>
-            <p>This is a class to help with the conversion between C strings and the Swift <code><a href="https://developer.apple.com/documentation/swift/string/">String</a></code> class. One note
-about the use of signed and unsigned chars. Some C functions make a distinction between a signed char (usually the default - when only the lower 7-bits are significant) and an
-unsigned char (usually in conjunction with the UTF-8 character encoding scheme). This class has methods to handle both.</p>
+            <p>This is a class to help with the conversion between C strings and the Swift
+<code><a href="https://developer.apple.com/documentation/swift/string/">String</a></code> class. One note about the use
+of signed and unsigned chars. Some C functions make a distinction between a signed char (usually the default -
+when only the lower 7-bits are significant) and an unsigned char (usually in conjunction with the UTF-8
+character encoding scheme). This class has methods to handle both.</p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L30-L333">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L32-L357">Show on GitHub</a>
               </div>
           </section>
           <section class="section task-group-section">
@@ -608,7 +610,7 @@ unsigned char (usually in conjunction with the UTF-8 character encoding scheme).
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L40">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L42">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -626,8 +628,9 @@ unsigned char (usually in conjunction with the UTF-8 character encoding scheme).
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The C string converted to a Swift <code><a href="https://developer.apple.com/documentation/swift/string/">String</a></code>. If the string cannot be decoded using the provided
-encoding then this field will be <code>nil</code>.</p>
+                        <p>The C string converted to a Swift
+<code><a href="https://developer.apple.com/documentation/swift/string/">String</a></code>. If the string cannot be
+decoded using the provided encoding then this field will be <code>nil</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -639,7 +642,7 @@ encoding then this field will be <code>nil</code>.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L46-L50">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L49-L53">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -657,8 +660,10 @@ encoding then this field will be <code>nil</code>.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initialize this object with the given Swift <code><a href="https://developer.apple.com/documentation/swift/string/">String</a></code>. The characters of the
-<code><a href="https://developer.apple.com/documentation/swift/string/">String</a></code> will be encoded as a series of UTF-8 bytes.</p>
+                        <p>Initialize this object with the given Swift
+<code><a href="https://developer.apple.com/documentation/swift/string/">String</a></code>. The characters of the
+<code><a href="https://developer.apple.com/documentation/swift/string/">String</a></code> will be encoded as a series
+of UTF-8 bytes.</p>
 
                       </div>
                       <div class="declaration">
@@ -689,7 +694,7 @@ encoding then this field will be <code>nil</code>.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L58-L61">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L63-L66">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -719,7 +724,7 @@ encoding then this field will be <code>nil</code>.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L66-L68">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L71-L73">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -737,8 +742,8 @@ encoding then this field will be <code>nil</code>.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initialize this object with the contents of the byte (unsigned char) buffer. The bytes will be interpreted as a series of characters encoded with the given character
-encoding.</p>
+                        <p>Initialize this object with the contents of the byte (unsigned char) buffer. The bytes will be interpreted
+as a series of characters encoded with the given character encoding.</p>
 
                       </div>
                       <div class="declaration">
@@ -793,7 +798,7 @@ encoding.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L79-L82">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L84-L87">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -811,8 +816,8 @@ encoding.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initialize this object with the contents of the character (signed char) buffer. The characters will be interpreted as a series of characters encoded with the given
-character encoding.</p>
+                        <p>Initialize this object with the contents of the character (signed char) buffer. The characters will be
+interpreted as a series of characters encoded with the given character encoding.</p>
 
                       </div>
                       <div class="declaration">
@@ -867,7 +872,7 @@ character encoding.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L93-L96">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L98-L101">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -885,9 +890,11 @@ character encoding.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initializes this object with the contents of the immutable character (signed char) from the given pointer. If length is not given or is less than
-<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then the string MUST be <code>nil</code> terminated. If the length is less than
-<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> and the string is NOT <code>nil</code> terminated then the behavior of this initializer is undefined.</p>
+                        <p>Initializes this object with the contents of the immutable character (signed char) from the given pointer.
+If length is not given or is less than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then the
+string MUST be <code>nil</code> terminated. If the length is less than
+<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> and the string is NOT <code>nil</code> terminated then the
+behavior of this initializer is undefined.</p>
 
                       </div>
                       <div class="declaration">
@@ -922,7 +929,8 @@ character encoding.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>the length of the string. If less than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then the string MUST be <code>nil</code> terminated.</p>
+                                  <p>the length of the string. If less than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code>
+    then the string MUST be <code>nil</code> terminated.</p>
                                 </div>
                               </td>
                             </tr>
@@ -942,7 +950,7 @@ character encoding.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L108-L115">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L116-L123">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -960,9 +968,11 @@ character encoding.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initializes this object with the contents of the mutable character (signed char) from the given pointer. If length is not given or is less than
-<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then the string MUST be <code>nil</code> terminated. If the length is less than
-<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> and the string is NOT <code>nil</code> terminated then the behavior of this initializer is undefined.</p>
+                        <p>Initializes this object with the contents of the mutable character (signed char) from the given pointer.
+If length is not given or is less than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then the
+string MUST be <code>nil</code> terminated. If the length is less than
+<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> and the string is NOT <code>nil</code> terminated then the
+behavior of this initializer is undefined.</p>
 
                       </div>
                       <div class="declaration">
@@ -997,7 +1007,8 @@ character encoding.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>the length of the string. If less than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then the string MUST be <code>nil</code> terminated.</p>
+                                  <p>the length of the string. If less than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code>
+    then the string MUST be <code>nil</code> terminated.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1017,7 +1028,7 @@ character encoding.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L127-L132">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L138-L143">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1035,9 +1046,11 @@ character encoding.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initializes this object with the contents of the immutable bytes (unsigned char) from the given pointer. If length is not given or is less than
-<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then the string MUST be <code>nil</code> terminated. If the length is less than
-<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> and the string is NOT <code>nil</code> terminated then the behavior of this initializer is undefined.</p>
+                        <p>Initializes this object with the contents of the immutable bytes (unsigned char) from the given pointer.
+If length is not given or is less than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then the
+string MUST be <code>nil</code> terminated. If the length is less than
+<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> and the string is NOT <code>nil</code> terminated then the
+behavior of this initializer is undefined.</p>
 
                       </div>
                       <div class="declaration">
@@ -1072,7 +1085,8 @@ character encoding.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>the length of the string. If less than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then the string MUST be <code>nil</code> terminated.</p>
+                                  <p>the length of the string. If less than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code>
+    then the string MUST be <code>nil</code> terminated.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1092,7 +1106,7 @@ character encoding.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L144-L153">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L158-L167">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1110,9 +1124,10 @@ character encoding.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initializes this object with the contents of the mutable bytes (unsigned char) from the given pointer. If length is not given or is less than
-<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then the string MUST be <code>nil</code> terminated. If the length is less than
-<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> and the string is NOT <code>nil</code> terminated then the behavior of this initializer is undefined.</p>
+                        <p>Initializes this object with the contents of the mutable bytes (unsigned char) from the given pointer. If
+length is not given or is less than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then the string
+MUST be <code>nil</code> terminated. If the length is less than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code>
+and the string is NOT <code>nil</code> terminated then the behavior of this initializer is undefined.</p>
 
                       </div>
                       <div class="declaration">
@@ -1147,7 +1162,8 @@ character encoding.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>the length of the string. If less than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then the string MUST be <code>nil</code> terminated.</p>
+                                  <p>the length of the string. If less than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code>
+    then the string MUST be <code>nil</code> terminated.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1167,7 +1183,7 @@ character encoding.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L165-L173">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L181-L189">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1185,8 +1201,9 @@ character encoding.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Execute the block with an <code><a href="https://developer.apple.com/documentation/swift/unsafebufferpointer/">UnsafeBufferPointer</a></code> of
-<code><a href="https://developer.apple.com/documentation/swift/int8/">Int8</a></code> characters.</p>
+                        <p>Execute the block with an
+<code><a href="https://developer.apple.com/documentation/swift/unsafebufferpointer/">UnsafeBufferPointer</a></code>
+of <code><a href="https://developer.apple.com/documentation/swift/int8/">Int8</a></code> characters.</p>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
     any error thrown by the block.
@@ -1226,7 +1243,7 @@ character encoding.</p>
                         <p>the value returned by the block.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L200-L202">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L217-L219">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1244,7 +1261,9 @@ character encoding.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Execute the block with an <code><a href="https://developer.apple.com/documentation/swift/unsafebufferpointer/">UnsafeBufferPointer</a></code> of UTF-8 encoded characters.</p>
+                        <p>Execute the block with an
+<code><a href="https://developer.apple.com/documentation/swift/unsafebufferpointer/">UnsafeBufferPointer</a></code>
+of UTF-8 encoded characters.</p>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
     any error thrown by the block.
@@ -1284,7 +1303,7 @@ character encoding.</p>
                         <p>the value returned by the block.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L211-L215">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L230-L234">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1302,7 +1321,8 @@ character encoding.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Execute the block with an UnsafePointer of <code><a href="https://developer.apple.com/documentation/swift/int8/">Int8</a></code> characters.</p>
+                        <p>Execute the block with an UnsafePointer of
+<code><a href="https://developer.apple.com/documentation/swift/int8/">Int8</a></code> characters.</p>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
     any error thrown by the block.
@@ -1342,7 +1362,7 @@ character encoding.</p>
                         <p>the value returned by the block.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L224-L230">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L244-L250">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1400,7 +1420,7 @@ character encoding.</p>
                         <p>the value returned by the block.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L239-L247">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L259-L267">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1466,9 +1486,11 @@ character encoding.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>the closure that will get executed. The buffer and it&rsquo;s length, NOT INCLUDING the <code>nil</code> terminator, will be passed to the closure. Upon success the closure
-   should return the actual length of the C string in the buffer, NOT INCLUDING, the <code>nil</code> terminator. If there was an error then the closure should return -1 to
-   indicate that the buffer does not contain a valid C string.</p>
+                                  <p>the closure that will get executed. The buffer and it&rsquo;s length, NOT INCLUDING the <code>nil</code>
+   terminator, will be passed to the closure. Upon success the closure should return the actual
+   length of the C string in the buffer, NOT INCLUDING, the <code>nil</code> terminator. If there was an
+   error then the closure should return -1 to indicate that the buffer does not contain a valid C
+   string.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1480,7 +1502,7 @@ character encoding.</p>
                         <p>an instance of CString or <code>nil</code> if -1 was returned from the closure.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L272-L278">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L294-L300">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1558,9 +1580,11 @@ character encoding.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>the closure that will get executed. The buffer and it&rsquo;s length, NOT INCLUDING the <code>nil</code> terminator, will be passed to the closure. Upon success the closure
-   should return the actual length of the C string in the buffer, NOT INCLUDING, the <code>nil</code> terminator. If there was an error then the closure should return -1 to
-   indicate that the buffer does not contain a valid C string.</p>
+                                  <p>the closure that will get executed. The buffer and it&rsquo;s length, NOT INCLUDING the <code>nil</code>
+   terminator, will be passed to the closure. Upon success the closure should return the actual
+   length of the C string in the buffer, NOT INCLUDING, the <code>nil</code> terminator. If there was an
+   error then the closure should return -1 to indicate that the buffer does not contain a valid C
+   string.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1572,7 +1596,7 @@ character encoding.</p>
                         <p>an instance of CString or <code>nil</code> if -1 was returned from the closure.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L304-L332">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/CStrings.swift#L328-L356">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1582,7 +1606,7 @@ character encoding.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-04-30)</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-05-03)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

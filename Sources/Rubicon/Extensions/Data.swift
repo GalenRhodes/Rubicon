@@ -24,11 +24,13 @@ import Foundation
 
 public extension Data {
 
-    /*===========================================================================================================================================================================*/
-    /// Allows creating of a <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code> struct from an <code>[input
+    /*==========================================================================================================*/
+    /// Allows creating of a <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code>
+    /// struct from an <code>[input
     /// stream](https://developer.apple.com/documentation/foundation/inputstream)</code>.
     /// 
-    /// - Parameter inputStream: the <code>[input stream](https://developer.apple.com/documentation/foundation/inputstream)</code>.
+    /// - Parameter inputStream: the <code>[input
+    ///                          stream](https://developer.apple.com/documentation/foundation/inputstream)</code>.
     ///
     init?(inputStream: InputStream) {
         do {
@@ -42,9 +44,10 @@ public extension Data {
         }
     }
 
-    /*===========================================================================================================================================================================*/
-    /// For some reason `withUnsafeMutableBytes<T>(block:)` was deprecated on the grounds that the [Data](https://developer.apple.com/documentation/foundation/data/) object could
-    /// have a <code>[zero](https://en.wikipedia.org/wiki/0)</code> length.
+    /*==========================================================================================================*/
+    /// For some reason `withUnsafeMutableBytes<T>(block:)` was deprecated on the grounds that the
+    /// [Data](https://developer.apple.com/documentation/foundation/data/) object could have a
+    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> length.
     /// 
     /// - Parameter block: the closure.
     /// - Returns: the results of executing the closure.
@@ -60,8 +63,9 @@ public extension Data {
         }
     }
 
-    /*===========================================================================================================================================================================*/
-    /// For some reason `withUnsafeBytes<T>(block:)` was deprecated on the grounds that the [Data](https://developer.apple.com/documentation/foundation/data/) object could have a
+    /*==========================================================================================================*/
+    /// For some reason `withUnsafeBytes<T>(block:)` was deprecated on the grounds that the
+    /// [Data](https://developer.apple.com/documentation/foundation/data/) object could have a
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> length.
     /// 
     /// - Parameter block: the closure.

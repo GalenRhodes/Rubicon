@@ -45,38 +45,38 @@ open class IConvCharInputStream: CharInputStream {
     }
 
     //@f:0
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// The number of spaces in each tab stop.
     ///
-    open         var tabWidth:          Int8          { get { lock.withLock { tab } } set { lock.withLock { tab = newValue }                                     } }
-    /*===========================================================================================================================================================================*/
+    open         var tabWidth:          Int8          { get { lock.withLock { tab } } set { lock.withLock { tab = newValue }                                    } }
+    /*==========================================================================================================*/
     /// The number of marks on the stream.
     ///
-    open         var markCount:         Int           { lock.withLock { marks.count                                                                              } }
-    /*===========================================================================================================================================================================*/
+    open         var markCount:         Int           { lock.withLock { marks.count                                                                             } }
+    /*==========================================================================================================*/
     /// The current line and column numbers.
     ///
-    open         var position:          TextPosition  { lock.withLock { pos                                                                                      } }
-    /*===========================================================================================================================================================================*/
+    open         var position:          TextPosition  { lock.withLock { pos                                                                                     } }
+    /*==========================================================================================================*/
     /// The error.
     ///
-    open         var streamError:       Error?        { lock.withLock { (isOpen ? error : nil)                                                                   } }
-    /*===========================================================================================================================================================================*/
+    open         var streamError:       Error?        { lock.withLock { (isOpen ? error : nil)                                                                  } }
+    /*==========================================================================================================*/
     /// The status of the `CharInputStream`.
     ///
-    open         var streamStatus:      Stream.Status { lock.withLock { (isOpen ? (hasBChars ? .open : (nErr ? (isRunning ? .open : .atEnd) : .error)) : status) } }
-    /*===========================================================================================================================================================================*/
+    open         var streamStatus:      Stream.Status { lock.withLock { (isOpen ? (noBChars ? (nErr ? (isRunning ? .open : .atEnd) : .error) : .open) : status) } }
+    /*==========================================================================================================*/
     /// `true` if the stream is at the end-of-file.
     ///
-    open         var isEOF:             Bool          { (streamStatus == .atEnd)                                                                                   }
-    /*===========================================================================================================================================================================*/
+    open         var isEOF:             Bool          { (streamStatus == .atEnd)                                                                                  }
+    /*==========================================================================================================*/
     /// `true` if the stream has characters ready to be read.
     ///
-    open         var hasCharsAvailable: Bool          { lock.withLock { (isOpen && (hasBChars || (nErr && isRunning)))                                           } }
-    /*===========================================================================================================================================================================*/
+    open         var hasCharsAvailable: Bool          { lock.withLock { (isOpen && (hasBChars || (nErr && isRunning)))                                          } }
+    /*==========================================================================================================*/
     /// The human readable name of the encoding.
     ///
-    open         var encodingName:      String        { lock.withLock { inputStream.encodingName                                                                 } }
+    open         var encodingName:      String        { lock.withLock { inputStream.encodingName                                                                } }
 
     private      let inputStream:       SimpleCharInputStream
     private      var isRunning:         Bool          = false
@@ -96,6 +96,7 @@ open class IConvCharInputStream: CharInputStream {
     private      var isGood:            Bool          { (isOpen && noError)           }
     private      var canWait:           Bool          { (isOpen && nErr && isRunning) }
     private      var hasBChars:         Bool          { !buffer.isEmpty               }
+    private      var noBChars:          Bool          { buffer.isEmpty                }
     //@f:1
 
     public init(inputStream: InputStream, encodingName: String, autoClose: Bool = true) {
@@ -120,12 +121,10 @@ open class IConvCharInputStream: CharInputStream {
         do {
             nDebug(.In, "DE-INIT!!!")
             do { nDebug(.Out, "DE-INIT!!!") }
-            // This is safe to do here because, at this point, we know that NOTHING has a reference to this object.
-            // And since nothing has a reference to this object then we know that the thread is NOT running.
         }
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Open the stream. Once a stream has been opened it can never be re-opened.
     ///
     open func open() {
@@ -141,7 +140,7 @@ open class IConvCharInputStream: CharInputStream {
         }
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Close the stream.
     ///
     open func close() {
@@ -158,7 +157,7 @@ open class IConvCharInputStream: CharInputStream {
         }
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Read one character.
     /// 
     /// - Returns: the next character or `nil` if EOF.
@@ -182,17 +181,23 @@ open class IConvCharInputStream: CharInputStream {
         }
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Read <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s from the stream and append them to the given character array. This method is
-    /// identical to `read(chars:,maxLength:)` except that the receiving array is not cleared before the data is read.
+    /*==========================================================================================================*/
+    /// Read <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s from the stream
+    /// and append them to the given character array. This method is identical to `read(chars:,maxLength:)` except
+    /// that the receiving array is not cleared before the data is read.
     /// 
     /// - Parameters:
     ///   - chars: the <code>[Array](https://developer.apple.com/documentation/swift/Array)</code> to receive the
     ///            <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s.
-    ///   - maxLength: the maximum number of <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s to receive. If -1 then all
-    ///                <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s are read until the end-of-file.
-    /// - Returns: the number of <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s read. Will return 0
-    ///            (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) if the stream is at end-of-file.
+    ///   - maxLength: the maximum number of
+    ///                <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s to
+    ///                receive. If -1 then all
+    ///                <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s are
+    ///                read until the end-of-file.
+    /// - Returns: the number of
+    ///            <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s read. Will
+    ///            return 0 (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) if the stream is at
+    ///            end-of-file.
     /// - Throws: if an I/O error occurs.
     ///
     open func append(to chars: inout [Character], maxLength: Int) throws -> Int {
@@ -224,8 +229,9 @@ open class IConvCharInputStream: CharInputStream {
         }
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Marks the current point in the stream so that it can be returned to later. You can set more than one mark but all operations happen on the most recently set mark.
+    /*==========================================================================================================*/
+    /// Marks the current point in the stream so that it can be returned to later. You can set more than one mark
+    /// but all operations happen on the most recently set mark.
     ///
     open func markSet() {
         lock.withLock {
@@ -233,7 +239,7 @@ open class IConvCharInputStream: CharInputStream {
         }
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Removes the most recently set mark WITHOUT returning to it.
     ///
     open func markDelete() {
@@ -242,7 +248,7 @@ open class IConvCharInputStream: CharInputStream {
         }
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Removes and returns to the most recently set mark.
     ///
     open func markReturn() {
@@ -253,9 +259,10 @@ open class IConvCharInputStream: CharInputStream {
         }
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Updates the most recently set mark to the current position. If there was no previously set mark then a new one is created. This is functionally equivalent to performing a
-    /// `markDelete()` followed immediately by a `markSet()`.
+    /*==========================================================================================================*/
+    /// Updates the most recently set mark to the current position. If there was no previously set mark then a new
+    /// one is created. This is functionally equivalent to performing a `markDelete()` followed immediately by a
+    /// `markSet()`.
     ///
     open func markUpdate() {
         lock.withLock {
@@ -269,9 +276,10 @@ open class IConvCharInputStream: CharInputStream {
         }
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Returns to the most recently set mark WITHOUT removing it. If there was no previously set mark then a new one is created. This is functionally equivalent to performing a
-    /// `markReturn()` followed immediately by a `markSet()`.
+    /*==========================================================================================================*/
+    /// Returns to the most recently set mark WITHOUT removing it. If there was no previously set mark then a new
+    /// one is created. This is functionally equivalent to performing a `markReturn()` followed immediately by a
+    /// `markSet()`.
     ///
     open func markReset() {
         lock.withLock {
@@ -286,9 +294,9 @@ open class IConvCharInputStream: CharInputStream {
         }
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Backs out the last `count` characters from the most recently set mark without actually removing the entire mark. You have to have previously called `markSet()` otherwise
-    /// this method does nothing.
+    /*==========================================================================================================*/
+    /// Backs out the last `count` characters from the most recently set mark without actually removing the entire
+    /// mark. You have to have previously called `markSet()` otherwise this method does nothing.
     /// 
     /// - Parameter count: the number of characters to back out.
     /// - Returns: the number of characters actually backed out in case there weren't `count` characters available.
@@ -331,20 +339,27 @@ open class IConvCharInputStream: CharInputStream {
         init(pos: TextPosition) { self.pos = pos }
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Background Reader Thread.
     /// 
-    /// There is always the chance that the code will neglect to call `close()` before letting go of the object and letting it go out of scope. Normally this means that the retain
-    /// count would drop to 0 (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) and the runtime will deinit and deallocate the object. But since we have a background thread
-    /// that may still be running, that thread will also have a strong reference to this object keeping it from being disposed of.
+    /// There is always the chance that the code will neglect to call `close()` before letting go of the object
+    /// and letting it go out of scope. Normally this means that the retain count would drop to 0
+    /// (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) and the runtime will deinit and deallocate the
+    /// object. But since we have a background thread that may still be running, that thread will also have a
+    /// strong reference to this object keeping it from being disposed of.
     /// 
-    /// In order to keep the background thread from holding a strong reference on this object and keeping it alive after everyone else has released their claim on it, the reader
-    /// thread will check the retain count at least every second. When it sees the retain count has dropped to 1 (one) then it will know that it's the only thing keeping this
-    /// object around and so it will exit, thereby releasing it's strong reference, and letting the object to be deallocated.
+    /// In order to keep the background thread from holding a strong reference on this object and keeping it alive
+    /// after everyone else has released their claim on it, the reader thread will check the retain count at least
+    /// every second. When it sees that the retain count has dropped to 1 (one) then it will know that it's the
+    /// only thing keeping this object around and so it will exit, thereby releasing it's strong reference, and
+    /// letting the object to deallocated.
     ///
     private func readerThread() {
         lock.lock()
-        defer { lock.unlock() }
+        defer {
+            lock.broadcast()
+            lock.unlock()
+        }
         do {
             if inputStream.streamStatus == .notOpen { inputStream.open() }
             defer { shutdownStream() }
@@ -385,22 +400,20 @@ open class IConvCharInputStream: CharInputStream {
         }
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Causes the reader thread to WAIT until it receives a notification. Wakes up on it's own every second to see if the object's retain count has dropped to 1. If the retain
-    /// count has dropped to 1 then this thread is the only thing with retaining the object and so it should quit so the object can be deallocated.
+    /*==========================================================================================================*/
+    /// Causes the reader thread to WAIT until it receives a notification. Wakes up on it's own every second to
+    /// see if the object's retain count has dropped to 1. If the retain count has dropped to 1 then this thread
+    /// is the only thing with retaining the object and so it should quit so the object can be deallocated.
     /// 
-    /// - Returns: `true` if it received a notification from the system. `false` if the retain count has dropped to 1.
+    /// - Returns: `true` if it received a notification from the system. `false` if the retain count has dropped
+    ///            to 1.
     ///
     private func readerWait() -> Bool {
         while true {
             lock.broadcast()
-            if lock.wait(until: Date(timeIntervalSinceNow: 1.0)) {
-                return true
-            }
-            else {
-                let retainCount: Int = PGGetRetainCount(self)
-                guard retainCount > 1 else { return false }
-            }
+            if lock.wait(until: Date(timeIntervalSinceNow: 1.0)) { return true }
+            let retainCount: Int = PGGetRetainCount(self)
+            guard retainCount > 1 else { return false }
         }
     }
 

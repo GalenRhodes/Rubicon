@@ -24,23 +24,27 @@ import Foundation
 
 extension CharacterSet {
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// A simple concatenation of the
-    /// <code>[CharacterSet.whitespacesAndNewlines](https://developer.apple.com/documentation/foundation/characterset/1779801-whitespacesandnewlines)</code> and
-    /// <code>[CharacterSet.controlCharacters](https://developer.apple.com/documentation/foundation/characterset/1779846-controlcharacters)</code> character sets.
+    /// <code>[CharacterSet.whitespacesAndNewlines](https://developer.apple.com/documentation/foundation/characterset/1779801-whitespacesandnewlines)</code>
+    /// and
+    /// <code>[CharacterSet.controlCharacters](https://developer.apple.com/documentation/foundation/characterset/1779846-controlcharacters)</code>
+    /// character sets.
     ///
     public static let whitespacesAndNewlinesAndControlCharacters: CharacterSet = CharacterSet.whitespacesAndNewlines.union(CharacterSet.controlCharacters)
 }
 
 extension String {
 
-    /*===========================================================================================================================================================================*/
-    /// Allows creating a <code>[String](https://developer.apple.com/documentation/swift/string/)</code> from the contents of an
+    /*==========================================================================================================*/
+    /// Allows creating a <code>[String](https://developer.apple.com/documentation/swift/string/)</code> from the
+    /// contents of an
     /// <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream)</code>.
     /// 
     /// - Parameters:
     ///   - inputStream: the input stream.
-    ///   - encoding: the encoding. Defaults to <code>[String.Encoding.utf8](https://developer.apple.com/documentation/swift/string/encoding/1780106-utf8)</code>
+    ///   - encoding: the encoding. Defaults to
+    ///               <code>[String.Encoding.utf8](https://developer.apple.com/documentation/swift/string/encoding/1780106-utf8)</code>
     ///
     public init?(inputStream: InputStream, encoding: String.Encoding = String.Encoding.utf8) {
         if inputStream.status(in: .notOpen) {
@@ -74,32 +78,36 @@ infix operator !=~: ComparisonPrecedence
 
 extension StringProtocol {
 
-    /*===========================================================================================================================================================================*/
-    /// This property returns `true` if the string is empty after trimming whitespaces, newlines, and control characters.
+    /*==========================================================================================================*/
+    /// This property returns `true` if the string is empty after trimming whitespaces, newlines, and control
+    /// characters.
     ///
     public var isTrimEmpty: Bool { trimmed.isEmpty }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Returns an array that cover the entire string.
     ///
     public var fullRange:   Range<String.Index> { (startIndex ..< endIndex) }
 
-    /*===========================================================================================================================================================================*/
-    /// This property returns a copy of the string with whitespaces, newlines, and control characters trimmed from both ends of the string.
+    /*==========================================================================================================*/
+    /// This property returns a copy of the string with whitespaces, newlines, and control characters trimmed from
+    /// both ends of the string.
     ///
     public var trimmed:     String { trimmingCharacters(in: CharacterSet.whitespacesAndNewlinesAndControlCharacters) }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// A copy of this string with '+' characters replaced with spaces and percent encodings decoded.
     ///
     public var urlDecoded:  String { replacingOccurrences(of: "+", with: " ").removingPercentEncoding ?? String(self) }
 
-    /*===========================================================================================================================================================================*/
-    /// This property returns an instance of <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> that covers the entire string.
+    /*==========================================================================================================*/
+    /// This property returns an instance of
+    /// <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> that covers the
+    /// entire string.
     ///
     public var fullNSRange: NSRange { NSRange(fullRange, in: self) }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Case insensitive equals.
     /// 
     /// - Parameters:
@@ -109,7 +117,7 @@ extension StringProtocol {
     ///
     public static func ==~ (lhs: Self, rhs: Self) -> Bool { (lhs.localizedCaseInsensitiveCompare(rhs) == ComparisonResult.orderedSame) }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Case insensitive NOT equals.
     /// 
     /// - Parameters:
@@ -119,8 +127,9 @@ extension StringProtocol {
     ///
     public static func !=~ (lhs: Self, rhs: Self) -> Bool { (lhs.localizedCaseInsensitiveCompare(rhs) != ComparisonResult.orderedSame) }
 
-    /*===========================================================================================================================================================================*/
-    /// Calls the given closure on each element in the sub-sequence defined by the given range in the same order as a for-in loop.
+    /*==========================================================================================================*/
+    /// Calls the given closure on each element in the sub-sequence defined by the given range in the same order
+    /// as a for-in loop.
     /// 
     /// - Parameters:
     ///   - inRange: The range of characters to iterate over.
@@ -135,10 +144,11 @@ extension StringProtocol {
         }
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Calls the given closure on each element in the sub-sequence defined by the given match and group in the same order as a for-in loop. In this method the range of the
-    /// sub-sequence is taken from the given `RegularExpression.Match` object and an optional index for the capture group. If the group is not provided then the entire match
-    /// region is assumed.
+    /*==========================================================================================================*/
+    /// Calls the given closure on each element in the sub-sequence defined by the given match and group in the
+    /// same order as a for-in loop. In this method the range of the sub-sequence is taken from the given
+    /// `RegularExpression.Match` object and an optional index for the capture group. If the group is not provided
+    /// then the entire match region is assumed.
     /// 
     /// - Parameters:
     ///   - match: The `RegularExpression.Match` object from a previously executed `RegularExpression` search.
@@ -155,8 +165,9 @@ extension StringProtocol {
         return false
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Get the position (line, column) of the index in the given string relative to the given starting position (line, column).
+    /*==========================================================================================================*/
+    /// Get the position (line, column) of the index in the given string relative to the given starting position
+    /// (line, column).
     /// 
     /// - Parameters:
     ///   - idx: the index.
@@ -174,19 +185,23 @@ extension StringProtocol {
         return pos
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Returns the <code>[Character](https://developer.apple.com/documentation/swift/Character)</code> at the `idx`th integer position in the string.
+    /*==========================================================================================================*/
+    /// Returns the <code>[Character](https://developer.apple.com/documentation/swift/Character)</code> at the
+    /// `idx`th integer position in the string.
     /// 
-    /// - Parameter idx: the integer offset into the <code>[String](https://developer.apple.com/documentation/swift/String)</code>.
-    /// - Returns: the <code>[Character](https://developer.apple.com/documentation/swift/Character)</code> at the offset indicated by `idx`.
+    /// - Parameter idx: the integer offset into the
+    ///                  <code>[String](https://developer.apple.com/documentation/swift/String)</code>.
+    /// - Returns: the <code>[Character](https://developer.apple.com/documentation/swift/Character)</code> at the
+    ///            offset indicated by `idx`.
     ///
     public subscript(_ idx: Int) -> Character {
         self[self.index(self.startIndex, offsetBy: idx)]
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Returns the <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the given
-    /// <code>[Range](https://developer.apple.com/documentation/swift/Range)</code>. A fatal error is thrown if the range is invalid for the string.
+    /*==========================================================================================================*/
+    /// Returns the <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the
+    /// given <code>[Range](https://developer.apple.com/documentation/swift/Range)</code>. A fatal error is thrown
+    /// if the range is invalid for the string.
     /// 
     /// - Parameter range: the <code>[Range](https://developer.apple.com/documentation/swift/Range)</code> of the
     ///                    <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
@@ -196,7 +211,7 @@ extension StringProtocol {
         Substring(self[index(idx: range.lowerBound) ..< index(idx: range.upperBound)])
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Returns the index of the first encounter of any of the given characters starting at the given index.
     /// 
     /// - Parameters:
@@ -213,8 +228,9 @@ extension StringProtocol {
         return nil
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Returns a `[String.Index](https://developer.apple.com/documentation/swift/string/index)>` into this string from an integer offset.
+    /*==========================================================================================================*/
+    /// Returns a `[String.Index](https://developer.apple.com/documentation/swift/string/index)>` into this string
+    /// from an integer offset.
     /// 
     /// - Parameter idx: the integer offset into the string
     /// - Returns: an instance of `[String.Index](https://developer.apple.com/documentation/swift/string/index)>`
@@ -223,15 +239,22 @@ extension StringProtocol {
         index(startIndex, offsetBy: idx)
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Returns an instance of `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` from
-    /// an instance of <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code>. If
-    /// <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> is invalid for this string then `nil` is returned.
+    /*==========================================================================================================*/
+    /// Returns an instance of
+    /// `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>`
+    /// from an instance of <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code>.
+    /// If <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> is invalid for
+    /// this string then `nil` is returned.
     /// 
-    /// - Parameter nsRange: the <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> to convert to
+    /// - Parameter nsRange: the
+    ///                      <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code>
+    ///                      to convert to
     ///                      `[Range](https://developer.apple.com/documentation/swift/range/)<Index>`
-    /// - Returns: an instance of `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>` or
-    ///            `nil` if the <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> was invalid for this string.
+    /// - Returns: an instance of
+    ///            `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>`
+    ///            or `nil` if the
+    ///            <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> was
+    ///            invalid for this string.
     ///
     public func range(nsRange: NSRange) -> Range<String.Index>? {
         guard nsRange.location != NSNotFound else {
@@ -240,7 +263,7 @@ extension StringProtocol {
         return nsRange.strRange(string: self)
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Checks to see if this string has any of the given prefixes.
     /// 
     /// - Parameter prefixes: the list of prefixes.
@@ -251,7 +274,7 @@ extension StringProtocol {
         return false
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Checks to see if this string has any of the given suffixes.
     /// 
     /// - Parameter suffixes: the list of suffixes.
@@ -262,14 +285,19 @@ extension StringProtocol {
         return false
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Extract the characters of this <code>[String](https://developer.apple.com/documentation/swift/String)</code> into an
-    /// <code>[Array](https://developer.apple.com/documentation/swift/Array)</code> of <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s. If
-    /// `splitClusters` is `true` then characters that are [Grapheme Clusters](https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html#ID293) will be split into
-    /// there individual character components. For example, the American Flag Emoji (🇺🇸) will be split into the individual unicode characters 🇺 and 🇸 instead of the single American
-    /// Flag Emoji.
+    /*==========================================================================================================*/
+    /// Extract the characters of this
+    /// <code>[String](https://developer.apple.com/documentation/swift/String)</code> into an
+    /// <code>[Array](https://developer.apple.com/documentation/swift/Array)</code> of
+    /// <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s. If `splitClusters`
+    /// is `true` then characters that are [Grapheme
+    /// Clusters](https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html#ID293) will be split
+    /// into there individual character components. For example, the American Flag Emoji (🇺🇸) will be split into
+    /// the individual unicode characters 🇺 and 🇸 instead of the single American Flag Emoji.
     /// 
-    /// - Parameter splitClusters: `true` if [Grapheme Clusters](https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html#ID293) should be broken apart.
+    /// - Parameter splitClusters: `true` if [Grapheme
+    ///                            Clusters](https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html#ID293)
+    ///                            should be broken apart.
     /// - Returns: the array of characters.
     ///
     public func getCharacters(splitClusters: Bool = true) -> [Character] {
@@ -281,7 +309,7 @@ extension StringProtocol {
         return characters
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Test this string to see if it matches the given regular expression pattern.
     /// 
     /// - Parameter pattern: the pattern.
@@ -301,7 +329,7 @@ extension StringProtocol {
         throw e!
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Given a valid range for for this string, return a UTF-16 based NSRange structure.
     /// 
     /// - Parameter range: the range.
@@ -309,10 +337,12 @@ extension StringProtocol {
     ///
     public func nsRange(_ range: Range<String.Index>) -> NSRange { NSRange(range, in: self) }
 
-    /*===========================================================================================================================================================================*/
-    /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
-    /// <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the given `from:` and `to:` bounds. A <code>[fatal
-    /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds are invalid for the string.
+    /*==========================================================================================================*/
+    /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that
+    /// contains the <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the
+    /// given `from:` and `to:` bounds. A <code>[fatal
+    /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds
+    /// are invalid for the string.
     /// 
     /// - Parameters:
     ///   - from: The index of the start of the substring.
@@ -323,10 +353,12 @@ extension StringProtocol {
         String(self[fromIdx ..< toIdx])
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
-    /// <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the given `from:` index for the `length:` characters. A <code>[fatal
-    /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds are invalid for the string.
+    /*==========================================================================================================*/
+    /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that
+    /// contains the <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the
+    /// given `from:` index for the `length:` characters. A <code>[fatal
+    /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds
+    /// are invalid for the string.
     /// 
     /// - Parameters:
     ///   - from: The index of the start of the substring.
@@ -337,30 +369,36 @@ extension StringProtocol {
         substr(from: fromIdx, to: (fromIdx + length))
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
-    /// <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the given
-    /// <code>[Range](https://developer.apple.com/documentation/swift/Range)</code>. A <code>[fatal
-    /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds are invalid for the string.
+    /*==========================================================================================================*/
+    /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that
+    /// contains the <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the
+    /// given <code>[Range](https://developer.apple.com/documentation/swift/Range)</code>. A <code>[fatal
+    /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds
+    /// are invalid for the string.
     /// 
     /// - Parameter range: the <code>[Range](https://developer.apple.com/documentation/swift/Range)</code> of the
     ///                    <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
-    /// - Returns: a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
+    /// - Returns: a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance
+    ///            that contains the
     ///            <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
     ///
     public func substr(from fromIdx: Int) -> String {
         String(self[index(idx: fromIdx) ..< endIndex])
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
-    /// <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the given
-    /// <code>[NSRange](https://developer.apple.com/documentation/foundation/NSRange)</code>. A <code>[fatal
-    /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds are invalid for the string.
+    /*==========================================================================================================*/
+    /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that
+    /// contains the <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the
+    /// given <code>[NSRange](https://developer.apple.com/documentation/foundation/NSRange)</code>. A <code>[fatal
+    /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds
+    /// are invalid for the string.
     /// 
-    /// - Parameter nsRange: the <code>[NSRange](https://developer.apple.com/documentation/foundation/NSRange)</code> of the
+    /// - Parameter nsRange: the
+    ///                      <code>[NSRange](https://developer.apple.com/documentation/foundation/NSRange)</code>
+    ///                      of the
     ///                      <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>
-    /// - Returns: a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that contains the
+    /// - Returns: a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance
+    ///            that contains the
     ///            <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
     ///
     public func substr(nsRange: NSRange) -> String {
@@ -370,18 +408,23 @@ extension StringProtocol {
         return String(self[range])
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Splits this string around matches of the given regular expression. This method works [just like it does in
-    /// Java](https://docs.oracle.com/javase/10/docs/api/java/lang/[String](https://developer.apple.com/documentation/swift/string/).html#`split(java.lang.String,int)`). The array
-    /// returned by this method contains each substring of this string that is terminated by another substring that matches the given expression or is terminated by the end of the
-    /// string. The substrings in the array are in the order in which they occur in this string. If the expression does not match any part of the input then the resulting array
-    /// has just one element, namely this string. When there is a positive-width match at the beginning of this string then an empty leading substring is included at the beginning
-    /// of the resulting array. A <code>[zero](https://en.wikipedia.org/wiki/0)</code>-width match at the beginning however never produces such empty leading substring. The
-    /// `limit` parameter controls the number of times the pattern is applied and therefore affects the length of the resulting array. If the limit n is greater than
-    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the pattern will be applied at most n - 1 times, the array's length will be no greater than n, and the array's
-    /// last entry will contain all input beyond the last matched delimiter. If n is non-positive then the pattern will be applied as many times as possible and the array can have
-    /// any length. If n is <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the pattern will be applied as many times as possible, the array can have any length, and
-    /// trailing empty strings will be discarded.
+    /// Java](https://docs.oracle.com/javase/10/docs/api/java/lang/[String](https://developer.apple.com/documentation/swift/string/).html#`split(java.lang.String,int)`).
+    /// The array returned by this method contains each substring of this string that is terminated by another
+    /// substring that matches the given expression or is terminated by the end of the string. The substrings in
+    /// the array are in the order in which they occur in this string. If the expression does not match any part
+    /// of the input then the resulting array has just one element, namely this string. When there is a
+    /// positive-width match at the beginning of this string then an empty leading substring is included at the
+    /// beginning of the resulting array. A <code>[zero](https://en.wikipedia.org/wiki/0)</code>-width match at
+    /// the beginning however never produces such empty leading substring. The `limit` parameter controls the
+    /// number of times the pattern is applied and therefore affects the length of the resulting array. If the
+    /// limit n is greater than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the pattern will be
+    /// applied at most n - 1 times, the array's length will be no greater than n, and the array's last entry will
+    /// contain all input beyond the last matched delimiter. If n is non-positive then the pattern will be applied
+    /// as many times as possible and the array can have any length. If n is
+    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the pattern will be applied as many times as
+    /// possible, the array can have any length, and trailing empty strings will be discarded.
     /// 
     /// The string "`boo:and:foo`", for example, yields the following results with these parameters:
     /// 
@@ -431,7 +474,8 @@ extension StringProtocol {
     ///   - pattern: the delimiting regular expression
     ///   - lim: the result threshold, as described above
     /// 
-    /// - Returns: the array of strings computed by splitting this string around matches of the given regular expression
+    /// - Returns: the array of strings computed by splitting this string around matches of the given regular
+    ///            expression
     ///
     public func split(on pattern: String, limit lim: Int = 0) -> [String] {
         if lim != 1, let regex: RegEx = try? RegEx(pattern: pattern) {
@@ -448,7 +492,7 @@ extension StringProtocol {
         return [ String(self) ]
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// The body of the closure for `split(pattern:lim:)`.
     /// 
     /// - Parameters:
@@ -477,7 +521,7 @@ extension StringProtocol {
         return false
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Trim the empty strings off of the array of strings. Used by `split(pattern:lim:)`.
     /// 
     /// - Parameter results: the array of strings.

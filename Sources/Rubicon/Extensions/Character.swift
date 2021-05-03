@@ -22,13 +22,13 @@
 
 import Foundation
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// This special character is used as a replacement when an invalid Unicode code point is encountered.
 ///
 public let UnicodeReplacementChar: Character = "�"
 
 extension Character {
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Creates a new `Character` from the given UTF-32 code point.
     /// 
     /// - Parameter codePoint: the code point.
@@ -37,8 +37,9 @@ extension Character {
         self.init(scalar: UnicodeScalar(codePoint))
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Creates a new `Character` from the given `UnicodeScalar`. If the scalar is `nil` then an instance of the `UnicodeReplacementChar` (�) will be created.
+    /*==========================================================================================================*/
+    /// Creates a new `Character` from the given `UnicodeScalar`. If the scalar is `nil` then an instance of the
+    /// `UnicodeReplacementChar` (�) will be created.
     /// 
     /// - Parameter s: the Unicode Scalar.
     ///

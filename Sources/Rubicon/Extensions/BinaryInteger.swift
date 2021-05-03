@@ -20,14 +20,15 @@ import CoreFoundation
 
 extension BinaryInteger {
 
-    /*===========================================================================================================================================================================*/
-    /// If the value is less than minValue then the minValue is returned. If the value is greater than maxValue then maxValue is returned. Otherwise this value is returned.
+    /*==========================================================================================================*/
+    /// If the value is less than minValue then the minValue is returned. If the value is greater than maxValue
+    /// then maxValue is returned. Otherwise this value is returned.
     /// 
     /// - Parameters:
     ///   - minValue: the minimum value.
     ///   - maxValue: the maximum value.
-    /// - Returns: If the value is less than minValue then the minValue is returned. If the value is greater than maxValue then maxValue is returned. Otherwise this value is
-    ///            returned.
+    /// - Returns: If the value is less than minValue then the minValue is returned. If the value is greater than
+    ///            maxValue then maxValue is returned. Otherwise this value is returned.
     ///
     public func clamp(minValue: Self, maxValue: Self) -> Self {
         ((self < minValue) ? minValue : ((self > maxValue) ? maxValue : self))

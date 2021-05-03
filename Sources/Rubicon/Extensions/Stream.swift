@@ -36,7 +36,7 @@ extension Stream {
     public var isEOF:          Bool { (streamStatus == .atEnd) }
     public var isInGoodStatus: Bool { Rubicon.value(streamStatus, isOneOf: .open, .opening, .reading, .writing) }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Checks to see if the `streamStatus` is any of the given statuses.
     /// 
     /// - Parameter statuses: the list of statuses.
@@ -47,7 +47,7 @@ extension Stream {
         return statuses.contains { st in (st == curr) }
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// If the stream has not yet been opened, open it and wait for it to be fully open - `streamStatus` !=
     /// <code>[Stream](https://developer.apple.com/documentation/foundation/stream/)</code>.Status.opening`.
     ///
@@ -59,34 +59,38 @@ extension Stream {
 
 extension InputStream {
 
-    /*===========================================================================================================================================================================*/
-    /// A better read function for <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD IS NOT THREAD SAFE!!!! This method
-    /// reads from the stream in chunks so do not use this method while any other thread might be potentially reading from this stream at the same time or you will be missing
-    /// data.
+    /*==========================================================================================================*/
+    /// A better read function for
+    /// <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD
+    /// IS NOT THREAD SAFE!!!! This method reads from the stream in chunks so do not use this method while any
+    /// other thread might be potentially reading from this stream at the same time or you will be missing data.
     /// 
     /// - Parameters:
     ///   - buffer: the buffer that will receive the bytes.
     ///   - maxLength: the maximum number of bytes to read.
     ///   - fully: `true` to keep reading until either maxLength or end-of-file is reached.
-    /// - Returns: the total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if `maxLength` is <code>[zero](https://en.wikipedia.org/wiki/0)</code>,
-    ///            the end-of-file has been reached, the stream is closed, or the stream was never opened.
+    /// - Returns: the total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if
+    ///            `maxLength` is <code>[zero](https://en.wikipedia.org/wiki/0)</code>, the end-of-file has been
+    ///            reached, the stream is closed, or the stream was never opened.
     /// - Throws: any error reported by the input stream.
     ///
     public func read(to buffer: CCharPointer, maxLength: Int) throws -> Int {
         try read(to: UnsafeMutableRawPointer(buffer), maxLength: maxLength)
     }
 
-    /*===========================================================================================================================================================================*/
-    /// A better read function for <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD IS NOT THREAD SAFE!!!! This method
-    /// reads from the stream in chunks so do not use this method while any other thread might be potentially reading from this stream at the same time or you will be missing
-    /// data.
+    /*==========================================================================================================*/
+    /// A better read function for
+    /// <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD
+    /// IS NOT THREAD SAFE!!!! This method reads from the stream in chunks so do not use this method while any
+    /// other thread might be potentially reading from this stream at the same time or you will be missing data.
     /// 
     /// - Parameters:
     ///   - rawBuffer: the buffer that will receive the bytes.
     ///   - maxLength: the maximum number of bytes to read.
     ///   - fully: `true` to keep reading until either maxLength or end-of-file is reached.
-    /// - Returns: the total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if `maxLength` is <code>[zero](https://en.wikipedia.org/wiki/0)</code>,
-    ///            the end-of-file has been reached, the stream is closed, or the stream was never opened.
+    /// - Returns: the total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if
+    ///            `maxLength` is <code>[zero](https://en.wikipedia.org/wiki/0)</code>, the end-of-file has been
+    ///            reached, the stream is closed, or the stream was never opened.
     /// - Throws: any error reported by the input stream.
     ///
     public func read(to rp: UnsafeMutableRawPointer, maxLength: Int) throws -> Int {
@@ -106,17 +110,21 @@ extension InputStream {
         return cc
     }
 
-    /*===========================================================================================================================================================================*/
-    /// A better read function for <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD IS NOT THREAD SAFE!!!! This method
-    /// reads from the stream in chunks so do not use this method while any other thread might be potentially reading from this stream at the same time or you will be missing
-    /// data.
+    /*==========================================================================================================*/
+    /// A better read function for
+    /// <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD
+    /// IS NOT THREAD SAFE!!!! This method reads from the stream in chunks so do not use this method while any
+    /// other thread might be potentially reading from this stream at the same time or you will be missing data.
     /// 
     /// - Parameters:
-    ///   - data: the <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code> to read the bytes into.
+    ///   - data: the <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code> to read the
+    ///           bytes into.
     ///   - len: the maximum number of bytes to read or -1 to read all to the end-of-file.
-    ///   - clr: `true` to clear the data buffer before reading or `false` to append read data to the existing data.
-    /// - Returns: the total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if `len` is <code>[zero](https://en.wikipedia.org/wiki/0)</code>, the
-    ///            end-of-file has been reached, the stream is closed, or the stream was never opened.
+    ///   - clr: `true` to clear the data buffer before reading or `false` to append read data to the existing
+    ///          data.
+    /// - Returns: the total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if `len`
+    ///            is <code>[zero](https://en.wikipedia.org/wiki/0)</code>, the end-of-file has been reached, the
+    ///            stream is closed, or the stream was never opened.
     /// - Throws: any error reported by the input stream.
     ///
     public func read(to data: inout Data, maxLength len: Int, truncate clr: Bool = true) throws -> Int {
@@ -143,15 +151,19 @@ extension InputStream {
         return cc
     }
 
-    /*===========================================================================================================================================================================*/
-    /// Read bytes into an instance of `EasyByteBuffer`. This method assumes that the `EasyByteBuffer.count` field is being used to store the number of bytes in the buffer. The
-    /// newly read bytes will be appended to the end of the existing bytes, as denoted by the value in the `EasyByteBuffer.count` field. If `EasyByteBuffer.count` is less than
-    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0) or greater than `EasyByteBuffer.length` then a fatalError is thrown. If `EasyByteBuffer.count` is equal to
-    /// `EasyByteBuffer.length` then this method returns immediately with the value <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0).
+    /*==========================================================================================================*/
+    /// Read bytes into an instance of `EasyByteBuffer`. This method assumes that the `EasyByteBuffer.count` field
+    /// is being used to store the number of bytes in the buffer. The newly read bytes will be appended to the end
+    /// of the existing bytes, as denoted by the value in the `EasyByteBuffer.count` field. If
+    /// `EasyByteBuffer.count` is less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0) or greater
+    /// than `EasyByteBuffer.length` then a fatalError is thrown. If `EasyByteBuffer.count` is equal to
+    /// `EasyByteBuffer.length` then this method returns immediately with the value
+    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0).
     /// 
     /// - Parameter b: the `EasyByteBuffer` that will be used to store the bytes read.
-    /// - Returns: the number of bytes read into the buffer or <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0) if the buffer is full or the stream it at EOF or -1 if
-    ///            there was an I/O error.
+    /// - Returns: the number of bytes read into the buffer or
+    ///            <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0) if the buffer is full or the stream it
+    ///            at EOF or -1 if there was an I/O error.
     ///
     public func read(to b: MutableManagedByteBuffer) throws -> Int {
         guard b.count >= 0 && b.count <= b.length else { throw StreamError.UnknownError(description: "Invalid count in buffer.") }
@@ -171,17 +183,21 @@ extension InputStream {
         return (b.count - cc)
     }
 
-    /*===========================================================================================================================================================================*/
-    /// A better read function for <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD IS NOT THREAD SAFE!!!! This method
-    /// reads from the stream in chunks so do not use this method while any other thread might be potentially reading from this stream at the same time or you will be missing
-    /// data.
+    /*==========================================================================================================*/
+    /// A better read function for
+    /// <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD
+    /// IS NOT THREAD SAFE!!!! This method reads from the stream in chunks so do not use this method while any
+    /// other thread might be potentially reading from this stream at the same time or you will be missing data.
     /// 
     /// - Parameters:
-    ///   - array: the <code>[Array](https://developer.apple.com/documentation/foundation/array/)</code> to read the bytes into.
+    ///   - array: the <code>[Array](https://developer.apple.com/documentation/foundation/array/)</code> to read
+    ///            the bytes into.
     ///   - len: the maximum number of bytes to read or -1 to read all to the end-of-file.
-    ///   - clr: `true` to clear the data buffer before reading or `false` to append read data to the existing data.
-    /// - Returns: the total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if `len` is <code>[zero](https://en.wikipedia.org/wiki/0)</code>, the
-    ///            end-of-file has been reached, the stream is closed, or the stream was never opened.
+    ///   - clr: `true` to clear the data buffer before reading or `false` to append read data to the existing
+    ///          data.
+    /// - Returns: the total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if `len`
+    ///            is <code>[zero](https://en.wikipedia.org/wiki/0)</code>, the end-of-file has been reached, the
+    ///            stream is closed, or the stream was never opened.
     /// - Throws: any error reported by the input stream.
     ///
     public func read(to array: inout [UInt8], maxLength len: Int, truncate clr: Bool = true) throws -> Int {
@@ -192,15 +208,18 @@ extension InputStream {
         return cc
     }
 
-    /*===========================================================================================================================================================================*/
-    /// A better read function for <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD IS NOT THREAD SAFE!!!! This method
-    /// reads from the stream in chunks so do not use this method while any other thread might be potentially reading from this stream at the same time or you will be missing
-    /// data.
+    /*==========================================================================================================*/
+    /// A better read function for
+    /// <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD
+    /// IS NOT THREAD SAFE!!!! This method reads from the stream in chunks so do not use this method while any
+    /// other thread might be potentially reading from this stream at the same time or you will be missing data.
     /// 
-    /// - Parameter rbp: the <code>[UnsafeMutableRawBufferPointer](https://developer.apple.com/documentation/foundation/unsafemutablerawbufferpointer/)</code> to read the bytes
-    ///                  into.
-    /// - Returns: the total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if `len` is <code>[zero](https://en.wikipedia.org/wiki/0)</code>, the
-    ///            end-of-file has been reached, the stream is closed, or the stream was never opened.
+    /// - Parameter rbp: the
+    ///                  <code>[UnsafeMutableRawBufferPointer](https://developer.apple.com/documentation/foundation/unsafemutablerawbufferpointer/)</code>
+    ///                  to read the bytes into.
+    /// - Returns: the total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if `len`
+    ///            is <code>[zero](https://en.wikipedia.org/wiki/0)</code>, the end-of-file has been reached, the
+    ///            stream is closed, or the stream was never opened.
     /// - Throws: any error reported by the input stream.
     ///
     public func read(to rbp: UnsafeMutableRawBufferPointer) throws -> Int {

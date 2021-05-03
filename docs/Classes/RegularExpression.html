@@ -574,14 +574,16 @@
               </div>
             <p>RegularExpression is a replacement for NSRegularExpression that is much more Swift friendly.</p>
 
-<p>A Note about the methods that take closures: I know that having these methods as throws rather than a rethrows is not ideal but given that NSRegularExpression, which we’re
-actually using underneath, doesn’t allow it’s closure to be throws sort of leaves us no choice. At least I haven’t found an easy way around it. So I decided to have these
-methods as throws and in the future, if we can fix this issue, make them rethrows then.</p>
+<p>A Note about the methods that take closures: I know that having these methods as throws rather than a rethrows
+is not ideal but given that NSRegularExpression, which we’re actually using underneath, doesn’t allow it’s
+closure to be throws sort of leaves us no choice. At least I haven’t found an easy way around it. So I decided
+to have these methods as throws and in the future, if we can fix this issue, make them rethrows then.</p>
 
-<p>BLOG Post with Examples: <a href="https://blog.projectgalen.com/2021/02/12/a-better-regularexpression/">I, Introvert - A Better RegularExpression</a></p>
+<p>BLOG Post with Examples: <a href="https://blog.projectgalen.com/2021/02/12/a-better-regularexpression/">I, Introvert - A Better
+RegularExpression</a></p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L38-L555">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L40-L608">Show on GitHub</a>
               </div>
           </section>
           <section class="section task-group-section">
@@ -639,7 +641,7 @@ methods as throws and in the future, if we can fix this issue, make them rethrow
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L134">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L147">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -669,7 +671,7 @@ methods as throws and in the future, if we can fix this issue, make them rethrow
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L138">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L151">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -699,7 +701,7 @@ methods as throws and in the future, if we can fix this issue, make them rethrow
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L142">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L155">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -717,7 +719,8 @@ methods as throws and in the future, if we can fix this issue, make them rethrow
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns an initialized <code>RegularExpression</code> instance with the specified regular expression pattern and options. If an error occurs then <code>nil</code> is returned.</p>
+                        <p>Returns an initialized <code>RegularExpression</code> instance with the specified regular expression pattern and
+options. If an error occurs then <code>nil</code> is returned.</p>
 
                       </div>
                       <div class="declaration">
@@ -772,7 +775,7 @@ methods as throws and in the future, if we can fix this issue, make them rethrow
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L156-L165">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L171-L180">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -790,7 +793,8 @@ methods as throws and in the future, if we can fix this issue, make them rethrow
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns an initialized <code>RegularExpression</code> instance with the specified regular expression pattern and options. If an error occurs then <code>nil</code> is returned.</p>
+                        <p>Returns an initialized <code>RegularExpression</code> instance with the specified regular expression pattern and
+options. If an error occurs then <code>nil</code> is returned.</p>
 
                       </div>
                       <div class="declaration">
@@ -833,7 +837,7 @@ methods as throws and in the future, if we can fix this issue, make them rethrow
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L174-L177">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L190-L193">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -851,12 +855,15 @@ methods as throws and in the future, if we can fix this issue, make them rethrow
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns a string by adding backslash escapes as necessary to protect any characters that would match as pattern metacharacters.</p>
+                        <p>Returns a string by adding backslash escapes as necessary to protect any characters that would match as
+pattern metacharacters.</p>
 
-<p>Returns a string by adding backslash escapes as necessary to the given string, to escape any characters that would otherwise be treated as pattern metacharacters. You
-typically use this method to match on a particular string within a larger pattern.</p>
+<p>Returns a string by adding backslash escapes as necessary to the given string, to escape any characters
+that would otherwise be treated as pattern metacharacters. You typically use this method to match on a
+particular string within a larger pattern.</p>
 
-<p>For example, the string &ldquo;(N/A)&rdquo; contains the pattern metacharacters (, /, and ). The result of adding backslash escapes to this string is &ldquo;\(N\/A\)&rdquo;.</p>
+<p>For example, the string &ldquo;(N/A)&rdquo; contains the pattern metacharacters (, /, and ). The result of adding
+backslash escapes to this string is &ldquo;\(N\/A\)&rdquo;.</p>
 
                       </div>
                       <div class="declaration">
@@ -891,7 +898,7 @@ typically use this method to match on a particular string within a larger patter
                         <p>the escaped string.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L190">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L209">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -909,12 +916,15 @@ typically use this method to match on a particular string within a larger patter
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns a template string by adding backslash escapes as necessary to protect any characters that would match as pattern metacharacters</p>
+                        <p>Returns a template string by adding backslash escapes as necessary to protect any characters that would
+match as pattern metacharacters</p>
 
-<p>Returns a string by adding backslash escapes as necessary to the given string, to escape any characters that would otherwise be treated as pattern metacharacters. You
-typically use this method to match on a particular string within a larger pattern.</p>
+<p>Returns a string by adding backslash escapes as necessary to the given string, to escape any characters
+that would otherwise be treated as pattern metacharacters. You typically use this method to match on a
+particular string within a larger pattern.</p>
 
-<p>For example, the string &ldquo;(N/A)&rdquo; contains the pattern metacharacters (, /, and ). The result of adding backslash escapes to this string is &ldquo;\(N\/A\)&rdquo;.</p>
+<p>For example, the string &ldquo;(N/A)&rdquo; contains the pattern metacharacters (, /, and ). The result of adding
+backslash escapes to this string is &ldquo;\(N\/A\)&rdquo;.</p>
 
 <p>See Flag Options for the format of the resulting template string.</p>
 
@@ -951,7 +961,7 @@ typically use this method to match on a particular string within a larger patter
                         <p>the escaped template string.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L205">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L227">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1028,7 +1038,7 @@ typically use this method to match on a particular string within a larger patter
                         <p>the number of matches of the regular expression.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L216-L218">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L238-L240">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1105,7 +1115,7 @@ typically use this method to match on a particular string within a larger patter
                         <p>the range of the first match of <code>nil</code> if the match was not found.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L229-L231">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L251-L253">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1179,10 +1189,11 @@ typically use this method to match on a particular string within a larger patter
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>the first <code><a href="../Classes/RegularExpression/Match.html">RegularExpression.Match</a></code> found in the search string or <code>nil</code> if the match was not found.</p>
+                        <p>the first <code><a href="../Classes/RegularExpression/Match.html">RegularExpression.Match</a></code> found in the search string or <code>nil</code> if the match was not
+       found.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L242-L245">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L265-L268">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1256,10 +1267,11 @@ typically use this method to match on a particular string within a larger patter
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>an array of <code><a href="../Classes/RegularExpression/Match.html">RegularExpression.Match</a></code>s found in the search string or an empty array if the match was not found.</p>
+                        <p>an array of <code><a href="../Classes/RegularExpression/Match.html">RegularExpression.Match</a></code>s found in the search string or an empty array if the
+       match was not found.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L256-L258">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L280-L282">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1279,46 +1291,60 @@ typically use this method to match on a particular string within a larger patter
                       <div class="abstract">
                         <p>Enumerates the string allowing the Block to handle each regular expression match.</p>
 
-<p><b>NOTE:</b> Having this as a throwing function rather than a rethrowing function is not ideal but given that NSRegularExpression doesn&rsquo;t allow the closure to throw
-anything sort of removes that option from us. At least I haven&rsquo;t found an easy way around it. So I decided to have to have this method <code>throws</code> and in the future, if we
-can fix this issue, make it <code>rethrows</code> then.</p>
+<p><b>NOTE:</b> Having this as a throwing function rather than a rethrowing function is not ideal but given
+that NSRegularExpression doesn&rsquo;t allow the closure to throw anything sort of removes that option from us.
+At least I haven&rsquo;t found an easy way around it. So I decided to have to have this method <code>throws</code> and in
+the future, if we can fix this issue, make it <code>rethrows</code> then.</p>
 
-<p>This method is the fundamental matching method for regular expressions and is suitable for overriding by subclassers. There are additional convenience methods for
-returning all the matches as an array, the total number of matches, the first match, and the range of the first match.</p>
+<p>This method is the fundamental matching method for regular expressions and is suitable for overriding by
+subclassers. There are additional convenience methods for returning all the matches as an array, the total
+number of matches, the first match, and the range of the first match.</p>
 
-<p>By default, the Block iterator method calls the Block precisely once for each match, with a non-<code>nil</code> match and the appropriate flags. The client may then stop the
-operation by returning <code>true</code> from the block instead of <code>false</code>.</p>
+<p>By default, the Block iterator method calls the Block precisely once for each match, with a non-<code>nil</code>
+match and the appropriate flags. The client may then stop the operation by returning <code>true</code> from the block
+instead of <code>false</code>.</p>
 
-<p>If the <code><a href="../Classes/RegularExpression/MatchingOptions.html#/s:7Rubicon17RegularExpressionC15MatchingOptionsO14reportProgressyA2EmF">RegularExpression.MatchingOptions.reportProgress</a></code> matching option is specified, the Block will also be called periodically during long-running match operations,
-with <code>nil</code> result and progress matching flag set in the Block’s flags parameter, at which point the client may again stop the operation by returning <code>true</code> instead of
-<code>false</code>.</p>
+<p>If the <code><a href="../Classes/RegularExpression/MatchingOptions.html#/s:7Rubicon17RegularExpressionC15MatchingOptionsO14reportProgressyA2EmF">RegularExpression.MatchingOptions.reportProgress</a></code> matching option is specified, the Block will
+also be called periodically during long-running match operations, with <code>nil</code> result and progress matching
+flag set in the Block’s flags parameter, at which point the client may again stop the operation by
+returning <code>true</code> instead of <code>false</code>.</p>
 
-<p>If the <code><a href="../Classes/RegularExpression/MatchingOptions.html#/s:7Rubicon17RegularExpressionC15MatchingOptionsO16reportCompletionyA2EmF">RegularExpression.MatchingOptions.reportCompletion</a></code> matching option is specified, the Block object will be called once after matching is complete, with <code>nil</code>
-result and the completed matching flag is set in the flags passed to the Block, plus any additional relevant <code><a href="../Classes/RegularExpression/MatchingFlags.html">RegularExpression.MatchingFlags</a></code> from among
-<code><a href="../Classes/RegularExpression/MatchingFlags.html#/s:7Rubicon17RegularExpressionC13MatchingFlagsO6hitEndyA2EmF">RegularExpression.MatchingFlags.hitEnd</a></code>, <code><a href="../Classes/RegularExpression/MatchingFlags.html#/s:7Rubicon17RegularExpressionC13MatchingFlagsO11requiredEndyA2EmF">RegularExpression.MatchingFlags.requiredEnd</a></code>, or <code><a href="../Classes/RegularExpression/MatchingFlags.html#/s:7Rubicon17RegularExpressionC13MatchingFlagsO13internalErroryA2EmF">RegularExpression.MatchingFlags.internalError</a></code>.</p>
+<p>If the <code><a href="../Classes/RegularExpression/MatchingOptions.html#/s:7Rubicon17RegularExpressionC15MatchingOptionsO16reportCompletionyA2EmF">RegularExpression.MatchingOptions.reportCompletion</a></code> matching option is specified, the Block object
+will be called once after matching is complete, with <code>nil</code> result and the completed matching flag is set
+in the flags passed to the Block, plus any additional relevant <code><a href="../Classes/RegularExpression/MatchingFlags.html">RegularExpression.MatchingFlags</a></code> from
+among <code><a href="../Classes/RegularExpression/MatchingFlags.html#/s:7Rubicon17RegularExpressionC13MatchingFlagsO6hitEndyA2EmF">RegularExpression.MatchingFlags.hitEnd</a></code>, <code><a href="../Classes/RegularExpression/MatchingFlags.html#/s:7Rubicon17RegularExpressionC13MatchingFlagsO11requiredEndyA2EmF">RegularExpression.MatchingFlags.requiredEnd</a></code>, or
+<code><a href="../Classes/RegularExpression/MatchingFlags.html#/s:7Rubicon17RegularExpressionC13MatchingFlagsO13internalErroryA2EmF">RegularExpression.MatchingFlags.internalError</a></code>.</p>
 
-<p><code><a href="../Classes/RegularExpression/MatchingFlags.html#/s:7Rubicon17RegularExpressionC13MatchingFlagsO8progressyA2EmF">RegularExpression.MatchingFlags.progress</a></code> and <code><a href="../Classes/RegularExpression/MatchingFlags.html#/s:7Rubicon17RegularExpressionC13MatchingFlagsO9completedyA2EmF">RegularExpression.MatchingFlags.completed</a></code> matching flags have no effect for methods other than this method.</p>
+<p><code><a href="../Classes/RegularExpression/MatchingFlags.html#/s:7Rubicon17RegularExpressionC13MatchingFlagsO8progressyA2EmF">RegularExpression.MatchingFlags.progress</a></code> and <code><a href="../Classes/RegularExpression/MatchingFlags.html#/s:7Rubicon17RegularExpressionC13MatchingFlagsO9completedyA2EmF">RegularExpression.MatchingFlags.completed</a></code> matching flags
+have no effect for methods other than this method.</p>
 
-<p>The <code><a href="../Classes/RegularExpression/MatchingFlags.html#/s:7Rubicon17RegularExpressionC13MatchingFlagsO6hitEndyA2EmF">RegularExpression.MatchingFlags.hitEnd</a></code> matching flag is set in the flags passed to the Block if the current match operation reached the end of the search range. The
-<code><a href="../Classes/RegularExpression/MatchingFlags.html#/s:7Rubicon17RegularExpressionC13MatchingFlagsO11requiredEndyA2EmF">RegularExpression.MatchingFlags.requiredEnd</a></code> matching flag is set in the flags passed to the Block if the current match depended on the location of the end of the search
-range.</p>
+<p>The <code><a href="../Classes/RegularExpression/MatchingFlags.html#/s:7Rubicon17RegularExpressionC13MatchingFlagsO6hitEndyA2EmF">RegularExpression.MatchingFlags.hitEnd</a></code> matching flag is set in the flags passed to the Block if the
+current match operation reached the end of the search range. The
+<code><a href="../Classes/RegularExpression/MatchingFlags.html#/s:7Rubicon17RegularExpressionC13MatchingFlagsO11requiredEndyA2EmF">RegularExpression.MatchingFlags.requiredEnd</a></code> matching flag is set in the flags passed to the Block if the
+current match depended on the location of the end of the search range.</p>
 
-<p>The <code><a href="../Classes/RegularExpression/MatchingFlags.html">RegularExpression.MatchingFlags</a></code> matching flag is set in the flags passed to the block if matching failed due to an internal error (such as an expression requiring
-exponential memory allocations) without examining the entire search range.</p>
+<p>The <code><a href="../Classes/RegularExpression/MatchingFlags.html">RegularExpression.MatchingFlags</a></code> matching flag is set in the flags passed to the block if matching
+failed due to an internal error (such as an expression requiring exponential memory allocations) without
+examining the entire search range.</p>
 
-<p>The <code>RegularExpression.Options.anchored</code>, <code>RegularExpression.Options.withTransparentBounds</code>, and <code>RegularExpression.Options.withoutAnchoringBounds</code> regular expression
-options, specified in the options property specified when the regular expression instance is created, can apply to any match or replace method.</p>
+<p>The <code>RegularExpression.Options.anchored</code>, <code>RegularExpression.Options.withTransparentBounds</code>, and
+<code>RegularExpression.Options.withoutAnchoringBounds</code> regular expression options, specified in the options
+property specified when the regular expression instance is created, can apply to any match or replace
+method.</p>
 
-<p>If <code>RegularExpression.Options.anchored</code> matching option is specified, matches are limited to those at the start of the search range.</p>
+<p>If <code>RegularExpression.Options.anchored</code> matching option is specified, matches are limited to those at the
+start of the search range.</p>
 
-<p>If <code>RegularExpression.Options.withTransparentBounds</code> matching option is specified, matching may examine parts of the string beyond the bounds of the search range, for
-purposes such as word boundary detection, lookahead, etc.</p>
+<p>If <code>RegularExpression.Options.withTransparentBounds</code> matching option is specified, matching may examine
+parts of the string beyond the bounds of the search range, for purposes such as word boundary detection,
+lookahead, etc.</p>
 
-<p>If <code>RegularExpression.Options.withoutAnchoringBounds</code> matching option is specified, ^ and $ will not automatically match the beginning and end of the search range, but
-will still match the beginning and end of the entire string.</p>
+<p>If <code>RegularExpression.Options.withoutAnchoringBounds</code> matching option is specified, ^ and $ will not
+automatically match the beginning and end of the search range, but will still match the beginning and end
+of the entire string.</p>
 
-<p><code>RegularExpression.Options.withTransparentBounds</code> and <code>RegularExpression.Options.withoutAnchoringBounds</code> matching options have no effect if the search range covers the
-entire string.</p>
+<p><code>RegularExpression.Options.withTransparentBounds</code> and <code>RegularExpression.Options.withoutAnchoringBounds</code>
+matching options have no effect if the search range covers the entire string.</p>
 
                       </div>
                       <div class="declaration">
@@ -1353,7 +1379,8 @@ entire string.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The matching options to report. See <code><a href="../Classes/RegularExpression/MatchingOptions.html">RegularExpression.MatchingOptions</a></code> for the supported values.</p>
+                                  <p>The matching options to report. See <code><a href="../Classes/RegularExpression/MatchingOptions.html">RegularExpression.MatchingOptions</a></code> for the supported
+     values.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1377,10 +1404,13 @@ entire string.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>the Block that is called for each match found in the search string. The Block takes two (2) parameters&#58; <dl><dt><b><i>match</i></b></dt><dd>An instance of
-  <code><a href="../Classes/RegularExpression/Match.html">RegularExpression.Match</a></code> or <code>nil</code> if the Block is simply being called with the flags <code><a href="../Classes/RegularExpression/MatchingFlags.html#/s:7Rubicon17RegularExpressionC13MatchingFlagsO9completedyA2EmF">RegularExpression.MatchingFlags.completed</a></code>,
-  <code><a href="../Classes/RegularExpression/MatchingFlags.html#/s:7Rubicon17RegularExpressionC13MatchingFlagsO6hitEndyA2EmF">RegularExpression.MatchingFlags.hitEnd</a></code>, or <code><a href="../Classes/RegularExpression/MatchingFlags.html#/s:7Rubicon17RegularExpressionC13MatchingFlagsO13internalErroryA2EmF">RegularExpression.MatchingFlags.internalError</a></code></dd> <dt><b><i>flags</i></b></dt><dd>An array of
-  <code><a href="../Classes/RegularExpression/MatchingFlags.html">RegularExpression.MatchingFlags</a></code>.</dd></dl> The closure returns <code>true</code> to stop the enumeration or <code>false</code> to continue to the next match.</p>
+                                  <p>the Block that is called for each match found in the search string. The Block takes two (2)
+  parameters&#58; <dl><dt><b><i>match</i></b></dt><dd>An instance of <code><a href="../Classes/RegularExpression/Match.html">RegularExpression.Match</a></code> or
+  <code>nil</code> if the Block is simply being called with the flags
+  <code><a href="../Classes/RegularExpression/MatchingFlags.html#/s:7Rubicon17RegularExpressionC13MatchingFlagsO9completedyA2EmF">RegularExpression.MatchingFlags.completed</a></code>, <code><a href="../Classes/RegularExpression/MatchingFlags.html#/s:7Rubicon17RegularExpressionC13MatchingFlagsO6hitEndyA2EmF">RegularExpression.MatchingFlags.hitEnd</a></code>, or
+  <code><a href="../Classes/RegularExpression/MatchingFlags.html#/s:7Rubicon17RegularExpressionC13MatchingFlagsO13internalErroryA2EmF">RegularExpression.MatchingFlags.internalError</a></code></dd> <dt><b><i>flags</i></b></dt><dd>An array of
+  <code><a href="../Classes/RegularExpression/MatchingFlags.html">RegularExpression.MatchingFlags</a></code>.</dd></dl> The closure returns <code>true</code> to stop the enumeration
+  or <code>false</code> to continue to the next match.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1388,7 +1418,7 @@ entire string.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L313-L325">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L355-L367">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1408,11 +1438,13 @@ entire string.</p>
                       <div class="abstract">
                         <p>Enumerates the string allowing the Block to handle each regular expression match.</p>
 
-<p>This method is the fundamental matching method for regular expressions and is suitable for overriding by subclassers. There are additional convenience methods for
-returning all the matches as an array, the total number of matches, the first match, and the range of the first match.</p>
+<p>This method is the fundamental matching method for regular expressions and is suitable for overriding by
+subclassers. There are additional convenience methods for returning all the matches as an array, the total
+number of matches, the first match, and the range of the first match.</p>
 
-<p>By default, the Block iterator method calls the Block precisely once for each match, with an array of the <code><a href="../Classes/RegularExpression/Group.html">RegularExpression.Group</a></code>s representing each capture group. The
-client may then stop the operation by returning <code>true</code> from the block instead of <code>false</code>.</p>
+<p>By default, the Block iterator method calls the Block precisely once for each match, with an array of the
+<code><a href="../Classes/RegularExpression/Group.html">RegularExpression.Group</a></code>s representing each capture group. The client may then stop the operation by
+returning <code>true</code> from the block instead of <code>false</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -1447,7 +1479,8 @@ client may then stop the operation by returning <code>true</code> from the block
                               </td>
                               <td>
                                 <div>
-                                  <p>The matching options to report. See <code><a href="../Classes/RegularExpression/MatchingOptions.html">RegularExpression.MatchingOptions</a></code> for the supported values.</p>
+                                  <p>The matching options to report. See <code><a href="../Classes/RegularExpression/MatchingOptions.html">RegularExpression.MatchingOptions</a></code> for the supported
+     values.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1471,8 +1504,9 @@ client may then stop the operation by returning <code>true</code> from the block
                               </td>
                               <td>
                                 <div>
-                                  <p>the closure that is called for each match found in the search string. The closure takes one parameter which is an array of <code><a href="../Classes/RegularExpression/Group.html">RegularExpression.Group</a></code> objects
-  representing each capture group and returns <code>true</code> to stop the enumeration or <code>false</code> to continue to the next match.</p>
+                                  <p>the closure that is called for each match found in the search string. The closure takes one
+  parameter which is an array of <code><a href="../Classes/RegularExpression/Group.html">RegularExpression.Group</a></code> objects representing each capture group
+  and returns <code>true</code> to stop the enumeration or <code>false</code> to continue to the next match.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1480,7 +1514,7 @@ client may then stop the operation by returning <code>true</code> from the block
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L343-L345">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L389-L391">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1533,7 +1567,8 @@ client may then stop the operation by returning <code>true</code> from the block
                               </td>
                               <td>
                                 <div>
-                                  <p>The matching options to report. See <code><a href="../Classes/RegularExpression/MatchingOptions.html">RegularExpression.MatchingOptions</a></code> for the supported values.</p>
+                                  <p>The matching options to report. See <code><a href="../Classes/RegularExpression/MatchingOptions.html">RegularExpression.MatchingOptions</a></code> for the supported
+     values.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1557,9 +1592,10 @@ client may then stop the operation by returning <code>true</code> from the block
                               </td>
                               <td>
                                 <div>
-                                  <p>the closure that is called for each match found in the search string. The closure takes one parameter which is an array of Strings representing each capture
-  group and returns <code>true</code> to stop the enumeration or <code>false</code> to continue to the next match. Any of the strings in the array may be <code>nil</code> if that capture group did
-  not participate in the match.</p>
+                                  <p>the closure that is called for each match found in the search string. The closure takes one
+  parameter which is an array of Strings representing each capture group and returns <code>true</code> to
+  stop the enumeration or <code>false</code> to continue to the next match. Any of the strings in the array
+  may be <code>nil</code> if that capture group did not participate in the match.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1567,7 +1603,7 @@ client may then stop the operation by returning <code>true</code> from the block
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L358-L360">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L406-L408">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1585,9 +1621,11 @@ client may then stop the operation by returning <code>true</code> from the block
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>RegularExpression also provides a find-and-replace method strings. The replacement is treated as a template, with $0 being replaced by the contents of the matched range,
-$1 by the contents of the first capture group, and so on. Additional digits beyond the maximum required to represent the number of capture groups will be treated as
-ordinary characters, as will a $ not followed by digits. Backslash will escape both $ and itself.</p>
+                        <p>RegularExpression also provides a find-and-replace method strings. The replacement is treated as a
+template, with $0 being replaced by the contents of the matched range, $1 by the contents of the first
+capture group, and so on. Additional digits beyond the maximum required to represent the number of capture
+groups will be treated as ordinary characters, as will a $ not followed by digits. Backslash will escape
+both $ and itself.</p>
 
                       </div>
                       <div class="declaration">
@@ -1658,7 +1696,7 @@ ordinary characters, as will a $ not followed by digits. Backslash will escape b
                         <p>a tuple with the modified string and the number of replacements made.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L374-L378">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L424-L428">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1676,8 +1714,8 @@ ordinary characters, as will a $ not followed by digits. Backslash will escape b
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This method will perform a find-and-replace on the provided string by calling the closure for each match found in the source string and replacing it with the string
-returned by the closure.</p>
+                        <p>This method will perform a find-and-replace on the provided string by calling the closure for each match
+found in the source string and replacing it with the string returned by the closure.</p>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
     if the closure throws an error.
@@ -1741,7 +1779,8 @@ returned by the closure.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>the closure that will return the replacement string. It is called once for each match found in the source string.</p>
+                                  <p>the closure that will return the replacement string. It is called once for each match found in
+  the source string.</p>
                                 </div>
                               </td>
                             </tr>
@@ -1753,7 +1792,7 @@ returned by the closure.</p>
                         <p>a tuple with the modified string and the number of replacements made.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L392-L409">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/RegularExpression.swift#L443-L460">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1790,7 +1829,7 @@ returned by the closure.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-04-30)</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-05-03)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

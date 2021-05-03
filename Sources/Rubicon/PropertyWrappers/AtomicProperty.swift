@@ -21,91 +21,60 @@ import CoreFoundation
 #if os(Windows)
     import WinSDK
     fileprivate typealias OSRWLock = UnsafeMutablePointer<SRWLOCK>
+#elseif CYGWIN
+    fileprivate typealias OSRWLock = UnsafeMutablePointer<pthread_rwlock_t?>
 #else
-    #if CYGWIN
-        fileprivate typealias OSRWLock = UnsafeMutablePointer<pthread_rwlock_t?>
-    #else
-        fileprivate typealias OSRWLock = UnsafeMutablePointer<pthread_rwlock_t>
-    #endif
+    fileprivate typealias OSRWLock = UnsafeMutablePointer<pthread_rwlock_t>
 #endif
 
-/*===============================================================================================================================================================================*/
-/// A property wrapper to ensure that read/write access to a resource is atomic with respect to writes. Encloses access to the property with a read/write mutex (lock) so that any
-/// writes to the property completely finish before any reads are allowed.
+/*==============================================================================================================*/
+/// A property wrapper to ensure that read/write access to a resource is atomic with respect to writes. Encloses
+/// access to the property with a read/write mutex (lock) so that any writes to the property completely finish
+/// before any reads are allowed.
 ///
 @propertyWrapper
 public class Atomic<T> {
 
-    private let lock:  OSRWLock = lockInit()
+    private let lock:  OSRWLock
     private var value: T
 
     public var wrappedValue: T {
         get {
-            readLock(lock)
-            defer { readUnlock(lock) }
+            #if os(Windows)
+                AcquireSRWLockShared(lock)
+                defer { ReleaseSRWLockShared(lock) }
+            #else
+                guard pthread_rwlock_rdlock(lock) == 0 else { fatalError() }
+                defer { guard pthread_rwlock_unlock(lock) == 0 else { fatalError() } }
+            #endif
             return value
         }
         set {
-            writeLock(lock)
-            defer { writeUnlock(lock) }
+            #if os(Windows)
+                AcquireSRWLockExclusive(lock)
+                defer { ReleaseSRWLockExclusive(lock) }
+            #else
+                guard pthread_rwlock_wrlock(lock) == 0 else { fatalError() }
+                defer { guard pthread_rwlock_unlock(lock) == 0 else { fatalError() } }
+            #endif
             value = newValue
         }
     }
 
     public init(wrappedValue: T) {
+        lock = OSRWLock.allocate(capacity: 1)
+        #if os(Windows)
+            InitializeSRWLock(lock)
+        #else
+            guard pthread_rwlock_init(lock, nil) == 0 else { fatalError() }
+        #endif
         value = wrappedValue
     }
 
-    deinit { lockDeinit(lock) }
-}
-
-private func lockInit() -> OSRWLock {
-    let lock = OSRWLock.allocate(capacity: 1)
-    #if os(Windows)
-        InitializeSRWLock(lock)
-    #else
-        guard pthread_rwlock_init(lock, nil) == 0 else { fatalError() }
-    #endif
-    return lock
-}
-
-private func lockDeinit(_ lock: OSRWLock) {
-    #if os(Windows)
+    deinit {
+        #if !os(Windows)
+            pthread_rwlock_destroy(lock)
+        #endif
         lock.deallocate()
-    #else
-        pthread_rwlock_destroy(lock)
-        lock.deallocate()
-    #endif
-}
-
-private func readLock(_ lock: OSRWLock) {
-    #if os(Windows)
-        AcquireSRWLockShared(lock)
-    #else
-        guard pthread_rwlock_rdlock(lock) == 0 else { fatalError() }
-    #endif
-}
-
-private func readUnlock(_ lock: OSRWLock) {
-    #if os(Windows)
-        ReleaseSRWLockShared(lock)
-    #else
-        guard pthread_rwlock_unlock(lock) == 0 else { fatalError() }
-    #endif
-}
-
-private func writeLock(_ lock: OSRWLock) {
-    #if os(Windows)
-        AcquireSRWLockExclusive(lock)
-    #else
-        guard pthread_rwlock_wrlock(lock) == 0 else { fatalError() }
-    #endif
-}
-
-private func writeUnlock(_ lock: OSRWLock) {
-    #if os(Windows)
-        ReleaseSRWLockExclusive(lock)
-    #else
-        guard pthread_rwlock_unlock(lock) == 0 else { fatalError() }
-    #endif
+    }
 }

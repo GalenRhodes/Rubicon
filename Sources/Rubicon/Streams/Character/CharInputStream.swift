@@ -27,51 +27,54 @@ public typealias TextPosition = (lineNumber: Int32, columnNumber: Int32)
 
 public protocol CharInputStream: SimpleCharInputStream {
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// The number of marks on the stream.
     ///
     var markCount: Int { get }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// The current line and column numbers.
     ///
     var position:  TextPosition { get }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// The number of spaces in each tab stop.
     ///
     var tabWidth:  Int8 { get set }
 
-    /*===========================================================================================================================================================================*/
-    /// Marks the current point in the stream so that it can be returned to later. You can set more than one mark but all operations happen on the most recently set mark.
+    /*==========================================================================================================*/
+    /// Marks the current point in the stream so that it can be returned to later. You can set more than one mark
+    /// but all operations happen on the most recently set mark.
     ///
     func markSet()
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Removes and returns to the most recently set mark.
     ///
     func markReturn()
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Removes the most recently set mark WITHOUT returning to it.
     ///
     func markDelete()
 
-    /*===========================================================================================================================================================================*/
-    /// Returns to the most recently set mark WITHOUT removing it. If there was no previously set mark then a new one is created. This is functionally equivalent to performing a
-    /// `markReturn()` followed immediately by a `markSet()`.
+    /*==========================================================================================================*/
+    /// Returns to the most recently set mark WITHOUT removing it. If there was no previously set mark then a new
+    /// one is created. This is functionally equivalent to performing a `markReturn()` followed immediately by a
+    /// `markSet()`.
     ///
     func markReset()
 
-    /*===========================================================================================================================================================================*/
-    /// Updates the most recently set mark to the current position. If there was no previously set mark then a new one is created. This is functionally equivalent to performing a
-    /// `markDelete()` followed immediately by a `markSet()`.
+    /*==========================================================================================================*/
+    /// Updates the most recently set mark to the current position. If there was no previously set mark then a new
+    /// one is created. This is functionally equivalent to performing a `markDelete()` followed immediately by a
+    /// `markSet()`.
     ///
     func markUpdate()
 
-    /*===========================================================================================================================================================================*/
-    /// Backs out the last `count` characters from the most recently set mark without actually removing the entire mark. You have to have previously called `markSet()` otherwise
-    /// this method does nothing.
+    /*==========================================================================================================*/
+    /// Backs out the last `count` characters from the most recently set mark without actually removing the entire
+    /// mark. You have to have previously called `markSet()` otherwise this method does nothing.
     /// 
     /// - Parameter count: the number of characters to back out.
     /// - Returns: the number of characters actually backed out in case there weren't `count` characters available.

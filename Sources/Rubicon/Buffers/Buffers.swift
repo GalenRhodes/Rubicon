@@ -49,8 +49,10 @@ public typealias QWordBuffer    = UnsafeMutableBufferPointer<UInt64>
 public typealias QWordROBuffer  = UnsafeBufferPointer<UInt64>
 //@f:1
 
-/*===============================================================================================================================================================================*/
-/// Deinitialzies and deallocates an <code>[UnsaveMutablePointer](https://developer.apple.com/documentation/swift/UnsaveMutablePointer)</code> in one call.
+/*==============================================================================================================*/
+/// Deinitialzies and deallocates an
+/// <code>[UnsaveMutablePointer](https://developer.apple.com/documentation/swift/UnsaveMutablePointer)</code> in
+/// one call.
 /// 
 /// - Parameters:
 ///   - buffer: the buffer to discard.

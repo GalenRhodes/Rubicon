@@ -22,12 +22,12 @@
 
 import Foundation
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// The closure type for `PGThread` and `NanoTimer`
 ///
 public typealias PGThreadBlock = () -> Void
 
-/*===============================================================================================================================================================================*/
+/*==============================================================================================================*/
 /// A subclass of `Thread` that allows the closure to be set after it has been created.
 ///
 open class PGThread: Thread {
@@ -37,13 +37,14 @@ open class PGThread: Thread {
     public private(set) var isDone:    Bool = true
     public private(set) var isStarted: Bool = false
 
-    /*===========================================================================================================================================================================*/
-    /// The `block` for the thread to execute. This can only be set before the thread is executed. Attempting to set the `block` after the thread has been executed has no affect.
-    /// If the thread is executed before the `block` is set then it simply terminates without doing anything.
+    /*==========================================================================================================*/
+    /// The `block` for the thread to execute. This can only be set before the thread is executed. Attempting to
+    /// set the `block` after the thread has been executed has no affect. If the thread is executed before the
+    /// `block` is set then it simply terminates without doing anything.
     ///
     public var block: PGThreadBlock
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Default initializer
     ///
     public override init() {
@@ -51,9 +52,9 @@ open class PGThread: Thread {
         super.init()
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Initializes the thread with the given `closure` and if `startNow` is set to `true`, starts it right away.
-    ///
+    /// 
     /// - Parameters:
     ///   - startNow: if set to `true` the thread is created in a running state.
     ///   - qualityOfService:  the quality of service.
@@ -66,8 +67,9 @@ open class PGThread: Thread {
         if startNow { start() }
     }
 
-    /*===========================================================================================================================================================================*/
-    /// <a href="https://developer.apple.com/documentation/foundation/thread/1418166-start">See Apple Developer Documentation</a>
+    /*==========================================================================================================*/
+    /// <a href="https://developer.apple.com/documentation/foundation/thread/1418166-start">See Apple Developer
+    /// Documentation</a>
     ///
     open override func start() {
         cond.withLock {
@@ -77,7 +79,7 @@ open class PGThread: Thread {
         }
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// The main function.
     ///
     public override func main() {
@@ -85,7 +87,7 @@ open class PGThread: Thread {
         cond.withLock { isDone = true }
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Waits for the thread to finish executing.
     ///
     public func join() {
@@ -96,11 +98,13 @@ open class PGThread: Thread {
         }
     }
 
-    /*===========================================================================================================================================================================*/
+    /*==========================================================================================================*/
     /// Waits until the given date for the thread to finish executing.
-    ///
-    /// - Parameter limit: the point in time to wait until for the thread to execute. If the time is in the past then the method will return immediately.
-    /// - Returns: `true` if the thread finished executing before the given time or `false` if the time was reached or the thread has not been started yet.
+    /// 
+    /// - Parameter limit: the point in time to wait until for the thread to execute. If the time is in the past
+    ///                    then the method will return immediately.
+    /// - Returns: `true` if the thread finished executing before the given time or `false` if the time was
+    ///            reached or the thread has not been started yet.
     ///
     public func join(until limit: Date) -> Bool {
         cond.withLock {

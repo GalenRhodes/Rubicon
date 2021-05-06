@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1117D035A8FA81FD3FF0CE5C /* Hasher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D1C1FC0F0FA476E369C8 /* Hasher.swift */; };
 		1117D03DA3BBC27101EC56EB /* TreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D42A0A892A55AD7F0C6D /* TreeNode.swift */; };
 		1117D0438E55FD170186888E /* CharStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D4E1FE7DC31ACC3EDD25 /* CharStream.swift */; };
 		1117D067B34035FC4DED2A5F /* StringCharInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D75AC0C7F9E876B68A79 /* StringCharInputStream.swift */; };
@@ -33,6 +34,7 @@
 		1117D87015D5A6D05CA3688C /* SimpleIConvCharInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D81C98C71BC7BD4F245B /* SimpleIConvCharInputStream.swift */; };
 		1117D8974555204639F771FD /* iconv.h in Headers */ = {isa = PBXBuildFile; fileRef = 1117D8F31A530CDA758E62B8 /* iconv.h */; };
 		1117D950F78C930E935486EF /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D9A1691382C37AA03237 /* Thread.swift */; };
+		1117D98AC365F3CF051F1549 /* ShadowInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D2704AA1CC45A15EDC5B /* ShadowInt.swift */; };
 		1117D9D892409C1C5407AA50 /* ThreadLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD3A2A9798417B58BDA0 /* ThreadLocal.swift */; };
 		1117DB2981DA9EEA1794C0A9 /* PGThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D14B363B54E578A54336 /* PGThread.swift */; };
 		1117DBFD0136FF0A2ACD0D79 /* IConvTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA2F1C8056B3B0A261D7 /* IConvTests.swift */; };
@@ -103,8 +105,10 @@
 		1117D14B363B54E578A54336 /* PGThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGThread.swift; sourceTree = "<group>"; };
 		1117D171B17D5316F74F3936 /* test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		1117D1A70559C6B301B833C0 /* Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Range.swift; sourceTree = "<group>"; };
+		1117D1C1FC0F0FA476E369C8 /* Hasher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hasher.swift; sourceTree = "<group>"; };
 		1117D20EF400B28D5270ADCE /* Test_UTF-16BE_ext.xml */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.xml; path = "Test_UTF-16BE_ext.xml"; sourceTree = "<group>"; };
 		1117D23ECDD215CA06E62A1A /* TimerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerTests.swift; sourceTree = "<group>"; };
+		1117D2704AA1CC45A15EDC5B /* ShadowInt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowInt.swift; sourceTree = "<group>"; };
 		1117D2ABF7C69D75E6443601 /* SimpleCharInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCharInputStream.swift; sourceTree = "<group>"; };
 		1117D2AE1568A8C3741A86AE /* AtomicValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomicValue.swift; sourceTree = "<group>"; };
 		1117D2B214ED0F9FD42B08ED /* compname.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = compname.txt; sourceTree = "<group>"; };
@@ -262,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				1117D67CB2830A48B5C56761 /* DynamicFixedArray.swift */,
+				1117D2704AA1CC45A15EDC5B /* ShadowInt.swift */,
 			);
 			path = Collections;
 			sourceTree = "<group>";
@@ -406,6 +411,7 @@
 				1117D1A70559C6B301B833C0 /* Range.swift */,
 				1117D142AFC8171D31FCF975 /* Character.swift */,
 				1117DDD0B2FEC71052547523 /* BinaryInteger.swift */,
+				1117D1C1FC0F0FA476E369C8 /* Hasher.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -662,6 +668,8 @@
 				1117D9D892409C1C5407AA50 /* ThreadLocal.swift in Sources */,
 				1117D3B6E9FCFDAD8238B604 /* AtomicValue.swift in Sources */,
 				1117D81AC449E98F667D5F43 /* ByteOrder.swift in Sources */,
+				1117D98AC365F3CF051F1549 /* ShadowInt.swift in Sources */,
+				1117D035A8FA81FD3FF0CE5C /* Hasher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

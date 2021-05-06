@@ -23,33 +23,59 @@
 import Foundation
 import CoreFoundation
 
+fileprivate let ErrorMustHaveSibling:   String = "A black non-root node must have a sibling."
+fileprivate let ErrorInconsistentState: String = "Binary tree is in an inconsistent state:"
+fileprivate let ErrorCannotRotateLeft:  String = "Cannot rotate node to the left. Right child node is missing."
+fileprivate let ErrorCannotRotateRight: String = "Cannot rotate node to the right. Left child node is missing."
+
 /*==============================================================================================================*/
 /// Implements a single node for a classic Red/Black Binary Tree.
 ///
 open class TreeNode<K: Comparable & Hashable, V> {
-    public enum Color { case Black, Red }
-
     //@f:0
-    public private(set)      var count:      Int             = 1
-    public private(set)      var color:      Color           = .Red
-    public private(set) weak var parent:     TreeNode<K, V>? = nil
-    public private(set)      var leftChild:  TreeNode<K, V>? = nil
-    public private(set)      var rightChild: TreeNode<K, V>? = nil
-    public private(set)      var key:        K
-    public                   var value:      V
+    public enum Color { case Black, Red }
+    public enum Side  { case Orphan, Left, Right }
 
-    public var grandFather: TreeNode<K, V>? { parent?.parent }
-    public var sibling:     TreeNode<K, V>? { ((self === parent?.leftChild) ? parent?.rightChild : ((self === parent?.rightChild) ? parent?.leftChild : nil)) }
-    public var uncle:       TreeNode<K, V>? { parent?.sibling }
-    public var rootNode:    TreeNode<K, V>  { (parent?.rootNode ?? self) }
+    public fileprivate(set)      var count:      Int             = 1
+    public fileprivate(set)      var color:      Color           = .Red
+    public fileprivate(set) weak var parent:     TreeNode<K, V>? = nil
+    public fileprivate(set)      var leftChild:  TreeNode<K, V>? = nil
+    public fileprivate(set)      var rightChild: TreeNode<K, V>? = nil
+    public fileprivate(set)      var key:        K
+    public                       var value:      V
 
-    private var foo: TreeNode<K, V> { (leftChild?.foo ?? self) }
+    @inlinable public var sibling:     TreeNode<K, V>? { parent?.getChild(fromThe: !side)                    }
+    @inlinable public var grandfather: TreeNode<K, V>? { parent?.parent                                      }
+    @inlinable public var uncle:       TreeNode<K, V>? { parent?.sibling                                     }
+    @inlinable public var rootNode:    TreeNode<K, V>  { (parent?.rootNode ?? self)                          }
+    @inlinable public var first:       TreeNode<K, V>  { (leftChild?.first ?? self)                          }
+    @inlinable public var last:        TreeNode<K, V>  { (rightChild?.last ?? self)                          }
+    @inlinable public var isRoot:      Bool            { (parent == nil)                                     }
+    @inlinable public var index:       Int             { (isRoot ? ccLeft : (side.isLeft ? lIndex : rIndex)) }
+    @inlinable public var side:        Side            { Side.side(self)                                     }
+
+    @inlinable var ccLeft:  Int { (leftChild?.count ?? 0)  }
+    @inlinable var ccRight: Int { (rightChild?.count ?? 0) }
+    @inlinable var pIndex:  Int { (parent?.index ?? 0)     }
+    @inlinable var lIndex:  Int { (pIndex - ccRight - 1)   }
+    @inlinable var rIndex:  Int { (pIndex + ccLeft + 1)    }
     //@f:1
 
-    public init(key: K, value: V, color: Color = .Red) {
+    public init(key: K, value: V) {
         self.key = key
         self.value = value
-        self.color = color
+        self.color = .Black
+    }
+
+    private init(key: K, value: V, parent: TreeNode<K, V>) {
+        self.key = key
+        self.value = value
+        self.color = .Red
+        self.parent = parent
+    }
+
+    deinit {
+        nDebug(.None, "Node \"\(key)\" going away.")
     }
 
     public subscript(key: K) -> TreeNode<K, V>? {
@@ -60,6 +86,30 @@ open class TreeNode<K: Comparable & Hashable, V> {
         }
     }
 
+    public subscript(position: BinaryTreeDictionary<K, V>.Index) -> TreeNode<K, V>? {
+        getBy(index: position.value)
+    }
+
+    public func getBy(index: Int) -> TreeNode<K, V>? {
+        switch self.index <=> index {
+            case .EqualTo:     return self
+            case .LessThan:    return rightChild?.getBy(index: index)
+            case .GreaterThan: return leftChild?.getBy(index: index)
+        }
+    }
+
+    public func forEach(execute body: (TreeNode<K, V>) throws -> Void) rethrows {
+        if let c = leftChild { try c.forEach(execute: body) }
+        try body(self)
+        if let c = rightChild { try c.forEach(execute: body) }
+    }
+
+    public func forEachReversed(execute body: (TreeNode<K, V>) throws -> Void) rethrows {
+        if let c = rightChild { try c.forEach(execute: body) }
+        try body(self)
+        if let c = leftChild { try c.forEach(execute: body) }
+    }
+
     public func add(key: K, value: V) -> TreeNode<K, V> {
         switch self.key <=> key {
             case .EqualTo:
@@ -67,184 +117,190 @@ open class TreeNode<K: Comparable & Hashable, V> {
                 return rootNode
             case .LessThan:
                 if let r = rightChild { return r.add(key: key, value: value) }
-                rightChild = TreeNode<K, V>(key: key, value: value)
-                rightChild!.parent = self
+                rightChild = TreeNode<K, V>(key: key, value: value, parent: self)
                 recount()
-                return rightChild!.add01()
+                return rightChild!.addRebalance()
             case .GreaterThan:
                 if let l = leftChild { return l.add(key: key, value: value) }
-                leftChild = TreeNode<K, V>(key: key, value: value)
-                leftChild!.parent = self
+                leftChild = TreeNode<K, V>(key: key, value: value, parent: self)
                 recount()
-                return leftChild!.add01()
+                return leftChild!.addRebalance()
         }
     }
 
-    public func remove() -> TreeNode<K, V>? {
-        if let _ = leftChild, let r = rightChild { return rem01(node: r.foo) }
-        else if let p = parent { return rem02(parent: p) }
-        else if let c = (leftChild ?? rightChild) { return rem05(child: c) }
-        else { return nil }
+    private func addRebalance() -> TreeNode<K, V> {
+        guard let p = parent else { setBlack(nodes: self); return self }
+        guard areRed(nodes: p) else { return rootNode }
+        guard let g = p.parent else { setBlack(nodes: p); return p }
+        guard let u = uncle, areRed(nodes: u) else { return addRebalance2(parent: p, grandparent: g) }
+        setBlack(nodes: p, u)
+        setRed(nodes: g)
+        return g.addRebalance()
     }
 
-    private func add01() -> TreeNode<K, V> {
-        guard let p = parent else { return add02() }
-        guard isRed(node: p) else { return rootNode }
-        guard let g = p.parent else { return p.add02() }
-
-        let nRight = (self === p.rightChild)
-        let pLeft  = (p === g.leftChild)
-
-        if let u = (pLeft ? g.rightChild : g.leftChild), isRed(node: u) {
-            p.color = .Black
-            u.color = .Black
-            g.color = .Red
-            return g.add01()
-        }
-
-        if (nRight == pLeft) {
-            p.rotate(left: nRight)
-            g.rotate(left: !nRight)
-        }
-        else {
-            g.rotate(left: nRight)
-        }
-
+    private func addRebalance2(parent p: TreeNode<K, V>, grandparent g: TreeNode<K, V>) -> TreeNode<K, V> {
+        let pSide = p.side
+        if (side == !pSide) { p.rotate(toThe: pSide); g.rotate(toThe: !pSide) }
+        else { g.rotate(toThe: !pSide) }
         return rootNode
     }
 
-    private func add02() -> TreeNode<K, V> {
-        color = .Black
-        return self
-    }
-
-    private func rem01(node: TreeNode<K, V>) -> TreeNode<K, V>? {
-        key = node.key
-        value = node.value
-        return node.remove()
-    }
-
-    private func rem02(parent p: TreeNode<K, V>) -> TreeNode<K, V> {
-        if let c = (leftChild ?? rightChild) { rem03(parent: p, child: c) }
-        else { rem04(parent: p) }
-        p.recount()
-        return p.rootNode
-    }
-
-    private func rem03(parent p: TreeNode<K, V>, child c: TreeNode<K, V>) {
-        leftChild = nil
-        rightChild = nil
-        rem07(parent: p, child: c)
-    }
-
-    private func rem04(parent p: TreeNode<K, V>) {
-        if isBlack(node: self) { rem09(parent: p) }
-        rem08(parent: p, child: nil)
-    }
-
-    private func rem05(child c: TreeNode<K, V>) -> TreeNode<K, V>? {
-        leftChild = nil
-        rightChild = nil
-        return rem06(child: c)
-    }
-
-    private func rem06(child c: TreeNode<K, V>) -> TreeNode<K, V> {
-        c.parent = nil
-        c.quickRecount()
-        return add02()
-    }
-
-    private func rem07(parent p: TreeNode<K, V>, child c: TreeNode<K, V>) {
-        rem08(parent: p, child: c)
-        c.parent = p
-        c.color = .Black
-    }
-
-    private func rem08(parent p: TreeNode<K, V>, child c: TreeNode<K, V>?) {
-        if self === p.leftChild { p.leftChild = c }
-        else { p.rightChild = c }
-        parent = nil
-    }
-
-    private func rem09(parent p: TreeNode<K, V>) {
-        let l = (self === p.leftChild)
-        guard let s = (l ? p.rightChild : p.leftChild) else { return }
-        if isRed(node: s) { rem10(parent: p, isLeft: l) }
-        else { rem11(parent: p, sibling: s, isLeft: l) }
-    }
-
-    private func rem10(parent p: TreeNode<K, V>, isLeft l: Bool) {
-        p.rotate(left: l)
-        if let s = (l ? p.rightChild : p.leftChild) { rem11(parent: p, sibling: s, isLeft: l) }
-    }
-
-    private func rem11(parent p: TreeNode<K, V>, sibling s: TreeNode<K, V>, isLeft l: Bool) {
-        if isBlack(node: s) && isBlack(node: s.leftChild) && isBlack(node: s.rightChild) { rem12(parent: p, sibling: s) }
-        else if isRed(node: (l ? s.leftChild : s.rightChild)) { rem13(parent: p, sibling: s, isLeft: l) }
-        else { rem14(parent: p, sibling: s, isLeft: l) }
-    }
-
-    private func rem12(parent p: TreeNode<K, V>, sibling s: TreeNode<K, V>) {
-        s.color = .Red
-        if isBlack(node: p) { if let g = p.parent { p.rem09(parent: g) } }
-        else { p.color = .Black }
-    }
-
-    private func rem13(parent p: TreeNode<K, V>, sibling s: TreeNode<K, V>, isLeft l: Bool) {
-        s.rotate(left: !l)
-        if let s = (l ? p.rightChild : p.leftChild) { rem14(parent: p, sibling: s, isLeft: l) }
-    }
-
-    private func rem14(parent p: TreeNode<K, V>, sibling s: TreeNode<K, V>, isLeft l: Bool) {
-        setBlack(node: (l ? s.rightChild : s.leftChild))
-        p.rotate(left: l)
-    }
-
-    private func rotate(left: Bool) {
-        guard let c = (left ? rightChild : leftChild) else { fatalError("Cannot rotate \(left ? "left" : "right"). No \(left ? "right" : "left") child node.") }
-        c.parent = nil
-        if left { rightChild = nil }
-        else { leftChild = nil }
-        count -= c.count
-        // c is now an orphan.
-
-        if let p = parent {
-            if self === p.leftChild { p.leftChild = c }
-            else { p.rightChild = c }
-            c.parent = p
-            parent = nil
-            // I am now an orphan.
+    public func remove() -> TreeNode<K, V>? {
+        if let _ = leftChild, let r = rightChild?.first {
+            key = r.key
+            value = r.value
+            return r.remove()
         }
-
-        // If c has a left child, put it on my right side.
-        if let cc = (left ? c.leftChild : c.rightChild) {
-            if left { rightChild = cc }
-            else { leftChild = cc }
-            cc.parent = self
-            c.count -= cc.count
-            count += cc.count
+        else if let c = (leftChild ?? rightChild) {
+            ifNil(parent, then: { c.makeOrphan() }, elseThen: { $0.set(child: c, on: side) })
+            setBlack(nodes: c)
+            c.recount()
+            return c.rootNode
         }
+        else if let p = parent {
+            if areBlack(nodes: self) { removeRebalance(parent: p) }
+            makeOrphan()
+            p.recount()
+            return p.rootNode
+        }
+        return nil
+    }
 
-        // Make me c's left child.
-        if left { c.leftChild = self }
-        else { c.rightChild = self }
-        parent = c
-        c.count += count
+    private func removeRebalance(parent p: TreeNode<K, V>) {
+        guard var s = sibling else { fail(errorMessage: ErrorMustHaveSibling) }
+        let nSide = side
+        if areRed(nodes: s) {
+            p.rotate(toThe: nSide)
+            s = p.getChild(fromThe: nSide, errorMessage: ErrorMustHaveSibling)
+        }
+        if areBlack(nodes: s, s.leftChild, s.rightChild) {
+            setRed(nodes: s)
+            if areBlack(nodes: p) { if let g = p.parent { p.removeRebalance(parent: g) } }
+            else { setBlack(nodes: p) }
+        }
+        else {
+            if areRed(nodes: s.getChild(fromThe: nSide)) {
+                s.rotate(toThe: !nSide)
+                s = p.getChild(fromThe: nSide, errorMessage: ErrorMustHaveSibling)
+            }
+            setBlack(nodes: s.getChild(fromThe: !nSide))
+            p.rotate(toThe: nSide)
+        }
+    }
 
-        // Finally swap our colors.
+    private func makeOrphan() { parent?.foo(nil, on: side) }
+
+    private func set(child: TreeNode<K, V>?, on side: Side) {
+        guard !side.isOrphan else { return }
+        getChild(fromThe: side)?.makeOrphan()
+        child?.makeOrphan()
+        foo(child, on: side)
+    }
+
+    private func foo(_ node: TreeNode<K, V>?, on side: Side) {
+        if side.isLeft { leftChild = node }
+        else { rightChild = node }
+        node?.parent = self
+    }
+
+    @usableFromInline func getChild(fromThe side: Side) -> TreeNode<K, V>? { (side.isLeft ? leftChild : (side.isRight ? rightChild : nil)) }
+
+    private func getChild(fromThe side: Side, errorMessage msg: String) -> TreeNode<K, V> {
+        if let c = getChild(fromThe: side) { return c }
+        fail(errorMessage: msg)
+    }
+
+    private func fail(errorMessage msg: String) -> Never {
+        fatalError("\(ErrorInconsistentState) \(msg)")
+    }
+
+    /*==========================================================================================================*/
+    /// Rotate this node to either the left or the right according to the boolean value given for `toTheLeft`.
+    /// 
+    /// NOTE: This method will automatically adjust the counts for all involved nodes so there is no need to do a
+    /// recount after calling this method.
+    /// 
+    /// - Parameter l: If `true` then this node will be rotated to the left. If `false` it will be rotated to the
+    ///                right.
+    ///
+    private func rotate(toThe side: Side) {
+        let nSide = side
+        guard let c = getChild(fromThe: !nSide) else { fail(errorMessage: nSide.isLeft ? ErrorCannotRotateLeft : ErrorCannotRotateRight) }
+        c.makeOrphan()
+        parent?.set(child: c, on: nSide)
+        set(child: c.getChild(fromThe: nSide), on: !nSide)
+        c.set(child: self, on: nSide)
+        localRecount()
+        c.localRecount()
         swap(&color, &c.color)
     }
 
     private func recount() {
-        quickRecount()
-        parent?.recount()
+        localRecount()
+        if let p = parent { p.recount() }
     }
 
-    private func quickRecount() { count = (1 + (leftChild?.count ?? 0) + (rightChild?.count ?? 0)) }
+    private func localRecount() {
+        count = (1 + ccLeft + ccRight)
+    }
 
-    private func isRed(node: TreeNode<K, V>?) -> Bool { ((node != nil) && (node!.color == .Red)) }
+    @discardableResult func hardRecount() -> Int {
+        count = 1
+        if let l = leftChild { count += l.hardRecount() }
+        if let r = rightChild { count += r.hardRecount() }
+        return count
+    }
+}
 
-    private func isBlack(node: TreeNode<K, V>?) -> Bool { ((node == nil) || (node!.color == .Black)) }
+extension TreeNode: Equatable where V: Equatable {
+    public static func == (lhs: TreeNode<K, V>, rhs: TreeNode<K, V>) -> Bool { (lhs === rhs) }
+}
 
-    private func setBlack(node: TreeNode<K, V>?) { node?.color = .Black }
+extension TreeNode: Hashable where V: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(key)
+        hasher.combine(value)
+    }
+
+    public var hashValue: Int {
+        var hasher: Hasher = Hasher()
+        hash(into: &hasher)
+        return hasher.finalize()
+    }
+}
+
+extension TreeNode: Encodable where K: Encodable, V: Encodable {
+
+    public func encode(to encoder: Encoder) throws {
+        try key.encode(to: encoder)
+        try value.encode(to: encoder)
+    }
+}
+
+fileprivate func areRed<K, V>(nodes: TreeNode<K, V>?...) -> Bool {
+    for nn in nodes { if (nn !== nil) && (nn!.color == .Red) { return false } }
+    return true
+}
+
+fileprivate func areBlack<K, V>(nodes: TreeNode<K, V>?...) -> Bool {
+    for nn in nodes { if let n = nn, n.color == .Red { return false } }
+    return true
+}
+
+fileprivate func setBlack<K, V>(nodes: TreeNode<K, V>?...) { nodes.forEach { if let n = $0 { n.color = .Black } } }
+
+fileprivate func setRed<K, V>(nodes: TreeNode<K, V>?...) { nodes.forEach { if let n = $0 { n.color = .Red } } }
+
+extension TreeNode.Side {
+    @inlinable public var isLeft:   Bool { (self == .Left) }
+    @inlinable public var isRight:  Bool { (self == .Right) }
+    @inlinable public var isOrphan: Bool { (self == .Orphan) }
+
+    @inlinable public static prefix func ! (side: TreeNode.Side) -> TreeNode.Side { (side.isLeft ? .Right : (side.isRight ? .Left : .Orphan)) }
+
+    @inlinable static func side(_ node: TreeNode) -> TreeNode.Side {
+        guard let p = node.parent else { return .Orphan }
+        if node === p.leftChild { return .Left }
+        return .Right
+    }
 }

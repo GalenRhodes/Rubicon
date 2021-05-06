@@ -22,220 +22,324 @@
 
 import Foundation
 
-open class BinaryTreeDictionary<K: Comparable & Hashable, V>: Sequence, ExpressibleByDictionaryLiteral, Collection {
-
-    public typealias Element = (key: K, value: V)
-    public typealias Index = Int
-
+open class BinaryTreeDictionary<Key: Comparable & Hashable & Equatable, Value>: ExpressibleByDictionaryLiteral, BidirectionalCollection {
     //@f:0
-    public var isEmpty:    Bool  { (rootNode == nil)                         }
-    public var count:      Int   { ((rootNode == nil) ? 0 : rootNode!.count) }
-    public var startIndex: Index { 0                                         }
-    public var endIndex:   Index { count                                     }
+    public typealias Index       = ShadowInt
+    public typealias Element     = (key: Key, value: Value)
+    public typealias SubSequence = Slice<BinaryTreeDictionary<Key, Value>>
+    public typealias Indices     = DefaultIndices<BinaryTreeDictionary<Key, Value>>
+
+    public                       let capacity:   Int    = Int.max
+    public                       let startIndex: Index  = Index(0)
+    public fileprivate(set) lazy var keys:       Keys   = Keys(self)
+    public fileprivate(set) lazy var values:     Values = Values(self)
+    public                       var endIndex:   Index  { Index(count)         }
+    public                       var isEmpty:    Bool   { rootNode == nil      }
+    public                       var count:      Int    { rootNode?.count ?? 0 }
+
+    @usableFromInline var _hashValue: Int?                  = nil
+    @usableFromInline var rootNode:   TreeNode<Key, Value>? = nil
     //@f:1
 
-    var rootNode: TreeNode<K, V>? = nil
+    /*==========================================================================================================*/
+    /// Default constructor.
+    ///
+    public required init() {}
 
-    public init() {}
+    public required init(repeating repeatedValue: Element, count: Int) { if count > 0 { self[repeatedValue.key] = repeatedValue.value } }
 
-    required public init(dictionaryLiteral elements: (K, V)...) {
-        for e in elements { self[e.0] = e.1 }
+    public required init<S>(_ elements: S) where S: Sequence, Element == S.Element { elements.forEach { e in self[e.key] = e.value } }
+
+    public required init(from decoder: Decoder) throws where Key: Decodable, Value: Decodable {
+        let cc = try Int(from: decoder)
+        for _ in (0 ..< cc) {
+            let key:   Key   = try Key.init(from: decoder)
+            let value: Value = try Value.init(from: decoder)
+            self[key] = value
+        }
     }
 
-    open subscript(position: Index) -> Element {
-        let n = nodeAtIndex(position: position)
-        return (n.key, n.value)
-    }
+    /*==========================================================================================================*/
+    /// Only for compatibility with Dictionary. The minimum capacity of a BinaryTreeDictionary is always 0.
+    /// 
+    /// - Parameter minimumCapacity: ignored.
+    ///
+    public init(minimumCapacity: Int) {}
 
-    func nodeAtIndex(position: Index) -> TreeNode<K, V> {
-        guard position >= startIndex && position < endIndex else { fatalError("Index out of bounds.") }
-        guard let n = rootNode?.node(for: position) else { fatalError("Index out of bounds.") }
-        return n
-    }
+    public required init(dictionaryLiteral elements: (Key, Value)...) { elements.forEach { self[$0.0] = $0.1 } }
 
-    open subscript(key: K) -> V? {
+    public init(_ dictionary: [Key: Value]) { dictionary.forEach { self[$0.key] = $0.value } }
+
+    public init(_ tree: BinaryTreeDictionary<Key, Value>) { tree.forEach { self[$0.key] = $0.value } }
+
+    open subscript(bounds: Range<Index>) -> SubSequence { SubSequence(base: self, bounds: bounds) }
+
+    open func distance(from start: Index, to end: Index) -> Int { (end.value - start.value) }
+
+    open subscript(key: Key) -> Value? {
+        get {
+            guard let r = rootNode, let n = r[key] else { return nil }
+            return n.value
+        }
         set {
-            if let value = newValue {
-                if let r = rootNode { rootNode = r.insert(key: key, value: value) }
-                else { rootNode = TreeNode(key: key, value: value, color: .Black) }
-            }
-            else if let r = rootNode, let n = r.find(key: key) {
-                rootNode = n.remove()
-            }
-        }
-        get { rootNode?.find(key: key)?.value }
-    }
-
-    open func index(after i: Int) -> Int {
-        guard i >= 0 && i < endIndex else { fatalError("Index out of bounds.") }
-        return (i + 1)
-    }
-
-    @frozen public struct Iterator: IteratorProtocol {
-
-        public typealias Element = (key: K, value: V)
-
-        var stack: [TreeNode<K, V>] = []
-
-        init(_ rootNode: TreeNode<K, V>?) {
-            pushStack(node: rootNode)
-        }
-
-        mutating func pushStack(node: TreeNode<K, V>?) {
-            if var r = node {
-                stack.append(r)
-                while let c = r.leftNode {
-                    stack.append(c)
-                    r = c
+            if let v = newValue {
+                if let r = rootNode {
+                    if let n = r[key] { n.value = v }
+                    else { rootNode = r.add(key: key, value: v) }
+                }
+                else {
+                    rootNode = TreeNode<Key, Value>(key: key, value: v)
                 }
             }
-        }
-
-        public mutating func next() -> Element? {
-            guard let nextNode = stack.popLast() else { return nil }
-            pushStack(node: nextNode.rightNode)
-            return (nextNode.key, nextNode.value)
-        }
-    }
-
-    public func makeIterator() -> BinaryTreeDictionary<K, V>.Iterator { Iterator(rootNode) }
-}
-
-extension BinaryTreeDictionary {
-
-    public func popFirst() -> BinaryTreeDictionary<K, V>.Element? {
-        if var n = rootNode {
-            while let c = n.leftNode { n = c }
-            rootNode = n.remove()
-            return (n.key, n.value)
-        }
-        return nil
-    }
-
-    public func popLast() -> BinaryTreeDictionary<K, V>.Element? {
-        if var n = rootNode {
-            while let c = n.rightNode { n = c }
-            rootNode = n.remove()
-            return (n.key, n.value)
-        }
-        return nil
-    }
-
-    public var capacity: Int { Int.max }
-
-    public func reserveCapacity(_ minimumCapacity: Int) {}
-}
-
-extension BinaryTreeDictionary {
-
-    public var keys:   BinaryTreeDictionary<K, V>.Keys { Keys(binaryTree: self) }
-    public var values: BinaryTreeDictionary<K, V>.Values { Values(binaryTree: self) }
-
-    @frozen public struct Keys: Collection, Equatable, CustomStringConvertible, CustomDebugStringConvertible {
-
-        public typealias Element = K
-        public typealias SubSequence = Slice<BinaryTreeDictionary<K, V>.Keys>
-        public typealias Index = BinaryTreeDictionary<K, V>.Index
-        public typealias Indices = DefaultIndices<BinaryTreeDictionary<K, V>.Keys>
-
-        let tree: BinaryTreeDictionary<K, V>
-
-        public var description:      String { "" }
-        public var debugDescription: String { "" }
-
-        public var startIndex: BinaryTreeDictionary<K, V>.Index { tree.startIndex }
-        public var endIndex:   BinaryTreeDictionary<K, V>.Index { tree.endIndex }
-        public var count:      Int { tree.count }
-        public var isEmpty:    Bool { tree.isEmpty }
-
-        init(binaryTree: BinaryTreeDictionary<K, V>) { tree = binaryTree }
-
-        public func index(after i: BinaryTreeDictionary<K, V>.Index) -> BinaryTreeDictionary<K, V>.Index { tree.index(after: i) }
-
-        public func formIndex(after i: inout BinaryTreeDictionary<K, V>.Index) { tree.formIndex(after: &i) }
-
-        public subscript(position: BinaryTreeDictionary<K, V>.Index) -> BinaryTreeDictionary<K, V>.Keys.Element { tree.nodeAtIndex(position: position).key }
-
-        public static func == (lhs: BinaryTreeDictionary<K, V>.Keys, rhs: BinaryTreeDictionary<K, V>.Keys) -> Bool {
-            guard !(lhs.isEmpty && rhs.isEmpty) else { return true }
-            guard lhs.count == rhs.count else { return false }
-
-            var iLhs = lhs.startIndex
-            var iRhs = rhs.startIndex
-
-            while iLhs < lhs.endIndex {
-                if lhs[iLhs] != rhs[iRhs] { return false }
-                iLhs = lhs.index(after: iLhs)
-                iRhs = rhs.index(after: iRhs)
+            else {
+                removeValue(forKey: key)
             }
-
-            return true
         }
     }
 
-    @frozen public struct Values: MutableCollection, CustomStringConvertible, CustomDebugStringConvertible {
+    @discardableResult open func remove(at index: Index) -> Element {
+        let n = nodeAt(position: index)
+        let e = (n.key, n.value)
+        rootNode = n.remove()
+        return e
+    }
 
-        public typealias Element = V
-        public typealias Index = BinaryTreeDictionary<K, V>.Index
-        public typealias SubSequence = Slice<BinaryTreeDictionary<K, V>.Values>
-        public typealias Indices = DefaultIndices<BinaryTreeDictionary<K, V>.Values>
+    @discardableResult open func removeValue(forKey key: Key) -> Value? {
+        guard let r = rootNode, let n = r[key] else { return nil }
+        let v = n.value
+        rootNode = n.remove()
+        return v
+    }
 
-        let tree: BinaryTreeDictionary<K, V>
+    open func removeAll(keepingCapacity keepCapacity: Bool = false) { rootNode = nil }
 
-        public var description:      String { "" }
-        public var debugDescription: String { "" }
+    open func index(after i: Index) -> Index { i + 1 }
 
-        public var startIndex: BinaryTreeDictionary<K, V>.Index { tree.startIndex }
-        public var endIndex:   BinaryTreeDictionary<K, V>.Index { tree.endIndex }
-        public var count:      Int { tree.count }
-        public var isEmpty:    Bool { tree.isEmpty }
+    open func index(before i: Index) -> Index { i - 1 }
 
-        init(binaryTree: BinaryTreeDictionary<K, V>) { tree = binaryTree }
+    open func index(_ i: Index, offsetBy distance: Int) -> Index { (i + distance) }
 
-        public func index(after i: BinaryTreeDictionary<K, V>.Index) -> BinaryTreeDictionary<K, V>.Index { tree.index(after: i) }
+    open func index(_ i: Index, offsetBy distance: Int, limitedBy limit: Index) -> Index? {
+        let _i = (i + distance)
+        guard _i >= 0 && _i <= limit else { return nil }
+        return _i
+    }
 
-        public func formIndex(after i: inout BinaryTreeDictionary<K, V>.Index) { tree.formIndex(after: &i) }
-
-        public mutating func swapAt(_ i: BinaryTreeDictionary<K, V>.Index, _ j: BinaryTreeDictionary<K, V>.Index) {
-            let n1 = tree.nodeAtIndex(position: i)
-            let n2 = tree.nodeAtIndex(position: j)
-            swap(&n1.value, &n2.value)
+    open subscript(position: Index) -> (key: Key, value: Value) {
+        get {
+            let node = nodeAt(position: position)
+            return (node.key, node.value)
         }
-
-        public subscript(position: BinaryTreeDictionary<K, V>.Index) -> BinaryTreeDictionary<K, V>.Values.Element {
-            get { tree.nodeAtIndex(position: position).value }
-            set { tree.nodeAtIndex(position: position).value = newValue }
+        set(newValue) {
+            let node = nodeAt(position: position)
+            if node.key == newValue.key {
+                node.value = newValue.value
+            }
+            else {
+                remove(at: position)
+                self[newValue.key] = newValue.value
+            }
         }
+    }
+
+    open func forEach(_ body: (Element) throws -> Void) rethrows { if let r = rootNode { try r.forEach { node in try body((node.key, node.value)) } } }
+
+    @usableFromInline func nodeAt(position: Index) -> TreeNode<Key, Value> {
+        guard position >= startIndex, let r = rootNode else { fatalError("Index out of bounds.") }
+        if let n = r[position] { return n }
+        r.hardRecount()
+        guard position >= startIndex && position < endIndex else { fatalError("Index out of bounds.") }
+        guard let n = r[position] else { fatalError("Internal Inconsistency Error.") }
+        return n
     }
 }
 
-extension BinaryTreeDictionary: Equatable where V: Equatable {
+extension BinaryTreeDictionary {
+    @inlinable public static func <+ (lhs: BinaryTreeDictionary<Key, Value>, rhs: (key: Key, value: Value)) { lhs[rhs.key] = rhs.value }
 
-    public static func == (lhs: BinaryTreeDictionary<K, V>, rhs: BinaryTreeDictionary<K, V>) -> Bool {
-        guard !(lhs.isEmpty && rhs.isEmpty) else { return true }
+    @inlinable public static func <+ (lhs: BinaryTreeDictionary<Key, Value>, rhs: [Key: Value]) { rhs.forEach { key, value in lhs[key] = value } }
+
+    @inlinable public static func >- (lhs: BinaryTreeDictionary<Key, Value>, rhs: Key) { lhs.removeValue(forKey: rhs) }
+
+    @inlinable public static func >- (lhs: BinaryTreeDictionary<Key, Value>, rhs: [Key]) { rhs.forEach { lhs.removeValue(forKey: $0) } }
+}
+
+extension BinaryTreeDictionary: Equatable where Value: Equatable {
+
+    @inlinable public static func == (lhs: BinaryTreeDictionary<Key, Value>, rhs: BinaryTreeDictionary<Key, Value>) -> Bool {
+        guard lhs !== rhs else { return true }
         guard lhs.count == rhs.count else { return false }
-        var itLhs = lhs.makeIterator()
-        var itRhs = rhs.makeIterator()
-
-        while let e1 = itLhs.next(), let e2 = itRhs.next() {
-            if e1.key != e2.key || e1.value != e2.value { return false }
-        }
-
+        for e: (key: Key, value: Value) in lhs { guard e.value == rhs[e.key] else { return false } }
         return true
     }
 }
 
-extension BinaryTreeDictionary: Hashable where V: Hashable {
+extension BinaryTreeDictionary: Hashable where Value: Hashable {
 
-    public func hash(into hasher: inout Hasher) {
-        if let r = rootNode {
-            var cc = 0
-            _ = r.iterate { (n: TreeNode<K, V>) -> Bool? in
-                guard cc < 1000 else { return true }
-                hasher.combine(n)
-                cc++
-                return nil
+    @inlinable public func hash(into hasher: inout Hasher) { if let r = rootNode { r.forEach { $0.hash(into: &hasher) } } }
+
+    @inlinable public var hashValue: Int {
+        if let h = _hashValue { return h }
+        var hasher: Hasher = Hasher()
+        hash(into: &hasher)
+        _hashValue = hasher.finalize()
+        return _hashValue!
+    }
+}
+
+extension BinaryTreeDictionary: Sequence {
+    @inlinable public func makeIterator() -> Iterator {
+        Iterator(tree: rootNode)
+    }
+
+    public var underestimatedCount: Int { count }
+
+    public func withContiguousStorageIfAvailable<R>(_ body: (UnsafeBufferPointer<(key: Key, value: Value)>) throws -> R) rethrows -> R? { nil }
+
+    @frozen public struct Iterator: IteratorProtocol {
+        @usableFromInline var stack: [TreeNode<Key, Value>] = []
+
+        @inlinable public init(tree: TreeNode<Key, Value>?) {
+            descendBranch(tree)
+        }
+
+        @usableFromInline mutating func descendBranch(_ node: TreeNode<Key, Value>?) {
+            var _n = node
+            while let n = _n {
+                stack <+ n
+                _n = n.leftChild
             }
         }
+
+        @inlinable public mutating func next() -> Element? {
+            guard let n = stack.popLast() else { return nil }
+            descendBranch(n.rightChild)
+            return (n.key, n.value)
+        }
     }
+}
+
+extension BinaryTreeDictionary {
+
+    @inlinable public var first: Element? {
+        guard let r = rootNode else { return nil }
+        let n = r.first
+        return (n.key, n.value)
+    }
+
+    @inlinable public var last: Element? {
+        guard let r = rootNode else { return nil }
+        let n = r.last
+        return (n.key, n.value)
+    }
+
+    @inlinable public func popFirst() -> Element? {
+        guard let r = rootNode else { return nil }
+        let n = r.first
+        let e = (n.key, n.value)
+        rootNode = n.remove()
+        return e
+    }
+
+    @inlinable public func popLast() -> Element? {
+        guard let r = rootNode else { return nil }
+        let n = r.last
+        let e = (n.key, n.value)
+        rootNode = n.remove()
+        return e
+    }
+
+    @inlinable public func reserveCapacity(_ minimumCapacity: Int) {}
+}
+
+extension BinaryTreeDictionary: Encodable where Key: Encodable, Value: Encodable {
+
+    public func encode(to encoder: Encoder) throws {
+        try count.encode(to: encoder)
+        try forEach {
+            try $0.key.encode(to: encoder)
+            try $0.value.encode(to: encoder)
+        }
+    }
+}
+
+extension BinaryTreeDictionary: Decodable where Key: Decodable, Value: Decodable {}
+
+extension BinaryTreeDictionary {
+
+    @frozen public struct Keys: Collection, Equatable, Hashable {
+        public typealias Element = Key
+        public typealias SubSequence = Slice<Keys>
+        public typealias Indices = DefaultIndices<Keys>
+
+        @inlinable public var startIndex: Index { tree.startIndex }
+        @inlinable public var endIndex:   Index { tree.endIndex }
+        @inlinable public var count:      Int { tree.count }
+        @inlinable public var isEmpty:    Bool { tree.isEmpty }
+
+        @usableFromInline let tree: BinaryTreeDictionary<Key, Value>
+
+        init(_ tree: BinaryTreeDictionary<Key, Value>) { self.tree = tree }
+
+        @inlinable public func index(after i: Index) -> Index { tree.index(after: i) }
+
+        @inlinable public func formIndex(after i: inout Index) { tree.formIndex(after: &i) }
+
+        @inlinable public subscript(position: Index) -> Element { tree[position].key }
+
+        @inlinable public static func == (lhs: Keys, rhs: Keys) -> Bool {
+            guard lhs.count == rhs.count else { return false }
+            for key: Key in lhs { guard rhs.contains(key) else { return false } }
+            return true
+        }
+
+        @inlinable public func hash(into hasher: inout Hasher) { forEach { hasher.combine($0) } }
+    }
+
+    @frozen public struct Values: MutableCollection {
+        public typealias Element = Value
+        public typealias Indices = DefaultIndices<Values>
+        public typealias SubSequence = Slice<Values>
+
+        @inlinable public var startIndex: Index { tree.startIndex }
+        @inlinable public var endIndex:   Index { tree.endIndex }
+        @inlinable public var count:      Int { tree.count }
+        @inlinable public var isEmpty:    Bool { tree.isEmpty }
+
+        @usableFromInline let tree: BinaryTreeDictionary<Key, Value>
+
+        init(_ tree: BinaryTreeDictionary<Key, Value>) { self.tree = tree }
+
+        @inlinable public func index(after i: Index) -> Index { tree.index(after: i) }
+
+        @inlinable public func formIndex(after i: inout Index) { tree.formIndex(after: &i) }
+
+        @inlinable public subscript(position: Index) -> Values.Element {
+            get { tree[position].value }
+            set { tree.nodeAt(position: position).value = newValue; tree._hashValue = nil }
+        }
+
+        @inlinable public mutating func swapAt(_ i: Index, _ j: Index) {
+            let nodeI = tree.nodeAt(position: i)
+            let nodeJ = tree.nodeAt(position: j)
+            swap(&nodeI.value, &nodeJ.value)
+            tree._hashValue = nil
+        }
+    }
+}
+
+extension BinaryTreeDictionary.Values: Equatable where Value: Equatable {
+    public static func == (lhs: BinaryTreeDictionary.Values, rhs: BinaryTreeDictionary.Values) -> Bool {
+        guard lhs.count == rhs.count else { return false }
+        for lhsV: Value in lhs { guard rhs.contains(where: { rhsV in lhsV == rhsV }) else { return false } }
+        return true
+    }
+}
+
+extension BinaryTreeDictionary.Values: Hashable where Value: Hashable {
+    public func hash(into hasher: inout Hasher) { forEach { hasher.combine($0) } }
+}
+
+extension BinaryTreeDictionary: RandomAccessCollection {
+    public func formIndex(before i: inout Index) { i = index(after: i) }
 }

@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TreeNode Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/TreeNode" class="dashAnchor"></a>
+    <a title="TreeNode Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Rubicon©</a> (60% documented)</p>
+        <p class="header-right"><a href="https://github.com/GalenRhodes/Rubicon"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        TreeNode Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Atomic.html">Atomic</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AtomicValue.html">AtomicValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryTreeDictionary.html">BinaryTreeDictionary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryTreeDictionary/Iterator.html">– Iterator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryTreeDictionary/Keys.html">– Keys</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BinaryTreeDictionary/Values.html">– Values</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CString.html">CString</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Conditional.html">Conditional</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DataByteBuffer.html">DataByteBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DynamicFixedArray.html">DynamicFixedArray</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EasyByteBuffer.html">EasyByteBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/IConv.html">IConv</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/IConv/Results.html">– Results</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/IConvCharInputStream.html">IConvCharInputStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MarkInputStream.html">MarkInputStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NanoTimer.html">NanoTimer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PGThread.html">PGThread</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ReadWriteLock.html">ReadWriteLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegularExpression.html">RegularExpression</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegularExpression/Options.html">– Options</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegularExpression/MatchingOptions.html">– MatchingOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegularExpression/MatchingFlags.html">– MatchingFlags</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegularExpression/Match.html">– Match</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegularExpression/Group.html">– Group</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegularExpression/NamedGroup.html">– NamedGroup</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RingByteBuffer.html">RingByteBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SimpleIConvCharInputStream.html">SimpleIConvCharInputStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SimpleStringCharInputStream.html">SimpleStringCharInputStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StringCharInputStream.html">StringCharInputStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ThreadLocal.html">ThreadLocal</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TreeNode.html">TreeNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TreeNode/Color.html">– Color</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TreeNode/Side.html">– Side</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global%20Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/BasicBufferSize.html">BasicBufferSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/CRLF_5FCHARACTER.html">CRLF_CHARACTER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/CR_5FCHARACTER.html">CR_CHARACTER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/LF_5FCHARACTER.html">LF_CHARACTER</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/LINE_5FFEED_5FCODEPOINT.html">LINE_FEED_CODEPOINT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/MachineByteOrder.html">MachineByteOrder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/OneSecondMicros.html">OneSecondMicros</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/OneSecondMillis.html">OneSecondMillis</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/OneSecondNanos.html">OneSecondNanos</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables/UnicodeReplacementChar.html">UnicodeReplacementChar</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/ByteOrder.html">ByteOrder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CErrors.html">CErrors</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CharStreamError.html">CharStreamError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/NanoTimerError.html">NanoTimerError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/NestType.html">NestType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RingByteBufferError.html">RingByteBufferError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SortOrdering.html">SortOrdering</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StreamError.html">StreamError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/ArraySlice.html">ArraySlice</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/BinaryInteger.html">BinaryInteger</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Character.html">Character</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/CharacterSet.html">CharacterSet</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Collection.html">Collection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Data.html">Data</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/DateFormatter.html">DateFormatter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Hasher.html">Hasher</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/InputStream.html">InputStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/MutexLock.html">MutexLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSCondition.html">NSCondition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSRange.html">NSRange</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/OutputStream.html">OutputStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Range.html">Range</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/RangeReplaceableCollection.html">RangeReplaceableCollection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/RecursiveLock.html">RecursiveLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Stream.html">Stream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Stream/Status.html">– Status</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Stream/Event.html">– Event</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/StringProtocol.html">StringProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Thread.html">Thread</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions/_2B_2B_28_5F_3A_29_5F_24syxxzcSzRzluD.html">++(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_2B_2B_28_5F_3A_29_5F_24syxxzcSzRzluD.html">++(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_2B_2B_2B_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html">+++(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_2B_2B_2B_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html">+++(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/--_28_5F_3A_29_5F_24syxxzcSzRzluD.html">--(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/--_28_5F_3A_29_5F_24syxxzcSzRzluD.html">--(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/---_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html">---(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/---_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html">---(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_3C_2B_28_5F_3A_5F_3A_29_5F_24syySayxGz_5FAAtcluD.html">&lt;+(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_3C_2B_28_5F_3A_5F_3A_29_5F_24syySayxGz_5FxtcluD.html">&lt;+(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_3C_3D_3E_28_5F_3A_5F_3A_29_5F_24sy7Rubicon12SortOrderingOSayxSgG_5FAEtcSLRzluD.html">&lt;=&gt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_3C_3D_3E_28_5F_3A_5F_3A_29_5F_24sy7Rubicon12SortOrderingOxSg_5FADtcSLRzluD.html">&lt;=&gt;(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_3C_3F_28_5F_3A_5F_3A_29_5F_24sySbSayxG_5FAAtcSQRzluD.html">&lt;?(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_3C_3F_28_5F_3A_5F_3A_29_5F_24sySbSayxG_5FxtcSQRzluD.html">&lt;?(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_3D_3D_28_5F_3A_5F_3A_29_5F_24sySbSayxG_5Fs10ArraySliceVyxGtcSQRzluD.html">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_3D_3D_28_5F_3A_5F_3A_29_5F_24sySbs10ArraySliceVyxG_5FSayxGtcSQRzluD.html">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/NanoSleep_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosS2i_5FSitcD.html">NanoSleep(seconds:nanos:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/NanoSleep2_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosySi_5FSitcD.html">NanoSleep2(seconds:nanos:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/PGGetRetainCount_28_5F_3A_29_5F_24sySiyXlcD.html">PGGetRetainCount(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/StrError_28_5F_3A_29_5F_24sySSs5Int32VcD.html">StrError(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/_5E_5E_28_5F_3A_5F_3A_29_5F_24syxx_5FxtcSzRzluD.html">^^(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/absoluteTimeSpecFrom_28date_3A_29_5F_24s4dateSo8timespecVSg10Foundation4DateV_5FtcD.html">absoluteTimeSpecFrom(date:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/cStrLen_28cStringPtr_3Alength_3A_29_5F_24s10cStringPtr6lengthSiSPys4Int8VG_5FSitcD.html">cStrLen(cStringPtr:length:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/cStrLen_28cStringPtr_3Alength_3A_29_5F_24s10cStringPtr6lengthSiSPys5UInt8VG_5FSitcD.html">cStrLen(cStringPtr:length:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/createMutablePointer_28capacity_3A_29_5F_24s8capacitySpyxGSi_5FtcSzRzluD.html">createMutablePointer(capacity:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/createMutablePointer_28capacity_3AinitialValue_3A_29_5F_24s8capacity12initialValueSpyxGSi_5FxtcluD.html">createMutablePointer(capacity:initialValue:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/createMutableRawPointer_28capacity_3Atype_3A_29_5F_24s8capacity4typeSvSi_5FxmtcSzRzluD.html">createMutableRawPointer(capacity:type:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/createMutableRawPointer_28capacity_3Atype_3AinitialValue_3A_29_5F_24s8capacity4type12initialValueSvSi_5FxmxtcluD.html">createMutableRawPointer(capacity:type:initialValue:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/debug_28_5F_3Aseparator_3Aterminator_3A_29_5F_24s_5F9separator10terminatorySayypG_5FS2StcD.html">debug(_:separator:terminator:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/debug_28_5F_3Aseparator_3Aterminator_3A_29_5F_24s_5F9separator10terminatoryypd_5FS2StcD.html">debug(_:separator:terminator:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/discardMutablePointer_28_5F_3A_5F_3A_29_5F_24syySpyxG_5FSitcluD.html">discardMutablePointer(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/discardMutableRawPointer_28_5F_3A_5F_3A_5F_3A_29_5F_24syySv_5FxmSitcluD.html">discardMutableRawPointer(_:_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/fixLength_28_5F_3A_29_5F_24syS2icD.html">fixLength(_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/fromBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html">fromBytes(type:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/getSysTime_28delta_3A_29_5F_24s5deltaS2i_5FtcD.html">getSysTime(delta:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/ifNil_28_5F_3Athen_3AelseThen_3A_29_5F_24s_5F4then8elseThenq_5FxSg_5Fq_5FyKXEq_5FxKXEtKcr0_5FluD.html">ifNil(_:then:elseThen:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/nDebug_28_5F_3A_5F_3Aseparator_3A_29_5F_24s_5F_5F9separatory7Rubicon8NestTypeO_5FypdSStcD.html">nDebug(_:_:separator:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/nextCharPosition_28currentPosition_3Acharacter_3AtabWidth_3A_29_5F_24s15currentPosition9character8tabWidths5Int32V10lineNumber_5FAE06columnH0tAeF_5FAeGt_5FSJs4Int8VtcD.html">nextCharPosition(currentPosition:character:tabWidth:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/regexML_28pattern_3A_29_5F_24s7patternSo19NSRegularExpressionCSS_5FtKcD.html">regexML(pattern:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/tabCalc_28pos_3AtabSize_3A_29_5F_24s3pos7tabSizes5Int32VAD_5Fs4Int8VtcD.html">tabCalc(pos:tabSize:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html">testOSFatalError(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/textPositionUpdate_28_5F_3Apos_3AtabWidth_3A_29_5F_24s_5F3pos8tabWidthySJ_5Fs5Int32V10lineNumber_5FAD06columnF0tzs4Int8VtcD.html">textPositionUpdate(_:pos:tabWidth:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/timeIntervalFrom_28date_3A_29_5F.html">timeIntervalFrom(date:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/toBinary_28_5F_3Asep_3Apad_3A_29_5F_24s_5F3sep3padSSx_5FSSSgSitcSzRzluD.html">toBinary(_:sep:pad:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/toBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html">toBytes(type:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html">toHex(_:pad:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/value_28_5F_3AisOneOf_3A_29_5F_24s_5F7isOneOfSbx_5FSayxGtcSQRzluD.html">value(_:isOneOf:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/value_28_5F_3AisOneOf_3A_29_5F_24s_5F7isOneOfSbx_5FxdtcSQRzluD.html">value(_:isOneOf:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/~~_28_5F_3A_29_5F_24syxxcs17FixedWidthIntegerRzluD.html">~~(_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CharInputStream.html">CharInputStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CharStream.html">CharStream</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Closable.html">Closable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/LockCondition.html">LockCondition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Locking.html">Locking</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ManagedByteBuffer.html">ManagedByteBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MutableManagedByteBuffer.html">MutableManagedByteBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SimpleCharInputStream.html">SimpleCharInputStream</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/OStringXForm.html">OStringXForm</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/OStringXForm/XForms.html">– XForms</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ShadowInt.html">ShadowInt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StringXForm.html">StringXForm</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/StringXForm/XForms.html">– XForms</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases/ByteBuffer.html">ByteBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/BytePointer.html">BytePointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/ByteROBuffer.html">ByteROBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/ByteROPointer.html">ByteROPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/CCharBuffer.html">CCharBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/CCharPointer.html">CCharPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/CCharROBuffer.html">CCharROBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/CCharROPointer.html">CCharROPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/CFByteOrderEnum.html">CFByteOrderEnum</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/DWordBuffer.html">DWordBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/DWordPointer.html">DWordPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/DWordROBuffer.html">DWordROBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/DWordROPointer.html">DWordROPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/MutexLock.html">MutexLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/PGThreadBlock.html">PGThreadBlock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/PGTimeT.html">PGTimeT</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/QWordBuffer.html">QWordBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/QWordPointer.html">QWordPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/QWordROBuffer.html">QWordROBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/QWordROPointer.html">QWordROPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/RecursiveLock.html">RecursiveLock</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/RegEx.html">RegEx</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/RegExResult.html">RegExResult</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/TextPosition.html">TextPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/WordBuffer.html">WordBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/WordPointer.html">WordPointer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/WordROBuffer.html">WordROBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases/WordROPointer.html">WordROPointer</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>TreeNode</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">K</span> <span class="p">:</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">K</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">TreeNode</span><span class="p">:</span> <span class="kt">Equatable</span> <span class="k">where</span> <span class="kt">V</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">TreeNode</span><span class="p">:</span> <span class="kt">Hashable</span> <span class="k">where</span> <span class="kt">V</span><span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">TreeNode</span><span class="p">:</span> <span class="kt">Encodable</span> <span class="k">where</span> <span class="kt">K</span><span class="p">:</span> <span class="kt">Encodable</span><span class="p">,</span> <span class="kt">V</span><span class="p">:</span> <span class="kt">Encodable</span></code></pre>
+
+                </div>
+              </div>
+            <p>Implements a single node for a classic Red/Black Binary Tree.</p>
+
+              <div class="slightly-smaller">
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L34-L253">Show on GitHub</a>
+              </div>
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC5ColorO"></a>
+                    <a name="//apple_ref/swift/Enum/Color" class="dashAnchor"></a>
+                    <a class="direct-link" href="../Classes/TreeNode/Color.html">Color</a>
+                    </code>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC4SideO"></a>
+                    <a name="//apple_ref/swift/Enum/Side" class="dashAnchor"></a>
+                    <a class="direct-link" href="../Classes/TreeNode/Side.html">Side</a>
+                    </code>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC5countSivp"></a>
+                    <a name="//apple_ref/swift/Property/count" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC5countSivp">count</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">fileprivate</span><span class="p">(</span><span class="k">set</span><span class="p">)</span> <span class="k">var</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC5colorAC5ColorOyxq__Gvp"></a>
+                    <a name="//apple_ref/swift/Property/color" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC5colorAC5ColorOyxq__Gvp">color</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">fileprivate</span><span class="p">(</span><span class="k">set</span><span class="p">)</span> <span class="k">var</span> <span class="nv">color</span><span class="p">:</span> <span class="kt"><a href="../Classes/TreeNode/Color.html">Color</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC6parentACyxq_GSgvp"></a>
+                    <a name="//apple_ref/swift/Property/parent" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC6parentACyxq_GSgvp">parent</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">fileprivate</span><span class="p">(</span><span class="k">set</span><span class="p">)</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">parent</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC9leftChildACyxq_GSgvp"></a>
+                    <a name="//apple_ref/swift/Property/leftChild" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC9leftChildACyxq_GSgvp">leftChild</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">fileprivate</span><span class="p">(</span><span class="k">set</span><span class="p">)</span> <span class="k">var</span> <span class="nv">leftChild</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC10rightChildACyxq_GSgvp"></a>
+                    <a name="//apple_ref/swift/Property/rightChild" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC10rightChildACyxq_GSgvp">rightChild</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">fileprivate</span><span class="p">(</span><span class="k">set</span><span class="p">)</span> <span class="k">var</span> <span class="nv">rightChild</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC3keyxvp"></a>
+                    <a name="//apple_ref/swift/Property/key" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC3keyxvp">key</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">fileprivate</span><span class="p">(</span><span class="k">set</span><span class="p">)</span> <span class="k">var</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">K</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC5valueq_vp"></a>
+                    <a name="//apple_ref/swift/Property/value" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC5valueq_vp">value</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">V</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC7siblingACyxq_GSgvp"></a>
+                    <a name="//apple_ref/swift/Property/sibling" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC7siblingACyxq_GSgvp">sibling</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">sibling</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC11grandfatherACyxq_GSgvp"></a>
+                    <a name="//apple_ref/swift/Property/grandfather" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC11grandfatherACyxq_GSgvp">grandfather</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">grandfather</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC5uncleACyxq_GSgvp"></a>
+                    <a name="//apple_ref/swift/Property/uncle" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC5uncleACyxq_GSgvp">uncle</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">uncle</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC04rootC0ACyxq_Gvp"></a>
+                    <a name="//apple_ref/swift/Property/rootNode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC04rootC0ACyxq_Gvp">rootNode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">rootNode</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC5firstACyxq_Gvp"></a>
+                    <a name="//apple_ref/swift/Property/first" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC5firstACyxq_Gvp">first</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">first</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC4lastACyxq_Gvp"></a>
+                    <a name="//apple_ref/swift/Property/last" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC4lastACyxq_Gvp">last</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">last</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC6isRootSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isRoot" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC6isRootSbvp">isRoot</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">isRoot</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC5indexSivp"></a>
+                    <a name="//apple_ref/swift/Property/index" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC5indexSivp">index</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC4sideAC4SideOyxq__Gvp"></a>
+                    <a name="//apple_ref/swift/Property/side" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC4sideAC4SideOyxq__Gvp">side</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">side</span><span class="p">:</span> <span class="kt"><a href="../Classes/TreeNode/Side.html">Side</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC3key5valueACyxq_Gx_q_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(key:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC3key5valueACyxq_Gx_q_tcfc">init(key:<wbr>value:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">K</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">V</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L64-L68">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeCyACyxq_GSgxcip"></a>
+                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeCyACyxq_GSgxcip">subscript(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">K</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L81-L87">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeCyACyxq_GSgAA9ShadowIntVcip"></a>
+                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeCyACyxq_GSgAA9ShadowIntVcip">subscript(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">position</span><span class="p">:</span> <span class="kt"><a href="../Classes/BinaryTreeDictionary.html">BinaryTreeDictionary</a></span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;.</span><span class="kt">Index</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L89-L91">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC5getBy5indexACyxq_GSgSi_tF"></a>
+                    <a name="//apple_ref/swift/Method/getBy(index:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC5getBy5indexACyxq_GSgSi_tF">getBy(index:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getBy</span><span class="p">(</span><span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L93-L99">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC7forEach7executeyyACyxq_GKXE_tKF"></a>
+                    <a name="//apple_ref/swift/Method/forEach(execute:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC7forEach7executeyyACyxq_GKXE_tKF">forEach(execute:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">forEach</span><span class="p">(</span><span class="n">execute</span> <span class="nv">body</span><span class="p">:</span> <span class="p">(</span><span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">rethrows</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L101-L105">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC15forEachReversed7executeyyACyxq_GKXE_tKF"></a>
+                    <a name="//apple_ref/swift/Method/forEachReversed(execute:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC15forEachReversed7executeyyACyxq_GKXE_tKF">forEachReversed(execute:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">forEachReversed</span><span class="p">(</span><span class="n">execute</span> <span class="nv">body</span><span class="p">:</span> <span class="p">(</span><span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">rethrows</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L107-L111">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC3add3key5valueACyxq_Gx_q_tF"></a>
+                    <a name="//apple_ref/swift/Method/add(key:value:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC3add3key5valueACyxq_Gx_q_tF">add(key:<wbr>value:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">K</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">V</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L113-L129">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon8TreeNodeC6removeACyxq_GSgyF"></a>
+                    <a name="//apple_ref/swift/Method/remove()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon8TreeNodeC6removeACyxq_GSgyF">remove()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">remove</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L148-L167">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60V%60%3A%20%60Equatable%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `V`: `Equatable`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60V%60%3A%20%60Equatable%60"></a>
+                  <h3 class="section-name"><p>Available where <code>V</code>: <code>Equatable</code></p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:SQ2eeoiySbx_xtFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SQ2eeoiySbx_xtFZ">==(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60V%60%3A%20%60Hashable%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `V`: `Hashable`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60V%60%3A%20%60Hashable%60"></a>
+                  <h3 class="section-name"><p>Available where <code>V</code>: <code>Hashable</code></p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:SH4hash4intoys6HasherVz_tF"></a>
+                    <a name="//apple_ref/swift/Method/hash(into:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SH4hash4intoys6HasherVz_tF">hash(into:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">hash</span><span class="p">(</span><span class="n">into</span> <span class="nv">hasher</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">Hasher</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L260-L263">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:SH9hashValueSivp"></a>
+                    <a name="//apple_ref/swift/Property/hashValue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SH9hashValueSivp">hashValue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hashValue</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L265-L269">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60K%60%3A%20%60Encodable%60%2C%20%60V%60%3A%20%60Encodable%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `K`: `Encodable`, `V`: `Encodable`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60K%60%3A%20%60Encodable%60%2C%20%60V%60%3A%20%60Encodable%60"></a>
+                  <h3 class="section-name"><p>Available where <code>K</code>: <code>Encodable</code>, <code>V</code>: <code>Encodable</code></p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:SE6encode2toys7Encoder_p_tKF"></a>
+                    <a name="//apple_ref/swift/Method/encode(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SE6encode2toys7Encoder_p_tKF">encode(to:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">(</span><span class="n">to</span> <span class="nv">encoder</span><span class="p">:</span> <span class="kt">Encoder</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L274-L277">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-05-05)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

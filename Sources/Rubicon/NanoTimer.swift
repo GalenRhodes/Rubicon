@@ -65,24 +65,24 @@ open class NanoTimer {
     /*==========================================================================================================*/
     /// The number of nanoseconds between calls to the the `block`.
     ///
-    public let nanos:     UInt64
+    public let nanos:     PGTimeT
 
     /*==========================================================================================================*/
     /// Initializes the timer to call the `block` every `nanos` nanoseconds.
-    ///
+    /// 
     /// - Parameter nanos: the number of nanoseconds. Must be less than `OneSecondNanos`.
     ///
-    public init(nanos: UInt64) {
+    public init(nanos: PGTimeT) {
         self.nanos = nanos
     }
 
     /*==========================================================================================================*/
     /// Initializes the timer to call the block.
-    ///
+    /// 
     /// - Parameter time:
     ///
     public init(time: timespec) {
-        self.nanos = ((UInt64(time.tv_sec) * OneSecondNanos) + UInt64(time.tv_nsec))
+        self.nanos = PGTimeT((time.tv_sec * OneSecondNanos) + time.tv_nsec)
     }
 
     deinit {
@@ -92,7 +92,7 @@ open class NanoTimer {
     /*==========================================================================================================*/
     /// Adds a number of timer cycles to skip to the existing number. The timer will skip a number of timer
     /// firings when told to.
-    ///
+    /// 
     /// - Parameter skip: The number of cycles to skip.
     ///
     public func add(skip: UInt = 1) {
@@ -124,12 +124,12 @@ open class NanoTimer {
 
     private func _startLongDelay() {
         worker1 = PGThread(startNow: true, qualityOfService: .userInteractive) {
-            var next: UInt64   = getSysTime(delta: self.nanos)
-            let adj:  UInt64   = (next - 3_000)
+            var next: PGTimeT   = getSysTime(delta: self.nanos)
+            let adj:  PGTimeT   = (next - 3_000)
             var tmsp: timespec = timespec(tv_sec: 0, tv_nsec: 3_000)
 
             while self.running {
-                let now: UInt64 = getSysTime()
+                let now: PGTimeT = getSysTime()
 
                 if now >= next {
                     if self.skip > 0 {
@@ -158,7 +158,7 @@ open class NanoTimer {
 
     private func _startShortDelay() {
         worker1 = PGThread(startNow: true, qualityOfService: .userInteractive) {
-            var next: UInt64 = getSysTime(delta: self.nanos)
+            var next: PGTimeT = getSysTime(delta: self.nanos)
 
             while self.running {
                 if getSysTime() >= next {

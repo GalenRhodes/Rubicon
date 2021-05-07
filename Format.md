@@ -1,75 +1,84 @@
 # Format String Syntax
 
-Every method which produces formatted output requires a format string and an argument list. The format string is a String which may
-contain fixed text and one or more embedded format specifiers. Consider the following example:
+Every method which produces formatted output requires a _format string_ and an _argument list_. The format string is a String which
+may contain fixed text and one or more embedded format specifiers. Consider the following example:
 
-```Java
-Calendar c = ...; String s = String.format("Duke's Birthday: %1$tm %1$te,%1$tY", c);
+```Swift
+let aDate: Date = Date()
+"Duke's Birthday: %1$tm %1$te,%1$tY".format(aDate)
 ```
 
 This format string is the first argument to the format method. It contains three format specifiers "%1$tm", "%1$te", and "%1$tY"
 which indicate how the arguments should be processed and where they should be inserted in the text. The remaining portions of the
 format string are fixed text including "Dukes Birthday: " and any other spaces or punctuation. The argument list consists of all
 arguments passed to the method after the format string. In the above example, the argument list is of size one and consists of the
-Calendar object c. The format specifiers for general, character, and numeric types have the following syntax:
+Date object aDate.
+
+<dl>
+    <dt>The format specifiers for general, character, and numeric types have the following syntax:
 
 ```text
 %[argument_index$][flags][width][.precision]conversion
 ```
 
-The optional argument_index is a decimal integer indicating the position of the argument in the argument list. The first argument is
-referenced by "1$", the second by "2$", etc.
+</dt>
+<dd>The optional argument_index is a decimal integer indicating the position of the argument in the argument list. The first 
+argument is referenced by "1$", the second by "2$", etc.</dd>
 
-The optional flags is a set of characters that modify the output format. The set of valid flags depends on the conversion.
+<dd>The optional flags is a set of characters that modify the output format. The set of valid flags depends on the conversion.</dd>
 
-The optional width is a positive decimal integer indicating the minimum number of characters to be written to the output.
+<dd>The optional width is a positive decimal integer indicating the minimum number of characters to be written to the output.</dd>
 
-The optional precision is a non-negative decimal integer usually used to restrict the number of characters. The specific behavior
-depends on the conversion.
+<dd>The optional precision is a non-negative decimal integer usually used to restrict the number of characters. The specific 
+behavior depends on the conversion.</dd>
 
-The required conversion is a character indicating how the argument should be formatted. The set of valid conversions for a given
-argument depends on the argument's data type.
+<dd>The required conversion is a character indicating how the argument should be formatted. The set of valid conversions for a given
+argument depends on the argument's data type.</dd>
 
-The format specifiers for types which are used to represents dates and times have the following syntax:
+<dt>The format specifiers for types which are used to represents dates and times have the following syntax:
 
 ```text
 %[argument_index$][flags][width]conversion
 ```
 
-The optional argument_index, flags and width are defined as above.
+</dt>
+<dd>The optional argument_index, flags and width are defined as above.</dd>
 
-The required conversion is a two character sequence. The first character is 't' or 'T'. The second character indicates the format to
-be used. These characters are similar to but not completely identical to those defined by GNU date and POSIX strftime(3c).
+<dd>The required conversion is a two character sequence. The first character is 't' or 'T'. The second character indicates the 
+format to be used. These characters are similar to but not completely identical to those defined by GNU date and POSIX strftime
+(3c).</dd>
 
-The format specifiers which do not correspond to arguments have the following syntax:
+<dt>The format specifiers which do not correspond to arguments have the following syntax:
 
 ```test
 %[flags][width]conversion
 ```
 
-The optional flags and width is defined as above.
+</dt>
+<dd>The optional flags and width is defined as above.</dd>
 
-The required conversion is a character indicating content to be inserted in the output.
+<dd>The required conversion is a character indicating content to be inserted in the output.</dd>
+</dl>
 
-##Conversions
+## Conversions
 
 Conversions are divided into the following categories:
 
- 1. **General** - may be applied to any argument type
- 2. **Character** - may be applied to basic types which represent Unicode characters: char, Character, byte, Byte, short, and Short. 
-    This conversion may also be applied to the types int and Integer when Character.isValidCodePoint(int) returns true
- 3. **Numeric** 
-    1. **Integral** - may be applied to Java integral types: byte, Byte, short, Short, int and Integer, long, Long, and BigInteger 
+1. **General** - may be applied to any argument type
+2. **Character** - may be applied to basic types which represent Unicode characters: char, Character, byte, Byte, short, and Short.
+   This conversion may also be applied to the types int and Integer when Character.isValidCodePoint(int) returns true
+3. **Numeric**
+    1. **Integral** - may be applied to Java integral types: byte, Byte, short, Short, int and Integer, long, Long, and BigInteger
        (but not char or Character)
     2. **Floating Point** - may be applied to Java floating-point types: float, Float, double, Double, and BigDecimal
- 4. **Date/Time** - may be applied to Java types which are capable of encoding a date or time: long, Long, Calendar, Date and 
-    TemporalAccessor 
- 5. **Percent** - produces a literal '%' ('\u0025')
- 6. **Line Separator** - produces the platform-specific line separator
-    
-The following table summarizes the supported conversions. Conversions denoted by an upper-case character `(i.e. 'B', 'H', 'S', 
-'C', 'X', 'E', 'G', 'A', and 'T')` are the same as those for the corresponding lower-case conversion characters except that the 
-result is converted to upper case according to the rules of the prevailing Locale. The result is equivalent to the following 
+4. **Date/Time** - may be applied to Java types which are capable of encoding a date or time: long, Long, Calendar, Date and
+   TemporalAccessor
+5. **Percent** - produces a literal '%' ('\u0025')
+6. **Line Separator** - produces the platform-specific line separator
+
+The following table summarizes the supported conversions. Conversions denoted by an upper-case character `(i.e. 'B', 'H', 'S',
+'C', 'X', 'E', 'G', 'A', and 'T')` are the same as those for the corresponding lower-case conversion characters except that the
+result is converted to upper case according to the rules of the prevailing Locale. The result is equivalent to the following
 invocation of String.toUpperCase()
 
 ```Java
@@ -450,6 +459,7 @@ If m is greater than or equal to 10-4 but less than 10precision then it is repre
 If m is less than 10-4 or greater than or equal to 10precision, then it is represented in computerized scientific notation.
 
 The total number of significant digits in m is equal to the precision. If the precision is not specified, then the default value is
+
 6. If the precision is 0, then it is taken to be 1.
 
 If the '#' flag is given then an FormatFlagsConversionMismatchException will be thrown.
@@ -551,6 +561,7 @@ If m is greater than or equal to 10-4 but less than 10precision then it is repre
 If m is less than 10-4 or greater than or equal to 10precision, then it is represented in computerized scientific notation.
 
 The total number of significant digits in m is equal to the precision. If the precision is not specified, then the default value is
+
 6. If the precision is 0, then it is taken to be 1.
 
 If the '#' flag is given then an FormatFlagsConversionMismatchException will be thrown.

@@ -75,8 +75,8 @@ open class IConv {
     /// Create a new instance of IConv.
     /// 
     /// - Parameters:
-    ///   - toEncoding: the target encoding name.
-    ///   - fromEncoding: the source encoding name.
+    ///   - toEncoding: The target encoding name.
+    ///   - fromEncoding: The source encoding name.
     ///   - ignoreErrors: `true` if encoding errors should be ignored. The default is `false`.
     ///   - enableTransliterate: `true` if transliteration should be enabled. The default is `false`.
     ///
@@ -122,11 +122,11 @@ open class IConv {
     /// Convert the contents of the `input` buffer and store in the `output` buffer.
     /// 
     /// - Parameters:
-    ///   - input: the input buffer.
-    ///   - length: the number of bytes in the input buffer.
-    ///   - output: the output buffer.
-    ///   - maxLength: the maximum number of bytes the output buffer can hold.
-    /// - Returns: the response.
+    ///   - input: The input buffer.
+    ///   - length: The number of bytes in the input buffer.
+    ///   - output: The output buffer.
+    ///   - maxLength: The maximum number of bytes the output buffer can hold.
+    /// - Returns: The response.
     ///
     open func convert(input: UnsafeRawPointer, length: Int, output: UnsafeMutableRawPointer, maxLength: Int) -> Response {
         guard let h = handle else { return (.UnknownEncoding, 0, 0) }
@@ -144,9 +144,9 @@ open class IConv {
     /// Convert the contents of the `input` buffer and store in the `output` buffer.
     /// 
     /// - Parameters:
-    ///   - input: the input buffer.
-    ///   - output: the output buffer.
-    /// - Returns: the results.
+    ///   - input: The input buffer.
+    ///   - output: The output buffer.
+    /// - Returns: The results.
     ///
     open func convert(input i: MutableManagedByteBuffer, output o: MutableManagedByteBuffer) -> Results {
         i.withBytes { inBytes, inLen, inCount -> Results in
@@ -165,9 +165,9 @@ open class IConv {
     /// that might be waiting.
     /// 
     /// - Parameters:
-    ///   - output: the output buffer.
-    ///   - maxLength: the maximum length of the output buffer.
-    /// - Returns: a `Response` tuple.
+    ///   - output: The output buffer.
+    ///   - maxLength: The maximum length of the output buffer.
+    /// - Returns: A `Response` tuple.
     ///
     open func finalConvert(output: UnsafeMutableRawPointer, maxLength: Int) -> Response {
         guard let h = handle else { return (.UnknownEncoding, 0, 0) }
@@ -184,7 +184,7 @@ open class IConv {
     /// that might be waiting.
     /// 
     /// - Parameter o: the output buffer.
-    /// - Returns: the `Results`.
+    /// - Returns: The `Results`.
     ///
     open func finalConvert(output o: MutableManagedByteBuffer) -> Results {
         o.withBytes { outBytes, outLen, outCount -> Results in
@@ -199,9 +199,9 @@ open class IConv {
     /// converts those bytes, and then calls the give closure with the results of that conversion.
     /// 
     /// - Parameters:
-    ///   - inputStream: the input stream.
-    ///   - body: the closure to handle each converted chunk.
-    /// - Throws: if an I/O error occurs or a conversion error occurs.
+    ///   - inputStream: The input stream.
+    ///   - body: The closure to handle each converted chunk.
+    /// - Throws: If an I/O error occurs or a conversion error occurs.
     ///
     open func with(inputStream: InputStream, do body: (BytePointer, Int) throws -> Bool) throws {
         if inputStream.streamStatus == .notOpen { inputStream.open() }
@@ -222,12 +222,12 @@ open class IConv {
     /// Convert a chunk of data.
     /// 
     /// - Parameters:
-    ///   - ioRes: the number of bytes read from the input stream.
-    ///   - inBuff: the input buffer.
-    ///   - outBuff: the output buffer.
-    ///   - body: the closure to call with the converted data.
+    ///   - ioRes: The number of bytes read from the input stream.
+    ///   - inBuff: The input buffer.
+    ///   - outBuff: The output buffer.
+    ///   - body: The closure to call with the converted data.
     /// - Returns: `true` if the conversion whould be halted.
-    /// - Throws: if an I/O error occurs or a conversion error occurs.
+    /// - Throws: If an I/O error occurs or a conversion error occurs.
     ///
     private func doWithIconv(_ ioRes: Int, _ inBuff: MutableManagedByteBuffer, _ outBuff: MutableManagedByteBuffer, _ body: (BytePointer, Int) throws -> Bool) throws -> Bool {
         let iconvRes: Results = convert(input: inBuff, output: outBuff)
@@ -245,7 +245,7 @@ open class IConv {
     /*==========================================================================================================*/
     /// Get the list of available encodings.
     /// 
-    /// - Returns: an array of strings.
+    /// - Returns: An array of strings.
     ///
     private static func getEncodingsList() -> [String] {
         let data = UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>.allocate(capacity: MaxEncodings)
@@ -279,10 +279,10 @@ open class IConv {
     /// Convert the data returned from the call to `iconv(_ :, _:, _:, _:, _:)` to a `Response` tuple.
     /// 
     /// - Parameters:
-    ///   - res: the results returned from the call.
-    ///   - inUsed: the number of input bytes used.
-    ///   - outUsed: the number of output bytes used.
-    /// - Returns: the `Response` tuple.
+    ///   - res: The results returned from the call.
+    ///   - inUsed: The number of input bytes used.
+    ///   - outUsed: The number of output bytes used.
+    /// - Returns: The `Response` tuple.
     ///
     private func getResponse(callResponse res: Int, inUsed: Int, outUsed: Int) -> Response {
         if res >= 0 { return (.OK, inUsed, outUsed) }
@@ -300,7 +300,7 @@ open class IConv {
 /// Copy a NULL terminated C string.
 /// 
 /// - Parameter str: a pointer to the C string.
-/// - Returns: the copy of the C string.
+/// - Returns: The copy of the C string.
 ///
 fileprivate func CopyStr(_ str: UnsafePointer<Int8>) -> UnsafeMutablePointer<Int8> {
     let len = StrLen(str)
@@ -313,7 +313,7 @@ fileprivate func CopyStr(_ str: UnsafePointer<Int8>) -> UnsafeMutablePointer<Int
 /// Get the next free index.
 /// 
 /// - Parameter data: the data array.
-/// - Returns: the next free index or `nil` if the array is full.
+/// - Returns: The next free index or `nil` if the array is full.
 ///
 fileprivate func NextSlot(_ data: UnsafeMutablePointer<UnsafeMutablePointer<Int8>?>) -> Int? {
     for i in (0 ..< MaxEncodings) { if data[i] == nil { return i } }
@@ -324,7 +324,7 @@ fileprivate func NextSlot(_ data: UnsafeMutablePointer<UnsafeMutablePointer<Int8
 /// Get the length of a NULL terminated C string.
 /// 
 /// - Parameter str: the C string.
-/// - Returns: it's length.
+/// - Returns: It's length.
 ///
 fileprivate func StrLen(_ str: UnsafePointer<Int8>) -> Int {
     var len = 0

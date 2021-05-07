@@ -23,8 +23,8 @@
 import Foundation
 import CoreFoundation
 
-fileprivate let ErrorMustHaveSibling:   String = "A black non-root node must have a sibling."
 fileprivate let ErrorInconsistentState: String = "Binary tree is in an inconsistent state:"
+fileprivate let ErrorMustHaveSibling:   String = "A black non-root node must have a sibling."
 fileprivate let ErrorCannotRotateLeft:  String = "Cannot rotate node to the left. Right child node is missing."
 fileprivate let ErrorCannotRotateRight: String = "Cannot rotate node to the right. Left child node is missing."
 

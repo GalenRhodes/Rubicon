@@ -160,8 +160,8 @@ open class IConvCharInputStream: CharInputStream {
     /*==========================================================================================================*/
     /// Read one character.
     /// 
-    /// - Returns: the next character or `nil` if EOF.
-    /// - Throws: if an I/O error occurs.
+    /// - Returns: The next character or `nil` if EOF.
+    /// - Throws: If an I/O error occurs.
     ///
     open func read() throws -> Character? {
         nDebug(.In, "Read Character")
@@ -187,18 +187,18 @@ open class IConvCharInputStream: CharInputStream {
     /// that the receiving array is not cleared before the data is read.
     /// 
     /// - Parameters:
-    ///   - chars: the <code>[Array](https://developer.apple.com/documentation/swift/Array)</code> to receive the
+    ///   - chars: The <code>[Array](https://developer.apple.com/documentation/swift/Array)</code> to receive the
     ///            <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s.
-    ///   - maxLength: the maximum number of
+    ///   - maxLength: The maximum number of
     ///                <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s to
     ///                receive. If -1 then all
     ///                <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s are
     ///                read until the end-of-file.
-    /// - Returns: the number of
+    /// - Returns: The number of
     ///            <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s read. Will
     ///            return 0 (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) if the stream is at
     ///            end-of-file.
-    /// - Throws: if an I/O error occurs.
+    /// - Throws: If an I/O error occurs.
     ///
     open func append(to chars: inout [Character], maxLength: Int) throws -> Int {
         nDebug(.In, "Read Multiple Characters")
@@ -299,7 +299,7 @@ open class IConvCharInputStream: CharInputStream {
     /// mark. You have to have previously called `markSet()` otherwise this method does nothing.
     /// 
     /// - Parameter count: the number of characters to back out.
-    /// - Returns: the number of characters actually backed out in case there weren't `count` characters available.
+    /// - Returns: The number of characters actually backed out in case there weren't `count` characters available.
     ///
     @discardableResult open func markBackup(count: Int = 1) -> Int {
         guard count > 0 else { return 0 }

@@ -25,20 +25,20 @@ extension BinaryInteger {
     /// then maxValue is returned. Otherwise this value is returned.
     /// 
     /// - Parameters:
-    ///   - minValue: the minimum value.
-    ///   - maxValue: the maximum value.
+    ///   - minValue: The minimum value.
+    ///   - maxValue: The maximum value.
     /// - Returns: If the value is less than minValue then the minValue is returned. If the value is greater than
     ///            maxValue then maxValue is returned. Otherwise this value is returned.
     ///
-    public func clamp(minValue: Self, maxValue: Self) -> Self {
-        ((self < minValue) ? minValue : ((self > maxValue) ? maxValue : self))
-    }
+    @inlinable public func clamp(minValue: Self, maxValue: Self) -> Self { max(min(self, maxValue), minValue) }
 
-    public func inRange(_ range: Range<Self>) -> Bool {
-        range.contains(self)
-    }
+    @inlinable public func clamp(minValue: Self) -> Self { max(self, minValue) }
 
-    public func inRange(_ range: ClosedRange<Self>) -> Bool {
-        range.contains(self)
-    }
+    @inlinable public func clamp(maxValue: Self) -> Self { min(self, maxValue) }
+
+    @inlinable public func clamp(_ range: Range<Self>) -> Self { clamp(minValue: range.lowerBound, maxValue: (range.upperBound - 1)) }
+
+    @inlinable public func inRange(_ range: Range<Self>) -> Bool { range.contains(self) }
+
+    @inlinable public func inRange(_ range: ClosedRange<Self>) -> Bool { range.contains(self) }
 }

@@ -2032,14 +2032,35 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/BinaryInteger.swift",
+      "line": 35,
+      "symbol": "BinaryInteger.clamp(minValue:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/BinaryInteger.swift",
       "line": 37,
-      "symbol": "BinaryInteger.inRange(_:)",
+      "symbol": "BinaryInteger.clamp(maxValue:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/BinaryInteger.swift",
+      "line": 39,
+      "symbol": "BinaryInteger.clamp(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/BinaryInteger.swift",
       "line": 41,
+      "symbol": "BinaryInteger.inRange(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/BinaryInteger.swift",
+      "line": 43,
       "symbol": "BinaryInteger.inRange(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -2168,6 +2189,20 @@
       "line": 66,
       "symbol": "nextCharPosition(currentPosition:character:tabWidth:)",
       "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/String.swift",
+      "line": 84,
+      "symbol": "FormatPattern",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/String.swift",
+      "line": 115,
+      "symbol": "StringProtocol.format(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {

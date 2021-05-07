@@ -30,7 +30,7 @@ extension RangeReplaceableCollection {
     /*==========================================================================================================*/
     /// Pops the first element off the collection. If the collection is empty then returns `nil`.
     /// 
-    /// - Returns: the first element off the collection or `nil` if the collection is empty.
+    /// - Returns: The first element off the collection or `nil` if the collection is empty.
     ///
     public mutating func popFirst() -> Self.Element? { (isEmpty ? nil : removeFirst()) }
 
@@ -41,7 +41,7 @@ extension RangeReplaceableCollection {
     /// - Parameter predicate: A closure that takes an element of the sequence as its argument and returns a
     ///                        Boolean value indicating whether the element should be removed from the collection.
     /// - Returns: An array containing the elements that were removed.
-    /// - Throws: any error thrown by the predicate closure.
+    /// - Throws: Any error thrown by the predicate closure.
     ///
     public mutating func removeAllGet(where predicate: (Element) throws -> Bool) rethrows -> [Element] {
         var temp: [Element] = []
@@ -63,8 +63,8 @@ extension Collection {
     /// - Parameter predicate: A closure that takes an element of the sequence as its argument and returns a
     ///                        Boolean value indicating whether the element should be included in the returned
     ///                        array.
-    /// - Returns: a new array.
-    /// - Throws: any error thrown by the predicate closure.
+    /// - Returns: A new array.
+    /// - Throws: Any error thrown by the predicate closure.
     ///
     public func all(where predicate: (Element) throws -> Bool) rethrows -> [Element] {
         var temp: [Element] = []
@@ -83,7 +83,7 @@ extension Collection {
     /// 
     /// - Parameter body: the closure which takes the element as it's only parameter and returns a boolean.
     /// - Returns: `false` if the closure returns `false` for all the elements in the collection.
-    /// - Throws: any error thrown by the closure.
+    /// - Throws: Any error thrown by the closure.
     ///
     public func isAny(predicate body: (Element) throws -> Bool) rethrows -> Bool {
         for e in self { if try body(e) { return true } }
@@ -97,7 +97,7 @@ extension Collection {
     /// 
     /// - Parameter body: the closure which takes the element as it's only parameter and returns a boolean.
     /// - Returns: `true` if the closure returns `true` for all the elements in the collection.
-    /// - Throws: any error thrown by the closure.
+    /// - Throws: Any error thrown by the closure.
     ///
     public func areAll(predicate body: (Element) throws -> Bool) rethrows -> Bool {
         for e in self { guard try body(e) else { return false } }

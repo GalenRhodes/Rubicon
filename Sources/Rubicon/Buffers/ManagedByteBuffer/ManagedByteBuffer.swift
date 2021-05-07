@@ -64,7 +64,7 @@ public protocol MutableManagedByteBuffer: ManagedByteBuffer {
     /// from the given index to the end of the buffer.
     /// 
     /// - Parameter idx: the index of the first byte of the block of bytes to move to the beginning of the buffer.
-    /// - Returns: the number of bytes moved.
+    /// - Returns: The number of bytes moved.
     ///
     func relocateToFront(start idx: Int) -> Int
 
@@ -72,8 +72,8 @@ public protocol MutableManagedByteBuffer: ManagedByteBuffer {
     /// Relocates a block of bytes to the beginning of the buffer region.
     /// 
     /// - Parameters:
-    ///   - idx: the index of the first byte of the block of bytes to move to the beginning of the buffer.
-    ///   - cc: the number of bytes.
+    ///   - idx: The index of the first byte of the block of bytes to move to the beginning of the buffer.
+    ///   - cc: The number of bytes.
     ///
     func relocateToFront(start idx: Int, count cc: Int)
 }

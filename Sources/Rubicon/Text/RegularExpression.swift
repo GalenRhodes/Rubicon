@@ -164,9 +164,9 @@ open class RegularExpression {
     /// options. If an error occurs then `nil` is returned.
     /// 
     /// - Parameters:
-    ///   - pattern: the regular expression pattern.
-    ///   - options: the options.
-    ///   - error: if initialization fails then this parameter will be set to the error.
+    ///   - pattern: The regular expression pattern.
+    ///   - options: The options.
+    ///   - error: If initialization fails then this parameter will be set to the error.
     ///
     public init?(pattern: String, options: [RegularExpression.Options] = [], error: inout Error?) {
         do {
@@ -184,8 +184,8 @@ open class RegularExpression {
     /// options. If an error occurs then `nil` is returned.
     /// 
     /// - Parameters:
-    ///   - pattern: the regular expression pattern.
-    ///   - options: the options.
+    ///   - pattern: The regular expression pattern.
+    ///   - options: The options.
     ///
     public convenience init?(pattern: String, options: [RegularExpression.Options] = []) {
         var e: Error? = nil
@@ -204,7 +204,7 @@ open class RegularExpression {
     /// backslash escapes to this string is "\\(N\\/A\\)".
     /// 
     /// - Parameter string: the string.
-    /// - Returns: the escaped string.
+    /// - Returns: The escaped string.
     ///
     open class func escapedPattern(for string: String) -> String { NSRegularExpression.escapedPattern(for: string) }
 
@@ -222,7 +222,7 @@ open class RegularExpression {
     /// See Flag Options for the format of the resulting template string.
     /// 
     /// - Parameter string: the template string.
-    /// - Returns: the escaped template string.
+    /// - Returns: The escaped template string.
     ///
     open class func escapedTemplate(for string: String) -> String { NSRegularExpression.escapedTemplate(for: string) }
 
@@ -230,10 +230,10 @@ open class RegularExpression {
     /// Returns the number of matches of the regular expression within the specified range of the string.
     /// 
     /// - Parameters:
-    ///   - str: the search string.
+    ///   - str: The search string.
     ///   - options: The matching options to use. See `RegularExpression.MatchingOptions` for possible values.
-    ///   - range: the range of the string to search.
-    /// - Returns: the number of matches of the regular expression.
+    ///   - range: The range of the string to search.
+    /// - Returns: The number of matches of the regular expression.
     ///
     open func numberOfMatches(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil) -> Int {
         nsRegex.numberOfMatches(in: str, options: MatchingOptions.convert(from: options), range: nsRange(range, string: str))
@@ -243,10 +243,10 @@ open class RegularExpression {
     /// Returns the range of the first match.
     /// 
     /// - Parameters:
-    ///   - str: the search string.
+    ///   - str: The search string.
     ///   - options: The matching options to use. See `RegularExpression.MatchingOptions` for possible values.
-    ///   - range: the range of the string to search.
-    /// - Returns: the range of the first match of `nil` if the match was not found.
+    ///   - range: The range of the string to search.
+    /// - Returns: The range of the first match of `nil` if the match was not found.
     ///
     open func rangeOfFirstMatch(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil) -> Range<String.Index>? {
         str.range(nsRange: nsRegex.rangeOfFirstMatch(in: str, options: MatchingOptions.convert(from: options), range: nsRange(range, string: str)))
@@ -256,10 +256,10 @@ open class RegularExpression {
     /// Returns the first `RegularExpression.Match` found in the search string.
     /// 
     /// - Parameters:
-    ///   - str: the search string.
+    ///   - str: The search string.
     ///   - options: The matching options to use. See `RegularExpression.MatchingOptions` for possible values.
-    ///   - range: the range of the string to search.
-    /// - Returns: the first `RegularExpression.Match` found in the search string or `nil` if the match was not
+    ///   - range: The range of the string to search.
+    /// - Returns: The first `RegularExpression.Match` found in the search string or `nil` if the match was not
     ///            found.
     ///
     open func firstMatch(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil) -> Match? {
@@ -271,10 +271,10 @@ open class RegularExpression {
     /// Returns all of the `RegularExpression.Match`s found in the search string.
     /// 
     /// - Parameters:
-    ///   - str: the search string.
+    ///   - str: The search string.
     ///   - options: The matching options to use. See `RegularExpression.MatchingOptions` for possible values.
-    ///   - range: the range of the string to search.
-    /// - Returns: an array of `RegularExpression.Match`s found in the search string or an empty array if the
+    ///   - range: The range of the string to search.
+    /// - Returns: An array of `RegularExpression.Match`s found in the search string or an empty array if the
     ///            match was not found.
     ///
     open func matches(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil) -> [Match] {
@@ -340,11 +340,11 @@ open class RegularExpression {
     /// matching options have no effect if the search range covers the entire string.
     /// 
     /// - Parameters:
-    ///   - str: the search string.
+    ///   - str: The search string.
     ///   - options: The matching options to report. See `RegularExpression.MatchingOptions` for the supported
     ///              values.
-    ///   - range: the range of the string to search.
-    ///   - body: the Block that is called for each match found in the search string. The Block takes two (2)
+    ///   - range: The range of the string to search.
+    ///   - body: The Block that is called for each match found in the search string. The Block takes two (2)
     ///           parameters&#58; <dl><dt><b><i>match</i></b></dt><dd>An instance of `RegularExpression.Match` or
     ///           `nil` if the Block is simply being called with the flags
     ///           `RegularExpression.MatchingFlags.completed`, `RegularExpression.MatchingFlags.hitEnd`, or
@@ -352,18 +352,12 @@ open class RegularExpression {
     ///           `RegularExpression.MatchingFlags`.</dd></dl> The closure returns `true` to stop the enumeration
     ///           or `false` to continue to the next match.
     ///
-    open func forEachMatch(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: (Match?, [MatchingFlags]) throws -> Bool) throws {
-        var error: Error? = nil
+    open func forEachMatch(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: (Match?, [MatchingFlags], inout Bool) -> Void) {
         nsRegex.enumerateMatches(in: str, options: MatchingOptions.convert(from: options), range: nsRange(range, string: str)) { result, flags, stop in
-            do {
-                stop.pointee = try (body(((result == nil) ? nil : Match(str, match: result!)), MatchingFlags.convert(from: flags)) ? true : false)
-            }
-            catch let e {
-                error = e
-                stop.pointee = true
-            }
+            var fStop: Bool = stop.pointee.boolValue
+            body(((result == nil) ? nil : Match(str, match: result!)), MatchingFlags.convert(from: flags), &fStop)
+            stop.pointee = ObjCBool(fStop)
         }
-        if let e = error { throw e }
     }
 
     /*==========================================================================================================*/
@@ -378,33 +372,33 @@ open class RegularExpression {
     /// returning `true` from the block instead of `false`.
     /// 
     /// - Parameters:
-    ///   - str: the search string.
+    ///   - str: The search string.
     ///   - options: The matching options to report. See `RegularExpression.MatchingOptions` for the supported
     ///              values.
-    ///   - range: the range of the string to search.
-    ///   - body: the closure that is called for each match found in the search string. The closure takes one
+    ///   - range: The range of the string to search.
+    ///   - body: The closure that is called for each match found in the search string. The closure takes one
     ///           parameter which is an array of `RegularExpression.Group` objects representing each capture group
     ///           and returns `true` to stop the enumeration or `false` to continue to the next match.
     ///
-    open func forEachMatchGroup(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: ([Group]) throws -> Bool) throws {
-        try forEachMatch(in: str, options: options, range: range) { match, _ in try ((match != nil) && body(match!.groups)) }
+    open func forEachMatchGroup(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: ([Group], inout Bool) -> Void) {
+        forEachMatch(in: str, options: options, range: range) { match, _, stop in if let m = match { body(m.groups, &stop) } }
     }
 
     /*==========================================================================================================*/
     /// Enumerates the string allowing the Block to handle each regular expression match.
     /// 
     /// - Parameters:
-    ///   - str: the search string.
+    ///   - str: The search string.
     ///   - options: The matching options to report. See `RegularExpression.MatchingOptions` for the supported
     ///              values.
-    ///   - range: the range of the string to search.
-    ///   - body: the closure that is called for each match found in the search string. The closure takes one
+    ///   - range: The range of the string to search.
+    ///   - body: The closure that is called for each match found in the search string. The closure takes one
     ///           parameter which is an array of Strings representing each capture group and returns `true` to
     ///           stop the enumeration or `false` to continue to the next match. Any of the strings in the array
     ///           may be `nil` if that capture group did not participate in the match.
     ///
-    open func forEachMatchString(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: ([String?]) throws -> Bool) throws {
-        try forEachMatchGroup(in: str, options: options, range: range) { groups in try body(groups.map { $0.subString }) }
+    open func forEachMatchString(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: ([String?], inout Bool) -> Void) {
+        forEachMatchGroup(in: str, options: options, range: range) { groups, stop in body(groups.map { $0.subString }, &stop) }
     }
 
     /*==========================================================================================================*/
@@ -415,11 +409,11 @@ open class RegularExpression {
     /// both $ and itself.
     /// 
     /// - Parameters:
-    ///   - string: the string.
-    ///   - options: the match options.
-    ///   - range: the range of the string to search in.
-    ///   - templ: the replacement template.
-    /// - Returns: a tuple with the modified string and the number of replacements made.
+    ///   - string: The string.
+    ///   - options: The match options.
+    ///   - range: The range of the string to search in.
+    ///   - templ: The replacement template.
+    /// - Returns: A tuple with the modified string and the number of replacements made.
     ///
     open func stringByReplacingMatches(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, withTemplate templ: String) -> (String, Int) {
         let mStr = NSMutableString(string: str)
@@ -432,27 +426,26 @@ open class RegularExpression {
     /// found in the source string and replacing it with the string returned by the closure.
     /// 
     /// - Parameters:
-    ///   - str: the source string.
-    ///   - options: the match options.
-    ///   - range: the range of the string to search in. If `nil` then the entire string will be searched.
-    ///   - body: the closure that will return the replacement string. It is called once for each match found in
+    ///   - str: The source string.
+    ///   - options: The match options.
+    ///   - range: The range of the string to search in. If `nil` then the entire string will be searched.
+    ///   - body: The closure that will return the replacement string. It is called once for each match found in
     ///           the source string.
-    /// - Returns: a tuple with the modified string and the number of replacements made.
-    /// - Throws: if the closure throws an error.
+    /// - Returns: A tuple with the modified string and the number of replacements made.
+    /// - Throws: If the closure throws an error.
     ///
-    open func stringByReplacingMatches(in str: String, options: [MatchingOptions] = [], range: Range<String.Index>? = nil, using body: (Match) throws -> String) throws -> (String, Int) {
+    open func stringByReplacingMatches(in str: String, options: [MatchingOptions] = [], range: Range<String.Index>? = nil, using body: (Match) -> String) -> (String, Int) {
         var out: String       = ""
         var cc:  Int          = 0
         var idx: String.Index = str.startIndex
 
-        try forEachMatch(in: str, options: options, range: range) { m, _ in
+        forEachMatch(in: str, options: options, range: range) { m, _, _ in
             if let m = m {
                 out.append(contentsOf: str[idx ..< m.range.lowerBound])
-                out.append(contentsOf: try body(m))
+                out.append(contentsOf: body(m))
                 idx = m.range.upperBound
                 cc += 1
             }
-            return false
         }
 
         if idx < str.endIndex { out.append(contentsOf: str[idx ..< str.endIndex]) }
@@ -469,7 +462,7 @@ open class RegularExpression {
         /*======================================================================================================*/
         /// The search string.
         ///
-        public let            string:     String
+        public let string:     String
         /*======================================================================================================*/
         /// The index of the first group group.
         ///
@@ -510,7 +503,7 @@ open class RegularExpression {
         /// Returns a named capture group.
         /// 
         /// - Parameter name: the name of the capture group
-        /// - Returns: the named capture group or `nil` if the capture group does not exist.
+        /// - Returns: The named capture group or `nil` if the capture group does not exist.
         ///
         public subscript(name: String) -> NamedGroup? {
             if let ng = namedCache[name] { return ng }
@@ -527,7 +520,7 @@ open class RegularExpression {
         /// Returns the capture group for the given index.
         /// 
         /// - Parameter position: the index which must be between `startIndex` <= index < `endIndex`.
-        /// - Returns: the capture group.
+        /// - Returns: The capture group.
         ///
         public subscript(position: Index) -> Element { groups[position] }
 
@@ -535,14 +528,14 @@ open class RegularExpression {
         /// The index after the one given.
         /// 
         /// - Parameter i: the index.
-        /// - Returns: the next index.
+        /// - Returns: The next index.
         ///
         public func index(after i: Index) -> Index { groups.index(after: i) }
 
         /*======================================================================================================*/
         /// Returns an iterator over all the capture groups.
         /// 
-        /// - Returns: an iterator.
+        /// - Returns: An iterator.
         ///
         public func makeIterator() -> Iterator { Iterator(match: self) }
 
@@ -560,7 +553,7 @@ open class RegularExpression {
             /*==================================================================================================*/
             /// Get the next element.
             /// 
-            /// - Returns: the next element or `nil` if there are no more elements.
+            /// - Returns: The next element or `nil` if there are no more elements.
             ///
             public func next() -> Element? { (index < match.groups.endIndex ? match.groups[index++] : nil) }
         }
@@ -622,9 +615,9 @@ public typealias RegExResult = NSTextCheckingResult
 /// the option to have anchors ('^' and '$') match the beginning and end of lines instead of the entire input.
 /// 
 /// - Parameter pattern: the regular expression pattern.
-/// - Returns: the instance of
+/// - Returns: The instance of
 ///            <code>[RegEx](https://developer.apple.com/documentation/foundation/nsregularexpression/)</code>
-/// - Throws: exception if the pattern is an invalid regular expression pattern.
+/// - Throws: Exception if the pattern is an invalid regular expression pattern.
 ///
 public func regexML(pattern: String) throws -> RegEx {
     try RegEx(pattern: pattern, options: [ RegEx.Options.anchorsMatchLines ])

@@ -55,8 +55,8 @@ public typealias QWordROBuffer  = UnsafeBufferPointer<UInt64>
 /// one call.
 /// 
 /// - Parameters:
-///   - buffer: the buffer to discard.
-///   - count: the number of elements in the buffer to deinitialize.
+///   - buffer: The buffer to discard.
+///   - count: The number of elements in the buffer to deinitialize.
 ///
 public func discardMutablePointer<T>(_ buffer: UnsafeMutablePointer<T>, _ count: Int = 1) {
     buffer.deinitialize(count: count)

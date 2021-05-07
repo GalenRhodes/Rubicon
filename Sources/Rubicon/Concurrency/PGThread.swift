@@ -56,9 +56,9 @@ open class PGThread: Thread {
     /// Initializes the thread with the given `closure` and if `startNow` is set to `true`, starts it right away.
     /// 
     /// - Parameters:
-    ///   - startNow: if set to `true` the thread is created in a running state.
-    ///   - qualityOfService:  the quality of service.
-    ///   - block: the `block` for the thread to execute.
+    ///   - startNow: If set to `true` the thread is created in a running state.
+    ///   - qualityOfService:  The quality of service.
+    ///   - block: The `block` for the thread to execute.
     ///
     public convenience init(startNow: Bool = false, qualityOfService: QualityOfService = .default, block: @escaping PGThreadBlock) {
         self.init()

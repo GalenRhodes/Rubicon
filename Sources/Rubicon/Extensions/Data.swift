@@ -50,8 +50,8 @@ public extension Data {
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> length.
     /// 
     /// - Parameter block: the closure.
-    /// - Returns: the results of executing the closure.
-    /// - Throws: any exception thrown by the closure.
+    /// - Returns: The results of executing the closure.
+    /// - Throws: Any exception thrown by the closure.
     ///
     @discardableResult mutating func withUnsafeMutableBytes2<T>(_ block: (BytePointer) throws -> T) rethrows -> T {
         try withUnsafeMutableBytes { (ptr1: UnsafeMutableRawBufferPointer) in
@@ -69,8 +69,8 @@ public extension Data {
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> length.
     /// 
     /// - Parameter block: the closure.
-    /// - Returns: the results of executing the closure.
-    /// - Throws: any exception thrown by the closure.
+    /// - Returns: The results of executing the closure.
+    /// - Throws: Any exception thrown by the closure.
     ///
     @discardableResult func withUnsafeBytes2<T>(_ block: (ByteROPointer) throws -> T) rethrows -> T {
         try withUnsafeBytes { (ptr1: UnsafeRawBufferPointer) in

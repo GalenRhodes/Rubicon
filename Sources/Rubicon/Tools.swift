@@ -53,7 +53,7 @@ public let OneSecondMillis: PGTimeT = 1_000
 /// Get the system time in nanoseconds.
 /// 
 /// - Parameter delta: The number of nanoseconds to add to the system time.
-/// - Returns: the system time plus the value of `delta`.
+/// - Returns: The system time plus the value of `delta`.
 ///
 @inlinable public func getSysTime(delta: PGTimeT = 0) -> PGTimeT {
     var ts: timespec = timespec()
@@ -65,7 +65,7 @@ public let OneSecondMillis: PGTimeT = 1_000
 /// Takes a date at some point in the future and converts it to a timespec struct relative to the epoch.
 /// 
 /// - Parameter when: the date.
-/// - Returns: a timespec structure or `nil` if the date is in the past.
+/// - Returns: A timespec structure or `nil` if the date is in the past.
 ///
 @inlinable public func absoluteTimeSpecFrom(date when: Date) -> timespec? {
     guard when.timeIntervalSinceNow > 0 else { return nil }
@@ -120,7 +120,7 @@ public let OneSecondMillis: PGTimeT = 1_000
 ///   - results: The results of the call.
 ///   - otherOk: Other values besides 0 (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) that should be
 ///              considered OK and not cause a fatal error.
-/// - Returns: the value of results.
+/// - Returns: The value of results.
 ///
 @inlinable @discardableResult public func testOSFatalError(_ results: Int32, _ otherOk: Int32...) -> Int32 {
     if results == 0 { return results }
@@ -132,11 +132,11 @@ public let OneSecondMillis: PGTimeT = 1_000
 /// Get the length of a `nil`-terminated C string of type 'signed char' (Int8).
 /// 
 /// - Parameters:
-///   - cStringPtr: the C string.
-///   - length: the maximum possible length of the string. If less than
+///   - cStringPtr: The C string.
+///   - length: The maximum possible length of the string. If less than
 ///             <code>[zero](https://en.wikipedia.org/wiki/0)</code> (the default) then there is no maximum. This
 ///             is dangerous - only use this is you are sure there is a `nil`-terminator.
-/// - Returns: the length of the string.
+/// - Returns: The length of the string.
 ///
 @inlinable public func cStrLen(cStringPtr: UnsafePointer<Int8>, length: Int = -1) -> Int {
     if length < 0 { return strlen(cStringPtr) }
@@ -148,11 +148,11 @@ public let OneSecondMillis: PGTimeT = 1_000
 /// Get the length of a `nil`-terminated C string of type 'unsigned char' (UInt8).
 /// 
 /// - Parameters:
-///   - cStringPtr: the C string.
-///   - length: the maximum possible length of the string. If less than
+///   - cStringPtr: The C string.
+///   - length: The maximum possible length of the string. If less than
 ///             <code>[zero](https://en.wikipedia.org/wiki/0)</code> (the default) then there is no maximum. This
 ///             is dangerous - only use this is you are sure there is a `nil`-terminator.
-/// - Returns: the length of the string.
+/// - Returns: The length of the string.
 ///
 @inlinable public func cStrLen(cStringPtr: ByteROPointer, length: Int = -1) -> Int {
     cStringPtr.withMemoryRebound(to: CChar.self, capacity: fixLength(length)) { cStrLen(cStringPtr: $0, length: length) }
@@ -166,8 +166,8 @@ public let OneSecondMillis: PGTimeT = 1_000
 /// interrupting signal.
 /// 
 /// - Parameters:
-///   - seconds: the number of seconds to sleep.
-///   - nanos: the number of additional nanoseconds to sleep.
+///   - seconds: The number of seconds to sleep.
+///   - nanos: The number of additional nanoseconds to sleep.
 /// - Throws: `CErrors.EINTER(description:)` if `NanoSleep(seconds:nanos:)` was interrupted by an unmasked signal.
 /// - Throws: `CErrors.EINVAL(description:)` if `nanos` was greater than or equal to 1,000,000,000.
 ///
@@ -187,8 +187,8 @@ public func NanoSleep(seconds: PGTimeT = 0, nanos: Int = 0) -> Int {
 /// interrupting signal.
 /// 
 /// - Parameters:
-///   - seconds: the number of seconds to sleep.
-///   - nanos: the number of additional nanoseconds to sleep.
+///   - seconds: The number of seconds to sleep.
+///   - nanos: The number of additional nanoseconds to sleep.
 ///
 public func NanoSleep2(seconds: PGTimeT = 0, nanos: Int = 0) {
     guard nanos >= 0 && nanos < OneSecondNanos else { fatalError("Nanosecond value is invalid: \(nanos)") }
@@ -242,8 +242,8 @@ infix operator <?: ComparisonPrecedence
 /// Append a new element to an <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 /// 
 /// - Parameters:
-///   - lhs: the <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>
-///   - rhs: the new element
+///   - lhs: The <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>
+///   - rhs: The new element
 ///
 @inlinable public func <+ <T>(lhs: inout [T], rhs: T) { lhs.append(rhs) }
 
@@ -253,8 +253,8 @@ infix operator <?: ComparisonPrecedence
 /// <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> oprand.
 /// 
 /// - Parameters:
-///   - lhs: the receiving <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
-///   - rhs: the source <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
+///   - lhs: The receiving <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
+///   - rhs: The source <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 ///
 @inlinable public func <+ <T>(lhs: inout [T], rhs: [T]) { lhs.append(contentsOf: rhs) }
 
@@ -263,8 +263,8 @@ infix operator <?: ComparisonPrecedence
 /// operand) contains the right-hand operand.
 /// 
 /// - Parameters:
-///   - lhs: the <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
-///   - rhs: the object to search for in the
+///   - lhs: The <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
+///   - rhs: The object to search for in the
 ///          <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 /// - Returns: `true` if the <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> contains
 ///            the object.
@@ -277,8 +277,8 @@ infix operator <?: ComparisonPrecedence
 /// <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 /// 
 /// - Parameters:
-///   - lhs: the left-hand <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
-///   - rhs: the right-hand <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
+///   - lhs: The left-hand <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
+///   - rhs: The right-hand <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 /// - Returns: `true` if the left-hand
 ///            <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> contains all of the
 ///            elements in the right-hand
@@ -368,10 +368,10 @@ infix operator <=>: ComparisonPrecedence
 /// given integer in hexadecimal format.
 /// 
 /// - Parameters:
-///   - n: the integer number.
+///   - n: The integer number.
 ///   - pad: 0 means no padding. negative number means the number is padded with spaces to that many places.
 ///          Positive number means the number is padded with zeros to that many places.
-/// - Returns: the <code>[String](https://developer.apple.com/documentation/swift/string/)</code>
+/// - Returns: The <code>[String](https://developer.apple.com/documentation/swift/string/)</code>
 ///
 public func toHex<T: BinaryInteger>(_ n: T, pad: Int = 0) -> String {
     var str: String   = ""
@@ -400,11 +400,11 @@ public func toHex<T: BinaryInteger>(_ n: T, pad: Int = 0) -> String {
 /// "0" starting with the high bits first and the low bits to the right.
 /// 
 /// - Parameters:
-///   - n: the integer number.
-///   - sep: the string will be grouped into octets separated by a space unless you provide a separator string in
+///   - n: The integer number.
+///   - sep: The string will be grouped into octets separated by a space unless you provide a separator string in
 ///          this field.
-///   - pad: the number of places to left pad the string with zeros.
-/// - Returns: the string.
+///   - pad: The number of places to left pad the string with zeros.
+/// - Returns: The string.
 ///
 public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0) -> String {
     var str: String = ""
@@ -459,11 +459,11 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 /// ```
 /// 
 /// - Parameters:
-///   - obj: the expression to test for `nil`.
-///   - b1: the closure to execute if `obj` is NOT `nil`. The unwrapped value of `obj` is passed to the closure.
-///   - b2: the closure to execute if `obj` IS `nil`.
-/// - Returns: the value returned from whichever closure is executed.
-/// - Throws: any exception thrown by whichever closure is executed.
+///   - obj: The expression to test for `nil`.
+///   - b1: The closure to execute if `obj` is NOT `nil`. The unwrapped value of `obj` is passed to the closure.
+///   - b2: The closure to execute if `obj` IS `nil`.
+/// - Returns: The value returned from whichever closure is executed.
+/// - Throws: Any exception thrown by whichever closure is executed.
 ///
 @inlinable public func ifNil<S, T>(_ obj: S?, then b2: () throws -> T, elseThen b1: (S) throws -> T) rethrows -> T {
     guard let o = obj else { return try b2() }
@@ -476,7 +476,7 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 /// otherwise returns the value of `maxLength`.
 /// 
 /// - Parameter maxLength: the length to fix.
-/// - Returns: either the value of `maxLength` or
+/// - Returns: Either the value of `maxLength` or
 ///            <code>[Int.max](https://developer.apple.com/documentation/swift/int/1540171-max)</code>.
 ///
 @inlinable public func fixLength(_ maxLength: Int) -> Int { ((maxLength < 0) ? Int.max : maxLength) }
@@ -493,8 +493,8 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 /// ```
 /// 
 /// - Parameters:
-///   - value: the value to be tested.
-///   - isOneOf: the desired values.
+///   - value: The value to be tested.
+///   - isOneOf: The desired values.
 /// - Returns: `true` of the value is one of the desired values.
 ///
 @inlinable public func value<T: Equatable>(_ value: T, isOneOf: T...) -> Bool { isOneOf.isAny { value == $0 } }
@@ -506,9 +506,9 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 /// given a type of `Int64.self` and a byte count of 16 then this function will return a value of 2.
 /// 
 /// - Parameters:
-///   - type: the target datatype.
-///   - value: the number of bytes.
-/// - Returns: the number of instances of the datatype that can occupy the given number of bytes.
+///   - type: The target datatype.
+///   - value: The number of bytes.
+/// - Returns: The number of instances of the datatype that can occupy the given number of bytes.
 ///
 @inlinable public func fromBytes<T>(type: T.Type, _ value: Int) -> Int { ((value * MemoryLayout<UInt8>.stride) / MemoryLayout<T>.stride) }
 
@@ -517,9 +517,9 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 /// given a datatype of `Int64.self` and a count of 2 then this function will return 16.
 /// 
 /// - Parameters:
-///   - type: the target datatype.
-///   - value: the number of instances of the datatype.
-/// - Returns: the number of bytes that make up that many instances of that datatype.
+///   - type: The target datatype.
+///   - value: The number of instances of the datatype.
+/// - Returns: The number of bytes that make up that many instances of that datatype.
 ///
 @inlinable public func toBytes<T>(type: T.Type, _ value: Int) -> Int { ((value * MemoryLayout<T>.stride) / MemoryLayout<UInt8>.stride) }
 

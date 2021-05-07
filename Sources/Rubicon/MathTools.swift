@@ -41,7 +41,7 @@ postfix operator ---
 /// Returns the two's compliment of the integer value.
 /// 
 /// - Parameter n: the integer value.
-/// - Returns: the two's compliment.
+/// - Returns: The two's compliment.
 ///
 public prefix func ~~ <T: FixedWidthInteger>(_ n: T) -> T {
     (~(n - 1))
@@ -57,9 +57,9 @@ public prefix func ~~ <T: FixedWidthInteger>(_ n: T) -> T {
 /// ```
 /// 
 /// - Parameters:
-///   - base: the base number.
-///   - power: the power.
-/// - Returns: the base number raised to the power.
+///   - base: The base number.
+///   - power: The power.
+/// - Returns: The base number raised to the power.
 ///
 public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
     guard power >= 0 else {
@@ -77,7 +77,7 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
 /// Implements the `++` prefix operator as found in C, C++, Objective-C, Java, and many other languages.
 /// 
 /// - Parameter operand: the integer variable.
-/// - Returns: the value of the `operand` AFTER incrementing it's value by 1.
+/// - Returns: The value of the `operand` AFTER incrementing it's value by 1.
 ///
 @discardableResult public prefix func ++ <T: BinaryInteger>(operand: inout T) -> T {
     operand += 1
@@ -88,7 +88,7 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
 /// Implements the `--` prefix operator as found in C, C++, Objective-C, Java, and many other languages.
 /// 
 /// - Parameter operand: the integer variable.
-/// - Returns: the value of the `operand` AFTER decrementing it's value by 1.
+/// - Returns: The value of the `operand` AFTER decrementing it's value by 1.
 ///
 @discardableResult public prefix func -- <T: BinaryInteger>(operand: inout T) -> T {
     operand -= 1
@@ -99,7 +99,7 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
 /// Implements the `++` postfix operator as found in C, C++, Objective-C, Java, and many other languages.
 /// 
 /// - Parameter operand: the integer variable.
-/// - Returns: the value of the `operand` BEFORE incrementing it's value by 1.
+/// - Returns: The value of the `operand` BEFORE incrementing it's value by 1.
 ///
 @discardableResult public postfix func ++ <T: BinaryInteger>(operand: inout T) -> T {
     let i: T = operand
@@ -111,7 +111,7 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
 /// Implements the `--` postfix operator as found in C, C++, Objective-C, Java, and many other languages.
 /// 
 /// - Parameter operand: the integer variable.
-/// - Returns: the value of the `operand` BEFORE decrementing it's value by 1.
+/// - Returns: The value of the `operand` BEFORE decrementing it's value by 1.
 ///
 @discardableResult public postfix func -- <T: BinaryInteger>(operand: inout T) -> T {
     let i: T = operand
@@ -124,7 +124,7 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
 /// function allows overflow.
 /// 
 /// - Parameter operand: the integer variable.
-/// - Returns: the value of the `operand` AFTER incrementing it's value by 1.
+/// - Returns: The value of the `operand` AFTER incrementing it's value by 1.
 ///
 @discardableResult public prefix func +++ <T: FixedWidthInteger>(operand: inout T) -> T {
     operand = (operand &+ 1)
@@ -136,7 +136,7 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
 /// function allows underflow.
 /// 
 /// - Parameter operand: the integer variable.
-/// - Returns: the value of the `operand` AFTER decrementing it's value by 1.
+/// - Returns: The value of the `operand` AFTER decrementing it's value by 1.
 ///
 @discardableResult public prefix func --- <T: FixedWidthInteger>(operand: inout T) -> T {
     operand = (operand &- 1)
@@ -148,7 +148,7 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
 /// function allows overflow.
 /// 
 /// - Parameter operand: the integer variable.
-/// - Returns: the value of the `operand` BEFORE incrementing it's value by 1.
+/// - Returns: The value of the `operand` BEFORE incrementing it's value by 1.
 ///
 @discardableResult public postfix func +++ <T: FixedWidthInteger>(operand: inout T) -> T {
     let i: T = operand
@@ -161,7 +161,7 @@ public func ^^ <T: BinaryInteger>(base: T, power: T) -> T {
 /// function allows underflow.
 /// 
 /// - Parameter operand: the integer variable.
-/// - Returns: the value of the `operand` BEFORE decrementing it's value by 1.
+/// - Returns: The value of the `operand` BEFORE decrementing it's value by 1.
 ///
 @discardableResult public postfix func --- <T: FixedWidthInteger>(operand: inout T) -> T {
     let i: T = operand

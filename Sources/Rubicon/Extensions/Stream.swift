@@ -66,13 +66,13 @@ extension InputStream {
     /// other thread might be potentially reading from this stream at the same time or you will be missing data.
     /// 
     /// - Parameters:
-    ///   - buffer: the buffer that will receive the bytes.
-    ///   - maxLength: the maximum number of bytes to read.
+    ///   - buffer: The buffer that will receive the bytes.
+    ///   - maxLength: The maximum number of bytes to read.
     ///   - fully: `true` to keep reading until either maxLength or end-of-file is reached.
-    /// - Returns: the total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if
+    /// - Returns: The total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if
     ///            `maxLength` is <code>[zero](https://en.wikipedia.org/wiki/0)</code>, the end-of-file has been
     ///            reached, the stream is closed, or the stream was never opened.
-    /// - Throws: any error reported by the input stream.
+    /// - Throws: Any error reported by the input stream.
     ///
     public func read(to buffer: CCharPointer, maxLength: Int) throws -> Int {
         try read(to: UnsafeMutableRawPointer(buffer), maxLength: maxLength)
@@ -85,13 +85,13 @@ extension InputStream {
     /// other thread might be potentially reading from this stream at the same time or you will be missing data.
     /// 
     /// - Parameters:
-    ///   - rawBuffer: the buffer that will receive the bytes.
-    ///   - maxLength: the maximum number of bytes to read.
+    ///   - rawBuffer: The buffer that will receive the bytes.
+    ///   - maxLength: The maximum number of bytes to read.
     ///   - fully: `true` to keep reading until either maxLength or end-of-file is reached.
-    /// - Returns: the total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if
+    /// - Returns: The total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if
     ///            `maxLength` is <code>[zero](https://en.wikipedia.org/wiki/0)</code>, the end-of-file has been
     ///            reached, the stream is closed, or the stream was never opened.
-    /// - Throws: any error reported by the input stream.
+    /// - Throws: Any error reported by the input stream.
     ///
     public func read(to rp: UnsafeMutableRawPointer, maxLength: Int) throws -> Int {
         guard maxLength > 0 else { return 0 }
@@ -117,15 +117,15 @@ extension InputStream {
     /// other thread might be potentially reading from this stream at the same time or you will be missing data.
     /// 
     /// - Parameters:
-    ///   - data: the <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code> to read the
+    ///   - data: The <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code> to read the
     ///           bytes into.
-    ///   - len: the maximum number of bytes to read or -1 to read all to the end-of-file.
+    ///   - len: The maximum number of bytes to read or -1 to read all to the end-of-file.
     ///   - clr: `true` to clear the data buffer before reading or `false` to append read data to the existing
     ///          data.
-    /// - Returns: the total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if `len`
+    /// - Returns: The total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if `len`
     ///            is <code>[zero](https://en.wikipedia.org/wiki/0)</code>, the end-of-file has been reached, the
     ///            stream is closed, or the stream was never opened.
-    /// - Throws: any error reported by the input stream.
+    /// - Throws: Any error reported by the input stream.
     ///
     public func read(to data: inout Data, maxLength len: Int, truncate clr: Bool = true) throws -> Int {
         if clr { data.removeAll(keepingCapacity: true) }
@@ -161,7 +161,7 @@ extension InputStream {
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0).
     /// 
     /// - Parameter b: the `EasyByteBuffer` that will be used to store the bytes read.
-    /// - Returns: the number of bytes read into the buffer or
+    /// - Returns: The number of bytes read into the buffer or
     ///            <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0) if the buffer is full or the stream it
     ///            at EOF or -1 if there was an I/O error.
     ///
@@ -190,15 +190,15 @@ extension InputStream {
     /// other thread might be potentially reading from this stream at the same time or you will be missing data.
     /// 
     /// - Parameters:
-    ///   - array: the <code>[Array](https://developer.apple.com/documentation/foundation/array/)</code> to read
+    ///   - array: The <code>[Array](https://developer.apple.com/documentation/foundation/array/)</code> to read
     ///            the bytes into.
-    ///   - len: the maximum number of bytes to read or -1 to read all to the end-of-file.
+    ///   - len: The maximum number of bytes to read or -1 to read all to the end-of-file.
     ///   - clr: `true` to clear the data buffer before reading or `false` to append read data to the existing
     ///          data.
-    /// - Returns: the total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if `len`
+    /// - Returns: The total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if `len`
     ///            is <code>[zero](https://en.wikipedia.org/wiki/0)</code>, the end-of-file has been reached, the
     ///            stream is closed, or the stream was never opened.
-    /// - Throws: any error reported by the input stream.
+    /// - Throws: Any error reported by the input stream.
     ///
     public func read(to array: inout [UInt8], maxLength len: Int, truncate clr: Bool = true) throws -> Int {
         if clr { array.removeAll(keepingCapacity: true) }
@@ -217,10 +217,10 @@ extension InputStream {
     /// - Parameter rbp: the
     ///                  <code>[UnsafeMutableRawBufferPointer](https://developer.apple.com/documentation/foundation/unsafemutablerawbufferpointer/)</code>
     ///                  to read the bytes into.
-    /// - Returns: the total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if `len`
+    /// - Returns: The total number of bytes read or <code>[zero](https://en.wikipedia.org/wiki/0)</code> if `len`
     ///            is <code>[zero](https://en.wikipedia.org/wiki/0)</code>, the end-of-file has been reached, the
     ///            stream is closed, or the stream was never opened.
-    /// - Throws: any error reported by the input stream.
+    /// - Throws: Any error reported by the input stream.
     ///
     public func read(to rbp: UnsafeMutableRawBufferPointer) throws -> Int {
         guard let bp: UnsafeMutableRawPointer = rbp.baseAddress else { return 0 }

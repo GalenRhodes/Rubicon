@@ -29,15 +29,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Yes, I rewrote Binary Tree yet again.  I have an illness.">
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Collections/ShadowInt.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Hasher.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/String_Tests.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Format.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/String Tests.xcscheme" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Collections.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Text/StringFormat.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/RubiconTests/StringTests.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/BinaryTree/BinaryTreeDictionary.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/BinaryTree/BinaryTreeDictionary.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/BinaryTree/TreeNode.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/BinaryTree/TreeNode.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/Buffers.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/Buffers.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/ManagedByteBuffer/ManagedByteBuffer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/ManagedByteBuffer/ManagedByteBuffer.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/CErrors.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/CErrors.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/CStrings.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/CStrings.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/PGThread.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/PGThread.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Array.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Array.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/BinaryInteger.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/BinaryInteger.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/NanoTimer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/NanoTimer.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Data.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Data.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/NSRange.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/NSRange.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Stream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Stream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/String.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/String.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/MathTools.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/MathTools.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/CharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/CharInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleCharInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Text/IConv.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Text/IConv.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Text/RegularExpression.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Text/RegularExpression.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/Atomic.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/Atomic.html" afterDir="false" />
@@ -45,20 +63,17 @@
       <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Element.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Element.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Iterator.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Iterator/Element.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Keys.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Keys/Element.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Keys/Index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Keys/Indices.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Keys/SubSequence.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Values.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Values/Element.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Values/Index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Values/Indices.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Values/SubSequence.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeNode.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeNode/NodeColor.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Indices.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Indices.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Iterator.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Iterator.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Keys.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Keys.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Keys/Element.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Keys/Element.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Keys/Indices.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Keys/Indices.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Keys/SubSequence.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Keys/SubSequence.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/SubSequence.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/SubSequence.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Values.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Values.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Values/Element.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Values/Element.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Values/Indices.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Values/Indices.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Values/SubSequence.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/BinaryTreeDictionary/Values/SubSequence.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/CString.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/CString.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/Conditional.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/Conditional.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/DataByteBuffer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/DataByteBuffer.html" afterDir="false" />
@@ -70,8 +85,6 @@
       <change beforePath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/MarkInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/MarkInputStream.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/NanoTimer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/NanoTimer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/OnlyOneQueue.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classes/OnlyOneQueue/QueueFunc.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/PGThread.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/PGThread.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/ReadWriteLock.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/ReadWriteLock.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/RegularExpression.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/RegularExpression.html" afterDir="false" />
@@ -90,6 +103,9 @@
       <change beforePath="$PROJECT_DIR$/docs/Classes/SimpleStringCharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/SimpleStringCharInputStream.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/StringCharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/StringCharInputStream.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/ThreadLocal.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/ThreadLocal.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/TreeNode.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/TreeNode.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/TreeNode/Color.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/TreeNode/Color.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/TreeNode/Side.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/TreeNode/Side.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Enums.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Enums.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Enums/ByteOrder.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Enums/ByteOrder.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Enums/CErrors.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Enums/CErrors.html" afterDir="false" />
@@ -108,14 +124,15 @@
       <change beforePath="$PROJECT_DIR$/docs/Extensions/Collection.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Extensions/Collection.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Extensions/Data.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Extensions/Data.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Extensions/DateFormatter.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Extensions/DateFormatter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/Hasher.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Extensions/Hasher.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Extensions/InputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Extensions/InputStream.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/MutexLock.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Extensions/MutexLock.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Extensions/NSCondition.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Extensions/NSCondition.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Extensions/NSLock.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Extensions/NSRange.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Extensions/NSRange.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Extensions/NSRecursiveLock.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Extensions/OutputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Extensions/OutputStream.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Extensions/Range.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Extensions/Range.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Extensions/RangeReplaceableCollection.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Extensions/RangeReplaceableCollection.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/RecursiveLock.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Extensions/RecursiveLock.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Extensions/Stream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Extensions/Stream.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Extensions/Stream/Event.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Extensions/Stream/Event.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Extensions/Stream/Status.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Extensions/Stream/Status.html" afterDir="false" />
@@ -125,8 +142,8 @@
       <change beforePath="$PROJECT_DIR$/docs/Functions.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/---_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/---_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/--_28_5F_3A_29_5F_24syxxzcSzRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/--_28_5F_3A_29_5F_24syxxzcSzRzluD.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Functions/NanoSleep2_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosys6UInt32V_5FADtcD.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Functions/NanoSleep_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosys6UInt32V_5FADtKcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/NanoSleep2_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosySi_5FSitcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/NanoSleep2_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosySi_5FSitcD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/NanoSleep_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosS2i_5FSitcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/NanoSleep_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosS2i_5FSitcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/PGGetRetainCount_28_5F_3A_29_5F_24sySiyXlcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/PGGetRetainCount_28_5F_3A_29_5F_24sySiyXlcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/StrError_28_5F_3A_29_5F_24sySSs5Int32VcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/StrError_28_5F_3A_29_5F_24sySSs5Int32VcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/_2B_2B_28_5F_3A_29_5F_24syxxzcSzRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/_2B_2B_28_5F_3A_29_5F_24syxxzcSzRzluD.html" afterDir="false" />
@@ -153,10 +170,10 @@
       <change beforePath="$PROJECT_DIR$/docs/Functions/discardMutableRawPointer_28_5F_3A_5F_3A_5F_3A_29_5F_24syySv_5FxmSitcluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/discardMutableRawPointer_28_5F_3A_5F_3A_5F_3A_29_5F_24syySv_5FxmSitcluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/fixLength_28_5F_3A_29_5F_24syS2icD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/fixLength_28_5F_3A_29_5F_24syS2icD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/fromBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/fromBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Functions/getSysTime_28delta_3A_29_5F_24s5deltas6UInt64VAC_5FtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/getSysTime_28delta_3A_29_5F_24s5deltaS2i_5FtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/getSysTime_28delta_3A_29_5F_24s5deltaS2i_5FtcD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/ifNil_28_5F_3Athen_3AelseThen_3A_29_5F_24s_5F4then8elseThenq_5FxSg_5Fq_5FyKXEq_5FxKXEtKcr0_5FluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/ifNil_28_5F_3Athen_3AelseThen_3A_29_5F_24s_5F4then8elseThenq_5FxSg_5Fq_5FyKXEq_5FxKXEtKcr0_5FluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/nDebug_28_5F_3A_5F_3Aseparator_3A_29_5F_24s_5F_5F9separatory7Rubicon8NestTypeO_5FypdSStcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/nDebug_28_5F_3A_5F_3Aseparator_3A_29_5F_24s_5F_5F9separatory7Rubicon8NestTypeO_5FypdSStcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/nextCharPosition_28currentPosition_3Acharacter_3AtabWidth_3A_29_5F_24s15currentPosition9character8tabWidths5Int32V10lineNumber_5FAE06columnH0tAeF_5FAeGt_5FSJs4Int8VtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/nextCharPosition_28currentPosition_3Acharacter_3AtabWidth_3A_29_5F_24s15currentPosition9character8tabWidths5Int32V10lineNumber_5FAE06columnH0tAeF_5FAeGt_5FSJs4Int8VtcD.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Functions/nilCheck_28_5F_3A_5F_3AwhenNilDo_3A_29_5F_24s_5F_5F9whenNilDoq_5FxSg_5Fq_5FxKXEq_5FyKXEtKcr0_5FluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/nilCheck_28_5F_3A_5F_3AwhenNilDo_3A_29_5F_24s_5F_5F9whenNilDoq_5FxSg_5Fq_5FxKXEq_5FyKXEtKcr0_5FluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/regexML_28pattern_3A_29_5F_24s7patternSo19NSRegularExpressionCSS_5FtKcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/regexML_28pattern_3A_29_5F_24s7patternSo19NSRegularExpressionCSS_5FtKcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/tabCalc_28pos_3AtabSize_3A_29_5F_24s3pos7tabSizes5Int32VAD_5Fs4Int8VtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/tabCalc_28pos_3AtabSize_3A_29_5F_24s3pos7tabSizes5Int32VAD_5Fs4Int8VtcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html" afterDir="false" />
@@ -191,6 +208,10 @@
       <change beforePath="$PROJECT_DIR$/docs/Structs.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Structs.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Structs/OStringXForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Structs/OStringXForm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Structs/OStringXForm/XForms.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Structs/OStringXForm/XForms.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Structs/ShadowInt.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Structs/ShadowInt.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Structs/ShadowInt/IntegerLiteralType.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Structs/ShadowInt/IntegerLiteralType.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Structs/ShadowInt/Magnitude.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Structs/ShadowInt/Magnitude.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Structs/ShadowInt/Words.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Structs/ShadowInt/Words.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Structs/StringXForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Structs/StringXForm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Structs/StringXForm/XForms.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Structs/StringXForm/XForms.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Typealiases.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases.html" afterDir="false" />
@@ -209,6 +230,7 @@
       <change beforePath="$PROJECT_DIR$/docs/Typealiases/DWordROPointer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/DWordROPointer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Typealiases/MutexLock.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/MutexLock.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Typealiases/PGThreadBlock.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/PGThreadBlock.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/PGTimeT.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/PGTimeT.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Typealiases/QWordBuffer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/QWordBuffer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Typealiases/QWordPointer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/QWordPointer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Typealiases/QWordROBuffer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/QWordROBuffer.html" afterDir="false" />
@@ -221,27 +243,23 @@
       <change beforePath="$PROJECT_DIR$/docs/Typealiases/WordPointer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/WordPointer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Typealiases/WordROBuffer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/WordROBuffer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Typealiases/WordROPointer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/WordROPointer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/badge.svg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/badge.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/Atomic.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/Atomic.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/AtomicValue.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/AtomicValue.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Element.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Element.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Iterator.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Iterator/Element.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Keys.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Keys/Element.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Keys/Index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Keys/Indices.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Keys/SubSequence.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Values.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Values/Element.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Values/Index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Values/Indices.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Values/SubSequence.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeNode.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeNode/NodeColor.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Indices.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Indices.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Iterator.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Iterator.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Keys.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Keys.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Keys/Element.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Keys/Element.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Keys/Indices.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Keys/Indices.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Keys/SubSequence.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Keys/SubSequence.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/SubSequence.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/SubSequence.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Values.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Values.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Values/Element.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Values/Element.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Values/Indices.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Values/Indices.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Values/SubSequence.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/BinaryTreeDictionary/Values/SubSequence.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/CString.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/CString.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/Conditional.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/Conditional.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/DataByteBuffer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/DataByteBuffer.html" afterDir="false" />
@@ -253,8 +271,6 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/MarkInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/MarkInputStream.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/NanoTimer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/NanoTimer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/OnlyOneQueue.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/OnlyOneQueue/QueueFunc.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/PGThread.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/PGThread.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/ReadWriteLock.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/ReadWriteLock.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RegularExpression.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RegularExpression.html" afterDir="false" />
@@ -273,6 +289,9 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/SimpleStringCharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/SimpleStringCharInputStream.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/StringCharInputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/StringCharInputStream.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/ThreadLocal.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/ThreadLocal.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/TreeNode.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/TreeNode.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/TreeNode/Color.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/TreeNode/Color.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/TreeNode/Side.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/TreeNode/Side.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/ByteOrder.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/ByteOrder.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/CErrors.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/CErrors.html" afterDir="false" />
@@ -291,14 +310,15 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Collection.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Collection.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Data.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Data.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/DateFormatter.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/DateFormatter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Hasher.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Hasher.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/InputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/InputStream.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/MutexLock.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/MutexLock.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/NSCondition.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/NSCondition.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/NSLock.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/NSRange.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/NSRange.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/NSRecursiveLock.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/OutputStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/OutputStream.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Range.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Range.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/RangeReplaceableCollection.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/RangeReplaceableCollection.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/RecursiveLock.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/RecursiveLock.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Stream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Stream.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Stream/Event.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Stream/Event.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Stream/Status.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Stream/Status.html" afterDir="false" />
@@ -308,8 +328,8 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/---_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/---_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/--_28_5F_3A_29_5F_24syxxzcSzRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/--_28_5F_3A_29_5F_24syxxzcSzRzluD.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/NanoSleep2_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosys6UInt32V_5FADtcD.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/NanoSleep_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosys6UInt32V_5FADtKcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/NanoSleep2_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosySi_5FSitcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/NanoSleep2_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosySi_5FSitcD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/NanoSleep_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosS2i_5FSitcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/NanoSleep_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosS2i_5FSitcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/PGGetRetainCount_28_5F_3A_29_5F_24sySiyXlcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/PGGetRetainCount_28_5F_3A_29_5F_24sySiyXlcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/StrError_28_5F_3A_29_5F_24sySSs5Int32VcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/StrError_28_5F_3A_29_5F_24sySSs5Int32VcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/_2B_2B_28_5F_3A_29_5F_24syxxzcSzRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/_2B_2B_28_5F_3A_29_5F_24syxxzcSzRzluD.html" afterDir="false" />
@@ -336,10 +356,10 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/discardMutableRawPointer_28_5F_3A_5F_3A_5F_3A_29_5F_24syySv_5FxmSitcluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/discardMutableRawPointer_28_5F_3A_5F_3A_5F_3A_29_5F_24syySv_5FxmSitcluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/fixLength_28_5F_3A_29_5F_24syS2icD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/fixLength_28_5F_3A_29_5F_24syS2icD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/fromBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/fromBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/getSysTime_28delta_3A_29_5F_24s5deltas6UInt64VAC_5FtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/getSysTime_28delta_3A_29_5F_24s5deltaS2i_5FtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/getSysTime_28delta_3A_29_5F_24s5deltaS2i_5FtcD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/ifNil_28_5F_3Athen_3AelseThen_3A_29_5F_24s_5F4then8elseThenq_5FxSg_5Fq_5FyKXEq_5FxKXEtKcr0_5FluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/ifNil_28_5F_3Athen_3AelseThen_3A_29_5F_24s_5F4then8elseThenq_5FxSg_5Fq_5FyKXEq_5FxKXEtKcr0_5FluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/nDebug_28_5F_3A_5F_3Aseparator_3A_29_5F_24s_5F_5F9separatory7Rubicon8NestTypeO_5FypdSStcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/nDebug_28_5F_3A_5F_3Aseparator_3A_29_5F_24s_5F_5F9separatory7Rubicon8NestTypeO_5FypdSStcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/nextCharPosition_28currentPosition_3Acharacter_3AtabWidth_3A_29_5F_24s15currentPosition9character8tabWidths5Int32V10lineNumber_5FAE06columnH0tAeF_5FAeGt_5FSJs4Int8VtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/nextCharPosition_28currentPosition_3Acharacter_3AtabWidth_3A_29_5F_24s15currentPosition9character8tabWidths5Int32V10lineNumber_5FAE06columnH0tAeF_5FAeGt_5FSJs4Int8VtcD.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/nilCheck_28_5F_3A_5F_3AwhenNilDo_3A_29_5F_24s_5F_5F9whenNilDoq_5FxSg_5Fq_5FxKXEq_5FyKXEtKcr0_5FluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/nilCheck_28_5F_3A_5F_3AwhenNilDo_3A_29_5F_24s_5F_5F9whenNilDoq_5FxSg_5Fq_5FxKXEq_5FyKXEtKcr0_5FluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/regexML_28pattern_3A_29_5F_24s7patternSo19NSRegularExpressionCSS_5FtKcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/regexML_28pattern_3A_29_5F_24s7patternSo19NSRegularExpressionCSS_5FtKcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/tabCalc_28pos_3AtabSize_3A_29_5F_24s3pos7tabSizes5Int32VAD_5Fs4Int8VtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/tabCalc_28pos_3AtabSize_3A_29_5F_24s3pos7tabSizes5Int32VAD_5Fs4Int8VtcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html" afterDir="false" />
@@ -374,6 +394,10 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/OStringXForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/OStringXForm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/OStringXForm/XForms.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/OStringXForm/XForms.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/ShadowInt.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/ShadowInt.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/ShadowInt/IntegerLiteralType.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/ShadowInt/IntegerLiteralType.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/ShadowInt/Magnitude.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/ShadowInt/Magnitude.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/ShadowInt/Words.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/ShadowInt/Words.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/StringXForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/StringXForm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/StringXForm/XForms.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/StringXForm/XForms.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases.html" afterDir="false" />
@@ -392,6 +416,7 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/DWordROPointer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/DWordROPointer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/MutexLock.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/MutexLock.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/PGThreadBlock.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/PGThreadBlock.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/PGTimeT.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/PGTimeT.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/QWordBuffer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/QWordBuffer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/QWordPointer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/QWordPointer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/QWordROBuffer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/QWordROBuffer.html" afterDir="false" />
@@ -472,7 +497,7 @@
     <option name="sortByType" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="Rubicon" />
+    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -489,9 +514,9 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="Application.DocFixer (Jazzy)">
+  <component name="RunManager" selected="XCTest.String Tests">
     <list>
       <item itemvalue="Application.DocFixer Remote" />
       <item itemvalue="Application.DocFixer (swift-doc)" />
@@ -500,6 +525,7 @@
       <item itemvalue="XCTest.Rubicon Tests" />
       <item itemvalue="XCTest.ThreadLocalTests" />
       <item itemvalue="XCTest.Longevity Tests" />
+      <item itemvalue="XCTest.String Tests" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -695,14 +721,10 @@
       <workItem from="1620059736684" duration="20433000" />
       <workItem from="1620127268738" duration="27203000" />
       <workItem from="1620215057252" duration="27241000" />
-      <workItem from="1620260954696" duration="5600000" />
-    </task>
-    <task id="LOCAL-00119" summary="Added CharInputStream.markBackup() -&gt; Int">
-      <created>1611777481165</created>
-      <option name="number" value="00119" />
-      <option name="presentableId" value="LOCAL-00119" />
-      <option name="project" value="LOCAL" />
-      <updated>1611777481165</updated>
+      <workItem from="1620260954696" duration="5773000" />
+      <workItem from="1620301617925" duration="5343000" />
+      <workItem from="1620307566089" duration="19985000" />
+      <workItem from="1620389406024" duration="3362000" />
     </task>
     <task id="LOCAL-00120" summary="Added String.getCharacters(splitClusters:) -&gt; [Character].">
       <created>1611863051258</created>
@@ -1040,7 +1062,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620083503945</updated>
     </task>
-    <option name="localTasksCounter" value="168" />
+    <task id="LOCAL-00168" summary="Yes, I rewrote Binary Tree yet again.  I have an illness.">
+      <created>1620266670975</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1620266670975</updated>
+    </task>
+    <option name="localTasksCounter" value="169" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

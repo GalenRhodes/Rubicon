@@ -77,7 +77,7 @@ public protocol CharInputStream: SimpleCharInputStream {
     /// mark. You have to have previously called `markSet()` otherwise this method does nothing.
     /// 
     /// - Parameter count: the number of characters to back out.
-    /// - Returns: the number of characters actually backed out in case there weren't `count` characters available.
+    /// - Returns: The number of characters actually backed out in case there weren't `count` characters available.
     ///
     @discardableResult func markBackup(count: Int) -> Int
 }

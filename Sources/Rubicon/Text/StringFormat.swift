@@ -71,7 +71,7 @@ extension StringProtocol {
                                     case "n": out.append(flags.isUppercase ? "\r\n" : "\n")
                                     case "o": formatOctal(to: &out, argument: arg, scale: scale, flags: flags)
                                     case "r": out.append(flags.isUppercase ? "\r\n" : "\r")
-                                    case "s": formatString(to: &out, argument: arg, scale: scale, flags: flags)
+                                    case "s": formatString(to: &out, argument: arg, scale: scale, prec: prec, flags: flags)
                                     case "x": formatHexadecimal(to: &out, argument: arg, scale: scale, flags: flags)
                                     default:  formatDateTime(to: &out, dateSpecifier: match.groups[7].subString, argument: arg, scale: scale, flags: flags)
                                 }
@@ -411,9 +411,17 @@ extension StringProtocol {
     ///   - scale: The scale (width).
     ///   - flags: The flags.
     ///
-    private func formatString(to out: inout String, argument arg: Any, scale: Int, flags: FlagSet) {
-        let s  = String(describing: arg)
-        let cc = (scale - s.count)
+    private func formatString(to out: inout String, argument arg: Any, scale: Int, prec: Int? = nil, flags: FlagSet) {
+        var s  = String(describing: arg)
+        var sc = s.count
+
+        if let prec = prec, prec < sc {
+            if prec == 0 { s.removeAll() }
+            else { s.removeLast(sc - prec) }
+            sc = prec
+        }
+
+        let cc = (scale - sc)
         if cc > 0 && !flags.isLeftJustified { out.append(" ", count: cc) }
         out.append(contentsOf: flags.isUppercase ? s.uppercased() : s)
         if cc > 0 && flags.isLeftJustified { out.append(" ", count: cc) }

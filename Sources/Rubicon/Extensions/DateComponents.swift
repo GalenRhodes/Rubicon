@@ -54,7 +54,7 @@ extension DateComponents {
 
     public var amPM: String? {
         guard let h = hour, let c = calendar else { return nil }
-        return ((h < 12) ? c.amSymbol : c.pmSymbol)
+        return ((h < 12) ? c.amSymbol : c.pmSymbol).lowercased()
     }
 
     public var secondsFromGMT: Int? {

@@ -28,7 +28,7 @@
             </BuildableReference>
             <SelectedTests>
                <Test
-                  Identifier = "StringTests/testFormat">
+                  Identifier = "StringTests/testDateTimeFormat">
                </Test>
             </SelectedTests>
          </TestableReference>

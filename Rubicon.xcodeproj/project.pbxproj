@@ -11,6 +11,7 @@
 		1117D03DA3BBC27101EC56EB /* TreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D42A0A892A55AD7F0C6D /* TreeNode.swift */; };
 		1117D0438E55FD170186888E /* CharStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D4E1FE7DC31ACC3EDD25 /* CharStream.swift */; };
 		1117D067B34035FC4DED2A5F /* StringCharInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D75AC0C7F9E876B68A79 /* StringCharInputStream.swift */; };
+		1117D1B588233A771C95B889 /* FloatingPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D42244601FA54CAFC111 /* FloatingPoint.swift */; };
 		1117D2C6E8D38475C5C674D5 /* StringFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DB9676B8889E6B91EC70 /* StringFormat.swift */; };
 		1117D3008024F764302749E5 /* ByteInputStreamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D318A95900138BE2E023 /* ByteInputStreamTests.swift */; };
 		1117D3B6E9FCFDAD8238B604 /* AtomicValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D2AE1568A8C3741A86AE /* AtomicValue.swift */; };
@@ -37,6 +38,7 @@
 		1117D950F78C930E935486EF /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D9A1691382C37AA03237 /* Thread.swift */; };
 		1117D98AC365F3CF051F1549 /* ShadowInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D2704AA1CC45A15EDC5B /* ShadowInt.swift */; };
 		1117D9D892409C1C5407AA50 /* ThreadLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD3A2A9798417B58BDA0 /* ThreadLocal.swift */; };
+		1117DA06B9706CDF6F90DE26 /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D3DBBC9A96AEB62EBD8F /* CalendarTests.swift */; };
 		1117DA33BD484CBFF0784483 /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D4B83EE6A3304FC07D3E /* Collections.swift */; };
 		1117DB2981DA9EEA1794C0A9 /* PGThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D14B363B54E578A54336 /* PGThread.swift */; };
 		1117DB3CA2287557110BAD61 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DFF873AA7511D488ADD4 /* StringTests.swift */; };
@@ -47,6 +49,7 @@
 		1117DD4EFDE8572C3C5CEF4A /* CErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D6A7CE94A310891BDE0F /* CErrors.swift */; };
 		1117DDC441FB1F14D7A8EAEB /* DataByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D6AC59E30D453F77143E /* DataByteBuffer.swift */; };
 		1117DDEE932819B049B78977 /* SimpleStringCharInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DF04833CD6B020F8A54A /* SimpleStringCharInputStream.swift */; };
+		1117DE02F8940A00E5B060F2 /* DateComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D4271C0293ABF2DE0360 /* DateComponents.swift */; };
 		1117DE1264E29B84796C3C80 /* EasyByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD9CADA8086B223523D4 /* EasyByteBuffer.swift */; };
 		1117DF27B358A367D4C2876E /* IConv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D88BD3FB3246B1DFB316 /* IConv.swift */; };
 		1117DFAA0AE0006304938EEC /* BinaryInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DDD0B2FEC71052547523 /* BinaryInteger.swift */; };
@@ -116,6 +119,9 @@
 		1117D2AE1568A8C3741A86AE /* AtomicValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomicValue.swift; sourceTree = "<group>"; };
 		1117D2B214ED0F9FD42B08ED /* compname.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = compname.txt; sourceTree = "<group>"; };
 		1117D318A95900138BE2E023 /* ByteInputStreamTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteInputStreamTests.swift; sourceTree = "<group>"; };
+		1117D3DBBC9A96AEB62EBD8F /* CalendarTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTests.swift; sourceTree = "<group>"; };
+		1117D42244601FA54CAFC111 /* FloatingPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingPoint.swift; sourceTree = "<group>"; };
+		1117D4271C0293ABF2DE0360 /* DateComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateComponents.swift; sourceTree = "<group>"; };
 		1117D42A0A892A55AD7F0C6D /* TreeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeNode.swift; sourceTree = "<group>"; };
 		1117D48068F75B12E30F5E83 /* IConvCharInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IConvCharInputStream.swift; sourceTree = "<group>"; };
 		1117D4B83EE6A3304FC07D3E /* Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
@@ -364,6 +370,7 @@
 				1117DE1EE226A306235DE1F9 /* LongevityTests.swift */,
 				1117DC8B8D7B5083B0645966 /* ThreadLocalTests.swift */,
 				1117DFF873AA7511D488ADD4 /* StringTests.swift */,
+				1117D3DBBC9A96AEB62EBD8F /* CalendarTests.swift */,
 			);
 			path = RubiconTests;
 			sourceTree = "<group>";
@@ -422,6 +429,8 @@
 				1117DDD0B2FEC71052547523 /* BinaryInteger.swift */,
 				1117D1C1FC0F0FA476E369C8 /* Hasher.swift */,
 				1117D4B83EE6A3304FC07D3E /* Collections.swift */,
+				1117D42244601FA54CAFC111 /* FloatingPoint.swift */,
+				1117D4271C0293ABF2DE0360 /* DateComponents.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -683,6 +692,8 @@
 				1117D035A8FA81FD3FF0CE5C /* Hasher.swift in Sources */,
 				1117DA33BD484CBFF0784483 /* Collections.swift in Sources */,
 				1117D2C6E8D38475C5C674D5 /* StringFormat.swift in Sources */,
+				1117D1B588233A771C95B889 /* FloatingPoint.swift in Sources */,
+				1117DE02F8940A00E5B060F2 /* DateComponents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,6 +708,7 @@
 				1117DD31C1372049FC34B748 /* LongevityTests.swift in Sources */,
 				1117D7BA2568F2FDE2380FD6 /* ThreadLocalTests.swift in Sources */,
 				1117DB3CA2287557110BAD61 /* StringTests.swift in Sources */,
+				1117DA06B9706CDF6F90DE26 /* CalendarTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

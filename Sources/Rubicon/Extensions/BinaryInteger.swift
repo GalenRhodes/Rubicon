@@ -18,12 +18,25 @@
 import Foundation
 import CoreFoundation
 
+infix operator **: MultiplicationPrecedence
+
 extension BinaryInteger {
+
+    @inlinable public static func ** (lhs: Self, rhs: Int) -> Self {
+        guard rhs != 0 else { return 1 }
+        guard rhs != 1 else { return lhs }
+        var out: Self = lhs
+        if rhs > 1 { for _ in (1 ..< rhs) { out *= lhs } }
+        else { for _ in (0 ..< abs(rhs)) { out /= lhs } }
+        return out
+    }
+
+    @inlinable public func divisible(by divisor: Self) -> Bool { (quotientAndRemainder(dividingBy: divisor).remainder == 0) }
 
     /*==========================================================================================================*/
     /// If the value is less than minValue then the minValue is returned. If the value is greater than maxValue
     /// then maxValue is returned. Otherwise this value is returned.
-    /// 
+    ///
     /// - Parameters:
     ///   - minValue: The minimum value.
     ///   - maxValue: The maximum value.

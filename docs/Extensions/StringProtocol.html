@@ -153,9 +153,6 @@
                 <a href="../Global%20Variables/CR_5FCHARACTER.html">CR_CHARACTER</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Global%20Variables/FormatPattern.html">FormatPattern</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Global%20Variables/LF_5FCHARACTER.html">LF_CHARACTER</a>
               </li>
               <li class="nav-group-task">
@@ -215,6 +212,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/ArraySlice.html">ArraySlice</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/BinaryFloatingPoint.html">BinaryFloatingPoint</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/BinaryInteger.html">BinaryInteger</a>
@@ -331,6 +331,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Functions/_3D_3D_28_5F_3A_5F_3A_29_5F_24sySbs10ArraySliceVyxG_5FSayxGtcSQRzluD.html">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions/HashOfAnything_28_5F_3A_29_5F_24sySiypcD.html">HashOfAnything(_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions/NanoSleep_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosS2i_5FSitcD.html">NanoSleep(seconds:nanos:)</a>
@@ -592,9 +595,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:Sy7RubiconE6formatySSypSgd_tF"></a>
-                    <a name="//apple_ref/swift/Method/format(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:Sy7RubiconE6formatySSypSgd_tF">format(_:<wbr>)</a>
+                    <a name="/s:Sy7RubiconE9toInteger12defaultValueS2i_tF"></a>
+                    <a name="//apple_ref/swift/Method/toInteger(defaultValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sy7RubiconE9toInteger12defaultValueS2i_tF">toInteger(defaultValue:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -608,12 +611,13 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">format</span><span class="p">(</span><span class="n">_</span> <span class="nv">args</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?</span><span class="o">...</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">toInteger</span><span class="p">(</span><span class="n">defaultValue</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L115-L170">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L87-L90">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -644,7 +648,7 @@ characters.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L281">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L101">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -674,7 +678,7 @@ characters.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L286">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L106">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -705,7 +709,7 @@ both ends of the string.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L292">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L112">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -735,7 +739,7 @@ both ends of the string.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L297">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L117">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -767,7 +771,7 @@ entire string.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L304">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L124">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -832,7 +836,7 @@ entire string.</p>
                         <p><code>true</code> if they are equal when compared case insensitively.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L314">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L134">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -897,7 +901,7 @@ entire string.</p>
                         <p><code>true</code> if they are not equal when compared case insensitively.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L324">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L144">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -964,7 +968,7 @@ as a for-in loop.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L335-L341">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L155-L161">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1050,7 +1054,7 @@ then the entire match region is assumed.</p>
                         <p><code>false</code> if the match or the group are <code>nil</code>, otherwise returns <code>true</code>.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L356-L362">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L176-L182">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1128,7 +1132,7 @@ then the entire match region is assumed.</p>
                         <p>The position (line, column) of the index within the string.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L374-L382">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L194-L202">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1184,7 +1188,7 @@ then the entire match region is assumed.</p>
        offset indicated by <code>idx</code>.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L393-L395">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L213-L215">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1240,7 +1244,7 @@ if the range is invalid for the string.</p>
                         <p>The <code><a href="https://developer.apple.com/documentation/swift/Substring">Substring</a></code>.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L406-L408">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L226-L228">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1305,7 +1309,7 @@ if the range is invalid for the string.</p>
                         <p>The index or <code>nil</code> if none of the characters are found.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L418-L425">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L238-L245">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1359,7 +1363,7 @@ from an integer offset.</p>
                         <p>An instance of <code>[String.Index](https://developer.apple.com/documentation/swift/string/index)&gt;</code></p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L434-L436">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L254-L256">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1423,7 +1427,7 @@ this string then <code>nil</code> is returned.</p>
        invalid for this string.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L455-L460">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L275-L280">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1476,7 +1480,7 @@ this string then <code>nil</code> is returned.</p>
                         <p><code>true</code> if this string has any of the prefixes.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L468-L471">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L288-L291">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1529,7 +1533,7 @@ this string then <code>nil</code> is returned.</p>
                         <p><code>true</code> if this string has any of the suffixes.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L479-L482">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L299-L302">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1591,7 +1595,7 @@ the individual unicode characters 🇺 and 🇸 instead of the single American F
                         <p>The array of characters.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L499-L506">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L319-L326">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1649,7 +1653,7 @@ the individual unicode characters 🇺 and 🇸 instead of the single American F
                         <p><code>true</code> if the pattern matches this entire string exactly once.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L515-L526">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L335-L346">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1702,7 +1706,7 @@ the individual unicode characters 🇺 and 🇸 instead of the single American F
                         <p>The NSRange.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L534">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L354">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1771,7 +1775,7 @@ are invalid for the string.</p>
                         <p>The substring</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L548-L550">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L368-L370">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1840,7 +1844,7 @@ are invalid for the string.</p>
                         <p>The substring</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L564-L566">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L384-L386">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1900,7 +1904,7 @@ are invalid for the string.</p>
        <code><a href="https://developer.apple.com/documentation/swift/Substring">Substring</a></code>.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L581-L583">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L401-L403">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1962,7 +1966,7 @@ are invalid for the string.</p>
        <code><a href="https://developer.apple.com/documentation/swift/Substring">Substring</a></code>.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L600-L605">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L420-L425">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2087,7 +2091,61 @@ possible, the array can have any length, and trailing empty strings will be disc
        expression</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L676-L689">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/String.swift#L496-L509">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Sy7RubiconE6formatySSypSgd_tF"></a>
+                    <a name="//apple_ref/swift/Method/format(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sy7RubiconE6formatySSypSgd_tF">format(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Allows creating a string using printf like formatting strings and arguments. However this version is
+modeled more after the Java version than the C version in order to make it a little easier to use.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">format</span><span class="p">(</span><span class="n">_</span> <span class="nv">args</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?</span><span class="o">...</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>args</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p></p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Text/StringFormat.swift#L38-L96">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2097,7 +2155,7 @@ possible, the array can have any length, and trailing empty strings will be disc
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-05-07)</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-05-10)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

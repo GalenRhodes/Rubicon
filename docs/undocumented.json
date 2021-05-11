@@ -2032,36 +2032,57 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/BinaryInteger.swift",
-      "line": 35,
+      "line": 25,
+      "symbol": "BinaryInteger.**(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/BinaryInteger.swift",
+      "line": 46,
       "symbol": "BinaryInteger.clamp(minValue:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/BinaryInteger.swift",
-      "line": 37,
+      "line": 48,
       "symbol": "BinaryInteger.clamp(maxValue:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/BinaryInteger.swift",
-      "line": 39,
+      "line": 50,
       "symbol": "BinaryInteger.clamp(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/BinaryInteger.swift",
-      "line": 41,
+      "line": 52,
       "symbol": "BinaryInteger.inRange(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/BinaryInteger.swift",
-      "line": 43,
+      "line": 54,
       "symbol": "BinaryInteger.inRange(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/FloatingPoint.swift",
+      "line": 23,
+      "symbol": "BinaryFloatingPoint.**(_:_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/FloatingPoint.swift",
+      "line": 32,
+      "symbol": "BinaryFloatingPoint.roundTo(places:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -2172,36 +2193,29 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/String.swift",
-      "line": 62,
+      "line": 68,
       "symbol": "tabCalc(pos:tabSize:)",
       "symbol_kind": "source.lang.swift.decl.function.free",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/String.swift",
-      "line": 64,
+      "line": 70,
       "symbol": "textPositionUpdate(_:pos:tabWidth:)",
       "symbol_kind": "source.lang.swift.decl.function.free",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/String.swift",
-      "line": 66,
+      "line": 72,
       "symbol": "nextCharPosition(currentPosition:character:tabWidth:)",
       "symbol_kind": "source.lang.swift.decl.function.free",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/String.swift",
-      "line": 84,
-      "symbol": "FormatPattern",
-      "symbol_kind": "source.lang.swift.decl.var.global",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/String.swift",
-      "line": 115,
-      "symbol": "StringProtocol.format(_:)",
+      "line": 87,
+      "symbol": "StringProtocol.toInteger(defaultValue:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },

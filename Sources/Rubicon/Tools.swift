@@ -590,3 +590,14 @@ public func nDebug(_ nestType: NestType = .None, _ obj: Any..., separator: Strin
 /// - Returns: The current retain count JUST BEFORE the call to this method.
 ///
 @inlinable public func PGGetRetainCount(_ obj: AnyObject) -> Int { (CFGetRetainCount(obj) - 2) }
+
+/*==============================================================================================================*/
+/// Get a hash value from just about anything.
+/// 
+/// - Parameter v: The item you want the hash of.
+/// - Returns: The hash.
+///
+@inlinable public func HashOfAnything(_ v: Any) -> Int {
+    if let x = (v as? AnyHashable) { return x.hashValue }
+    else { return ObjectIdentifier(v as AnyObject).hashValue }
+}

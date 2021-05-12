@@ -58,9 +58,17 @@ extension String {
         }
     }
 
-    @inlinable mutating func prepend(_ char: Character, count: Int = 1) { for _ in (0 ..< count) { insert(char, at: startIndex) } }
+    @inlinable @discardableResult mutating func prepend(_ char: Character, count: Int = 1) -> String.Index {
+        let cc = self.count
+        for _ in (0 ..< count) { insert(char, at: startIndex) }
+        return index(startIndex, offsetBy: (self.count - cc))
+    }
 
-    @inlinable mutating func prepend<S>(contentsOf seq: S) where S: Collection, S.Element == Character { insert(contentsOf: seq, at: startIndex) }
+    @inlinable @discardableResult mutating func prepend<S>(contentsOf seq: S) -> String.Index where S: Collection, S.Element == Character {
+        let cc = count
+        insert(contentsOf: seq, at: startIndex)
+        return index(startIndex, offsetBy: (count - cc))
+    }
 
     @inlinable mutating func append(_ char: Character, count: Int) { for _ in (0 ..< count) { append(char) } }
 }

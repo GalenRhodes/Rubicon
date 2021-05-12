@@ -31,7 +31,7 @@
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="StringProtocol.format(_:)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Format.md" beforeDir="false" afterPath="$PROJECT_DIR$/Format.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/DateComponents.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/DateComponents.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/String.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/String.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Text/StringFormat.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Text/StringFormat.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,7 +113,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
-  <component name="RunManager" selected="XCTest.String Tests">
+  <component name="RunManager" selected="Application.DocFixer (Jazzy)">
     <list>
       <item itemvalue="Application.DocFixer Remote" />
       <item itemvalue="Application.DocFixer (swift-doc)" />
@@ -325,14 +325,7 @@
       <workItem from="1620389406024" duration="16181000" />
       <workItem from="1620430940604" duration="5044000" />
       <workItem from="1620570242511" duration="39403000" />
-      <workItem from="1620731746955" duration="29294000" />
-    </task>
-    <task id="LOCAL-00125" summary="Bug fix in func stash&lt;C&gt;(chars: C) -&gt; C where C: Collection, C.Element == Character">
-      <created>1612322396755</created>
-      <option name="number" value="00125" />
-      <option name="presentableId" value="LOCAL-00125" />
-      <option name="project" value="LOCAL" />
-      <updated>1612322396755</updated>
+      <workItem from="1620731746955" duration="37211000" />
     </task>
     <task id="LOCAL-00126" summary="Added Collection.areAll(predicate:) and Collection.isAny(predicate:).">
       <created>1612445170751</created>
@@ -670,7 +663,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620758354512</updated>
     </task>
-    <option name="localTasksCounter" value="174" />
+    <task id="LOCAL-00174" summary="StringProtocol.format(_:)">
+      <created>1620765771803</created>
+      <option name="number" value="00174" />
+      <option name="presentableId" value="LOCAL-00174" />
+      <option name="project" value="LOCAL" />
+      <updated>1620765771803</updated>
+    </task>
+    <option name="localTasksCounter" value="175" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

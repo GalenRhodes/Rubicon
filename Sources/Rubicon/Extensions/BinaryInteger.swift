@@ -36,7 +36,7 @@ extension BinaryInteger {
     /*==========================================================================================================*/
     /// If the value is less than minValue then the minValue is returned. If the value is greater than maxValue
     /// then maxValue is returned. Otherwise this value is returned.
-    ///
+    /// 
     /// - Parameters:
     ///   - minValue: The minimum value.
     ///   - maxValue: The maximum value.

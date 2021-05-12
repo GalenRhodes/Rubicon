@@ -5,15 +5,14 @@ may contain fixed text and one or more embedded format specifiers. Consider the 
 
 ```Swift
 let aDate: Date = Date()
-print("Duke~s Birthday: %1$tm %1$te,%1$tY".format(aDate))
+print("Duke's Birthday: %1$tm %1$te,%1$tY".format(aDate))
 ```
 
 This format string is the first argument to the format method. It contains three format specifiers `"%1$tm"`, `"%1$te"`,
-and `"%1$tY"`
-which indicate how the arguments should be processed and where they should be inserted in the text. The remaining portions of the
-format string are fixed text including `"Dukes Birthday: "` and any other spaces or punctuation. The argument list consists of all
-arguments passed to the method after the format string. In the above example, the argument list is of size one and consists of the
-[Date](https://developer.apple.com/documentation/foundation/date) object aDate.
+and `"%1$tY"` which indicate how the arguments should be processed and where they should be inserted in the text. The remaining
+portions of the format string are fixed text including `"Duke's Birthday: "` and any other spaces or punctuation. The argument list
+consists of all arguments passed to the method after the format string. In the above example, the argument list is of size one and
+consists of the [Date](https://developer.apple.com/documentation/foundation/date) object aDate.
 
 <dl>
     <dt>The format specifiers for general, character, and numeric types have the following syntax:
@@ -30,7 +29,7 @@ argument is referenced by <code>"1$"</code>, the second by <code>"2$"</code>, et
 <dd>The optional precision is a non-negative decimal integer usually used to restrict the number of characters. The specific 
 behavior depends on the conversion.</dd>
 <dd>The required conversion is a character indicating how the argument should be formatted. The set of valid conversions for a given
-argument depends on the argument~s data type.</dd>
+argument depends on the argument's data type.</dd>
 <dt>The format specifiers for types which are used to represents dates and times have the following syntax:
 
 ```text
@@ -102,7 +101,7 @@ Conversion         | Argument Category | Description
 `e`, `E`           | floating point    | The result is formatted as a decimal number in computerized scientific notation
 `f`                | floating point    | The result is formatted as a decimal number
 `g`, `G`           | floating point    | The result is formatted using computerized scientific notation or decimal format, depending on the precision and the value after rounding.
-`a`, `A`           | floating point    | The result is formatted as a hexadecimal floating-point number with a significand and an exponent. This conversion is not supported for the BigDecimal type despite the latter~s being in the floating point argument category.
+`a`, `A`           | floating point    | The result is formatted as a hexadecimal floating-point number with a significand and an exponent. This conversion is not supported for the BigDecimal type despite the latter's being in the floating point argument category.
 `t`, `T`           | date/time         | Prefix for date and time conversion characters. See Date/Time Conversions.
 `%`                | percent           | The result is a literal `%` (`\u0025`)
 `n`                | line separator    | The result is the platform-specific line separator
@@ -211,6 +210,6 @@ specifier to be re-used. For example, the following two statements would produce
 
 ```Swift
 let c  = Date()
-let s1 = "Duke~s Birthday: %1$tm %1$te,%1$tY".format(c)
-let s2 = "Duke~s Birthday: %1$tm %<te,%<tY".format(c)
+let s1 = "Duke's Birthday: %1$tm %1$te,%1$tY".format(c)
+let s2 = "Duke's Birthday: %1$tm %<te,%<tY".format(c)
 ```

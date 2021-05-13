@@ -468,6 +468,7 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
     #endif
 
     #if os(Linux)
+        // These only exist on Linux.
         /*======================================================================================================*/
         /// Advertise error
         ///
@@ -783,6 +784,7 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
         #endif
 
         #if os(Linux)
+            // These only exist on Linux.
             switch self {
               //@f:0
                 case .ADV        : return StrError(EADV)         /* Advertise error                                 */
@@ -966,6 +968,7 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
         #endif
 
         #if os(Linux)
+            // These only exist on Linux.
             switch self {
               //@f:0
                 case .ADV        : return EADV         /* Advertise error                                 */
@@ -1148,6 +1151,7 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
         #endif
 
         #if os(Linux)
+            // These only exist on Linux.
             switch self {
               //@f:0
                 case .ADV(        description: let desc): return desc /* Advertise error                                 */
@@ -1334,6 +1338,7 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
         #endif
 
         #if os(Linux)
+            // These only exist on Linux.
             switch code {
               //@f:0
                 case EADV        : return CErrors.ADV()         /* Advertise error                                 */

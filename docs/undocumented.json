@@ -2690,51 +2690,23 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Tools.swift",
-      "line": 526,
-      "symbol": "debug(_:separator:terminator:)",
-      "symbol_kind": "source.lang.swift.decl.function.free",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Tools.swift",
-      "line": 528,
-      "symbol": "debug(_:separator:terminator:)",
-      "symbol_kind": "source.lang.swift.decl.function.free",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Tools.swift",
-      "line": 544,
-      "symbol": "NestType",
-      "symbol_kind": "source.lang.swift.decl.enum",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Tools.swift",
-      "line": 544,
+      "line": 572,
       "symbol": "NestType.In",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Tools.swift",
-      "line": 544,
+      "line": 572,
       "symbol": "NestType.None",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Tools.swift",
-      "line": 544,
+      "line": 572,
       "symbol": "NestType.Out",
       "symbol_kind": "source.lang.swift.decl.enumelement",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Tools.swift",
-      "line": 551,
-      "symbol": "nDebug(_:_:separator:)",
-      "symbol_kind": "source.lang.swift.decl.function.free",
       "warning": "undocumented"
     }
   ],

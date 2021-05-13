@@ -2690,21 +2690,21 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Tools.swift",
-      "line": 572,
+      "line": 573,
       "symbol": "NestType.In",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Tools.swift",
-      "line": 572,
+      "line": 573,
       "symbol": "NestType.None",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Tools.swift",
-      "line": 572,
+      "line": 573,
       "symbol": "NestType.Out",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"

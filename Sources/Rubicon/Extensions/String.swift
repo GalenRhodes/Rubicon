@@ -433,22 +433,24 @@ extension StringProtocol {
     }
 
     /*==========================================================================================================*/
-    /// Splits this string around matches of the given regular expression. This method works [just like it does in
-    /// Java](https://docs.oracle.com/javase/10/docs/api/java/lang/[String](https://developer.apple.com/documentation/swift/string/).html#`split(java.lang.String,int)`).
+    /// Splits this string around matches of the given regular expression pattern. This method works [just like it
+    /// does in
+    /// Java](https://docs.oracle.com/javase/10/docs/api/java/lang/String.html#split%28java.lang.String,int%29).
     /// The array returned by this method contains each substring of this string that is terminated by another
-    /// substring that matches the given expression or is terminated by the end of the string. The substrings in
-    /// the array are in the order in which they occur in this string. If the expression does not match any part
-    /// of the input then the resulting array has just one element, namely this string. When there is a
-    /// positive-width match at the beginning of this string then an empty leading substring is included at the
-    /// beginning of the resulting array. A <code>[zero](https://en.wikipedia.org/wiki/0)</code>-width match at
-    /// the beginning however never produces such empty leading substring. The `limit` parameter controls the
-    /// number of times the pattern is applied and therefore affects the length of the resulting array. If the
-    /// limit n is greater than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the pattern will be
-    /// applied at most n - 1 times, the array's length will be no greater than n, and the array's last entry will
-    /// contain all input beyond the last matched delimiter. If n is non-positive then the pattern will be applied
-    /// as many times as possible and the array can have any length. If n is
-    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the pattern will be applied as many times as
-    /// possible, the array can have any length, and trailing empty strings will be discarded.
+    /// substring that matches the given regular expression pattern or is terminated by the end of the string. The
+    /// substrings in the array are in the order in which they occur in this string. If the regular expression
+    /// pattern does not match any part of the input or if the regular expression pattern is invalid then the
+    /// resulting array has just one element, namely this string. When there is a positive-width match at the
+    /// beginning of this string then an empty leading substring is included at the beginning of the resulting
+    /// array. A <code>[zero](https://en.wikipedia.org/wiki/0)</code>-width match at the beginning however never
+    /// produces such empty leading substring. The `limit` parameter controls the number of times the regular
+    /// expression pattern is applied and therefore affects the length of the resulting array. If the limit n is
+    /// greater than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the regular expression pattern will
+    /// be applied at most n - 1 times, the array's length will be no greater than n, and the array's last entry
+    /// will contain all input beyond the last matched delimiter. If n is non-positive then the regular expression
+    /// pattern will be applied as many times as possible and the array can have any length. If n is
+    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the regular expression pattern will be applied
+    /// as many times as possible, the array can have any length, and trailing empty strings will be discarded.
     /// 
     /// The string "`boo:and:foo`", for example, yields the following results with these parameters:
     /// 
@@ -457,7 +459,7 @@ extension StringProtocol {
     ///         <tr>
     ///             <th align="left">Regex</th>
     ///             <th align="left">Limit</th>
-    ///             <th align="left">[Result](https://developer.apple.com/documentation/swift/result/)</th>
+    ///             <th align="left">Result</th>
     ///         </tr>
     ///     </thead>
     ///     <tbody>
@@ -495,76 +497,131 @@ extension StringProtocol {
     /// </table>
     /// 
     /// - Parameters:
-    ///   - pattern: The delimiting regular expression
-    ///   - lim: The result threshold, as described above
+    ///   - pattern: The delimiting regular expression pattern.
+    ///   - lim: The result threshold, as described above.
+    ///   - error: If the pattern was invalid then this pass-by-reference parameter will hold the error.
     /// 
     /// - Returns: The array of strings computed by splitting this string around matches of the given regular
-    ///            expression
+    ///            expression pattern. If the regular expression pattern is invalid then this string will be
+    ///            returned as the only element.
     ///
-    public func split(on pattern: String, limit lim: Int = 0) -> [String] {
-        if lim != 1, let regex: RegEx = try? RegEx(pattern: pattern) {
-            var results: [String]     = []
-            var last:    String.Index = startIndex
+    public func split(on pattern: String, limit lim: Int = 0, error: inout Error?) -> [String] {
+        let str = String(self)
+        guard lim != 1 else { return [ str ] }
+        guard let rx = RegularExpression(pattern: pattern, error: &error) else { return [ str ] }
 
-            regex.enumerateMatches(in: String(self), range: fullNSRange) { m, _, p in if let m = m { if self.split(m.range, ((lim > 0) ? (lim - 1) : Int.max), &results, &last) { p.pointee = true } } }
+        var results:    [String]     = []
+        var lIdx:       String.Index = str.startIndex
+        var limitWatch: Int          = 1
 
-            if !results.isEmpty {
-                return ((lim == 0) ? trimSplitArray(array: &results) : results)
-            }
-        }
-
-        return [ String(self) ]
-    }
-
-    /*==========================================================================================================*/
-    /// The body of the closure for `split(pattern:lim:)`.
-    /// 
-    /// - Parameters:
-    ///   - nsRng: The NSRange of the match.
-    ///   - lim:  The limit.
-    ///   - results: The results array.
-    ///   - last: The last split point.
-    /// - Returns: `true` if further matching should stop because the limit has been reached.
-    ///
-    private func split(_ nsRng: NSRange, _ lim: Int, _ results: inout [String], _ last: inout String.Index) -> Bool {
-        if nsRng.location != NSNotFound, let rng: Range<Index> = nsRng.strRange(string: self) {
-            let subStringRange: Range<String.Index> = (last ..< rng.lowerBound)
-
-            if !(rng.isEmpty && subStringRange.isEmpty) {
-                results.append(String(self[subStringRange]))
-            }
-
-            last = rng.upperBound
-
-            if results.count >= lim {
-                results.append(String(self[last ..< self.endIndex]))
-                return true
-            }
-        }
-
-        return false
-    }
-
-    /*==========================================================================================================*/
-    /// Trim the empty strings off of the array of strings. Used by `split(pattern:lim:)`.
-    /// 
-    /// - Parameter results: the array of strings.
-    /// - Returns: The trimmed array.
-    ///
-    private func trimSplitArray(array results: inout [String]) -> [String] {
-        let cc: Int = results.count
-
-        if (cc > 1) && results.last!.isEmpty {
-            for i in stride(from: (cc - 1), through: 0, by: -1) {
-                if !results[i].isEmpty {
-                    results.removeSubrange((i + 1) ..< cc)
-                    return results
+        rx.forEachMatch(in: str) { m, _, stop in
+            if let m = m {
+                if limitWatch == 1 && m.range.lowerBound == str.startIndex {
+                    if m.range.upperBound > m.range.lowerBound {
+                        results <+ ""
+                        lIdx = m.range.upperBound
+                        limitWatch += 1
+                    }
+                }
+                else {
+                    results <+ String(str[lIdx ..< m.range.lowerBound])
+                    lIdx = m.range.upperBound
+                    limitWatch += 1
+                }
+                if lim > 0 && limitWatch == lim {
+                    results <+ String(str[lIdx ..< str.endIndex])
+                    lIdx = str.endIndex
+                    stop = true
                 }
             }
+        }
 
-            return [ results[0] ]
+        if lIdx < str.endIndex { results <+ String(str[lIdx ..< str.endIndex]) }
+
+        if lim == 0 && results.count > 1 {
+            var i = results.endIndex
+            repeat { i -= 1 } while i > results.startIndex && results[i].isEmpty
+            i += 1
+            results.removeSubrange(i ..< results.endIndex)
         }
 
         return results
+    }
+
+    /*==========================================================================================================*/
+    /// Splits this string around matches of the given regular expression pattern. This method works [just like it
+    /// does in
+    /// Java](https://docs.oracle.com/javase/10/docs/api/java/lang/String.html#split%28java.lang.String,int%29).
+    /// The array returned by this method contains each substring of this string that is terminated by another
+    /// substring that matches the given regular expression pattern or is terminated by the end of the string. The
+    /// substrings in the array are in the order in which they occur in this string. If the regular expression
+    /// pattern does not match any part of the input or the regular expression pattern is invalid then the
+    /// resulting array has just one element, namely this string. When there is a positive-width match at the
+    /// beginning of this string then an empty leading substring is included at the beginning of the resulting
+    /// array. A <code>[zero](https://en.wikipedia.org/wiki/0)</code>-width match at the beginning however never
+    /// produces such empty leading substring. The `limit` parameter controls the number of times the regular
+    /// expression pattern is applied and therefore affects the length of the resulting array. If the limit n is
+    /// greater than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the regular expression pattern will
+    /// be applied at most n - 1 times, the array's length will be no greater than n, and the array's last entry
+    /// will contain all input beyond the last matched delimiter. If n is non-positive then the regular expression
+    /// pattern will be applied as many times as possible and the array can have any length. If n is
+    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the regular expression pattern will be applied
+    /// as many times as possible, the array can have any length, and trailing empty strings will be discarded.
+    /// 
+    /// The string "`boo:and:foo`", for example, yields the following results with these parameters:
+    /// 
+    /// <table class="gsr">
+    ///     <thead>
+    ///         <tr>
+    ///             <th align="left">Regex</th>
+    ///             <th align="left">Limit</th>
+    ///             <th align="left">Result</th>
+    ///         </tr>
+    ///     </thead>
+    ///     <tbody>
+    ///         <tr>
+    ///             <td align="left"><code>:</code></td>
+    ///             <td align="left"><code>2</code></td>
+    ///             <td align="left"><code>[ "boo", "and:foo" ]</code></td>
+    ///         </tr>
+    ///         <tr>
+    ///             <td align="left"><code>:</code></td>
+    ///             <td align="left"><code>5</code></td>
+    ///             <td align="left"><code>[ "boo", "and", "foo" ]</code></td>
+    ///         </tr>
+    ///         <tr>
+    ///             <td align="left"><code>:</code></td>
+    ///             <td align="left"><code>-2</code></td>
+    ///             <td align="left"><code>[ "boo", "and", "foo" ]</code></td>
+    ///         </tr>
+    ///         <tr>
+    ///             <td align="left"><code>o</code></td>
+    ///             <td align="left"><code>5</code></td>
+    ///             <td align="left"><code>[ "b", "", ":and:f", "", "" ]</code></td>
+    ///         </tr>
+    ///         <tr>
+    ///             <td align="left"><code>o</code></td>
+    ///             <td align="left"><code>-2</code></td>
+    ///             <td align="left"><code>[ "b", "", ":and:f", "", "" ]</code></td>
+    ///         </tr>
+    ///         <tr>
+    ///             <td align="left"><code>o</code></td>
+    ///             <td align="left"><code>0</code></td>
+    ///             <td align="left"><code>[ "b", "", ":and:f" ]</code></td>
+    ///         </tr>
+    ///     </tbody>
+    /// </table>
+    /// 
+    /// - Parameters:
+    ///   - pattern: The delimiting regular expression pattern
+    ///   - lim: The result threshold, as described above
+    /// 
+    /// - Returns: The array of strings computed by splitting this string around matches of the given regular
+    ///            expression pattern. If the regular expression pattern is invalid then this string will be
+    ///            returned as the only element.
+    ///
+    @inlinable public func split(on pattern: String, limit lim: Int = 0) -> [String] {
+        var error: Error? = nil
+        return split(on: pattern, limit: lim, error: &error)
     }
 }

@@ -73,7 +73,7 @@ open class IConv {
 
     /*==========================================================================================================*/
     /// Create a new instance of IConv.
-    /// 
+    ///
     /// - Parameters:
     ///   - toEncoding: The target encoding name.
     ///   - fromEncoding: The source encoding name.
@@ -105,7 +105,7 @@ open class IConv {
 
     /*==========================================================================================================*/
     /// Reset the converter.
-    /// 
+    ///
     /// - Returns: `Results.OK` if successful. `Results.OtherError` if not successful.
     ///
     open func reset() -> Results {
@@ -120,7 +120,7 @@ open class IConv {
 
     /*==========================================================================================================*/
     /// Convert the contents of the `input` buffer and store in the `output` buffer.
-    /// 
+    ///
     /// - Parameters:
     ///   - input: The input buffer.
     ///   - length: The number of bytes in the input buffer.
@@ -131,18 +131,18 @@ open class IConv {
     open func convert(input: UnsafeRawPointer, length: Int, output: UnsafeMutableRawPointer, maxLength: Int) -> Response {
         guard let h = handle else { return (.UnknownEncoding, 0, 0) }
 
-        var inSz:    Int           = length
-        var outSz:   Int           = maxLength
-        var inP:     CCharPointer? = UnsafeMutableRawPointer(mutating: input).bindMemory(to: CChar.self, capacity: inSz)
-        var outP:    CCharPointer? = output.bindMemory(to: CChar.self, capacity: outSz)
-        let res:     Int           = iconv(h, &inP, &inSz, &outP, &outSz)
+        var inSz:  Int           = length
+        var outSz: Int           = maxLength
+        var inP:   CCharPointer? = UnsafeMutableRawPointer(mutating: input).bindMemory(to: CChar.self, capacity: inSz)
+        var outP:  CCharPointer? = output.bindMemory(to: CChar.self, capacity: outSz)
+        let res:   Int           = iconv(h, &inP, &inSz, &outP, &outSz)
 
         return getResponse(callResponse: res, inUsed: (length - inSz), outUsed: (maxLength - outSz))
     }
 
     /*==========================================================================================================*/
     /// Convert the contents of the `input` buffer and store in the `output` buffer.
-    /// 
+    ///
     /// - Parameters:
     ///   - input: The input buffer.
     ///   - output: The output buffer.
@@ -163,7 +163,7 @@ open class IConv {
     /*==========================================================================================================*/
     /// Do the final conversion step after all of the input has been processed to get any deferred conversions
     /// that might be waiting.
-    /// 
+    ///
     /// - Parameters:
     ///   - output: The output buffer.
     ///   - maxLength: The maximum length of the output buffer.
@@ -172,9 +172,9 @@ open class IConv {
     open func finalConvert(output: UnsafeMutableRawPointer, maxLength: Int) -> Response {
         guard let h = handle else { return (.UnknownEncoding, 0, 0) }
 
-        var outSz: Int = maxLength
-        var outP: CCharPointer? = output.bindMemory(to: CChar.self, capacity: outSz)
-        let res: Int = iconv(h, nil, nil, &outP, &outSz)
+        var outSz: Int           = maxLength
+        var outP:  CCharPointer? = output.bindMemory(to: CChar.self, capacity: outSz)
+        let res:   Int           = iconv(h, nil, nil, &outP, &outSz)
 
         return getResponse(callResponse: res, inUsed: 0, outUsed: (maxLength - outSz))
     }
@@ -182,7 +182,7 @@ open class IConv {
     /*==========================================================================================================*/
     /// Do the final conversion step after all of the input has been processed to get any deferred conversions
     /// that might be waiting.
-    /// 
+    ///
     /// - Parameter o: the output buffer.
     /// - Returns: The `Results`.
     ///
@@ -197,7 +197,7 @@ open class IConv {
     /*==========================================================================================================*/
     /// Convert the contents of the input stream. This method reads the input stream in 1,024 byte chunks,
     /// converts those bytes, and then calls the give closure with the results of that conversion.
-    /// 
+    ///
     /// - Parameters:
     ///   - inputStream: The input stream.
     ///   - body: The closure to handle each converted chunk.
@@ -220,7 +220,7 @@ open class IConv {
 
     /*==========================================================================================================*/
     /// Convert a chunk of data.
-    /// 
+    ///
     /// - Parameters:
     ///   - ioRes: The number of bytes read from the input stream.
     ///   - inBuff: The input buffer.
@@ -244,7 +244,7 @@ open class IConv {
 
     /*==========================================================================================================*/
     /// Get the list of available encodings.
-    /// 
+    ///
     /// - Returns: An array of strings.
     ///
     private static func getEncodingsList() -> [String] {
@@ -256,19 +256,21 @@ open class IConv {
             data.deallocate()
         }
 
-        iconvlist({ (count: UInt32, p: UnsafePointer<UnsafePointer<Int8>?>?, d: UnsafeMutableRawPointer?) -> Int32 in
-                      if let p = p, let d = d {
-                          let _data: UnsafeMutablePointer<UnsafeMutablePointer<Int8>?> = d.bindMemory(to: UnsafeMutablePointer<Int8>?.self, capacity: MaxEncodings)
-                          for i in (0 ..< Int(count)) {
-                              if let p2: UnsafePointer<Int8> = p[i] {
-                                  guard let z = NextSlot(_data) else { return 1 }
-                                  _data[z] = CopyStr(p2)
+        #if os(Linux)
+        #else
+            iconvlist({ (count: UInt32, p: UnsafePointer<UnsafePointer<Int8>?>?, d: UnsafeMutableRawPointer?) -> Int32 in
+                          if let p = p, let d = d {
+                              let _data: UnsafeMutablePointer<UnsafeMutablePointer<Int8>?> = d.bindMemory(to: UnsafeMutablePointer<Int8>?.self, capacity: MaxEncodings)
+                              for i in (0 ..< Int(count)) {
+                                  if let p2: UnsafePointer<Int8> = p[i] {
+                                      guard let z = NextSlot(_data) else { return 1 }
+                                      _data[z] = CopyStr(p2)
+                                  }
                               }
                           }
-                      }
-                      return 0
-                  }, data)
-
+                          return 0
+                      }, data)
+        #endif
         var list: [String] = []
         for i in (0 ..< MaxEncodings) { if let p = data[i] { if let str = String(utf8String: p) { list <+ str.uppercased() } } }
         list.sort()
@@ -277,7 +279,7 @@ open class IConv {
 
     /*==========================================================================================================*/
     /// Convert the data returned from the call to `iconv(_ :, _:, _:, _:, _:)` to a `Response` tuple.
-    /// 
+    ///
     /// - Parameters:
     ///   - res: The results returned from the call.
     ///   - inUsed: The number of input bytes used.
@@ -298,7 +300,7 @@ open class IConv {
 
 /*==============================================================================================================*/
 /// Copy a NULL terminated C string.
-/// 
+///
 /// - Parameter str: a pointer to the C string.
 /// - Returns: The copy of the C string.
 ///
@@ -311,7 +313,7 @@ fileprivate func CopyStr(_ str: UnsafePointer<Int8>) -> UnsafeMutablePointer<Int
 
 /*==============================================================================================================*/
 /// Get the next free index.
-/// 
+///
 /// - Parameter data: the data array.
 /// - Returns: The next free index or `nil` if the array is full.
 ///
@@ -322,7 +324,7 @@ fileprivate func NextSlot(_ data: UnsafeMutablePointer<UnsafeMutablePointer<Int8
 
 /*==============================================================================================================*/
 /// Get the length of a NULL terminated C string.
-/// 
+///
 /// - Parameter str: the C string.
 /// - Returns: It's length.
 ///

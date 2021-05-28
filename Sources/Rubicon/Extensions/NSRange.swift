@@ -32,14 +32,14 @@ public extension NSRange {
     /// for the given <code>[String](https://developer.apple.com/documentation/swift/string)</code>. Returns `nil`
     /// if this <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> is not valid
     /// for the given [String](https://developer.apple.com/documentation/swift/string)</code>.
-    /// 
+    ///
     /// - Parameter string: the <code>[String](https://developer.apple.com/documentation/swift/string)</code>.
     /// - Returns: The slice range for the given string based on this
     ///            <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> or `nil`
     ///            if this <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> is
     ///            not valid.
     ///
-    func strRange<S: StringProtocol>(string: S) -> Range<String.Index>? {
-        Range<String.Index>(self, in: string)
+    func strRange<S>(string: S) -> Range<String.Index>? where S : StringProtocol {
+        Range<String.Index>(self, in: String(string))
     }
 }

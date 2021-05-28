@@ -390,9 +390,15 @@ open class RegularExpression {
     ///           parameter which is an array of `RegularExpression.Group` objects representing each capture group
     ///           and returns `true` to stop the enumeration or `false` to continue to the next match.
     ///
-    open func forEachMatchGroup(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: ([Group], inout Bool) -> Void) {
-        forEachMatch(in: str, options: options, range: range) { match, _, stop in if let m = match { body(m.groups, &stop) } }
-    }
+    #if os(macOS) || os(watchOS) || os(tvOS) || os(iOS)
+        open func forEachMatchGroup(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: ([Group], inout Bool) -> Void) {
+            forEachMatch(in: str, options: options, range: range) { match, _, stop in if let m = match { body(m.groups, &stop) } }
+        }
+    #else
+        open func forEachMatchGroup(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: @escaping ([Group], inout Bool) -> Void) {
+            forEachMatch(in: str, options: options, range: range) { match, _, stop in if let m = match { body(m.groups, &stop) } }
+        }
+    #endif
 
     /*==========================================================================================================*/
     /// Enumerates the string allowing the Block to handle each regular expression match.
@@ -407,9 +413,15 @@ open class RegularExpression {
     ///           stop the enumeration or `false` to continue to the next match. Any of the strings in the array
     ///           may be `nil` if that capture group did not participate in the match.
     ///
-    open func forEachMatchString(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: ([String?], inout Bool) -> Void) {
-        forEachMatchGroup(in: str, options: options, range: range) { groups, stop in body(groups.map { $0.subString }, &stop) }
-    }
+    #if os(macOS) || os(watchOS) || os(tvOS) || os(iOS)
+        open func forEachMatchString(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: ([String?], inout Bool) -> Void) {
+            forEachMatchGroup(in: str, options: options, range: range) { groups, stop in body(groups.map { $0.subString }, &stop) }
+        }
+    #else
+        open func forEachMatchString(in str: String, options: [RegularExpression.MatchingOptions] = [], range: Range<String.Index>? = nil, using body: @escaping ([String?], inout Bool) -> Void) {
+            forEachMatchGroup(in: str, options: options, range: range) { groups, stop in body(groups.map { $0.subString }, &stop) }
+        }
+    #endif
 
     /*==========================================================================================================*/
     /// RegularExpression also provides a find-and-replace method strings. The replacement is treated as a
@@ -444,23 +456,43 @@ open class RegularExpression {
     /// - Returns: A tuple with the modified string and the number of replacements made.
     /// - Throws: If the closure throws an error.
     ///
-    open func stringByReplacingMatches(in str: String, options: [MatchingOptions] = [], range: Range<String.Index>? = nil, using body: (Match) -> String) -> (String, Int) {
-        var out: String       = ""
-        var cc:  Int          = 0
-        var idx: String.Index = str.startIndex
+    #if os(macOS) || os(watchOS) || os(tvOS) || os(iOS)
+        open func stringByReplacingMatches(in str: String, options: [MatchingOptions] = [], range: Range<String.Index>? = nil, using body: (Match) -> String) -> (String, Int) {
+            var out: String       = ""
+            var cc:  Int          = 0
+            var idx: String.Index = str.startIndex
 
-        forEachMatch(in: str, options: options, range: range) { m, _, _ in
-            if let m = m {
-                out.append(contentsOf: str[idx ..< m.range.lowerBound])
-                out.append(contentsOf: body(m))
-                idx = m.range.upperBound
-                cc += 1
+            forEachMatch(in: str, options: options, range: range) { m, _, _ in
+                if let m = m {
+                    out.append(contentsOf: str[idx ..< m.range.lowerBound])
+                    out.append(contentsOf: body(m))
+                    idx = m.range.upperBound
+                    cc += 1
+                }
             }
-        }
 
-        if idx < str.endIndex { out.append(contentsOf: str[idx ..< str.endIndex]) }
-        return (out, cc)
-    }
+            if idx < str.endIndex { out.append(contentsOf: str[idx ..< str.endIndex]) }
+            return (out, cc)
+        }
+    #else
+        open func stringByReplacingMatches(in str: String, options: [MatchingOptions] = [], range: Range<String.Index>? = nil, using body: @escaping (Match) -> String) -> (String, Int) {
+            var out: String       = ""
+            var cc:  Int          = 0
+            var idx: String.Index = str.startIndex
+
+            forEachMatch(in: str, options: options, range: range) { m, _, _ in
+                if let m = m {
+                    out.append(contentsOf: str[idx ..< m.range.lowerBound])
+                    out.append(contentsOf: body(m))
+                    idx = m.range.upperBound
+                    cc += 1
+                }
+            }
+
+            if idx < str.endIndex { out.append(contentsOf: str[idx ..< str.endIndex]) }
+            return (out, cc)
+        }
+    #endif
 
     /*==========================================================================================================*/
     /// This class encapsulates all of the capture groups of a single match.

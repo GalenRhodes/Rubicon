@@ -619,19 +619,6 @@ public func nDebug(_ nestType: NestType = .None, _ obj: Any..., separator: Strin
 }
 
 /*==============================================================================================================*/
-/// We're going to wrap this in another function for two reasons:
-///     <ol>
-///         <li>A function call (including the one to `CFGetRetainCount()`) causes the retain count of the object to be
-///             incremented by 1 so we will adjust it.</li>
-///         <li>In case `CFGetRetainCount()` ever goes away or doesn't exist on other platforms.</li>
-///     </ol>
-/// 
-/// - Parameter obj: The object to get the retain count for.
-/// - Returns: The current retain count JUST BEFORE the call to this method.
-///
-@inlinable public func PGGetRetainCount(_ obj: AnyObject) -> Int { (CFGetRetainCount(obj) - 2) }
-
-/*==============================================================================================================*/
 /// Get a hash value from just about anything.
 /// 
 /// - Parameter v: The item you want the hash of.

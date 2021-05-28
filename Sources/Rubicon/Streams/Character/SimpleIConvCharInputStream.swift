@@ -117,7 +117,14 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
             guard status == .notOpen else { return }
             status = .open
             isRunning = true
-            queue.async { [weak self] in if let s = self { s.readerThread() } }
+            queue.async { [weak self] in
+                var hangingCR = false
+                let input     = EasyByteBuffer(length: INPUT_BUFFER_SIZE)
+                let output    = EasyByteBuffer(length: OUTPUT_BUFFER_SIZE)
+                let iconv     = IConv(toEncoding: ENCODE_TO_NAME, fromEncoding: (self?.encodingName ?? "UTF-8"), ignoreErrors: true, enableTransliterate: true)
+                defer { iconv.close() }
+                while let s = self { guard s.doBackground(iconv, input, output, &hangingCR) else { break } }
+            }
         }
     }
 
@@ -131,49 +138,50 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
         }
     }
 
-    private func readerThread() {
+    private func doBackground(_ iconv: IConv, _ input: EasyByteBuffer, _ output: EasyByteBuffer, _ hangingCR: inout Bool) -> Bool {
         lock.withLock {
-            do {
-                var hangingCR = false
-                let input     = EasyByteBuffer(length: INPUT_BUFFER_SIZE)
-                let output    = EasyByteBuffer(length: OUTPUT_BUFFER_SIZE)
-                let iconv     = IConv(toEncoding: ENCODE_TO_NAME, fromEncoding: encodingName, ignoreErrors: true, enableTransliterate: true)
-
-                defer { isRunning = false }
-                defer { iconv.close() }
-
-                if inputStream.streamStatus == .notOpen { inputStream.open() }
-                guard inputStream.streamError == nil else { throw inputStream.streamError! }
-                defer { if autoClose { inputStream.close() } }
-
-                while isOpen {
-                    while isOpen && buffer.count >= MAX_READ_AHEAD { lock.broadcastWait() }
-                    guard try readChars(iconv: iconv, input: input, output: output, hangingCR: &hangingCR) else { break }
+            isRunning = doBackgroundRead(iconv, input, output, &hangingCR)
+            if !isRunning {
+                do {
+                    if autoClose && inputStreamIsOpen { inputStream.close() }
+                    if input.count > 0 {
+                        let r = iconv.convert(input: input, output: output)
+                        try handleLastIConvResults(iConvResults: r, output: output, hangingCR: &hangingCR, isFinal: false)
+                    }
+                    let r = iconv.finalConvert(output: output)
+                    try handleLastIConvResults(iConvResults: r, output: output, hangingCR: &hangingCR, isFinal: true)
                 }
-
-                if isOpen { try readerThreadEnding(iconv: iconv, input: input, output: output, hangingCR: &hangingCR) }
+                catch let e {
+                    error = e
+                }
             }
-            catch let e {
-                error = e
-            }
+            return isRunning
         }
     }
+
+    private func doBackgroundRead(_ iconv: IConv, _ input: EasyByteBuffer, _ output: EasyByteBuffer, _ hangingCR: inout Bool) -> Bool {
+        do {
+            guard isOpen else { return false }
+            if inputStream.streamStatus == .notOpen {
+                inputStream.open()
+                if let e = inputStream.streamError { throw e }
+            }
+            while buffer.count >= MAX_READ_AHEAD { guard lock.broadcastWait(until: Date(timeIntervalSinceNow: 1.0)) && isOpen else { return false } }
+            return try readChars(iconv: iconv, input: input, output: output, hangingCR: &hangingCR)
+        }
+        catch let e {
+            error = e
+            return false
+        }
+    }
+
+    private var inputStreamIsOpen: Bool { Rubicon.value(inputStream.streamStatus, isOneOf: .closed, .notOpen) }
 
     private func readChars(iconv: IConv, input: EasyByteBuffer, output: EasyByteBuffer, hangingCR: inout Bool) throws -> Bool {
         guard try isOpen && inputStream.read(to: input) > 0 else { return false }
         let results = iconv.convert(input: input, output: output)
         try handleLastIConvResults(iConvResults: results, output: output, hangingCR: &hangingCR, isFinal: false)
         return true
-    }
-
-    private func readerThreadEnding(iconv: IConv, input: EasyByteBuffer, output: EasyByteBuffer, hangingCR: inout Bool) throws {
-        if input.count > 0 {
-            let r = iconv.convert(input: input, output: output)
-            try handleLastIConvResults(iConvResults: r, output: output, hangingCR: &hangingCR, isFinal: true)
-        }
-
-        let r = iconv.finalConvert(output: output)
-        try handleLastIConvResults(iConvResults: r, output: output, hangingCR: &hangingCR, isFinal: true)
     }
 
     private func handleLastIConvResults(iConvResults res: IConv.Results, output: EasyByteBuffer, hangingCR: inout Bool, isFinal f: Bool) throws {
@@ -195,32 +203,26 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
 
     private func storeNextChar(data p: UnsafeMutablePointer<UInt32>, count: Int, index idx: inout Int) -> Bool {
         var ch = Character(codePoint: p[idx++])
-
         if ch == CR_CHARACTER {
             guard idx < count else { return true }
-
             if p[idx] == LINE_FEED_CODEPOINT {
                 ch = CRLF_CHARACTER
                 idx++
             }
         }
-
         buffer <+ ch
         return false
     }
 
     private func storeHangingCR(data p: UnsafeMutablePointer<UInt32>, hangingCR: inout Bool) -> Int {
         var idx = 0
-
         if hangingCR {
             hangingCR = false
-
             if p[idx] == LINE_FEED_CODEPOINT {
-                idx++
                 buffer.append(CRLF_CHARACTER)
+                idx++
             }
         }
-
         return idx
     }
 }

@@ -117,26 +117,18 @@ open class IConvCharInputStream: CharInputStream {
         self.init(inputStream: InputStream(data: data), encodingName: encodingName, autoClose: true)
     }
 
-    deinit {
-        do {
-            nDebug(.In, "DE-INIT!!!")
-            do { nDebug(.Out, "DE-INIT!!!") }
-        }
-    }
+    deinit { if inputStreamIsOpen { inputStream.close() } }
 
     /*==========================================================================================================*/
     /// Open the stream. Once a stream has been opened it can never be re-opened.
     ///
     open func open() {
-        nDebug(.In, "open()")
-        nDebug(.None, "open() - retain count = \(PGGetRetainCount(self))")
-        defer { nDebug(.Out, "open()") }
         lock.withLock {
             guard status == .notOpen else { return }
             pos = (1, 1)
             status = .open
             isRunning = true
-            queue.async { [weak self] in self?.readerThread() }
+            queue.async { [weak self] in while let s = self { guard s.doBackground() else { break } } }
         }
     }
 
@@ -204,7 +196,7 @@ open class IConvCharInputStream: CharInputStream {
         nDebug(.In, "Read Multiple Characters")
         defer { nDebug(.Out, "Read Multiple Characters") }
         return try isReading.waitUntil(valueIn: .None, thenWithVal: .Reading) {
-            return try lock.withLock {
+            try lock.withLock {
                 guard isOpen else { return 0 }
                 guard noError else { throw error! }
 
@@ -339,88 +331,30 @@ open class IConvCharInputStream: CharInputStream {
         init(pos: TextPosition) { self.pos = pos }
     }
 
-    /*==========================================================================================================*/
-    /// Background Reader Thread.
-    /// 
-    /// There is always the chance that the code will neglect to call `close()` before letting go of the object
-    /// and letting it go out of scope. Normally this means that the retain count would drop to 0
-    /// (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) and the runtime will deinit and deallocate the
-    /// object. But since we have a background thread that may still be running, that thread will also have a
-    /// strong reference to this object keeping it from being disposed of.
-    /// 
-    /// In order to keep the background thread from holding a strong reference on this object and keeping it alive
-    /// after everyone else has released their claim on it, the reader thread will check the retain count at least
-    /// every second. When it sees that the retain count has dropped to 1 (one) then it will know that it's the
-    /// only thing keeping this object around and so it will exit, thereby releasing it's strong reference, and
-    /// letting the object to deallocated.
-    ///
-    private func readerThread() {
-        lock.lock()
-        defer {
-            lock.broadcast()
-            lock.unlock()
+    private var inputStreamIsOpen: Bool { !Rubicon.value(inputStream.streamStatus, isOneOf: .closed, .notOpen) }
+
+    private func doBackground() -> Bool {
+        lock.withLock {
+            isRunning = doBackgroundRead()
+            if !isRunning && inputStreamIsOpen { inputStream.close() }
+            return isRunning
         }
+    }
+
+    private func doBackgroundRead() -> Bool {
         do {
-            if inputStream.streamStatus == .notOpen { inputStream.open() }
-            defer { shutdownStream() }
-            if let e = inputStream.streamError { throw e }
-            var retainCount = PGGetRetainCount(self)
-
-            //--------------------------------------------------------
-            // Only keep going if the retain count is greater than 1.
-            //
-            // NOTE: You might be tempted to do something like this:
-            //
-            //      while isOpen && PGGetRetainCount(self) > 1 {
-            //          ...
-            //      }
-            //
-            // But I found out that that causes the retain count on
-            // `self` to be incremented during the evaluation. That's
-            // why we're storing it in a local variable.
-            //--------------------------------------------------------
-            while isOpen && retainCount > 1 {
-                while isOpen && buffer.count > maxReadAhead { guard readerWait() else { return } }
-
-                //--------------------------------------------------------
-                // Only keep going if the retain count is greater than 1.
-                //--------------------------------------------------------
-                retainCount = PGGetRetainCount(self)
-                if isOpen && retainCount > 1 {
-                    let cc = try inputStream.append(to: &buffer, maxLength: readAheadBlockSize)
-                    guard cc > 0 else { break }
-                    if isReading.value == .Reading { guard readerWait() else { return } }
-                }
-                retainCount = PGGetRetainCount(self)
+            guard isOpen else { return false }
+            if inputStream.streamStatus == .notOpen {
+                inputStream.open()
+                if let e = inputStream.streamError { throw e }
             }
+            while buffer.count > maxReadAhead { guard lock.broadcastWait(until: Date(timeIntervalSinceNow: 1.0)) && isOpen else { return isOpen } }
+            let cc = try inputStream.append(to: &buffer, maxLength: readAheadBlockSize)
+            return (cc > 0)
         }
         catch let e {
             error = e
-            nDebug(.None, "ERROR> \(e)")
+            return false
         }
-    }
-
-    /*==========================================================================================================*/
-    /// Causes the reader thread to WAIT until it receives a notification. Wakes up on it's own every second to
-    /// see if the object's retain count has dropped to 1. If the retain count has dropped to 1 then this thread
-    /// is the only thing with retaining the object and so it should quit so the object can be deallocated.
-    /// 
-    /// - Returns: `true` if it received a notification from the system. `false` if the retain count has dropped
-    ///            to 1.
-    ///
-    private func readerWait() -> Bool {
-        while true {
-            lock.broadcast()
-            if lock.wait(until: Date(timeIntervalSinceNow: 1.0)) { return true }
-            let retainCount: Int = PGGetRetainCount(self)
-            guard retainCount > 1 else { return false }
-        }
-    }
-
-    private func shutdownStream() {
-        nDebug(.In, "readerThread() - Shutting stream down.")
-        defer { nDebug(.Out, "readerThread() - Shutting stream down.") }
-        isRunning = false
-        inputStream.close()
     }
 }

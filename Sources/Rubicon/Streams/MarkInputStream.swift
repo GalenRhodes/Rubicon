@@ -26,7 +26,7 @@ import CoreFoundation
 let InputBufferSize:    Int = 1_024                          //  1KB
 let MaxInputBufferSize: Int = 65_536                         // 64KB
 let ReloadTriggerSize:  Int = ((MaxInputBufferSize / 4) * 3) // 48KB
-let ReadBufferSize:     Int = 4096
+let ReadBufferSize:     Int = 4_096
 
 /*==============================================================================================================*/
 /// An <code>[input stream](https://developer.apple.com/documentation/foundation/inputstream)</code> that you can
@@ -35,11 +35,11 @@ let ReadBufferSize:     Int = 4096
 open class MarkInputStream: InputStream {
 
     #if DEBUG
-        private let maxReadAhead:       Int = 1000
-        private let readAheadBlockSize: Int = 100
+        private let maxReadAhead:       Int = 100
+        private let readAheadBlockSize: Int = 5
     #else
-        private let maxReadAhead:       Int = MAX_READ_AHEAD
-        private let readAheadBlockSize: Int = INPUT_BUFFER_SIZE
+        private let maxReadAhead:       Int = MaxInputBufferSize
+        private let readAheadBlockSize: Int = InputBufferSize
     #endif
 
     //@f:0
@@ -173,13 +173,6 @@ open class MarkInputStream: InputStream {
         self.init(inputStream: stream, maxMarkLength: maxMarkLength, autoClose: true)
     }
 
-    deinit {
-        do {
-            nDebug(.In, "DE-INIT!!!")
-            do { nDebug(.Out, "DE-INIT!!!") }
-        }
-    }
-
     /*==========================================================================================================*/
     /// Reads up to a given number of bytes into a given buffer.
     /// 
@@ -232,19 +225,15 @@ open class MarkInputStream: InputStream {
     /// be closed and reopened.
     ///
     open override func open() {
-        nDebug(.In, "open()")
-        defer { nDebug(.Out, "open()") }
         lock.withLock {
             // Only open if the stream has NEVER been opened before.
             if status == .notOpen {
                 status = .open
                 isRunning = true
                 queue.async { [weak self] in
-                    nDebug(.In, "Inside Thread Closure")
-                    defer { nDebug(.Out, "Inside Thread Closure") }
-                    if let s = self {
-                        s.readerThread()
-                    }
+                    let bytes = UnsafeMutablePointer<UInt8>.allocate(capacity: InputBufferSize)
+                    defer { bytes.deallocate() }
+                    while let s = self { guard s.doBackground(buffer: bytes, size: InputBufferSize) else { break } }
                 }
             }
         }
@@ -410,55 +399,38 @@ open class MarkInputStream: InputStream {
         readBuffer = inputBuffer
     }
 
-    private func readerThread() {
-        nDebug(.In, "readerThread")
-        lock.lock()
-        defer {
-            endThread()
-            lock.broadcast()
-            lock.unlock()
-            nDebug(.Out, "readerThread")
+    private func doBackground(buffer bytes: UnsafeMutablePointer<UInt8>, size: Int) -> Bool {
+        lock.withLock {
+            isRunning = doBackgroundRead(buffer: bytes, size: size)
+            if !isRunning && autoClose && inputStreamIsOpen { inputStream.close() }
+            return isRunning
         }
+    }
+
+    private func doBackgroundRead(buffer bytes: UnsafeMutablePointer<UInt8>, size: Int) -> Bool {
         do {
-            if isOpen {
-                if inputStream.streamStatus == .notOpen { inputStream.open() }
+            guard isOpen else { return false }
+            if inputStream.streamStatus == .notOpen {
+                inputStream.open()
                 if let e = inputStream.streamError { throw e }
-
-                let bytes = UnsafeMutablePointer<UInt8>.allocate(capacity: readAheadBlockSize)
-                defer { bytes.deallocate() }
-
-                repeat {
-                    while isOpen && (buffer.count > maxReadAhead) { guard readerWait() else { return } }
-                    guard isOpen else { break }
-
-                    let cc = inputStream.read(bytes, maxLength: readAheadBlockSize)
-                    if cc < 0 { throw inputStream.streamError ?? StreamError.UnknownError() }
-                    if cc == 0 { break }
-
-                    buffer.append(src: bytes, length: cc)
-                    // if isReading.value { guard readerWait() else { break } }
-                } while isOpen
             }
+            while isOpen && (buffer.count > maxReadAhead) { guard lock.broadcastWait(until: Date(timeIntervalSinceNow: 1.0)) else { return isOpen } }
+            guard isOpen else { return false }
+
+            let cc = inputStream.read(bytes, maxLength: size)
+            if let e = inputStream.streamError { throw e }
+            guard cc > 0 else { return false }
+
+            buffer.append(src: bytes, length: cc)
+            return true
         }
         catch let e {
             error = e
+            return false
         }
     }
 
-    private func readerWait() -> Bool {
-        while true {
-            lock.broadcast()
-            if lock.wait(until: Date(timeIntervalSinceNow: 1.0)) { return true }
-            let retainCount: Int = PGGetRetainCount(self)
-            nDebug(.None, "Retain Count - \(PGGetRetainCount(self))")
-            guard retainCount > 1 else { return false }
-        }
-    }
+    private var inputStreamIsOpen: Bool { !Rubicon.value(inputStream.streamStatus, isOneOf: Stream.Status.notOpen, Stream.Status.closed) }
 
-    private func endThread() {
-        nDebug(.In, "readerThread() - Shutting stream down.")
-        defer { nDebug(.Out, "readerThread() - Shutting stream down.") }
-        if autoClose { inputStream.close() }
-        isRunning = false
-    }
+    deinit { if autoClose && inputStreamIsOpen { inputStream.close() } }
 }

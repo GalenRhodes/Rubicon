@@ -20,19 +20,55 @@ import Foundation
 import CoreFoundation
 @testable import Rubicon
 
+class Test {
+    private lazy var queue: DispatchQueue = DispatchQueue(label: UUID().uuidString, qos: .utility, autoreleaseFrequency: .inherit)
+
+    init() {}
+
+    func start() {
+        queue.async { [weak self] in
+            while let s = self {
+                print("\(CFGetRetainCount(s))")
+                sleep(1)
+            }
+        }
+    }
+}
+
 class LongevityTests: XCTestCase {
 
     override func setUp() {}
 
     override func tearDown() {}
 
+    func testStreamLongevity2() {
+        if(true) {
+            var test = Test()
+            print("Test retain count: \(CFGetRetainCount(test))")
+            print("Test isKnownUniquelyReferenced: \(isKnownUniquelyReferenced(&test))")
+            test.start()
+            doSleep(seconds: 5)
+            if (true) {
+                var otherTest = test
+                print("Test retain count: \(CFGetRetainCount(test))")
+                print("Test isKnownUniquelyReferenced: \(isKnownUniquelyReferenced(&test))")
+                doSleep(seconds: 5)
+            }
+            print("Test retain count: \(CFGetRetainCount(test))")
+            print("Test isKnownUniquelyReferenced: \(isKnownUniquelyReferenced(&test))")
+            print("Loosing Scope.")
+        }
+        doSleep(seconds: 5)
+    }
+
     func testStreamLongevity() {
         let filename = "Tests/RubiconTests/Files/Test_UTF-8.xml"
 
-        if let stream = MarkInputStream(fileAtPath: filename) {
+        if var stream = MarkInputStream(fileAtPath: filename) {
+            nDebug(.None, "TEST> stream retain count before open() - \(CFGetRetainCount(stream)):\(isKnownUniquelyReferenced(&stream))")
             stream.open()
             doSleep(seconds: 2)
-            nDebug(.None, "TEST> stream retain count - \(PGGetRetainCount(stream))")
+            nDebug(.None, "TEST> stream retain count - \(CFGetRetainCount(stream)):\(isKnownUniquelyReferenced(&stream))")
             nDebug(.None, "TEST> stream is about to go out of scope.")
         }
         else {
@@ -46,10 +82,10 @@ class LongevityTests: XCTestCase {
 
     func testCharStreamLongevity() {
         do {
-            let stream: IConvCharInputStream = try IConvCharInputStream(filename: "Tests/RubiconTests/Files/Test_UTF-8.xml", encodingName: "UTF-8")
+            var stream: IConvCharInputStream = try IConvCharInputStream(filename: "Tests/RubiconTests/Files/Test_UTF-8.xml", encodingName: "UTF-8")
             stream.open()
             doSleep(seconds: 2)
-            nDebug(.None, "TEST> stream retain count - \(PGGetRetainCount(stream))")
+            nDebug(.None, "TEST> stream retain count - \(isKnownUniquelyReferenced(&stream))")
             nDebug(.None, "TEST> stream is about to go out of scope.")
         }
         catch let e {

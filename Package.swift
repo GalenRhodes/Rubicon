@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.4
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -11,7 +11,7 @@ let package = Package(
       .library(name: "Rubicon", targets: [ "Rubicon" ]),
   ],
   dependencies: [
-      .package(name: "RingBuffer", url: "https://github.com/GalenRhodes/RingBuffer", from: "1.0.8"),
+      .package(name: "RingBuffer", url: "https://github.com/GalenRhodes/RingBuffer", .upToNextMajor(from: "1.0.8")),
   ],
   targets: [
       .systemLibrary(name: "iconv", providers: [ .apt([ "libc6-dev" ]) ]),

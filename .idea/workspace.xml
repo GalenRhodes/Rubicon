@@ -30,7 +30,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Bah!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Text/RegularExpression.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Text/RegularExpression.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Package.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Package.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -335,14 +335,7 @@
       <workItem from="1622119932216" duration="407000" />
       <workItem from="1622207510142" duration="15670000" />
       <workItem from="1622230877545" duration="4545000" />
-      <workItem from="1622245686307" duration="348000" />
-    </task>
-    <task id="LOCAL-00133" summary="Bug fix to MarkInputStream's markDelete so characters aren't lost to when nested inside another mark.">
-      <created>1613929814965</created>
-      <option name="number" value="00133" />
-      <option name="presentableId" value="LOCAL-00133" />
-      <option name="project" value="LOCAL" />
-      <updated>1613929814965</updated>
+      <workItem from="1622245686307" duration="899000" />
     </task>
     <task id="LOCAL-00134" summary="Bug fix to MarkInputStream's markDelete so characters aren't lost to when nested inside another mark.">
       <created>1613937412476</created>
@@ -680,7 +673,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622237189294</updated>
     </task>
-    <option name="localTasksCounter" value="182" />
+    <task id="LOCAL-00182" summary="Bah!">
+      <created>1622246139632</created>
+      <option name="number" value="00182" />
+      <option name="presentableId" value="LOCAL-00182" />
+      <option name="project" value="LOCAL" />
+      <updated>1622246139633</updated>
+    </task>
+    <option name="localTasksCounter" value="183" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

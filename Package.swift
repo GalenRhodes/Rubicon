@@ -9,7 +9,7 @@ import PackageDescription
       name: "Rubicon",
       platforms: [ .macOS(.v10_15), .tvOS(.v13), .iOS(.v13), .watchOS(.v6) ],
       products: [
-          .library(name: "Rubicon", type: .dynamic, targets: [ "Rubicon" ]),
+          .library(name: "Rubicon", type: .static, targets: [ "Rubicon" ]),
       ],
       dependencies: [
           .package(name: "RingBuffer", url: "https://github.com/GalenRhodes/RingBuffer", .upToNextMajor(from: "1.0.8")),
@@ -25,7 +25,7 @@ import PackageDescription
       name: "Rubicon",
       platforms: [ .macOS(.v10_15), .tvOS(.v13), .iOS(.v13), .watchOS(.v6) ],
       products: [
-          .library(name: "Rubicon", type: .dynamic, targets: [ "Rubicon" ]),
+          .library(name: "Rubicon", type: .static, targets: [ "Rubicon" ]),
       ],
       dependencies: [
           .package(name: "RingBuffer", url: "https://github.com/GalenRhodes/RingBuffer", .upToNextMajor(from: "1.0.8")),

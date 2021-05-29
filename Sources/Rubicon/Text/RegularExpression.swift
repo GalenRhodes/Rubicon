@@ -28,12 +28,12 @@ import CoreFoundation
 
 /*==============================================================================================================*/
 /// RegularExpression is a replacement for NSRegularExpression that is much more Swift friendly.
-///
+/// 
 /// A Note about the methods that take closures: I know that having these methods as throws rather than a rethrows
 /// is not ideal but given that NSRegularExpression, which we’re actually using underneath, doesn’t allow it’s
 /// closure to be throws sort of leaves us no choice. At least I haven’t found an easy way around it. So I decided
 /// to have these methods as throws and in the future, if we can fix this issue, make them rethrows then.
-///
+/// 
 /// BLOG Post with Examples: [I, Introvert - A Better
 /// RegularExpression](https://blog.projectgalen.com/2021/02/12/a-better-regularexpression/)
 ///
@@ -162,7 +162,7 @@ open class RegularExpression {
     /*==========================================================================================================*/
     /// Returns an initialized `RegularExpression` instance with the specified regular expression pattern and
     /// options. If an error occurs then `nil` is returned.
-    ///
+    /// 
     /// - Parameters:
     ///   - pattern: The regular expression pattern.
     ///   - options: The options.
@@ -182,7 +182,7 @@ open class RegularExpression {
     /*==========================================================================================================*/
     /// Returns an initialized `RegularExpression` instance with the specified regular expression pattern and
     /// options. If an error occurs then `nil` is returned.
-    ///
+    /// 
     /// - Parameters:
     ///   - pattern: The regular expression pattern.
     ///   - options: The options.
@@ -195,14 +195,14 @@ open class RegularExpression {
     /*==========================================================================================================*/
     /// Returns a string by adding backslash escapes as necessary to protect any characters that would match as
     /// pattern metacharacters.
-    ///
+    /// 
     /// Returns a string by adding backslash escapes as necessary to the given string, to escape any characters
     /// that would otherwise be treated as pattern metacharacters. You typically use this method to match on a
     /// particular string within a larger pattern.
-    ///
+    /// 
     /// For example, the string "(N/A)" contains the pattern metacharacters (, /, and ). The result of adding
     /// backslash escapes to this string is "\\(N\\/A\\)".
-    ///
+    /// 
     /// - Parameter string: the string.
     /// - Returns: The escaped string.
     ///
@@ -211,16 +211,16 @@ open class RegularExpression {
     /*==========================================================================================================*/
     /// Returns a template string by adding backslash escapes as necessary to protect any characters that would
     /// match as pattern metacharacters
-    ///
+    /// 
     /// Returns a string by adding backslash escapes as necessary to the given string, to escape any characters
     /// that would otherwise be treated as pattern metacharacters. You typically use this method to match on a
     /// particular string within a larger pattern.
-    ///
+    /// 
     /// For example, the string "(N/A)" contains the pattern metacharacters (, /, and ). The result of adding
     /// backslash escapes to this string is "\\(N\\/A\\)".
-    ///
+    /// 
     /// See Flag Options for the format of the resulting template string.
-    ///
+    /// 
     /// - Parameter string: the template string.
     /// - Returns: The escaped template string.
     ///
@@ -228,7 +228,7 @@ open class RegularExpression {
 
     /*==========================================================================================================*/
     /// Returns the number of matches of the regular expression within the specified range of the string.
-    ///
+    /// 
     /// - Parameters:
     ///   - str: The search string.
     ///   - options: The matching options to use. See `RegularExpression.MatchingOptions` for possible values.
@@ -241,7 +241,7 @@ open class RegularExpression {
 
     /*==========================================================================================================*/
     /// Returns the range of the first match.
-    ///
+    /// 
     /// - Parameters:
     ///   - str: The search string.
     ///   - options: The matching options to use. See `RegularExpression.MatchingOptions` for possible values.
@@ -254,7 +254,7 @@ open class RegularExpression {
 
     /*==========================================================================================================*/
     /// Returns the first `RegularExpression.Match` found in the search string.
-    ///
+    /// 
     /// - Parameters:
     ///   - str: The search string.
     ///   - options: The matching options to use. See `RegularExpression.MatchingOptions` for possible values.
@@ -269,7 +269,7 @@ open class RegularExpression {
 
     /*==========================================================================================================*/
     /// Returns all of the `RegularExpression.Match`s found in the search string.
-    ///
+    /// 
     /// - Parameters:
     ///   - str: The search string.
     ///   - options: The matching options to use. See `RegularExpression.MatchingOptions` for possible values.
@@ -283,62 +283,62 @@ open class RegularExpression {
 
     /*==========================================================================================================*/
     /// Enumerates the string allowing the Block to handle each regular expression match.
-    ///
+    /// 
     /// <b>NOTE:</b> Having this as a throwing function rather than a rethrowing function is not ideal but given
     /// that NSRegularExpression doesn't allow the closure to throw anything sort of removes that option from us.
     /// At least I haven't found an easy way around it. So I decided to have to have this method `throws` and in
     /// the future, if we can fix this issue, make it `rethrows` then.
-    ///
+    /// 
     /// This method is the fundamental matching method for regular expressions and is suitable for overriding by
     /// subclassers. There are additional convenience methods for returning all the matches as an array, the total
     /// number of matches, the first match, and the range of the first match.
-    ///
+    /// 
     /// By default, the Block iterator method calls the Block precisely once for each match, with a non-`nil`
     /// match and the appropriate flags. The client may then stop the operation by returning `true` from the block
     /// instead of `false`.
-    ///
+    /// 
     /// If the `RegularExpression.MatchingOptions.reportProgress` matching option is specified, the Block will
     /// also be called periodically during long-running match operations, with `nil` result and progress matching
     /// flag set in the Block’s flags parameter, at which point the client may again stop the operation by
     /// returning `true` instead of `false`.
-    ///
+    /// 
     /// If the `RegularExpression.MatchingOptions.reportCompletion` matching option is specified, the Block object
     /// will be called once after matching is complete, with `nil` result and the completed matching flag is set
     /// in the flags passed to the Block, plus any additional relevant `RegularExpression.MatchingFlags` from
     /// among `RegularExpression.MatchingFlags.hitEnd`, `RegularExpression.MatchingFlags.requiredEnd`, or
     /// `RegularExpression.MatchingFlags.internalError`.
-    ///
+    /// 
     /// `RegularExpression.MatchingFlags.progress` and `RegularExpression.MatchingFlags.completed` matching flags
     /// have no effect for methods other than this method.
-    ///
+    /// 
     /// The `RegularExpression.MatchingFlags.hitEnd` matching flag is set in the flags passed to the Block if the
     /// current match operation reached the end of the search range. The
     /// `RegularExpression.MatchingFlags.requiredEnd` matching flag is set in the flags passed to the Block if the
     /// current match depended on the location of the end of the search range.
-    ///
+    /// 
     /// The `RegularExpression.MatchingFlags` matching flag is set in the flags passed to the block if matching
     /// failed due to an internal error (such as an expression requiring exponential memory allocations) without
     /// examining the entire search range.
-    ///
+    /// 
     /// The `RegularExpression.Options.anchored`, `RegularExpression.Options.withTransparentBounds`, and
     /// `RegularExpression.Options.withoutAnchoringBounds` regular expression options, specified in the options
     /// property specified when the regular expression instance is created, can apply to any match or replace
     /// method.
-    ///
+    /// 
     /// If `RegularExpression.Options.anchored` matching option is specified, matches are limited to those at the
     /// start of the search range.
-    ///
+    /// 
     /// If `RegularExpression.Options.withTransparentBounds` matching option is specified, matching may examine
     /// parts of the string beyond the bounds of the search range, for purposes such as word boundary detection,
     /// lookahead, etc.
-    ///
+    /// 
     /// If `RegularExpression.Options.withoutAnchoringBounds` matching option is specified, ^ and $ will not
     /// automatically match the beginning and end of the search range, but will still match the beginning and end
     /// of the entire string.
-    ///
+    /// 
     /// `RegularExpression.Options.withTransparentBounds` and `RegularExpression.Options.withoutAnchoringBounds`
     /// matching options have no effect if the search range covers the entire string.
-    ///
+    /// 
     /// - Parameters:
     ///   - str: The search string.
     ///   - options: The matching options to report. See `RegularExpression.MatchingOptions` for the supported
@@ -372,15 +372,15 @@ open class RegularExpression {
 
     /*==========================================================================================================*/
     /// Enumerates the string allowing the Block to handle each regular expression match.
-    ///
+    /// 
     /// This method is the fundamental matching method for regular expressions and is suitable for overriding by
     /// subclassers. There are additional convenience methods for returning all the matches as an array, the total
     /// number of matches, the first match, and the range of the first match.
-    ///
+    /// 
     /// By default, the Block iterator method calls the Block precisely once for each match, with an array of the
     /// `RegularExpression.Group`s representing each capture group. The client may then stop the operation by
     /// returning `true` from the block instead of `false`.
-    ///
+    /// 
     /// - Parameters:
     ///   - str: The search string.
     ///   - options: The matching options to report. See `RegularExpression.MatchingOptions` for the supported
@@ -402,7 +402,7 @@ open class RegularExpression {
 
     /*==========================================================================================================*/
     /// Enumerates the string allowing the Block to handle each regular expression match.
-    ///
+    /// 
     /// - Parameters:
     ///   - str: The search string.
     ///   - options: The matching options to report. See `RegularExpression.MatchingOptions` for the supported
@@ -429,7 +429,7 @@ open class RegularExpression {
     /// capture group, and so on. Additional digits beyond the maximum required to represent the number of capture
     /// groups will be treated as ordinary characters, as will a $ not followed by digits. Backslash will escape
     /// both $ and itself.
-    ///
+    /// 
     /// - Parameters:
     ///   - string: The string.
     ///   - options: The match options.
@@ -446,7 +446,7 @@ open class RegularExpression {
     /*==========================================================================================================*/
     /// This method will perform a find-and-replace on the provided string by calling the closure for each match
     /// found in the source string and replacing it with the string returned by the closure.
-    ///
+    /// 
     /// - Parameters:
     ///   - str: The source string.
     ///   - options: The match options.
@@ -543,7 +543,7 @@ open class RegularExpression {
 
         /*======================================================================================================*/
         /// Returns a named capture group.
-        ///
+        /// 
         /// - Parameter name: the name of the capture group
         /// - Returns: The named capture group or `nil` if the capture group does not exist.
         ///
@@ -560,7 +560,7 @@ open class RegularExpression {
 
         /*======================================================================================================*/
         /// Returns the capture group for the given index.
-        ///
+        /// 
         /// - Parameter position: the index which must be between `startIndex` <= index < `endIndex`.
         /// - Returns: The capture group.
         ///
@@ -568,7 +568,7 @@ open class RegularExpression {
 
         /*======================================================================================================*/
         /// The index after the one given.
-        ///
+        /// 
         /// - Parameter i: the index.
         /// - Returns: The next index.
         ///
@@ -576,7 +576,7 @@ open class RegularExpression {
 
         /*======================================================================================================*/
         /// Returns an iterator over all the capture groups.
-        ///
+        /// 
         /// - Returns: An iterator.
         ///
         public func makeIterator() -> Iterator { Iterator(match: self) }
@@ -594,7 +594,7 @@ open class RegularExpression {
 
             /*==================================================================================================*/
             /// Get the next element.
-            ///
+            /// 
             /// - Returns: The next element or `nil` if there are no more elements.
             ///
             public func next() -> Element? { (index < match.groups.endIndex ? match.groups[index++] : nil) }
@@ -655,7 +655,7 @@ public typealias RegExResult = NSTextCheckingResult
 /// Convienience function to build an instance of
 /// <code>[RegEx](https://developer.apple.com/documentation/foundation/nsregularexpression/)</code> that includes
 /// the option to have anchors ('^' and '$') match the beginning and end of lines instead of the entire input.
-///
+/// 
 /// - Parameter pattern: the regular expression pattern.
 /// - Returns: The instance of
 ///            <code>[RegEx](https://developer.apple.com/documentation/foundation/nsregularexpression/)</code>

@@ -48,26 +48,26 @@ open class MarkInputStream: InputStream {
     /// has bytes available to read, otherwise `false`. May also return `true` if a read must be attempted in
     /// order to determine the availability of bytes.
     ///
-    open override var hasBytesAvailable: Bool                         { lock.withLock { effOpen    } }
+    open override var hasBytesAvailable: Bool                         { lock.withLock { (effStatus == .open) } }
     /*==========================================================================================================*/
     /// Returns the receiver’s status.
     ///
-    open override var streamStatus:      Stream.Status                { lock.withLock { effStatus  } }
+    open override var streamStatus:      Stream.Status                { lock.withLock { effStatus            } }
     /*==========================================================================================================*/
     /// Returns an NSError object representing the stream error.
     ///
-    open override var streamError:       Error?                       { lock.withLock { error      } }
+    open override var streamError:       Error?                       { lock.withLock { error                } }
     /*==========================================================================================================*/
     /// The number of marked positions for this stream.
     ///
-    open          var markCount:         Int                          { lock.withLock { mstk.count } }
+    open          var markCount:         Int                          { lock.withLock { mstk.count           } }
     public        var maxMarkLength:     Int                          = Int.max
 
-    private  lazy var queue:             DispatchQueue                = DispatchQueue(label: UUID().uuidString, qos: .utility, autoreleaseFrequency: .inherit)
     private  lazy var buffer:            RingByteBuffer               = RingByteBuffer(initialCapacity: InputBufferSize)
     private  lazy var isReading:         AtomicValue                  = AtomicValue(initialValue: false)
     private  lazy var lock:              Conditional                  = Conditional()
     private  lazy var mstk:              [RingByteBuffer]             = []
+    private       var thread:            Thread?                      = nil
     private       var error:             Error?                       = nil
     private       var readBuffer:        UnsafeMutablePointer<UInt8>? = nil
     private       var status:            Stream.Status                = .notOpen
@@ -75,10 +75,8 @@ open class MarkInputStream: InputStream {
     private       let autoClose:         Bool
     private       let inputStream:       InputStream
 
-    private       var isOpen:            Bool                         { (status == .open)                  }
-    private       var effOpen:           Bool                         { (effStatus == .open)               }
-    private       var nErr:              Bool                         { (error == nil)                     }
-    private       var effStatus:         Stream.Status                { (isOpen ? (buffer.isEmpty ? (nErr ? (isRunning ? .open : .atEnd) : .error) : .open) : status) }
+    private       var effStatus:         Stream.Status                { ((status == .open) ? (buffer.isEmpty ? ((error == nil) ? (isRunning ? .open : .atEnd) : .error) : .open) : status)  }
+    private       var inputStreamIsOpen: Bool                         { ((inputStream.streamStatus != .notOpen) && (inputStream.streamStatus != .closed))                                   }
     //@f:1
 
     /*==========================================================================================================*/
@@ -230,11 +228,13 @@ open class MarkInputStream: InputStream {
             if status == .notOpen {
                 status = .open
                 isRunning = true
-                queue.async { [weak self] in
+                thread = Thread { [weak self] in
                     let bytes = UnsafeMutablePointer<UInt8>.allocate(capacity: InputBufferSize)
                     defer { bytes.deallocate() }
                     while let s = self { guard s.doBackground(buffer: bytes, size: InputBufferSize) else { break } }
                 }
+                thread?.qualityOfService = .utility
+                thread?.start()
             }
         }
     }
@@ -264,7 +264,7 @@ open class MarkInputStream: InputStream {
     /*==========================================================================================================*/
     /// Marks the current position in the stream.
     ///
-    open func markSet() { lock.withLock { if effOpen { setMark() } } }
+    open func markSet() { lock.withLock { if (effStatus == .open) { setMark() } } }
 
     /*==========================================================================================================*/
     /// Returns to the last marked position in the stream.
@@ -293,7 +293,7 @@ open class MarkInputStream: InputStream {
     ///
     private func lastMark(_ body: (RingByteBuffer) -> Void) {
         lock.withLock {
-            if effOpen {
+            if (effStatus == .open) {
                 if let rb = mstk.last {
                     body(rb)
                     rb.clear(keepingCapacity: true)
@@ -312,7 +312,7 @@ open class MarkInputStream: InputStream {
     ///
     private func popMark(_ body: (RingByteBuffer) -> Void) {
         lock.withLock {
-            if effOpen {
+            if (effStatus == .open) {
                 if let rb = mstk.popLast() {
                     body(rb)
                     rb.clear(keepingCapacity: false)
@@ -339,16 +339,16 @@ open class MarkInputStream: InputStream {
     private func read(to buf: UnsafeMutablePointer<UInt8>, maxLength len: Int) -> Int {
         var cc = 0
 
-        if effOpen {
+        if (effStatus == .open) {
             resetReadBuffer()
 
             while cc < len {
                 // We're not looking for an error because if there was an error then isRunning would be false.
-                while isOpen && buffer.isEmpty && isRunning { lock.broadcastWait() }
+                while (status == .open) && buffer.isEmpty && isRunning { lock.broadcastWait() }
 
                 guard buffer.hasBytesAvailable else {
-                    guard nErr else { return -1 }
-                    guard isOpen && isRunning else { break }
+                    guard (error == nil) else { return -1 }
+                    guard (status == .open) && isRunning else { break }
                     continue
                 }
 
@@ -399,6 +399,14 @@ open class MarkInputStream: InputStream {
         readBuffer = inputBuffer
     }
 
+    /*==========================================================================================================*/
+    /// Start a background read.
+    /// 
+    /// - Parameters:
+    ///   - bytes: The buffer to use for the input.
+    ///   - size: The size of the buffer.
+    /// - Returns: `true` if this method can be called again.
+    ///
     private func doBackground(buffer bytes: UnsafeMutablePointer<UInt8>, size: Int) -> Bool {
         lock.withLock {
             isRunning = doBackgroundRead(buffer: bytes, size: size)
@@ -407,20 +415,26 @@ open class MarkInputStream: InputStream {
         }
     }
 
+    /*==========================================================================================================*/
+    /// Read a chunk of data from the input stream.
+    /// 
+    /// - Parameters:
+    ///   - bytes: The buffer to use for the input.
+    ///   - size: The size of the buffer.
+    /// - Returns: `true` if this method can be called again.
+    ///
     private func doBackgroundRead(buffer bytes: UnsafeMutablePointer<UInt8>, size: Int) -> Bool {
         do {
-            guard isOpen else { return false }
+            guard (status == .open) else { return false }
             if inputStream.streamStatus == .notOpen {
                 inputStream.open()
                 if let e = inputStream.streamError { throw e }
             }
-            while isOpen && (buffer.count > maxReadAhead) { guard lock.broadcastWait(until: Date(timeIntervalSinceNow: 1.0)) else { return isOpen } }
-            guard isOpen else { return false }
-
+            while (status == .open) && (buffer.count > maxReadAhead) { guard lock.broadcastWait(until: Date(timeIntervalSinceNow: 1.0)) else { return (status == .open) } }
+            guard (status == .open) else { return false }
             let cc = inputStream.read(bytes, maxLength: size)
             if let e = inputStream.streamError { throw e }
             guard cc > 0 else { return false }
-
             buffer.append(src: bytes, length: cc)
             return true
         }
@@ -430,7 +444,8 @@ open class MarkInputStream: InputStream {
         }
     }
 
-    private var inputStreamIsOpen: Bool { !Rubicon.value(inputStream.streamStatus, isOneOf: Stream.Status.notOpen, Stream.Status.closed) }
-
-    deinit { if autoClose && inputStreamIsOpen { inputStream.close() } }
+    deinit {
+        resetReadBuffer()
+        if autoClose && inputStreamIsOpen { inputStream.close() }
+    }
 }

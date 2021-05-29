@@ -62,7 +62,7 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
     private      var isRunning:         Bool          = false
     private      var error:             Error?        = nil
     private lazy var buffer:            [Character]   = []
-    private lazy var queue:             DispatchQueue = DispatchQueue(label: UUID().uuidString, qos: .utility, autoreleaseFrequency: .workItem)
+    private      var thread:            Thread?       = nil
 
     private      var isOpen:            Bool          { (status == .open)                }
     private      var nErr:              Bool          { (error == nil)                   }
@@ -117,7 +117,7 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
             guard status == .notOpen else { return }
             status = .open
             isRunning = true
-            queue.async { [weak self] in
+            thread = Thread { [weak self] in
                 var hangingCR = false
                 let input     = EasyByteBuffer(length: INPUT_BUFFER_SIZE)
                 let output    = EasyByteBuffer(length: OUTPUT_BUFFER_SIZE)
@@ -125,6 +125,8 @@ open class SimpleIConvCharInputStream: SimpleCharInputStream {
                 defer { iconv.close() }
                 while let s = self { guard s.doBackground(iconv, input, output, &hangingCR) else { break } }
             }
+            thread?.qualityOfService = .utility
+            thread?.start()
         }
     }
 

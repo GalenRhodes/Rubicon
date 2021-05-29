@@ -85,7 +85,7 @@ open class IConvCharInputStream: CharInputStream {
     private lazy var marks:             [MarkItem]    = []
     private      var tab:               Int8          = 4
     private lazy var lock:              Conditional   = Conditional()
-    private lazy var queue:             DispatchQueue = DispatchQueue(label: UUID().uuidString, qos: .utility, autoreleaseFrequency: .inherit)
+    private      var thread:            Thread?       = nil
     private      var pos:               TextPosition  = (0, 0)
     private      var error:             Error?        = nil
     private      var status:            Stream.Status = .notOpen
@@ -128,7 +128,9 @@ open class IConvCharInputStream: CharInputStream {
             pos = (1, 1)
             status = .open
             isRunning = true
-            queue.async { [weak self] in while let s = self { guard s.doBackground() else { break } } }
+            thread = Thread { [weak self] in while let s = self { guard s.doBackground() else { break } } }
+            thread?.qualityOfService = .utility
+            thread?.start()
         }
     }
 

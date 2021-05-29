@@ -34,7 +34,7 @@ open class PGThread: Thread {
 
     private let cond: Conditional = Conditional()
 
-    public private(set) var isDone:    Bool = true
+    public private(set) var isDone:    Bool = false
     public private(set) var isStarted: Bool = false
 
     /*==========================================================================================================*/
@@ -80,9 +80,9 @@ open class PGThread: Thread {
     }
 
     /*==========================================================================================================*/
-    /// The main function.
+    /// The main function. We're making this final because we don't want it overridden.
     ///
-    public override func main() {
+    public override final func main() {
         block()
         cond.withLock { isDone = true }
     }
@@ -90,13 +90,7 @@ open class PGThread: Thread {
     /*==========================================================================================================*/
     /// Waits for the thread to finish executing.
     ///
-    public func join() {
-        cond.withLock {
-            if isStarted {
-                while !isDone { cond.wait() }
-            }
-        }
-    }
+    public func join() { cond.withLock { if isStarted { while !isDone { cond.broadcastWait() } } } }
 
     /*==========================================================================================================*/
     /// Waits until the given date for the thread to finish executing.
@@ -109,7 +103,7 @@ open class PGThread: Thread {
     public func join(until limit: Date) -> Bool {
         cond.withLock {
             guard isStarted else { return false }
-            while !isDone { guard cond.wait(until: limit) else { return false } }
+            while !isDone { guard cond.broadcastWait(until: limit) else { return false } }
             return true
         }
     }

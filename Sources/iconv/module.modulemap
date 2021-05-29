@@ -1,4 +1,4 @@
 module iconv [system] {
-     header "iconv.h"
+    header "iconv.h"
     export *
 }

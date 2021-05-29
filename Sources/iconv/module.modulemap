@@ -1,3 +1,4 @@
-module iconv {
-    umbrella header "iconv.h"
+module iconv [system] {
+     header "iconv.h"
+    export *
 }

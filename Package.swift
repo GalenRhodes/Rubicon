@@ -31,7 +31,7 @@ import PackageDescription
           .package(name: "RingBuffer", url: "https://github.com/GalenRhodes/RingBuffer", .upToNextMajor(from: "1.0.8")),
       ],
       targets: [
-          .target(name: "iconv", dependencies: []),
+          .systemLibrary(name: "iconv"),
           .target(name: "Rubicon", dependencies: [ "RingBuffer", "iconv" ], exclude: [ "Info.plist" ]),
           .testTarget(name: "RubiconTests", dependencies: [ "Rubicon" ], exclude: [ "Info.plist" ], resources: [ .copy("Files") ]),
       ]

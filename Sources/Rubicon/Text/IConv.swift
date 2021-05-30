@@ -22,7 +22,7 @@
 
 import Foundation
 import CoreFoundation
-#if os(Linux)
+#if os(Linux) || os(WASI)
     import iconv
 #endif
 
@@ -73,7 +73,7 @@ open class IConv {
 
     /*==========================================================================================================*/
     /// Create a new instance of IConv.
-    ///
+    /// 
     /// - Parameters:
     ///   - toEncoding: The target encoding name.
     ///   - fromEncoding: The source encoding name.
@@ -105,7 +105,7 @@ open class IConv {
 
     /*==========================================================================================================*/
     /// Reset the converter.
-    ///
+    /// 
     /// - Returns: `Results.OK` if successful. `Results.OtherError` if not successful.
     ///
     open func reset() -> Results {
@@ -120,7 +120,7 @@ open class IConv {
 
     /*==========================================================================================================*/
     /// Convert the contents of the `input` buffer and store in the `output` buffer.
-    ///
+    /// 
     /// - Parameters:
     ///   - input: The input buffer.
     ///   - length: The number of bytes in the input buffer.
@@ -142,7 +142,7 @@ open class IConv {
 
     /*==========================================================================================================*/
     /// Convert the contents of the `input` buffer and store in the `output` buffer.
-    ///
+    /// 
     /// - Parameters:
     ///   - input: The input buffer.
     ///   - output: The output buffer.
@@ -163,7 +163,7 @@ open class IConv {
     /*==========================================================================================================*/
     /// Do the final conversion step after all of the input has been processed to get any deferred conversions
     /// that might be waiting.
-    ///
+    /// 
     /// - Parameters:
     ///   - output: The output buffer.
     ///   - maxLength: The maximum length of the output buffer.
@@ -182,7 +182,7 @@ open class IConv {
     /*==========================================================================================================*/
     /// Do the final conversion step after all of the input has been processed to get any deferred conversions
     /// that might be waiting.
-    ///
+    /// 
     /// - Parameter o: the output buffer.
     /// - Returns: The `Results`.
     ///
@@ -197,7 +197,7 @@ open class IConv {
     /*==========================================================================================================*/
     /// Convert the contents of the input stream. This method reads the input stream in 1,024 byte chunks,
     /// converts those bytes, and then calls the give closure with the results of that conversion.
-    ///
+    /// 
     /// - Parameters:
     ///   - inputStream: The input stream.
     ///   - body: The closure to handle each converted chunk.
@@ -220,7 +220,7 @@ open class IConv {
 
     /*==========================================================================================================*/
     /// Convert a chunk of data.
-    ///
+    /// 
     /// - Parameters:
     ///   - ioRes: The number of bytes read from the input stream.
     ///   - inBuff: The input buffer.
@@ -244,23 +244,17 @@ open class IConv {
 
     /*==========================================================================================================*/
     /// Get the list of available encodings.
-    ///
+    /// 
     /// - Returns: An array of strings.
     ///
     private static func getEncodingsList() -> [String] {
-        let data = UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>.allocate(capacity: MaxEncodings)
-        data.initialize(repeating: nil, count: MaxEncodings)
+        var stdout: String   = ""
+        var stderr: String   = ""
+        let def:    [String] = [ "UTF-8" ]
 
-        defer {
-            for i in (0 ..< MaxEncodings) { if let p: UnsafeMutablePointer<Int8> = data[i] { p.deallocate() } }
-            data.deallocate()
-        }
+        guard let exePath = which(name: "iconv") else { return def }
 
-        var path: String = ""
-        var stdout: String = ""
-        var stderr: String = ""
-        guard execute(exec: "which", args: ["iconv"], stderr: &stderr, stdout: &path)
-        if execute(exec: "/usr/bin/iconv", args: [ "-l" ], stderr: &stderr, stdout: &stdout) {
+        if execute(exec: exePath, args: [ "-l" ], stderr: &stderr, stdout: &stdout) {
             #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
                 let results = Set<String>(stdout.split(on: "\\s+", limit: 0))
             #else
@@ -269,13 +263,13 @@ open class IConv {
             return Array<String>(results).sorted()
         }
         else {
-            return [ "UTF-8" ]
+            return def
         }
     }
 
     /*==========================================================================================================*/
     /// Convert the data returned from the call to `iconv(_ :, _:, _:, _:, _:)` to a `Response` tuple.
-    ///
+    /// 
     /// - Parameters:
     ///   - res: The results returned from the call.
     ///   - inUsed: The number of input bytes used.
@@ -293,47 +287,6 @@ open class IConv {
         }
     }
 }
-
-/*==============================================================================================================*/
-/// Copy a NULL terminated C string.
-///
-/// - Parameter str: a pointer to the C string.
-/// - Returns: The copy of the C string.
-///
-fileprivate func CopyStr(_ str: UnsafePointer<Int8>) -> UnsafeMutablePointer<Int8> {
-    let len = StrLen(str)
-    let x   = UnsafeMutablePointer<Int8>.allocate(capacity: len)
-    x.initialize(from: str, count: len)
-    return x
-}
-
-/*==============================================================================================================*/
-/// Get the next free index.
-///
-/// - Parameter data: the data array.
-/// - Returns: The next free index or `nil` if the array is full.
-///
-fileprivate func NextSlot(_ data: UnsafeMutablePointer<UnsafeMutablePointer<Int8>?>) -> Int? {
-    for i in (0 ..< MaxEncodings) { if data[i] == nil { return i } }
-    return nil
-}
-
-/*==============================================================================================================*/
-/// Get the length of a NULL terminated C string.
-///
-/// - Parameter str: the C string.
-/// - Returns: It's length.
-///
-fileprivate func StrLen(_ str: UnsafePointer<Int8>) -> Int {
-    var len = 0
-    while str[len] != 0 { len += 1 }
-    return len + 1
-}
-
-/*==============================================================================================================*/
-/// The maximum number of encoding names to list.
-///
-fileprivate let MaxEncodings: Int = 5_000
 
 /*==============================================================================================================*/
 /// A private property wrapper for the iconv handle to convert a `-1` to a `nil`.

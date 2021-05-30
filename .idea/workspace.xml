@@ -337,14 +337,9 @@
       <workItem from="1622207510142" duration="15670000" />
       <workItem from="1622230877545" duration="4545000" />
       <workItem from="1622245686307" duration="4901000" />
-      <workItem from="1622314643130" duration="6542000" />
-    </task>
-    <task id="LOCAL-00142" summary="Corrected some documentation.">
-      <created>1616927830208</created>
-      <option name="number" value="00142" />
-      <option name="presentableId" value="LOCAL-00142" />
-      <option name="project" value="LOCAL" />
-      <updated>1616927830209</updated>
+      <workItem from="1622314643130" duration="6558000" />
+      <workItem from="1622327047299" duration="5203000" />
+      <workItem from="1622337169447" duration="255000" />
     </task>
     <task id="LOCAL-00143" summary="Created SimpleCharInputStream and SimpleIConvCharInputStream.">
       <created>1617048811259</created>
@@ -682,7 +677,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622319704889</updated>
     </task>
-    <option name="localTasksCounter" value="191" />
+    <task id="LOCAL-00191" summary="It seems that GCD on Linux has serious issues. So I switched to normal threads until the issues get resolved.">
+      <created>1622324905727</created>
+      <option name="number" value="00191" />
+      <option name="presentableId" value="LOCAL-00191" />
+      <option name="project" value="LOCAL" />
+      <updated>1622324905727</updated>
+    </task>
+    <option name="localTasksCounter" value="192" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

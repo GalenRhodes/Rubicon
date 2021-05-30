@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>RecursiveLock Extension Reference</title>
+    <title>--(_:) Function Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -13,8 +13,8 @@
     <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Extension/RecursiveLock" class="dashAnchor"></a>
-    <a title="RecursiveLock Extension Reference"></a>
+    <a name="//apple_ref/swift/Function/--(_:)" class="dashAnchor"></a>
+    <a title="--(_:) Function Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Rubicon©</a> (60% documented)</p>
@@ -30,7 +30,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        RecursiveLock Extension Reference
+        --(_:) Function Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -591,53 +591,45 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>RecursiveLock</h1>
+            <h1>--(_:)</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt"><a href="../Typealiases/RecursiveLock.html">RecursiveLock</a></span><span class="p">:</span> <span class="kt"><a href="../Protocols/Locking.html">Locking</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="k">postfix</span> <span class="kd">func</span> <span class="o">--</span> <span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">operand</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">FixedWidthInteger</span></code></pre>
 
                 </div>
               </div>
-            
+            <p>Implements the <code>--</code> postfix operator as found in C, C++, Objective-C, Java, and many other languages.</p>
+
+              <div>
+                <h4>Parameters</h4>
+                <table class="graybox">
+                  <tbody>
+                      <tr>
+                        <td>
+                          <code>
+                          <em>operand</em>
+                          </code>
+                        </td>
+                        <td>
+                          <div>
+                            <p>the integer variable.</p>
+                          </div>
+                        </td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div>
+                <h4>Return Value</h4>
+                <p>The value of the <code>operand</code> BEFORE decrementing it&rsquo;s value by 1.</p>
+              </div>
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/NSLock.swift#L69-L71">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/MathTools.swift#L112-L116">Show on GitHub</a>
               </div>
           </section>
           <section class="section task-group-section">
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:So15NSRecursiveLockC7RubiconE03tryB0SbyF"></a>
-                    <a name="//apple_ref/swift/Method/tryLock()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:So15NSRecursiveLockC7RubiconE03tryB0SbyF">tryLock()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tryLock</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/NSLock.swift#L">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
           </section>
         </section>
         <section id="footer">

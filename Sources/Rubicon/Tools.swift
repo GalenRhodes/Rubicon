@@ -595,19 +595,15 @@ public func nDebug(_ nestType: NestType = .None, _ obj: Any..., separator: Strin
             if obj.isEmpty {
                 switch nestType {
                     case .None: break
-                    case .In: nestLevel++
-                    case .Out: if nestLevel > 0 { nestLevel-- }
+                    case .In:   nestLevel++
+                    case .Out:  if nestLevel > 0 { nestLevel-- }
                 }
             }
             else {
                 switch nestType {
-                    case .None:
-                        nDebugIndent(nestLevel, &str, "  | ")
-                    case .In:
-                        nDebugIndent(nestLevel++, &str, ">>> ")
-                    case .Out:
-                        if nestLevel > 0 { nDebugIndent(--nestLevel, &str, "<<< ") }
-                        else { nDebugIndent(nestLevel, &str, "<<< ") }
+                    case .None: nDebugIndent(nestLevel, &str, "  | ")
+                    case .In:   nDebugIndent(nestLevel++, &str, ">>> ")
+                    case .Out:  nDebugIndent(nestLevel > 0 ? --nestLevel : nestLevel, &str, "<<< ")
                 }
 
                 str.append("\(obj[obj.startIndex])")
@@ -633,102 +629,159 @@ public func nDebug(_ nestType: NestType = .None, _ obj: Any..., separator: Strin
 /// Execute a program and capture it's output.
 /// 
 /// - Parameters:
-///   - exec:
-///   - args:
-///   - stderr:
-///   - stdout:
-/// - Returns:
+///   - exec: The program to execute.
+///   - args: The command line arguments for the program.
+///   - stdout: The instance of Data to receive the standard output.
+///   - stderr: The instance of Data to receive the standard error.
+/// - Returns: The numeric exit status code returned from the executed program.
 ///
-public func execute(exec: String, args: [String], stderr: inout String, stdout: inout String) -> Bool {
-    var _stderr:    String  = ""
-    var _stdout:    String  = ""
-    let proc:       Process = Process()
-    let pipeStdout: Pipe    = Pipe()
-    let pipeStderr: Pipe    = Pipe()
+public func execute(exec: String, args: [String], stdout: inout Data, stderr: inout Data) -> Int {
+    var _stdout: Data    = Data()
+    var _stderr: Data    = Data()
+    let pipeOut: Pipe    = Pipe()
+    let pipeErr: Pipe    = Pipe()
+    let proc:    Process = Process()
 
     proc.executableURL = URL(fileURLWithPath: exec)
     proc.arguments = args
-    proc.standardOutput = pipeStdout
-    proc.standardError = pipeStderr
+    proc.standardOutput = pipeOut
+    proc.standardError = pipeErr
 
     do {
         try proc.run()
     }
     catch let e {
-        stderr = "\(e)"
-        return false
+        let err = "\(e)"
+        stderr = Data(err.utf8)
+        #if DEBUG
+            FileHandle.standardError.write(stderr)
+        #endif
+        return -1
     }
 
-    let threadStdout = PGThread(startNow: true, qualityOfService: .utility) { _stdout = readFromPipe(pipe: pipeStdout) }
-    let threadStderr = PGThread(startNow: true, qualityOfService: .utility) { _stderr = readFromPipe(pipe: pipeStderr) }
+    let threadOut = PGThread(startNow: true, qualityOfService: .utility) { _stdout = pipeOut.fileHandleForReading.readDataToEndOfFile() }
+    let threadErr = PGThread(startNow: true, qualityOfService: .utility) { _stderr = pipeErr.fileHandleForReading.readDataToEndOfFile() }
     proc.waitUntilExit()
-    threadStdout.join()
-    threadStderr.join()
+    threadOut.join()
+    threadErr.join()
     stdout = _stdout
     stderr = _stderr
-
-    return (proc.terminationStatus == 0)
+    return Int(proc.terminationStatus)
 }
 
-@inlinable func readFromPipe(pipe: Pipe, encoding: String.Encoding = .utf8) -> String { (String(data: pipe.fileHandleForReading.readDataToEndOfFile(), encoding: encoding) ?? "") }
+/*==============================================================================================================*/
+/// Execute a program and capture it's output.
+/// 
+/// - Parameters:
+///   - exec: The program to execute.
+///   - args: The command line arguments for the program.
+///   - stdout: The string to receive the standard output.
+///   - stderr: The string to receive the standard error.
+/// - Returns: The numeric exit status code returned from the executed program.
+///
+public func execute(exec: String, args: [String], stdout: inout String, stderr: inout String) -> Int {
+    var _stdout:  Data = Data()
+    var _stderr:  Data = Data()
+    let exitCode: Int  = execute(exec: exec, args: args, stdout: &_stdout, stderr: &_stderr)
+    stdout = (String(data: _stdout, encoding: .utf8) ?? "")
+    stderr = (String(data: _stderr, encoding: .utf8) ?? "")
+    return exitCode
+}
 
-public func execute(exec: String, args: [String]) -> Bool {
+/*==============================================================================================================*/
+/// Execute a program and capture it's output. Anything written to stderr by the program is discarded unless
+/// `discardStderr` is set to `false` in which case it is routed to the system's stderr channel.
+/// 
+/// - Parameters:
+///   - exec: The program to execute.
+///   - args: The command line arguments for the program.
+///   - stdout: The string to receive the standard output.
+///   - discardStderr: If `true` (the default) then anything the program writes to stderr is discarded. If `false`
+///                    then anything the program writes to stderr is sent to the system's stderr channel.
+/// - Returns: The numeric exit status code returned from the executed program.
+///
+@inlinable public func execute(exec: String, args: [String], stdout: inout String, discardStderr: Bool = true) -> Int {
+    var errMsg:   String = ""
+    let exitCode: Int    = execute(exec: exec, args: args, stdout: &stdout, stderr: &errMsg)
+    #if DEBUG
+        FileHandle.standardError.write(Data(errMsg.utf8))
+    #endif
+    return exitCode
+}
+
+/*==============================================================================================================*/
+/// Read the data from a Pipe and return it as a string.
+/// 
+/// - Parameters:
+///   - pipe: The pipe to read from.
+///   - encoding: The encoding. Defaults to `UTF-8`.
+/// - Returns: The string or `nil` if the encoding failed.
+///
+@inlinable public func readFromPipe(pipe: Pipe, encoding: String.Encoding = .utf8) -> String? { String(data: pipe.fileHandleForReading.readDataToEndOfFile(), encoding: encoding) }
+
+/*==============================================================================================================*/
+/// Execute a program. Anything written to stderr or stdout by the program is discarded unless `discardOutput` is
+/// set to `false` in which case it is routed to the system's stderr and stdout channels.
+/// 
+/// - Parameters:
+///   - exec: The program to execute.
+///   - args: The command line arguments for the program.
+///   - discardOutput: If `true` (the default) then anything the program writes to stderr or stdout is discarded.
+///                    If `false` then anything the program writes to stderr or stdout is sent to the system's
+///                    stderr and stdout channels.
+/// - Returns: The numeric exit status code returned from the executed program.
+///
+public func execute(exec: String, args: [String], discardOutput: Bool = true) -> Int {
     let proc: Process = Process()
     proc.executableURL = URL(fileURLWithPath: exec)
     proc.arguments = args
-    proc.standardError = FileHandle.standardError
-    proc.standardOutput = FileHandle.standardOutput
-
+    proc.standardError = (discardOutput ? FileHandle.nullDevice : FileHandle.standardError)
+    proc.standardOutput = (discardOutput ? FileHandle.nullDevice : FileHandle.standardOutput)
     do {
         try proc.run()
     }
     catch let e {
-        try? "\(e)".write(toFile: "/dev/stderr", atomically: false, encoding: String.Encoding.utf8)
-        return false
+        #if DEBUG
+            let err: String = "\(e)"
+            FileHandle.standardError.write(Data(err.utf8))
+        #endif
+        return -1
     }
-
     proc.waitUntilExit()
-
-    return (proc.terminationStatus == 0)
+    return Int(proc.terminationStatus)
 }
 
+/*==============================================================================================================*/
+/// Which
+/// 
+/// - Parameter names: The programs to look for.
+/// - Returns: The paths to the programs. If any program couldn't be found then that entry is `nil`.
+///
 public func which(names: [String]) -> [String?] {
     let ncc: Int = names.count
     guard ncc > 0 else { return [] }
 
+    #if os(Windows)
+        let prog: String = "where"
+    #else
+        let prog: String = "which"
+    #endif
     var txt: String    = ""
     var err: String    = ""
     var out: [String?] = []
 
-    #if os(Windows)
-        guard execute(exec: "where", args: names, stderr: &err, stdout: &txt) else { return Array<String?>(repeating: nil, count: ncc) }
-        out.append(contentsOf: Array<String?>(repeating: nil, count: ncc))
-    #else
-        guard execute(exec: "which", args: names, stderr: &err, stdout: &txt) else { return Array<String?>(repeating: nil, count: ncc) }
-        let res: [String] = txt.split(on: "\\R")
-
-        #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-            for s in res { out <+ (s.hasSuffix("not found") ? nil : s) }
-        #else
-            let rcc: Int = res.count
-            var j:   Int = 0
-
-            for i in (0 ..< rcc) {
-                let s = res[i]
-
-                while !s.hasSuffix(names[j]) {
-                    out <+ nil
-                    j += 1
-                    guard j < ncc else { return out }
-                }
-                out <+ s
-            }
-
-            if out.count < ncc { out.append(Array<String?>(repeating: nil, count: (ncc - out.count))) }
-        #endif
-    #endif
+    for n in names {
+        if !n.hasAnyPrefix("/", "-") && (execute(exec: prog, args: [ n ], stdout: &txt, stderr: &err) == 0) { let item: String = txt.split(on: "\\R")[0]; out <+ ((item.trimmed == "") ? nil : item) }
+        else { out <+ nil }
+    }
 
     return out
 }
 
+/*==============================================================================================================*/
+/// Which
+/// 
+/// - Parameter name: The program to look for.
+/// - Returns: The path to the program or `nil` if it couldn't be found.
+///
 @inlinable public func which(name: String) -> String? { which(names: [ name ])[0] }

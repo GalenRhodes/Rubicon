@@ -701,10 +701,14 @@ public func execute(exec: String, args: [String], stdout: inout String, stderr: 
 /// - Returns: The numeric exit status code returned from the executed program.
 ///
 @inlinable public func execute(exec: String, args: [String], stdout: inout String, discardStderr: Bool = true) -> Int {
-    var errMsg:   String = ""
-    let exitCode: Int    = execute(exec: exec, args: args, stdout: &stdout, stderr: &errMsg)
+    var _stdout:  Data = Data()
+    var _stderr:  Data = Data()
+    let exitCode: Int  = execute(exec: exec, args: args, stdout: &_stdout, stderr: &_stderr)
+    stdout = (String(data: _stdout, encoding: .utf8) ?? "")
     #if DEBUG
-        FileHandle.standardError.write(Data(errMsg.utf8))
+        FileHandle.standardError.write(_stderr)
+    #else
+        if !discardStderr { FileHandle.standardError.write(_stderr) }
     #endif
     return exitCode
 }
@@ -761,18 +765,28 @@ public func which(names: [String]) -> [String?] {
     let ncc: Int = names.count
     guard ncc > 0 else { return [] }
 
-    #if os(Windows)
-        let prog: String = "where"
-    #else
-        let prog: String = "which"
-    #endif
     var txt: String    = ""
     var err: String    = ""
     var out: [String?] = []
 
     for n in names {
-        if !n.hasAnyPrefix("/", "-") && (execute(exec: prog, args: [ n ], stdout: &txt, stderr: &err) == 0) { let item: String = txt.split(on: "\\R")[0]; out <+ ((item.trimmed == "") ? nil : item) }
-        else { out <+ nil }
+        if n.hasAnyPrefix("/", "-") {
+            out <+ nil
+        }
+        else {
+            #if os(Windows)
+                let result: Int = execute(exec: "where", args: [ n ], stdout: &txt, stderr: &err)
+            #else
+                let result: Int = execute(exec: "/bin/bash", args: [ "-c", "which \"\(n)\"" ], stdout: &txt, stderr: &err)
+            #endif
+            if result == 0 {
+                let item: String = txt.split(on: "\\R")[0]
+                out <+ (item.trimmed.isEmpty ? nil : item)
+            }
+            else {
+                out <+ nil
+            }
+        }
     }
 
     return out

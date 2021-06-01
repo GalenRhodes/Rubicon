@@ -2305,7 +2305,7 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/Stream.swift",
-      "line": 275,
+      "line": 288,
       "symbol": "InputStream.read()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

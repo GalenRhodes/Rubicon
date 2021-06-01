@@ -30,7 +30,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="More changes for Linux.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Package.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Package.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -341,14 +341,7 @@
       <workItem from="1622337169447" duration="1097000" />
       <workItem from="1622402214336" duration="7685000" />
       <workItem from="1622484836388" duration="6580000" />
-      <workItem from="1622543543268" duration="6894000" />
-    </task>
-    <task id="LOCAL-00148" summary="Created SimpleCharInputStream and SimpleIConvCharInputStream.">
-      <created>1617651240955</created>
-      <option name="number" value="00148" />
-      <option name="presentableId" value="LOCAL-00148" />
-      <option name="project" value="LOCAL" />
-      <updated>1617651240955</updated>
+      <workItem from="1622543543268" duration="8436000" />
     </task>
     <task id="LOCAL-00149" summary="Created SimpleCharInputStream and SimpleIConvCharInputStream.">
       <created>1617736999100</created>
@@ -686,7 +679,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622552132900</updated>
     </task>
-    <option name="localTasksCounter" value="197" />
+    <task id="LOCAL-00197" summary="More changes for Linux.">
+      <created>1622556615975</created>
+      <option name="number" value="00197" />
+      <option name="presentableId" value="LOCAL-00197" />
+      <option name="project" value="LOCAL" />
+      <updated>1622556615975</updated>
+    </task>
+    <option name="localTasksCounter" value="198" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

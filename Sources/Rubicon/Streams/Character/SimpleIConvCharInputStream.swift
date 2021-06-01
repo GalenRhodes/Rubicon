@@ -169,7 +169,7 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
                     inputStream.open()
                     if let e = inputStream.streamError { throw e }
                 }
-                while buffer.count >= MAX_READ_AHEAD { guard lock.broadcastWait(until: Date(timeIntervalSinceNow: 1.0)) && isOpen else { return false } }
+                while buffer.count >= MAX_READ_AHEAD { guard lock.broadcastWait(until: Date(timeIntervalSinceNow: 1.0)) && isOpen else { return isOpen } }
                 return try readChars(iconv: iconv, input: input, output: output, hangingCR: &hangingCR)
             }
             catch let e {

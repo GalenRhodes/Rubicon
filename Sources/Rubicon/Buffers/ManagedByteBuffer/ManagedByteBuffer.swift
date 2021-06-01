@@ -76,4 +76,8 @@ public protocol MutableManagedByteBuffer: ManagedByteBuffer {
     ///   - cc: The number of bytes.
     ///
     func relocateToFront(start idx: Int, count cc: Int)
+
+    @discardableResult func append<S>(contentsOf: S) -> Int where S: Sequence, S.Element == UInt8
+
+    @discardableResult func append(byte: UInt8) -> Int?
 }

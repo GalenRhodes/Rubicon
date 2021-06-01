@@ -631,36 +631,50 @@ public func nDebug(_ nestType: NestType = .None, _ obj: Any..., separator: Strin
 /// - Parameters:
 ///   - exec: The program to execute.
 ///   - args: The command line arguments for the program.
+///   - stdin: Data to be provided to the program on stdin.
 ///   - stdout: The instance of Data to receive the standard output.
 ///   - stderr: The instance of Data to receive the standard error.
 /// - Returns: The numeric exit status code returned from the executed program.
 ///
-public func execute(exec: String, args: [String], stdout: inout Data, stderr: inout Data) -> Int {
+public func execute(exec: String, args: [String], stdin: Data, stdout: inout Data, stderr: inout Data) -> Int {
+    let pipeIn: Pipe = Pipe()
+    let thread = PGThread(startNow: false, qualityOfService: .utility) { pipeIn.fileHandleForWriting.write(stdin); try? pipeIn.fileHandleForWriting.close() }
+    thread.start()
+    return execute(exec: exec, args: args, stdin: pipeIn, stdout: &stdout, stderr: &stderr)
+}
+
+/*==============================================================================================================*/
+/// Execute a program and capture it's output.
+/// 
+/// - Parameters:
+///   - exec: The program to execute.
+///   - args: The command line arguments for the program.
+///   - stdin: A `Pipe` or `FileHandle` that will provide input to the program on stdin.
+///   - stdout: The instance of Data to receive the standard output.
+///   - stderr: The instance of Data to receive the standard error.
+/// - Returns: The numeric exit status code returned from the executed program.
+///
+public func execute(exec: String, args: [String], stdin: Any? = nil, stdout: inout Data, stderr: inout Data) -> Int {
     var _stdout: Data    = Data()
     var _stderr: Data    = Data()
     let pipeOut: Pipe    = Pipe()
     let pipeErr: Pipe    = Pipe()
     let proc:    Process = Process()
+    var error:   Error?  = nil
 
     proc.executableURL = URL(fileURLWithPath: exec)
     proc.arguments = args
+    proc.standardInput = stdin
     proc.standardOutput = pipeOut
     proc.standardError = pipeErr
 
-    do {
-        try proc.run()
-    }
-    catch let e {
-        let err = "\(e)"
-        stderr = Data(err.utf8)
-        #if DEBUG
-            FileHandle.standardError.write(stderr)
-        #endif
+    guard launchProcess(process: proc, error: &error) else {
+        if let e = error { stderr = Data(e.localizedDescription.utf8) }
         return -1
     }
 
-    let threadOut = PGThread(startNow: true, qualityOfService: .utility) { _stdout = pipeOut.fileHandleForReading.readDataToEndOfFile() }
-    let threadErr = PGThread(startNow: true, qualityOfService: .utility) { _stderr = pipeErr.fileHandleForReading.readDataToEndOfFile() }
+    let threadOut = PGThread(startNow: true, qualityOfService: .utility) { _stdout = pipeOut.fileHandleForReading.readDataToEndOfFile(); try? pipeOut.fileHandleForReading.close() }
+    let threadErr = PGThread(startNow: true, qualityOfService: .utility) { _stderr = pipeErr.fileHandleForReading.readDataToEndOfFile(); try? pipeErr.fileHandleForReading.close() }
     proc.waitUntilExit()
     threadOut.join()
     threadErr.join()
@@ -675,16 +689,50 @@ public func execute(exec: String, args: [String], stdout: inout Data, stderr: in
 /// - Parameters:
 ///   - exec: The program to execute.
 ///   - args: The command line arguments for the program.
+///   - stdin: Any input to be sent to the program on stdin.
 ///   - stdout: The string to receive the standard output.
 ///   - stderr: The string to receive the standard error.
+///   - encoding: The encoding of the input, output and error.
 /// - Returns: The numeric exit status code returned from the executed program.
 ///
-public func execute(exec: String, args: [String], stdout: inout String, stderr: inout String) -> Int {
+public func execute(exec: String, args: [String], stdin: String, stdout: inout String, stderr: inout String, encoding: String.Encoding = .utf8) -> Int {
+    let pipeIn = Pipe()
+    let thread = PGThread(startNow: false, qualityOfService: .utility) {
+        var bytes:  [UInt8]             = Array<UInt8>(repeating: 0, count: 1024)
+        var used:   Int                 = 0
+        var range:  Range<String.Index> = (stdin.startIndex ..< stdin.startIndex)
+        var result: Bool                = stdin.getBytes(&bytes, maxLength: 1024, usedLength: &used, encoding: encoding, range: stdin.fullRange, remaining: &range)
+
+        while result {
+            pipeIn.fileHandleForWriting.write(Data(bytes: &bytes, count: used))
+            guard range.upperBound < stdin.endIndex else { break }
+            result = stdin.getBytes(&bytes, maxLength: 1024, usedLength: &used, encoding: encoding, range: (range.upperBound ..< stdin.endIndex), remaining: &range)
+        }
+
+        try? pipeIn.fileHandleForWriting.close()
+    }
+    thread.start()
+    return execute(exec: exec, args: args, stdin: pipeIn, stdout: &stdout, stderr: &stderr, encoding: encoding)
+}
+
+/*==============================================================================================================*/
+/// Execute a program and capture it's output.
+/// 
+/// - Parameters:
+///   - exec: The program to execute.
+///   - args: The command line arguments for the program.
+///   - stdin: A `Pipe` or `FileHandle` that will provide input to the program on stdin.
+///   - stdout: The string to receive the standard output.
+///   - stderr: The string to receive the standard error.
+///   - encoding: The encoding to used on the standard output and standard error.
+/// - Returns: The numeric exit status code returned from the executed program.
+///
+public func execute(exec: String, args: [String], stdin: Any? = nil, stdout: inout String, stderr: inout String, encoding: String.Encoding = .utf8) -> Int {
     var _stdout:  Data = Data()
     var _stderr:  Data = Data()
-    let exitCode: Int  = execute(exec: exec, args: args, stdout: &_stdout, stderr: &_stderr)
-    stdout = (String(data: _stdout, encoding: .utf8) ?? "")
-    stderr = (String(data: _stderr, encoding: .utf8) ?? "")
+    let exitCode: Int  = execute(exec: exec, args: args, stdin: stdin, stdout: &_stdout, stderr: &_stderr)
+    stdout = (String(data: _stdout, encoding: encoding) ?? "")
+    stderr = (String(data: _stderr, encoding: encoding) ?? "")
     return exitCode
 }
 
@@ -695,16 +743,18 @@ public func execute(exec: String, args: [String], stdout: inout String, stderr: 
 /// - Parameters:
 ///   - exec: The program to execute.
 ///   - args: The command line arguments for the program.
+///   - stdin: A `Pipe` or `FileHandle` that will provide input to the program on stdin.
 ///   - stdout: The string to receive the standard output.
+///   - encoding: The encoding to used on the standard output.
 ///   - discardStderr: If `true` (the default) then anything the program writes to stderr is discarded. If `false`
 ///                    then anything the program writes to stderr is sent to the system's stderr channel.
 /// - Returns: The numeric exit status code returned from the executed program.
 ///
-@inlinable public func execute(exec: String, args: [String], stdout: inout String, discardStderr: Bool = true) -> Int {
+@inlinable public func execute(exec: String, args: [String], stdin: Any? = nil, stdout: inout String, encoding: String.Encoding = .utf8, discardStderr: Bool = true) -> Int {
     var _stdout:  Data = Data()
     var _stderr:  Data = Data()
-    let exitCode: Int  = execute(exec: exec, args: args, stdout: &_stdout, stderr: &_stderr)
-    stdout = (String(data: _stdout, encoding: .utf8) ?? "")
+    let exitCode: Int  = execute(exec: exec, args: args, stdin: stdin, stdout: &_stdout, stderr: &_stderr)
+    stdout = (String(data: _stdout, encoding: encoding) ?? "")
     #if DEBUG
         FileHandle.standardError.write(_stderr)
     #else
@@ -712,16 +762,6 @@ public func execute(exec: String, args: [String], stdout: inout String, stderr: 
     #endif
     return exitCode
 }
-
-/*==============================================================================================================*/
-/// Read the data from a Pipe and return it as a string.
-/// 
-/// - Parameters:
-///   - pipe: The pipe to read from.
-///   - encoding: The encoding. Defaults to `UTF-8`.
-/// - Returns: The string or `nil` if the encoding failed.
-///
-@inlinable public func readFromPipe(pipe: Pipe, encoding: String.Encoding = .utf8) -> String? { String(data: pipe.fileHandleForReading.readDataToEndOfFile(), encoding: encoding) }
 
 /*==============================================================================================================*/
 /// Execute a program. Anything written to stderr or stdout by the program is discarded unless `discardOutput` is
@@ -735,24 +775,59 @@ public func execute(exec: String, args: [String], stdout: inout String, stderr: 
 ///                    stderr and stdout channels.
 /// - Returns: The numeric exit status code returned from the executed program.
 ///
-public func execute(exec: String, args: [String], discardOutput: Bool = true) -> Int {
+public func execute(exec: String, args: [String], stdin: Any? = nil, discardOutput: Bool = true) -> Int {
     let proc: Process = Process()
     proc.executableURL = URL(fileURLWithPath: exec)
     proc.arguments = args
+    proc.standardInput = stdin
     proc.standardError = (discardOutput ? FileHandle.nullDevice : FileHandle.standardError)
     proc.standardOutput = (discardOutput ? FileHandle.nullDevice : FileHandle.standardOutput)
-    do {
-        try proc.run()
-    }
-    catch let e {
-        #if DEBUG
-            let err: String = "\(e)"
-            FileHandle.standardError.write(Data(err.utf8))
-        #endif
-        return -1
-    }
+    guard launchProcess(process: proc) else { return -1 }
     proc.waitUntilExit()
     return Int(proc.terminationStatus)
+}
+
+/*==============================================================================================================*/
+/// Read the data from a Pipe and return it as a string.
+/// 
+/// - Parameters:
+///   - pipe: The pipe to read from.
+///   - encoding: The encoding. Defaults to `UTF-8`.
+/// - Returns: The string or `nil` if the encoding failed.
+///
+@inlinable public func readFromPipe(pipe: Pipe, encoding: String.Encoding = .utf8) -> String? { String(data: pipe.fileHandleForReading.readDataToEndOfFile(), encoding: encoding) }
+
+/*==============================================================================================================*/
+/// Launch a process and return.
+/// 
+/// - Parameter process: The process to launch.
+/// - Returns: `true` if successful.
+///
+@inlinable func launchProcess(process: Process) -> Bool {
+    var error: Error? = nil
+    return launchProcess(process: process, error: &error)
+}
+
+/*==============================================================================================================*/
+/// Launch a process and return.
+/// 
+/// - Parameters:
+///   - process: The process to launch.
+///   - error: Receives any error.
+/// - Returns: `true` if successful.
+///
+@inlinable func launchProcess(process: Process, error: inout Error?) -> Bool {
+    do {
+        try process.run()
+        return true
+    }
+    catch let e {
+        error = e
+        #if DEBUG
+            FileHandle.standardError.write(Data(e.localizedDescription.utf8))
+        #endif
+        return false
+    }
 }
 
 /*==============================================================================================================*/

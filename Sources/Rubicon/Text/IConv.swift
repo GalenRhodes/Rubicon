@@ -163,6 +163,47 @@ import CoreFoundation
         }
 
         /*======================================================================================================*/
+        /// Convert a string into bytes with a given encoding.
+        /// 
+        /// - Parameters:
+        ///   - string: The string to convert.
+        ///   - encoding: The encoding to use.
+        ///   - ignoreErrors: `true` if invalid sequences should be ignored.
+        ///   - enableTransliterate: `true` if transliteration should be used.
+        /// - Returns: A `Data` structure containing the bytes.
+        ///
+        public static func convert(string: String, encoding: String, ignoreErrors: Bool = false, enableTransliterate: Bool = false) -> Data? {
+            let iconv:   IConv                    = IConv(toEncoding: encoding, fromEncoding: "UTF-8", ignoreErrors: ignoreErrors, enableTransliterate: enableTransliterate)
+            let utf8str: String.UTF8View          = string.utf8
+            let bInput:  MutableManagedByteBuffer = EasyByteBuffer(length: 1024)
+            let bOutput: MutableManagedByteBuffer = EasyByteBuffer(length: ((1024 * 4) + 1024))
+            var data:    Data                     = Data()
+
+            for byte: UInt8 in utf8str {
+                if bInput.append(byte: byte) == nil {
+                    guard foo(&data, bOutput, iconv.convert(input: bInput, output: bOutput), false) else { return nil }
+                    bInput.append(byte: byte)
+                }
+            }
+
+            if bInput.count > 0 { guard foo(&data, bOutput, iconv.convert(input: bInput, output: bOutput), true) else { return nil } }
+            guard foo(&data, bOutput, iconv.finalConvert(output: bOutput), true) else { return nil }
+            return data
+        }
+
+        private static func foo(_ data: inout Data, _ bOutput: MutableManagedByteBuffer, _ results: Results, _ isFinal: Bool) -> Bool {
+            switch results {
+                case .InvalidSequence:    return false
+                case .UnknownEncoding:    return false
+                case .OtherError:         return false
+                case .IncompleteSequence: if isFinal { bOutput.append(byte: 0x3f) }
+                default:                  break
+            }
+            bOutput.withBytes { p, l, c -> Void in data.append(p, count: c); c = 0 }
+            return true
+        }
+
+        /*======================================================================================================*/
         /// Do the final conversion step after all of the input has been processed to get any deferred conversions
         /// that might be waiting.
         /// 

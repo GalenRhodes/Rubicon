@@ -751,8 +751,15 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/DataByteBuffer.swift",
-      "line": 55,
-      "symbol": "DataByteBuffer.withBytes(_:)",
+      "line": 32,
+      "symbol": "DataByteBuffer.append(contentsOf:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/DataByteBuffer.swift",
+      "line": 37,
+      "symbol": "DataByteBuffer.append(byte:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -765,35 +772,42 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/DataByteBuffer.swift",
-      "line": 81,
+      "line": 89,
       "symbol": "DataByteBuffer.withBytes(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/DataByteBuffer.swift",
-      "line": 107,
+      "line": 98,
+      "symbol": "DataByteBuffer.withBytes(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/DataByteBuffer.swift",
+      "line": 124,
       "symbol": "DataByteBuffer.withBufferAs(type:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/DataByteBuffer.swift",
-      "line": 125,
+      "line": 142,
       "symbol": "DataByteBuffer.withBufferAs(type:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/DataByteBuffer.swift",
-      "line": 143,
+      "line": 160,
       "symbol": "DataByteBuffer.withBufferAs(type:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/DataByteBuffer.swift",
-      "line": 152,
+      "line": 169,
       "symbol": "DataByteBuffer.withBufferAs(type:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -821,49 +835,63 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
-      "line": 80,
+      "line": 55,
+      "symbol": "EasyByteBuffer.append(byte:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
+      "line": 61,
+      "symbol": "EasyByteBuffer.append(contentsOf:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
+      "line": 98,
       "symbol": "EasyByteBuffer.withBytes(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
-      "line": 94,
+      "line": 112,
       "symbol": "EasyByteBuffer.withBytes(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
-      "line": 101,
+      "line": 119,
       "symbol": "EasyByteBuffer.withBytes(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
-      "line": 108,
+      "line": 126,
       "symbol": "EasyByteBuffer.withBufferAs(type:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
-      "line": 116,
+      "line": 134,
       "symbol": "EasyByteBuffer.withBufferAs(type:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
-      "line": 124,
+      "line": 142,
       "symbol": "EasyByteBuffer.withBufferAs(type:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
-      "line": 132,
+      "line": 150,
       "symbol": "EasyByteBuffer.withBufferAs(type:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -928,6 +956,20 @@
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/ManagedByteBuffer.swift",
       "line": 48,
       "symbol": "MutableManagedByteBuffer.withBytes(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/ManagedByteBuffer.swift",
+      "line": 80,
+      "symbol": "MutableManagedByteBuffer.append(contentsOf:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/ManagedByteBuffer.swift",
+      "line": 82,
+      "symbol": "MutableManagedByteBuffer.append(byte:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },

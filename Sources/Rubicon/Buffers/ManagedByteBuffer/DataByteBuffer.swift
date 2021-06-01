@@ -29,6 +29,23 @@ open class DataByteBuffer: MutableManagedByteBuffer {
         count = data.count
     }
 
+    @discardableResult open func append<S>(contentsOf s: S) -> Int where S: Sequence, S.Element == UInt8 {
+        for byte in s { append(byte: byte) }
+        return count
+    }
+
+    @discardableResult open func append(byte: UInt8) -> Int? {
+        if count < length {
+            data[count++] = byte
+            return count
+        }
+        else {
+            data.append(byte)
+            count = length
+            return count
+        }
+    }
+
     open func relocateToFront(start idx: Int) -> Int {
         guard idx.inRange(0 ... length) else { fatalError("Invalid index: \(idx)") }
         guard idx > 0 && idx < length else { return 0 }

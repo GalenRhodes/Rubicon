@@ -52,6 +52,24 @@ open class EasyByteBuffer: MutableManagedByteBuffer {
         bytes.deallocate()
     }
 
+    @discardableResult open func append(byte: UInt8) -> Int? {
+        guard count < length else { return nil }
+        bytes[count++] = byte
+        return count
+    }
+
+    @discardableResult open func append<S>(contentsOf: S) -> Int where S: Sequence, S.Element == UInt8 {
+        var cc: Int = 0
+
+        for byte: UInt8 in contentsOf {
+            guard count < length else { return cc }
+            bytes[count++] = byte
+            cc += 1
+        }
+
+        return cc
+    }
+
     @discardableResult open func relocateToFront(start idx: Int) -> Int {
         guard count >= 0 && count <= length else { fatalError("Internal count value is invalid.") }
         guard idx >= 0 && idx <= count else { fatalError("Start index out of bounds.") }

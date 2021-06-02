@@ -50,22 +50,30 @@ open class AtomicValue<T> {
     open func waitUntil<V>(valueIn c: [T], thenWithVal val: T? = nil, _ cl: () throws -> V) rethrows -> V where T: Equatable { try waitUntil(predicate: { check(c, for: $0) }, thenWithVal: val, cl) }
 
     open func waitUntil<V>(predicate: (T) -> Bool, thenWithVal val: T? = nil, _ cl: () throws -> V) rethrows -> V {
-        nDebug(.In, "waitUntil")
-        defer { nDebug(.Out, "waitUntil") }
+        #if DEBUGRUBICON
+            nDebug(.In, "waitUntil")
+            defer { nDebug(.Out, "waitUntil") }
+        #endif
         let vt: T = lock.withLock {
-            nDebug(.In, "Predicate Test")
-            defer { nDebug(.Out, "Predicate Test") }
+            #if DEBUGRUBICON
+                nDebug(.In, "Predicate Test")
+                defer { nDebug(.Out, "Predicate Test") }
+            #endif
             while !predicate(v) {
-                nDebug(.In, "Wait for Predicate")
-                defer { nDebug(.Out, "Wait for Predicate") }
+                #if DEBUGRUBICON
+                    nDebug(.In, "Wait for Predicate")
+                    defer { nDebug(.Out, "Wait for Predicate") }
+                #endif
                 lock.broadcastWait()
             }
             return v
         }
         defer { value = vt }
         if let val = val { value = val }
-        nDebug(.In, "waitUntil executing closure")
-        defer { nDebug(.Out, "waitUntil executing closure") }
+        #if DEBUGRUBICON
+            nDebug(.In, "waitUntil executing closure")
+            defer { nDebug(.Out, "waitUntil executing closure") }
+        #endif
         return try cl()
     }
 

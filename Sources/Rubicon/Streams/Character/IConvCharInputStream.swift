@@ -148,8 +148,10 @@ import CoreFoundation
         /// - Throws: If an I/O error occurs.
         ///
         open func read() throws -> Character? {
-            nDebug(.In, "Read Character")
-            defer { nDebug(.Out, "Read Character") }
+            #if DEBUGRUBICON
+                nDebug(.In, "Read Character")
+                defer { nDebug(.Out, "Read Character") }
+            #endif
             return try isReading.waitUntil(valueIn: .None, thenWithVal: .Reading) {
                 try lock.withLock {
                     while buffer.isEmpty && canWait { lock.broadcastWait() }
@@ -185,8 +187,10 @@ import CoreFoundation
         /// - Throws: If an I/O error occurs.
         ///
         open func append(to chars: inout [Character], maxLength: Int) throws -> Int {
-            nDebug(.In, "Read Multiple Characters")
-            defer { nDebug(.Out, "Read Multiple Characters") }
+            #if DEBUGRUBICON
+                nDebug(.In, "Read Multiple Characters")
+                defer { nDebug(.Out, "Read Multiple Characters") }
+            #endif
             return try isReading.waitUntil(valueIn: .None, thenWithVal: .Reading) {
                 try lock.withLock {
                     guard isOpen else { return 0 }

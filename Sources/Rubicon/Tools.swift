@@ -532,7 +532,7 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 ///   - terminator: The string to put at the end of all the objects. Defaults to a single line-feed (`\n`)
 ///                 character.
 ///
-@inlinable public func debug(_ obj: Any..., separator: String = " ", terminator: String = "\n") {
+@inlinable public func debug(_ obj: Any..., separator: String = " ", terminator: String? = nil) {
     let _obj: [Any] = obj.map { $0 }
     debug(_obj, separator: separator, terminator: terminator)
 }
@@ -557,7 +557,7 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
             print(obj[obj.startIndex], terminator: "")
             for i in (obj.index(after: obj.startIndex) ..< obj.endIndex) {
                 print(separator, terminator: "")
-                print(obj[i], terminator: "")
+                print("\(obj[i])", terminator: "")
             }
         }
         print("", terminator: term)

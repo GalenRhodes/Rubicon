@@ -54,6 +54,11 @@ open class SimpleStringCharInputStream: SimpleCharInputStream {
 
     open func read() throws -> Character? { try lock.withLock { try _read() } }
 
+    open func peek() throws -> Character? {
+        guard status == .open && index < eIdx else { return nil }
+        return string[index]
+    }
+
     open func read(chars: inout [Character], maxLength: Int) throws -> Int { try lock.withLock { try _read(chars: &chars, maxLength: maxLength) } }
 
     open func append(to chars: inout [Character], maxLength: Int) throws -> Int { try lock.withLock { try _append(to: &chars, maxLength: maxLength) } }

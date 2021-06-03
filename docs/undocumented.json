@@ -2535,34 +2535,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 92,
-      "symbol": "IConvCharInputStream.init(inputStream:encodingName:autoClose:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 96,
-      "symbol": "IConvCharInputStream.init(filename:encodingName:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 101,
-      "symbol": "IConvCharInputStream.init(url:encodingName:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift",
-      "line": 106,
-      "symbol": "IConvCharInputStream.init(data:encodingName:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/SimpleCharInputStream.swift",
       "line": 21,
       "symbol": "SimpleCharInputStream",
@@ -2571,7 +2543,7 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/SimpleCharInputStream.swift",
-      "line": 82,
+      "line": 90,
       "symbol": "SimpleCharInputStream",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
@@ -2613,7 +2585,7 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift",
-      "line": 75,
+      "line": 91,
       "symbol": "SimpleIConvCharInputStream.init(inputStream:encodingName:autoClose:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

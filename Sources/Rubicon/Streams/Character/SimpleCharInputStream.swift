@@ -38,6 +38,14 @@ public protocol SimpleCharInputStream: CharStream {
     func read() throws -> Character?
 
     /*==========================================================================================================*/
+    /// Read and return one character without actually removing it from the input stream.
+    /// 
+    /// - Returns: The next character or `nil` if EOF.
+    /// - Throws: If an I/O error occurs.
+    ///
+    func peek() throws -> Character?
+
+    /*==========================================================================================================*/
     /// Read <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s from the stream.
     /// 
     /// - Parameters:

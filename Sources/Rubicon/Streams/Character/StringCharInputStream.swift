@@ -22,8 +22,8 @@ open class StringCharInputStream: SimpleStringCharInputStream, CharInputStream {
     typealias MarkItem = (TextPosition, String.Index)
 
     //@f:0
-    open     var markCount: Int          { lock.withLock { mstk.count } }
-    open     var position:  TextPosition { lock.withLock { pos        } }
+    open     var markCount: Int          { lck.withLock { mstk.count } }
+    open     var position:  TextPosition { lck.withLock { pos        } }
     open     var tabWidth:  Int8         = 4
 
     internal var pos:       TextPosition = (0, 0)
@@ -32,17 +32,17 @@ open class StringCharInputStream: SimpleStringCharInputStream, CharInputStream {
 
     public override init(string: String) { super.init(string: string) }
 
-    open func markSet() { lock.withLock { _markSet() } }
+    open func markSet() { lck.withLock { _markSet() } }
 
-    open func markReturn() { lock.withLock { _markReturn() } }
+    open func markReturn() { lck.withLock { _markReturn() } }
 
-    open func markDelete() { lock.withLock { _markDelete() } }
+    open func markDelete() { lck.withLock { _markDelete() } }
 
-    open func markReset() { lock.withLock { _markReturn(); _markSet() } }
+    open func markReset() { lck.withLock { _markReturn(); _markSet() } }
 
-    open func markUpdate() { lock.withLock { _markDelete(); _markSet() } }
+    open func markUpdate() { lck.withLock { _markDelete(); _markSet() } }
 
-    @discardableResult open func markBackup(count: Int) -> Int { lock.withLock { _markBackup(count: count) } }
+    @discardableResult open func markBackup(count: Int) -> Int { lck.withLock { _markBackup(count: count) } }
 
     func _markSet() { mstk <+ (pos, index) }
 

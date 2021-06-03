@@ -29,15 +29,15 @@ open class SimpleStringCharInputStream: SimpleCharInputStream {
     ///
     public        let streamError:       Error?        = nil
 
-    open          var streamStatus:      Stream.Status { lock.withLock { ((status == .open) ? ((index < eIdx) ? .open : .atEnd) : status) } }
-    open          var hasCharsAvailable: Bool          { lock.withLock { ((status == .open) && (index < eIdx))                            } }
-    open          var isEOF:             Bool          { lock.withLock { ((status != .open) || (index == eIdx))                           } }
+    open          var streamStatus:      Stream.Status { lck.withLock { ((status == .open) ? ((index < eIdx) ? .open : .atEnd) : status) } }
+    open          var hasCharsAvailable: Bool          { lck.withLock { ((status == .open) && (index < eIdx))                            } }
+    open          var isEOF:             Bool          { lck.withLock { ((status != .open) || (index == eIdx))                           } }
 
     internal      let string:            String
     internal      let eIdx:              String.Index
     internal      var index:             String.Index
     internal      var status:            Stream.Status = .notOpen
-    internal lazy var lock:              MutexLock     = MutexLock()
+    internal lazy var lck:               MutexLock     = MutexLock()
     //@f:1
 
     public init(string: String) {
@@ -52,20 +52,24 @@ open class SimpleStringCharInputStream: SimpleCharInputStream {
 
     deinit { _close() }
 
-    open func read() throws -> Character? { try lock.withLock { try _read() } }
+    open func lock() { lck.lock() }
+
+    open func unlock() { lck.unlock() }
+
+    open func read() throws -> Character? { try lck.withLock { try _read() } }
 
     open func peek() throws -> Character? {
         guard status == .open && index < eIdx else { return nil }
         return string[index]
     }
 
-    open func read(chars: inout [Character], maxLength: Int) throws -> Int { try lock.withLock { try _read(chars: &chars, maxLength: maxLength) } }
+    open func read(chars: inout [Character], maxLength: Int) throws -> Int { try lck.withLock { try _read(chars: &chars, maxLength: maxLength) } }
 
-    open func append(to chars: inout [Character], maxLength: Int) throws -> Int { try lock.withLock { try _append(to: &chars, maxLength: maxLength) } }
+    open func append(to chars: inout [Character], maxLength: Int) throws -> Int { try lck.withLock { try _append(to: &chars, maxLength: maxLength) } }
 
-    open func open() { lock.withLock { _open() } }
+    open func open() { lck.withLock { _open() } }
 
-    open func close() { lock.withLock { _close() } }
+    open func close() { lck.withLock { _close() } }
 
     func _open() { if status == .notOpen { status = .open } }
 

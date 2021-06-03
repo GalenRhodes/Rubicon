@@ -52,4 +52,8 @@ public protocol CharStream {
     /// Close the stream.
     ///
     func close()
+
+    func lock()
+
+    func unlock()
 }

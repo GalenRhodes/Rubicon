@@ -32,15 +32,15 @@ import CoreFoundation
         /*======================================================================================================*/
         /// The number of marks on the stream.
         ///
-        open     var markCount:  Int          { lock.withLock { _markStack.count                                                 } }
+        open     var markCount:  Int          { lck.withLock { _markStack.count                                                 } }
         /*======================================================================================================*/
         /// The current line and column numbers.
         ///
-        open     var tabWidth:   Int8         { get { lock.withLock { _tabWidth } } set { lock.withLock { _tabWidth = newValue } } }
+        open     var tabWidth:   Int8         { get { lck.withLock { _tabWidth } } set { lck.withLock { _tabWidth = newValue } } }
         /*======================================================================================================*/
         /// The number of spaces in each tab stop.
         ///
-        open     var position:   TextPosition { lock.withLock { _position                                                        } }
+        open     var position:   TextPosition { lck.withLock { _position                                                        } }
         internal var _position:  TextPosition = (0, 0)
         internal var _tabWidth:  Int8         = 4
         internal var _markStack: [MarkItem]   = []
@@ -64,31 +64,31 @@ import CoreFoundation
         /// Marks the current point in the stream so that it can be returned to later. You can set more than one
         /// mark but all operations happen on the most recently set mark.
         ///
-        open func markSet() { lock.withLock { _markSet() } }
+        open func markSet() { lck.withLock { _markSet() } }
 
         /*======================================================================================================*/
         /// Removes and returns to the most recently set mark.
         ///
-        open func markReturn() { lock.withLock { _markReturn() } }
+        open func markReturn() { lck.withLock { _markReturn() } }
 
         /*======================================================================================================*/
         /// Removes the most recently set mark WITHOUT returning to it.
         ///
-        open func markDelete() { lock.withLock { _markDelete() } }
+        open func markDelete() { lck.withLock { _markDelete() } }
 
         /*======================================================================================================*/
         /// Returns to the most recently set mark WITHOUT removing it. If there was no previously set mark then a
         /// new one is created. This is functionally equivalent to performing a `markReturn()` followed
         /// immediately by a `markSet()`.
         ///
-        open func markReset() { lock.withLock { _markReset() } }
+        open func markReset() { lck.withLock { _markReset() } }
 
         /*======================================================================================================*/
         /// Updates the most recently set mark to the current position. If there was no previously set mark then a
         /// new one is created. This is functionally equivalent to performing a `markDelete()` followed
         /// immediately by a `markSet()`.
         ///
-        open func markUpdate() { lock.withLock { _markUpdate() } }
+        open func markUpdate() { lck.withLock { _markUpdate() } }
 
         /*======================================================================================================*/
         /// Backs out the last `count` characters from the most recently set mark without actually removing the
@@ -98,7 +98,7 @@ import CoreFoundation
         /// - Returns: The number of characters actually backed out in case there weren't `count` characters
         ///            available.
         ///
-        @discardableResult open func markBackup(count: Int = 1) -> Int { lock.withLock { _markBackup(count: count) } }
+        @discardableResult open func markBackup(count: Int = 1) -> Int { lck.withLock { _markBackup(count: count) } }
 
         override func _open() {
             guard status == .notOpen else { return }

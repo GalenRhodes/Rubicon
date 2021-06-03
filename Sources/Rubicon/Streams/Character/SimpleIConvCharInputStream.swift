@@ -57,15 +57,15 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
         /*======================================================================================================*/
         /// `true` if the stream has characters ready to be read.
         ///
-        open          var hasCharsAvailable: Bool          { lck.withLock { (isOpen && (hasBChars || (noError && isRunning)))                                        } }
+        open          var hasCharsAvailable: Bool          { withLock { (isOpen && (hasBChars || (noError && isRunning)))                                        } }
         /*======================================================================================================*/
         /// The error.
         ///
-        open          var streamError:       Error?        { lck.withLock { ((isOpen && buffer.isEmpty) ? error : nil)                                               } }
+        open          var streamError:       Error?        { withLock { ((isOpen && buffer.isEmpty) ? error : nil)                                               } }
         /*======================================================================================================*/
         /// The status of the `CharInputStream`.
         ///
-        open          var streamStatus:      Stream.Status { lck.withLock { (isOpen ? (hasBChars ? .open : (nErr ? (isRunning ? .open : .atEnd) : .error)) : status) } }
+        open          var streamStatus:      Stream.Status { withLock { (isOpen ? (hasBChars ? .open : (nErr ? (isRunning ? .open : .atEnd) : .error)) : status) } }
         /*======================================================================================================*/
         /// The human readable name of the encoding.
         ///
@@ -73,7 +73,9 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
 
         internal      let autoClose:         Bool
         internal      let inputStream:       InputStream
-        internal lazy var lck:               Conditional   = Conditional()
+        private       let cLock:             Conditional   = Conditional()
+        private       let rLock:             RecursiveLock = RecursiveLock()
+        private       var locked:            Bool          = false
         internal      var status:            Stream.Status = .notOpen
         internal      var isRunning:         Bool          = false
         internal      var error:             Error?        = nil
@@ -94,11 +96,15 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
             self.inputStream = inputStream
         }
 
-        open func lock() { lck.lock() }
+        open func lock() {
+            rLock.withLock { cLock.lock() }
+        }
 
-        open func unlock() { lck.unlock() }
+        open func unlock() {
+            rLock.withLock { cLock.unlock() }
+        }
 
-        open func withLock<T>(_ body: () throws -> T) rethrows -> T { try lck.withLock(body) }
+        open func withLock<T>(_ body: () throws -> T) rethrows -> T { try cLock.withLock(body) }
 
         /*======================================================================================================*/
         /// Read one character.
@@ -106,7 +112,7 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
         /// - Returns: The next character or `nil` if EOF.
         /// - Throws: If an I/O error occurs.
         ///
-        open func read() throws -> Character? { try lck.withLock { try _read() } }
+        open func read() throws -> Character? { try withLock { try _read() } }
 
         /*======================================================================================================*/
         /// Read and return one character without actually removing it from the input stream.
@@ -114,7 +120,7 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
         /// - Returns: The next character or `nil` if EOF.
         /// - Throws: If an I/O error occurs.
         ///
-        open func peek() throws -> Character? { try lck.withLock { try _peek() } }
+        open func peek() throws -> Character? { try withLock { try _peek() } }
 
         /*======================================================================================================*/
         /// Read <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s from the
@@ -135,27 +141,27 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
         ///            end-of-file.
         /// - Throws: If an I/O error occurs.
         ///
-        open func append(to chars: inout [Character], maxLength: Int) throws -> Int { try lck.withLock { try _append(to: &chars, maxLength: maxLength) } }
+        open func append(to chars: inout [Character], maxLength: Int) throws -> Int { try withLock { try _append(to: &chars, maxLength: maxLength) } }
 
         /*======================================================================================================*/
         /// Open the stream. Once a stream has been opened it can never be re-opened.
         ///
-        open func open() { lck.withLock { _open() } }
+        open func open() { withLock { _open() } }
 
         /*======================================================================================================*/
         /// Close the stream.
         ///
-        open func close() { lck.withLock { _close() } }
+        open func close() { withLock { _close() } }
 
         func _read() throws -> Character? {
-            while canWait && buffer.isEmpty { lck.broadcastWait() }
+            while canWait && buffer.isEmpty { cLock.broadcastWait() }
             guard isOpen else { return nil }
             guard noError else { throw error! }
             return buffer.popFirst()
         }
 
         func _peek() throws -> Character? {
-            while canWait && buffer.isEmpty { lck.broadcastWait() }
+            while canWait && buffer.isEmpty { cLock.broadcastWait() }
             guard isOpen else { return nil }
             guard noError else { throw error! }
             return buffer.first
@@ -167,7 +173,7 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
             var cc = 0
 
             while cc < maxLength {
-                while canWait && buffer.isEmpty { lck.broadcastWait() }
+                while canWait && buffer.isEmpty { cLock.broadcastWait() }
 
                 guard isOpen else { break }
                 guard noError else { throw error! }
@@ -179,7 +185,7 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
                 chars.append(contentsOf: buffer[r])
                 buffer.removeSubrange(r)
                 cc += i
-                if canWait { lck.broadcastWait() }
+                if canWait { cLock.broadcastWait() }
             }
 
             return cc
@@ -204,13 +210,13 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
         func _close() {
             guard status == .open else { return }
             status = .closed
-            while isRunning { lck.broadcastWait() }
+            while isRunning { cLock.broadcastWait() }
             buffer.removeAll()
             error = nil
         }
 
         func doBackground(_ iconv: IConv, _ input: EasyByteBuffer, _ output: EasyByteBuffer, _ hangingCR: inout Bool) -> Bool {
-            lck.withLock {
+            withLock {
                 isRunning = doBackgroundRead(iconv, input, output, &hangingCR)
                 if !isRunning { doEndGame(iconv, input, output, hangingCR) }
                 return isRunning
@@ -224,7 +230,7 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
                     inputStream.open()
                     if let e = inputStream.streamError { throw e }
                 }
-                while buffer.count >= MAX_READ_AHEAD { guard lck.broadcastWait(until: Date(timeIntervalSinceNow: 1.0)) && isOpen else { return isOpen } }
+                while buffer.count >= MAX_READ_AHEAD { guard cLock.broadcastWait(until: Date(timeIntervalSinceNow: 1.0)) && isOpen else { return isOpen } }
                 return try readChars(iconv: iconv, input: input, output: output, hangingCR: &hangingCR)
             }
             catch let e {

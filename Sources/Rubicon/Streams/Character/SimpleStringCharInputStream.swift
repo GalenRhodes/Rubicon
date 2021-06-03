@@ -37,7 +37,7 @@ open class SimpleStringCharInputStream: SimpleCharInputStream {
     internal      let eIdx:              String.Index
     internal      var index:             String.Index
     internal      var status:            Stream.Status = .notOpen
-    internal lazy var lck:               MutexLock     = MutexLock()
+    internal lazy var lck:               RecursiveLock = RecursiveLock()
     //@f:1
 
     public init(string: String) {

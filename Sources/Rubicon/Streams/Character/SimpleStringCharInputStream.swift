@@ -56,6 +56,8 @@ open class SimpleStringCharInputStream: SimpleCharInputStream {
 
     open func unlock() { lck.unlock() }
 
+    open func withLock<T>(_ body: () throws -> T) rethrows -> T { try lck.withLock(body) }
+
     open func read() throws -> Character? { try lck.withLock { try _read() } }
 
     open func peek() throws -> Character? {

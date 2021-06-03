@@ -28,16 +28,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Added lock() and unlock() to CharStream protocol.">
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Added withLock(_:) to CharStream protocol.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/CharStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/CharStream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Protocols/CharStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Protocols/CharStream.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/CharStream.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/CharStream.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/search.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/search.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/docSet.dsidx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/docSet.dsidx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.tgz" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.tgz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/search.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/search.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/undocumented.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/undocumented.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -351,14 +346,7 @@
       <workItem from="1622484836388" duration="6580000" />
       <workItem from="1622543543268" duration="9138000" />
       <workItem from="1622627164411" duration="2032000" />
-      <workItem from="1622721245250" duration="10076000" />
-    </task>
-    <task id="LOCAL-00153" summary=" - Bug fixes.&#10; - After reading [this article](https://www.rightpoint.com/rplabs/switch-method-dispatch-table)&#10;   I've removed all @inlinable and @usableFromInline and am just letting the compiler work it's magic to determine&#10;   what the best way to call methods and functions is.">
-      <created>1618248062774</created>
-      <option name="number" value="00153" />
-      <option name="presentableId" value="LOCAL-00153" />
-      <option name="project" value="LOCAL" />
-      <updated>1618248062774</updated>
+      <workItem from="1622721245250" duration="10785000" />
     </task>
     <task id="LOCAL-00154" summary="Major overhaul of EasyByteBuffer to make it safer to use.">
       <created>1618519189882</created>
@@ -696,7 +684,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622739255164</updated>
     </task>
-    <option name="localTasksCounter" value="202" />
+    <task id="LOCAL-00202" summary="Added withLock(_:) to CharStream protocol.">
+      <created>1622739699414</created>
+      <option name="number" value="00202" />
+      <option name="presentableId" value="LOCAL-00202" />
+      <option name="project" value="LOCAL" />
+      <updated>1622739699414</updated>
+    </task>
+    <option name="localTasksCounter" value="203" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -729,7 +724,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="RegularExpression.Match.range &amp; RegularExpression.Match.subString" />
     <MESSAGE value="Bug Fixes and changes to RegularExpression." />
     <MESSAGE value="Extensions to the String, StringProtocol, InputStream, Array, and ArraySlice classes/structs." />
     <MESSAGE value="Created operator ==~ to allow easy case insensitive string equality." />
@@ -754,7 +748,8 @@
     <MESSAGE value="Bug fix" />
     <MESSAGE value="Added peek() to CharInputStream protocol." />
     <MESSAGE value="Added lock() and unlock() to CharStream protocol." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added lock() and unlock() to CharStream protocol." />
+    <MESSAGE value="Added withLock(_:) to CharStream protocol." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added withLock(_:) to CharStream protocol." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

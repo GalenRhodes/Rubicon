@@ -98,6 +98,8 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
 
         open func unlock() { lck.unlock() }
 
+        open func withLock<T>(_ body: () throws -> T) rethrows -> T { try lck.withLock(body) }
+
         /*======================================================================================================*/
         /// Read one character.
         /// 

@@ -56,4 +56,14 @@ public protocol CharStream {
     func lock()
 
     func unlock()
+
+    func withLock<T>(_ body: () throws -> T) rethrows -> T
+}
+
+extension CharStream {
+    @inlinable public func withLock<T>(_ body: () throws -> T) rethrows -> T {
+        lock()
+        defer { unlock() }
+        return try body()
+    }
 }

@@ -74,7 +74,6 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
         internal      let autoClose:         Bool
         internal      let inputStream:       InputStream
         private       let cLock:             Conditional   = Conditional()
-        private       let rLock:             RecursiveLock = RecursiveLock()
         private       var locked:            Bool          = false
         internal      var status:            Stream.Status = .notOpen
         internal      var isRunning:         Bool          = false
@@ -97,18 +96,18 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
         }
 
         open func lock() {
-            rLock.withLock { cLock.lock() }
+            cLock.lock()
         }
 
         open func unlock() {
-            rLock.withLock { cLock.unlock() }
+            cLock.unlock()
         }
 
         open func withLock<T>(_ body: () throws -> T) rethrows -> T { try cLock.withLock(body) }
 
         /*======================================================================================================*/
         /// Read one character.
-        /// 
+        ///
         /// - Returns: The next character or `nil` if EOF.
         /// - Throws: If an I/O error occurs.
         ///
@@ -116,7 +115,7 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
 
         /*======================================================================================================*/
         /// Read and return one character without actually removing it from the input stream.
-        /// 
+        ///
         /// - Returns: The next character or `nil` if EOF.
         /// - Throws: If an I/O error occurs.
         ///
@@ -126,7 +125,7 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
         /// Read <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s from the
         /// stream and append them to the given character array. This method is identical to
         /// `read(chars:,maxLength:)` except that the receiving array is not cleared before the data is read.
-        /// 
+        ///
         /// - Parameters:
         ///   - chars: The <code>[Array](https://developer.apple.com/documentation/swift/Array)</code> to receive
         ///            the <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s.

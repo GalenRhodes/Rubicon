@@ -29,17 +29,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Added Semaphore class.">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Experiments.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/Experiments.xcscheme" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Experiments/main.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/NamedSemaphore.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/UnnamedSemaphore.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/CErrors.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/CErrors.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Conditional.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Conditional.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Semaphore.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/PGSemaphore.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -357,14 +348,7 @@
       <workItem from="1622721245250" duration="19856000" />
       <workItem from="1622813570893" duration="12693000" />
       <workItem from="1622836473210" duration="2684000" />
-      <workItem from="1623085177717" duration="1621000" />
-    </task>
-    <task id="LOCAL-00156" summary="Added to StringProtocol.&#10;    func forEach(inRange: Range&lt;String.Index&gt;, _ body: (Character) throws -&gt; Void) rethrows">
-      <created>1619096663138</created>
-      <option name="number" value="00156" />
-      <option name="presentableId" value="LOCAL-00156" />
-      <option name="project" value="LOCAL" />
-      <updated>1619096663139</updated>
+      <workItem from="1623085177717" duration="1793000" />
     </task>
     <task id="LOCAL-00157" summary="Added to StringProtocol.&#10;    func forEach(inRange: Range&lt;String.Index&gt;, _ body: (Character) throws -&gt; Void) rethrows&#10;    func forEach(match: RegularExpression.Match?, group: Int = 0, _ body: (Character) throws -&gt; Void) rethrows -&gt; Bool">
       <created>1619101943462</created>
@@ -702,7 +686,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622749960211</updated>
     </task>
-    <option name="localTasksCounter" value="205" />
+    <task id="LOCAL-00205" summary="Added Semaphore class.">
+      <created>1623087518283</created>
+      <option name="number" value="00205" />
+      <option name="presentableId" value="LOCAL-00205" />
+      <option name="project" value="LOCAL" />
+      <updated>1623087518283</updated>
+    </task>
+    <option name="localTasksCounter" value="206" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

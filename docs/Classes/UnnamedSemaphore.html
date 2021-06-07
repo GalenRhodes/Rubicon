@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Semaphore Class Reference</title>
+    <title>UnnamedSemaphore Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -13,11 +13,11 @@
     <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/Semaphore" class="dashAnchor"></a>
-    <a title="Semaphore Class Reference"></a>
+    <a name="//apple_ref/swift/Class/UnnamedSemaphore" class="dashAnchor"></a>
+    <a title="UnnamedSemaphore Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Rubicon©</a> (59% documented)</p>
+        <p><a href="../index.html">Rubicon©</a> (60% documented)</p>
         <p class="header-right"><a href="https://github.com/GalenRhodes/Rubicon"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right">
           <form role="search" action="../search.json">
@@ -30,7 +30,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        Semaphore Class Reference
+        UnnamedSemaphore Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -85,6 +85,9 @@
                 <a href="../Classes/MarkInputStream.html">MarkInputStream</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/NamedSemaphore.html">NamedSemaphore</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/NanoTimer.html">NanoTimer</a>
               </li>
               <li class="nav-group-task">
@@ -118,9 +121,6 @@
                 <a href="../Classes/RingByteBuffer.html">RingByteBuffer</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Semaphore.html">Semaphore</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Classes/SimpleIConvCharInputStream.html">SimpleIConvCharInputStream</a>
               </li>
               <li class="nav-group-task">
@@ -140,6 +140,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/TreeNode/Side.html">– Side</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UnnamedSemaphore.html">UnnamedSemaphore</a>
               </li>
             </ul>
           </li>
@@ -345,6 +348,9 @@
                 <a href="../Functions/_5E_5E_28_5F_3A_5F_3A_29_5F_24syxx_5FxtcSzRzluD.html">^^(_:_:)</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Functions/absoluteTimeSpecFrom_28date_3A_29_5F.html">absoluteTimeSpecFrom(date:)</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Functions/absoluteTimeSpecFrom_28date_3A_29_5F_24s4dateSo8timespecVSg10Foundation4DateV_5FtcD.html">absoluteTimeSpecFrom(date:)</a>
               </li>
               <li class="nav-group-task">
@@ -429,9 +435,6 @@
                 <a href="../Functions/textPositionUpdate_28_5F_3Apos_3AtabWidth_3A_29_5F_24s_5F3pos8tabWidthySJ_5Fs5Int32V10lineNumber_5FAD06columnF0tzs4Int8VtcD.html">textPositionUpdate(_:pos:tabWidth:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions/timeIntervalFrom_28date_3A_29_5F.html">timeIntervalFrom(date:)</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Functions/toBinary_28_5F_3Asep_3Apad_3A_29_5F_24s_5F3sep3padSSx_5FSSSgSitcSzRzluD.html">toBinary(_:sep:pad:)</a>
               </li>
               <li class="nav-group-task">
@@ -480,6 +483,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/MutableManagedByteBuffer.html">MutableManagedByteBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PGSemaphore.html">PGSemaphore</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/SimpleCharInputStream.html">SimpleCharInputStream</a>
@@ -600,18 +606,20 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Semaphore</h1>
+            <h1>UnnamedSemaphore</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">Semaphore</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UnnamedSemaphore</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/PGSemaphore.html">PGSemaphore</a></span></code></pre>
 
                 </div>
               </div>
-            <p>This class implements a process local (unnamed) semaphore.</p>
+            <p>This class implements an unnamed (inter-process) semaphore. This type of semaphore is visible only to threads
+of the same process. If you need a semaphore that is visible to multiple processes then use a
+<code><a href="../Classes/NamedSemaphore.html">NamedSemaphore</a></code>.</p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Semaphore.swift#L24-L172">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/UnnamedSemaphore.swift#L26-L128">Show on GitHub</a>
               </div>
           </section>
           <section class="section task-group-section">
@@ -620,9 +628,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon9SemaphoreC8maxValueSivp"></a>
+                    <a name="/s:7Rubicon16UnnamedSemaphoreC8maxValueSivp"></a>
                     <a name="//apple_ref/swift/Property/maxValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon9SemaphoreC8maxValueSivp">maxValue</a>
+                    <a class="token" href="#/s:7Rubicon16UnnamedSemaphoreC8maxValueSivp">maxValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -642,7 +650,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Semaphore.swift#L28">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/UnnamedSemaphore.swift#L30">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -650,9 +658,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon9SemaphoreC5valueSivp"></a>
+                    <a name="/s:7Rubicon16UnnamedSemaphoreC5valueSivp"></a>
                     <a name="//apple_ref/swift/Property/value" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon9SemaphoreC5valueSivp">value</a>
+                    <a class="token" href="#/s:7Rubicon16UnnamedSemaphoreC5valueSivp">value</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -661,8 +669,8 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The current value of the semaphore. If this value is less than or equal to
-<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then any call to <code><a href="../Classes/Semaphore.html#/s:7Rubicon9SemaphoreC7acquireyyF">acquire()</a></code>, <code><a href="../Classes/Semaphore.html#/s:7Rubicon9SemaphoreC10tryAcquireSbyF">tryAcquire()</a></code>, or
-<code><a href="../Classes/Semaphore.html#/s:7Rubicon9SemaphoreC10tryAcquire5untilSb10Foundation4DateV_tF">tryAcquire(until:)</a></code> will respectively either block, fail, or potentially timeout until this value becomes
+<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> then any call to <code><a href="../Classes/UnnamedSemaphore.html#/s:7Rubicon16UnnamedSemaphoreC7acquireyyF">acquire()</a></code>, <code><a href="../Classes/UnnamedSemaphore.html#/s:7Rubicon16UnnamedSemaphoreC10tryAcquireSbyF">tryAcquire()</a></code>, or
+<code><a href="../Classes/UnnamedSemaphore.html#/s:7Rubicon16UnnamedSemaphoreC10tryAcquire5untilSb10Foundation4DateV_tF">tryAcquire(until:)</a></code> will respectively either block, fail, or potentially timeout until this value becomes
 greater than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code>.</p>
 
                       </div>
@@ -675,7 +683,7 @@ greater than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code>.</p
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Semaphore.swift#L35">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/UnnamedSemaphore.swift#L37">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -683,9 +691,9 @@ greater than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code>.</p
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon9SemaphoreC12initialValue03maxD0ACSi_Sitcfc"></a>
+                    <a name="/s:7Rubicon16UnnamedSemaphoreC12initialValue03maxE0ACSi_Sitcfc"></a>
                     <a name="//apple_ref/swift/Method/init(initialValue:maxValue:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon9SemaphoreC12initialValue03maxD0ACSi_Sitcfc">init(initialValue:<wbr>maxValue:<wbr>)</a>
+                    <a class="token" href="#/s:7Rubicon16UnnamedSemaphoreC12initialValue03maxE0ACSi_Sitcfc">init(initialValue:<wbr>maxValue:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -693,12 +701,12 @@ greater than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code>.</p
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create a new semaphore with the given initial <code><a href="../Classes/Semaphore.html#/s:7Rubicon9SemaphoreC5valueSivp">value</a></code>. Optionally you can give a maximum value as well. If
+                        <p>Create a new semaphore with the given initial <code><a href="../Classes/UnnamedSemaphore.html#/s:7Rubicon16UnnamedSemaphoreC5valueSivp">value</a></code>. Optionally you can give a maximum value as well. If
 you don&rsquo;t specify a maximum value then the value of
 <code><a href="https://developer.apple.com/documentation/swift/int">Int.max</a></code> (9,223,372,036,854,775,807 on
 64-bit CPUs or 2,147,483,647 on 32-bit CPUs) is used. <em>NOTE:</em> If you use a value less than one (1) then
-the semaphore will need one or more calls to <code><a href="../Classes/Semaphore.html#/s:7Rubicon9SemaphoreC7releaseSbyF">release()</a></code> before any calls to <code><a href="../Classes/Semaphore.html#/s:7Rubicon9SemaphoreC7acquireyyF">acquire()</a></code>, <code><a href="../Classes/Semaphore.html#/s:7Rubicon9SemaphoreC10tryAcquireSbyF">tryAcquire()</a></code>,
-or <code><a href="../Classes/Semaphore.html#/s:7Rubicon9SemaphoreC10tryAcquire5untilSb10Foundation4DateV_tF">tryAcquire(until:)</a></code> will be allowed to acquire the semaphore.</p>
+the semaphore will need one or more calls to <code><a href="../Classes/UnnamedSemaphore.html#/s:7Rubicon16UnnamedSemaphoreC7releaseSbyF">release()</a></code> before any calls to <code><a href="../Classes/UnnamedSemaphore.html#/s:7Rubicon16UnnamedSemaphoreC7acquireyyF">acquire()</a></code>, <code><a href="../Classes/UnnamedSemaphore.html#/s:7Rubicon16UnnamedSemaphoreC10tryAcquireSbyF">tryAcquire()</a></code>,
+or <code><a href="../Classes/UnnamedSemaphore.html#/s:7Rubicon16UnnamedSemaphoreC10tryAcquire5untilSb10Foundation4DateV_tF">tryAcquire(until:)</a></code> will be allowed to acquire the semaphore.</p>
 
                       </div>
                       <div class="declaration">
@@ -745,7 +753,7 @@ or <code><a href="../Classes/Semaphore.html#/s:7Rubicon9SemaphoreC10tryAcquire5u
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Semaphore.swift#L56-L60">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/UnnamedSemaphore.swift#L58-L62">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -753,9 +761,9 @@ or <code><a href="../Classes/Semaphore.html#/s:7Rubicon9SemaphoreC10tryAcquire5u
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon9SemaphoreC7releaseSbyF"></a>
+                    <a name="/s:7Rubicon16UnnamedSemaphoreC7releaseSbyF"></a>
                     <a name="//apple_ref/swift/Method/release()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon9SemaphoreC7releaseSbyF">release()</a>
+                    <a class="token" href="#/s:7Rubicon16UnnamedSemaphoreC7releaseSbyF">release()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -783,7 +791,7 @@ allowed to acquire the semaphore.</p>
        value then it is left unchanged and <code>false</code> is returned.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Semaphore.swift#L70-L76">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/UnnamedSemaphore.swift#L72-L78">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -791,9 +799,41 @@ allowed to acquire the semaphore.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon9SemaphoreC10tryAcquireSbyF"></a>
+                    <a name="/s:7Rubicon16UnnamedSemaphoreC7acquireyyF"></a>
+                    <a name="//apple_ref/swift/Method/acquire()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon16UnnamedSemaphoreC7acquireyyF">acquire()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Acquire the semaphore. If the value before calling is less than or equal to
+<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> (0) then the calling thread is blocked until it is
+greater than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> (0).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">acquire</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/UnnamedSemaphore.swift#L85-L90">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon16UnnamedSemaphoreC10tryAcquireSbyF"></a>
                     <a name="//apple_ref/swift/Method/tryAcquire()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon9SemaphoreC10tryAcquireSbyF">tryAcquire()</a>
+                    <a class="token" href="#/s:7Rubicon16UnnamedSemaphoreC10tryAcquireSbyF">tryAcquire()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -819,7 +859,7 @@ allowed to acquire the semaphore.</p>
        <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> (0).</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Semaphore.swift#L85-L91">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/UnnamedSemaphore.swift#L99-L105">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -827,41 +867,9 @@ allowed to acquire the semaphore.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon9SemaphoreC7acquireyyF"></a>
-                    <a name="//apple_ref/swift/Method/acquire()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon9SemaphoreC7acquireyyF">acquire()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Acquire the semaphore. If the value before calling is less than or equal to
-<code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> (0) then the calling thread is blocked until it is
-greater than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> (0).</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">acquire</span><span class="p">()</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Semaphore.swift#L98-L103">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon9SemaphoreC10tryAcquire5untilSb10Foundation4DateV_tF"></a>
+                    <a name="/s:7Rubicon16UnnamedSemaphoreC10tryAcquire5untilSb10Foundation4DateV_tF"></a>
                     <a name="//apple_ref/swift/Method/tryAcquire(until:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon9SemaphoreC10tryAcquire5untilSb10Foundation4DateV_tF">tryAcquire(until:<wbr>)</a>
+                    <a class="token" href="#/s:7Rubicon16UnnamedSemaphoreC10tryAcquire5untilSb10Foundation4DateV_tF">tryAcquire(until:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -907,198 +915,7 @@ time specified by <code>until</code> has elapsed.</p>
                         <p><code>true</code> if successful or <code>false</code> if the specified time has elapsed.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Semaphore.swift#L114-L125">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon9SemaphoreC04withB0yxxyKXEKlF"></a>
-                    <a name="//apple_ref/swift/Method/withSemaphore(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon9SemaphoreC04withB0yxxyKXEKlF">withSemaphore(_:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Execute the given closure with the acquired semaphore. This method will acquire the semaphore, execute the
-closure, and then release the semaphore.</p>
-<div class="aside aside-throws">
-    <p class="aside-title">Throws</p>
-    Any error thrown by the closure. The semaphore will be released if an error is thrown.
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="n">withSemaphore</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">T</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>body</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The closure to execute.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The value returned by the closure.</p>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Semaphore.swift#L135-L139">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon9SemaphoreC04withB3TryyxSgxyKXEKlF"></a>
-                    <a name="//apple_ref/swift/Method/withSemaphoreTry(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon9SemaphoreC04withB3TryyxSgxyKXEKlF">withSemaphoreTry(_:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Execute the given closure with the acquired semaphore. This method will attempt to acquire the semaphore,
-execute the closure, and then release the semaphore. If the semaphore cannot be acquired then <code>nil</code> is
-returned without the closure ever being executed.</p>
-<div class="aside aside-throws">
-    <p class="aside-title">Throws</p>
-    Any error thrown by the closure. The semaphore will be released if an error is thrown.
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="n">withSemaphoreTry</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>body</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The closure to execute.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The value returned by the closure or <code>nil</code> if the semaphore could not be acquired.</p>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Semaphore.swift#L150-L154">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon9SemaphoreC04withB09waitUntil_xSg10Foundation4DateV_xyKXEtKlF"></a>
-                    <a name="//apple_ref/swift/Method/withSemaphore(waitUntil:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon9SemaphoreC04withB09waitUntil_xSg10Foundation4DateV_xyKXEtKlF">withSemaphore(waitUntil:<wbr>_:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Execute the given closure with the acquired semaphore. This method will attempt to acquire the semaphore,
-execute the closure, and then release the semaphore. If the semaphore cannot be acquired before the
-timeout then <code>nil</code> is returned without the closure ever being executed.</p>
-<div class="aside aside-throws">
-    <p class="aside-title">Throws</p>
-    Any error thrown by the closure. The semaphore will be released if an error is thrown.
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="n">withSemaphore</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">waitUntil</span> <span class="nv">until</span><span class="p">:</span> <span class="kt">Date</span><span class="p">,</span> <span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>until</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the absolute time that the method will wait trying to acquire the semaphore.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>body</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the closure to execute.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>The value returned by the closure or <code>nil</code> if the semaphore could not be acquired.</p>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Semaphore.swift#L167-L171">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/UnnamedSemaphore.swift#L116-L127">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1108,7 +925,7 @@ timeout then <code>nil</code> is returned without the closure ever being execute
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-06-03)</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-06-07)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

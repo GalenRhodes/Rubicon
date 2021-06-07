@@ -19,6 +19,7 @@
 		1117D3E5CCF75F6ECD21A303 /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DCED9641BC9CB805ADEE /* ReadWriteLock.swift */; };
 		1117D4302066214D581AB6FC /* DynamicFixedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D67CB2830A48B5C56761 /* DynamicFixedArray.swift */; };
 		1117D46F0FC21E611EACD4BB /* BinaryTreeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD043B53015865ED9D07 /* BinaryTreeDictionary.swift */; };
+		1117D4D2A49C3108EB6EDDB0 /* NamedSemaphore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DDF6B294E466C7A185D5 /* NamedSemaphore.swift */; };
 		1117D4D610BD1CE87B0D3771 /* SimpleCharInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D2ABF7C69D75E6443601 /* SimpleCharInputStream.swift */; };
 		1117D4E52C7BBAEBD59B32C8 /* MathTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA2A40FD9973202012F3 /* MathTools.swift */; };
 		1117D52895B40B229F0C34C8 /* AtomicProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D5A6E02759A24014C1D6 /* AtomicProperty.swift */; };
@@ -51,9 +52,12 @@
 		1117DDEE932819B049B78977 /* SimpleStringCharInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DF04833CD6B020F8A54A /* SimpleStringCharInputStream.swift */; };
 		1117DE02F8940A00E5B060F2 /* DateComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D4271C0293ABF2DE0360 /* DateComponents.swift */; };
 		1117DE1264E29B84796C3C80 /* EasyByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD9CADA8086B223523D4 /* EasyByteBuffer.swift */; };
-		1117DE8546BB89F7FFED9501 /* Semaphore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D6F3E0FF3FC135C390D7 /* Semaphore.swift */; };
+		1117DE8546BB89F7FFED9501 /* PGSemaphore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D6F3E0FF3FC135C390D7 /* PGSemaphore.swift */; };
+		1117DEE9775577A7B6014CE0 /* UnnamedSemaphore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D91C10BA91C95A9736D8 /* UnnamedSemaphore.swift */; };
 		1117DF27B358A367D4C2876E /* IConv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D88BD3FB3246B1DFB316 /* IConv.swift */; };
 		1117DFAA0AE0006304938EEC /* BinaryInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DDD0B2FEC71052547523 /* BinaryInteger.swift */; };
+		8398BC14266A6CB200671FE0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8398BC13266A6CB200671FE0 /* main.swift */; };
+		8398BC18266A6D3D00671FE0 /* Rubicon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C67A72250EC02000C0F21E /* Rubicon.framework */; };
 		83C67A7C250EC02000C0F21E /* Rubicon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C67A72250EC02000C0F21E /* Rubicon.framework */; };
 		83C67AB2250EC19800C0F21E /* Closable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C67A97250EC19700C0F21E /* Closable.swift */; };
 		83C67AB3250EC19800C0F21E /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C67A98250EC19700C0F21E /* Tools.swift */; };
@@ -82,6 +86,13 @@
 			remoteGlobalIDString = 83C67A71250EC02000C0F21E;
 			remoteInfo = Rubicon;
 		};
+		8398BC1A266A6D3D00671FE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83C67A69250EC02000C0F21E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 83C67A71250EC02000C0F21E;
+			remoteInfo = Rubicon;
+		};
 		83C67A7D250EC02000C0F21E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83C67A69250EC02000C0F21E /* Project object */;
@@ -92,6 +103,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		8398BC0F266A6CB200671FE0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		83C67AE2250EC39F00C0F21E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -138,7 +158,7 @@
 		1117D6A7CE94A310891BDE0F /* CErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CErrors.swift; sourceTree = "<group>"; };
 		1117D6AC59E30D453F77143E /* DataByteBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataByteBuffer.swift; sourceTree = "<group>"; };
 		1117D6BDC8F2F10000144C4E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
-		1117D6F3E0FF3FC135C390D7 /* Semaphore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Semaphore.swift; sourceTree = "<group>"; };
+		1117D6F3E0FF3FC135C390D7 /* PGSemaphore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGSemaphore.swift; sourceTree = "<group>"; };
 		1117D75AC0C7F9E876B68A79 /* StringCharInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringCharInputStream.swift; sourceTree = "<group>"; };
 		1117D7B71073B174FA3D0D97 /* MarkInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkInputStream.swift; sourceTree = "<group>"; };
 		1117D7EC54BDB613F0DEAC88 /* ManageByteBufferTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageByteBufferTests.swift; sourceTree = "<group>"; };
@@ -147,6 +167,7 @@
 		1117D88BD3FB3246B1DFB316 /* IConv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IConv.swift; sourceTree = "<group>"; };
 		1117D8B11BE277A0D478E764 /* CStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CStrings.swift; sourceTree = "<group>"; };
 		1117D8F31A530CDA758E62B8 /* iconv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iconv.h; sourceTree = "<group>"; };
+		1117D91C10BA91C95A9736D8 /* UnnamedSemaphore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnnamedSemaphore.swift; sourceTree = "<group>"; };
 		1117D9271C10CA5E787B8425 /* Test2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Test2.xml; sourceTree = "<group>"; };
 		1117D9A1691382C37AA03237 /* Thread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
 		1117D9D886E8C97BCF912097 /* Test_UTF-16BE.xml */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.xml; path = "Test_UTF-16BE.xml"; sourceTree = "<group>"; };
@@ -164,6 +185,7 @@
 		1117DD6F29A83E7E9C004F89 /* Conditional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conditional.swift; sourceTree = "<group>"; };
 		1117DD9CADA8086B223523D4 /* EasyByteBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasyByteBuffer.swift; sourceTree = "<group>"; };
 		1117DDD0B2FEC71052547523 /* BinaryInteger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryInteger.swift; sourceTree = "<group>"; };
+		1117DDF6B294E466C7A185D5 /* NamedSemaphore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedSemaphore.swift; sourceTree = "<group>"; };
 		1117DE1EE226A306235DE1F9 /* LongevityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LongevityTests.swift; sourceTree = "<group>"; };
 		1117DE2F10E432964C588E3D /* Test3.xml */ = {isa = PBXFileReference; fileEncoding = 2483028224; lastKnownFileType = text.xml; path = Test3.xml; sourceTree = "<group>"; };
 		1117DEC534789D9F61B02410 /* old.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = old.swift; sourceTree = "<group>"; };
@@ -173,6 +195,8 @@
 		1117DF3E94A76767AA3C37E3 /* Rubicon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rubicon.h; sourceTree = "<group>"; };
 		1117DF5398773AE150F0A585 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		1117DFF873AA7511D488ADD4 /* StringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
+		8398BC11266A6CB200671FE0 /* Experiments */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Experiments; sourceTree = BUILT_PRODUCTS_DIR; };
+		8398BC13266A6CB200671FE0 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		83C67A72250EC02000C0F21E /* Rubicon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Rubicon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C67A7B250EC02000C0F21E /* RubiconTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RubiconTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C67A82250EC02000C0F21E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -200,6 +224,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8398BC0E266A6CB200671FE0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8398BC18266A6D3D00671FE0 /* Rubicon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		83C67A6F250EC02000C0F21E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -235,7 +267,9 @@
 				1117DD6F29A83E7E9C004F89 /* Conditional.swift */,
 				1117D545C41CE3C16FAD6B9F /* NSLock.swift */,
 				1117DCED9641BC9CB805ADEE /* ReadWriteLock.swift */,
-				1117D6F3E0FF3FC135C390D7 /* Semaphore.swift */,
+				1117D6F3E0FF3FC135C390D7 /* PGSemaphore.swift */,
+				1117D91C10BA91C95A9736D8 /* UnnamedSemaphore.swift */,
+				1117DDF6B294E466C7A185D5 /* NamedSemaphore.swift */,
 			);
 			path = Concurrency;
 			sourceTree = "<group>";
@@ -314,6 +348,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8398BC12266A6CB200671FE0 /* Experiments */ = {
+			isa = PBXGroup;
+			children = (
+				8398BC13266A6CB200671FE0 /* main.swift */,
+			);
+			path = Experiments;
+			sourceTree = "<group>";
+		};
 		83C67A68250EC02000C0F21E = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +373,7 @@
 				83C67A72250EC02000C0F21E /* Rubicon.framework */,
 				83C67A7B250EC02000C0F21E /* RubiconTests.xctest */,
 				83C67AE4250EC39F00C0F21E /* DocFixer */,
+				8398BC11266A6CB200671FE0 /* Experiments */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -381,6 +424,7 @@
 		83C67A8C250EC11E00C0F21E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				8398BC12266A6CB200671FE0 /* Experiments */,
 				83C67AE5250EC39F00C0F21E /* DocFixer */,
 				83C67A74250EC02000C0F21E /* Rubicon */,
 				1117DC05EEFBC6A2FF53D3EC /* iconv */,
@@ -518,6 +562,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		8398BC10266A6CB200671FE0 /* Experiments */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8398BC17266A6CB200671FE0 /* Build configuration list for PBXNativeTarget "Experiments" */;
+			buildPhases = (
+				8398BC0D266A6CB200671FE0 /* Sources */,
+				8398BC0E266A6CB200671FE0 /* Frameworks */,
+				8398BC0F266A6CB200671FE0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8398BC1B266A6D3D00671FE0 /* PBXTargetDependency */,
+			);
+			name = Experiments;
+			productName = Experiments;
+			productReference = 8398BC11266A6CB200671FE0 /* Experiments */;
+			productType = "com.apple.product-type.tool";
+		};
 		83C67A71250EC02000C0F21E /* Rubicon */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 83C67A86250EC02000C0F21E /* Build configuration list for PBXNativeTarget "Rubicon" */;
@@ -586,10 +648,13 @@
 		83C67A69250EC02000C0F21E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1170;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Project Galen";
 				TargetAttributes = {
+					8398BC10266A6CB200671FE0 = {
+						CreatedOnToolsVersion = 12.5;
+					};
 					83C67A71250EC02000C0F21E = {
 						CreatedOnToolsVersion = 11.7;
 						LastSwiftMigration = 1210;
@@ -622,6 +687,7 @@
 				83C67A71250EC02000C0F21E /* Rubicon */,
 				83C67A7A250EC02000C0F21E /* RubiconTests */,
 				83C67AE3250EC39F00C0F21E /* DocFixer */,
+				8398BC10266A6CB200671FE0 /* Experiments */,
 			);
 		};
 /* End PBXProject section */
@@ -644,6 +710,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8398BC0D266A6CB200671FE0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8398BC14266A6CB200671FE0 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		83C67A6E250EC02000C0F21E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -697,7 +771,9 @@
 				1117D2C6E8D38475C5C674D5 /* StringFormat.swift in Sources */,
 				1117D1B588233A771C95B889 /* FloatingPoint.swift in Sources */,
 				1117DE02F8940A00E5B060F2 /* DateComponents.swift in Sources */,
-				1117DE8546BB89F7FFED9501 /* Semaphore.swift in Sources */,
+				1117DE8546BB89F7FFED9501 /* PGSemaphore.swift in Sources */,
+				1117DEE9775577A7B6014CE0 /* UnnamedSemaphore.swift in Sources */,
+				1117D4D2A49C3108EB6EDDB0 /* NamedSemaphore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,6 +808,11 @@
 			target = 83C67A71250EC02000C0F21E /* Rubicon */;
 			targetProxy = 83490117252E0FE900D67809 /* PBXContainerItemProxy */;
 		};
+		8398BC1B266A6D3D00671FE0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 83C67A71250EC02000C0F21E /* Rubicon */;
+			targetProxy = 8398BC1A266A6D3D00671FE0 /* PBXContainerItemProxy */;
+		};
 		83C67A7E250EC02000C0F21E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 83C67A71250EC02000C0F21E /* Rubicon */;
@@ -740,6 +821,32 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		8398BC15266A6CB200671FE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG FOO";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8398BC16266A6CB200671FE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "RELEASE FOO";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		83C67A84250EC02000C0F21E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -987,6 +1094,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8398BC17266A6CB200671FE0 /* Build configuration list for PBXNativeTarget "Experiments" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8398BC15266A6CB200671FE0 /* Debug */,
+				8398BC16266A6CB200671FE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		83C67A6C250EC02000C0F21E /* Build configuration list for PBXProject "Rubicon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

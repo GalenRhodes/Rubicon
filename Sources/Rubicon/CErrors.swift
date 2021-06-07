@@ -24,6 +24,10 @@ import Foundation
 import CoreFoundation
 #if os(Windows)
     import WinSDK
+#elseif canImport(Darwin)
+    import Darwin
+#elseif canImport(Glibc)
+    import Glibc
 #endif
 
 /*==============================================================================================================*/

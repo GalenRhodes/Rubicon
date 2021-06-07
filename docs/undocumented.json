@@ -1940,6 +1940,41 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/NamedSemaphore.swift",
+      "line": 41,
+      "symbol": "NamedSemaphore.OSMaximumNameLength",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/NamedSemaphore.swift",
+      "line": 50,
+      "symbol": "NamedSemaphore.OSMaximumValue",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/NamedSemaphore.swift",
+      "line": 56,
+      "symbol": "NamedSemaphore.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/PGSemaphore.swift",
+      "line": 21,
+      "symbol": "PGSemaphore",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/PGSemaphore.swift",
+      "line": 106,
+      "symbol": "PGSemaphore",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/PGThread.swift",
       "line": 37,
       "symbol": "PGThread.isDone",
@@ -2788,28 +2823,35 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Tools.swift",
-      "line": 502,
+      "line": 77,
+      "symbol": "absoluteTimeSpecFrom(date:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Tools.swift",
+      "line": 501,
       "symbol": "value(_:isOneOf:)",
       "symbol_kind": "source.lang.swift.decl.function.free",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Tools.swift",
-      "line": 573,
+      "line": 572,
       "symbol": "NestType.In",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Tools.swift",
-      "line": 573,
+      "line": 572,
       "symbol": "NestType.None",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Tools.swift",
-      "line": 573,
+      "line": 572,
       "symbol": "NestType.Out",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"

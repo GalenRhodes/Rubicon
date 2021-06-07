@@ -18,46 +18,18 @@
 import Foundation
 import CoreFoundation
 
-/*==============================================================================================================*/
-/// This class implements a process local (unnamed) semaphore.
-///
-open class Semaphore {
+public protocol PGSemaphore {
     /*==========================================================================================================*/
     /// The maximum value of the semaphore. The current value will never go above this value.
     ///
-    public let maxValue: Int
+    var maxValue: Int { get }
     /*==========================================================================================================*/
     /// The current value of the semaphore. If this value is less than or equal to
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> then any call to `acquire()`, `tryAcquire()`, or
     /// `tryAcquire(until:)` will respectively either block, fail, or potentially timeout until this value becomes
     /// greater than <code>[zero](https://en.wikipedia.org/wiki/0)</code>.
     ///
-    public var value: Int { _lock.withLock { _value } }
-
-    private var _value: Int
-    private let _lock:  Conditional = Conditional()
-
-    /*==========================================================================================================*/
-    /// Create a new semaphore with the given initial `value`. Optionally you can give a maximum value as well. If
-    /// you don't specify a maximum value then the value of
-    /// <code>[Int.max](https://developer.apple.com/documentation/swift/int)</code> (9,223,372,036,854,775,807 on
-    /// 64-bit CPUs or 2,147,483,647 on 32-bit CPUs) is used. _NOTE:_ If you use a value less than one (1) then
-    /// the semaphore will need one or more calls to `release()` before any calls to `acquire()`, `tryAcquire()`,
-    /// or `tryAcquire(until:)` will be allowed to acquire the semaphore.
-    /// 
-    /// - Parameters:
-    ///   - initialValue: The initial value. May be less than <code>[zero](https://en.wikipedia.org/wiki/0)</code>
-    ///                   but cannot be greater than the maximum value nor less than the value of
-    ///                   <code>[Int.min](https://developer.apple.com/documentation/swift/int)</code>
-    ///                   (-9,223,372,036,854,775,808 on 64-bit CPUs or -2,147,483,648 on 32-bit CPUs)
-    ///   - maxValue: The maximum value. Defaults to the value of
-    ///               <code>[Int.max](https://developer.apple.com/documentation/swift/int)</code>.
-    ///
-    public init(initialValue: Int, maxValue: Int = Int.max) {
-        guard initialValue <= maxValue else { fatalError("Initial value (\(initialValue)) cannot be larger than the maximum value (\(maxValue)).") }
-        self.maxValue = maxValue
-        self._value = initialValue
-    }
+    var value:    Int { get }
 
     /*==========================================================================================================*/
     /// Release the semaphore. Increments the value by one (1). If the value was previously less than or equal to
@@ -67,13 +39,14 @@ open class Semaphore {
     /// - Returns: `true` if successful. If the value before calling `release()` is already equal to the maximum
     ///            value then it is left unchanged and `false` is returned.
     ///
-    @discardableResult open func release() -> Bool {
-        _lock.withLock {
-            guard _value < maxValue else { return false }
-            _value += 1
-            return true
-        }
-    }
+    @discardableResult func release() -> Bool
+
+    /*==========================================================================================================*/
+    /// Acquire the semaphore. If the value before calling is less than or equal to
+    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0) then the calling thread is blocked until it is
+    /// greater than <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0).
+    ///
+    func acquire()
 
     /*==========================================================================================================*/
     /// Attempt to acquire the semaphore. If the value before calling is less than or equal to
@@ -82,25 +55,7 @@ open class Semaphore {
     /// - Returns: `true` if successful. `false` if value is less than or equal to
     ///            <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0).
     ///
-    open func tryAcquire() -> Bool {
-        _lock.withLock {
-            guard _value < 1 else { return false }
-            _value -= 1
-            return true
-        }
-    }
-
-    /*==========================================================================================================*/
-    /// Acquire the semaphore. If the value before calling is less than or equal to
-    /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0) then the calling thread is blocked until it is
-    /// greater than <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0).
-    ///
-    open func acquire() {
-        _lock.withLock {
-            while _value < 1 { _lock.broadcastWait() }
-            _value -= 1
-        }
-    }
+    func tryAcquire() -> Bool
 
     /*==========================================================================================================*/
     /// Attempt to acquire the semaphore. If the value before calling is less than or equal to
@@ -111,18 +66,7 @@ open class Semaphore {
     /// - Parameter until: the absolute time that this method will wait trying to acquire the semaphore.
     /// - Returns: `true` if successful or `false` if the specified time has elapsed.
     ///
-    open func tryAcquire(until: Date) -> Bool {
-        _lock.withLock {
-            while _value < 1 {
-                guard _lock.broadcastWait(until: until) else {
-                    guard _value > 0 else { return false }
-                    break
-                }
-            }
-            _value -= 1
-            return true
-        }
-    }
+    func tryAcquire(until: Date) -> Bool
 
     /*==========================================================================================================*/
     /// Execute the given closure with the acquired semaphore. This method will acquire the semaphore, execute the
@@ -132,7 +76,44 @@ open class Semaphore {
     /// - Returns: The value returned by the closure.
     /// - Throws: Any error thrown by the closure. The semaphore will be released if an error is thrown.
     ///
-    open func withSemaphore<T>(_ body: () throws -> T) rethrows -> T {
+    func withSemaphore<T>(_ body: () throws -> T) rethrows -> T
+
+    /*==========================================================================================================*/
+    /// Execute the given closure with the acquired semaphore. This method will attempt to acquire the semaphore,
+    /// execute the closure, and then release the semaphore. If the semaphore cannot be acquired then `nil` is
+    /// returned without the closure ever being executed.
+    /// 
+    /// - Parameter body: The closure to execute.
+    /// - Returns: The value returned by the closure or `nil` if the semaphore could not be acquired.
+    /// - Throws: Any error thrown by the closure. The semaphore will be released if an error is thrown.
+    ///
+    func withSemaphoreTry<T>(_ body: () throws -> T) rethrows -> T?
+
+    /*==========================================================================================================*/
+    /// Execute the given closure with the acquired semaphore. This method will attempt to acquire the semaphore,
+    /// execute the closure, and then release the semaphore. If the semaphore cannot be acquired before the
+    /// timeout then `nil` is returned without the closure ever being executed.
+    /// 
+    /// - Parameters:
+    ///   - until: the absolute time that the method will wait trying to acquire the semaphore.
+    ///   - body: the closure to execute.
+    /// - Returns: The value returned by the closure or `nil` if the semaphore could not be acquired.
+    /// - Throws: Any error thrown by the closure. The semaphore will be released if an error is thrown.
+    ///
+    func withSemaphore<T>(waitUntil until: Date, _ body: () throws -> T) rethrows -> T?
+}
+
+extension PGSemaphore {
+
+    /*==========================================================================================================*/
+    /// Execute the given closure with the acquired semaphore. This method will acquire the semaphore, execute the
+    /// closure, and then release the semaphore.
+    /// 
+    /// - Parameter body: The closure to execute.
+    /// - Returns: The value returned by the closure.
+    /// - Throws: Any error thrown by the closure. The semaphore will be released if an error is thrown.
+    ///
+    @inlinable public func withSemaphore<T>(_ body: () throws -> T) rethrows -> T {
         acquire()
         defer { release() }
         return try body()
@@ -147,7 +128,7 @@ open class Semaphore {
     /// - Returns: The value returned by the closure or `nil` if the semaphore could not be acquired.
     /// - Throws: Any error thrown by the closure. The semaphore will be released if an error is thrown.
     ///
-    open func withSemaphoreTry<T>(_ body: () throws -> T) rethrows -> T? {
+    @inlinable public func withSemaphoreTry<T>(_ body: () throws -> T) rethrows -> T? {
         guard tryAcquire() else { return nil }
         defer { release() }
         return try body()
@@ -164,7 +145,7 @@ open class Semaphore {
     /// - Returns: The value returned by the closure or `nil` if the semaphore could not be acquired.
     /// - Throws: Any error thrown by the closure. The semaphore will be released if an error is thrown.
     ///
-    open func withSemaphore<T>(waitUntil until: Date, _ body: () throws -> T) rethrows -> T? {
+    @inlinable public func withSemaphore<T>(waitUntil until: Date, _ body: () throws -> T) rethrows -> T? {
         guard tryAcquire(until: until) else { return nil }
         defer { release() }
         return try body()

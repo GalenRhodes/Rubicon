@@ -237,7 +237,7 @@ open class Conditional: LockCondition {
 
     private func PGGetLockTime(from date: Date) -> PGLockTime? {
         #if os(Windows)
-            return timeIntervalFrom(date: date)
+            return absoluteTimeSpecFrom(date: date)
         #else
             return absoluteTimeSpecFrom(date: date)
         #endif

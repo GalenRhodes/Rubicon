@@ -67,19 +67,18 @@ public let OneSecondMillis: PGTimeT = 1_000
 /// - Parameter when: the date.
 /// - Returns: A timespec structure or `nil` if the date is in the past.
 ///
-@inlinable public func absoluteTimeSpecFrom(date when: Date) -> timespec? {
-    guard when.timeIntervalSinceNow > 0 else { return nil }
-    let dNanos:   Double = Double(OneSecondNanos)
-    let dTotal:   Double = (when.timeIntervalSince1970 * dNanos)
-    let dSeconds: Double = (dTotal / dNanos)
-    return timespec(tv_sec: Int(dSeconds), tv_nsec: Int(dTotal - (dSeconds * dNanos)))
-}
-
 #if os(Windows)
-    @inlinable public func timeIntervalFrom(date when: Date) -> DWORD? {
+    @inlinable public func absoluteTimeSpecFrom(date when: Date) -> DWORD? {
         let ti: TimeInterval = when.timeIntervalSinceNow
         guard ti > 0 else { return nil }
         return DWORD(ti * OneSecondMillis)
+    }
+#else
+    @inlinable public func absoluteTimeSpecFrom(date when: Date) -> timespec? {
+        guard when.timeIntervalSinceNow > 0 else { return nil }
+        let timeInter: TimeInterval = when.timeIntervalSince1970
+        let seconds:   Double       = timeInter.rounded(.towardZero)
+        return timespec(tv_sec: Int(seconds), tv_nsec: Int((timeInter - seconds) * 1_000_000_000.0))
     }
 #endif
 

@@ -28,10 +28,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Added Semaphore class.">
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Bug fix in MarkInputStream.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Stream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Stream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -350,14 +349,7 @@
       <workItem from="1622813570893" duration="12693000" />
       <workItem from="1622836473210" duration="2684000" />
       <workItem from="1623085177717" duration="1883000" />
-      <workItem from="1623239638513" duration="1834000" />
-    </task>
-    <task id="LOCAL-00158" summary="Added:&#10;    public func nextCharPosition(currentPosition pos: TextPosition, character char: Character, tabWidth sz: Int8 = 4) -&gt; TextPosition">
-      <created>1619107489265</created>
-      <option name="number" value="00158" />
-      <option name="presentableId" value="LOCAL-00158" />
-      <option name="project" value="LOCAL" />
-      <updated>1619107489265</updated>
+      <workItem from="1623239638513" duration="4010000" />
     </task>
     <task id="LOCAL-00159" summary="Bug fixes.">
       <created>1619455238146</created>
@@ -695,7 +687,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623087618678</updated>
     </task>
-    <option name="localTasksCounter" value="207" />
+    <task id="LOCAL-00207" summary="Bug fix in MarkInputStream.">
+      <created>1623241578984</created>
+      <option name="number" value="00207" />
+      <option name="presentableId" value="LOCAL-00207" />
+      <option name="project" value="LOCAL" />
+      <updated>1623241578984</updated>
+    </task>
+    <option name="localTasksCounter" value="208" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -728,7 +727,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Extensions to the String, StringProtocol, InputStream, Array, and ArraySlice classes/structs." />
     <MESSAGE value="Created operator ==~ to allow easy case insensitive string equality." />
     <MESSAGE value="Created operator !=~ to allow easy case insensitive string inequality." />
     <MESSAGE value="Corrected some documentation." />
@@ -753,7 +751,8 @@
     <MESSAGE value="Added lock() and unlock() to CharStream protocol." />
     <MESSAGE value="Added withLock(_:) to CharStream protocol." />
     <MESSAGE value="Added Semaphore class." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Semaphore class." />
+    <MESSAGE value="Bug fix in MarkInputStream." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fix in MarkInputStream." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

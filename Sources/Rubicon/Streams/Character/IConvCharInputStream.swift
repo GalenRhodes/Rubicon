@@ -25,14 +25,11 @@ import CoreFoundation
 
 #if !os(Windows)
     open class IConvCharInputStream: SimpleIConvCharInputStream, CharInputStream {
-
-        typealias MarkTuple = (char: Character, pos: TextPosition)
-
         //@f:0
         /*======================================================================================================*/
         /// The number of marks on the stream.
         ///
-        open     var markCount:  Int          { withLock { _markStack.count                                                 } }
+        open     var markCount:  Int          { withLock { _markStack.count } }
         /*======================================================================================================*/
         /// The current line and column numbers.
         ///
@@ -40,7 +37,7 @@ import CoreFoundation
         /*======================================================================================================*/
         /// The number of spaces in each tab stop.
         ///
-        open     var position:   TextPosition { withLock { _position                                                        } }
+        open     var position:   TextPosition { withLock { _position } }
         internal var _position:  TextPosition = (0, 0)
         internal var _tabWidth:  Int8         = 4
         internal var _markStack: [MarkItem]   = []
@@ -114,6 +111,7 @@ import CoreFoundation
 
         override func _read() throws -> Character? {
             guard let ch = try super._read() else { return nil }
+            if let m = _markStack.last { m.data <+ ch }
             textPositionUpdate(ch, pos: &_position, tabWidth: _tabWidth)
             return ch
         }
@@ -121,11 +119,12 @@ import CoreFoundation
         override func _append(to chars: inout [Character], maxLength: Int) throws -> Int {
             let eidx = chars.endIndex
             let cc   = try super._append(to: &chars, maxLength: maxLength)
-            if cc > 0 { for i in (eidx ..< chars.endIndex) { textPositionUpdate(chars[i], pos: &_position, tabWidth: _tabWidth) } }
+            if let m = _markStack.last { chars[eidx ..< chars.endIndex].forEach { m.data <+ $0; textPositionUpdate($0, pos: &_position, tabWidth: _tabWidth) } }
+            else { chars[eidx ..< chars.endIndex].forEach { textPositionUpdate($0, pos: &_position, tabWidth: _tabWidth) } }
             return cc
         }
 
-        func _markSet() { if isOpen { _markStack <+ MarkItem() } }
+        func _markSet() { if isOpen { _markStack <+ MarkItem(position: _position) } }
 
         func _markDelete() { if isOpen, let m = _markStack.popLast() { m.data.removeAll() } }
 
@@ -151,14 +150,17 @@ import CoreFoundation
         }
 
         @discardableResult func _markBackup(_ m: MarkItem, count: Int) -> Int {
+            let s: Int = m.data.startIndex
             let e: Int = m.data.endIndex
-            let c: Int = min(m.data.count, count)
-            let p: Int = (e - c)
+            let c: Int = min((e - s), ((count < 0) ? 0 : count))
 
-            if p < e {
+            if c > 0 {
+                let p: Int        = (e - c)
                 let r: Range<Int> = (p ..< e)
-                _position = m.data[p].pos
-                buffer.insert(contentsOf: m.data[r].map { $0.char }, at: 0)
+
+                _position = m.pos
+                m.data[s ..< p].forEach { textPositionUpdate($0, pos: &_position, tabWidth: _tabWidth) }
+                buffer.insert(contentsOf: m.data[r], at: 0)
                 m.data.removeSubrange(r)
             }
 
@@ -166,9 +168,10 @@ import CoreFoundation
         }
 
         final class MarkItem {
-            var data: [MarkTuple] = []
+            let pos:  TextPosition
+            var data: [Character] = []
 
-            init() {}
+            init(position pos: TextPosition) { self.pos = pos }
         }
     }
 #endif

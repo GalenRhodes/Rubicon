@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/GalenRhodes/RingBuffer.git",
         "state": {
           "branch": null,
-          "revision": "50d346abc7f4d402a3d63e5c30221500e1230250",
-          "version": "1.0.9"
+          "revision": "64fb195bce6691f6c2080b87daf2644032aa6116",
+          "version": "1.0.10"
         }
       }
     ]

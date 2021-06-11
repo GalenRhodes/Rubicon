@@ -29,11 +29,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Bug fix in IConvCharInputStream.">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/DocFixer__Jazzy_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/DocFixer__Jazzy_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Package.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Package.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Array.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Array.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer (Jazzy).xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer (Jazzy).xcscheme" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Text/StringFormat.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Text/StringFormat.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +44,7 @@
       <option value="directory" />
     </option>
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="macos_macos_x86_64" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="macos_macos_arm64" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -72,18 +71,19 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Tools.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="amon5vo6" />
   </component>
   <component name="ProjectId" id="1hVLdn4q9dZBJYcN1EOQjI95yyx" />
   <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -113,7 +113,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Swift" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager" selected="Application.DocFixer (Jazzy)">
     <list>

@@ -17,9 +17,9 @@
    </BuildAction>
    <LaunchAction
       useCustomWorkingDirectory = "YES"
+      customWorkingDirectory = "$(SRCROOT)"
       buildConfiguration = "Release"
-      allowLocationSimulation = "YES"
-      customWorkingDirectory = "$(SRCROOT)">
+      allowLocationSimulation = "YES">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"

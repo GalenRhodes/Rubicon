@@ -299,13 +299,9 @@ infix operator <=>: ComparisonPrecedence
 /// 
 /// Usage:
 /// ```
-///     func foo(str1: String, str2: String) {
-///         switch str1 <=> str2 {
-///             case .LessThan:    print("'\(str1)' comes before '\(str2)'")
-///             case .EqualTo:     print("'\(str1)' is the same as '\(str2)'")
-///             case .GreaterThan: print("'\(str1)' comes after '\(str2)'")
-///         }
-///     }
+///     func `foo(str1: String, str2: String)` { switch str1 <=> str2 { case .LessThan: `print("'\(str1)`' comes
+///     before '\(str2)'") case .EqualTo: `print("'\(str1)`' is the same as '\(str2)'") case .GreaterThan:
+///     `print("'\(str1)`' comes after '\(str2)'") } }
 /// ```
 /// 
 /// - Parameters:
@@ -332,14 +328,12 @@ infix operator <=>: ComparisonPrecedence
 /// 
 /// Example:
 /// ```
-///     let array1: [Int] = [ 1, 2, 3, 4 ]
-///     let array2: [Int] = [ 1, 2, 3, 4 ]
-///     let array3: [Int] = [ 1, 2, 3 ]
-///     let array4: [Int] = [ 1, 2, 5, 6 ]
+///     let array1: [Int] = [ 1, 2, 3, 4 ] let array2: [Int] = [ 1, 2, 3, 4 ] let array3: [Int] = [ 1, 2, 3 ] let
+///     array4: [Int] = [ 1, 2, 5, 6 ]
 /// 
-///     let result1: SortOrdering = array1 <=> array2 // result1 is set to `SortOrdering.EqualTo`
-///     let result2: SortOrdering = array1 <=> array3 // result2 is set to `SortOrdering.GreaterThan`
-///     let result3: SortOrdering = array1 <=> array4 // result3 is set to `SortOrdering.LessThan`
+///     let result1: SortOrdering = array1 <=> array2 // result1 is set to `SortOrdering.EqualTo` let result2:
+///     SortOrdering = array1 <=> array3 // result2 is set to `SortOrdering.GreaterThan` let result3: SortOrdering
+///     = array1 <=> array4 // result3 is set to `SortOrdering.LessThan`
 /// ```
 /// 
 /// - Parameters:
@@ -431,12 +425,7 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 /// <code>[Optional](https://developer.apple.com/documentation/swift/optional/)</code> conditional. To test an
 /// optional for `nil` you can use an `if` statement like this:
 /// ```
-///     if let v = possiblyNil {
-///         /* do something with v */
-///     }
-///     else {
-///         /* do something when possiblyNil is nil */
-///     }
+///     if let v = possiblyNil { /* do something with v */ } else { /* do something when possiblyNil is `nil` */ }
 /// ```
 /// 
 /// This is fine but I wanted to do the same thing with a conditional expression like this:
@@ -446,7 +435,7 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 /// 
 /// I know I could always do this:
 /// ```
-///     let x = ((possiblyNil == nil) ? "no name" : v!.name) // This will compile.
+///     let x = ((possiblyNil == `nil`) ? "no name" : v!.name) // This will compile.
 /// ```
 /// But the OCD side of me really dislikes that '!' being there even though I know it will never cause a fatal
 /// error. It just rubs up against that nerve seeing it there. 🤢
@@ -454,7 +443,7 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 /// So I created this function to simulate the functionality of the above using closures.
 /// 
 /// ```
-///     let x = nilCheck(possiblyNil) { $0.name }, whenNilDo: { "no name" } // This will compile. 😁
+///     let x = `nilCheck(possiblyNil)` { $0.name }, whenNilDo: { "no name" } // This will compile. 😁
 /// ```
 /// 
 /// - Parameters:
@@ -488,7 +477,7 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 /// 
 /// You can now do this:
 /// ```
-///     if value(number, isOneOf: 1, 5, 99) { /* do something */ }
+///     if `value(number, isOneOf: 1, 5, 99)` { /* do something */ }
 /// ```
 /// 
 /// - Parameters:

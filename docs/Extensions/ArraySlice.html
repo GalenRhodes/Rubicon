@@ -17,7 +17,7 @@
     <a title="ArraySlice Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Rubicon©</a> (60% documented)</p>
+        <p><a href="../index.html">Rubicon©</a> (61% documented)</p>
         <p class="header-right"><a href="https://github.com/GalenRhodes/Rubicon"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right">
           <form role="search" action="../search.json">
@@ -327,12 +327,6 @@
                 <a href="../Functions/_3C_3F_28_5F_3A_5F_3A_29_5F_24sySbSayxG_5FxtcSQRzluD.html">&lt;?(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions/_3D_3D_28_5F_3A_5F_3A_29_5F_24sySbSayxG_5Fs10ArraySliceVyxGtcSQRzluD.html">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions/_3D_3D_28_5F_3A_5F_3A_29_5F_24sySbs10ArraySliceVyxG_5FSayxGtcSQRzluD.html">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Functions/HashOfAnything_28_5F_3A_29_5F_24sySiypcD.html">HashOfAnything(_:)</a>
               </li>
               <li class="nav-group-task">
@@ -611,6 +605,8 @@
                 <div class="language">
                   
                   <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">ArraySlice</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">ArraySlice</span> <span class="k">where</span> <span class="kt">Element</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">ArraySlice</span> <span class="k">where</span> <span class="kt">Element</span> <span class="o">==</span> <span class="kt">Character</span></code></pre>
 
                 </div>
               </div>
@@ -632,18 +628,45 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Shorthand for:</p>
+<pre class="highlight swift"><code><span class="n">aSlice</span><span class="p">[</span><span class="n">aSlice</span><span class="o">.</span><span class="nf">index</span><span class="p">(</span><span class="n">aSlice</span><span class="o">.</span><span class="n">endIndex</span><span class="p">,</span> <span class="nv">offsetBy</span><span class="p">:</span> <span class="o">-</span><span class="kt">Swift</span><span class="o">.</span><span class="nf">min</span><span class="p">(</span><span class="n">cc</span><span class="p">,</span> <span class="n">aSlice</span><span class="o">.</span><span class="n">count</span><span class="p">))</span> <span class="o">..&lt;</span> <span class="n">aSlice</span><span class="o">.</span><span class="n">endIndex</span><span class="p">]</span>
+</code></pre>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">last</span><span class="p">(</span><span class="n">count</span> <span class="nv">cc</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ArraySlice</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">last</span><span class="p">(</span><span class="n">count</span> <span class="nv">cc</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ArraySlice</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cc</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The number of elements to get.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array slice of the last <code>cc</code> elements.</p>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/Array.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/ArraySlice.swift#L32">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -661,18 +684,669 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Shorthand for:</p>
+<pre class="highlight swift"><code><span class="n">aSlice</span><span class="p">[</span><span class="n">aSlice</span><span class="o">.</span><span class="n">startIndex</span> <span class="o">..&lt;</span> <span class="n">aSlice</span><span class="o">.</span><span class="nf">index</span><span class="p">(</span><span class="n">aSlice</span><span class="o">.</span><span class="n">startIndex</span><span class="p">,</span> <span class="nv">offsetBy</span><span class="p">:</span> <span class="kt">Swift</span><span class="o">.</span><span class="nf">min</span><span class="p">(</span><span class="n">cc</span><span class="p">,</span> <span class="n">aSlice</span><span class="o">.</span><span class="n">count</span><span class="p">))]</span>
+</code></pre>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">first</span><span class="p">(</span><span class="n">count</span> <span class="nv">cc</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ArraySlice</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">first</span><span class="p">(</span><span class="n">count</span> <span class="nv">cc</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ArraySlice</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cc</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The number of elements to get.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array slice of the first <code>cc</code> elements.</p>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/Array.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/ArraySlice.swift#L44">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60Element%60%3A%20%60Equatable%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `Element`: `Equatable`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60Element%60%3A%20%60Equatable%60"></a>
+                  <h3 class="section-name"><p>Available where <code>Element</code>: <code>Equatable</code></p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s10ArraySliceV7RubiconSQRzlE2eeoiySbAByxG_SayxGtFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s10ArraySliceV7RubiconSQRzlE2eeoiySbAByxG_SayxGtFZ">==(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convienience method to allow direct comparison of Arrays and ArraySlices for equality. Instead of having
+to write:</p>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="n">aSlice</span> <span class="o">==</span> <span class="n">anArray</span><span class="p">[</span><span class="n">anArray</span><span class="o">.</span><span class="n">startIndex</span> <span class="o">..&lt;</span> <span class="n">anArray</span><span class="o">.</span><span class="n">endIndex</span><span class="p">]</span> <span class="p">{</span> <span class="cm">/* do something */</span> <span class="p">}</span>
+</code></pre>
+
+<p>You can now just write:</p>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="n">aSlice</span> <span class="o">==</span> <span class="n">anArray</span> <span class="p">{</span> <span class="cm">/* do something */</span> <span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="p">`</span><span class="nv">Self</span><span class="p">`,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="p">[</span><span class="kt">Element</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an instance of ArraySlice</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an instance of Array</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if the ArraySlice and the Array have the same elements in the same order.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/ArraySlice.swift#L66">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s10ArraySliceV7RubiconSQRzlE2eeoiySbSayxG_AByxGtFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s10ArraySliceV7RubiconSQRzlE2eeoiySbSayxG_AByxGtFZ">==(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convienience method to allow direct comparison of Arrays and ArraySlices for equality. Instead of having
+to write:</p>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="n">anArray</span><span class="p">[</span><span class="n">anArray</span><span class="o">.</span><span class="n">startIndex</span> <span class="o">..&lt;</span> <span class="n">anArray</span><span class="o">.</span><span class="n">endIndex</span><span class="p">]</span> <span class="o">==</span> <span class="n">aSlice</span> <span class="p">{</span> <span class="cm">/* do something */</span> <span class="p">}</span>
+</code></pre>
+
+<p>You can now just write:</p>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="n">anArray</span> <span class="o">==</span> <span class="n">aSlice</span> <span class="p">{</span> <span class="cm">/* do something */</span> <span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="p">[</span><span class="kt">Element</span><span class="p">],</span> <span class="nv">rhs</span><span class="p">:</span> <span class="p">`</span><span class="nv">Self</span><span class="p">`)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an instance of Array</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an instance of ArraySlice</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if the ArraySlice and the Array have the same elements in the same order.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/ArraySlice.swift#L86">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s10ArraySliceV7RubiconSQRzlE2neoiySbAByxG_SayxGtFZ"></a>
+                    <a name="//apple_ref/swift/Method/!=(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s10ArraySliceV7RubiconSQRzlE2neoiySbAByxG_SayxGtFZ">!=(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convienience method to allow direct comparison of Arrays and ArraySlices for inequality. Instead of having
+to write:</p>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="n">aSlice</span> <span class="o">!=</span> <span class="n">anArray</span><span class="p">[</span><span class="n">anArray</span><span class="o">.</span><span class="n">startIndex</span> <span class="o">..&lt;</span> <span class="n">anArray</span><span class="o">.</span><span class="n">endIndex</span><span class="p">]</span> <span class="p">{</span> <span class="cm">/* do something */</span> <span class="p">}</span>
+</code></pre>
+
+<p>You can now just write:</p>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="n">aSlice</span> <span class="o">!=</span> <span class="n">anArray</span> <span class="p">{</span> <span class="cm">/* do something */</span> <span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">!=</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="p">`</span><span class="nv">Self</span><span class="p">`,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="p">[</span><span class="kt">Element</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an instance of ArraySlice</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an instance of Array</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if the ArraySlice and the Array do not have the same elements in the same order.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/ArraySlice.swift#L106">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s10ArraySliceV7RubiconSQRzlE2neoiySbSayxG_AByxGtFZ"></a>
+                    <a name="//apple_ref/swift/Method/!=(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s10ArraySliceV7RubiconSQRzlE2neoiySbSayxG_AByxGtFZ">!=(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Convienience method to allow direct comparison of Arrays and ArraySlices for inequality. Instead of having
+to write:</p>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="n">anArray</span><span class="p">[</span><span class="n">anArray</span><span class="o">.</span><span class="n">startIndex</span> <span class="o">..&lt;</span> <span class="n">anArray</span><span class="o">.</span><span class="n">endIndex</span><span class="p">]</span> <span class="o">!=</span> <span class="n">aSlice</span> <span class="p">{</span> <span class="cm">/* do something */</span> <span class="p">}</span>
+</code></pre>
+
+<p>You can now just write:</p>
+<pre class="highlight swift"><code><span class="k">if</span> <span class="n">anArray</span> <span class="o">!=</span> <span class="n">aSlice</span> <span class="p">{</span> <span class="cm">/* do something */</span> <span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">!=</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="p">[</span><span class="kt">Element</span><span class="p">],</span> <span class="nv">rhs</span><span class="p">:</span> <span class="p">`</span><span class="nv">Self</span><span class="p">`)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an instance of Array</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an instance of ArraySlice</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if the ArraySlice and the Array do not have the same elements in the same order.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/ArraySlice.swift#L126">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Available%20where%20%60Element%60%20%3D%3D%20%60Character%60"></a>
+                <a name="//apple_ref/swift/Section/Available where `Element` == `Character`" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Available%20where%20%60Element%60%20%3D%3D%20%60Character%60"></a>
+                  <h3 class="section-name"><p>Available where <code>Element</code> == <code>Character</code></p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s10ArraySliceV7RubiconSJRszlE2eeoiySbABySJG_SStFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s10ArraySliceV7RubiconSJRszlE2eeoiySbABySJG_SStFZ">==(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Allows for easy equality check between Strings and Character ArraySlices. Instead of having to write:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">array</span><span class="p">:</span>  <span class="kt">ArraySlice</span><span class="o">&lt;</span><span class="kt">Character</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[</span> <span class="s">"G"</span><span class="p">,</span> <span class="s">"a"</span><span class="p">,</span> <span class="s">"l"</span><span class="p">,</span> <span class="s">"e"</span><span class="p">,</span> <span class="s">"n"</span> <span class="p">]</span>
+<span class="k">let</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Galen"</span>
+<span class="k">if</span> <span class="kt">String</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="o">==</span> <span class="n">string</span> <span class="p">{</span> <span class="cm">/* do something */</span> <span class="p">}</span>
+</code></pre>
+
+<p>You can now just write:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">array</span><span class="p">:</span>  <span class="kt">ArraySlice</span><span class="o">&lt;</span><span class="kt">Character</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[</span> <span class="s">"G"</span><span class="p">,</span> <span class="s">"a"</span><span class="p">,</span> <span class="s">"l"</span><span class="p">,</span> <span class="s">"e"</span><span class="p">,</span> <span class="s">"n"</span> <span class="p">]</span>
+<span class="k">let</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span>                <span class="o">=</span> <span class="s">"Galen"</span>
+<span class="k">if</span> <span class="n">array</span> <span class="o">==</span> <span class="n">string</span> <span class="p">{</span> <span class="cm">/* do something */</span> <span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="p">`</span><span class="nv">Self</span><span class="p">`,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The Character ArraySlice.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The String</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if the array slice contains the same characters, in the same order, as the string.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/ArraySlice.swift#L151">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s10ArraySliceV7RubiconSJRszlE2neoiySbABySJG_SStFZ"></a>
+                    <a name="//apple_ref/swift/Method/!=(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s10ArraySliceV7RubiconSJRszlE2neoiySbABySJG_SStFZ">!=(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Allows for easy inequality check between Strings and Character ArraySlices. Instead of having to write:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">array</span><span class="p">:</span>  <span class="kt">ArraySlice</span><span class="o">&lt;</span><span class="kt">Character</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[</span> <span class="s">"G"</span><span class="p">,</span> <span class="s">"a"</span><span class="p">,</span> <span class="s">"l"</span><span class="p">,</span> <span class="s">"e"</span><span class="p">,</span> <span class="s">"n"</span> <span class="p">]</span>
+<span class="k">let</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Galen"</span>
+<span class="k">if</span> <span class="n">string</span> <span class="o">!=</span> <span class="kt">String</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* do something */</span> <span class="p">}</span>
+</code></pre>
+
+<p>You can now just write:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">array</span><span class="p">:</span>  <span class="kt">ArraySlice</span><span class="o">&lt;</span><span class="kt">Character</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[</span> <span class="s">"G"</span><span class="p">,</span> <span class="s">"a"</span><span class="p">,</span> <span class="s">"l"</span><span class="p">,</span> <span class="s">"e"</span><span class="p">,</span> <span class="s">"n"</span> <span class="p">]</span>
+<span class="k">let</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span>                <span class="o">=</span> <span class="s">"Galen"</span>
+<span class="k">if</span> <span class="n">string</span> <span class="o">!=</span> <span class="n">array</span> <span class="p">{</span> <span class="cm">/* do something */</span> <span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">!=</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="p">`</span><span class="nv">Self</span><span class="p">`,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The Character ArraySlice.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The String</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if the array slice does not contain the same characters, in the same order, as the
+       string.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/ArraySlice.swift#L175">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s10ArraySliceV7RubiconSJRszlE2eeoiySbSS_ABySJGtFZ"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s10ArraySliceV7RubiconSJRszlE2eeoiySbSS_ABySJGtFZ">==(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Allows for easy equality check between Strings and Character ArraySlices. Instead of having to write:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">array</span><span class="p">:</span> <span class="kt">ArraySlice</span><span class="o">&lt;</span><span class="kt">Character</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[</span> <span class="s">"G"</span><span class="p">,</span> <span class="s">"a"</span><span class="p">,</span> <span class="s">"l"</span><span class="p">,</span> <span class="s">"e"</span><span class="p">,</span> <span class="s">"n"</span> <span class="p">]</span>
+<span class="k">let</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Galen"</span>
+<span class="k">if</span> <span class="kt">String</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="o">==</span> <span class="n">string</span> <span class="p">{</span> <span class="cm">/* do something */</span> <span class="p">}</span>
+</code></pre>
+
+<p>You can now just write:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">array</span><span class="p">:</span> <span class="kt">ArraySlice</span><span class="o">&lt;</span><span class="kt">Character</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[</span> <span class="s">"G"</span><span class="p">,</span> <span class="s">"a"</span><span class="p">,</span> <span class="s">"l"</span><span class="p">,</span> <span class="s">"e"</span><span class="p">,</span> <span class="s">"n"</span> <span class="p">]</span>
+<span class="k">let</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Galen"</span>
+<span class="k">if</span> <span class="n">array</span> <span class="o">==</span> <span class="n">string</span> <span class="p">{</span> <span class="cm">/* do something */</span> <span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="p">`</span><span class="nv">Self</span><span class="p">`)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The String</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The Character ArraySlice.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if the array slice contains the same characters, in the same order, as the string.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/ArraySlice.swift#L198">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s10ArraySliceV7RubiconSJRszlE2neoiySbSS_ABySJGtFZ"></a>
+                    <a name="//apple_ref/swift/Method/!=(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s10ArraySliceV7RubiconSJRszlE2neoiySbSS_ABySJGtFZ">!=(_:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Allows for easy inequality check between Strings and Character ArraySlices. Instead of having to write:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">array</span><span class="p">:</span> <span class="kt">ArraySlice</span><span class="o">&lt;</span><span class="kt">Character</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[</span> <span class="s">"G"</span><span class="p">,</span> <span class="s">"a"</span><span class="p">,</span> <span class="s">"l"</span><span class="p">,</span> <span class="s">"e"</span><span class="p">,</span> <span class="s">"n"</span> <span class="p">]</span>
+<span class="k">let</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Galen"</span>
+<span class="k">if</span> <span class="n">string</span> <span class="o">!=</span> <span class="kt">String</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* do something */</span> <span class="p">}</span>
+</code></pre>
+
+<p>You can now just write:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">array</span><span class="p">:</span> <span class="kt">ArraySlice</span><span class="o">&lt;</span><span class="kt">Character</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[</span> <span class="s">"G"</span><span class="p">,</span> <span class="s">"a"</span><span class="p">,</span> <span class="s">"l"</span><span class="p">,</span> <span class="s">"e"</span><span class="p">,</span> <span class="s">"n"</span> <span class="p">]</span>
+<span class="k">let</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"Galen"</span>
+<span class="k">if</span> <span class="n">string</span> <span class="o">!=</span> <span class="n">array</span> <span class="p">{</span> <span class="cm">/* do something */</span> <span class="p">}</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">!=</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="p">`</span><span class="nv">Self</span><span class="p">`)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The Character ArraySlice.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The String</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if the array slice does not contain the same characters, in the same order, as the
+       string.</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Extensions/ArraySlice.swift#L222">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -682,8 +1356,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-06-09)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-06-11)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

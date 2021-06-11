@@ -40,19 +40,17 @@ infix operator <-: AssignmentPrecedence
 /// results for arithmetic is always a `ShadowInt`. For example:
 /// 
 /// ```
-///     let anInt:   Int       = 7
-///     let aShadow: ShadowInt = ShadowInt(5)
+///     let anInt:   Int       = 7 let aShadow: ShadowInt = `ShadowInt(5)`
 /// 
-///     let anotherShadow:    ShadowInt = (aShadow + anInt) // The same as ShadowInt(aShadow.value + anInt)
-///     let yetAnotherShadow: ShadowInt = (anInt + aShadow) // The same as ShadowInt(anInt + aShadow.value)
+///     let anotherShadow: ShadowInt = (aShadow + anInt) // The same as `ShadowInt(aShadow.value + anInt)` let
+///     yetAnotherShadow: ShadowInt = (anInt + aShadow) // The same as `ShadowInt(anInt + aShadow.value)`
 /// ```
 /// 
 /// However, operator+assignment functions (`+=`, `-=`, `*=`, `/=`, etc.) will behave as one might expect them to.
 /// So, for example:
 /// 
 /// ```
-///     var anInt:   Int       = 7
-///     var aShadow: ShadowInt = ShadowInt(5)
+///     var anInt:   Int       = 7 var aShadow: ShadowInt = `ShadowInt(5)`
 /// 
 ///     anInt += aShadow // the type of anInt is still Int
 /// 
@@ -63,8 +61,7 @@ infix operator <-: AssignmentPrecedence
 /// operator.
 /// 
 /// ```
-///     var anInt  : Int       = 0
-///     let aShadow: ShadowInt = ShadowInt(42)
+///     var anInt  : Int       = 0 let aShadow: ShadowInt = `ShadowInt(42)`
 /// 
 ///     anInt <- aShadow // anInt is now 42
 /// ```

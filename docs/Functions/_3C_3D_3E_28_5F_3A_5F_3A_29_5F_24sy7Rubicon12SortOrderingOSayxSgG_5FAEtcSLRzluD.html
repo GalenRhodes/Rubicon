@@ -17,7 +17,7 @@
     <a title="&lt;=&gt;(_:_:) Function Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Rubicon©</a> (60% documented)</p>
+        <p><a href="../index.html">Rubicon©</a> (61% documented)</p>
         <p class="header-right"><a href="https://github.com/GalenRhodes/Rubicon"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right">
           <form role="search" action="../search.json">
@@ -327,12 +327,6 @@
                 <a href="../Functions/_3C_3F_28_5F_3A_5F_3A_29_5F_24sySbSayxG_5FxtcSQRzluD.html">&lt;?(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions/_3D_3D_28_5F_3A_5F_3A_29_5F_24sySbSayxG_5Fs10ArraySliceVyxGtcSQRzluD.html">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions/_3D_3D_28_5F_3A_5F_3A_29_5F_24sySbs10ArraySliceVyxG_5FSayxGtcSQRzluD.html">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Functions/HashOfAnything_28_5F_3A_29_5F_24sySiypcD.html">HashOfAnything(_:)</a>
               </li>
               <li class="nav-group-task">
@@ -626,14 +620,12 @@ sort ordering and returns ordering. If all the objects in the same positions in 
 <code>SortOrdering.Same</code> then this function returns <code>SortOrdering.Same</code>.</p>
 
 <p>Example:</p>
-<pre class="highlight swift"><code>    <span class="k">let</span> <span class="nv">array1</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">]</span>
-    <span class="k">let</span> <span class="nv">array2</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">]</span>
-    <span class="k">let</span> <span class="nv">array3</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">]</span>
-    <span class="k">let</span> <span class="nv">array4</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span> <span class="p">]</span>
+<pre class="highlight swift"><code>    <span class="k">let</span> <span class="nv">array1</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">]</span> <span class="k">let</span> <span class="nv">array2</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">]</span> <span class="k">let</span> <span class="nv">array3</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">]</span> <span class="k">let</span>
+    <span class="nv">array4</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span> <span class="p">]</span>
 
-    <span class="k">let</span> <span class="nv">result1</span><span class="p">:</span> <span class="kt">SortOrdering</span> <span class="o">=</span> <span class="n">array1</span> <span class="o">&lt;=&gt;</span> <span class="n">array2</span> <span class="c1">// result1 is set to `SortOrdering.EqualTo`</span>
-    <span class="k">let</span> <span class="nv">result2</span><span class="p">:</span> <span class="kt">SortOrdering</span> <span class="o">=</span> <span class="n">array1</span> <span class="o">&lt;=&gt;</span> <span class="n">array3</span> <span class="c1">// result2 is set to `SortOrdering.GreaterThan`</span>
-    <span class="k">let</span> <span class="nv">result3</span><span class="p">:</span> <span class="kt">SortOrdering</span> <span class="o">=</span> <span class="n">array1</span> <span class="o">&lt;=&gt;</span> <span class="n">array4</span> <span class="c1">// result3 is set to `SortOrdering.LessThan`</span>
+    <span class="k">let</span> <span class="nv">result1</span><span class="p">:</span> <span class="kt">SortOrdering</span> <span class="o">=</span> <span class="n">array1</span> <span class="o">&lt;=&gt;</span> <span class="n">array2</span> <span class="c1">// result1 is set to `SortOrdering.EqualTo` let result2:</span>
+    <span class="kt">SortOrdering</span> <span class="o">=</span> <span class="n">array1</span> <span class="o">&lt;=&gt;</span> <span class="n">array3</span> <span class="c1">// result2 is set to `SortOrdering.GreaterThan` let result3: SortOrdering</span>
+    <span class="o">=</span> <span class="n">array1</span> <span class="o">&lt;=&gt;</span> <span class="n">array4</span> <span class="c1">// result3 is set to `SortOrdering.LessThan`</span>
 </code></pre>
 
               <div>
@@ -673,15 +665,15 @@ sort ordering and returns ordering. If all the objects in the same positions in 
        comes before, in the same place as, or after the right-hand array.</p>
               </div>
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Tools.swift#L352-L363">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Tools.swift#L346-L357">Show on GitHub</a>
               </div>
           </section>
           <section class="section task-group-section">
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-06-09)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-06-11)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

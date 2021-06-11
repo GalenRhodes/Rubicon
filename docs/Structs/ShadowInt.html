@@ -17,7 +17,7 @@
     <a title="ShadowInt Structure Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Rubicon©</a> (60% documented)</p>
+        <p><a href="../index.html">Rubicon©</a> (61% documented)</p>
         <p class="header-right"><a href="https://github.com/GalenRhodes/Rubicon"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right">
           <form role="search" action="../search.json">
@@ -327,12 +327,6 @@
                 <a href="../Functions/_3C_3F_28_5F_3A_5F_3A_29_5F_24sySbSayxG_5FxtcSQRzluD.html">&lt;?(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions/_3D_3D_28_5F_3A_5F_3A_29_5F_24sySbSayxG_5Fs10ArraySliceVyxGtcSQRzluD.html">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions/_3D_3D_28_5F_3A_5F_3A_29_5F_24sySbs10ArraySliceVyxG_5FSayxGtcSQRzluD.html">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Functions/HashOfAnything_28_5F_3A_29_5F_24sySiypcD.html">HashOfAnything(_:)</a>
               </li>
               <li class="nav-group-task">
@@ -630,17 +624,15 @@ a value of type <code>Dictionary.Index</code>.</p>
 <p>So, for your key you can simply use this <code>Int</code> <em>holder</em>. It will even allow comparisons (<code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>,
 etc.) and basic arithmetic (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, etc.) between itself and values of type <code>Int</code>. The type of the
 results for arithmetic is always a <code>ShadowInt</code>. For example:</p>
-<pre class="highlight swift"><code>    <span class="k">let</span> <span class="nv">anInt</span><span class="p">:</span>   <span class="kt">Int</span>       <span class="o">=</span> <span class="mi">7</span>
-    <span class="k">let</span> <span class="nv">aShadow</span><span class="p">:</span> <span class="kt">ShadowInt</span> <span class="o">=</span> <span class="kt">ShadowInt</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<pre class="highlight swift"><code>    <span class="k">let</span> <span class="nv">anInt</span><span class="p">:</span>   <span class="kt">Int</span>       <span class="o">=</span> <span class="mi">7</span> <span class="k">let</span> <span class="nv">aShadow</span><span class="p">:</span> <span class="kt">ShadowInt</span> <span class="o">=</span> <span class="err">`</span><span class="kt">ShadowInt</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="err">`</span>
 
-    <span class="k">let</span> <span class="nv">anotherShadow</span><span class="p">:</span>    <span class="kt">ShadowInt</span> <span class="o">=</span> <span class="p">(</span><span class="n">aShadow</span> <span class="o">+</span> <span class="n">anInt</span><span class="p">)</span> <span class="c1">// The same as ShadowInt(aShadow.value + anInt)</span>
-    <span class="k">let</span> <span class="nv">yetAnotherShadow</span><span class="p">:</span> <span class="kt">ShadowInt</span> <span class="o">=</span> <span class="p">(</span><span class="n">anInt</span> <span class="o">+</span> <span class="n">aShadow</span><span class="p">)</span> <span class="c1">// The same as ShadowInt(anInt + aShadow.value)</span>
+    <span class="k">let</span> <span class="nv">anotherShadow</span><span class="p">:</span> <span class="kt">ShadowInt</span> <span class="o">=</span> <span class="p">(</span><span class="n">aShadow</span> <span class="o">+</span> <span class="n">anInt</span><span class="p">)</span> <span class="c1">// The same as `ShadowInt(aShadow.value + anInt)` let</span>
+    <span class="nv">yetAnotherShadow</span><span class="p">:</span> <span class="kt">ShadowInt</span> <span class="o">=</span> <span class="p">(</span><span class="n">anInt</span> <span class="o">+</span> <span class="n">aShadow</span><span class="p">)</span> <span class="c1">// The same as `ShadowInt(anInt + aShadow.value)`</span>
 </code></pre>
 
 <p>However, operator+assignment functions (<code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, etc.) will behave as one might expect them to.
 So, for example:</p>
-<pre class="highlight swift"><code>    <span class="k">var</span> <span class="nv">anInt</span><span class="p">:</span>   <span class="kt">Int</span>       <span class="o">=</span> <span class="mi">7</span>
-    <span class="k">var</span> <span class="nv">aShadow</span><span class="p">:</span> <span class="kt">ShadowInt</span> <span class="o">=</span> <span class="kt">ShadowInt</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<pre class="highlight swift"><code>    <span class="k">var</span> <span class="nv">anInt</span><span class="p">:</span>   <span class="kt">Int</span>       <span class="o">=</span> <span class="mi">7</span> <span class="k">var</span> <span class="nv">aShadow</span><span class="p">:</span> <span class="kt">ShadowInt</span> <span class="o">=</span> <span class="err">`</span><span class="kt">ShadowInt</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="err">`</span>
 
     <span class="n">anInt</span> <span class="o">+=</span> <span class="n">aShadow</span> <span class="c1">// the type of anInt is still Int</span>
 
@@ -649,14 +641,13 @@ So, for example:</p>
 
 <p>And, as an added bonus, you can even directly assign between an <code>Int</code> and a <code>ShadowInt</code> using the <code>&lt;-</code>
 operator.</p>
-<pre class="highlight swift"><code>    <span class="k">var</span> <span class="nv">anInt</span>  <span class="p">:</span> <span class="kt">Int</span>       <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">let</span> <span class="nv">aShadow</span><span class="p">:</span> <span class="kt">ShadowInt</span> <span class="o">=</span> <span class="kt">ShadowInt</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<pre class="highlight swift"><code>    <span class="k">var</span> <span class="nv">anInt</span>  <span class="p">:</span> <span class="kt">Int</span>       <span class="o">=</span> <span class="mi">0</span> <span class="k">let</span> <span class="nv">aShadow</span><span class="p">:</span> <span class="kt">ShadowInt</span> <span class="o">=</span> <span class="err">`</span><span class="kt">ShadowInt</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span><span class="err">`</span>
 
     <span class="n">anInt</span> <span class="o">&lt;-</span> <span class="n">aShadow</span> <span class="c1">// anInt is now 42</span>
 </code></pre>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Collections/ShadowInt.swift#L72-L260">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Collections/ShadowInt.swift#L69-L257">Show on GitHub</a>
               </div>
           </section>
           <section class="section task-group-section">
@@ -3351,7 +3342,7 @@ operator.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Collections/ShadowInt.swift#L249-L252">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Collections/ShadowInt.swift#L246-L249">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -3381,7 +3372,7 @@ operator.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Collections/ShadowInt.swift#L254-L257">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Collections/ShadowInt.swift#L251-L254">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -3421,8 +3412,8 @@ operator.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-06-09)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-06-11)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

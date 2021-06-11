@@ -36,8 +36,8 @@ extension StringProtocol {
     /*==========================================================================================================*/
     /// Allows creating a string using printf like formatting strings and arguments. However this version is
     /// modeled more after the Java version than the C version in order to make it a little easier to use.
-    /// 
-    /// 
+    ///
+    ///
     /// - Parameter args:
     /// - Returns:
     ///
@@ -102,7 +102,7 @@ extension StringProtocol {
 
     /*==========================================================================================================*/
     /// Format the argument as a date/time.
-    /// 
+    ///
     /// - Parameters:
     ///   - out: The output String.
     ///   - tSpec: The date/time conversion specifier.
@@ -167,7 +167,7 @@ extension StringProtocol {
 
     /*==========================================================================================================*/
     /// Attempt to get an instance of `Date` from the argument.
-    /// 
+    ///
     /// - Parameter arg: The argument.
     /// - Returns: An instance of `Date` or `nil` if the argument could not be transformed into a `Date`.
     ///
@@ -192,18 +192,18 @@ extension StringProtocol {
 
     /*==========================================================================================================*/
     /// Format the argument as either a floating point or in scientific notation depending on the magnitude.
-    /// 
+    ///
     /// After rounding for the precision, the formatting of the resulting magnitude `m` depends on its value.
-    /// 
+    ///
     /// If `m` is greater than or equal to 10<sup>-4</sup> but less than 10<sup>precision</sup> then it is
     /// represented in decimal format.
-    /// 
+    ///
     /// If `m` is less than 10<sup>-4</sup> or greater than or equal to 10<sup>precision</sup>, then it is
     /// represented in computerized scientific notation.
-    /// 
+    ///
     /// The total number of significant digits in `m` is equal to the precision. If the precision is not
     /// specified, then the default value is 6. If the precision is 0, then it is taken to be 1.
-    /// 
+    ///
     /// - Parameters:
     ///   - out: The output string.
     ///   - arg: The argument.
@@ -220,7 +220,7 @@ extension StringProtocol {
     /*==========================================================================================================*/
     /// Called by `formatDecimalOrScientific(to:argument:scale:prec:flags:)` after the double value has been
     /// rounded to the provided precision.
-    /// 
+    ///
     /// - Parameters:
     ///   - out: The output string.
     ///   - value: The double value.
@@ -235,7 +235,7 @@ extension StringProtocol {
 
     /*==========================================================================================================*/
     /// Format the argument as a floating point value in scientific (exponential) form.
-    /// 
+    ///
     /// - Parameters:
     ///   - out: The output string.
     ///   - arg: The argument.
@@ -253,7 +253,7 @@ extension StringProtocol {
     /*==========================================================================================================*/
     /// Format the argument as a character. If the argument is a string, or a type that can be converted to a
     /// string, that has more than one character, then only the first character is displayed.
-    /// 
+    ///
     /// - Parameters:
     ///   - out: The output string.
     ///   - arg: The argument.
@@ -269,7 +269,7 @@ extension StringProtocol {
     /// Format the argument as a boolean value. A boolean value displays as "`true`" or "`false`". If the argument
     /// is `nil` then it is taken to be "`false`". Non-boolean arguments are converted into strings and if the
     /// string is equal to "`true`" then it is taken as "`true`" otherwise it is taken as "`false`".
-    /// 
+    ///
     /// - Parameters:
     ///   - out: The output string.
     ///   - arg: The argument.
@@ -283,7 +283,7 @@ extension StringProtocol {
 
     /*==========================================================================================================*/
     /// Format the argument as an integer in octal notation.
-    /// 
+    ///
     /// - Parameters:
     ///   - out: The output string.
     ///   - arg: The argument.
@@ -296,7 +296,7 @@ extension StringProtocol {
 
     /*==========================================================================================================*/
     /// Format the argument as an integer in hexadecimal notation.
-    /// 
+    ///
     /// - Parameters:
     ///   - out: The output string.
     ///   - arg: The argument.
@@ -309,7 +309,7 @@ extension StringProtocol {
 
     /*==========================================================================================================*/
     /// Format the argument as an integer in the given base such as 16 (hexadecimal) or 8 (octal).
-    /// 
+    ///
     /// - Parameters:
     ///   - out: The output string.
     ///   - arg: The argument.
@@ -330,7 +330,7 @@ extension StringProtocol {
 
     /*==========================================================================================================*/
     /// Formats an integer number.
-    /// 
+    ///
     /// - Parameters:
     ///   - out: The output string.
     ///   - arg: The argument.
@@ -344,7 +344,7 @@ extension StringProtocol {
 
     /*==========================================================================================================*/
     /// Formats a floating point number.
-    /// 
+    ///
     /// - Parameters:
     ///   - out: The output string.
     ///   - arg: The argument.
@@ -358,7 +358,7 @@ extension StringProtocol {
 
     /*==========================================================================================================*/
     /// Formats a floating point number.
-    /// 
+    ///
     /// - Parameters:
     ///   - out: The output string.
     ///   - arg: The argument.
@@ -373,7 +373,7 @@ extension StringProtocol {
 
     /*==========================================================================================================*/
     /// Format the argument as a string. The string is created as by `String(describing:)`.
-    /// 
+    ///
     /// - Parameters:
     ///   - out: The output string.
     ///   - arg: The argument.
@@ -399,7 +399,7 @@ extension StringProtocol {
     /*==========================================================================================================*/
     /// Attempt to get the argument as a Double value. If the argument cannot be converted into a Double value
     /// then a NaN value is returned.
-    /// 
+    ///
     /// - Parameter arg: The argument.
     /// - Returns: The Double value. If conversion failed then the value's Double.isNaN property will return
     ///            `true`.
@@ -415,7 +415,7 @@ extension StringProtocol {
     /*==========================================================================================================*/
     /// Attempt to get the argument as a UInt64 value. If the argument cannot be converted into a UInt64 value
     /// then `nil` is returned.
-    /// 
+    ///
     /// - Parameter arg: The argument.
     /// - Returns: The UInt64 value. If conversion failed then `nil` is returned instead.
     ///
@@ -429,7 +429,7 @@ extension StringProtocol {
     /*==========================================================================================================*/
     /// Attempt to get the argument as a Double or Integer NSNumber value. If the argument cannot be converted
     /// into a NSNumber value then `nil` is returned.
-    /// 
+    ///
     /// - Parameter arg: The argument.
     /// - Returns: The NSNumber value. If conversion failed then `nil` is returned instead.
     ///
@@ -444,7 +444,7 @@ extension StringProtocol {
     /*==========================================================================================================*/
     /// Attempt to cast the argument as a Double. If the argument is not a Double, Float, or Float80 value then
     /// `nil` is returned. If the value is a Float or Float80 then it is converted to a Double.
-    /// 
+    ///
     /// - Parameter arg: The argument.
     /// - Returns: The Double value or `nil` if the argument is not a Double, Float, or Float80.
     ///
@@ -462,7 +462,7 @@ extension StringProtocol {
     /// Attempt to cast the argument as an UInt64. If the argument is not one of the five standard unsigned
     /// integer types (UInt, UInt8, UInt16, UInt32, or UInt64) then `nil` is returned. Otherwise the value is
     /// converted to a UInt64.
-    /// 
+    ///
     /// - Parameter arg: The argument.
     /// - Returns: The UInt64 value or `nil` if the argument is not one of the five standard unsigned integer
     ///            types.
@@ -481,7 +481,7 @@ extension StringProtocol {
     /// Attempt to cast the argument as an Int64. If the argument is not one of the five standard signed integer
     /// types (Int, Int8, Int16, Int32, or Int64) then `nil` is returned. Otherwise the value is converted to a
     /// Int64.
-    /// 
+    ///
     /// - Parameter arg: The argument.
     /// - Returns: The Int64 value or `nil` if the argument is not one of the five standard signed integer types.
     ///
@@ -499,7 +499,7 @@ extension StringProtocol {
     /// Creates the base number formatter for use by `format(_:)`. Some implementations will throw an exception
     /// when you provide conflicting flags such as `-` and `0`. In our case we will simply choose one over the
     /// other.
-    /// 
+    ///
     /// - Parameters:
     ///   - flags: The formatting flags.
     ///   - scale: The scale (minimum width).
@@ -527,7 +527,7 @@ extension StringProtocol {
     /// Creates the floating-point number formatter for use by `format(_:)`. Some implementations will throw an
     /// exception when you provide conflicting flags such as `-` and `0`. In our case we will simply choose one
     /// over the other.
-    /// 
+    ///
     /// - Parameters:
     ///   - flags: The formatting flags.
     ///   - scale: The scale (minimum width).
@@ -546,7 +546,7 @@ extension StringProtocol {
     /// Get the argument to format. If the argument specifier was provided it will tell us which one to use.
     /// Instead of throwing an exception like Java does for invalid or missing arguments we will simply return
     /// `nil`.
-    /// 
+    ///
     /// - Parameters:
     ///   - argp: The argument specifier in the form of either `&lt;` or `n$` where `n` is the ordinal number,
     ///           starting with `1`.
@@ -570,7 +570,7 @@ extension StringProtocol {
 
     /*==========================================================================================================*/
     /// Get the argument to format.
-    /// 
+    ///
     /// - Parameters:
     ///   - msg: The error message to display if `StringFormatIsString` is `true` and the argument doesn't exist.
     ///   - idx: The index of the argument - <code>[zero](https://en.wikipedia.org/wiki/0)</code> based.
@@ -588,7 +588,7 @@ extension StringProtocol {
 
     /*==========================================================================================================*/
     /// Display an error message and terminate the application.
-    /// 
+    ///
     /// - Parameter message: The message to display.
     /// - Returns: Never.
     ///
@@ -596,7 +596,7 @@ extension StringProtocol {
 
     /*==========================================================================================================*/
     /// Format an integer number to a given number of places padding with zeros if needed.
-    /// 
+    ///
     /// - Parameters:
     ///   - value: The value to format.
     ///   - places: The number of places to pad to if needed.
@@ -655,6 +655,10 @@ extension StringProtocol {
             self.isAlternate = false
         }
         self.isUppercase = (convSpec.first?.isUppercase ?? false)
+        if self.isUppercase {
+            let ch = convSpec.removeFirst().lowercased()
+            convSpec.insert(contentsOf: ch, at: convSpec.startIndex)
+        }
     }
 
     @inlinable init(set: FlagSet, without flags: FormatFlags...) {

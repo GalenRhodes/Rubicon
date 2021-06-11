@@ -7,7 +7,7 @@ import PackageDescription
 let package = Package(
     name: "Rubicon",
     platforms: [ .macOS(.v10_15), .tvOS(.v13), .iOS(.v13), .watchOS(.v6), ],
-    products: [ .library(name: "Rubicon", type: .static, targets: [ "Rubicon", ]) ],
+    products: [ .library(name: "Rubicon", targets: [ "Rubicon", ]) ],
     dependencies: [ .package(name: "RingBuffer", url: "https://github.com/GalenRhodes/RingBuffer", .upToNextMajor(from: "1.0.10")), ],
     targets: [
         .systemLibrary(name: "iconv"),

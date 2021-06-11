@@ -689,8 +689,8 @@
 			);
 			mainGroup = 83C67A68250EC02000C0F21E;
 			packageReferences = (
-				83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer.git" */,
-				83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer.git" */,
+				83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer" */,
+				83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer" */,
 			);
 			productRefGroup = 83C67A73250EC02000C0F21E /* Products */;
 			projectDirPath = "";
@@ -1158,15 +1158,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer.git" */ = {
+		83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/GalenRhodes/RingBuffer.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.10;
+				minimumVersion = 1.0.11;
 			};
 		};
-		83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer.git" */ = {
+		83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/GalenRhodes/PGDocFixer.git";
 			requirement = {
@@ -1179,12 +1179,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		83BA732E254ABED0009B8351 /* RingBuffer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer.git" */;
+			package = 83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer" */;
 			productName = RingBuffer;
 		};
 		83C67AEF250EC40E00C0F21E /* PGDocFixer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer.git" */;
+			package = 83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer" */;
 			productName = PGDocFixer;
 		};
 /* End XCSwiftPackageProductDependency section */

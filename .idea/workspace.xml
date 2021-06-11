@@ -28,11 +28,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Bug fix in IConvCharInputStream.">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/DocFixer__Jazzy_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/DocFixer__Jazzy_.xml" afterDir="false" />
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Added functions to the Array extension.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer (Jazzy).xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer (Jazzy).xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Text/StringFormat.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Text/StringFormat.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +41,7 @@
       <option value="directory" />
     </option>
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="macos_macos_arm64" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="macos_macos_x86_64" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -71,19 +68,18 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Tools.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="amon5vo6" />
   </component>
   <component name="ProjectId" id="1hVLdn4q9dZBJYcN1EOQjI95yyx" />
   <component name="ProjectLevelVcsManager">
-    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -113,7 +109,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Swift" />
   </component>
   <component name="RunManager" selected="Application.DocFixer (Jazzy)">
     <list>
@@ -353,14 +349,8 @@
       <workItem from="1622836473210" duration="2684000" />
       <workItem from="1623085177717" duration="1883000" />
       <workItem from="1623239638513" duration="7773000" />
-      <workItem from="1623328666266" duration="554000" />
-    </task>
-    <task id="LOCAL-00160" summary="Bug fixes.">
-      <created>1619455741104</created>
-      <option name="number" value="00160" />
-      <option name="presentableId" value="LOCAL-00160" />
-      <option name="project" value="LOCAL" />
-      <updated>1619455741104</updated>
+      <workItem from="1623328666266" duration="656000" />
+      <workItem from="1623414657983" duration="4000" />
     </task>
     <task id="LOCAL-00161" summary="Bug fixes.">
       <created>1619457205503</created>
@@ -698,7 +688,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623244657212</updated>
     </task>
-    <option name="localTasksCounter" value="209" />
+    <task id="LOCAL-00209" summary="Added functions to the Array extension.">
+      <created>1623329284323</created>
+      <option name="number" value="00209" />
+      <option name="presentableId" value="LOCAL-00209" />
+      <option name="project" value="LOCAL" />
+      <updated>1623329284323</updated>
+    </task>
+    <option name="localTasksCounter" value="210" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -731,7 +728,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Created operator !=~ to allow easy case insensitive string inequality." />
     <MESSAGE value="Corrected some documentation." />
     <MESSAGE value="Created SimpleCharInputStream and SimpleIConvCharInputStream." />
     <MESSAGE value=" - Bug fixes.&#10; - After reading [this article](https://www.rightpoint.com/rplabs/switch-method-dispatch-table)&#10;   I've removed all @inlinable and @usableFromInline and am just letting the compiler work it's magic to determine&#10;   what the best way to call methods and functions is." />
@@ -756,7 +752,8 @@
     <MESSAGE value="Added Semaphore class." />
     <MESSAGE value="Bug fix in MarkInputStream." />
     <MESSAGE value="Bug fix in IConvCharInputStream." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fix in IConvCharInputStream." />
+    <MESSAGE value="Added functions to the Array extension." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added functions to the Array extension." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

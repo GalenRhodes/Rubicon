@@ -4,22 +4,45 @@
 import PackageDescription
 
 //@f:0
-let package = Package(
-    name: "Rubicon",
-    platforms: [ .macOS(.v10_15), .tvOS(.v13), .iOS(.v13), .watchOS(.v6), ],
-    products: [ .library(name: "Rubicon", targets: [ "Rubicon", ]) ],
-    dependencies: [ .package(name: "RingBuffer", url: "https://github.com/GalenRhodes/RingBuffer", .upToNextMajor(from: "1.0.10")), ],
-    targets: [
-        .systemLibrary(name: "iconv"),
-        .target(
+#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
+    let package = Package(
+        name: "Rubicon",
+        platforms: [ .macOS(.v10_15), .tvOS(.v13), .iOS(.v13), .watchOS(.v6), ],
+        products: [ .library(name: "Rubicon", targets: [ "Rubicon", ]) ],
+        dependencies: [ .package(name: "RingBuffer", url: "https://github.com/GalenRhodes/RingBuffer", .upToNextMajor(from: "1.0.10")), ],
+        targets: [
+            .systemLibrary(name: "iconv"),
+            .target(
+                name: "Rubicon",
+                dependencies: [ "RingBuffer", "iconv", ],
+                exclude: [ "Info.plist", ],
+                linkerSettings: [
+                    .linkedLibrary("iconv", .when(platforms: [ .macOS, .iOS, .tvOS, .watchOS, ])),
+                    .linkedLibrary("pthread", .when(platforms: [ .linux, .android, .wasi, ])),
+                ]),
+            .testTarget(name: "RubiconTests", dependencies: [ "Rubicon", ], exclude: [ "Info.plist", ], resources: [ .copy("Files"), ])
+        ]
+    )
+#else
+    let package = Package(
+      name: "Rubicon",
+      platforms: [ .macOS(.v10_15), .tvOS(.v13), .iOS(.v13), .watchOS(.v6), ],
+      products: [ .library(name: "Rubicon", targets: [ "Rubicon", ]) ],
+      dependencies: [ .package(name: "RingBuffer", url: "https://github.com/GalenRhodes/RingBuffer", .upToNextMajor(from: "1.0.10")), ],
+      targets: [
+          .systemLibrary(name: "iconv"),
+          .systemLibrary(name: "semaphore"),
+          .target(
             name: "Rubicon",
-            dependencies: [ "RingBuffer", "iconv", ],
+            dependencies: [ "RingBuffer", "iconv", "semaphore", ],
             exclude: [ "Info.plist", ],
             linkerSettings: [
                 .linkedLibrary("iconv", .when(platforms: [ .macOS, .iOS, .tvOS, .watchOS, ])),
                 .linkedLibrary("pthread", .when(platforms: [ .linux, .android, .wasi, ])),
             ]),
-        .testTarget(name: "RubiconTests", dependencies: [ "Rubicon", ], exclude: [ "Info.plist", ], resources: [ .copy("Files"), ])
-    ]
-)
+          .testTarget(name: "RubiconTests", dependencies: [ "Rubicon", ], exclude: [ "Info.plist", ], resources: [ .copy("Files"), ])
+      ]
+    )
+#endif
+
 //@f:1

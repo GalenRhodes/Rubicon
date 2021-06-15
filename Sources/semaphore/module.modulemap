@@ -1,0 +1,4 @@
+module semaphore [system] {
+    header "semaphore.h"
+    export *
+}

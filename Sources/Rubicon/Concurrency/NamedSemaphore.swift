@@ -20,6 +20,7 @@ import CoreFoundation
 #if canImport(Darwin)
     import Darwin
 #elseif canImport(Glibc)
+    import semaphore
     import Glibc
 #endif
 #if os(Windows)

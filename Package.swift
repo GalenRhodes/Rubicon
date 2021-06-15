@@ -33,7 +33,7 @@ import PackageDescription
           .systemLibrary(name: "iconv"),
           .target(
             name: "Rubicon",
-            dependencies: [ "RingBuffer", "iconv", "semaphore", ],
+            dependencies: [ "RingBuffer", "iconv", ],
             exclude: [ "Info.plist", ],
             linkerSettings: [
                 .linkedLibrary("iconv", .when(platforms: [ .macOS, .iOS, .tvOS, .watchOS, ])),

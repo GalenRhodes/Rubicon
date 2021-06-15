@@ -29,7 +29,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Workaround for Opensource version of NSRegularExpression.enumerateMatches(in:options:range:using:) marking the closure as @escaping.">
-      <change beforePath="$PROJECT_DIR$/Package.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Package.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/NamedSemaphore.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/NamedSemaphore.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -369,14 +369,7 @@
       <workItem from="1623416923210" duration="6283000" />
       <workItem from="1623427476531" duration="123000" />
       <workItem from="1623432143487" duration="1417000" />
-      <workItem from="1623783416041" duration="4819000" />
-    </task>
-    <task id="LOCAL-00172" summary="StringProtocol.format(_:)">
-      <created>1620758326699</created>
-      <option name="number" value="00172" />
-      <option name="presentableId" value="LOCAL-00172" />
-      <option name="project" value="LOCAL" />
-      <updated>1620758326699</updated>
+      <workItem from="1623783416041" duration="4908000" />
     </task>
     <task id="LOCAL-00173" summary="StringProtocol.format(_:)">
       <created>1620758354512</created>
@@ -714,7 +707,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623788174767</updated>
     </task>
-    <option name="localTasksCounter" value="221" />
+    <task id="LOCAL-00221" summary="Workaround for Opensource version of NSRegularExpression.enumerateMatches(in:options:range:using:) marking the closure as @escaping.">
+      <created>1623788294359</created>
+      <option name="number" value="00221" />
+      <option name="presentableId" value="LOCAL-00221" />
+      <option name="project" value="LOCAL" />
+      <updated>1623788294359</updated>
+    </task>
+    <option name="localTasksCounter" value="222" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

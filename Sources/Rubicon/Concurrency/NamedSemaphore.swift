@@ -75,7 +75,7 @@ import CoreFoundation
             #else
                 let _zz: UnsafeMutablePointer<Int32> = UnsafeMutablePointer<Int32>.allocate(capacity: 1)
                 _zz.initialize(to: 0)
-                sem_getvalue(&_sem, _zz)
+                sem_getvalue(_sem, _zz)
                 return Int(_zz.pointee)
             #endif
         }

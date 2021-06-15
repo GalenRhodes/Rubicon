@@ -2725,29 +2725,15 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/RegularExpression.swift",
-      "line": 356,
+      "line": 29,
+      "symbol": "MatchEnumClosure",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/RegularExpression.swift",
+      "line": 358,
       "symbol": "RegularExpression.forEachMatch(in:options:range:using:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/RegularExpression.swift",
-      "line": 394,
-      "symbol": "RegularExpression.forEachMatchGroup(in:options:range:using:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/RegularExpression.swift",
-      "line": 417,
-      "symbol": "RegularExpression.forEachMatchString(in:options:range:using:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Text/RegularExpression.swift",
-      "line": 460,
-      "symbol": "RegularExpression.stringByReplacingMatches(in:options:range:using:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },

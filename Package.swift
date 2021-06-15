@@ -31,7 +31,6 @@ import PackageDescription
       dependencies: [ .package(name: "RingBuffer", url: "https://github.com/GalenRhodes/RingBuffer", .upToNextMajor(from: "1.0.11")), ],
       targets: [
           .systemLibrary(name: "iconv"),
-          .systemLibrary(name: "semaphore"),
           .target(
             name: "Rubicon",
             dependencies: [ "RingBuffer", "iconv", "semaphore", ],

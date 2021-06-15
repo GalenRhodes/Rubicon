@@ -1941,21 +1941,21 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/NamedSemaphore.swift",
-      "line": 41,
+      "line": 42,
       "symbol": "NamedSemaphore.OSMaximumNameLength",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/NamedSemaphore.swift",
-      "line": 50,
+      "line": 51,
       "symbol": "NamedSemaphore.OSMaximumValue",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/NamedSemaphore.swift",
-      "line": 56,
+      "line": 57,
       "symbol": "NamedSemaphore.name",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"

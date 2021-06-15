@@ -20,7 +20,6 @@ import CoreFoundation
 #if canImport(Darwin)
     import Darwin
 #elseif canImport(Glibc)
-    import semaphore
     import Glibc
 #endif
 #if os(Windows)
@@ -74,9 +73,10 @@ import CoreFoundation
             #if os(macOS) || os(tvOS) || os(iOS) || os(watchOS) || os(Windows)
                 return 0
             #else
-                var _value: Int32 = 0
-                sem_getvalue(&_sem, &_value)
-                return Int(_value)
+                let _zz: UnsafeMutablePointer<Int32> = UnsafeMutablePointer<Int32>.allocate(capacity: 1)
+                _zz.initialize(to: 0)
+                sem_getvalue(&_sem, _zz)
+                return Int(_zz.pointee)
             #endif
         }
 
@@ -84,7 +84,7 @@ import CoreFoundation
             private var _sem: HANDLE! = nil
         #else
             private let _owns: Bool
-            private var _sem:  Semaphore! = nil
+            private var _sem:  Semaphore
         #endif
 
         #if os(Windows)
@@ -134,15 +134,25 @@ import CoreFoundation
             ///
             public init?(name: String, initialValue: Int, error: inout Error?) {
                 self.name = (name.hasPrefix("/") ? name : "/\(name)")
-                _sem = sem_open(self.name, O_CREAT | O_EXCL, 0o777, CUnsignedInt(truncatingIfNeeded: initialValue))
-                _owns = (_sem != SEM_FAILED)
-
-                if !_owns {
-                    if errno == EEXIST { _sem = sem_open(self.name, 0) }
-                    if _sem == SEM_FAILED {
+                let s = sem_open(self.name, O_CREAT | O_EXCL, 0o777, CUnsignedInt(truncatingIfNeeded: initialValue))
+                if s == SEM_FAILED {
+                    if errno == EEXIST {
+                        let s = sem_open(self.name, 0)
+                        if s == SEM_FAILED {
+                            error = CErrors.getErrorFor(code: errno)
+                            return nil
+                        }
+                        _owns = false
+                        _sem = s!
+                    }
+                    else {
                         error = CErrors.getErrorFor(code: errno)
                         return nil
                     }
+                }
+                else {
+                    _owns = true
+                    _sem = s!
                 }
             }
 

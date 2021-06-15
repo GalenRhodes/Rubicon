@@ -29,7 +29,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Workaround for Opensource version of NSRegularExpression.enumerateMatches(in:options:range:using:) marking the closure as @escaping.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/NamedSemaphore.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/NamedSemaphore.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -357,14 +356,7 @@
       <workItem from="1623416923210" duration="6283000" />
       <workItem from="1623427476531" duration="123000" />
       <workItem from="1623432143487" duration="1417000" />
-      <workItem from="1623783416041" duration="2269000" />
-    </task>
-    <task id="LOCAL-00167" summary="Yes, I rewrote Binary Tree yet again.  I have an illness.">
-      <created>1620083503945</created>
-      <option name="number" value="00167" />
-      <option name="presentableId" value="LOCAL-00167" />
-      <option name="project" value="LOCAL" />
-      <updated>1620083503945</updated>
+      <workItem from="1623783416041" duration="2466000" />
     </task>
     <task id="LOCAL-00168" summary="Yes, I rewrote Binary Tree yet again.  I have an illness.">
       <created>1620266670975</created>
@@ -702,7 +694,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623785205330</updated>
     </task>
-    <option name="localTasksCounter" value="216" />
+    <task id="LOCAL-00216" summary="Workaround for Opensource version of NSRegularExpression.enumerateMatches(in:options:range:using:) marking the closure as @escaping.">
+      <created>1623785754363</created>
+      <option name="number" value="00216" />
+      <option name="presentableId" value="LOCAL-00216" />
+      <option name="project" value="LOCAL" />
+      <updated>1623785754363</updated>
+    </task>
+    <option name="localTasksCounter" value="217" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

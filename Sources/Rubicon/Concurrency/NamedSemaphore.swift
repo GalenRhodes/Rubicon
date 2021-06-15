@@ -74,7 +74,7 @@ import CoreFoundation
                 return 0
             #else
                 var _value: Int32 = 0
-                guard sem_getvalue(&_sem, &_value) == 0 else { return 0 }
+                sem_getvalue(&_sem, &_value)
                 return Int(_value)
             #endif
         }

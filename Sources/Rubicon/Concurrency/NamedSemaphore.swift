@@ -74,7 +74,7 @@ import CoreFoundation
                 0
             #else
                 var _value: Int32 = 0
-                guard sem_getvalue(&_sem, &_value) else { return 0 }
+                guard sem_getvalue(&_sem, &_value) == 0 else { return 0 }
                 return Int(_value)
             #endif
         }
@@ -89,7 +89,7 @@ import CoreFoundation
         #if os(Windows)
             /*==================================================================================================*/
             /// Create a new named semaphore.
-            /// 
+            ///
             /// - Parameters:
             ///   - name: The name of the semaphore.
             ///   - initialValue: The initial value of the semaphore. Must be between
@@ -109,7 +109,7 @@ import CoreFoundation
 
             /*==================================================================================================*/
             /// Create a new named semaphore.
-            /// 
+            ///
             /// - Parameters:
             ///   - name: The name of the semaphore.
             ///   - initialValue: The initial value of the semaphore. The maximum value is OS dependent. On macOS
@@ -123,7 +123,7 @@ import CoreFoundation
         #else
             /*==================================================================================================*/
             /// Create a new named semaphore.
-            /// 
+            ///
             /// - Parameters:
             ///   - name: The name of the semaphore.
             ///   - initialValue: The initial value of the semaphore. Must be between
@@ -147,7 +147,7 @@ import CoreFoundation
 
             /*==================================================================================================*/
             /// Create a new named semaphore.
-            /// 
+            ///
             /// - Parameters:
             ///   - name: The name of the semaphore.
             ///   - initialValue: The initial value of the semaphore. The maximum value is OS dependent. On macOS
@@ -163,7 +163,7 @@ import CoreFoundation
         /// Release the semaphore. Increments the value by one (1). If the value was previously less than or equal
         /// to <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0) then a waiting thread will be woken up and
         /// allowed to acquire the semaphore.
-        /// 
+        ///
         /// - Returns: `true` if successful. If the value before calling `release()` is already equal to the
         ///            maximum value then it is left unchanged and `false` is returned.
         ///
@@ -190,7 +190,7 @@ import CoreFoundation
         /*======================================================================================================*/
         /// Attempt to acquire the semaphore. If the value before calling is less than or equal to
         /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0) then this method fails by returning `false`.
-        /// 
+        ///
         /// - Returns: `true` if successful. `false` if value is less than or equal to
         ///            <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0).
         ///
@@ -209,7 +209,7 @@ import CoreFoundation
         /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0) then the calling thread is blocked until
         /// either the value is greater than <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0) or until the
         /// amount of time specified by `until` has elapsed.
-        /// 
+        ///
         /// - Parameter until: the absolute time that this method will wait trying to acquire the semaphore.
         /// - Returns: `true` if successful or `false` if the specified time has elapsed.
         ///

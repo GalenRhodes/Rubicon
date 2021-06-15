@@ -29,12 +29,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Workaround for Opensource version of NSRegularExpression.enumerateMatches(in:options:range:using:) marking the closure as @escaping.">
-      <change afterPath="$PROJECT_DIR$/Sources/semaphore/module.modulemap" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/semaphore/semaphore.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Package.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Package.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/NamedSemaphore.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/NamedSemaphore.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -374,14 +369,7 @@
       <workItem from="1623416923210" duration="6283000" />
       <workItem from="1623427476531" duration="123000" />
       <workItem from="1623432143487" duration="1417000" />
-      <workItem from="1623783416041" duration="3472000" />
-    </task>
-    <task id="LOCAL-00169" summary="StringProtocol.format(_:)">
-      <created>1620398824939</created>
-      <option name="number" value="00169" />
-      <option name="presentableId" value="LOCAL-00169" />
-      <option name="project" value="LOCAL" />
-      <updated>1620398824939</updated>
+      <workItem from="1623783416041" duration="3498000" />
     </task>
     <task id="LOCAL-00170" summary="StringProtocol.format(_:)">
       <created>1620398834527</created>
@@ -719,7 +707,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623785931109</updated>
     </task>
-    <option name="localTasksCounter" value="218" />
+    <task id="LOCAL-00218" summary="Workaround for Opensource version of NSRegularExpression.enumerateMatches(in:options:range:using:) marking the closure as @escaping.">
+      <created>1623786942116</created>
+      <option name="number" value="00218" />
+      <option name="presentableId" value="LOCAL-00218" />
+      <option name="project" value="LOCAL" />
+      <updated>1623786942116</updated>
+    </task>
+    <option name="localTasksCounter" value="219" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

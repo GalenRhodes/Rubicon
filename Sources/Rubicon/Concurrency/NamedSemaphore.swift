@@ -71,7 +71,7 @@ import CoreFoundation
         ///
         public var value: Int {
             #if os(macOS) || os(tvOS) || os(iOS) || os(watchOS) || os(Windows)
-                0
+                return 0
             #else
                 var _value: Int32 = 0
                 guard sem_getvalue(&_sem, &_value) == 0 else { return 0 }

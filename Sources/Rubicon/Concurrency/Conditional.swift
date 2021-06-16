@@ -114,6 +114,8 @@ extension LockCondition {
     }
 
     public func broadcastWait() {
+        nDebug(.In, "LockCondition.broadcastWait()")
+        defer { nDebug(.Out, "LockCondition.broadcastWait()") }
         broadcast()
         wait()
     }
@@ -175,6 +177,8 @@ open class Conditional: LockCondition {
     }
 
     open func wait() {
+        nDebug(.In, "Conditional.wait()")
+        defer { nDebug(.Out, "Conditional.wait()") }
         cmutex.wait()
     }
 
@@ -188,6 +192,8 @@ open class Conditional: LockCondition {
     }
 
     open func broadcast() {
+        nDebug(.In, "Conditional.broadcast()")
+        defer { nDebug(.Out, "Conditional.broadcast()") }
         cmutex.broadcast()
     }
 
@@ -309,6 +315,8 @@ fileprivate class CondMutex {
     }
 
     func wait() {
+        nDebug(.In, "CondMutex.wait()")
+        defer { nDebug(.Out, "CondMutex.wait()") }
         #if os(Windows)
             SleepConditionVariableSRW(cond, mutex, WinSDK.INFINITE, 0)
         #else
@@ -317,6 +325,8 @@ fileprivate class CondMutex {
     }
 
     func broadcast() {
+        nDebug(.In, "CondMutex.broadcast()")
+        defer { nDebug(.Out, "CondMutex.broadcast()") }
         #if os(Windows)
             WakeAllConditionVariable(cond)
         #else

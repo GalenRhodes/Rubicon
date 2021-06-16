@@ -320,6 +320,7 @@ fileprivate class CondMutex {
         #if os(Windows)
             SleepConditionVariableSRW(cond, mutex, WinSDK.INFINITE, 0)
         #else
+            nDebug(.None, "Calling pthread_cond_wait...")
             let r: Int32 = pthread_cond_wait(cond, mutex)
             nDebug(.None, "Result of call to pthread_cond_wait: \(r)")
             testOSFatalError(r)

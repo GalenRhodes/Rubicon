@@ -125,8 +125,8 @@ public let OneSecondMillis: PGTimeT = 1_000
     nDebug(.In, "testOSFatalError(\(results))")
     defer { nDebug(.Out, "testOSFatalError(\(results))") }
     if results == 0 { return results }
-    nDebug(.None, "errno = \(errno)")
     for other: Int32 in otherOk { if results == other { return results } }
+    nDebug(.None, "errno = \(results)")
     nDebug(.None, "DIE!!!")
     fatalError(StrError(results))
 }

@@ -25,11 +25,11 @@ import Foundation
 import CoreFoundation
 @testable import Rubicon
 
-public class IConvTests: XCTestCase {
+public class RubiconTests: XCTestCase {
 
     let testDataDir: String = "Tests/RubiconTests/Files"
     #if !(os(macOS) || os(tvOS) || os(iOS) || os(watchOS))
-        public static var allTests: [(String, (IConvTests) -> () throws -> Void)] {
+        public static var allTests: [(String, (RubiconTests) -> () throws -> Void)] {
             [ ("testIConvCharInputStream_UTF_8", testIConvCharInputStream_UTF_8), ("testIConvList", testIConvList), ]
         }
     #endif

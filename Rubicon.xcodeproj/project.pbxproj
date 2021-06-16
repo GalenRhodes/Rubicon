@@ -23,7 +23,7 @@
 		1117D4D2A49C3108EB6EDDB0 /* NamedSemaphore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DDF6B294E466C7A185D5 /* NamedSemaphore.swift */; };
 		1117D4D610BD1CE87B0D3771 /* SimpleCharInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D2ABF7C69D75E6443601 /* SimpleCharInputStream.swift */; };
 		1117D4E52C7BBAEBD59B32C8 /* MathTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA2A40FD9973202012F3 /* MathTools.swift */; };
-		1117D4E93548BC6DC4167C87 /* IConvTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA4DCBA8B62AD1D183CD /* IConvTests.swift */; };
+		1117D4E93548BC6DC4167C87 /* RubiconTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA4DCBA8B62AD1D183CD /* RubiconTests.swift */; };
 		1117D52895B40B229F0C34C8 /* AtomicProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D5A6E02759A24014C1D6 /* AtomicProperty.swift */; };
 		1117D551FA986D18AC3C604B /* Conditional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD6F29A83E7E9C004F89 /* Conditional.swift */; };
 		1117D5A62408843E13FA3F8D /* MarkInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D7B71073B174FA3D0D97 /* MarkInputStream.swift */; };
@@ -183,7 +183,7 @@
 		1117D9A1691382C37AA03237 /* Thread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
 		1117D9A942359E3B25AA0116 /* Test_UTF-32LE.xml */ = {isa = PBXFileReference; fileEncoding = 2617245952; lastKnownFileType = text.xml; path = "Test_UTF-32LE.xml"; sourceTree = "<group>"; };
 		1117DA2A40FD9973202012F3 /* MathTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathTools.swift; sourceTree = "<group>"; };
-		1117DA4DCBA8B62AD1D183CD /* IConvTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IConvTests.swift; sourceTree = "<group>"; };
+		1117DA4DCBA8B62AD1D183CD /* RubiconTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RubiconTests.swift; sourceTree = "<group>"; };
 		1117DA84761CE0531CC2B150 /* StringXForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringXForm.swift; sourceTree = "<group>"; };
 		1117DA9EAF3A9AAB76EFA62D /* XCTestManifests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		1117DACFCBB5FA296F4438AB /* ByteOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteOrder.swift; sourceTree = "<group>"; };
@@ -443,7 +443,7 @@
 			children = (
 				1117DE25E6D9A6356B595EF4 /* Working */,
 				1117DA16B0B94F6014D7AFB3 /* RubiconTests */,
-				1117DA4DCBA8B62AD1D183CD /* IConvTests.swift */,
+				1117DA4DCBA8B62AD1D183CD /* RubiconTests.swift */,
 			);
 			path = TestsBackup;
 			sourceTree = "<group>";
@@ -858,7 +858,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1117D4E93548BC6DC4167C87 /* IConvTests.swift in Sources */,
+				1117D4E93548BC6DC4167C87 /* RubiconTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

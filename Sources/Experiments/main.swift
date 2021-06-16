@@ -36,20 +36,23 @@ func testIConvCharInputStream_UTF_8() throws {
         iconv.open()
         defer { iconv.close() }
 
-        nDebug(.None, "Reading...")
+        nDebug(.None, "Setting Mark...")
         var chars: [Character] = []
         iconv.markSet()
-        if try iconv.read(chars: &chars, maxLength: 10) > 0 {
-            print("Marked Text: \"\(makeString(chars: &chars))\"")
+//        nDebug(.None, "Reading...")
+//        if try iconv.read(chars: &chars, maxLength: 10) > 0 {
+//            print("Marked Text: \"\(makeString(chars: &chars))\"")
+//
+//            iconv.markSet()
+//            if try iconv.read(chars: &chars, maxLength: 10) > 0 {
+//                print("More Marked Text: \"\(makeString(chars: &chars))\"")
+//            }
+//            iconv.markReturn()
+//        }
+//
+//        iconv.markReturn()
 
-            iconv.markSet()
-            if try iconv.read(chars: &chars, maxLength: 10) > 0 {
-                print("More Marked Text: \"\(makeString(chars: &chars))\"")
-            }
-            iconv.markReturn()
-        }
-        iconv.markReturn()
-
+        nDebug(.None, "Reading...")
         while try iconv.read(chars: &chars, maxLength: 1000) > 0 {
             print("\(makeString(chars: &chars))", terminator: "")
         }

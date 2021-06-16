@@ -13,67 +13,25 @@ let package = Package(
         .watchOS(.v6),
     ],
     products: [
-        .library(
-            name: "Rubicon",
-            targets: [
-                "Rubicon",
-            ]
-        )
+        .library(name: "Rubicon", targets: [ "Rubicon", ]),
+        .executable(name: "Experiments", targets: [ "Experiments" ]),
     ],
     dependencies: [
-        .package(
-            name: "RingBuffer",
-            url: "https://github.com/GalenRhodes/RingBuffer",
-            .upToNextMajor(from: "1.0.11")
-        ),
+        .package(name: "RingBuffer", url: "https://github.com/GalenRhodes/RingBuffer", .upToNextMajor(from: "1.0.11")),
     ],
     targets: [
         .systemLibrary(name: "iconv"),
         .target(
             name: "Rubicon",
-            dependencies: [
-                "RingBuffer",
-                "iconv",
-            ],
-            exclude: [
-                "Info.plist",
-            ]/*,
+            dependencies: [ "RingBuffer", "iconv", ],
+            exclude: [ "Info.plist", ]/*,
             linkerSettings: [
-                .linkedLibrary(
-                    "iconv",
-                    .when(
-                        platforms: [
-                            .macOS,
-                            .iOS,
-                            .tvOS,
-                            .watchOS,
-                        ]
-                    )
-                ),
-                .linkedLibrary(
-                    "pthread",
-                    .when(
-                        platforms: [
-                            .linux,
-                            .android,
-                            .wasi,
-                        ]
-                    )
-                ),
+                .linkedLibrary("iconv", .when( platforms: [ .macOS, .iOS, .tvOS, .watchOS, ])),
+                .linkedLibrary("pthread", .when(platforms: [ .linux, .android, .wasi, ])),
             ]*/
         ),
-        .testTarget(
-            name: "RubiconTests",
-            dependencies: [
-                "Rubicon",
-            ],
-            exclude: [
-                "Info.plist",
-            ],
-            resources: [
-                .copy("Files"),
-            ]
-        )
+        .testTarget(name: "RubiconTests", dependencies: [ "Rubicon", ], exclude: [ "Info.plist", ], resources: [ .copy("Files"), ]),
+        .executableTarget(name: "Experiments", dependencies: [ "Rubicon", ])
     ]
 )
 //@f:1

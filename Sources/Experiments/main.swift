@@ -17,49 +17,47 @@
 
 import Foundation
 import CoreFoundation
-#if canImport(Darwin)
-    import Darwin
-#elseif canImport(Glibc)
-    import Glibc
-#endif
+import Rubicon
 
-DispatchQueue.main.async {
-    let queue: DispatchQueue = DispatchQueue(label: UUID().uuidString, qos: .utility, attributes: .concurrent)
-    let group: DispatchGroup = DispatchGroup()
-    let proc:  Process       = Process()
+let testDataDir: String = "Tests/RubiconTests/Files"
 
-    proc.executableURL = URL(fileURLWithPath: "/usr/bin/iconv")
-    proc.arguments = [ "-l" ]
-    proc.standardError = Pipe()
-    proc.standardOutput = Pipe()
-
+func testIConvCharInputStream_UTF_8() throws {
     do {
-        try proc.run()
+        let fileName: String = "\(testDataDir)/Test_UTF-8.xml"
+        guard let file = InputStream(fileAtPath: fileName) else { print("Cannot open file: \"\(fileName)\""); return }
+        let iconv = IConvCharInputStream(inputStream: file, encodingName: "UTF-8", autoClose: true)
+
+        iconv.open()
+        defer { iconv.close() }
+
+        var chars: [Character] = []
+        iconv.markSet()
+        if try iconv.read(chars: &chars, maxLength: 10) > 0 {
+            print("Marked Text: \"\(makeString(chars: &chars))\"")
+
+            iconv.markSet()
+            if try iconv.read(chars: &chars, maxLength: 10) > 0 {
+                print("More Marked Text: \"\(makeString(chars: &chars))\"")
+            }
+            iconv.markReturn()
+        }
+        iconv.markReturn()
+
+        while try iconv.read(chars: &chars, maxLength: 1000) > 0 {
+            print("\(makeString(chars: &chars))", terminator: "")
+        }
+        print("")
     }
     catch let e {
-        try? "\(e)".write(toFile: "/dev/stderr", atomically: false, encoding: String.Encoding.utf8)
+        print("ERROR: \(e)")
     }
-
-    var _stderr: String = ""
-    var _stdout: String = ""
-
-    queue.async(group: group) { _stderr = String(data: (proc.standardError! as! Pipe).fileHandleForReading.readDataToEndOfFile(), encoding: String.Encoding.utf8) ?? "" }
-    print("================> A")
-    queue.async(group: group) { _stdout = String(data: (proc.standardOutput! as! Pipe).fileHandleForReading.readDataToEndOfFile(), encoding: String.Encoding.utf8) ?? "" }
-    print("================> B")
-    group.wait()
-    print("================> C")
-    proc.waitUntilExit()
-    print("================> D")
-    print("stdout: \(_stdout)")
-    print("stderr: \(_stderr)")
-    print("Results: \(proc.terminationStatus)")
-    print("================> E")
-    var ts: timespec = timespec(tv_sec: 10, tv_nsec: 0)
-    var tt: timespec = timespec(tv_sec: 0, tv_nsec: 0)
-    let rs: Int32    = nanosleep(&ts, &tt)
-    print("nanosleep results: \(rs)")
-    exit(0)
 }
 
-dispatchMain()
+private func makeString(chars: inout [Character]) -> String {
+    let str = String(chars)
+    chars.removeAll(keepingCapacity: true)
+    return str
+}
+
+try? testIConvCharInputStream_UTF_8()
+

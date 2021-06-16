@@ -38,7 +38,7 @@ public class RubiconTests: XCTestCase {
 
     public override func tearDown() {}
 
-    func testIConvCharInputStream_UTF_8() {
+    func testIConvCharInputStream_UTF_8() throws {
         do {
             let fileName: String = "\(testDataDir)/Test_UTF-8.xml"
             guard let file = InputStream(fileAtPath: fileName) else { XCTFail("Cannot open file: \"\(fileName)\""); return }
@@ -70,7 +70,7 @@ public class RubiconTests: XCTestCase {
         }
     }
 
-    func testIConvList() {
+    func testIConvList() throws {
         let list: [String] = IConv.encodingsList
         for i in (0 ..< list.count) {
             print("\(i + 1)> \"\(list[i])\"")

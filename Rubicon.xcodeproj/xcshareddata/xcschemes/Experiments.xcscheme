@@ -18,7 +18,7 @@
    <LaunchAction
       useCustomWorkingDirectory = "YES"
       customWorkingDirectory = "$(SRCROOT)"
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable>
          <BuildableReference

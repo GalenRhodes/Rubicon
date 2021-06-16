@@ -49,7 +49,7 @@ let package = Package(
                             .watchOS,
                         ]
                     )
-                ),
+                ),/*
                 .linkedLibrary(
                     "pthread",
                     .when(
@@ -59,7 +59,7 @@ let package = Package(
                             .wasi,
                         ]
                     )
-                ),
+                ),*/
             ]
         ),
         .testTarget(

@@ -180,8 +180,8 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
             guard isOpen else { return 0 }
             let ln = ((maxLength < 0) ? Int.max : maxLength)
             var cc = 0
-
-            while cc < maxLength {
+            nDebug(.None, "")
+            while cc < ln {
                 while canWait && buffer.isEmpty { cLock.broadcastWait() }
 
                 guard isOpen else { break }

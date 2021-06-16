@@ -27,13 +27,11 @@ import CoreFoundation
 
 public class IConvTests: XCTestCase {
 
-    #if os(macOS) || os(tvOS) || os(iOS) || os(watchOS)
-        let testDataDir: String = "Tests/RubiconTests/Files"
-    #else
+    let testDataDir: String = "Tests/RubiconTests/Files"
+    #if !(os(macOS) || os(tvOS) || os(iOS) || os(watchOS))
         public static var allTests: [(String, (IConvTests) -> () throws -> Void)] {
             [ ("testIConvCharInputStream_UTF_8", testIConvCharInputStream_UTF_8), ("testIConvList", testIConvList), ]
         }
-        let testDataDir: String = "Tests/RubiconTests/Files"
     #endif
 
     public override func setUp() {}
@@ -43,8 +41,9 @@ public class IConvTests: XCTestCase {
     func testIConvCharInputStream_UTF_8() {
         do {
             let fileName: String = "\(testDataDir)/Test_UTF-8.xml"
+            guard let file = InputStream(fileAtPath: fileName) else { XCTFail("Cannot open file: \"\(fileName)\""); return }
+            let iconv = IConvCharInputStream(inputStream: file, encodingName: "UTF-8", autoClose: true)
 
-            let iconv = try IConvCharInputStream(filename: fileName, encodingName: "UTF-8")
             iconv.open()
             defer { iconv.close() }
 

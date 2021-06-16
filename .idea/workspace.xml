@@ -28,49 +28,14 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Workaround for Opensource version of NSRegularExpression.enumerateMatches(in:options:range:using:) marking the closure as @escaping.">
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test copy.dtd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test copy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test.dtd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test2 copy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test3 copy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test4 copy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-16BE copy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-16BE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-16BE_ext copy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-16BE_ext.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-16LE_ext copy.dtd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-16LE_ext.dtd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-32LE copy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-32LE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-8 copy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-8_ext copy.dtd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-8_ext copy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-8_ext.dtd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-8_ext.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_WINDOWS-1252 copy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_WINDOWS-1252.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/compname copy.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/compname.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/IConvTests.swift" afterDir="false" />
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Linux Tests">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/IConv_Tests.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/RubiconTests/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Rubicon_Tests.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/ByteInputStreamTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/ByteInputStreamTests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/CalendarTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/CalendarTests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/LongevityTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/LongevityTests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/ManageByteBufferTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/ManageByteBufferTests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/RubiconTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/RubiconTests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/StringTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/StringTests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/ThreadLocalTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/ThreadLocalTests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/TimerTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/TimerTests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/XCTestManifests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/XCTestManifests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Working/old.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/Working/old.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Working/test.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/Working/test.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/Rubicon Tests.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/IConv Tests.xcscheme" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/IConvTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/IConvTests.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +105,7 @@
     <option name="sortByType" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="RubiconTests" />
+    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -168,14 +133,14 @@
       <recent name="$PROJECT_DIR$/Sources/semaphore" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DocFixer (Jazzy)">
+  <component name="RunManager" selected="XCTest.IConv Tests">
     <list>
       <item itemvalue="Application.DocFixer Remote" />
       <item itemvalue="Application.DocFixer (swift-doc)" />
       <item itemvalue="Application.DocFixer (Jazzy)" />
       <item itemvalue="Application.Experiments" />
       <item itemvalue="Application.Rubicon" />
-      <item itemvalue="XCTest.Rubicon Tests" />
+      <item itemvalue="XCTest.IConv Tests" />
       <item itemvalue="XCTest.Calendar Tests" />
       <item itemvalue="XCTest.Longevity Tests" />
       <item itemvalue="XCTest.ThreadLocalTests" />
@@ -414,14 +379,7 @@
       <workItem from="1623427476531" duration="123000" />
       <workItem from="1623432143487" duration="1417000" />
       <workItem from="1623783416041" duration="5083000" />
-      <workItem from="1623868364071" duration="927000" />
-    </task>
-    <task id="LOCAL-00175" summary="StringProtocol.format(_:)">
-      <created>1620824939647</created>
-      <option name="number" value="00175" />
-      <option name="presentableId" value="LOCAL-00175" />
-      <option name="project" value="LOCAL" />
-      <updated>1620824939647</updated>
+      <workItem from="1623868364071" duration="1348000" />
     </task>
     <task id="LOCAL-00176" summary="Cleanup...">
       <created>1620920489270</created>
@@ -759,7 +717,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623868617618</updated>
     </task>
-    <option name="localTasksCounter" value="224" />
+    <task id="LOCAL-00224" summary="Linux Tests">
+      <created>1623869319590</created>
+      <option name="number" value="00224" />
+      <option name="presentableId" value="LOCAL-00224" />
+      <option name="project" value="LOCAL" />
+      <updated>1623869319590</updated>
+    </task>
+    <option name="localTasksCounter" value="225" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -792,7 +757,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Major overhaul of EasyByteBuffer to make it safer to use." />
     <MESSAGE value="Added to StringProtocol.&#10;    func forEach(inRange: Range&lt;String.Index&gt;, _ body: (Character) throws -&gt; Void) rethrows" />
     <MESSAGE value="Added to StringProtocol.&#10;    func forEach(inRange: Range&lt;String.Index&gt;, _ body: (Character) throws -&gt; Void) rethrows&#10;    func forEach(match: RegularExpression.Match?, group: Int = 0, _ body: (Character) throws -&gt; Void) rethrows -&gt; Bool" />
     <MESSAGE value="Added:&#10;    public func nextCharPosition(currentPosition pos: TextPosition, character char: Character, tabWidth sz: Int8 = 4) -&gt; TextPosition" />
@@ -817,7 +781,8 @@
     <MESSAGE value="Updated Package.swift." />
     <MESSAGE value="Bug fix in StringFormat." />
     <MESSAGE value="Workaround for Opensource version of NSRegularExpression.enumerateMatches(in:options:range:using:) marking the closure as @escaping." />
-    <option name="LAST_COMMIT_MESSAGE" value="Workaround for Opensource version of NSRegularExpression.enumerateMatches(in:options:range:using:) marking the closure as @escaping." />
+    <MESSAGE value="Linux Tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Linux Tests" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

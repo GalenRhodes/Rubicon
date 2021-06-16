@@ -1,0 +1,11 @@
+<!ELEMENT Person (LastName, FirstName, MiddleName, dob, info, family)>
+        <!ELEMENT LastName (#PCDATA)>
+        <!ELEMENT FirstName (#PCDATA)>
+        <!ELEMENT MiddleName (#PCDATA)>
+        <!ELEMENT family (#PCDATA)>
+        <!ELEMENT info (dob)>
+        <!ELEMENT dob (#PCDATA)>
+        <!ELEMENT nickname (#PCDATA)>
+        <!ENTITY compname "Triple Dog Dare Media">
+        <!ENTITY copyright "🤪 2017 by &compname; incorporated 🤩">
+        <!ATTLIST MiddleName preferred (YES|NO) "NO">

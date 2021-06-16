@@ -29,9 +29,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Workaround for Opensource version of NSRegularExpression.enumerateMatches(in:options:range:using:) marking the closure as @escaping.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/LinuxMain.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/LinuxMain.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/IConvTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/RubiconTests/IConvTests.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test copy.dtd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test copy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test.dtd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test2 copy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test3 copy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test4 copy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-16BE copy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-16BE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-16BE_ext copy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-16BE_ext.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-16LE_ext copy.dtd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-16LE_ext.dtd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-32LE copy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-32LE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-8 copy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-8_ext copy.dtd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-8_ext copy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-8_ext.dtd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-8_ext.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_WINDOWS-1252 copy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_WINDOWS-1252.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/compname copy.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/compname.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/IConvTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/ByteInputStreamTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/ByteInputStreamTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/CalendarTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/CalendarTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/LongevityTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/LongevityTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/ManageByteBufferTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/ManageByteBufferTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/RubiconTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/RubiconTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/StringTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/StringTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/ThreadLocalTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/ThreadLocalTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/TimerTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/TimerTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/XCTestManifests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/RubiconTests/XCTestManifests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Working/old.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/Working/old.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Working/test.swift" beforeDir="false" afterPath="$PROJECT_DIR$/TestsBackup/Working/test.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +140,7 @@
     <option name="sortByType" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="" />
+    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="RubiconTests" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -111,7 +150,7 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT&#10;Swift" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Sources/semaphore" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Tests/RubiconTests/Files" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -123,6 +162,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Tests/RubiconTests/Files" />
+      <recent name="$PROJECT_DIR$/TestsBackup/RubiconTests/Files" />
+      <recent name="$PROJECT_DIR$/TestsBackup/RubiconTests" />
       <recent name="$PROJECT_DIR$/Sources/semaphore" />
     </key>
   </component>
@@ -372,14 +414,7 @@
       <workItem from="1623427476531" duration="123000" />
       <workItem from="1623432143487" duration="1417000" />
       <workItem from="1623783416041" duration="5083000" />
-      <workItem from="1623868364071" duration="241000" />
-    </task>
-    <task id="LOCAL-00174" summary="StringProtocol.format(_:)">
-      <created>1620765771803</created>
-      <option name="number" value="00174" />
-      <option name="presentableId" value="LOCAL-00174" />
-      <option name="project" value="LOCAL" />
-      <updated>1620765771803</updated>
+      <workItem from="1623868364071" duration="927000" />
     </task>
     <task id="LOCAL-00175" summary="StringProtocol.format(_:)">
       <created>1620824939647</created>
@@ -717,7 +752,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623788390989</updated>
     </task>
-    <option name="localTasksCounter" value="223" />
+    <task id="LOCAL-00223" summary="Workaround for Opensource version of NSRegularExpression.enumerateMatches(in:options:range:using:) marking the closure as @escaping.">
+      <created>1623868617617</created>
+      <option name="number" value="00223" />
+      <option name="presentableId" value="LOCAL-00223" />
+      <option name="project" value="LOCAL" />
+      <updated>1623868617618</updated>
+    </task>
+    <option name="localTasksCounter" value="224" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

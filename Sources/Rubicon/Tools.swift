@@ -51,7 +51,7 @@ public let OneSecondMillis: PGTimeT = 1_000
 
 /*==============================================================================================================*/
 /// Get the system time in nanoseconds.
-/// 
+///
 /// - Parameter delta: The number of nanoseconds to add to the system time.
 /// - Returns: The system time plus the value of `delta`.
 ///
@@ -63,7 +63,7 @@ public let OneSecondMillis: PGTimeT = 1_000
 
 /*==============================================================================================================*/
 /// Takes a date at some point in the future and converts it to a timespec struct relative to the epoch.
-/// 
+///
 /// - Parameter when: the date.
 /// - Returns: A timespec structure or `nil` if the date is in the past.
 ///
@@ -85,7 +85,7 @@ public let OneSecondMillis: PGTimeT = 1_000
 /*==============================================================================================================*/
 /// Cover function for the C standard library function `strerror(int)`. Returns a Swift
 /// <code>[String](https://developer.apple.com/documentation/swift/string/)</code>.
-/// 
+///
 /// - Parameter code: the OS error code.
 /// - Returns: A Swift <code>[String](https://developer.apple.com/documentation/swift/string/)</code> with the OS
 ///            error message.
@@ -102,19 +102,19 @@ public let OneSecondMillis: PGTimeT = 1_000
 /// non-<code>[zero](https://en.wikipedia.org/wiki/0)</code> value is considered an error. In some cases though a
 /// non-<code>[zero](https://en.wikipedia.org/wiki/0)</code> error is just informational and in those cases you
 /// can tell this function to ignore those as well.
-/// 
+///
 /// For example, in a call to `pthread_mutex_trylock(...)`, an return code of `EBUSY` simply means that the lock
 /// is already held by another thread while a code of `EINVAL` means that the mutex passed to the function was not
 /// properly initialized. So you could call this function like so:
-/// 
+///
 /// <pre>
 ///     let locked: Bool = (testOSFatalError(pthread_mutex_trylock(mutex), EBUSY) == 0)
 /// </pre>
-/// 
+///
 /// In this case the constant `locked` will be `true` if the thread successfully obtained ownership of the lock or
 /// `false` if another thread still owns the lock. If the return code was any other value beside 0
 /// (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) or EBUSY then a fatal error occurs.
-/// 
+///
 /// - Parameters:
 ///   - results: The results of the call.
 ///   - otherOk: Other values besides 0 (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) that should be
@@ -122,14 +122,18 @@ public let OneSecondMillis: PGTimeT = 1_000
 /// - Returns: The value of results.
 ///
 @inlinable @discardableResult public func testOSFatalError(_ results: Int32, _ otherOk: Int32...) -> Int32 {
+    nDebug(.In, "testOSFatalError(\(results))")
+    defer { nDebug(.Out, "testOSFatalError(\(results))") }
     if results == 0 { return results }
+    nDebug(.None, "errno = \(errno)")
     for other: Int32 in otherOk { if results == other { return results } }
+    nDebug(.None, "DIE!!!")
     fatalError(StrError(results))
 }
 
 /*==============================================================================================================*/
 /// Get the length of a `nil`-terminated C string of type 'signed char' (Int8).
-/// 
+///
 /// - Parameters:
 ///   - cStringPtr: The C string.
 ///   - length: The maximum possible length of the string. If less than
@@ -145,7 +149,7 @@ public let OneSecondMillis: PGTimeT = 1_000
 
 /*==============================================================================================================*/
 /// Get the length of a `nil`-terminated C string of type 'unsigned char' (UInt8).
-/// 
+///
 /// - Parameters:
 ///   - cStringPtr: The C string.
 ///   - length: The maximum possible length of the string. If less than
@@ -163,7 +167,7 @@ public let OneSecondMillis: PGTimeT = 1_000
 /// possible limitations in the timer resolution of the hardware). An unmasked signal will cause
 /// `NanoSleep(seconds:nanos:)` to terminate the sleep early, regardless of the `SA_RESTART` value on the
 /// interrupting signal.
-/// 
+///
 /// - Parameters:
 ///   - seconds: The number of seconds to sleep.
 ///   - nanos: The number of additional nanoseconds to sleep.
@@ -184,7 +188,7 @@ public func NanoSleep(seconds: PGTimeT = 0, nanos: Int = 0) -> Int {
 /// possible limitations in the timer resolution of the hardware). An unmasked signal will cause
 /// `NanoSleep(seconds:nanos:)` to terminate the sleep early, regardless of the `SA_RESTART` value on the
 /// interrupting signal.
-/// 
+///
 /// - Parameters:
 ///   - seconds: The number of seconds to sleep.
 ///   - nanos: The number of additional nanoseconds to sleep.
@@ -239,7 +243,7 @@ infix operator <?: ComparisonPrecedence
 
 /*==============================================================================================================*/
 /// Append a new element to an <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
-/// 
+///
 /// - Parameters:
 ///   - lhs: The <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>
 ///   - rhs: The new element
@@ -250,7 +254,7 @@ infix operator <?: ComparisonPrecedence
 /// Append the contents of the right-hand
 /// <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> oprand to the left-hand
 /// <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> oprand.
-/// 
+///
 /// - Parameters:
 ///   - lhs: The receiving <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 ///   - rhs: The source <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
@@ -260,7 +264,7 @@ infix operator <?: ComparisonPrecedence
 /*==============================================================================================================*/
 /// Checks to see if the <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> (left-hand
 /// operand) contains the right-hand operand.
-/// 
+///
 /// - Parameters:
 ///   - lhs: The <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 ///   - rhs: The object to search for in the
@@ -274,7 +278,7 @@ infix operator <?: ComparisonPrecedence
 /// Checks to see if the left-hand <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>
 /// contains all of the elements in the right-hand
 /// <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
-/// 
+///
 /// - Parameters:
 ///   - lhs: The left-hand <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 ///   - rhs: The right-hand <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
@@ -296,18 +300,18 @@ infix operator <=>: ComparisonPrecedence
 /*==============================================================================================================*/
 /// Compares two objects to see what their `SortOrdering` is. Both objects have to conform to the
 /// [`Comparable`](https://swiftdoc.org/v5.1/protocol/comparable/) protocol.
-/// 
+///
 /// Usage:
 /// ```
 ///     func `foo(str1: String, str2: String)` { switch str1 <=> str2 { case .LessThan: `print("'\(str1)`' comes
 ///     before '\(str2)'") case .EqualTo: `print("'\(str1)`' is the same as '\(str2)'") case .GreaterThan:
 ///     `print("'\(str1)`' comes after '\(str2)'") } }
 /// ```
-/// 
+///
 /// - Parameters:
 ///   - l: The left hand operand
 ///   - r: The right hand operand
-/// 
+///
 /// - Returns: `SortOrdering.LessThan`, `SortOrdering.EqualTo`, `SortOrdering.GreaterThan` as the left-hand
 ///            operand should be sorted before, at the same place as, or after the right-hand operand.
 ///
@@ -325,21 +329,21 @@ infix operator <=>: ComparisonPrecedence
 /// `leftArray[1]` to `rightArray[1]` and so on until it finds the first pair of objects that do not of the same
 /// sort ordering and returns ordering. If all the objects in the same positions in both arrays are
 /// `SortOrdering.Same` then this function returns `SortOrdering.Same`.
-/// 
+///
 /// Example:
 /// ```
 ///     let array1: [Int] = [ 1, 2, 3, 4 ] let array2: [Int] = [ 1, 2, 3, 4 ] let array3: [Int] = [ 1, 2, 3 ] let
 ///     array4: [Int] = [ 1, 2, 5, 6 ]
-/// 
+///
 ///     let result1: SortOrdering = array1 <=> array2 // result1 is set to `SortOrdering.EqualTo` let result2:
 ///     SortOrdering = array1 <=> array3 // result2 is set to `SortOrdering.GreaterThan` let result3: SortOrdering
 ///     = array1 <=> array4 // result3 is set to `SortOrdering.LessThan`
 /// ```
-/// 
+///
 /// - Parameters:
 ///   - l: The left hand array operand
 ///   - r: The right hand array operand
-/// 
+///
 /// - Returns: `SortOrdering.LessThan`, `SortOrdering.EqualTo`, `SortOrdering.GreaterThan` as the left-hand array
 ///            comes before, in the same place as, or after the right-hand array.
 ///
@@ -359,7 +363,7 @@ infix operator <=>: ComparisonPrecedence
 /*==============================================================================================================*/
 /// Returns a <code>[String](https://developer.apple.com/documentation/swift/string/)</code> that represents the
 /// given integer in hexadecimal format.
-/// 
+///
 /// - Parameters:
 ///   - n: The integer number.
 ///   - pad: 0 means no padding. negative number means the number is padded with spaces to that many places.
@@ -391,7 +395,7 @@ public func toHex<T: BinaryInteger>(_ n: T, pad: Int = 0) -> String {
 /*==============================================================================================================*/
 /// Simple function to convert an integer number into a string represented as a series of ones - "1" - or zeros -
 /// "0" starting with the high bits first and the low bits to the right.
-/// 
+///
 /// - Parameters:
 ///   - n: The integer number.
 ///   - sep: The string will be grouped into octets separated by a space unless you provide a separator string in
@@ -427,25 +431,25 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 /// ```
 ///     if let v = possiblyNil { /* do something with v */ } else { /* do something when possiblyNil is `nil` */ }
 /// ```
-/// 
+///
 /// This is fine but I wanted to do the same thing with a conditional expression like this:
 /// ```
 ///     let x = (let v = possiblyNil ? v.name : "no name") // This will not compile. 😩
 /// ```
-/// 
+///
 /// I know I could always do this:
 /// ```
 ///     let x = ((possiblyNil == `nil`) ? "no name" : v!.name) // This will compile.
 /// ```
 /// But the OCD side of me really dislikes that '!' being there even though I know it will never cause a fatal
 /// error. It just rubs up against that nerve seeing it there. 🤢
-/// 
+///
 /// So I created this function to simulate the functionality of the above using closures.
-/// 
+///
 /// ```
 ///     let x = `nilCheck(possiblyNil)` { $0.name }, whenNilDo: { "no name" } // This will compile. 😁
 /// ```
-/// 
+///
 /// - Parameters:
 ///   - obj: The expression to test for `nil`.
 ///   - b1: The closure to execute if `obj` is NOT `nil`. The unwrapped value of `obj` is passed to the closure.
@@ -462,7 +466,7 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 /// If the `maxLength` is less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then return the largest
 /// integer possible (<code>[Int.max](https://developer.apple.com/documentation/swift/int/1540171-max)</code>)
 /// otherwise returns the value of `maxLength`.
-/// 
+///
 /// - Parameter maxLength: the length to fix.
 /// - Returns: Either the value of `maxLength` or
 ///            <code>[Int.max](https://developer.apple.com/documentation/swift/int/1540171-max)</code>.
@@ -474,12 +478,12 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 /// ```
 ///     if number == 1 || number == 5 || number == 99 { /* do something */ }
 /// ```
-/// 
+///
 /// You can now do this:
 /// ```
 ///     if `value(number, isOneOf: 1, 5, 99)` { /* do something */ }
 /// ```
-/// 
+///
 /// - Parameters:
 ///   - value: The value to be tested.
 ///   - isOneOf: The desired values.
@@ -492,7 +496,7 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 /*==============================================================================================================*/
 /// Calculate the number of instances of a given datatype will occupy a given number of bytes. For example, if
 /// given a type of `Int64.self` and a byte count of 16 then this function will return a value of 2.
-/// 
+///
 /// - Parameters:
 ///   - type: The target datatype.
 ///   - value: The number of bytes.
@@ -503,7 +507,7 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 /*==============================================================================================================*/
 /// Calculate the number of bytes that make up a given number of instances of the given datatype. For example if
 /// given a datatype of `Int64.self` and a count of 2 then this function will return 16.
-/// 
+///
 /// - Parameters:
 ///   - type: The target datatype.
 ///   - value: The number of instances of the datatype.
@@ -513,7 +517,7 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 
 /*==============================================================================================================*/
 /// Output debugging text. This method only produces output when the code is compiled with a `-DDEBUG` flag.
-/// 
+///
 /// - Parameters:
 ///   - obj: The objects to print. They are converted to string with `String(describing:)`.
 ///   - separator: The string to put between objects. Defaults to a single space character.
@@ -527,7 +531,7 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 
 /*==============================================================================================================*/
 /// Output debugging text. This method only produces output when the code is compiled with a `-DDEBUG` flag.
-/// 
+///
 /// - Parameters:
 ///   - obj: The objects to print. They are converted to string with `String(describing:)`.
 ///   - separator: The string to put between objects. Defaults to a single space character.
@@ -570,7 +574,7 @@ private func nDebugIndent(_ count: Int, _ string: inout String, _ msg: String) {
 /// method outputs text in a nested fashion. Calling this method with NestType.In increases the nesting level.
 /// Calling this method with NestType.Out decreases the nesting level. Calling this method with NestType.None
 /// keeps the nesting level the same.
-/// 
+///
 /// - Parameters:
 ///   - nestType: The nesting type.
 ///   - obj: The objects to print. They are converted to a string with `String(describing:)`.
@@ -604,7 +608,7 @@ public func nDebug(_ nestType: NestType = .None, _ obj: Any..., separator: Strin
 
 /*==============================================================================================================*/
 /// Get a hash value from just about anything.
-/// 
+///
 /// - Parameter v: The item you want the hash of.
 /// - Returns: The hash.
 ///
@@ -615,7 +619,7 @@ public func nDebug(_ nestType: NestType = .None, _ obj: Any..., separator: Strin
 
 /*==============================================================================================================*/
 /// Execute a program and capture it's output.
-/// 
+///
 /// - Parameters:
 ///   - exec: The program to execute.
 ///   - args: The command line arguments for the program.
@@ -633,7 +637,7 @@ public func execute(exec: String, args: [String], stdin: Data, stdout: inout Dat
 
 /*==============================================================================================================*/
 /// Execute a program and capture it's output.
-/// 
+///
 /// - Parameters:
 ///   - exec: The program to execute.
 ///   - args: The command line arguments for the program.
@@ -673,7 +677,7 @@ public func execute(exec: String, args: [String], stdin: Any? = nil, stdout: ino
 
 /*==============================================================================================================*/
 /// Execute a program and capture it's output.
-/// 
+///
 /// - Parameters:
 ///   - exec: The program to execute.
 ///   - args: The command line arguments for the program.
@@ -705,7 +709,7 @@ public func execute(exec: String, args: [String], stdin: String, stdout: inout S
 
 /*==============================================================================================================*/
 /// Execute a program and capture it's output.
-/// 
+///
 /// - Parameters:
 ///   - exec: The program to execute.
 ///   - args: The command line arguments for the program.
@@ -727,7 +731,7 @@ public func execute(exec: String, args: [String], stdin: Any? = nil, stdout: ino
 /*==============================================================================================================*/
 /// Execute a program and capture it's output. Anything written to stderr by the program is discarded unless
 /// `discardStderr` is set to `false` in which case it is routed to the system's stderr channel.
-/// 
+///
 /// - Parameters:
 ///   - exec: The program to execute.
 ///   - args: The command line arguments for the program.
@@ -754,7 +758,7 @@ public func execute(exec: String, args: [String], stdin: Any? = nil, stdout: ino
 /*==============================================================================================================*/
 /// Execute a program. Anything written to stderr or stdout by the program is discarded unless `discardOutput` is
 /// set to `false` in which case it is routed to the system's stderr and stdout channels.
-/// 
+///
 /// - Parameters:
 ///   - exec: The program to execute.
 ///   - args: The command line arguments for the program.
@@ -777,7 +781,7 @@ public func execute(exec: String, args: [String], stdin: Any? = nil, discardOutp
 
 /*==============================================================================================================*/
 /// Read the data from a Pipe and return it as a string.
-/// 
+///
 /// - Parameters:
 ///   - pipe: The pipe to read from.
 ///   - encoding: The encoding. Defaults to `UTF-8`.
@@ -787,7 +791,7 @@ public func execute(exec: String, args: [String], stdin: Any? = nil, discardOutp
 
 /*==============================================================================================================*/
 /// Launch a process and return.
-/// 
+///
 /// - Parameter process: The process to launch.
 /// - Returns: `true` if successful.
 ///
@@ -798,7 +802,7 @@ public func execute(exec: String, args: [String], stdin: Any? = nil, discardOutp
 
 /*==============================================================================================================*/
 /// Launch a process and return.
-/// 
+///
 /// - Parameters:
 ///   - process: The process to launch.
 ///   - error: Receives any error.
@@ -820,7 +824,7 @@ public func execute(exec: String, args: [String], stdin: Any? = nil, discardOutp
 
 /*==============================================================================================================*/
 /// Which
-/// 
+///
 /// - Parameter names: The programs to look for.
 /// - Returns: The paths to the programs. If any program couldn't be found then that entry is `nil`.
 ///
@@ -857,7 +861,7 @@ public func which(names: [String]) -> [String?] {
 
 /*==============================================================================================================*/
 /// Which
-/// 
+///
 /// - Parameter name: The program to look for.
 /// - Returns: The path to the program or `nil` if it couldn't be found.
 ///

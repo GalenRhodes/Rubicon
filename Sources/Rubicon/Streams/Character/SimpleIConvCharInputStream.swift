@@ -174,6 +174,9 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
         }
 
         func _append(to chars: inout [Character], maxLength: Int) throws -> Int {
+            nDebug(.In, "_append(to:maxLength:)")
+            defer { nDebug(.Out, "_append(to:maxLength:)") }
+
             guard isOpen else { return 0 }
             let ln = ((maxLength < 0) ? Int.max : maxLength)
             var cc = 0

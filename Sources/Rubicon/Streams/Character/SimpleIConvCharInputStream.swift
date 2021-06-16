@@ -180,21 +180,29 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
             guard isOpen else { return 0 }
             let ln = ((maxLength < 0) ? Int.max : maxLength)
             var cc = 0
-            nDebug(.None, "")
+            nDebug(.None, "ln = \(ln); cc = \(cc)")
             while cc < ln {
-                while canWait && buffer.isEmpty { cLock.broadcastWait() }
+                while canWait && buffer.isEmpty {
+                    nDebug(.None, "Waiting...")
+                    cLock.broadcastWait()
+                    nDebug(.None, "Done Waiting...")
+                }
+
+                nDebug(.None, "isOpen = \(isOpen); noError = \(noError); hasBChars = \(hasBChars)")
 
                 guard isOpen else { break }
                 guard noError else { throw error! }
                 guard hasBChars else { break }
 
+                nDebug(.None, "(ln - cc) = \(ln - cc)")
                 let i = min(buffer.count, (ln - cc))
                 let r = (0 ..< i)
 
                 chars.append(contentsOf: buffer[r])
                 buffer.removeSubrange(r)
                 cc += i
-                if canWait { cLock.broadcastWait() }
+                nDebug(.None, "ln = \(ln); cc = \(cc)")
+                //if canWait { cLock.broadcastWait() }
             }
 
             return cc

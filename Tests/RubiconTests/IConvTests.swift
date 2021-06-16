@@ -25,15 +25,24 @@ import Foundation
 import CoreFoundation
 @testable import Rubicon
 
-class IConvTests: XCTestCase {
+public class IConvTests: XCTestCase {
 
-    override func setUp() {}
+    #if os(macOS) || os(tvOS) || os(iOS) || os(watchOS)
+        let testDataDir: String = "Tests/RubiconTests/Files"
+    #else
+        public static var allTests: [(String, (IConvTests) -> () throws -> Void)] {
+            [ ("testIConvCharInputStream_UTF_8", testIConvCharInputStream_UTF_8), ("testIConvList", testIConvList), ]
+        }
+        let testDataDir: String = "Tests/RubiconTests/Files"
+    #endif
 
-    override func tearDown() {}
+    public override func setUp() {}
+
+    public override func tearDown() {}
 
     func testIConvCharInputStream_UTF_8() {
         do {
-            let fileName: String = "Tests/RubiconTests/Files/Test_UTF-8.xml"
+            let fileName: String = "\(testDataDir)/Test_UTF-8.xml"
 
             let iconv = try IConvCharInputStream(filename: fileName, encodingName: "UTF-8")
             iconv.open()

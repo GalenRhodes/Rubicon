@@ -37,7 +37,7 @@ let package = Package(
             ],
             exclude: [
                 "Info.plist",
-            ],
+            ]/*,
             linkerSettings: [
                 .linkedLibrary(
                     "iconv",
@@ -49,7 +49,7 @@ let package = Package(
                             .watchOS,
                         ]
                     )
-                ),/*
+                ),
                 .linkedLibrary(
                     "pthread",
                     .when(
@@ -59,8 +59,8 @@ let package = Package(
                             .wasi,
                         ]
                     )
-                ),*/
-            ]
+                ),
+            ]*/
         ),
         .testTarget(
             name: "RubiconTests",

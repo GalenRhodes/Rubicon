@@ -23,13 +23,20 @@ let testDataDir: String = "Tests/RubiconTests/Files"
 
 func testIConvCharInputStream_UTF_8() throws {
     do {
+        nDebug(.In, "testIConvCharInputStream_UTF_8")
+        defer {
+            nDebug(.Out, "testIConvCharInputStream_UTF_8")
+        }
         let fileName: String = "\(testDataDir)/Test_UTF-8.xml"
+        nDebug(.None, "Opening \"\(fileName)\"")
         guard let file = InputStream(fileAtPath: fileName) else { print("Cannot open file: \"\(fileName)\""); return }
+        nDebug(.None, "Opening IConvCharInputStream for \"\(fileName)\"")
         let iconv = IConvCharInputStream(inputStream: file, encodingName: "UTF-8", autoClose: true)
 
         iconv.open()
         defer { iconv.close() }
 
+        nDebug(.None, "Reading...")
         var chars: [Character] = []
         iconv.markSet()
         if try iconv.read(chars: &chars, maxLength: 10) > 0 {

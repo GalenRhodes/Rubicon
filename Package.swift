@@ -24,11 +24,11 @@ let package = Package(
         .target(
             name: "Rubicon",
             dependencies: [ "RingBuffer", "iconv", ],
-            exclude: [ "Info.plist", ]/*,
+            exclude: [ "Info.plist", ],
             linkerSettings: [
                 .linkedLibrary("iconv", .when( platforms: [ .macOS, .iOS, .tvOS, .watchOS, ])),
                 .linkedLibrary("pthread", .when(platforms: [ .linux, .android, .wasi, ])),
-            ]*/
+            ]
         ),
         .testTarget(name: "RubiconTests", dependencies: [ "Rubicon", ], exclude: [ "Info.plist", ], resources: [ .copy("Files"), ]),
         .executableTarget(name: "Experiments", dependencies: [ "Rubicon", ])

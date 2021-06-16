@@ -259,8 +259,8 @@ fileprivate class CondMutex {
             InitializeSRWLock(mutex)
             InitializeConditionVariable(cond)
         #else
-            pthread_mutex_init(mutex, nil)
-            pthread_cond_init(cond, nil)
+            guard pthread_mutex_init(mutex, nil) == 0 else { fatalError("Could not initialize the mutex.") }
+            guard pthread_cond_init(cond, nil) == 0 else { fatalError("Could not initialize the conditional.") }
         #endif
     }
 

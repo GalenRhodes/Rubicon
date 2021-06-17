@@ -862,3 +862,15 @@ public func which(names: [String]) -> [String?] {
 /// - Returns: The path to the program or `nil` if it couldn't be found.
 ///
 @inlinable public func which(name: String) -> String? { which(names: [ name ])[0] }
+
+@inlinable public func launchApplication(exec: () throws -> Int32) -> Never {
+    withoutActuallyEscaping(exec) { _exec in
+        DispatchQueue.main.async {
+            var result: Int32 = 0
+            do { result = try _exec() }
+            catch let e { try? e.localizedDescription.write(toFile: "/dev/stderr", atomically: false, encoding: .utf8) }
+            exit(result)
+        }
+    }
+    dispatchMain()
+}

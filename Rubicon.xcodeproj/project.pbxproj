@@ -11,6 +11,7 @@
 		1117D03DA3BBC27101EC56EB /* TreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D42A0A892A55AD7F0C6D /* TreeNode.swift */; };
 		1117D0438E55FD170186888E /* CharStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D4E1FE7DC31ACC3EDD25 /* CharStream.swift */; };
 		1117D067B34035FC4DED2A5F /* StringCharInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D75AC0C7F9E876B68A79 /* StringCharInputStream.swift */; };
+		1117D0FA4B824B9AA8B3744F /* Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D024E9FD850314516AC3 /* Other.swift */; };
 		1117D17E5EF7E760249C2F80 /* ArraySlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DE11C36AAB336EB85953 /* ArraySlice.swift */; };
 		1117D1B588233A771C95B889 /* FloatingPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D42244601FA54CAFC111 /* FloatingPoint.swift */; };
 		1117D1D0104EFFB9AA1428C6 /* RangeReplaceableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DEDC46E1252EFD4F2D73 /* RangeReplaceableCollection.swift */; };
@@ -121,6 +122,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1117D024E9FD850314516AC3 /* Other.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Other.swift; sourceTree = "<group>"; };
 		1117D02D036B4EB5836CC547 /* Test_UTF-16LE_ext.dtd */ = {isa = PBXFileReference; fileEncoding = 2483028224; lastKnownFileType = text.xml; path = "Test_UTF-16LE_ext.dtd"; sourceTree = "<group>"; };
 		1117D057FC73A6200E871B09 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
 		1117D067A05BD7D5F986AD20 /* test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 			isa = PBXGroup;
 			children = (
 				8398BC13266A6CB200671FE0 /* main.swift */,
+				1117D024E9FD850314516AC3 /* Other.swift */,
 			);
 			path = Experiments;
 			sourceTree = "<group>";
@@ -752,8 +755,8 @@
 			);
 			mainGroup = 83C67A68250EC02000C0F21E;
 			packageReferences = (
-				83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer" */,
-				83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer" */,
+				83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer.git" */,
+				83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer.git" */,
 			);
 			productRefGroup = 83C67A73250EC02000C0F21E /* Products */;
 			projectDirPath = "";
@@ -790,6 +793,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8398BC14266A6CB200671FE0 /* main.swift in Sources */,
+				1117D0FA4B824B9AA8B3744F /* Other.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1218,7 +1222,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer" */ = {
+		83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/GalenRhodes/RingBuffer.git";
 			requirement = {
@@ -1226,7 +1230,7 @@
 				minimumVersion = 1.0.11;
 			};
 		};
-		83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer" */ = {
+		83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/GalenRhodes/PGDocFixer.git";
 			requirement = {
@@ -1239,12 +1243,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		83BA732E254ABED0009B8351 /* RingBuffer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer" */;
+			package = 83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer.git" */;
 			productName = RingBuffer;
 		};
 		83C67AEF250EC40E00C0F21E /* PGDocFixer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer" */;
+			package = 83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer.git" */;
 			productName = PGDocFixer;
 		};
 /* End XCSwiftPackageProductDependency section */

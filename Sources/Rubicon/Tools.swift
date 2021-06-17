@@ -122,12 +122,8 @@ public let OneSecondMillis: PGTimeT = 1_000
 /// - Returns: The value of results.
 ///
 @inlinable @discardableResult public func testOSFatalError(_ results: Int32, _ otherOk: Int32...) -> Int32 {
-    nDebug(.In, "testOSFatalError(\(results))")
-    defer { nDebug(.Out, "testOSFatalError(\(results))") }
     if results == 0 { return results }
     for other: Int32 in otherOk { if results == other { return results } }
-    nDebug(.None, "errno = \(results)")
-    nDebug(.None, "DIE!!!")
     fatalError(StrError(results))
 }
 

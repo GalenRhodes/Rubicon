@@ -39,4 +39,4 @@ guard result >= 0 else {
 let str = String(bytes: array, encoding: .utf8)
 print(str ?? "???")
 inputStream.close()
-
+exit(0)

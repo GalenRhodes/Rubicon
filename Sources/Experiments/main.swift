@@ -31,6 +31,9 @@ inputStream.open()
 //}
 var array  = [ UInt8 ](repeating: 0, count: 100)
 let result = inputStream.read(&array, maxLength: 100)
+print("Done reading. Checking error field.")
+let e = inputStream.streamError
+print("\(e == nil ? "No error." : "ERROR")")
 guard result >= 0 else {
     let msg = (inputStream.streamError?.localizedDescription ?? "Unknown Error")
     print("Error reading file: \(msg)")

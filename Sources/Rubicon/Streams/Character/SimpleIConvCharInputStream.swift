@@ -252,6 +252,7 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
             }
             catch let e {
                 error = e
+                print("ERROR =================> \(e)")
                 return false
             }
         }

@@ -248,8 +248,14 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
                     print("Opening Input Stream...")
                     inputStream.open()
                     print("Input Stream Opened...")
-                    if let e = inputStream.streamError { throw e }
-                    print("...without error.")
+                    if let e = inputStream.streamError {
+                        print("...with error: \(e)")
+                        error = e
+                        return false
+                    }
+                    else {
+                        print("...without error.")
+                    }
                 }
                 while buffer.count >= MAX_READ_AHEAD {
                     print("Waiting...")

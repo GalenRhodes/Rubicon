@@ -248,7 +248,7 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
                     print("Opening Input Stream...")
                     inputStream.open()
                     while inputStream.streamStatus == .opening {}
-                    print("Input Stream Opened...")
+                    print("Input Stream Opened...: \(inputStream.className)")
                     if let e = inputStream.streamError {
                         print("...with error: \(e)")
                         error = e

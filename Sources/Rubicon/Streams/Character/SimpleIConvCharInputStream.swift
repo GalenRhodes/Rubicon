@@ -141,9 +141,6 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
         /// - Throws: If an I/O error occurs.
         ///
         open func append(to chars: inout [Character], maxLength: Int) throws -> Int {
-            nDebug(.In, "append(to:maxLength:)")
-            defer { nDebug(.Out, "append(to:maxLength:)") }
-
             return try withLock {
                 try _append(to: &chars, maxLength: maxLength)
             }

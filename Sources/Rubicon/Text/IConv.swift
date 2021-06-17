@@ -131,17 +131,13 @@ import CoreFoundation
         /// - Returns: The response.
         ///
         open func convert(input: UnsafeRawPointer, length: Int, output: UnsafeMutableRawPointer, maxLength: Int) -> Response {
-            nDebug(.In, "conver(B)...")
-            defer { nDebug(.Out, "conver(B)...") }
             guard let h = handle else { return (.UnknownEncoding, 0, 0) }
 
             var inSz:  Int           = length
             var outSz: Int           = maxLength
             var inP:   CCharPointer? = UnsafeMutableRawPointer(mutating: input).bindMemory(to: CChar.self, capacity: inSz)
             var outP:  CCharPointer? = output.bindMemory(to: CChar.self, capacity: outSz)
-            nDebug(.None, "Calling iconv")
             let res:   Int           = iconv(h, &inP, &inSz, &outP, &outSz)
-            nDebug(.None, "iconv result: \(res)")
             return getResponse(callResponse: res, inUsed: (length - inSz), outUsed: (maxLength - outSz))
         }
 
@@ -154,8 +150,6 @@ import CoreFoundation
         /// - Returns: The results.
         ///
         open func convert(input i: MutableManagedByteBuffer, output o: MutableManagedByteBuffer) -> Results {
-            nDebug(.In, "conver(A)...")
-            defer { nDebug(.Out, "conver(A)...") }
             return i.withBytes { inBytes, inLen, inCount -> Results in
                 o.withBytes { outBytes, outLen, outCount -> Results in
                     let r = convert(input: inBytes, length: inCount, output: outBytes, maxLength: outLen)

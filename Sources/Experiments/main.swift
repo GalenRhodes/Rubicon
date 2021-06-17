@@ -69,5 +69,9 @@ private func makeString(chars: inout [Character]) -> String {
     return str
 }
 
-try? testIConvCharInputStream_UTF_8()
+DispatchQueue.main.async {
+    try? testIConvCharInputStream_UTF_8()
+    exit(0)
+}
 
+dispatchMain()

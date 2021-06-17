@@ -242,6 +242,7 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
 
         func doBackgroundRead(_ iconv: IConv, _ input: EasyByteBuffer, _ output: EasyByteBuffer, _ hangingCR: inout Bool) -> Bool {
             do {
+                print("DO BACKGROUND READ!!!!")
                 guard isOpen else { return false }
                 if inputStream.streamStatus == .notOpen {
                     inputStream.open()

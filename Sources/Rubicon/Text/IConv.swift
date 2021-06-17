@@ -75,7 +75,7 @@ import CoreFoundation
 
         /*======================================================================================================*/
         /// Create a new instance of IConv.
-        ///
+        /// 
         /// - Parameters:
         ///   - toEncoding: The target encoding name.
         ///   - fromEncoding: The source encoding name.
@@ -107,7 +107,7 @@ import CoreFoundation
 
         /*======================================================================================================*/
         /// Reset the converter.
-        ///
+        /// 
         /// - Returns: `Results.OK` if successful. `Results.OtherError` if not successful.
         ///
         open func reset() -> Results {
@@ -122,7 +122,7 @@ import CoreFoundation
 
         /*======================================================================================================*/
         /// Convert the contents of the `input` buffer and store in the `output` buffer.
-        ///
+        /// 
         /// - Parameters:
         ///   - input: The input buffer.
         ///   - length: The number of bytes in the input buffer.
@@ -143,7 +143,7 @@ import CoreFoundation
 
         /*======================================================================================================*/
         /// Convert the contents of the `input` buffer and store in the `output` buffer.
-        ///
+        /// 
         /// - Parameters:
         ///   - input: The input buffer.
         ///   - output: The output buffer.
@@ -163,7 +163,7 @@ import CoreFoundation
 
         /*======================================================================================================*/
         /// Convert a string into bytes with a given encoding.
-        ///
+        /// 
         /// - Parameters:
         ///   - string: The string to convert.
         ///   - encoding: The encoding to use.
@@ -205,7 +205,7 @@ import CoreFoundation
         /*======================================================================================================*/
         /// Do the final conversion step after all of the input has been processed to get any deferred conversions
         /// that might be waiting.
-        ///
+        /// 
         /// - Parameters:
         ///   - output: The output buffer.
         ///   - maxLength: The maximum length of the output buffer.
@@ -224,7 +224,7 @@ import CoreFoundation
         /*======================================================================================================*/
         /// Do the final conversion step after all of the input has been processed to get any deferred conversions
         /// that might be waiting.
-        ///
+        /// 
         /// - Parameter o: the output buffer.
         /// - Returns: The `Results`.
         ///
@@ -239,7 +239,7 @@ import CoreFoundation
         /*======================================================================================================*/
         /// Convert the contents of the input stream. This method reads the input stream in 1,024 byte chunks,
         /// converts those bytes, and then calls the give closure with the results of that conversion.
-        ///
+        /// 
         /// - Parameters:
         ///   - inputStream: The input stream.
         ///   - body: The closure to handle each converted chunk.
@@ -262,7 +262,7 @@ import CoreFoundation
 
         /*======================================================================================================*/
         /// Convert a chunk of data.
-        ///
+        /// 
         /// - Parameters:
         ///   - ioRes: The number of bytes read from the input stream.
         ///   - inBuff: The input buffer.
@@ -286,7 +286,7 @@ import CoreFoundation
 
         /*======================================================================================================*/
         /// Get the list of available encodings.
-        ///
+        /// 
         /// - Returns: An array of strings.
         ///
         private static func getEncodingsList() -> [String] {
@@ -311,7 +311,7 @@ import CoreFoundation
 
         /*======================================================================================================*/
         /// Convert the data returned from the call to `iconv(_ :, _:, _:, _:, _:)` to a `Response` tuple.
-        ///
+        /// 
         /// - Parameters:
         ///   - res: The results returned from the call.
         ///   - inUsed: The number of input bytes used.

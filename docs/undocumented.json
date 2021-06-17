@@ -1941,21 +1941,21 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/NamedSemaphore.swift",
-      "line": 42,
+      "line": 41,
       "symbol": "NamedSemaphore.OSMaximumNameLength",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/NamedSemaphore.swift",
-      "line": 51,
+      "line": 50,
       "symbol": "NamedSemaphore.OSMaximumValue",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/NamedSemaphore.swift",
-      "line": 57,
+      "line": 56,
       "symbol": "NamedSemaphore.name",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
@@ -2284,21 +2284,21 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/Stream.swift",
-      "line": 232,
+      "line": 243,
       "symbol": "OutputStream.write(from:length:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/Stream.swift",
-      "line": 237,
+      "line": 248,
       "symbol": "OutputStream.write(from:length:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/Stream.swift",
-      "line": 288,
+      "line": 299,
       "symbol": "InputStream.read()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -2791,6 +2791,13 @@
       "line": 561,
       "symbol": "NestType.Out",
       "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Tools.swift",
+      "line": 866,
+      "symbol": "launchApplication(exec:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
       "warning": "undocumented"
     }
   ],

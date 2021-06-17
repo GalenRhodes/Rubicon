@@ -146,6 +146,7 @@
 		1117D2AE1568A8C3741A86AE /* AtomicValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomicValue.swift; sourceTree = "<group>"; };
 		1117D326556A2DA09BDCA34F /* Test_UTF-32LE.xml */ = {isa = PBXFileReference; fileEncoding = 2617245952; lastKnownFileType = text.xml; path = "Test_UTF-32LE.xml"; sourceTree = "<group>"; };
 		1117D37158957963FD36F677 /* Test4.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Test4.xml; sourceTree = "<group>"; };
+		1117D3F14F7032432FFAA144 /* Experiments.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Experiments.entitlements; sourceTree = "<group>"; };
 		1117D3F516CE662DE8B89675 /* ByteInputStreamTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteInputStreamTests.swift; sourceTree = "<group>"; };
 		1117D42244601FA54CAFC111 /* FloatingPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingPoint.swift; sourceTree = "<group>"; };
 		1117D4271C0293ABF2DE0360 /* DateComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateComponents.swift; sourceTree = "<group>"; };
@@ -219,7 +220,6 @@
 		1117DF5398773AE150F0A585 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		1117DFB1957508BC2D87A10D /* compname.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = compname.txt; sourceTree = "<group>"; };
 		1117DFFD880F237687D8BE44 /* StringProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringProtocol.swift; sourceTree = "<group>"; };
-		8304D99D267A9042007FC4D1 /* Experiments.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Experiments.entitlements; sourceTree = "<group>"; };
 		8398BC11266A6CB200671FE0 /* Experiments */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Experiments; sourceTree = BUILT_PRODUCTS_DIR; };
 		8398BC13266A6CB200671FE0 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		83C67A72250EC02000C0F21E /* Rubicon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Rubicon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -471,7 +471,6 @@
 		83C67A68250EC02000C0F21E = {
 			isa = PBXGroup;
 			children = (
-				8304D99D267A9042007FC4D1 /* Experiments.entitlements */,
 				83C67A8C250EC11E00C0F21E /* Sources */,
 				83C67A8D250EC12800C0F21E /* Tests */,
 				83C67A73250EC02000C0F21E /* Products */,
@@ -613,6 +612,7 @@
 				1117DF108631813F676A7FE5 /* .jazzy.yaml */,
 				1117D057FC73A6200E871B09 /* .gitignore */,
 				1117D675AFDA886277BA02FB /* Format.md */,
+				1117D3F14F7032432FFAA144 /* Experiments.entitlements */,
 			);
 			name = Other;
 			sourceTree = "<group>";

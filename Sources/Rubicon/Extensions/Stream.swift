@@ -37,6 +37,17 @@ extension Stream {
     public var isInGoodStatus: Bool { Rubicon.value(streamStatus, isOneOf: .open, .opening, .reading, .writing) }
 
     /*==========================================================================================================*/
+    /// There is a bug in the open source version of Swift for Linux that causes the `streamError` property to
+    /// trap. TODO: Replace after they fix the bug.
+    ///
+    @inlinable var _streamError: Error? {
+        #if os(Linux)
+            return ((streamStatus == .error) ? StreamError.UnknownError() : nil)
+        #else
+            return streamError
+        #endif
+    }
+    /*==========================================================================================================*/
     /// Checks to see if the `streamStatus` is any of the given statuses.
     /// 
     /// - Parameter statuses: the list of statuses.
@@ -101,7 +112,7 @@ extension InputStream {
         while cc < maxLength {
             let rc = read((p + cc), maxLength: (maxLength - cc))
             guard rc > 0 else {
-                guard rc == 0 else { throw streamError ?? StreamError.UnknownError() }
+                guard rc == 0 else { throw _streamError ?? StreamError.UnknownError() }
                 break
             }
             cc += rc
@@ -141,7 +152,7 @@ extension InputStream {
         while cc < ln {
             let rc = read(p, maxLength: min(mx, (ln - cc)))
             guard rc > 0 else {
-                guard rc == 0 else { throw streamError ?? StreamError.UnknownError() }
+                guard rc == 0 else { throw _streamError ?? StreamError.UnknownError() }
                 break
             }
             cc += rc
@@ -172,7 +183,7 @@ extension InputStream {
         while b.count < b.length {
             let f = try b.withBytes { bytes, length, count -> Bool in
                 let rc = read(bytes + count, maxLength: (length - count))
-                if rc < 0 { throw streamError ?? StreamError.UnknownError() }
+                if rc < 0 { throw _streamError ?? StreamError.UnknownError() }
                 if rc == 0 { return false }
                 count += rc
                 return true
@@ -237,7 +248,7 @@ extension OutputStream {
     public func write(from p: UnsafeRawPointer, length: Int) throws -> Int {
         guard length > 0 else { return 0 }
         let wc = write(p.bindMemory(to: UInt8.self, capacity: length), maxLength: length)
-        guard wc >= 0 else { throw streamError ?? StreamError.UnknownError() }
+        guard wc >= 0 else { throw _streamError ?? StreamError.UnknownError() }
         return wc
     }
 }
@@ -288,7 +299,7 @@ extension InputStream {
     @inlinable public func read() throws -> UInt8? {
         var byte: UInt8 = 0
         let res:  Int   = read(&byte, maxLength: 1)
-        guard res >= 0 else { throw streamError ?? StreamError.UnknownError() }
+        guard res >= 0 else { throw _streamError ?? StreamError.UnknownError() }
         guard res > 0 else { return nil }
         return byte
     }

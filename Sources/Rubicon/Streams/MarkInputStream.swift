@@ -416,12 +416,21 @@ open class MarkInputStream: InputStream {
             guard isOpen else { return false }
             if inputStream.streamStatus == .notOpen {
                 inputStream.open()
-                if let e = inputStream.streamError { throw e }
+                // TODO: When they fix it remove this conditional
+                #if !os(Linux)
+                    if let e = inputStream.streamError { throw e }
+                #endif
             }
             while isOpen && (buffer.count > MaxInputBufferSize) { guard lock.broadcastWait(until: Date(timeIntervalSinceNow: 1.0)) else { return isOpen } }
             guard isOpen else { return false }
             let cc = inputStream.read(bytes, maxLength: size)
-            if let e = inputStream.streamError { throw e }
+            guard cc >= 0 else {
+                // TODO: When they fix it remove this conditional
+                #if !os(Linux)
+                    if let e = inputStream.streamError { throw e }
+                #endif
+                throw StreamError.UnknownError(description: "An unknown error has occured.")
+            }
             guard cc > 0 else { return false }
             buffer.append(src: bytes, length: cc)
             return true

@@ -75,7 +75,7 @@ import CoreFoundation
 
         /*======================================================================================================*/
         /// Create a new instance of IConv.
-        /// 
+        ///
         /// - Parameters:
         ///   - toEncoding: The target encoding name.
         ///   - fromEncoding: The source encoding name.
@@ -107,7 +107,7 @@ import CoreFoundation
 
         /*======================================================================================================*/
         /// Reset the converter.
-        /// 
+        ///
         /// - Returns: `Results.OK` if successful. `Results.OtherError` if not successful.
         ///
         open func reset() -> Results {
@@ -122,7 +122,7 @@ import CoreFoundation
 
         /*======================================================================================================*/
         /// Convert the contents of the `input` buffer and store in the `output` buffer.
-        /// 
+        ///
         /// - Parameters:
         ///   - input: The input buffer.
         ///   - length: The number of bytes in the input buffer.
@@ -131,27 +131,32 @@ import CoreFoundation
         /// - Returns: The response.
         ///
         open func convert(input: UnsafeRawPointer, length: Int, output: UnsafeMutableRawPointer, maxLength: Int) -> Response {
+            nDebug(.In, "conver(B)...")
+            defer { nDebug(.Out, "conver(B)...") }
             guard let h = handle else { return (.UnknownEncoding, 0, 0) }
 
             var inSz:  Int           = length
             var outSz: Int           = maxLength
             var inP:   CCharPointer? = UnsafeMutableRawPointer(mutating: input).bindMemory(to: CChar.self, capacity: inSz)
             var outP:  CCharPointer? = output.bindMemory(to: CChar.self, capacity: outSz)
+            nDebug(.None, "Calling iconv")
             let res:   Int           = iconv(h, &inP, &inSz, &outP, &outSz)
-
+            nDebug(.None, "iconv result: \(res)")
             return getResponse(callResponse: res, inUsed: (length - inSz), outUsed: (maxLength - outSz))
         }
 
         /*======================================================================================================*/
         /// Convert the contents of the `input` buffer and store in the `output` buffer.
-        /// 
+        ///
         /// - Parameters:
         ///   - input: The input buffer.
         ///   - output: The output buffer.
         /// - Returns: The results.
         ///
         open func convert(input i: MutableManagedByteBuffer, output o: MutableManagedByteBuffer) -> Results {
-            i.withBytes { inBytes, inLen, inCount -> Results in
+            nDebug(.In, "conver(A)...")
+            defer { nDebug(.Out, "conver(A)...") }
+            return i.withBytes { inBytes, inLen, inCount -> Results in
                 o.withBytes { outBytes, outLen, outCount -> Results in
                     let r = convert(input: inBytes, length: inCount, output: outBytes, maxLength: outLen)
                     outCount = r.outputBytesUsed
@@ -164,7 +169,7 @@ import CoreFoundation
 
         /*======================================================================================================*/
         /// Convert a string into bytes with a given encoding.
-        /// 
+        ///
         /// - Parameters:
         ///   - string: The string to convert.
         ///   - encoding: The encoding to use.
@@ -206,7 +211,7 @@ import CoreFoundation
         /*======================================================================================================*/
         /// Do the final conversion step after all of the input has been processed to get any deferred conversions
         /// that might be waiting.
-        /// 
+        ///
         /// - Parameters:
         ///   - output: The output buffer.
         ///   - maxLength: The maximum length of the output buffer.
@@ -225,7 +230,7 @@ import CoreFoundation
         /*======================================================================================================*/
         /// Do the final conversion step after all of the input has been processed to get any deferred conversions
         /// that might be waiting.
-        /// 
+        ///
         /// - Parameter o: the output buffer.
         /// - Returns: The `Results`.
         ///
@@ -240,7 +245,7 @@ import CoreFoundation
         /*======================================================================================================*/
         /// Convert the contents of the input stream. This method reads the input stream in 1,024 byte chunks,
         /// converts those bytes, and then calls the give closure with the results of that conversion.
-        /// 
+        ///
         /// - Parameters:
         ///   - inputStream: The input stream.
         ///   - body: The closure to handle each converted chunk.
@@ -263,7 +268,7 @@ import CoreFoundation
 
         /*======================================================================================================*/
         /// Convert a chunk of data.
-        /// 
+        ///
         /// - Parameters:
         ///   - ioRes: The number of bytes read from the input stream.
         ///   - inBuff: The input buffer.
@@ -287,7 +292,7 @@ import CoreFoundation
 
         /*======================================================================================================*/
         /// Get the list of available encodings.
-        /// 
+        ///
         /// - Returns: An array of strings.
         ///
         private static func getEncodingsList() -> [String] {
@@ -312,7 +317,7 @@ import CoreFoundation
 
         /*======================================================================================================*/
         /// Convert the data returned from the call to `iconv(_ :, _:, _:, _:, _:)` to a `Response` tuple.
-        /// 
+        ///
         /// - Parameters:
         ///   - res: The results returned from the call.
         ///   - inUsed: The number of input bytes used.

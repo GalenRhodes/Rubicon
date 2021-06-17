@@ -245,10 +245,13 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
                 print("DO BACKGROUND READ!!!!")
                 guard isOpen else { return false }
                 if inputStream.streamStatus == .notOpen {
+                    print("Opening Input Stream...")
                     inputStream.open()
                     if let e = inputStream.streamError { throw e }
                 }
-                while buffer.count >= MAX_READ_AHEAD { guard cLock.broadcastWait(until: Date(timeIntervalSinceNow: 1.0)) && isOpen else { return isOpen } }
+                while buffer.count >= MAX_READ_AHEAD {
+                    guard cLock.broadcastWait(until: Date(timeIntervalSinceNow: 1.0)) && isOpen else { return isOpen }
+                }
                 return try readChars(iconv: iconv, input: input, output: output, hangingCR: &hangingCR)
             }
             catch let e {
@@ -259,6 +262,8 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
         }
 
         func readChars(iconv: IConv, input: EasyByteBuffer, output: EasyByteBuffer, hangingCR: inout Bool) throws -> Bool {
+            nDebug(.In, "readChars...")
+            defer { nDebug(.Out, "readChars...") }
             guard try isOpen && inputStream.read(to: input) > 0 else { return false }
             let results = iconv.convert(input: input, output: output)
             try handleLastIConvResults(iConvResults: results, output: output, hangingCR: &hangingCR, isFinal: false)

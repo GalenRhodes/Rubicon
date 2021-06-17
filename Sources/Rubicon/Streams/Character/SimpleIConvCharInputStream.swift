@@ -248,9 +248,15 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
                     print("Opening Input Stream...")
                     inputStream.open()
                     if let e = inputStream.streamError { throw e }
+                    print("Input Stream Open")
                 }
                 while buffer.count >= MAX_READ_AHEAD {
-                    guard cLock.broadcastWait(until: Date(timeIntervalSinceNow: 1.0)) && isOpen else { return isOpen }
+                    print("Waiting...")
+                    guard cLock.broadcastWait(until: Date(timeIntervalSinceNow: 1.0)) && isOpen else {
+                        print("Waiting aborted: isOpen = \(isOpen)")
+                        return isOpen
+                    }
+                    print("Done waiting...")
                 }
                 return try readChars(iconv: iconv, input: input, output: output, hangingCR: &hangingCR)
             }

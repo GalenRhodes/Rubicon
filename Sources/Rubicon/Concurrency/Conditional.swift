@@ -114,8 +114,6 @@ extension LockCondition {
     }
 
     public func broadcastWait() {
-        nDebug(.In, "LockCondition.broadcastWait()")
-        defer { nDebug(.Out, "LockCondition.broadcastWait()") }
         broadcast()
         wait()
     }
@@ -177,8 +175,6 @@ open class Conditional: LockCondition {
     }
 
     open func wait() {
-        nDebug(.In, "Conditional.wait()")
-        defer { nDebug(.Out, "Conditional.wait()") }
         cmutex.wait()
     }
 
@@ -192,8 +188,6 @@ open class Conditional: LockCondition {
     }
 
     open func broadcast() {
-        nDebug(.In, "Conditional.broadcast()")
-        defer { nDebug(.Out, "Conditional.broadcast()") }
         cmutex.broadcast()
     }
 

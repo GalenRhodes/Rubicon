@@ -174,34 +174,24 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
         }
 
         func _append(to chars: inout [Character], maxLength: Int) throws -> Int {
-            nDebug(.In, "_append(to:maxLength:)")
-            defer { nDebug(.Out, "_append(to:maxLength:)") }
-
             guard isOpen else { return 0 }
             let ln = ((maxLength < 0) ? Int.max : maxLength)
             var cc = 0
-            nDebug(.None, "ln = \(ln); cc = \(cc)")
             while cc < ln {
                 while canWait && buffer.isEmpty {
-                    nDebug(.None, "Waiting...")
                     cLock.broadcastWait()
-                    nDebug(.None, "Done Waiting...")
                 }
-
-                nDebug(.None, "isOpen = \(isOpen); noError = \(noError); hasBChars = \(hasBChars)")
 
                 guard isOpen else { break }
                 guard noError else { throw error! }
                 guard hasBChars else { break }
 
-                nDebug(.None, "(ln - cc) = \(ln - cc)")
                 let i = min(buffer.count, (ln - cc))
                 let r = (0 ..< i)
 
                 chars.append(contentsOf: buffer[r])
                 buffer.removeSubrange(r)
                 cc += i
-                nDebug(.None, "ln = \(ln); cc = \(cc)")
                 //if canWait { cLock.broadcastWait() }
             }
 
@@ -242,34 +232,25 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
 
         func doBackgroundRead(_ iconv: IConv, _ input: EasyByteBuffer, _ output: EasyByteBuffer, _ hangingCR: inout Bool) -> Bool {
             do {
-                print("DO BACKGROUND READ!!!!")
                 guard isOpen else { return false }
                 if inputStream.streamStatus == .notOpen {
-                    print("Opening Input Stream...")
                     inputStream.open()
                     while inputStream.streamStatus == .opening {}
-                    print("Input Stream Opened...")
                 }
                 while buffer.count >= MAX_READ_AHEAD {
-                    print("Waiting...")
                     guard cLock.broadcastWait(until: Date(timeIntervalSinceNow: 1.0)) && isOpen else {
-                        print("Waiting aborted: isOpen = \(isOpen)")
                         return isOpen
                     }
-                    print("Done waiting...")
                 }
                 return try readChars(iconv: iconv, input: input, output: output, hangingCR: &hangingCR)
             }
             catch let e {
                 error = e
-                print("ERROR =================> \(e)")
                 return false
             }
         }
 
         func readChars(iconv: IConv, input: EasyByteBuffer, output: EasyByteBuffer, hangingCR: inout Bool) throws -> Bool {
-            nDebug(.In, "readChars...")
-            defer { nDebug(.Out, "readChars...") }
             guard try isOpen && inputStream.read(to: input) > 0 else { return false }
             let results = iconv.convert(input: input, output: output)
             try handleLastIConvResults(iConvResults: results, output: output, hangingCR: &hangingCR, isFinal: false)

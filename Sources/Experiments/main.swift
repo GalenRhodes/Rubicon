@@ -17,27 +17,5 @@
 
 import Foundation
 import CoreFoundation
+import Rubicon
 
-let testDataDir: String = "Tests/RubiconTests/Files"
-
-guard let inputStream = InputStream(fileAtPath: "\(testDataDir)/Test_UTF-8.xml") else {
-    print("Unable to create input stream!")
-    exit(1)
-}
-inputStream.open()
-if let e = inputStream.streamError { // <----- Crashes here.
-    print("File not opened: \(e.localizedDescription)")
-    exit(1)
-}
-var array  = [ UInt8 ](repeating: 0, count: 100)
-let result = inputStream.read(&array, maxLength: 100)
-guard result >= 0 else {
-    let e   = inputStream.streamError // <----- Crashes here.
-    let msg = (e?.localizedDescription ?? "Unknown Error")
-    print("Error reading file: \(msg)")
-    exit(1)
-}
-let str = String(bytes: array, encoding: .utf8)
-print(str ?? "???")
-inputStream.close()
-exit(0)

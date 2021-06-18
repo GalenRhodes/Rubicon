@@ -2306,6 +2306,13 @@
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/StringProtocol.swift",
       "line": 26,
+      "symbol": "StringProtocol.lastIndex",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/StringProtocol.swift",
+      "line": 28,
       "symbol": "StringProtocol.toInteger(defaultValue:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

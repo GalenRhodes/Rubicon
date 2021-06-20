@@ -28,15 +28,25 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Applied temporary workaround for InputStream.streamError bug that was causing a trap in Linux.">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_21,_7_31_AM_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_21,_8_31_AM_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_21__7_31_AM__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_21__8_31_AM__Default_Changelist_.xml" beforeDir="false" />
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Update">
+      <change afterPath="$PROJECT_DIR$/Tests/RubiconTests/RubiconTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Calendar_Tests.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Longevity_Tests.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/RubiconTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/RubiconTests.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/String_Tests.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/ThreadLocalTests.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Experiments/Other.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Experiments/Other.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Experiments/main.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Experiments/main.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/StringProtocol.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/StringProtocol.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/Calendar Tests.xcscheme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/Longevity Tests.xcscheme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/RubiconTests.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/RubiconTests.xcscheme" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/String Tests.xcscheme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/ThreadLocalTests.xcscheme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests.swift" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +58,7 @@
       <option value="directory" />
     </option>
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="macos_macos_x86_64" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="macos_macos_arm64" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -82,18 +92,19 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Tools.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="amon5vo6" />
   </component>
   <component name="ProjectId" id="1hVLdn4q9dZBJYcN1EOQjI95yyx" />
   <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -106,7 +117,7 @@
     <option name="sortByType" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="Experiments" />
+    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -134,18 +145,14 @@
       <recent name="$PROJECT_DIR$/Sources/semaphore" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DocFixer (Jazzy)">
+  <component name="RunManager" selected="XCTest.RubiconTests">
     <list>
+      <item itemvalue="Application.Experiments" />
       <item itemvalue="Application.DocFixer Remote" />
       <item itemvalue="Application.DocFixer (swift-doc)" />
       <item itemvalue="Application.DocFixer (Jazzy)" />
-      <item itemvalue="Application.Experiments" />
       <item itemvalue="Application.Rubicon" />
       <item itemvalue="XCTest.RubiconTests" />
-      <item itemvalue="XCTest.Calendar Tests" />
-      <item itemvalue="XCTest.Longevity Tests" />
-      <item itemvalue="XCTest.ThreadLocalTests" />
-      <item itemvalue="XCTest.String Tests" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -384,6 +391,8 @@
       <workItem from="1623890081136" duration="5687000" />
       <workItem from="1623936679419" duration="9208000" />
       <workItem from="1624022671435" duration="163000" />
+      <workItem from="1624190071724" duration="1002000" />
+      <workItem from="1624191091864" duration="6576000" />
     </task>
     <task id="LOCAL-00215" summary="Workaround for Opensource version of NSRegularExpression.enumerateMatches(in:options:range:using:) marking the closure as @escaping.">
       <created>1623785205330</created>

@@ -70,7 +70,7 @@ open class MarkInputStream: InputStream {
 
     /*==========================================================================================================*/
     /// Main initializer. Initializes this stream with the backing stream.
-    /// 
+    ///
     /// - Parameters:
     ///   - inputStream: The backing input stream.
     ///   - maxMarkLength: The maximum distance the read pointer will be allowed to get from the mark pointer.
@@ -89,7 +89,7 @@ open class MarkInputStream: InputStream {
     /// Initializes and returns an `MarkInputStream` object for reading from a given
     /// <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code> object. The stream must be
     /// opened before it can be used.
-    /// 
+    ///
     /// - Parameter data: The data object from which to read. The contents of data are copied.
     ///
     public override convenience init(data: Data) {
@@ -100,7 +100,7 @@ open class MarkInputStream: InputStream {
     /// Initializes and returns an `MarkInputStream` object for reading from a given
     /// <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code> object. The stream must be
     /// opened before it can be used.
-    /// 
+    ///
     /// - Parameters:
     ///   - data: The data object from which to read. The contents of data are copied.
     ///   - maxMarkLength: The maximum distance the read pointer will be allowed to get from the mark pointer.
@@ -113,7 +113,7 @@ open class MarkInputStream: InputStream {
 
     /*==========================================================================================================*/
     /// Initializes and returns an NSInputStream object that reads data from the file at a given URL.
-    /// 
+    ///
     /// - Parameter url: The URL to the file.
     ///
     public override convenience init?(url: URL) {
@@ -123,7 +123,7 @@ open class MarkInputStream: InputStream {
 
     /*==========================================================================================================*/
     /// Initializes and returns an NSInputStream object that reads data from the file at a given URL.
-    /// 
+    ///
     /// - Parameters:
     ///   - url: The URL to the file.
     ///   - maxMarkLength: The maximum distance the read pointer will be allowed to get from the mark pointer.
@@ -137,7 +137,7 @@ open class MarkInputStream: InputStream {
 
     /*==========================================================================================================*/
     /// Initializes and returns an NSInputStream object that reads data from the file at a given path.
-    /// 
+    ///
     /// - Parameter path: The path to the file.
     ///
     public convenience init?(fileAtPath path: String) {
@@ -147,7 +147,7 @@ open class MarkInputStream: InputStream {
 
     /*==========================================================================================================*/
     /// Initializes and returns an NSInputStream object that reads data from the file at a given path.
-    /// 
+    ///
     /// - Parameters:
     ///   - path: The path to the file.
     ///   - maxMarkLength: The maximum distance the read pointer will be allowed to get from the mark pointer.
@@ -161,7 +161,7 @@ open class MarkInputStream: InputStream {
 
     /*==========================================================================================================*/
     /// Reads up to a given number of bytes into a given buffer.
-    /// 
+    ///
     /// - Parameters:
     ///   - inputBuffer: A data buffer. The buffer must be large enough to contain the number of bytes specified
     ///                  by len.
@@ -182,7 +182,7 @@ open class MarkInputStream: InputStream {
     /*==========================================================================================================*/
     /// Returns by reference a pointer to a read buffer and, by reference, the number of bytes available, and
     /// returns a Boolean value that indicates whether the buffer is available.
-    /// 
+    ///
     /// - Parameters:
     ///   - bufferPtr: Upon return, contains a pointer to a read buffer. The buffer is only valid until the next
     ///                stream operation is performed.
@@ -252,73 +252,75 @@ open class MarkInputStream: InputStream {
     /*==========================================================================================================*/
     /// Marks the current position in the stream.
     ///
-    open func markSet() { lock.withLock { if isOpen { setMark() } } }
+    open func markSet() { lock.withLock { if isOpen { _markSet() } } }
 
     /*==========================================================================================================*/
     /// Returns to the last marked position in the stream.
     ///
-    open func markReturn() { popMark { buffer.prepend(src: $0) } }
+    open func markReturn() { lock.withLock { if isOpen { _markReturn() } } }
 
     /*==========================================================================================================*/
     /// Deletes the last marked position in the stream.
     ///
-    open func markDelete() { popMark { _ in } }
+    open func markDelete() { lock.withLock { if isOpen { _markDelete() } } }
 
     /*==========================================================================================================*/
     /// Effectively the same as performing a `markReturn()` followed by a `markSet()`.
     ///
-    open func markReset() { lastMark { buffer.prepend(src: $0) } }
+    open func markReset() { lock.withLock { if isOpen { if !_markReset() { _markSet() } } } }
 
     /*==========================================================================================================*/
     /// Effectively the same as performing a `markDelete()` followed by a `markSet()`.
     ///
-    open func markUpdate() { lastMark { _ in } }
+    open func markUpdate() { lock.withLock { if isOpen { if !_markUpdate() { _markSet() } } } }
 
-    /*==========================================================================================================*/
-    /// Execute the given closure on the last set mark and then move the mark to the current read-pointer.
-    /// 
-    /// - Parameter body: The closure which takes the buffer of characters after the mark.
-    ///
-    private func lastMark(_ body: (RingByteBuffer) -> Void) {
+    open func markBackup(count: Int = 1) -> Int {
         lock.withLock {
-            if isOpen {
-                if let rb = mstk.last {
-                    body(rb)
-                    rb.clear(keepingCapacity: true)
-                }
-                else {
-                    setMark()
-                }
-            }
-        }
-    }
+            if isOpen, let m = mstk.last {
+                let cc = min(max(count, 0), m.count)
 
-    /*==========================================================================================================*/
-    /// Execute the given closure on the last set mark and then remove it.
-    /// 
-    /// - Parameter body: The closure which takes the buffer of characters after the mark.
-    ///
-    private func popMark(_ body: (RingByteBuffer) -> Void) {
-        lock.withLock {
-            if isOpen {
-                if let rb = mstk.popLast() {
-                    body(rb)
-                    rb.clear(keepingCapacity: false)
+                if cc > 0 {
+                    var bytes: [UInt8] = Array<UInt8>(repeating: 0, count: cc)
                 }
+
+                return cc
             }
+            return 0
         }
     }
 
     /*==========================================================================================================*/
     /// Set a mark at the current read pointer.
     ///
-    private func setMark() {
-        mstk <+ RingByteBuffer(initialCapacity: InputBufferSize)
+    private func _markSet() { mstk <+ RingByteBuffer(initialCapacity: InputBufferSize) }
+
+    private func _markDelete() { if let m1 = mstk.popLast(), let m2 = mstk.last { m2.append(src: m1) } }
+
+    private func _markReturn() { if let m = mstk.popLast() { buffer.prepend(src: m) } }
+
+    private func _markReset() -> Bool {
+        if let m = mstk.last {
+            buffer.prepend(src: m)
+            m.clear(keepingCapacity: true)
+            return true
+        }
+        return false
+    }
+
+    private func _markUpdate() -> Bool {
+        if mstk.count >= 1 {
+            let i  = (mstk.endIndex - 1)
+            let rb = mstk[i]
+            if mstk.count >= 2 { mstk[i - 1].append(src: rb) }
+            rb.clear(keepingCapacity: true)
+            return true
+        }
+        return false
     }
 
     /*==========================================================================================================*/
     /// Perform a read.
-    /// 
+    ///
     /// - Parameters:
     ///   - buf: The receiving byte buffer.
     ///   - len: The maximum number of bytes to read.
@@ -361,7 +363,7 @@ open class MarkInputStream: InputStream {
 
     /*==========================================================================================================*/
     /// Remove the current read buffer, created by a call to `getBuffer(_:length:)`, if there is one.
-    /// 
+    ///
     /// - Parameters:
     ///   - bufferPtr: The pointer to a buffer to be nullified.
     ///   - lengthPtr: The pointer to a length to be zeroed.
@@ -374,7 +376,7 @@ open class MarkInputStream: InputStream {
 
     /*==========================================================================================================*/
     /// Set the read buffer.
-    /// 
+    ///
     /// - Parameters:
     ///   - inputBuffer: The new buffer.
     ///   - count The number of bytes in the buffer.
@@ -389,7 +391,7 @@ open class MarkInputStream: InputStream {
 
     /*==========================================================================================================*/
     /// Start a background read.
-    /// 
+    ///
     /// - Parameters:
     ///   - bytes: The buffer to use for the input.
     ///   - size: The size of the buffer.
@@ -405,7 +407,7 @@ open class MarkInputStream: InputStream {
 
     /*==========================================================================================================*/
     /// Read a chunk of data from the input stream.
-    /// 
+    ///
     /// - Parameters:
     ///   - bytes: The buffer to use for the input.
     ///   - size: The size of the buffer.

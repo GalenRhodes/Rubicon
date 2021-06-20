@@ -46,7 +46,7 @@ import CoreFoundation
         /*======================================================================================================*/
         /// Creates a new instance of IConvCharInputStream with the given InputStream, encodingName, and whether
         /// or not the given InputStream should be closed when this stream is discarded or closed.
-        /// 
+        ///
         /// - Parameters:
         ///   - inputStream: The underlying byte InputStream.
         ///   - encodingName: The character encoding name.
@@ -61,41 +61,41 @@ import CoreFoundation
         /// Marks the current point in the stream so that it can be returned to later. You can set more than one
         /// mark but all operations happen on the most recently set mark.
         ///
-        open func markSet() { withLock { _markSet() } }
+        open func markSet() { withLock { if isOpen { _markSet() } } }
 
         /*======================================================================================================*/
         /// Removes and returns to the most recently set mark.
         ///
-        open func markReturn() { withLock { _markReturn() } }
+        open func markReturn() { withLock { if isOpen { _markReturn() } } }
 
         /*======================================================================================================*/
         /// Removes the most recently set mark WITHOUT returning to it.
         ///
-        open func markDelete() { withLock { _markDelete() } }
+        open func markDelete() { withLock { if isOpen { _markDelete() } } }
 
         /*======================================================================================================*/
         /// Returns to the most recently set mark WITHOUT removing it. If there was no previously set mark then a
         /// new one is created. This is functionally equivalent to performing a `markReturn()` followed
         /// immediately by a `markSet()`.
         ///
-        open func markReset() { withLock { _markReset() } }
+        open func markReset() { withLock { if isOpen { _markReset() } } }
 
         /*======================================================================================================*/
         /// Updates the most recently set mark to the current position. If there was no previously set mark then a
         /// new one is created. This is functionally equivalent to performing a `markDelete()` followed
         /// immediately by a `markSet()`.
         ///
-        open func markUpdate() { withLock { _markUpdate() } }
+        open func markUpdate() { withLock { if isOpen { _markUpdate() } } }
 
         /*======================================================================================================*/
         /// Backs out the last `count` characters from the most recently set mark without actually removing the
         /// entire mark. You have to have previously called `markSet()` otherwise this method does nothing.
-        /// 
+        ///
         /// - Parameter count: the number of characters to back out.
         /// - Returns: The number of characters actually backed out in case there weren't `count` characters
         ///            available.
         ///
-        @discardableResult open func markBackup(count: Int = 1) -> Int { withLock { _markBackup(count: count) } }
+        @discardableResult open func markBackup(count: Int = 1) -> Int { withLock { isOpen ? _markBackup(count: count) : 0 } }
 
         override func _open() {
             guard status == .notOpen else { return }
@@ -124,45 +124,44 @@ import CoreFoundation
             return cc
         }
 
-        func _markSet() { if isOpen { _markStack <+ MarkItem(position: _position) } }
+        func _markSet() { _markStack <+ MarkItem(position: _position) }
 
-        func _markDelete() { if isOpen, let m = _markStack.popLast() { m.data.removeAll() } }
+        func _markReturn() { if let m = _markStack.popLast() { _markBackup(m, count: m.data.count) } }
 
-        func _markReturn() { if isOpen, let m = _markStack.popLast() { _markBackup(m, count: m.data.count) } }
+        func _markDelete() { if let m1 = _markStack.popLast() { if let m2 = _markStack.last { m2.data.append(contentsOf: m1.data) } } }
 
         func _markReset() {
-            if isOpen {
-                if let m = _markStack.last { _markBackup(m, count: m.data.count) }
-                else { _markSet() }
-            }
+            _markReturn()
+            _markSet()
         }
 
         func _markUpdate() {
-            if isOpen {
-                if let m = _markStack.last { m.data.removeAll() }
-                else { _markSet() }
-            }
+            _markDelete()
+            _markSet()
         }
 
         func _markBackup(count: Int) -> Int {
-            guard isOpen, let m: MarkItem = _markStack.last else { return 0 }
+            guard let m = _markStack.last else { return 0 }
             return _markBackup(m, count: count)
         }
 
         @discardableResult func _markBackup(_ m: MarkItem, count: Int) -> Int {
+            guard count > 0 else { return 0 }
+
             let s: Int = m.data.startIndex
             let e: Int = m.data.endIndex
-            let c: Int = min((e - s), ((count < 0) ? 0 : count))
+            let c: Int = min((e - s), count)
 
-            if c > 0 {
-                let p: Int        = (e - c)
-                let r: Range<Int> = (p ..< e)
+            guard c > 0 else { return 0 }
 
-                _position = m.pos
-                m.data[s ..< p].forEach { textPositionUpdate($0, pos: &_position, tabWidth: _tabWidth) }
-                buffer.insert(contentsOf: m.data[r], at: 0)
-                m.data.removeSubrange(r)
-            }
+            let p:       Int        = (e - c)
+            let rAfter:  Range<Int> = (p ..< e)
+            let rBefore: Range<Int> = (s ..< p)
+
+            _position = m.pos
+            buffer.insert(contentsOf: m.data[rAfter], at: 0)
+            m.data[rBefore].forEach { textPositionUpdate($0, pos: &_position, tabWidth: _tabWidth) }
+            m.data.removeSubrange(rAfter)
 
             return c
         }

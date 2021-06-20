@@ -28,7 +28,7 @@
             </BuildableReference>
             <SelectedTests>
                <Test
-                  Identifier = "RubiconTests/testIConvCharInputStream_UTF_8">
+                  Identifier = "RubiconTests/testTextPosition">
                </Test>
             </SelectedTests>
          </TestableReference>

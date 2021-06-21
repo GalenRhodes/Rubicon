@@ -28,25 +28,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Update">
-      <change afterPath="$PROJECT_DIR$/Tests/RubiconTests/RubiconTests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Calendar_Tests.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Longevity_Tests.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/RubiconTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/RubiconTests.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/String_Tests.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/ThreadLocalTests.xml" beforeDir="false" />
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Applied temporary workaround for InputStream.streamError bug that was causing a trap in Linux.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/Calendar Tests.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/Longevity Tests.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/RubiconTests.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/RubiconTests.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/String Tests.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/ThreadLocalTests.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests.swift" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +42,7 @@
       <option value="directory" />
     </option>
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="macos_macos_arm64" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="macos_macos_x86_64" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -92,12 +76,12 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Tools.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="amon5vo6" />
@@ -145,7 +129,7 @@
       <recent name="$PROJECT_DIR$/Sources/semaphore" />
     </key>
   </component>
-  <component name="RunManager" selected="XCTest.RubiconTests">
+  <component name="RunManager" selected="Application.DocFixer (Jazzy)">
     <list>
       <item itemvalue="Application.Experiments" />
       <item itemvalue="Application.DocFixer Remote" />
@@ -391,22 +375,6 @@
       <workItem from="1623890081136" duration="5687000" />
       <workItem from="1623936679419" duration="9208000" />
       <workItem from="1624022671435" duration="163000" />
-      <workItem from="1624190071724" duration="1002000" />
-      <workItem from="1624191091864" duration="6576000" />
-    </task>
-    <task id="LOCAL-00215" summary="Workaround for Opensource version of NSRegularExpression.enumerateMatches(in:options:range:using:) marking the closure as @escaping.">
-      <created>1623785205330</created>
-      <option name="number" value="00215" />
-      <option name="presentableId" value="LOCAL-00215" />
-      <option name="project" value="LOCAL" />
-      <updated>1623785205330</updated>
-    </task>
-    <task id="LOCAL-00216" summary="Workaround for Opensource version of NSRegularExpression.enumerateMatches(in:options:range:using:) marking the closure as @escaping.">
-      <created>1623785754363</created>
-      <option name="number" value="00216" />
-      <option name="presentableId" value="LOCAL-00216" />
-      <option name="project" value="LOCAL" />
-      <updated>1623785754363</updated>
     </task>
     <task id="LOCAL-00217" summary="Workaround for Opensource version of NSRegularExpression.enumerateMatches(in:options:range:using:) marking the closure as @escaping.">
       <created>1623785931109</created>
@@ -737,7 +705,21 @@
       <option name="project" value="LOCAL" />
       <updated>1623940483186</updated>
     </task>
-    <option name="localTasksCounter" value="264" />
+    <task id="LOCAL-00264" summary="Added StringProtocol.lastIndex? property.">
+      <created>1624022875293</created>
+      <option name="number" value="00264" />
+      <option name="presentableId" value="LOCAL-00264" />
+      <option name="project" value="LOCAL" />
+      <updated>1624022875293</updated>
+    </task>
+    <task id="LOCAL-00265" summary="Added StringProtocol.lastIndex? property.">
+      <created>1624022975964</created>
+      <option name="number" value="00265" />
+      <option name="presentableId" value="LOCAL-00265" />
+      <option name="project" value="LOCAL" />
+      <updated>1624022975964</updated>
+    </task>
+    <option name="localTasksCounter" value="266" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -770,7 +752,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added to StringProtocol.&#10;    func forEach(inRange: Range&lt;String.Index&gt;, _ body: (Character) throws -&gt; Void) rethrows&#10;    func forEach(match: RegularExpression.Match?, group: Int = 0, _ body: (Character) throws -&gt; Void) rethrows -&gt; Bool" />
     <MESSAGE value="Added:&#10;    public func nextCharPosition(currentPosition pos: TextPosition, character char: Character, tabWidth sz: Int8 = 4) -&gt; TextPosition" />
     <MESSAGE value="Bug fixes." />
     <MESSAGE value="Yes, I rewrote Binary Tree yet again.  I have an illness." />
@@ -795,7 +776,8 @@
     <MESSAGE value="Workaround for Opensource version of NSRegularExpression.enumerateMatches(in:options:range:using:) marking the closure as @escaping." />
     <MESSAGE value="Linux Tests" />
     <MESSAGE value="Applied temporary workaround for InputStream.streamError bug that was causing a trap in Linux." />
-    <option name="LAST_COMMIT_MESSAGE" value="Applied temporary workaround for InputStream.streamError bug that was causing a trap in Linux." />
+    <MESSAGE value="Added StringProtocol.lastIndex? property." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added StringProtocol.lastIndex? property." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -17,7 +17,7 @@ let package = Package(
         .executable(name: "Experiments", targets: [ "Experiments" ]),
     ],
     dependencies: [
-        .package(name: "RingBuffer", url: "https://github.com/GalenRhodes/RingBuffer", .upToNextMajor(from: "1.0.11")),
+        .package(name: "RingBuffer", url: "https://github.com/GalenRhodes/RingBuffer", .upToNextMajor(from: "1.0.12")),
     ],
     targets: [
         .systemLibrary(name: "iconv"),

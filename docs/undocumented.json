@@ -2473,35 +2473,49 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
-      "line": 85,
+      "line": 75,
+      "symbol": "CharInputStream.markUpdate()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
+      "line": 87,
       "symbol": "CharInputStream",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
-      "line": 86,
+      "line": 88,
       "symbol": "CharInputStream.markBackup()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
-      "line": 89,
+      "line": 90,
+      "symbol": "CharInputStream.markUpdate()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
+      "line": 93,
       "symbol": "tabCalc(pos:tabSize:)",
       "symbol_kind": "source.lang.swift.decl.function.free",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
-      "line": 91,
+      "line": 95,
       "symbol": "textPositionUpdate(_:pos:tabWidth:)",
       "symbol_kind": "source.lang.swift.decl.function.free",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
-      "line": 93,
+      "line": 97,
       "symbol": "nextCharPosition(currentPosition:character:tabWidth:)",
       "symbol_kind": "source.lang.swift.decl.function.free",
       "warning": "undocumented"

@@ -85,7 +85,7 @@ import CoreFoundation
         /// new one is created. This is functionally equivalent to performing a `markDelete()` followed
         /// immediately by a `markSet()`.
         ///
-        open func markUpdate() { withLock { if isOpen { _markUpdate() } } }
+        open func markClear() { withLock { if isOpen { _markUpdate() } } }
 
         /*======================================================================================================*/
         /// Backs out the last `count` characters from the most recently set mark without actually removing the

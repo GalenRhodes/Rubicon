@@ -272,7 +272,13 @@ open class MarkInputStream: InputStream {
     /*==========================================================================================================*/
     /// Effectively the same as performing a `markDelete()` followed by a `markSet()`.
     ///
+    @available(*, deprecated, renamed: "markClear")
     open func markUpdate() { lock.withLock { if isOpen { if !_markUpdate() { _markSet() } } } }
+
+    /*==========================================================================================================*/
+    /// Effectively the same as performing a `markDelete()` followed by a `markSet()`.
+    ///
+    open func markClear() { lock.withLock { if isOpen { if !_markUpdate() { _markSet() } } } }
 
     /*==========================================================================================================*/
     /// Backs out the last `count` characters from the most recently set mark without actually removing the entire

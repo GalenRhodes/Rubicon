@@ -40,7 +40,7 @@ open class StringCharInputStream: SimpleStringCharInputStream, CharInputStream {
 
     open func markReset() { lck.withLock { _markReturn(); _markSet() } }
 
-    open func markUpdate() { lck.withLock { _markDelete(); _markSet() } }
+    open func markClear() { lck.withLock { _markDelete(); _markSet() } }
 
     @discardableResult open func markBackup(count: Int) -> Int { lck.withLock { _markBackup(count: count) } }
 

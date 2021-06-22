@@ -70,7 +70,9 @@ public protocol CharInputStream: SimpleCharInputStream {
     /// one is created. This is functionally equivalent to performing a `markDelete()` followed immediately by a
     /// `markSet()`.
     ///
-    func markUpdate()
+    func markClear()
+
+    @available(*, deprecated, renamed: "markClear") func markUpdate()
 
     /*==========================================================================================================*/
     /// Backs out the last `count` characters from the most recently set mark without actually removing the entire
@@ -84,6 +86,8 @@ public protocol CharInputStream: SimpleCharInputStream {
 
 extension CharInputStream {
     @discardableResult public func markBackup() -> Int { markBackup(count: 1) }
+
+    @inlinable public func markUpdate() { markClear() }
 }
 
 public func tabCalc(pos i: Int32, tabSize sz: Int8 = 4) -> Int32 { let s = Int32(sz); return (((((i - 1) + s) / s) * s) + 1) }

@@ -23,6 +23,18 @@
 import Foundation
 
 extension String {
+//@f:0
+    @inlinable public var abbreviatingWithTildeInPath: String   { (self as NSString).abbreviatingWithTildeInPath }
+    @inlinable public var deletingLastPathComponent:   String   { (self as NSString).deletingLastPathComponent   }
+    @inlinable public var deletingPathExtension:       String   { (self as NSString).deletingPathExtension       }
+    @inlinable public var expandingTildeInPath:        String   { (self as NSString).expandingTildeInPath        }
+    @inlinable public var isAbsolutePath:              Bool     { (self as NSString).isAbsolutePath              }
+    @inlinable public var lastPathComponent:           String   { (self as NSString).lastPathComponent           }
+    @inlinable public var pathComponents:              [String] { (self as NSString).pathComponents              }
+    @inlinable public var pathExtension:               String   { (self as NSString).pathExtension               }
+    @inlinable public var standardizingPath:           String   { (self as NSString).standardizingPath           }
+//@f:1
+
     /*==========================================================================================================*/
     /// Allows creating a <code>[String](https://developer.apple.com/documentation/swift/string/)</code> from the
     /// contents of an
@@ -56,7 +68,7 @@ extension String {
     ///   - char: The character to append to this string.
     ///   - count: The number of times to append the character.
     ///
-    @inlinable mutating func append(_ char: Character, count: Int) { for _ in (0 ..< count) { append(char) } }
+    @inlinable public mutating func append(_ char: Character, count: Int) { for _ in (0 ..< count) { append(char) } }
 
     /*==========================================================================================================*/
     /// Shorthand for:
@@ -70,7 +82,7 @@ extension String {
     ///   - count: The number of times to prepend the character.
     /// - Returns: The index of first character in the string BEFORE calling this method.
     ///
-    @inlinable @discardableResult mutating func prepend(_ char: Character, count: Int = 1) -> String.Index {
+    @inlinable @discardableResult public mutating func prepend(_ char: Character, count: Int = 1) -> String.Index {
         for _ in (0 ..< count) { insert(char, at: startIndex) }
         return (index(startIndex, offsetBy: count, limitedBy: endIndex) ?? endIndex)
     }
@@ -85,8 +97,29 @@ extension String {
     /// - Parameter c: The collection of characters to prepend.
     /// - Returns: The index of first character in the string BEFORE calling this method.
     ///
-    @inlinable @discardableResult mutating func prepend<C>(contentsOf c: C) -> String.Index where C: Collection, C.Element == Character {
+    @inlinable @discardableResult public mutating func prepend<C>(contentsOf c: C) -> String.Index where C: Collection, C.Element == Character {
         insert(contentsOf: c, at: startIndex)
         return (index(startIndex, offsetBy: c.count, limitedBy: endIndex) ?? endIndex)
+    }
+
+    @inlinable public static func path(withComponents components: [String]) -> String { NSString.path(withComponents: components) }
+
+    @inlinable public func appendingPathComponent(_ str: String) -> String { (self as NSString).appendingPathComponent(str) }
+
+    @inlinable public func appendingPathExtension(_ str: String) -> String {
+        if let s = (self as NSString).appendingPathExtension(str) { return s }
+        var c = pathComponents
+
+        while let lpc = c.last {
+            if lpc.isEmpty { c.removeLast(1) }
+            else { return "\(String.path(withComponents: c)).\(str)" }
+        }
+
+        return ""
+    }
+
+    @inlinable public func absolutePath(relativeTo dir: String) -> String {
+        guard dir.isAbsolutePath else { fatalError("Not an absolute path: \"\(dir)\"") }
+        return (isAbsolutePath ? self : String.path(withComponents: [ dir, self ]).standardizingPath)
     }
 }

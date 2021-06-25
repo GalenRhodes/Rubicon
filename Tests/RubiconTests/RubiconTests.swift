@@ -23,6 +23,25 @@ let testFile:     String = "\(testFilesDir)/Test_UTF-8.xml"
 
 public class RubiconTests: XCTestCase {
 
+    func testGetFileList() throws {
+        do {
+            let list = try FileManager.default.directoryFiles(atPath: "\(FileManager.default.currentDirectoryPath)", resolveSymLinks: true, traverseDirectorySymLinks: false) { p, f, a in
+                (a.fileType == .typeRegular) && f.hasSuffix(".swift")
+            }
+
+            for f in list {
+                print(f)
+            }
+        }
+        catch let e {
+            XCTFail("ERROR: \(e)")
+        }
+    }
+
+    func testResolve() throws {
+        print(try FileManager.default.realPath(path: "alink/idea"))
+    }
+
     func testTextPosition() throws {
         guard let byteInputStream = InputStream(fileAtPath: testFile) else { throw StreamError.FileNotFound(description: testFile) }
         let inputStream = IConvCharInputStream(inputStream: byteInputStream, encodingName: "UTF-8", autoClose: true)

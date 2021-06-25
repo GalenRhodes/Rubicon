@@ -28,7 +28,7 @@
             </BuildableReference>
             <SelectedTests>
                <Test
-                  Identifier = "RubiconTests/testTextPosition">
+                  Identifier = "RubiconTests/testGetFileList">
                </Test>
             </SelectedTests>
          </TestableReference>

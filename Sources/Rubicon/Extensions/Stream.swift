@@ -29,6 +29,7 @@ public enum StreamError: Error {
     case Closed(description: String = "The stream has been closed.")
     case NotOpen(description: String = "The stream is not open.")
     case FileNotFound(description: String = "File not found.")
+    case OpenForWriteError(description: String = "Error opening file for writing.")
 }
 
 extension Stream {
@@ -49,7 +50,7 @@ extension Stream {
     }
     /*==========================================================================================================*/
     /// Checks to see if the `streamStatus` is any of the given statuses.
-    /// 
+    ///
     /// - Parameter statuses: the list of statuses.
     /// - Returns: `true` if the current `streamStatus` is any of the given statuses.
     ///
@@ -75,7 +76,7 @@ extension InputStream {
     /// <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD
     /// IS NOT THREAD SAFE!!!! This method reads from the stream in chunks so do not use this method while any
     /// other thread might be potentially reading from this stream at the same time or you will be missing data.
-    /// 
+    ///
     /// - Parameters:
     ///   - buffer: The buffer that will receive the bytes.
     ///   - maxLength: The maximum number of bytes to read.
@@ -94,7 +95,7 @@ extension InputStream {
     /// <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD
     /// IS NOT THREAD SAFE!!!! This method reads from the stream in chunks so do not use this method while any
     /// other thread might be potentially reading from this stream at the same time or you will be missing data.
-    /// 
+    ///
     /// - Parameters:
     ///   - rawBuffer: The buffer that will receive the bytes.
     ///   - maxLength: The maximum number of bytes to read.
@@ -126,7 +127,7 @@ extension InputStream {
     /// <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD
     /// IS NOT THREAD SAFE!!!! This method reads from the stream in chunks so do not use this method while any
     /// other thread might be potentially reading from this stream at the same time or you will be missing data.
-    /// 
+    ///
     /// - Parameters:
     ///   - data: The <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code> to read the
     ///           bytes into.
@@ -170,7 +171,7 @@ extension InputStream {
     /// than `EasyByteBuffer.length` then a fatalError is thrown. If `EasyByteBuffer.count` is equal to
     /// `EasyByteBuffer.length` then this method returns immediately with the value
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0).
-    /// 
+    ///
     /// - Parameter b: the `EasyByteBuffer` that will be used to store the bytes read.
     /// - Returns: The number of bytes read into the buffer or
     ///            <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0) if the buffer is full or the stream it
@@ -199,7 +200,7 @@ extension InputStream {
     /// <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD
     /// IS NOT THREAD SAFE!!!! This method reads from the stream in chunks so do not use this method while any
     /// other thread might be potentially reading from this stream at the same time or you will be missing data.
-    /// 
+    ///
     /// - Parameters:
     ///   - array: The <code>[Array](https://developer.apple.com/documentation/foundation/array/)</code> to read
     ///            the bytes into.
@@ -224,7 +225,7 @@ extension InputStream {
     /// <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream/)</code>. THIS METHOD
     /// IS NOT THREAD SAFE!!!! This method reads from the stream in chunks so do not use this method while any
     /// other thread might be potentially reading from this stream at the same time or you will be missing data.
-    /// 
+    ///
     /// - Parameter rbp: the
     ///                  <code>[UnsafeMutableRawBufferPointer](https://developer.apple.com/documentation/foundation/unsafemutablerawbufferpointer/)</code>
     ///                  to read the bytes into.

@@ -30,6 +30,7 @@ import CoreFoundation
     import Glibc
 #endif
 
+//@f:0
 /*==============================================================================================================*/
 /// Allows wrapping the errors returned by calls to the Standard C Library so they can be thrown as exceptions.
 ///
@@ -664,180 +665,174 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
     /// The operating system supplied message for this error.
     ///
     public var osMessage:   String {
-        //@f:0
         switch self {
-            case .ACCES         : return StrError(EACCES)          /* Permission denied                               */
-            case .ADDRINUSE     : return StrError(EADDRINUSE)      /* Address already in use                          */
-            case .ADDRNOTAVAIL  : return StrError(EADDRNOTAVAIL)   /* Can't assign requested address                  */
-            case .AFNOSUPPORT   : return StrError(EAFNOSUPPORT)    /* Address family not supported by protocol family */
-            case .AGAIN         : return StrError(EAGAIN)          /* Resource temporarily unavailable                */
-            case .ALREADY       : return StrError(EALREADY)        /* Operation already in progress                   */
-            case .BADF          : return StrError(EBADF)           /* Bad file descriptor                             */
-            case .BADMSG        : return StrError(EBADMSG)         /* Bad message                                     */
-            case .BUSY          : return StrError(EBUSY)           /* Device / Resource busy                          */
-            case .CANCELED      : return StrError(ECANCELED)       /* Operation canceled                              */
-            case .CHILD         : return StrError(ECHILD)          /* No child processes                              */
-            case .CONNABORTED   : return StrError(ECONNABORTED)    /* Software caused connection abort                */
-            case .CONNREFUSED   : return StrError(ECONNREFUSED)    /* Connection refused                              */
-            case .CONNRESET     : return StrError(ECONNRESET)      /* Connection reset by peer                        */
-            case .DEADLK        : return StrError(EDEADLK)         /* Resource deadlock avoided                       */
-            case .DESTADDRREQ   : return StrError(EDESTADDRREQ)    /* Destination address required                    */
-            case .DOM           : return StrError(EDOM)            /* Numerical argument out of domain                */
-            case .DQUOT         : return StrError(EDQUOT)          /* Disc quota exceeded                             */
-            case .EXIST         : return StrError(EEXIST)          /* File exists                                     */
-            case .FAULT         : return StrError(EFAULT)          /* Bad address                                     */
-            case .FBIG          : return StrError(EFBIG)           /* File too large                                  */
-            case .HOSTDOWN      : return StrError(EHOSTDOWN)       /* Host is down                                    */
-            case .HOSTUNREACH   : return StrError(EHOSTUNREACH)    /* No route to host                                */
-            case .IDRM          : return StrError(EIDRM)           /* Identifier removed                              */
-            case .ILSEQ         : return StrError(EILSEQ)          /* Illegal byte sequence                           */
-            case .INPROGRESS    : return StrError(EINPROGRESS)     /* Operation now in progress                       */
-            case .INTR          : return StrError(EINTR)           /* Interrupted system call                         */
-            case .INVAL         : return StrError(EINVAL)          /* Invalid argument                                */
-            case .IO            : return StrError(EIO)             /* Input/output error                              */
-            case .ISCONN        : return StrError(EISCONN)         /* Socket is already connected                     */
-            case .ISDIR         : return StrError(EISDIR)          /* Is a directory                                  */
-            case .LOOP          : return StrError(ELOOP)           /* Too many levels of symbolic links               */
-            case .MFILE         : return StrError(EMFILE)          /* Too many open files                             */
-            case .MLINK         : return StrError(EMLINK)          /* Too many links                                  */
-            case .MSGSIZE       : return StrError(EMSGSIZE)        /* Message too long                                */
-            case .MULTIHOP      : return StrError(EMULTIHOP)       /* Reserved                                        */
-            case .NAMETOOLONG   : return StrError(ENAMETOOLONG)    /* File name too long                              */
-            case .NETDOWN       : return StrError(ENETDOWN)        /* Network is down                                 */
-            case .NETRESET      : return StrError(ENETRESET)       /* Network dropped connection on reset             */
-            case .NETUNREACH    : return StrError(ENETUNREACH)     /* Network is unreachable                          */
-            case .NFILE         : return StrError(ENFILE)          /* Too many open files in system                   */
-            case .NOBUFS        : return StrError(ENOBUFS)         /* No buffer space available                       */
-            case .NODATA        : return StrError(ENODATA)         /* No message available on STREAM                  */
-            case .NODEV         : return StrError(ENODEV)          /* Operation not supported by device               */
-            case .NOENT         : return StrError(ENOENT)          /* No such file or directory                       */
-            case .NOEXEC        : return StrError(ENOEXEC)         /* Exec format error                               */
-            case .NOLCK         : return StrError(ENOLCK)          /* No locks available                              */
-            case .NOLINK        : return StrError(ENOLINK)         /* Reserved                                        */
-            case .NOMEM         : return StrError(ENOMEM)          /* Cannot allocate memory                          */
-            case .NOMSG         : return StrError(ENOMSG)          /* No message of desired type                      */
-            case .NOPROTOOPT    : return StrError(ENOPROTOOPT)     /* Protocol not available                          */
-            case .NOSPC         : return StrError(ENOSPC)          /* No space left on device                         */
-            case .NOSR          : return StrError(ENOSR)           /* No STREAM resources                             */
-            case .NOSTR         : return StrError(ENOSTR)          /* Not a STREAM                                    */
-            case .NOSYS         : return StrError(ENOSYS)          /* Function not implemented                        */
-            case .NOTBLK        : return StrError(ENOTBLK)         /* Block device required                           */
-            case .NOTCONN       : return StrError(ENOTCONN)        /* Socket is not connected                         */
-            case .NOTDIR        : return StrError(ENOTDIR)         /* Not a directory                                 */
-            case .NOTEMPTY      : return StrError(ENOTEMPTY)       /* Directory not empty                             */
+            case .ACCES:          return StrError(EACCES)          /* Permission denied                               */
+            case .ADDRINUSE:      return StrError(EADDRINUSE)      /* Address already in use                          */
+            case .ADDRNOTAVAIL:   return StrError(EADDRNOTAVAIL)   /* Can't assign requested address                  */
+            case .AFNOSUPPORT:    return StrError(EAFNOSUPPORT)    /* Address family not supported by protocol family */
+            case .AGAIN:          return StrError(EAGAIN)          /* Resource temporarily unavailable                */
+            case .ALREADY:        return StrError(EALREADY)        /* Operation already in progress                   */
+            case .BADF:           return StrError(EBADF)           /* Bad file descriptor                             */
+            case .BADMSG:         return StrError(EBADMSG)         /* Bad message                                     */
+            case .BUSY:           return StrError(EBUSY)           /* Device / Resource busy                          */
+            case .CANCELED:       return StrError(ECANCELED)       /* Operation canceled                              */
+            case .CHILD:          return StrError(ECHILD)          /* No child processes                              */
+            case .CONNABORTED:    return StrError(ECONNABORTED)    /* Software caused connection abort                */
+            case .CONNREFUSED:    return StrError(ECONNREFUSED)    /* Connection refused                              */
+            case .CONNRESET:      return StrError(ECONNRESET)      /* Connection reset by peer                        */
+            case .DEADLK:         return StrError(EDEADLK)         /* Resource deadlock avoided                       */
+            case .DESTADDRREQ:    return StrError(EDESTADDRREQ)    /* Destination address required                    */
+            case .DOM:            return StrError(EDOM)            /* Numerical argument out of domain                */
+            case .DQUOT:          return StrError(EDQUOT)          /* Disc quota exceeded                             */
+            case .EXIST:          return StrError(EEXIST)          /* File exists                                     */
+            case .FAULT:          return StrError(EFAULT)          /* Bad address                                     */
+            case .FBIG:           return StrError(EFBIG)           /* File too large                                  */
+            case .HOSTDOWN:       return StrError(EHOSTDOWN)       /* Host is down                                    */
+            case .HOSTUNREACH:    return StrError(EHOSTUNREACH)    /* No route to host                                */
+            case .IDRM:           return StrError(EIDRM)           /* Identifier removed                              */
+            case .ILSEQ:          return StrError(EILSEQ)          /* Illegal byte sequence                           */
+            case .INPROGRESS:     return StrError(EINPROGRESS)     /* Operation now in progress                       */
+            case .INTR:           return StrError(EINTR)           /* Interrupted system call                         */
+            case .INVAL:          return StrError(EINVAL)          /* Invalid argument                                */
+            case .IO:             return StrError(EIO)             /* Input/output error                              */
+            case .ISCONN:         return StrError(EISCONN)         /* Socket is already connected                     */
+            case .ISDIR:          return StrError(EISDIR)          /* Is a directory                                  */
+            case .LOOP:           return StrError(ELOOP)           /* Too many levels of symbolic links               */
+            case .MFILE:          return StrError(EMFILE)          /* Too many open files                             */
+            case .MLINK:          return StrError(EMLINK)          /* Too many links                                  */
+            case .MSGSIZE:        return StrError(EMSGSIZE)        /* Message too long                                */
+            case .MULTIHOP:       return StrError(EMULTIHOP)       /* Reserved                                        */
+            case .NAMETOOLONG:    return StrError(ENAMETOOLONG)    /* File name too long                              */
+            case .NETDOWN:        return StrError(ENETDOWN)        /* Network is down                                 */
+            case .NETRESET:       return StrError(ENETRESET)       /* Network dropped connection on reset             */
+            case .NETUNREACH:     return StrError(ENETUNREACH)     /* Network is unreachable                          */
+            case .NFILE:          return StrError(ENFILE)          /* Too many open files in system                   */
+            case .NOBUFS:         return StrError(ENOBUFS)         /* No buffer space available                       */
+            case .NODATA:         return StrError(ENODATA)         /* No message available on STREAM                  */
+            case .NODEV:          return StrError(ENODEV)          /* Operation not supported by device               */
+            case .NOENT:          return StrError(ENOENT)          /* No such file or directory                       */
+            case .NOEXEC:         return StrError(ENOEXEC)         /* Exec format error                               */
+            case .NOLCK:          return StrError(ENOLCK)          /* No locks available                              */
+            case .NOLINK:         return StrError(ENOLINK)         /* Reserved                                        */
+            case .NOMEM:          return StrError(ENOMEM)          /* Cannot allocate memory                          */
+            case .NOMSG:          return StrError(ENOMSG)          /* No message of desired type                      */
+            case .NOPROTOOPT:     return StrError(ENOPROTOOPT)     /* Protocol not available                          */
+            case .NOSPC:          return StrError(ENOSPC)          /* No space left on device                         */
+            case .NOSR:           return StrError(ENOSR)           /* No STREAM resources                             */
+            case .NOSTR:          return StrError(ENOSTR)          /* Not a STREAM                                    */
+            case .NOSYS:          return StrError(ENOSYS)          /* Function not implemented                        */
+            case .NOTBLK:         return StrError(ENOTBLK)         /* Block device required                           */
+            case .NOTCONN:        return StrError(ENOTCONN)        /* Socket is not connected                         */
+            case .NOTDIR:         return StrError(ENOTDIR)         /* Not a directory                                 */
+            case .NOTEMPTY:       return StrError(ENOTEMPTY)       /* Directory not empty                             */
             case .NOTRECOVERABLE: return StrError(ENOTRECOVERABLE) /* State not recoverable                           */
-            case .NOTSOCK       : return StrError(ENOTSOCK)        /* Socket operation on non-socket                  */
-            case .NOTSUP        : return StrError(ENOTSUP)         /* Operation not supported                         */
-            case .NOTTY         : return StrError(ENOTTY)          /* Inappropriate ioctl for device                  */
-            case .NXIO          : return StrError(ENXIO)           /* Device not configured                           */
-            case .OPNOTSUPP     : return StrError(EOPNOTSUPP)      /* Operation not supported on socket               */
-            case .OVERFLOW      : return StrError(EOVERFLOW)       /* Value too large to be stored in data type       */
-            case .OWNERDEAD     : return StrError(EOWNERDEAD)      /* Previous owner died                             */
-            case .PERM          : return StrError(EPERM)           /* Operation not permitted                         */
-            case .PFNOSUPPORT   : return StrError(EPFNOSUPPORT)    /* Protocol family not supported                   */
-            case .PIPE          : return StrError(EPIPE)           /* Broken pipe                                     */
-            case .PROTO         : return StrError(EPROTO)          /* Protocol error                                  */
+            case .NOTSOCK:        return StrError(ENOTSOCK)        /* Socket operation on non-socket                  */
+            case .NOTSUP:         return StrError(ENOTSUP)         /* Operation not supported                         */
+            case .NOTTY:          return StrError(ENOTTY)          /* Inappropriate ioctl for device                  */
+            case .NXIO:           return StrError(ENXIO)           /* Device not configured                           */
+            case .OPNOTSUPP:      return StrError(EOPNOTSUPP)      /* Operation not supported on socket               */
+            case .OVERFLOW:       return StrError(EOVERFLOW)       /* Value too large to be stored in data type       */
+            case .OWNERDEAD:      return StrError(EOWNERDEAD)      /* Previous owner died                             */
+            case .PERM:           return StrError(EPERM)           /* Operation not permitted                         */
+            case .PFNOSUPPORT:    return StrError(EPFNOSUPPORT)    /* Protocol family not supported                   */
+            case .PIPE:           return StrError(EPIPE)           /* Broken pipe                                     */
+            case .PROTO:          return StrError(EPROTO)          /* Protocol error                                  */
             case .PROTONOSUPPORT: return StrError(EPROTONOSUPPORT) /* Protocol not supported                          */
-            case .PROTOTYPE     : return StrError(EPROTOTYPE)      /* Protocol wrong type for socket                  */
-            case .RANGE         : return StrError(ERANGE)          /* Result too large                                */
-            case .REMOTE        : return StrError(EREMOTE)         /* Too many levels of remote in path               */
-            case .ROFS          : return StrError(EROFS)           /* Read-only file system                           */
-            case .SHUTDOWN      : return StrError(ESHUTDOWN)       /* Can't send after socket shutdown                */
+            case .PROTOTYPE:      return StrError(EPROTOTYPE)      /* Protocol wrong type for socket                  */
+            case .RANGE:          return StrError(ERANGE)          /* Result too large                                */
+            case .REMOTE:         return StrError(EREMOTE)         /* Too many levels of remote in path               */
+            case .ROFS:           return StrError(EROFS)           /* Read-only file system                           */
+            case .SHUTDOWN:       return StrError(ESHUTDOWN)       /* Can't send after socket shutdown                */
             case .SOCKTNOSUPPORT: return StrError(ESOCKTNOSUPPORT) /* Socket type not supported                       */
-            case .SPIPE         : return StrError(ESPIPE)          /* Illegal seek                                    */
-            case .SRCH          : return StrError(ESRCH)           /* No such process                                 */
-            case .STALE         : return StrError(ESTALE)          /* Stale NFS file handle                           */
-            case .TIME          : return StrError(ETIME)           /* STREAM ioctl timeout                            */
-            case .TIMEDOUT      : return StrError(ETIMEDOUT)       /* Operation timed out                             */
-            case .TOBIG         : return StrError(E2BIG)           /* Argument list too long                          */
-            case .TOOMANYREFS   : return StrError(ETOOMANYREFS)    /* Too many references: can't splice               */
-            case .TXTBSY        : return StrError(ETXTBSY)         /* Text file busy                                  */
-            case .USERS         : return StrError(EUSERS)          /* Too many users                                  */
-            case .WOULDBLOCK    : return StrError(EWOULDBLOCK)     /* Operation would block                           */
-            case .XDEV          : return StrError(EXDEV)           /* Cross-device link                               */
+            case .SPIPE:          return StrError(ESPIPE)          /* Illegal seek                                    */
+            case .SRCH:           return StrError(ESRCH)           /* No such process                                 */
+            case .STALE:          return StrError(ESTALE)          /* Stale NFS file handle                           */
+            case .TIME:           return StrError(ETIME)           /* STREAM ioctl timeout                            */
+            case .TIMEDOUT:       return StrError(ETIMEDOUT)       /* Operation timed out                             */
+            case .TOBIG:          return StrError(E2BIG)           /* Argument list too long                          */
+            case .TOOMANYREFS:    return StrError(ETOOMANYREFS)    /* Too many references: can't splice               */
+            case .TXTBSY:         return StrError(ETXTBSY)         /* Text file busy                                  */
+            case .USERS:          return StrError(EUSERS)          /* Too many users                                  */
+            case .WOULDBLOCK:     return StrError(EWOULDBLOCK)     /* Operation would block                           */
+            case .XDEV:           return StrError(EXDEV)           /* Cross-device link                               */
             default: break
-          //@f:1
         }
 
         #if os(macOS) || os(tvOS) || os(iOS) || os(watchOS)
             // These only exist on Apple OS'.
             switch self {
-              //@f:0
-                case .AUTH          : return StrError(EAUTH)           /* Authentication error                            */
-                case .BADARCH       : return StrError(EBADARCH)        /* Bad CPU type in executable                      */
-                case .BADEXEC       : return StrError(EBADEXEC)        /* Bad executable                                  */
-                case .BADMACHO      : return StrError(EBADMACHO)       /* Malformed Macho file                            */
-                case .BADRPC        : return StrError(EBADRPC)         /* RPC struct is bad                               */
-                case .DEVERR        : return StrError(EDEVERR)         /* Device error, e.g. paper out                    */
-                case .FTYPE         : return StrError(EFTYPE)          /* Inappropriate file type or format               */
-                case .LAST          : return StrError(ELAST)           /* Must be equal largest errno                     */
-                case .NEEDAUTH      : return StrError(ENEEDAUTH)       /* Need authenticator                              */
-                case .NOATTR        : return StrError(ENOATTR)         /* Attribute not found                             */
-                case .NOPOLICY      : return StrError(ENOPOLICY)       /* No such policy registered                       */
-                case .PROCLIM       : return StrError(EPROCLIM)        /* Too many processes                              */
-                case .PROCUNAVAIL   : return StrError(EPROCUNAVAIL)    /* Bad procedure for program                       */
-                case .PROGMISMATCH  : return StrError(EPROGMISMATCH)   /* Program version wrong                           */
-                case .PROGUNAVAIL   : return StrError(EPROGUNAVAIL)    /* RPC prog. not avail                             */
-                case .PWROFF        : return StrError(EPWROFF)         /* Device power is off                             */
-                case .QFULL         : return StrError(EQFULL)          /* Interface output queue is full                  */
-                case .RPCMISMATCH   : return StrError(ERPCMISMATCH)    /* RPC version wrong                               */
-                case .SHLIBVERS     : return StrError(ESHLIBVERS)      /* Shared library version mismatch                 */
+                case .AUTH:           return StrError(EAUTH)           /* Authentication error                            */
+                case .BADARCH:        return StrError(EBADARCH)        /* Bad CPU type in executable                      */
+                case .BADEXEC:        return StrError(EBADEXEC)        /* Bad executable                                  */
+                case .BADMACHO:       return StrError(EBADMACHO)       /* Malformed Macho file                            */
+                case .BADRPC:         return StrError(EBADRPC)         /* RPC struct is bad                               */
+                case .DEVERR:         return StrError(EDEVERR)         /* Device error, e.g. paper out                    */
+                case .FTYPE:          return StrError(EFTYPE)          /* Inappropriate file type or format               */
+                case .LAST:           return StrError(ELAST)           /* Must be equal largest errno                     */
+                case .NEEDAUTH:       return StrError(ENEEDAUTH)       /* Need authenticator                              */
+                case .NOATTR:         return StrError(ENOATTR)         /* Attribute not found                             */
+                case .NOPOLICY:       return StrError(ENOPOLICY)       /* No such policy registered                       */
+                case .PROCLIM:        return StrError(EPROCLIM)        /* Too many processes                              */
+                case .PROCUNAVAIL:    return StrError(EPROCUNAVAIL)    /* Bad procedure for program                       */
+                case .PROGMISMATCH:   return StrError(EPROGMISMATCH)   /* Program version wrong                           */
+                case .PROGUNAVAIL:    return StrError(EPROGUNAVAIL)    /* RPC prog. not avail                             */
+                case .PWROFF:         return StrError(EPWROFF)         /* Device power is off                             */
+                case .QFULL:          return StrError(EQFULL)          /* Interface output queue is full                  */
+                case .RPCMISMATCH:    return StrError(ERPCMISMATCH)    /* RPC version wrong                               */
+                case .SHLIBVERS:      return StrError(ESHLIBVERS)      /* Shared library version mismatch                 */
                 default: break
-//@f:1
             }
         #endif
 
         #if os(Linux)
             // These only exist on Linux.
             switch self {
-              //@f:0
-                case .ADV        : return StrError(EADV)         /* Advertise error                                 */
-                case .BADE       : return StrError(EBADE)        /* Invalid exchange                                */
-                case .BADFD      : return StrError(EBADFD)       /* File descriptor in bad state                    */
-                case .BADR       : return StrError(EBADR)        /* Invalid request descriptor                      */
-                case .BADRQC     : return StrError(EBADRQC)      /* Invalid request code                            */
-                case .BADSLT     : return StrError(EBADSLT)      /* Invalid slot                                    */
-                case .BFONT      : return StrError(EBFONT)       /* Bad font file format                            */
-                case .CHRNG      : return StrError(ECHRNG)       /* Channel number out of range                     */
-                case .COMM       : return StrError(ECOMM)        /* Communication error on send                     */
-                case .DEADLOCK   : return StrError(EDEADLOCK)    /* Resource deadlock avoided                       */
-                case .DOTDOT     : return StrError(EDOTDOT)      /* RFS specific error                              */
-                case .HWPOISON   : return StrError(EHWPOISON)    /* Memory page has hardware error                  */
-                case .ISNAM      : return StrError(EISNAM)       /* Is a named type file                            */
-                case .KEYEXPIRED : return StrError(EKEYEXPIRED)  /* Key has expired                                 */
+                case .ADV:         return StrError(EADV)         /* Advertise error                                 */
+                case .BADE:        return StrError(EBADE)        /* Invalid exchange                                */
+                case .BADFD:       return StrError(EBADFD)       /* File descriptor in bad state                    */
+                case .BADR:        return StrError(EBADR)        /* Invalid request descriptor                      */
+                case .BADRQC:      return StrError(EBADRQC)      /* Invalid request code                            */
+                case .BADSLT:      return StrError(EBADSLT)      /* Invalid slot                                    */
+                case .BFONT:       return StrError(EBFONT)       /* Bad font file format                            */
+                case .CHRNG:       return StrError(ECHRNG)       /* Channel number out of range                     */
+                case .COMM:        return StrError(ECOMM)        /* Communication error on send                     */
+                case .DEADLOCK:    return StrError(EDEADLOCK)    /* Resource deadlock avoided                       */
+                case .DOTDOT:      return StrError(EDOTDOT)      /* RFS specific error                              */
+                case .HWPOISON:    return StrError(EHWPOISON)    /* Memory page has hardware error                  */
+                case .ISNAM:       return StrError(EISNAM)       /* Is a named type file                            */
+                case .KEYEXPIRED:  return StrError(EKEYEXPIRED)  /* Key has expired                                 */
                 case .KEYREJECTED: return StrError(EKEYREJECTED) /* Key was rejected by service                     */
-                case .KEYREVOKED : return StrError(EKEYREVOKED)  /* Key has been revoked                            */
-                case .L2HLT      : return StrError(EL2HLT)       /* Level 2 halted                                  */
-                case .L2NSYNC    : return StrError(EL2NSYNC)     /* Level 2 not synchronized                        */
-                case .L3HLT      : return StrError(EL3HLT)       /* Level 3 halted                                  */
-                case .L3RST      : return StrError(EL3RST)       /* Level 3 reset                                   */
-                case .LIBACC     : return StrError(ELIBACC)      /* Can not access a needed shared library          */
-                case .LIBBAD     : return StrError(ELIBBAD)      /* Accessing a corrupted shared library            */
-                case .LIBEXEC    : return StrError(ELIBEXEC)     /* Cannot exec a shared library directly           */
-                case .LIBMAX     : return StrError(ELIBMAX)      /* Attempting to link in too many shared libraries */
-                case .LIBSCN     : return StrError(ELIBSCN)      /* .lib section in a.out corrupted                 */
-                case .LNRNG      : return StrError(ELNRNG)       /* Link number out of range                        */
-                case .MEDIUMTYPE : return StrError(EMEDIUMTYPE)  /* Wrong medium type                               */
-                case .NAVAIL     : return StrError(ENAVAIL)      /* No XENIX semaphores available                   */
-                case .NOANO      : return StrError(ENOANO)       /* No anode                                        */
-                case .NOCSI      : return StrError(ENOCSI)       /* No CSI structure available                      */
-                case .NOKEY      : return StrError(ENOKEY)       /* Required key not available                      */
-                case .NOMEDIUM   : return StrError(ENOMEDIUM)    /* No medium found                                 */
-                case .NONET      : return StrError(ENONET)       /* Machine is not on the network                   */
-                case .NOPKG      : return StrError(ENOPKG)       /* Package not installed                           */
-                case .NOTNAM     : return StrError(ENOTNAM)      /* Not a XENIX named type file                     */
-                case .NOTUNIQ    : return StrError(ENOTUNIQ)     /* Name not unique on network                      */
-                case .REMCHG     : return StrError(EREMCHG)      /* Remote address changed                          */
-                case .REMOTEIO   : return StrError(EREMOTEIO)    /* Remote I/O error                                */
-                case .RESTART    : return StrError(ERESTART)     /* Interrupted system call should be restarted     */
-                case .RFKILL     : return StrError(ERFKILL)      /* Operation not possible due to RF-kill           */
-                case .SRMNT      : return StrError(ESRMNT)       /* Srmount error                                   */
-                case .STRPIPE    : return StrError(ESTRPIPE)     /* Streams pipe error                              */
-                case .UCLEAN     : return StrError(EUCLEAN)      /* Structure needs cleaning                        */
-                case .UNATCH     : return StrError(EUNATCH)      /* Protocol driver not attached                    */
-                case .XFULL      : return StrError(EXFULL)       /* Exchange full                                   */
+                case .KEYREVOKED:  return StrError(EKEYREVOKED)  /* Key has been revoked                            */
+                case .L2HLT:       return StrError(EL2HLT)       /* Level 2 halted                                  */
+                case .L2NSYNC:     return StrError(EL2NSYNC)     /* Level 2 not synchronized                        */
+                case .L3HLT:       return StrError(EL3HLT)       /* Level 3 halted                                  */
+                case .L3RST:       return StrError(EL3RST)       /* Level 3 reset                                   */
+                case .LIBACC:      return StrError(ELIBACC)      /* Can not access a needed shared library          */
+                case .LIBBAD:      return StrError(ELIBBAD)      /* Accessing a corrupted shared library            */
+                case .LIBEXEC:     return StrError(ELIBEXEC)     /* Cannot exec a shared library directly           */
+                case .LIBMAX:      return StrError(ELIBMAX)      /* Attempting to link in too many shared libraries */
+                case .LIBSCN:      return StrError(ELIBSCN)      /* .lib section in a.out corrupted                 */
+                case .LNRNG:       return StrError(ELNRNG)       /* Link number out of range                        */
+                case .MEDIUMTYPE:  return StrError(EMEDIUMTYPE)  /* Wrong medium type                               */
+                case .NAVAIL:      return StrError(ENAVAIL)      /* No XENIX semaphores available                   */
+                case .NOANO:       return StrError(ENOANO)       /* No anode                                        */
+                case .NOCSI:       return StrError(ENOCSI)       /* No CSI structure available                      */
+                case .NOKEY:       return StrError(ENOKEY)       /* Required key not available                      */
+                case .NOMEDIUM:    return StrError(ENOMEDIUM)    /* No medium found                                 */
+                case .NONET:       return StrError(ENONET)       /* Machine is not on the network                   */
+                case .NOPKG:       return StrError(ENOPKG)       /* Package not installed                           */
+                case .NOTNAM:      return StrError(ENOTNAM)      /* Not a XENIX named type file                     */
+                case .NOTUNIQ:     return StrError(ENOTUNIQ)     /* Name not unique on network                      */
+                case .REMCHG:      return StrError(EREMCHG)      /* Remote address changed                          */
+                case .REMOTEIO:    return StrError(EREMOTEIO)    /* Remote I/O error                                */
+                case .RESTART:     return StrError(ERESTART)     /* Interrupted system call should be restarted     */
+                case .RFKILL:      return StrError(ERFKILL)      /* Operation not possible due to RF-kill           */
+                case .SRMNT:       return StrError(ESRMNT)       /* Srmount error                                   */
+                case .STRPIPE:     return StrError(ESTRPIPE)     /* Streams pipe error                              */
+                case .UCLEAN:      return StrError(EUCLEAN)      /* Structure needs cleaning                        */
+                case .UNATCH:      return StrError(EUNATCH)      /* Protocol driver not attached                    */
+                case .XFULL:       return StrError(EXFULL)       /* Exchange full                                   */
                 default: break
-//@f:1
             }
         #endif
 
@@ -849,179 +844,173 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
     ///
     public var errorCode:   Int32 {
         switch self {
-          //@f:0
-            case .ACCES         : return EACCES          /* Permission denied                               */
-            case .ADDRINUSE     : return EADDRINUSE      /* Address already in use                          */
-            case .ADDRNOTAVAIL  : return EADDRNOTAVAIL   /* Can't assign requested address                  */
-            case .AFNOSUPPORT   : return EAFNOSUPPORT    /* Address family not supported by protocol family */
-            case .AGAIN         : return EAGAIN          /* Resource temporarily unavailable                */
-            case .ALREADY       : return EALREADY        /* Operation already in progress                   */
-            case .BADF          : return EBADF           /* Bad file descriptor                             */
-            case .BADMSG        : return EBADMSG         /* Bad message                                     */
-            case .BUSY          : return EBUSY           /* Device / Resource busy                          */
-            case .CANCELED      : return ECANCELED       /* Operation canceled                              */
-            case .CHILD         : return ECHILD          /* No child processes                              */
-            case .CONNABORTED   : return ECONNABORTED    /* Software caused connection abort                */
-            case .CONNREFUSED   : return ECONNREFUSED    /* Connection refused                              */
-            case .CONNRESET     : return ECONNRESET      /* Connection reset by peer                        */
-            case .DEADLK        : return EDEADLK         /* Resource deadlock avoided                       */
-            case .DESTADDRREQ   : return EDESTADDRREQ    /* Destination address required                    */
-            case .DOM           : return EDOM            /* Numerical argument out of domain                */
-            case .DQUOT         : return EDQUOT          /* Disc quota exceeded                             */
-            case .EXIST         : return EEXIST          /* File exists                                     */
-            case .FAULT         : return EFAULT          /* Bad address                                     */
-            case .FBIG          : return EFBIG           /* File too large                                  */
-            case .HOSTDOWN      : return EHOSTDOWN       /* Host is down                                    */
-            case .HOSTUNREACH   : return EHOSTUNREACH    /* No route to host                                */
-            case .IDRM          : return EIDRM           /* Identifier removed                              */
-            case .ILSEQ         : return EILSEQ          /* Illegal byte sequence                           */
-            case .INPROGRESS    : return EINPROGRESS     /* Operation now in progress                       */
-            case .INTR          : return EINTR           /* Interrupted system call                         */
-            case .INVAL         : return EINVAL          /* Invalid argument                                */
-            case .IO            : return EIO             /* Input/output error                              */
-            case .ISCONN        : return EISCONN         /* Socket is already connected                     */
-            case .ISDIR         : return EISDIR          /* Is a directory                                  */
-            case .LOOP          : return ELOOP           /* Too many levels of symbolic links               */
-            case .MFILE         : return EMFILE          /* Too many open files                             */
-            case .MLINK         : return EMLINK          /* Too many links                                  */
-            case .MSGSIZE       : return EMSGSIZE        /* Message too long                                */
-            case .MULTIHOP      : return EMULTIHOP       /* Reserved                                        */
-            case .NAMETOOLONG   : return ENAMETOOLONG    /* File name too long                              */
-            case .NETDOWN       : return ENETDOWN        /* Network is down                                 */
-            case .NETRESET      : return ENETRESET       /* Network dropped connection on reset             */
-            case .NETUNREACH    : return ENETUNREACH     /* Network is unreachable                          */
-            case .NFILE         : return ENFILE          /* Too many open files in system                   */
-            case .NOBUFS        : return ENOBUFS         /* No buffer space available                       */
-            case .NODATA        : return ENODATA         /* No message available on STREAM                  */
-            case .NODEV         : return ENODEV          /* Operation not supported by device               */
-            case .NOENT         : return ENOENT          /* No such file or directory                       */
-            case .NOEXEC        : return ENOEXEC         /* Exec format error                               */
-            case .NOLCK         : return ENOLCK          /* No locks available                              */
-            case .NOLINK        : return ENOLINK         /* Reserved                                        */
-            case .NOMEM         : return ENOMEM          /* Cannot allocate memory                          */
-            case .NOMSG         : return ENOMSG          /* No message of desired type                      */
-            case .NOPROTOOPT    : return ENOPROTOOPT     /* Protocol not available                          */
-            case .NOSPC         : return ENOSPC          /* No space left on device                         */
-            case .NOSR          : return ENOSR           /* No STREAM resources                             */
-            case .NOSTR         : return ENOSTR          /* Not a STREAM                                    */
-            case .NOSYS         : return ENOSYS          /* Function not implemented                        */
-            case .NOTBLK        : return ENOTBLK         /* Block device required                           */
-            case .NOTCONN       : return ENOTCONN        /* Socket is not connected                         */
-            case .NOTDIR        : return ENOTDIR         /* Not a directory                                 */
-            case .NOTEMPTY      : return ENOTEMPTY       /* Directory not empty                             */
+            case .ACCES:          return EACCES          /* Permission denied                               */
+            case .ADDRINUSE:      return EADDRINUSE      /* Address already in use                          */
+            case .ADDRNOTAVAIL:   return EADDRNOTAVAIL   /* Can't assign requested address                  */
+            case .AFNOSUPPORT:    return EAFNOSUPPORT    /* Address family not supported by protocol family */
+            case .AGAIN:          return EAGAIN          /* Resource temporarily unavailable                */
+            case .ALREADY:        return EALREADY        /* Operation already in progress                   */
+            case .BADF:           return EBADF           /* Bad file descriptor                             */
+            case .BADMSG:         return EBADMSG         /* Bad message                                     */
+            case .BUSY:           return EBUSY           /* Device / Resource busy                          */
+            case .CANCELED:       return ECANCELED       /* Operation canceled                              */
+            case .CHILD:          return ECHILD          /* No child processes                              */
+            case .CONNABORTED:    return ECONNABORTED    /* Software caused connection abort                */
+            case .CONNREFUSED:    return ECONNREFUSED    /* Connection refused                              */
+            case .CONNRESET:      return ECONNRESET      /* Connection reset by peer                        */
+            case .DEADLK:         return EDEADLK         /* Resource deadlock avoided                       */
+            case .DESTADDRREQ:    return EDESTADDRREQ    /* Destination address required                    */
+            case .DOM:            return EDOM            /* Numerical argument out of domain                */
+            case .DQUOT:          return EDQUOT          /* Disc quota exceeded                             */
+            case .EXIST:          return EEXIST          /* File exists                                     */
+            case .FAULT:          return EFAULT          /* Bad address                                     */
+            case .FBIG:           return EFBIG           /* File too large                                  */
+            case .HOSTDOWN:       return EHOSTDOWN       /* Host is down                                    */
+            case .HOSTUNREACH:    return EHOSTUNREACH    /* No route to host                                */
+            case .IDRM:           return EIDRM           /* Identifier removed                              */
+            case .ILSEQ:          return EILSEQ          /* Illegal byte sequence                           */
+            case .INPROGRESS:     return EINPROGRESS     /* Operation now in progress                       */
+            case .INTR:           return EINTR           /* Interrupted system call                         */
+            case .INVAL:          return EINVAL          /* Invalid argument                                */
+            case .IO:             return EIO             /* Input/output error                              */
+            case .ISCONN:         return EISCONN         /* Socket is already connected                     */
+            case .ISDIR:          return EISDIR          /* Is a directory                                  */
+            case .LOOP:           return ELOOP           /* Too many levels of symbolic links               */
+            case .MFILE:          return EMFILE          /* Too many open files                             */
+            case .MLINK:          return EMLINK          /* Too many links                                  */
+            case .MSGSIZE:        return EMSGSIZE        /* Message too long                                */
+            case .MULTIHOP:       return EMULTIHOP       /* Reserved                                        */
+            case .NAMETOOLONG:    return ENAMETOOLONG    /* File name too long                              */
+            case .NETDOWN:        return ENETDOWN        /* Network is down                                 */
+            case .NETRESET:       return ENETRESET       /* Network dropped connection on reset             */
+            case .NETUNREACH:     return ENETUNREACH     /* Network is unreachable                          */
+            case .NFILE:          return ENFILE          /* Too many open files in system                   */
+            case .NOBUFS:         return ENOBUFS         /* No buffer space available                       */
+            case .NODATA:         return ENODATA         /* No message available on STREAM                  */
+            case .NODEV:          return ENODEV          /* Operation not supported by device               */
+            case .NOENT:          return ENOENT          /* No such file or directory                       */
+            case .NOEXEC:         return ENOEXEC         /* Exec format error                               */
+            case .NOLCK:          return ENOLCK          /* No locks available                              */
+            case .NOLINK:         return ENOLINK         /* Reserved                                        */
+            case .NOMEM:          return ENOMEM          /* Cannot allocate memory                          */
+            case .NOMSG:          return ENOMSG          /* No message of desired type                      */
+            case .NOPROTOOPT:     return ENOPROTOOPT     /* Protocol not available                          */
+            case .NOSPC:          return ENOSPC          /* No space left on device                         */
+            case .NOSR:           return ENOSR           /* No STREAM resources                             */
+            case .NOSTR:          return ENOSTR          /* Not a STREAM                                    */
+            case .NOSYS:          return ENOSYS          /* Function not implemented                        */
+            case .NOTBLK:         return ENOTBLK         /* Block device required                           */
+            case .NOTCONN:        return ENOTCONN        /* Socket is not connected                         */
+            case .NOTDIR:         return ENOTDIR         /* Not a directory                                 */
+            case .NOTEMPTY:       return ENOTEMPTY       /* Directory not empty                             */
             case .NOTRECOVERABLE: return ENOTRECOVERABLE /* State not recoverable                           */
-            case .NOTSOCK       : return ENOTSOCK        /* Socket operation on non-socket                  */
-            case .NOTSUP        : return ENOTSUP         /* Operation not supported                         */
-            case .NOTTY         : return ENOTTY          /* Inappropriate ioctl for device                  */
-            case .NXIO          : return ENXIO           /* Device not configured                           */
-            case .OPNOTSUPP     : return EOPNOTSUPP      /* Operation not supported on socket               */
-            case .OVERFLOW      : return EOVERFLOW       /* Value too large to be stored in data type       */
-            case .OWNERDEAD     : return EOWNERDEAD      /* Previous owner died                             */
-            case .PERM          : return EPERM           /* Operation not permitted                         */
-            case .PFNOSUPPORT   : return EPFNOSUPPORT    /* Protocol family not supported                   */
-            case .PIPE          : return EPIPE           /* Broken pipe                                     */
-            case .PROTO         : return EPROTO          /* Protocol error                                  */
+            case .NOTSOCK:        return ENOTSOCK        /* Socket operation on non-socket                  */
+            case .NOTSUP:         return ENOTSUP         /* Operation not supported                         */
+            case .NOTTY:          return ENOTTY          /* Inappropriate ioctl for device                  */
+            case .NXIO:           return ENXIO           /* Device not configured                           */
+            case .OPNOTSUPP:      return EOPNOTSUPP      /* Operation not supported on socket               */
+            case .OVERFLOW:       return EOVERFLOW       /* Value too large to be stored in data type       */
+            case .OWNERDEAD:      return EOWNERDEAD      /* Previous owner died                             */
+            case .PERM:           return EPERM           /* Operation not permitted                         */
+            case .PFNOSUPPORT:    return EPFNOSUPPORT    /* Protocol family not supported                   */
+            case .PIPE:           return EPIPE           /* Broken pipe                                     */
+            case .PROTO:          return EPROTO          /* Protocol error                                  */
             case .PROTONOSUPPORT: return EPROTONOSUPPORT /* Protocol not supported                          */
-            case .PROTOTYPE     : return EPROTOTYPE      /* Protocol wrong type for socket                  */
-            case .RANGE         : return ERANGE          /* Result too large                                */
-            case .REMOTE        : return EREMOTE         /* Too many levels of remote in path               */
-            case .ROFS          : return EROFS           /* Read-only file system                           */
-            case .SHUTDOWN      : return ESHUTDOWN       /* Can't send after socket shutdown                */
+            case .PROTOTYPE:      return EPROTOTYPE      /* Protocol wrong type for socket                  */
+            case .RANGE:          return ERANGE          /* Result too large                                */
+            case .REMOTE:         return EREMOTE         /* Too many levels of remote in path               */
+            case .ROFS:           return EROFS           /* Read-only file system                           */
+            case .SHUTDOWN:       return ESHUTDOWN       /* Can't send after socket shutdown                */
             case .SOCKTNOSUPPORT: return ESOCKTNOSUPPORT /* Socket type not supported                       */
-            case .SPIPE         : return ESPIPE          /* Illegal seek                                    */
-            case .SRCH          : return ESRCH           /* No such process                                 */
-            case .STALE         : return ESTALE          /* Stale NFS file handle                           */
-            case .TIME          : return ETIME           /* STREAM ioctl timeout                            */
-            case .TIMEDOUT      : return ETIMEDOUT       /* Operation timed out                             */
-            case .TOBIG         : return E2BIG           /* Argument list too long                          */
-            case .TOOMANYREFS   : return ETOOMANYREFS    /* Too many references: can't splice               */
-            case .TXTBSY        : return ETXTBSY         /* Text file busy                                  */
-            case .USERS         : return EUSERS          /* Too many users                                  */
-            case .WOULDBLOCK    : return EWOULDBLOCK     /* Operation would block                           */
-            case .XDEV          : return EXDEV           /* Cross-device link                               */
+            case .SPIPE:          return ESPIPE          /* Illegal seek                                    */
+            case .SRCH:           return ESRCH           /* No such process                                 */
+            case .STALE:          return ESTALE          /* Stale NFS file handle                           */
+            case .TIME:           return ETIME           /* STREAM ioctl timeout                            */
+            case .TIMEDOUT:       return ETIMEDOUT       /* Operation timed out                             */
+            case .TOBIG:          return E2BIG           /* Argument list too long                          */
+            case .TOOMANYREFS:    return ETOOMANYREFS    /* Too many references: can't splice               */
+            case .TXTBSY:         return ETXTBSY         /* Text file busy                                  */
+            case .USERS:          return EUSERS          /* Too many users                                  */
+            case .WOULDBLOCK:     return EWOULDBLOCK     /* Operation would block                           */
+            case .XDEV:           return EXDEV           /* Cross-device link                               */
             default: break
-//@f:1
         }
 
         #if os(macOS) || os(tvOS) || os(iOS) || os(watchOS)
             // These only exist on Apple OS'.
             switch self {
-              //@f:0
-                case .AUTH          : return EAUTH           /* Authentication error                            */
-                case .BADARCH       : return EBADARCH        /* Bad CPU type in executable                      */
-                case .BADEXEC       : return EBADEXEC        /* Bad executable                                  */
-                case .BADMACHO      : return EBADMACHO       /* Malformed Macho file                            */
-                case .BADRPC        : return EBADRPC         /* RPC struct is bad                               */
-                case .DEVERR        : return EDEVERR         /* Device error, e.g. paper out                    */
-                case .FTYPE         : return EFTYPE          /* Inappropriate file type or format               */
-                case .LAST          : return ELAST           /* Must be equal largest errno                     */
-                case .NEEDAUTH      : return ENEEDAUTH       /* Need authenticator                              */
-                case .NOATTR        : return ENOATTR         /* Attribute not found                             */
-                case .NOPOLICY      : return ENOPOLICY       /* No such policy registered                       */
-                case .PROCLIM       : return EPROCLIM        /* Too many processes                              */
-                case .PROCUNAVAIL   : return EPROCUNAVAIL    /* Bad procedure for program                       */
-                case .PROGMISMATCH  : return EPROGMISMATCH   /* Program version wrong                           */
-                case .PROGUNAVAIL   : return EPROGUNAVAIL    /* RPC prog. not avail                             */
-                case .PWROFF        : return EPWROFF         /* Device power is off                             */
-                case .QFULL         : return EQFULL          /* Interface output queue is full                  */
-                case .RPCMISMATCH   : return ERPCMISMATCH    /* RPC version wrong                               */
-                case .SHLIBVERS     : return ESHLIBVERS      /* Shared library version mismatch                 */
+                case .AUTH:           return EAUTH           /* Authentication error                            */
+                case .BADARCH:        return EBADARCH        /* Bad CPU type in executable                      */
+                case .BADEXEC:        return EBADEXEC        /* Bad executable                                  */
+                case .BADMACHO:       return EBADMACHO       /* Malformed Macho file                            */
+                case .BADRPC:         return EBADRPC         /* RPC struct is bad                               */
+                case .DEVERR:         return EDEVERR         /* Device error, e.g. paper out                    */
+                case .FTYPE:          return EFTYPE          /* Inappropriate file type or format               */
+                case .LAST:           return ELAST           /* Must be equal largest errno                     */
+                case .NEEDAUTH:       return ENEEDAUTH       /* Need authenticator                              */
+                case .NOATTR:         return ENOATTR         /* Attribute not found                             */
+                case .NOPOLICY:       return ENOPOLICY       /* No such policy registered                       */
+                case .PROCLIM:        return EPROCLIM        /* Too many processes                              */
+                case .PROCUNAVAIL:    return EPROCUNAVAIL    /* Bad procedure for program                       */
+                case .PROGMISMATCH:   return EPROGMISMATCH   /* Program version wrong                           */
+                case .PROGUNAVAIL:    return EPROGUNAVAIL    /* RPC prog. not avail                             */
+                case .PWROFF:         return EPWROFF         /* Device power is off                             */
+                case .QFULL:          return EQFULL          /* Interface output queue is full                  */
+                case .RPCMISMATCH:    return ERPCMISMATCH    /* RPC version wrong                               */
+                case .SHLIBVERS:      return ESHLIBVERS      /* Shared library version mismatch                 */
                 default: break
-//@f:1
             }
         #endif
 
         #if os(Linux)
             // These only exist on Linux.
             switch self {
-              //@f:0
-                case .ADV        : return EADV         /* Advertise error                                 */
-                case .BADE       : return EBADE        /* Invalid exchange                                */
-                case .BADFD      : return EBADFD       /* File descriptor in bad state                    */
-                case .BADR       : return EBADR        /* Invalid request descriptor                      */
-                case .BADRQC     : return EBADRQC      /* Invalid request code                            */
-                case .BADSLT     : return EBADSLT      /* Invalid slot                                    */
-                case .BFONT      : return EBFONT       /* Bad font file format                            */
-                case .CHRNG      : return ECHRNG       /* Channel number out of range                     */
-                case .COMM       : return ECOMM        /* Communication error on send                     */
-                case .DEADLOCK   : return EDEADLOCK    /* Resource deadlock avoided                       */
-                case .DOTDOT     : return EDOTDOT      /* RFS specific error                              */
-                case .HWPOISON   : return EHWPOISON    /* Memory page has hardware error                  */
-                case .ISNAM      : return EISNAM       /* Is a named type file                            */
-                case .KEYEXPIRED : return EKEYEXPIRED  /* Key has expired                                 */
+                case .ADV:         return EADV         /* Advertise error                                 */
+                case .BADE:        return EBADE        /* Invalid exchange                                */
+                case .BADFD:       return EBADFD       /* File descriptor in bad state                    */
+                case .BADR:        return EBADR        /* Invalid request descriptor                      */
+                case .BADRQC:      return EBADRQC      /* Invalid request code                            */
+                case .BADSLT:      return EBADSLT      /* Invalid slot                                    */
+                case .BFONT:       return EBFONT       /* Bad font file format                            */
+                case .CHRNG:       return ECHRNG       /* Channel number out of range                     */
+                case .COMM:        return ECOMM        /* Communication error on send                     */
+                case .DEADLOCK:    return EDEADLOCK    /* Resource deadlock avoided                       */
+                case .DOTDOT:      return EDOTDOT      /* RFS specific error                              */
+                case .HWPOISON:    return EHWPOISON    /* Memory page has hardware error                  */
+                case .ISNAM:       return EISNAM       /* Is a named type file                            */
+                case .KEYEXPIRED:  return EKEYEXPIRED  /* Key has expired                                 */
                 case .KEYREJECTED: return EKEYREJECTED /* Key was rejected by service                     */
-                case .KEYREVOKED : return EKEYREVOKED  /* Key has been revoked                            */
-                case .L2HLT      : return EL2HLT       /* Level 2 halted                                  */
-                case .L2NSYNC    : return EL2NSYNC     /* Level 2 not synchronized                        */
-                case .L3HLT      : return EL3HLT       /* Level 3 halted                                  */
-                case .L3RST      : return EL3RST       /* Level 3 reset                                   */
-                case .LIBACC     : return ELIBACC      /* Can not access a needed shared library          */
-                case .LIBBAD     : return ELIBBAD      /* Accessing a corrupted shared library            */
-                case .LIBEXEC    : return ELIBEXEC     /* Cannot exec a shared library directly           */
-                case .LIBMAX     : return ELIBMAX      /* Attempting to link in too many shared libraries */
-                case .LIBSCN     : return ELIBSCN      /* .lib section in a.out corrupted                 */
-                case .LNRNG      : return ELNRNG       /* Link number out of range                        */
-                case .MEDIUMTYPE : return EMEDIUMTYPE  /* Wrong medium type                               */
-                case .NAVAIL     : return ENAVAIL      /* No XENIX semaphores available                   */
-                case .NOANO      : return ENOANO       /* No anode                                        */
-                case .NOCSI      : return ENOCSI       /* No CSI structure available                      */
-                case .NOKEY      : return ENOKEY       /* Required key not available                      */
-                case .NOMEDIUM   : return ENOMEDIUM    /* No medium found                                 */
-                case .NONET      : return ENONET       /* Machine is not on the network                   */
-                case .NOPKG      : return ENOPKG       /* Package not installed                           */
-                case .NOTNAM     : return ENOTNAM      /* Not a XENIX named type file                     */
-                case .NOTUNIQ    : return ENOTUNIQ     /* Name not unique on network                      */
-                case .REMCHG     : return EREMCHG      /* Remote address changed                          */
-                case .REMOTEIO   : return EREMOTEIO    /* Remote I/O error                                */
-                case .RESTART    : return ERESTART     /* Interrupted system call should be restarted     */
-                case .RFKILL     : return ERFKILL      /* Operation not possible due to RF-kill           */
-                case .SRMNT      : return ESRMNT       /* Srmount error                                   */
-                case .STRPIPE    : return ESTRPIPE     /* Streams pipe error                              */
-                case .UCLEAN     : return EUCLEAN      /* Structure needs cleaning                        */
-                case .UNATCH     : return EUNATCH      /* Protocol driver not attached                    */
-                case .XFULL      : return EXFULL       /* Exchange full                                   */
+                case .KEYREVOKED:  return EKEYREVOKED  /* Key has been revoked                            */
+                case .L2HLT:       return EL2HLT       /* Level 2 halted                                  */
+                case .L2NSYNC:     return EL2NSYNC     /* Level 2 not synchronized                        */
+                case .L3HLT:       return EL3HLT       /* Level 3 halted                                  */
+                case .L3RST:       return EL3RST       /* Level 3 reset                                   */
+                case .LIBACC:      return ELIBACC      /* Can not access a needed shared library          */
+                case .LIBBAD:      return ELIBBAD      /* Accessing a corrupted shared library            */
+                case .LIBEXEC:     return ELIBEXEC     /* Cannot exec a shared library directly           */
+                case .LIBMAX:      return ELIBMAX      /* Attempting to link in too many shared libraries */
+                case .LIBSCN:      return ELIBSCN      /* .lib section in a.out corrupted                 */
+                case .LNRNG:       return ELNRNG       /* Link number out of range                        */
+                case .MEDIUMTYPE:  return EMEDIUMTYPE  /* Wrong medium type                               */
+                case .NAVAIL:      return ENAVAIL      /* No XENIX semaphores available                   */
+                case .NOANO:       return ENOANO       /* No anode                                        */
+                case .NOCSI:       return ENOCSI       /* No CSI structure available                      */
+                case .NOKEY:       return ENOKEY       /* Required key not available                      */
+                case .NOMEDIUM:    return ENOMEDIUM    /* No medium found                                 */
+                case .NONET:       return ENONET       /* Machine is not on the network                   */
+                case .NOPKG:       return ENOPKG       /* Package not installed                           */
+                case .NOTNAM:      return ENOTNAM      /* Not a XENIX named type file                     */
+                case .NOTUNIQ:     return ENOTUNIQ     /* Name not unique on network                      */
+                case .REMCHG:      return EREMCHG      /* Remote address changed                          */
+                case .REMOTEIO:    return EREMOTEIO    /* Remote I/O error                                */
+                case .RESTART:     return ERESTART     /* Interrupted system call should be restarted     */
+                case .RFKILL:      return ERFKILL      /* Operation not possible due to RF-kill           */
+                case .SRMNT:       return ESRMNT       /* Srmount error                                   */
+                case .STRPIPE:     return ESTRPIPE     /* Streams pipe error                              */
+                case .UCLEAN:      return EUCLEAN      /* Structure needs cleaning                        */
+                case .UNATCH:      return EUNATCH      /* Protocol driver not attached                    */
+                case .XFULL:       return EXFULL       /* Exchange full                                   */
                 default: break
-//@f:1
             }
         #endif
 
@@ -1033,7 +1022,6 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
     ///
     public var description: String {
         switch self {
-          //@f:0
             case .ACCES(         description: let desc): return desc /* Permission denied                               */
             case .ADDRINUSE(     description: let desc): return desc /* Address already in use                          */
             case .ADDRNOTAVAIL(  description: let desc): return desc /* Can't assign requested address                  */
@@ -1124,13 +1112,11 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
             case .WOULDBLOCK(    description: let desc): return desc /* Operation would block                           */
             case .XDEV(          description: let desc): return desc /* Cross-device link                               */
             default: break
-//@f:1
         }
 
         #if os(macOS) || os(tvOS) || os(iOS) || os(watchOS)
             // These only exist on Apple OS'.
             switch self {
-              //@f:0
                 case .AUTH(          description: let desc): return desc /* Authentication error                            */
                 case .BADARCH(       description: let desc): return desc /* Bad CPU type in executable                      */
                 case .BADEXEC(       description: let desc): return desc /* Bad executable                                  */
@@ -1149,7 +1135,6 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
                 case .QFULL(         description: let desc): return desc /* Interface output queue is full                  */
                 case .RPCMISMATCH(   description: let desc): return desc /* RPC version wrong                               */
                 case .SHLIBVERS(     description: let desc): return desc /* Shared library version mismatch                 */
-//@f:1
                 default: break
             }
         #endif
@@ -1157,7 +1142,6 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
         #if os(Linux)
             // These only exist on Linux.
             switch self {
-              //@f:0
                 case .ADV(        description: let desc): return desc /* Advertise error                                 */
                 case .BADE(       description: let desc): return desc /* Invalid exchange                                */
                 case .BADFD(      description: let desc): return desc /* File descriptor in bad state                    */
@@ -1204,7 +1188,6 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
                 case .UNATCH(     description: let desc): return desc /* Protocol driver not attached                    */
                 case .XFULL(      description: let desc): return desc /* Exchange full                                   */
                 default: break
-//@f:1
             }
         #endif
 
@@ -1213,130 +1196,126 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
 
     /*==========================================================================================================*/
     /// Returns the error for the given code.
-    /// 
+    ///
     /// - Parameter code: the OS error code.
     /// - Returns: The matching error.
     ///
     public static func getErrorFor(code: Int32) -> CErrors {
         switch code {
-          //@f:0
-            case EACCES         : return CErrors.ACCES()          /* Permission denied                               */
-            case EADDRINUSE     : return CErrors.ADDRINUSE()      /* Address already in use                          */
-            case EADDRNOTAVAIL  : return CErrors.ADDRNOTAVAIL()   /* Can't assign requested address                  */
-            case EAFNOSUPPORT   : return CErrors.AFNOSUPPORT()    /* Address family not supported by protocol family */
-            case EAGAIN         : return CErrors.AGAIN()          /* Resource temporarily unavailable                */
-            case EALREADY       : return CErrors.ALREADY()        /* Operation already in progress                   */
-            case EBADF          : return CErrors.BADF()           /* Bad file descriptor                             */
-            case EBADMSG        : return CErrors.BADMSG()         /* Bad message                                     */
-            case EBUSY          : return CErrors.BUSY()           /* Device / Resource busy                          */
-            case ECANCELED      : return CErrors.CANCELED()       /* Operation canceled                              */
-            case ECHILD         : return CErrors.CHILD()          /* No child processes                              */
-            case ECONNABORTED   : return CErrors.CONNABORTED()    /* Software caused connection abort                */
-            case ECONNREFUSED   : return CErrors.CONNREFUSED()    /* Connection refused                              */
-            case ECONNRESET     : return CErrors.CONNRESET()      /* Connection reset by peer                        */
-            case EDEADLK        : return CErrors.DEADLK()         /* Resource deadlock avoided                       */
-            case EDESTADDRREQ   : return CErrors.DESTADDRREQ()    /* Destination address required                    */
-            case EDOM           : return CErrors.DOM()            /* Numerical argument out of domain                */
-            case EDQUOT         : return CErrors.DQUOT()          /* Disc quota exceeded                             */
-            case EEXIST         : return CErrors.EXIST()          /* File exists                                     */
-            case EFAULT         : return CErrors.FAULT()          /* Bad address                                     */
-            case EFBIG          : return CErrors.FBIG()           /* File too large                                  */
-            case EHOSTDOWN      : return CErrors.HOSTDOWN()       /* Host is down                                    */
-            case EHOSTUNREACH   : return CErrors.HOSTUNREACH()    /* No route to host                                */
-            case EIDRM          : return CErrors.IDRM()           /* Identifier removed                              */
-            case EILSEQ         : return CErrors.ILSEQ()          /* Illegal byte sequence                           */
-            case EINPROGRESS    : return CErrors.INPROGRESS()     /* Operation now in progress                       */
-            case EINTR          : return CErrors.INTR()           /* Interrupted system call                         */
-            case EINVAL         : return CErrors.INVAL()          /* Invalid argument                                */
-            case EIO            : return CErrors.IO()             /* Input/output error                              */
-            case EISCONN        : return CErrors.ISCONN()         /* Socket is already connected                     */
-            case EISDIR         : return CErrors.ISDIR()          /* Is a directory                                  */
-            case ELOOP          : return CErrors.LOOP()           /* Too many levels of symbolic links               */
-            case EMFILE         : return CErrors.MFILE()          /* Too many open files                             */
-            case EMLINK         : return CErrors.MLINK()          /* Too many links                                  */
-            case EMSGSIZE       : return CErrors.MSGSIZE()        /* Message too long                                */
-            case EMULTIHOP      : return CErrors.MULTIHOP()       /* Reserved                                        */
-            case ENAMETOOLONG   : return CErrors.NAMETOOLONG()    /* File name too long                              */
-            case ENETDOWN       : return CErrors.NETDOWN()        /* Network is down                                 */
-            case ENETRESET      : return CErrors.NETRESET()       /* Network dropped connection on reset             */
-            case ENETUNREACH    : return CErrors.NETUNREACH()     /* Network is unreachable                          */
-            case ENFILE         : return CErrors.NFILE()          /* Too many open files in system                   */
-            case ENOBUFS        : return CErrors.NOBUFS()         /* No buffer space available                       */
-            case ENODATA        : return CErrors.NODATA()         /* No message available on STREAM                  */
-            case ENODEV         : return CErrors.NODEV()          /* Operation not supported by device               */
-            case ENOENT         : return CErrors.NOENT()          /* No such file or directory                       */
-            case ENOEXEC        : return CErrors.NOEXEC()         /* Exec format error                               */
-            case ENOLCK         : return CErrors.NOLCK()          /* No locks available                              */
-            case ENOLINK        : return CErrors.NOLINK()         /* Reserved                                        */
-            case ENOMEM         : return CErrors.NOMEM()          /* Cannot allocate memory                          */
-            case ENOMSG         : return CErrors.NOMSG()          /* No message of desired type                      */
-            case ENOPROTOOPT    : return CErrors.NOPROTOOPT()     /* Protocol not available                          */
-            case ENOSPC         : return CErrors.NOSPC()          /* No space left on device                         */
-            case ENOSR          : return CErrors.NOSR()           /* No STREAM resources                             */
-            case ENOSTR         : return CErrors.NOSTR()          /* Not a STREAM                                    */
-            case ENOSYS         : return CErrors.NOSYS()          /* Function not implemented                        */
-            case ENOTBLK        : return CErrors.NOTBLK()         /* Block device required                           */
-            case ENOTCONN       : return CErrors.NOTCONN()        /* Socket is not connected                         */
-            case ENOTDIR        : return CErrors.NOTDIR()         /* Not a directory                                 */
-            case ENOTEMPTY      : return CErrors.NOTEMPTY()       /* Directory not empty                             */
+            case EACCES:          return CErrors.ACCES()          /* Permission denied                               */
+            case EADDRINUSE:      return CErrors.ADDRINUSE()      /* Address already in use                          */
+            case EADDRNOTAVAIL:   return CErrors.ADDRNOTAVAIL()   /* Can't assign requested address                  */
+            case EAFNOSUPPORT:    return CErrors.AFNOSUPPORT()    /* Address family not supported by protocol family */
+            case EAGAIN:          return CErrors.AGAIN()          /* Resource temporarily unavailable                */
+            case EALREADY:        return CErrors.ALREADY()        /* Operation already in progress                   */
+            case EBADF:           return CErrors.BADF()           /* Bad file descriptor                             */
+            case EBADMSG:         return CErrors.BADMSG()         /* Bad message                                     */
+            case EBUSY:           return CErrors.BUSY()           /* Device / Resource busy                          */
+            case ECANCELED:       return CErrors.CANCELED()       /* Operation canceled                              */
+            case ECHILD:          return CErrors.CHILD()          /* No child processes                              */
+            case ECONNABORTED:    return CErrors.CONNABORTED()    /* Software caused connection abort                */
+            case ECONNREFUSED:    return CErrors.CONNREFUSED()    /* Connection refused                              */
+            case ECONNRESET:      return CErrors.CONNRESET()      /* Connection reset by peer                        */
+            case EDEADLK:         return CErrors.DEADLK()         /* Resource deadlock avoided                       */
+            case EDESTADDRREQ:    return CErrors.DESTADDRREQ()    /* Destination address required                    */
+            case EDOM:            return CErrors.DOM()            /* Numerical argument out of domain                */
+            case EDQUOT:          return CErrors.DQUOT()          /* Disc quota exceeded                             */
+            case EEXIST:          return CErrors.EXIST()          /* File exists                                     */
+            case EFAULT:          return CErrors.FAULT()          /* Bad address                                     */
+            case EFBIG:           return CErrors.FBIG()           /* File too large                                  */
+            case EHOSTDOWN:       return CErrors.HOSTDOWN()       /* Host is down                                    */
+            case EHOSTUNREACH:    return CErrors.HOSTUNREACH()    /* No route to host                                */
+            case EIDRM:           return CErrors.IDRM()           /* Identifier removed                              */
+            case EILSEQ:          return CErrors.ILSEQ()          /* Illegal byte sequence                           */
+            case EINPROGRESS:     return CErrors.INPROGRESS()     /* Operation now in progress                       */
+            case EINTR:           return CErrors.INTR()           /* Interrupted system call                         */
+            case EINVAL:          return CErrors.INVAL()          /* Invalid argument                                */
+            case EIO:             return CErrors.IO()             /* Input/output error                              */
+            case EISCONN:         return CErrors.ISCONN()         /* Socket is already connected                     */
+            case EISDIR:          return CErrors.ISDIR()          /* Is a directory                                  */
+            case ELOOP:           return CErrors.LOOP()           /* Too many levels of symbolic links               */
+            case EMFILE:          return CErrors.MFILE()          /* Too many open files                             */
+            case EMLINK:          return CErrors.MLINK()          /* Too many links                                  */
+            case EMSGSIZE:        return CErrors.MSGSIZE()        /* Message too long                                */
+            case EMULTIHOP:       return CErrors.MULTIHOP()       /* Reserved                                        */
+            case ENAMETOOLONG:    return CErrors.NAMETOOLONG()    /* File name too long                              */
+            case ENETDOWN:        return CErrors.NETDOWN()        /* Network is down                                 */
+            case ENETRESET:       return CErrors.NETRESET()       /* Network dropped connection on reset             */
+            case ENETUNREACH:     return CErrors.NETUNREACH()     /* Network is unreachable                          */
+            case ENFILE:          return CErrors.NFILE()          /* Too many open files in system                   */
+            case ENOBUFS:         return CErrors.NOBUFS()         /* No buffer space available                       */
+            case ENODATA:         return CErrors.NODATA()         /* No message available on STREAM                  */
+            case ENODEV:          return CErrors.NODEV()          /* Operation not supported by device               */
+            case ENOENT:          return CErrors.NOENT()          /* No such file or directory                       */
+            case ENOEXEC:         return CErrors.NOEXEC()         /* Exec format error                               */
+            case ENOLCK:          return CErrors.NOLCK()          /* No locks available                              */
+            case ENOLINK:         return CErrors.NOLINK()         /* Reserved                                        */
+            case ENOMEM:          return CErrors.NOMEM()          /* Cannot allocate memory                          */
+            case ENOMSG:          return CErrors.NOMSG()          /* No message of desired type                      */
+            case ENOPROTOOPT:     return CErrors.NOPROTOOPT()     /* Protocol not available                          */
+            case ENOSPC:          return CErrors.NOSPC()          /* No space left on device                         */
+            case ENOSR:           return CErrors.NOSR()           /* No STREAM resources                             */
+            case ENOSTR:          return CErrors.NOSTR()          /* Not a STREAM                                    */
+            case ENOSYS:          return CErrors.NOSYS()          /* Function not implemented                        */
+            case ENOTBLK:         return CErrors.NOTBLK()         /* Block device required                           */
+            case ENOTCONN:        return CErrors.NOTCONN()        /* Socket is not connected                         */
+            case ENOTDIR:         return CErrors.NOTDIR()         /* Not a directory                                 */
+            case ENOTEMPTY:       return CErrors.NOTEMPTY()       /* Directory not empty                             */
             case ENOTRECOVERABLE: return CErrors.NOTRECOVERABLE() /* State not recoverable                           */
-            case ENOTSOCK       : return CErrors.NOTSOCK()        /* Socket operation on non-socket                  */
-            case ENOTSUP        : return CErrors.NOTSUP()         /* Operation not supported                         */
-            case ENOTTY         : return CErrors.NOTTY()          /* Inappropriate ioctl for device                  */
-            case ENXIO          : return CErrors.NXIO()           /* Device not configured                           */
-            case EOPNOTSUPP     : return CErrors.OPNOTSUPP()      /* Operation not supported on socket               */
-            case EOVERFLOW      : return CErrors.OVERFLOW()       /* Value too large to be stored in data type       */
-            case EOWNERDEAD     : return CErrors.OWNERDEAD()      /* Previous owner died                             */
-            case EPERM          : return CErrors.PERM()           /* Operation not permitted                         */
-            case EPFNOSUPPORT   : return CErrors.PFNOSUPPORT()    /* Protocol family not supported                   */
-            case EPIPE          : return CErrors.PIPE()           /* Broken pipe                                     */
-            case EPROTO         : return CErrors.PROTO()          /* Protocol error                                  */
+            case ENOTSOCK:        return CErrors.NOTSOCK()        /* Socket operation on non-socket                  */
+            case ENOTSUP:         return CErrors.NOTSUP()         /* Operation not supported                         */
+            case ENOTTY:          return CErrors.NOTTY()          /* Inappropriate ioctl for device                  */
+            case ENXIO:           return CErrors.NXIO()           /* Device not configured                           */
+            case EOPNOTSUPP:      return CErrors.OPNOTSUPP()      /* Operation not supported on socket               */
+            case EOVERFLOW:       return CErrors.OVERFLOW()       /* Value too large to be stored in data type       */
+            case EOWNERDEAD:      return CErrors.OWNERDEAD()      /* Previous owner died                             */
+            case EPERM:           return CErrors.PERM()           /* Operation not permitted                         */
+            case EPFNOSUPPORT:    return CErrors.PFNOSUPPORT()    /* Protocol family not supported                   */
+            case EPIPE:           return CErrors.PIPE()           /* Broken pipe                                     */
+            case EPROTO:          return CErrors.PROTO()          /* Protocol error                                  */
             case EPROTONOSUPPORT: return CErrors.PROTONOSUPPORT() /* Protocol not supported                          */
-            case EPROTOTYPE     : return CErrors.PROTOTYPE()      /* Protocol wrong type for socket                  */
-            case ERANGE         : return CErrors.RANGE()          /* Result too large                                */
-            case EREMOTE        : return CErrors.REMOTE()         /* Too many levels of remote in path               */
-            case EROFS          : return CErrors.ROFS()           /* Read-only file system                           */
-            case ESHUTDOWN      : return CErrors.SHUTDOWN()       /* Can't send after socket shutdown                */
+            case EPROTOTYPE:      return CErrors.PROTOTYPE()      /* Protocol wrong type for socket                  */
+            case ERANGE:          return CErrors.RANGE()          /* Result too large                                */
+            case EREMOTE:         return CErrors.REMOTE()         /* Too many levels of remote in path               */
+            case EROFS:           return CErrors.ROFS()           /* Read-only file system                           */
+            case ESHUTDOWN:       return CErrors.SHUTDOWN()       /* Can't send after socket shutdown                */
             case ESOCKTNOSUPPORT: return CErrors.SOCKTNOSUPPORT() /* Socket type not supported                       */
-            case ESPIPE         : return CErrors.SPIPE()          /* Illegal seek                                    */
-            case ESRCH          : return CErrors.SRCH()           /* No such process                                 */
-            case ESTALE         : return CErrors.STALE()          /* Stale NFS file handle                           */
-            case ETIME          : return CErrors.TIME()           /* STREAM ioctl timeout                            */
-            case ETIMEDOUT      : return CErrors.TIMEDOUT()       /* Operation timed out                             */
-            case E2BIG          : return CErrors.TOBIG()          /* Argument list too long                          */
-            case ETOOMANYREFS   : return CErrors.TOOMANYREFS()    /* Too many references: can't splice               */
-            case ETXTBSY        : return CErrors.TXTBSY()         /* Text file busy                                  */
-            case EUSERS         : return CErrors.USERS()          /* Too many users                                  */
-            case EWOULDBLOCK    : return CErrors.WOULDBLOCK()     /* Operation would block                           */
-            case EXDEV          : return CErrors.XDEV()           /* Cross-device link                               */
+            case ESPIPE:          return CErrors.SPIPE()          /* Illegal seek                                    */
+            case ESRCH:           return CErrors.SRCH()           /* No such process                                 */
+            case ESTALE:          return CErrors.STALE()          /* Stale NFS file handle                           */
+            case ETIME:           return CErrors.TIME()           /* STREAM ioctl timeout                            */
+            case ETIMEDOUT:       return CErrors.TIMEDOUT()       /* Operation timed out                             */
+            case E2BIG:           return CErrors.TOBIG()          /* Argument list too long                          */
+            case ETOOMANYREFS:    return CErrors.TOOMANYREFS()    /* Too many references: can't splice               */
+            case ETXTBSY:         return CErrors.TXTBSY()         /* Text file busy                                  */
+            case EUSERS:          return CErrors.USERS()          /* Too many users                                  */
+            case EWOULDBLOCK:     return CErrors.WOULDBLOCK()     /* Operation would block                           */
+            case EXDEV:           return CErrors.XDEV()           /* Cross-device link                               */
             default: break
-//@f:1
         }
 
         #if os(macOS) || os(tvOS) || os(iOS) || os(watchOS)
             // These only exist on Apple OS'.
             switch code {
-              //@f:0
-                case EAUTH          : return CErrors.AUTH()           /* Authentication error                            */
-                case EBADARCH       : return CErrors.BADARCH()        /* Bad CPU type in executable                      */
-                case EBADEXEC       : return CErrors.BADEXEC()        /* Bad executable                                  */
-                case EBADRPC        : return CErrors.BADRPC()         /* RPC struct is bad                               */
-                case EBADMACHO      : return CErrors.BADMACHO()       /* Malformed Macho file                            */
-                case EDEVERR        : return CErrors.DEVERR()         /* Device error, e.g. paper out                    */
-                case EFTYPE         : return CErrors.FTYPE()          /* Inappropriate file type or format               */
-                case ELAST          : return CErrors.LAST()           /* Must be equal largest errno                     */
-                case ENEEDAUTH      : return CErrors.NEEDAUTH()       /* Need authenticator                              */
-                case ENOATTR        : return CErrors.NOATTR()         /* Attribute not found                             */
-                case ENOPOLICY      : return CErrors.NOPOLICY()       /* No such policy registered                       */
-                case EPROCLIM       : return CErrors.PROCLIM()        /* Too many processes                              */
-                case EPROCUNAVAIL   : return CErrors.PROCUNAVAIL()    /* Bad procedure for program                       */
-                case EPROGMISMATCH  : return CErrors.PROGMISMATCH()   /* Program version wrong                           */
-                case EPROGUNAVAIL   : return CErrors.PROGUNAVAIL()    /* RPC prog. not avail                             */
-                case EPWROFF        : return CErrors.PWROFF()         /* Device power is off                             */
-                case EQFULL         : return CErrors.QFULL()          /* Interface output queue is full                  */
-                case ERPCMISMATCH   : return CErrors.RPCMISMATCH()    /* RPC version wrong                               */
-                case ESHLIBVERS     : return CErrors.SHLIBVERS()      /* Shared library version mismatch                 */
-//@f:1
+                case EAUTH:           return CErrors.AUTH()           /* Authentication error                            */
+                case EBADARCH:        return CErrors.BADARCH()        /* Bad CPU type in executable                      */
+                case EBADEXEC:        return CErrors.BADEXEC()        /* Bad executable                                  */
+                case EBADRPC:         return CErrors.BADRPC()         /* RPC struct is bad                               */
+                case EBADMACHO:       return CErrors.BADMACHO()       /* Malformed Macho file                            */
+                case EDEVERR:         return CErrors.DEVERR()         /* Device error, e.g. paper out                    */
+                case EFTYPE:          return CErrors.FTYPE()          /* Inappropriate file type or format               */
+                case ELAST:           return CErrors.LAST()           /* Must be equal largest errno                     */
+                case ENEEDAUTH:       return CErrors.NEEDAUTH()       /* Need authenticator                              */
+                case ENOATTR:         return CErrors.NOATTR()         /* Attribute not found                             */
+                case ENOPOLICY:       return CErrors.NOPOLICY()       /* No such policy registered                       */
+                case EPROCLIM:        return CErrors.PROCLIM()        /* Too many processes                              */
+                case EPROCUNAVAIL:    return CErrors.PROCUNAVAIL()    /* Bad procedure for program                       */
+                case EPROGMISMATCH:   return CErrors.PROGMISMATCH()   /* Program version wrong                           */
+                case EPROGUNAVAIL:    return CErrors.PROGUNAVAIL()    /* RPC prog. not avail                             */
+                case EPWROFF:         return CErrors.PWROFF()         /* Device power is off                             */
+                case EQFULL:          return CErrors.QFULL()          /* Interface output queue is full                  */
+                case ERPCMISMATCH:    return CErrors.RPCMISMATCH()    /* RPC version wrong                               */
+                case ESHLIBVERS:      return CErrors.SHLIBVERS()      /* Shared library version mismatch                 */
                 default: break
             }
         #endif
@@ -1344,54 +1323,52 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
         #if os(Linux)
             // These only exist on Linux.
             switch code {
-              //@f:0
-                case EADV        : return CErrors.ADV()         /* Advertise error                                 */
-                case EBADE       : return CErrors.BADE()        /* Invalid exchange                                */
-                case EBADFD      : return CErrors.BADFD()       /* File descriptor in bad state                    */
-                case EBADR       : return CErrors.BADR()        /* Invalid request descriptor                      */
-                case EBADRQC     : return CErrors.BADRQC()      /* Invalid request code                            */
-                case EBADSLT     : return CErrors.BADSLT()      /* Invalid slot                                    */
-                case EBFONT      : return CErrors.BFONT()       /* Bad font file format                            */
-                case ECHRNG      : return CErrors.CHRNG()       /* Channel number out of range                     */
-                case ECOMM       : return CErrors.COMM()        /* Communication error on send                     */
-                case EDEADLOCK   : return CErrors.DEADLOCK()    /* Resource deadlock avoided                       */
-                case EDOTDOT     : return CErrors.DOTDOT()      /* RFS specific error                              */
-                case EHWPOISON   : return CErrors.HWPOISON()    /* Memory page has hardware error                  */
-                case EISNAM      : return CErrors.ISNAM()       /* Is a named type file                            */
-                case EKEYEXPIRED : return CErrors.KEYEXPIRED()  /* Key has expired                                 */
+                case EADV:         return CErrors.ADV()         /* Advertise error                                 */
+                case EBADE:        return CErrors.BADE()        /* Invalid exchange                                */
+                case EBADFD:       return CErrors.BADFD()       /* File descriptor in bad state                    */
+                case EBADR:        return CErrors.BADR()        /* Invalid request descriptor                      */
+                case EBADRQC:      return CErrors.BADRQC()      /* Invalid request code                            */
+                case EBADSLT:      return CErrors.BADSLT()      /* Invalid slot                                    */
+                case EBFONT:       return CErrors.BFONT()       /* Bad font file format                            */
+                case ECHRNG:       return CErrors.CHRNG()       /* Channel number out of range                     */
+                case ECOMM:        return CErrors.COMM()        /* Communication error on send                     */
+                case EDEADLOCK:    return CErrors.DEADLOCK()    /* Resource deadlock avoided                       */
+                case EDOTDOT:      return CErrors.DOTDOT()      /* RFS specific error                              */
+                case EHWPOISON:    return CErrors.HWPOISON()    /* Memory page has hardware error                  */
+                case EISNAM:       return CErrors.ISNAM()       /* Is a named type file                            */
+                case EKEYEXPIRED:  return CErrors.KEYEXPIRED()  /* Key has expired                                 */
                 case EKEYREJECTED: return CErrors.KEYREJECTED() /* Key was rejected by service                     */
-                case EKEYREVOKED : return CErrors.KEYREVOKED()  /* Key has been revoked                            */
-                case EL2HLT      : return CErrors.L2HLT()       /* Level 2 halted                                  */
-                case EL2NSYNC    : return CErrors.L2NSYNC()     /* Level 2 not synchronized                        */
-                case EL3HLT      : return CErrors.L3HLT()       /* Level 3 halted                                  */
-                case EL3RST      : return CErrors.L3RST()       /* Level 3 reset                                   */
-                case ELIBACC     : return CErrors.LIBACC()      /* Can not access a needed shared library          */
-                case ELIBBAD     : return CErrors.LIBBAD()      /* Accessing a corrupted shared library            */
-                case ELIBEXEC    : return CErrors.LIBEXEC()     /* Cannot exec a shared library directly           */
-                case ELIBMAX     : return CErrors.LIBMAX()      /* Attempting to link in too many shared libraries */
-                case ELIBSCN     : return CErrors.LIBSCN()      /* .lib section in a.out corrupted                 */
-                case ELNRNG      : return CErrors.LNRNG()       /* Link number out of range                        */
-                case EMEDIUMTYPE : return CErrors.MEDIUMTYPE()  /* Wrong medium type                               */
-                case ENAVAIL     : return CErrors.NAVAIL()      /* No XENIX semaphores available                   */
-                case ENOANO      : return CErrors.NOANO()       /* No anode                                        */
-                case ENOCSI      : return CErrors.NOCSI()       /* No CSI structure available                      */
-                case ENOKEY      : return CErrors.NOKEY()       /* Required key not available                      */
-                case ENOMEDIUM   : return CErrors.NOMEDIUM()    /* No medium found                                 */
-                case ENONET      : return CErrors.NONET()       /* Machine is not on the network                   */
-                case ENOPKG      : return CErrors.NOPKG()       /* Package not installed                           */
-                case ENOTNAM     : return CErrors.NOTNAM()      /* Not a XENIX named type file                     */
-                case ENOTUNIQ    : return CErrors.NOTUNIQ()     /* Name not unique on network                      */
-                case EREMCHG     : return CErrors.REMCHG()      /* Remote address changed                          */
-                case EREMOTEIO   : return CErrors.REMOTEIO()    /* Remote I/O error                                */
-                case ERESTART    : return CErrors.RESTART()     /* Interrupted system call should be restarted     */
-                case ERFKILL     : return CErrors.RFKILL()      /* Operation not possible due to RF-kill           */
-                case ESRMNT      : return CErrors.SRMNT()       /* Srmount error                                   */
-                case ESTRPIPE    : return CErrors.STRPIPE()     /* Streams pipe error                              */
-                case EUCLEAN     : return CErrors.UCLEAN()      /* Structure needs cleaning                        */
-                case EUNATCH     : return CErrors.UNATCH()      /* Protocol driver not attached                    */
-                case EXFULL      : return CErrors.XFULL()       /* Exchange full                                   */
+                case EKEYREVOKED:  return CErrors.KEYREVOKED()  /* Key has been revoked                            */
+                case EL2HLT:       return CErrors.L2HLT()       /* Level 2 halted                                  */
+                case EL2NSYNC:     return CErrors.L2NSYNC()     /* Level 2 not synchronized                        */
+                case EL3HLT:       return CErrors.L3HLT()       /* Level 3 halted                                  */
+                case EL3RST:       return CErrors.L3RST()       /* Level 3 reset                                   */
+                case ELIBACC:      return CErrors.LIBACC()      /* Can not access a needed shared library          */
+                case ELIBBAD:      return CErrors.LIBBAD()      /* Accessing a corrupted shared library            */
+                case ELIBEXEC:     return CErrors.LIBEXEC()     /* Cannot exec a shared library directly           */
+                case ELIBMAX:      return CErrors.LIBMAX()      /* Attempting to link in too many shared libraries */
+                case ELIBSCN:      return CErrors.LIBSCN()      /* .lib section in a.out corrupted                 */
+                case ELNRNG:       return CErrors.LNRNG()       /* Link number out of range                        */
+                case EMEDIUMTYPE:  return CErrors.MEDIUMTYPE()  /* Wrong medium type                               */
+                case ENAVAIL:      return CErrors.NAVAIL()      /* No XENIX semaphores available                   */
+                case ENOANO:       return CErrors.NOANO()       /* No anode                                        */
+                case ENOCSI:       return CErrors.NOCSI()       /* No CSI structure available                      */
+                case ENOKEY:       return CErrors.NOKEY()       /* Required key not available                      */
+                case ENOMEDIUM:    return CErrors.NOMEDIUM()    /* No medium found                                 */
+                case ENONET:       return CErrors.NONET()       /* Machine is not on the network                   */
+                case ENOPKG:       return CErrors.NOPKG()       /* Package not installed                           */
+                case ENOTNAM:      return CErrors.NOTNAM()      /* Not a XENIX named type file                     */
+                case ENOTUNIQ:     return CErrors.NOTUNIQ()     /* Name not unique on network                      */
+                case EREMCHG:      return CErrors.REMCHG()      /* Remote address changed                          */
+                case EREMOTEIO:    return CErrors.REMOTEIO()    /* Remote I/O error                                */
+                case ERESTART:     return CErrors.RESTART()     /* Interrupted system call should be restarted     */
+                case ERFKILL:      return CErrors.RFKILL()      /* Operation not possible due to RF-kill           */
+                case ESRMNT:       return CErrors.SRMNT()       /* Srmount error                                   */
+                case ESTRPIPE:     return CErrors.STRPIPE()     /* Streams pipe error                              */
+                case EUCLEAN:      return CErrors.UCLEAN()      /* Structure needs cleaning                        */
+                case EUNATCH:      return CErrors.UNATCH()      /* Protocol driver not attached                    */
+                case EXFULL:       return CErrors.XFULL()       /* Exchange full                                   */
                 default: break
-//@f:1
             }
         #endif
 

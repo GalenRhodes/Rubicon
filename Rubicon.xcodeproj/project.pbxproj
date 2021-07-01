@@ -12,6 +12,7 @@
 		1117D0438E55FD170186888E /* CharStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D4E1FE7DC31ACC3EDD25 /* CharStream.swift */; };
 		1117D067B34035FC4DED2A5F /* StringCharInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D75AC0C7F9E876B68A79 /* StringCharInputStream.swift */; };
 		1117D0FA4B824B9AA8B3744F /* Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D024E9FD850314516AC3 /* Other.swift */; };
+		1117D10FC30D8E68C4E8D473 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DBD4B424D66383DB6DC7 /* Dictionary.swift */; };
 		1117D17E5EF7E760249C2F80 /* ArraySlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DE11C36AAB336EB85953 /* ArraySlice.swift */; };
 		1117D1B588233A771C95B889 /* FloatingPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D42244601FA54CAFC111 /* FloatingPoint.swift */; };
 		1117D1D0104EFFB9AA1428C6 /* RangeReplaceableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DEDC46E1252EFD4F2D73 /* RangeReplaceableCollection.swift */; };
@@ -197,6 +198,7 @@
 		1117DB9676B8889E6B91EC70 /* StringFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringFormat.swift; sourceTree = "<group>"; };
 		1117DBAACB45BB76001F3CD4 /* Test_UTF-8_ext.dtd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Test_UTF-8_ext.dtd"; sourceTree = "<group>"; };
 		1117DBAD36877FAB907C2708 /* Test_UTF-8_ext.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Test_UTF-8_ext.xml"; sourceTree = "<group>"; };
+		1117DBD4B424D66383DB6DC7 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		1117DBD95F0A94119136985F /* semaphore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = semaphore.h; sourceTree = "<group>"; };
 		1117DC692C929553205439DD /* Test.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Test.xml; sourceTree = "<group>"; };
 		1117DC953EC772053F764FDE /* RegularExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegularExpression.swift; sourceTree = "<group>"; };
@@ -582,6 +584,7 @@
 				1117DE11C36AAB336EB85953 /* ArraySlice.swift */,
 				1117D23FF878E626C51AA636 /* CharacterSet.swift */,
 				1117DFFD880F237687D8BE44 /* StringProtocol.swift */,
+				1117DBD4B424D66383DB6DC7 /* Dictionary.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -865,6 +868,7 @@
 				1117DB005960C8847B27F6F8 /* StringProtocol.swift in Sources */,
 				1117DD7DFD059A61F8F73744 /* FileList.swift in Sources */,
 				1117D5753B50B9C2C6F41E5F /* PGErrors.swift in Sources */,
+				1117D10FC30D8E68C4E8D473 /* Dictionary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -28,16 +28,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Added a bunch of file pathname utilities.">
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/PGErrors.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_20_21,_7_46_AM_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_20_21__7_46_AM__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_21_21,_9_05_AM_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_21_21__9_05_AM__Default_Changelist_.xml" beforeDir="false" />
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="New general purpose errors added.">
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Dictionary.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/CErrors.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/CErrors.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Stream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Stream.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -387,14 +381,8 @@
       <workItem from="1624570209309" duration="109000" />
       <workItem from="1624589826910" duration="12000" />
       <workItem from="1624626063546" duration="21562000" />
-      <workItem from="1624974153341" duration="1090000" />
-    </task>
-    <task id="LOCAL-00221" summary="Workaround for Opensource version of NSRegularExpression.enumerateMatches(in:options:range:using:) marking the closure as @escaping.">
-      <created>1623788294359</created>
-      <option name="number" value="00221" />
-      <option name="presentableId" value="LOCAL-00221" />
-      <option name="project" value="LOCAL" />
-      <updated>1623788294359</updated>
+      <workItem from="1624974153341" duration="2470000" />
+      <workItem from="1625147313520" duration="370000" />
     </task>
     <task id="LOCAL-00222" summary="Workaround for Opensource version of NSRegularExpression.enumerateMatches(in:options:range:using:) marking the closure as @escaping.">
       <created>1623788390989</created>
@@ -732,7 +720,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624650473662</updated>
     </task>
-    <option name="localTasksCounter" value="270" />
+    <task id="LOCAL-00270" summary="New general purpose errors added.">
+      <created>1624975330294</created>
+      <option name="number" value="00270" />
+      <option name="presentableId" value="LOCAL-00270" />
+      <option name="project" value="LOCAL" />
+      <updated>1624975330295</updated>
+    </task>
+    <option name="localTasksCounter" value="271" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -765,7 +760,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Yes, I rewrote Binary Tree yet again.  I have an illness." />
     <MESSAGE value="StringProtocol.format(_:)" />
     <MESSAGE value="Cleanup..." />
     <MESSAGE value="Bug fixes in StringProtocol.split(on:limit:) and .split(on:limit:error:)." />
@@ -790,7 +784,8 @@
     <MESSAGE value="Bug fix in MarkInputStream." />
     <MESSAGE value="Deprecated `markUpdate()`. Renamed it to `markClear()`." />
     <MESSAGE value="Added a bunch of file pathname utilities." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a bunch of file pathname utilities." />
+    <MESSAGE value="New general purpose errors added." />
+    <option name="LAST_COMMIT_MESSAGE" value="New general purpose errors added." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

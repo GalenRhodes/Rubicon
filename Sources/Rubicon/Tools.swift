@@ -863,14 +863,37 @@ public func which(names: [String]) -> [String?] {
 ///
 @inlinable public func which(name: String) -> String? { which(names: [ name ])[0] }
 
-@inlinable public func launchApplication(exec: () throws -> Int32) -> Never {
+/*==============================================================================================================*/
+/// Applications that run on Linux need to have the main dispatch queue running in order to use Grand Central
+/// Dispatch. This function does that.
+/// 
+/// - Parameter exec: The closure that runs your application.
+/// - Returns: The exit code for your application or `1` if your application threw an uncaught error.
+///
+@inlinable public func launchApplication(exec: ([String]) throws -> Int32) -> Never {
     withoutActuallyEscaping(exec) { _exec in
         DispatchQueue.main.async {
-            var result: Int32 = 0
-            do { result = try _exec() }
-            catch let e { try? e.localizedDescription.write(toFile: "/dev/stderr", atomically: false, encoding: .utf8) }
-            exit(result)
+            do {
+                exit(try _exec(CommandLine.arguments))
+            }
+            catch let e {
+                try? "UNCAUGHT ERROR: \(e)".write(toFile: "/dev/stderr", atomically: false, encoding: .utf8)
+                exit(1)
+            }
         }
     }
     dispatchMain()
 }
+
+/*==============================================================================================================*/
+/// Somewhat shorthand for:
+/// ```
+/// type(of: o) == t.self
+/// ```
+/// 
+/// - Parameters:
+///   - o: The instance to check the type of.
+///   - t: The type to check for.
+/// - Returns: `true` if the type of `o` is equal to `t`.
+///
+@inlinable public func isType<O, T>(_ o: O, _ t: T.Type) -> Bool { (type(of: o) == t) }

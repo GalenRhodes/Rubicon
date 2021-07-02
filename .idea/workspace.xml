@@ -28,12 +28,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Added extension Dictionary.remapValues(_:).">
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Added `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/CErrors.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/CErrors.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Stream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Stream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/FileList.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/FileList.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.jazzy.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.jazzy.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/RubiconTests.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/RubiconTests.xcscheme" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/RubiconTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/RubiconTests/RubiconTests.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/Atomic.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/Atomic.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes/AtomicValue.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes/AtomicValue.html" afterDir="false" />
@@ -92,6 +91,7 @@
       <change beforePath="$PROJECT_DIR$/docs/Enums/FilePathError.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Enums/FilePathError.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Enums/NanoTimerError.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Enums/NanoTimerError.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Enums/NestType.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Enums/NestType.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Enums/PGErrors.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Enums/PGErrors.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Enums/RingByteBufferError.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Enums/RingByteBufferError.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Enums/SortOrdering.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Enums/SortOrdering.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Enums/StreamError.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Enums/StreamError.html" afterDir="false" />
@@ -159,7 +159,8 @@
       <change beforePath="$PROJECT_DIR$/docs/Functions/fromBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/fromBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/getSysTime_28delta_3A_29_5F_24s5deltaS2i_5FtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/getSysTime_28delta_3A_29_5F_24s5deltaS2i_5FtcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/ifNil_28_5F_3Athen_3AelseThen_3A_29_5F_24s_5F4then8elseThenq_5FxSg_5Fq_5FyKXEq_5FxKXEtKcr0_5FluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/ifNil_28_5F_3Athen_3AelseThen_3A_29_5F_24s_5F4then8elseThenq_5FxSg_5Fq_5FyKXEq_5FxKXEtKcr0_5FluD.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Functions/launchApplication_28exec_3A_29_5F_24s4execs5NeverOs5Int32VyKXE_5FtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/isType_28_5F_3A_5F_3A_29_5F_24sySbx_5Fq_5Fmtcr0_5FluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/isType_28_5F_3A_5F_3A_29_5F_24sySbx_5Fq_5Fmtcr0_5FluD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/launchApplication_28exec_3A_29_5F_24s4execs5NeverOs5Int32VSaySSGKXE_5FtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/launchApplication_28exec_3A_29_5F_24s4execs5NeverOs5Int32VSaySSGKXE_5FtcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/nDebug_28_5F_3A_5F_3Aseparator_3A_29_5F_24s_5F_5F9separatory7Rubicon8NestTypeO_5FypdSStcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/nDebug_28_5F_3A_5F_3Aseparator_3A_29_5F_24s_5F_5F9separatory7Rubicon8NestTypeO_5FypdSStcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/nextCharPosition_28currentPosition_3Acharacter_3AtabWidth_3A_29_5F_24s15currentPosition9character8tabWidths5Int32V10lineNumber_5FAE06columnH0tAeF_5FAeGt_5FSJs4Int8VtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/nextCharPosition_28currentPosition_3Acharacter_3AtabWidth_3A_29_5F_24s15currentPosition9character8tabWidths5Int32V10lineNumber_5FAE06columnH0tAeF_5FAeGt_5FSJs4Int8VtcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/readFromPipe_28pipe_3Aencoding_3A_29_5F_24s4pipe8encodingSSSgSo6NSPipeC_5FSS10FoundationE8EncodingVtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/readFromPipe_28pipe_3Aencoding_3A_29_5F_24s4pipe8encodingSSSgSo6NSPipeC_5FSS10FoundationE8EncodingVtcD.html" afterDir="false" />
@@ -236,7 +237,7 @@
       <change beforePath="$PROJECT_DIR$/docs/Typealiases/WordPointer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/WordPointer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Typealiases/WordROBuffer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/WordROBuffer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Typealiases/WordROPointer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/WordROPointer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/badge.svg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/badge.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/css/jazzy.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/css/jazzy.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/Atomic.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/Atomic.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/AtomicValue.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/AtomicValue.html" afterDir="false" />
@@ -295,6 +296,7 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/FilePathError.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/FilePathError.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/NanoTimerError.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/NanoTimerError.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/NestType.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/NestType.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/PGErrors.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/PGErrors.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/RingByteBufferError.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/RingByteBufferError.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/SortOrdering.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/SortOrdering.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/StreamError.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/StreamError.html" afterDir="false" />
@@ -362,7 +364,8 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/fromBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/fromBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/getSysTime_28delta_3A_29_5F_24s5deltaS2i_5FtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/getSysTime_28delta_3A_29_5F_24s5deltaS2i_5FtcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/ifNil_28_5F_3Athen_3AelseThen_3A_29_5F_24s_5F4then8elseThenq_5FxSg_5Fq_5FyKXEq_5FxKXEtKcr0_5FluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/ifNil_28_5F_3Athen_3AelseThen_3A_29_5F_24s_5F4then8elseThenq_5FxSg_5Fq_5FyKXEq_5FxKXEtKcr0_5FluD.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/launchApplication_28exec_3A_29_5F_24s4execs5NeverOs5Int32VyKXE_5FtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/isType_28_5F_3A_5F_3A_29_5F_24sySbx_5Fq_5Fmtcr0_5FluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/isType_28_5F_3A_5F_3A_29_5F_24sySbx_5Fq_5Fmtcr0_5FluD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/launchApplication_28exec_3A_29_5F_24s4execs5NeverOs5Int32VSaySSGKXE_5FtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/launchApplication_28exec_3A_29_5F_24s4execs5NeverOs5Int32VSaySSGKXE_5FtcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/nDebug_28_5F_3A_5F_3Aseparator_3A_29_5F_24s_5F_5F9separatory7Rubicon8NestTypeO_5FypdSStcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/nDebug_28_5F_3A_5F_3Aseparator_3A_29_5F_24s_5F_5F9separatory7Rubicon8NestTypeO_5FypdSStcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/nextCharPosition_28currentPosition_3Acharacter_3AtabWidth_3A_29_5F_24s15currentPosition9character8tabWidths5Int32V10lineNumber_5FAE06columnH0tAeF_5FAeGt_5FSJs4Int8VtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/nextCharPosition_28currentPosition_3Acharacter_3AtabWidth_3A_29_5F_24s15currentPosition9character8tabWidths5Int32V10lineNumber_5FAE06columnH0tAeF_5FAeGt_5FSJs4Int8VtcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/readFromPipe_28pipe_3Aencoding_3A_29_5F_24s4pipe8encodingSSSgSo6NSPipeC_5FSS10FoundationE8EncodingVtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/readFromPipe_28pipe_3Aencoding_3A_29_5F_24s4pipe8encodingSSSgSo6NSPipeC_5FSS10FoundationE8EncodingVtcD.html" afterDir="false" />
@@ -439,13 +442,10 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/WordPointer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/WordPointer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/WordROBuffer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/WordROBuffer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/WordROPointer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/WordROPointer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/css/jazzy.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/css/jazzy.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/search.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/search.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/docSet.dsidx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/docSet.dsidx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.tgz" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.tgz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/search.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/search.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/undocumented.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/undocumented.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -491,12 +491,13 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Extensions/Dictionary.swift" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Tools.swift" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="amon5vo6" />
@@ -544,7 +545,7 @@
       <recent name="$PROJECT_DIR$/Sources/semaphore" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DocFixer (Jazzy)">
+  <component name="RunManager" selected="XCTest.RubiconTests">
     <list>
       <item itemvalue="Application.Experiments" />
       <item itemvalue="Application.DocFixer Remote" />
@@ -796,21 +797,10 @@
       <workItem from="1624589826910" duration="12000" />
       <workItem from="1624626063546" duration="21562000" />
       <workItem from="1624974153341" duration="2470000" />
-      <workItem from="1625147313520" duration="1854000" />
-    </task>
-    <task id="LOCAL-00223" summary="Workaround for Opensource version of NSRegularExpression.enumerateMatches(in:options:range:using:) marking the closure as @escaping.">
-      <created>1623868617617</created>
-      <option name="number" value="00223" />
-      <option name="presentableId" value="LOCAL-00223" />
-      <option name="project" value="LOCAL" />
-      <updated>1623868617618</updated>
-    </task>
-    <task id="LOCAL-00224" summary="Linux Tests">
-      <created>1623869319590</created>
-      <option name="number" value="00224" />
-      <option name="presentableId" value="LOCAL-00224" />
-      <option name="project" value="LOCAL" />
-      <updated>1623869319590</updated>
+      <workItem from="1625147313520" duration="2581000" />
+      <workItem from="1625152059416" duration="680000" />
+      <workItem from="1625163949666" duration="253000" />
+      <workItem from="1625235720623" duration="640000" />
     </task>
     <task id="LOCAL-00225" summary="Linux Tests">
       <created>1623869742393</created>
@@ -1141,7 +1131,21 @@
       <option name="project" value="LOCAL" />
       <updated>1625147799095</updated>
     </task>
-    <option name="localTasksCounter" value="272" />
+    <task id="LOCAL-00272" summary="Added `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`">
+      <created>1625150700564</created>
+      <option name="number" value="00272" />
+      <option name="presentableId" value="LOCAL-00272" />
+      <option name="project" value="LOCAL" />
+      <updated>1625150700564</updated>
+    </task>
+    <task id="LOCAL-00273" summary="Added `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`">
+      <created>1625150716028</created>
+      <option name="number" value="00273" />
+      <option name="presentableId" value="LOCAL-00273" />
+      <option name="project" value="LOCAL" />
+      <updated>1625150716028</updated>
+    </task>
+    <option name="localTasksCounter" value="274" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1174,7 +1178,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Cleanup..." />
     <MESSAGE value="Bug fixes in StringProtocol.split(on:limit:) and .split(on:limit:error:)." />
     <MESSAGE value="And of course someone got a bug up their butt and make CFGetRetainCount go away on Linux. " />
     <MESSAGE value="Updated Package.swift" />
@@ -1199,7 +1202,8 @@
     <MESSAGE value="Added a bunch of file pathname utilities." />
     <MESSAGE value="New general purpose errors added." />
     <MESSAGE value="Added extension Dictionary.remapValues(_:)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added extension Dictionary.remapValues(_:)." />
+    <MESSAGE value="Added `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

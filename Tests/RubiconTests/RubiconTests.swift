@@ -23,6 +23,14 @@ let testFile:     String = "\(testFilesDir)/Test_UTF-8.xml"
 
 public class RubiconTests: XCTestCase {
 
+    func testIsType() throws {
+        let a: Int = 0
+        let b: Int64 = 0
+
+        print("a: \(isType(a, Int.self))")
+        print("b: \(isType(b, Int.self))")
+    }
+
     func testGetFileList() throws {
         do {
             let list = try FileManager.default.directoryFiles(atPath: "\(FileManager.default.currentDirectoryPath)", resolveSymLinks: true, traverseDirectorySymLinks: false) { p, f, a in

@@ -26,22 +26,42 @@ public enum FilePathError: Error {
 
 extension Dictionary where Key == FileAttributeKey, Value == Any {
 //@f:0
-    @inlinable public var fileCreationDate:          Date?             { (self as NSDictionary).fileCreationDate()          }
-    @inlinable public var fileExtensionHidden:       Bool              { (self as NSDictionary).fileExtensionHidden()       }
-    @inlinable public var fileGroupOwnerAccountID:   NSNumber?         { (self as NSDictionary).fileGroupOwnerAccountID()   }
-    @inlinable public var fileGroupOwnerAccountName: String?           { (self as NSDictionary).fileGroupOwnerAccountName() }
-    @inlinable public var fileHFSCreatorCode:        OSType            { (self as NSDictionary).fileHFSCreatorCode()        }
-    @inlinable public var fileHFSTypeCode:           OSType            { (self as NSDictionary).fileHFSTypeCode()           }
-    @inlinable public var fileIsAppendOnly:          Bool              { (self as NSDictionary).fileIsAppendOnly()          }
-    @inlinable public var fileIsImmutable:           Bool              { (self as NSDictionary).fileIsImmutable()           }
-    @inlinable public var fileModificationDate:      Date?             { (self as NSDictionary).fileModificationDate()      }
-    @inlinable public var fileOwnerAccountID:        NSNumber?         { (self as NSDictionary).fileOwnerAccountID()        }
-    @inlinable public var fileOwnerAccountName:      String?           { (self as NSDictionary).fileOwnerAccountName()      }
-    @inlinable public var filePosixPermissions:      Int               { (self as NSDictionary).filePosixPermissions()      }
-    @inlinable public var fileSize:                  UInt64            { (self as NSDictionary).fileSize()                  }
-    @inlinable public var fileSystemFileNumber:      Int               { (self as NSDictionary).fileSystemFileNumber()      }
-    @inlinable public var fileSystemNumber:          Int               { (self as NSDictionary).fileSystemNumber()          }
-    @inlinable public var fileType:                  FileAttributeType {
+    #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+        @inlinable public var fileCreationDate:          Date?     { (self as NSDictionary).fileCreationDate()          }
+        @inlinable public var fileExtensionHidden:       Bool      { (self as NSDictionary).fileExtensionHidden()       }
+        @inlinable public var fileGroupOwnerAccountID:   NSNumber? { (self as NSDictionary).fileGroupOwnerAccountID()   }
+        @inlinable public var fileGroupOwnerAccountName: String?   { (self as NSDictionary).fileGroupOwnerAccountName() }
+        @inlinable public var fileHFSCreatorCode:        OSType    { (self as NSDictionary).fileHFSCreatorCode()        }
+        @inlinable public var fileHFSTypeCode:           OSType    { (self as NSDictionary).fileHFSTypeCode()           }
+        @inlinable public var fileIsAppendOnly:          Bool      { (self as NSDictionary).fileIsAppendOnly()          }
+        @inlinable public var fileIsImmutable:           Bool      { (self as NSDictionary).fileIsImmutable()           }
+        @inlinable public var fileModificationDate:      Date?     { (self as NSDictionary).fileModificationDate()      }
+        @inlinable public var fileOwnerAccountID:        NSNumber? { (self as NSDictionary).fileOwnerAccountID()        }
+        @inlinable public var fileOwnerAccountName:      String?   { (self as NSDictionary).fileOwnerAccountName()      }
+        @inlinable public var filePosixPermissions:      Int       { (self as NSDictionary).filePosixPermissions()      }
+        @inlinable public var fileSize:                  UInt64    { (self as NSDictionary).fileSize()                  }
+        @inlinable public var fileSystemFileNumber:      Int       { (self as NSDictionary).fileSystemFileNumber()      }
+        @inlinable public var fileSystemNumber:          Int       { (self as NSDictionary).fileSystemNumber()          }
+    #else
+        @inlinable public var fileCreationDate:          Date?     { (self[FileAttributeKey.creationDate]          as? Date)              }
+        @inlinable public var fileExtensionHidden:       Bool      { (self[FileAttributeKey.extensionHidden]       as? Bool)     ?? false }
+        @inlinable public var fileGroupOwnerAccountID:   NSNumber? { (self[FileAttributeKey.groupOwnerAccountID]   as? NSNumber)          }
+        @inlinable public var fileGroupOwnerAccountName: String?   { (self[FileAttributeKey.groupOwnerAccountName] as? String)            }
+        @inlinable public var fileHFSCreatorCode:        OSType    { (self[FileAttributeKey.hfsCreatorCode]        as? OSType)            }
+        @inlinable public var fileHFSTypeCode:           OSType    { (self[FileAttributeKey.hfsTypeCode]           as? OSType)            }
+        @inlinable public var fileIsAppendOnly:          Bool      { (self[FileAttributeKey.appendOnly]            as? Bool)     ?? false }
+        @inlinable public var fileIsImmutable:           Bool      { (self[FileAttributeKey.immutable]             as? Bool)     ?? false }
+        @inlinable public var fileModificationDate:      Date?     { (self[FileAttributeKey.modificationDate]      as? Date)              }
+        @inlinable public var fileOwnerAccountID:        NSNumber? { (self[FileAttributeKey.ownerAccountID]        as? NSNumber)          }
+        @inlinable public var fileOwnerAccountName:      String?   { (self[FileAttributeKey.ownerAccountName]      as? String)            }
+        @inlinable public var filePosixPermissions:      Int       { (self[FileAttributeKey.posixPermissions]      as? Int)      ?? 0     }
+        @inlinable public var fileSize:                  UInt64    { (self[FileAttributeKey.size]                  as? UInt64)   ?? 0     }
+        @inlinable public var fileSystemFileNumber:      Int       { (self[FileAttributeKey.systemFileNumber]      as? Int)      ?? 0     }
+        @inlinable public var fileSystemNumber:          Int       { (self[FileAttributeKey.systemNumber]          as? Int)      ?? 0     }
+    #endif
+//@f:1
+
+    @inlinable public var fileType: FileAttributeType {
         guard let t = (self[.type] as? String) else { return .typeUnknown }
         switch t {
             case FileAttributeType.typeBlockSpecial.rawValue:     return .typeBlockSpecial
@@ -53,7 +73,6 @@ extension Dictionary where Key == FileAttributeKey, Value == Any {
             default:                                              return .typeUnknown
         }
     }
-//@f:1
 }
 
 extension FileManager {
@@ -79,7 +98,7 @@ extension FileManager {
 
     /*==========================================================================================================*/
     /// Get a list of file from a directory.
-    /// 
+    ///
     /// - Parameters:
     ///   - atPath: The directory to get the list of files from.
     ///   - resolveSymLinks: If `true` then any symbolic links found will be resolved before being sent to the the
@@ -118,15 +137,15 @@ extension FileManager {
 
     /*==========================================================================================================*/
     /// Recursively resolve a symbolic link.
-    /// 
+    ///
     /// This method resolves all symbolic links, extra `/` characters, and references to `.` and `..` in `path`.
     /// It will resolve both absolute and relative paths and return the absolute pathname corresponding to `path`.
     /// All components of `path` must exist when this method is called.
-    /// 
+    ///
     /// This method behaves like the [Linux readlink
     /// utility](https://man7.org/linux/man-pages/man1/readlink.1.html) when using the `--canonicalize-existing`
     /// flag.
-    /// 
+    ///
     /// - Parameter path: The path to resolve.
     /// - Returns: The resolved file.
     /// - Throws: If an I/O error occurs or if one of the symbolic link components is broken.

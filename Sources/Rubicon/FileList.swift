@@ -26,7 +26,7 @@ public enum FilePathError: Error {
 
 extension Dictionary where Key == FileAttributeKey, Value == Any {
 //@f:0
-    #if !(os(macOS) || os(iOS) || os(watchOS) || os(tvOS))
+    #if (os(macOS) || os(iOS) || os(watchOS) || os(tvOS))
         @inlinable public var fileCreationDate:          Date?     { (self as NSDictionary).fileCreationDate()          }
         @inlinable public var fileExtensionHidden:       Bool      { (self as NSDictionary).fileExtensionHidden()       }
         @inlinable public var fileGroupOwnerAccountID:   NSNumber? { (self as NSDictionary).fileGroupOwnerAccountID()   }

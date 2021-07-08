@@ -26,7 +26,7 @@ public enum FilePathError: Error {
 
 extension Dictionary where Key == FileAttributeKey, Value == Any {
 //@f:0
-    #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+    #if !(os(macOS) || os(iOS) || os(watchOS) || os(tvOS))
         @inlinable public var fileCreationDate:          Date?     { (self as NSDictionary).fileCreationDate()          }
         @inlinable public var fileExtensionHidden:       Bool      { (self as NSDictionary).fileExtensionHidden()       }
         @inlinable public var fileGroupOwnerAccountID:   NSNumber? { (self as NSDictionary).fileGroupOwnerAccountID()   }
@@ -43,21 +43,21 @@ extension Dictionary where Key == FileAttributeKey, Value == Any {
         @inlinable public var fileSystemFileNumber:      Int       { (self as NSDictionary).fileSystemFileNumber()      }
         @inlinable public var fileSystemNumber:          Int       { (self as NSDictionary).fileSystemNumber()          }
     #else
-        @inlinable public var fileCreationDate:          Date?     { (self[FileAttributeKey.creationDate]          as? Date)              }
-        @inlinable public var fileExtensionHidden:       Bool      { (self[FileAttributeKey.extensionHidden]       as? Bool)     ?? false }
-        @inlinable public var fileGroupOwnerAccountID:   NSNumber? { (self[FileAttributeKey.groupOwnerAccountID]   as? NSNumber)          }
-        @inlinable public var fileGroupOwnerAccountName: String?   { (self[FileAttributeKey.groupOwnerAccountName] as? String)            }
-        @inlinable public var fileHFSCreatorCode:        OSType    { (self[FileAttributeKey.hfsCreatorCode]        as? OSType)            }
-        @inlinable public var fileHFSTypeCode:           OSType    { (self[FileAttributeKey.hfsTypeCode]           as? OSType)            }
-        @inlinable public var fileIsAppendOnly:          Bool      { (self[FileAttributeKey.appendOnly]            as? Bool)     ?? false }
-        @inlinable public var fileIsImmutable:           Bool      { (self[FileAttributeKey.immutable]             as? Bool)     ?? false }
-        @inlinable public var fileModificationDate:      Date?     { (self[FileAttributeKey.modificationDate]      as? Date)              }
-        @inlinable public var fileOwnerAccountID:        NSNumber? { (self[FileAttributeKey.ownerAccountID]        as? NSNumber)          }
-        @inlinable public var fileOwnerAccountName:      String?   { (self[FileAttributeKey.ownerAccountName]      as? String)            }
-        @inlinable public var filePosixPermissions:      Int       { (self[FileAttributeKey.posixPermissions]      as? Int)      ?? 0     }
-        @inlinable public var fileSize:                  UInt64    { (self[FileAttributeKey.size]                  as? UInt64)   ?? 0     }
-        @inlinable public var fileSystemFileNumber:      Int       { (self[FileAttributeKey.systemFileNumber]      as? Int)      ?? 0     }
-        @inlinable public var fileSystemNumber:          Int       { (self[FileAttributeKey.systemNumber]          as? Int)      ?? 0     }
+        @inlinable public var fileCreationDate:          Date?     { let v = self[FileAttributeKey.creationDate];          return (((v == nil) ? nil : (v! as? Date)))              }
+        @inlinable public var fileExtensionHidden:       Bool      { let v = self[FileAttributeKey.extensionHidden];       return (((v == nil) ? nil : (v! as? Bool))     ?? false) }
+        @inlinable public var fileGroupOwnerAccountID:   NSNumber? { let v = self[FileAttributeKey.groupOwnerAccountID];   return (((v == nil) ? nil : (v! as? NSNumber)))          }
+        @inlinable public var fileGroupOwnerAccountName: String?   { let v = self[FileAttributeKey.groupOwnerAccountName]; return (((v == nil) ? nil : (v! as? String)))            }
+        @inlinable public var fileHFSCreatorCode:        OSType    { let v = self[FileAttributeKey.hfsCreatorCode];        return (((v == nil) ? nil : (v! as? OSType))   ?? 0)     }
+        @inlinable public var fileHFSTypeCode:           OSType    { let v = self[FileAttributeKey.hfsTypeCode];           return (((v == nil) ? nil : (v! as? OSType))   ?? 0)     }
+        @inlinable public var fileIsAppendOnly:          Bool      { let v = self[FileAttributeKey.appendOnly];            return (((v == nil) ? nil : (v! as? Bool))     ?? false) }
+        @inlinable public var fileIsImmutable:           Bool      { let v = self[FileAttributeKey.immutable];             return (((v == nil) ? nil : (v! as? Bool))     ?? false) }
+        @inlinable public var fileModificationDate:      Date?     { let v = self[FileAttributeKey.modificationDate];      return (((v == nil) ? nil : (v! as? Date)))              }
+        @inlinable public var fileOwnerAccountID:        NSNumber? { let v = self[FileAttributeKey.ownerAccountID];        return (((v == nil) ? nil : (v! as? NSNumber)))          }
+        @inlinable public var fileOwnerAccountName:      String?   { let v = self[FileAttributeKey.ownerAccountName];      return (((v == nil) ? nil : (v! as? String)))            }
+        @inlinable public var filePosixPermissions:      Int       { let v = self[FileAttributeKey.posixPermissions];      return (((v == nil) ? nil : (v! as? Int))      ?? 0)     }
+        @inlinable public var fileSize:                  UInt64    { let v = self[FileAttributeKey.size];                  return (((v == nil) ? nil : (v! as? UInt64))   ?? 0)     }
+        @inlinable public var fileSystemFileNumber:      Int       { let v = self[FileAttributeKey.systemFileNumber];      return (((v == nil) ? nil : (v! as? Int))      ?? 0)     }
+        @inlinable public var fileSystemNumber:          Int       { let v = self[FileAttributeKey.systemNumber];          return (((v == nil) ? nil : (v! as? Int))      ?? 0)     }
     #endif
 //@f:1
 

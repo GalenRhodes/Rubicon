@@ -24,7 +24,9 @@ import Foundation
 
 extension String {
 //@f:0
+    #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
     @inlinable public var abbreviatingWithTildeInPath: String   { (self as NSString).abbreviatingWithTildeInPath }
+    #endif
     @inlinable public var deletingLastPathComponent:   String   { (self as NSString).deletingLastPathComponent   }
     @inlinable public var deletingPathExtension:       String   { (self as NSString).deletingPathExtension       }
     @inlinable public var expandingTildeInPath:        String   { (self as NSString).expandingTildeInPath        }
@@ -39,7 +41,7 @@ extension String {
     /// Allows creating a <code>[String](https://developer.apple.com/documentation/swift/string/)</code> from the
     /// contents of an
     /// <code>[InputStream](https://developer.apple.com/documentation/foundation/inputstream)</code>.
-    /// 
+    ///
     /// - Parameters:
     ///   - inputStream: The input stream.
     ///   - encoding: The encoding. Defaults to
@@ -59,11 +61,11 @@ extension String {
 
     /*==========================================================================================================*/
     /// Shorthand for:
-    /// 
+    ///
     /// ```
     /// for _ in (0 ..< count) { aString.append(char) }
     /// ```
-    /// 
+    ///
     /// - Parameters:
     ///   - char: The character to append to this string.
     ///   - count: The number of times to append the character.
@@ -72,11 +74,11 @@ extension String {
 
     /*==========================================================================================================*/
     /// Shorthand for:
-    /// 
+    ///
     /// ```
     /// for _ in (0 ..< count) { aString.insert(char, at: aString.startIndex) }
     /// ```
-    /// 
+    ///
     /// - Parameters:
     ///   - char: The character to prepend to the beginning of this string.
     ///   - count: The number of times to prepend the character.
@@ -89,11 +91,11 @@ extension String {
 
     /*==========================================================================================================*/
     /// Shorthand for:
-    /// 
+    ///
     /// ```
     /// aString.insert(contentsOf: aCollection, at: aString.startIndex)
     /// ```
-    /// 
+    ///
     /// - Parameter c: The collection of characters to prepend.
     /// - Returns: The index of first character in the string BEFORE calling this method.
     ///

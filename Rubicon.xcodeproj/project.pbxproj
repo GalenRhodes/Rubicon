@@ -1247,7 +1247,7 @@
 			repositoryURL = "https://github.com/GalenRhodes/Chadakoin.git";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 1.0.4;
+				minimumVersion = 1.0.5;
 			};
 		};
 		83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer" */ = {

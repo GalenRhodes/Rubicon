@@ -18,7 +18,7 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "RingBuffer", url: "https://github.com/GalenRhodes/RingBuffer", .upToNextMajor(from: "1.0.12")),
-        .package(name: "Chadakoin", url: "https://github.com/GalenRhodes/Chadakoin", .upToNextMinor(from: "1.0.4")),
+        .package(name: "Chadakoin", url: "https://github.com/GalenRhodes/Chadakoin", .upToNextMinor(from: "1.0.5")),
     ],
     targets: [
         .systemLibrary(name: "iconv"),

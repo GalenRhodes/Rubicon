@@ -9,13 +9,12 @@
 import Foundation
 import PGDocFixer
 
-func docFixer() -> Int {
+DispatchQueue.main.async {
     let mAndR: [RegexRepl] = [
         RegexRepl(pattern: "(?<!\\w|`)(nil)(?!\\w|`)", repl: "`$1`"),
         RegexRepl(pattern: "(?<!\\w|`)(\\w+(?:\\.\\w+)*\\([^)]*\\))(?!\\w|`)", repl: "`$1`"),
         RegexRepl(pattern: "(?<!\\w|\\[)([Zz][Ee][Rr][Oo])(?!\\w|\\])", repl: "<code>[$1](https://en.wikipedia.org/wiki/0)</code>")
     ]
-    return doDocFixer(args: CommandLine.arguments, replacements: mAndR)
+    exit(Int32(doDocFixer(args: CommandLine.arguments, replacements: mAndR)))
 }
-
-exit(Int32(docFixer()))
+dispatchMain()

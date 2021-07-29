@@ -59,6 +59,7 @@
 		1117DEE9775577A7B6014CE0 /* UnnamedSemaphore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D91C10BA91C95A9736D8 /* UnnamedSemaphore.swift */; };
 		1117DF27B358A367D4C2876E /* IConv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D88BD3FB3246B1DFB316 /* IConv.swift */; };
 		1117DFAA0AE0006304938EEC /* BinaryInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DDD0B2FEC71052547523 /* BinaryInteger.swift */; };
+		832AC49A26B2D83E00A3DB9F /* Chadakoin in Frameworks */ = {isa = PBXBuildFile; productRef = 832AC49926B2D83E00A3DB9F /* Chadakoin */; };
 		8398BC14266A6CB200671FE0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8398BC13266A6CB200671FE0 /* main.swift */; };
 		8398BC18266A6D3D00671FE0 /* Rubicon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C67A72250EC02000C0F21E /* Rubicon.framework */; };
 		83C67A7C250EC02000C0F21E /* Rubicon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C67A72250EC02000C0F21E /* Rubicon.framework */; };
@@ -95,7 +96,7 @@
 			remoteGlobalIDString = 83C67A71250EC02000C0F21E;
 			remoteInfo = Rubicon;
 		};
-		83C67A7D250EC02000C0F21E /* PBXContainerItemProxy */ = {
+		83A553E826B2DF8400F498AC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83C67A69250EC02000C0F21E /* Project object */;
 			proxyType = 1;
@@ -267,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83C7E7C2263879E500F3C28E /* RingBuffer in Frameworks */,
+				832AC49A26B2D83E00A3DB9F /* Chadakoin in Frameworks */,
 				83F8D66925C47EC0004DD445 /* libiconv.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -686,6 +688,7 @@
 			name = Rubicon;
 			packageProductDependencies = (
 				83BA732E254ABED0009B8351 /* RingBuffer */,
+				832AC49926B2D83E00A3DB9F /* Chadakoin */,
 			);
 			productName = Rubicon;
 			productReference = 83C67A72250EC02000C0F21E /* Rubicon.framework */;
@@ -702,7 +705,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				83C67A7E250EC02000C0F21E /* PBXTargetDependency */,
+				83A553E926B2DF8400F498AC /* PBXTargetDependency */,
 			);
 			name = RubiconTests;
 			packageProductDependencies = (
@@ -767,8 +770,9 @@
 			);
 			mainGroup = 83C67A68250EC02000C0F21E;
 			packageReferences = (
-				83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer.git" */,
-				83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer.git" */,
+				83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer" */,
+				83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer" */,
+				832AC49826B2D83E00A3DB9F /* XCRemoteSwiftPackageReference "Chadakoin" */,
 			);
 			productRefGroup = 83C67A73250EC02000C0F21E /* Products */;
 			projectDirPath = "";
@@ -905,10 +909,10 @@
 			target = 83C67A71250EC02000C0F21E /* Rubicon */;
 			targetProxy = 8398BC1A266A6D3D00671FE0 /* PBXContainerItemProxy */;
 		};
-		83C67A7E250EC02000C0F21E /* PBXTargetDependency */ = {
+		83A553E926B2DF8400F498AC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 83C67A71250EC02000C0F21E /* Rubicon */;
-			targetProxy = 83C67A7D250EC02000C0F21E /* PBXContainerItemProxy */;
+			targetProxy = 83A553E826B2DF8400F498AC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1238,7 +1242,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer.git" */ = {
+		832AC49826B2D83E00A3DB9F /* XCRemoteSwiftPackageReference "Chadakoin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GalenRhodes/Chadakoin.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.0.4;
+			};
+		};
+		83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/GalenRhodes/RingBuffer.git";
 			requirement = {
@@ -1246,7 +1258,7 @@
 				minimumVersion = 1.0.12;
 			};
 		};
-		83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer.git" */ = {
+		83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/GalenRhodes/PGDocFixer.git";
 			requirement = {
@@ -1257,14 +1269,19 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		832AC49926B2D83E00A3DB9F /* Chadakoin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 832AC49826B2D83E00A3DB9F /* XCRemoteSwiftPackageReference "Chadakoin" */;
+			productName = Chadakoin;
+		};
 		83BA732E254ABED0009B8351 /* RingBuffer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer.git" */;
+			package = 83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer" */;
 			productName = RingBuffer;
 		};
 		83C67AEF250EC40E00C0F21E /* PGDocFixer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer.git" */;
+			package = 83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer" */;
 			productName = PGDocFixer;
 		};
 /* End XCSwiftPackageProductDependency section */

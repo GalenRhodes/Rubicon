@@ -2,12 +2,21 @@
   "object": {
     "pins": [
       {
+        "package": "Chadakoin",
+        "repositoryURL": "https://github.com/GalenRhodes/Chadakoin.git",
+        "state": {
+          "branch": null,
+          "revision": "84d232fd1767d78f408dd2855e24d1519c588069",
+          "version": "1.0.4"
+        }
+      },
+      {
         "package": "PGDocFixer",
         "repositoryURL": "https://github.com/GalenRhodes/PGDocFixer.git",
         "state": {
           "branch": null,
-          "revision": "b2707d225c2b4bbe5771b6759c34174b65a29498",
-          "version": "1.0.10"
+          "revision": "9a5f8b761ddaaadb883fc01f733b5fcbf46d2b3a",
+          "version": "1.0.11"
         }
       },
       {

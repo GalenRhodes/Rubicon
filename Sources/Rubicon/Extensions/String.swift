@@ -48,15 +48,8 @@ extension String {
     ///               <code>[String.Encoding.utf8](https://developer.apple.com/documentation/swift/string/encoding/1780106-utf8)</code>
     ///
     public init?(inputStream: InputStream, encoding: String.Encoding = String.Encoding.utf8) {
-        if inputStream.status(in: .notOpen) {
-            inputStream.open()
-        }
-        if let data = Data(inputStream: inputStream) {
-            self.init(data: data, encoding: encoding)
-        }
-        else {
-            return nil
-        }
+        guard let data = Data(inputStream: inputStream) else { return nil }
+        self.init(data: data, encoding: encoding)
     }
 
     /*==========================================================================================================*/

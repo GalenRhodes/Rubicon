@@ -14,7 +14,7 @@ let package = Package(
     ],
     products: [
         .library(name: "Rubicon", targets: [ "Rubicon", ]),
-//        .executable(name: "Experiments", targets: [ "Experiments" ]),
+        .executable(name: "Experiments", targets: [ "Experiments" ]),
     ],
     dependencies: [
         .package(name: "RingBuffer", url: "https://github.com/GalenRhodes/RingBuffer", .upToNextMajor(from: "1.0.12")),
@@ -31,7 +31,7 @@ let package = Package(
             ]
         ),
         .testTarget(name: "RubiconTests", dependencies: [ "Rubicon", ], exclude: [ "Info.plist", ], resources: [ .copy("Files"), ]),
- //       .executableTarget(name: "Experiments", dependencies: [ "Rubicon", ])
+        .executableTarget(name: "Experiments", dependencies: [ "Rubicon", ])
     ]
 )
 //@f:1

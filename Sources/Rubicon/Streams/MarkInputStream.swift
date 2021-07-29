@@ -158,6 +158,10 @@ open class MarkInputStream: InputStream {
         self.init(inputStream: stream, autoClose: true)
     }
 
+    open override func property(forKey key: PropertyKey) -> Any? { inputStream.property(forKey: key) }
+
+    open override func setProperty(_ property: Any?, forKey key: PropertyKey) -> Bool { inputStream.setProperty(property, forKey: key) }
+
     /*==========================================================================================================*/
     /// Reads up to a given number of bytes into a given buffer.
     ///

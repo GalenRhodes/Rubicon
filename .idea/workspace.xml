@@ -28,7 +28,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Updated to latest version of Chadakoin.">
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Made sure MarkInputStream.getProperty(forKey:) passes down to underlying input stream.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" afterDir="false" />
     </list>
@@ -405,14 +405,9 @@
       <workItem from="1627562134375" duration="2231000" />
       <workItem from="1627565150154" duration="2037000" />
       <workItem from="1627587861833" duration="132000" />
-      <workItem from="1627588591242" duration="833000" />
-    </task>
-    <task id="LOCAL-00235" summary="Linux Tests">
-      <created>1623875597126</created>
-      <option name="number" value="00235" />
-      <option name="presentableId" value="LOCAL-00235" />
-      <option name="project" value="LOCAL" />
-      <updated>1623875597126</updated>
+      <workItem from="1627588591242" duration="906000" />
+      <workItem from="1627645436171" duration="171000" />
+      <workItem from="1627645635369" duration="68000" />
     </task>
     <task id="LOCAL-00236" summary="Linux Tests">
       <created>1623875835820</created>
@@ -750,7 +745,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627587954669</updated>
     </task>
-    <option name="localTasksCounter" value="284" />
+    <task id="LOCAL-00284" summary="Made sure MarkInputStream.getProperty(forKey:) passes down to underlying input stream.">
+      <created>1627590033441</created>
+      <option name="number" value="00284" />
+      <option name="presentableId" value="LOCAL-00284" />
+      <option name="project" value="LOCAL" />
+      <updated>1627590033441</updated>
+    </task>
+    <option name="localTasksCounter" value="285" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -783,7 +785,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="More changes for Linux." />
     <MESSAGE value="Bug fix" />
     <MESSAGE value="Added peek() to CharInputStream protocol." />
     <MESSAGE value="Added lock() and unlock() to CharStream protocol." />
@@ -808,7 +809,8 @@
     <MESSAGE value="Linux fixes." />
     <MESSAGE value="Blah, blah, blah." />
     <MESSAGE value="Updated to latest version of Chadakoin." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated to latest version of Chadakoin." />
+    <MESSAGE value="Made sure MarkInputStream.getProperty(forKey:) passes down to underlying input stream." />
+    <option name="LAST_COMMIT_MESSAGE" value="Made sure MarkInputStream.getProperty(forKey:) passes down to underlying input stream." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -290,7 +290,7 @@ open class MarkInputStream: InputStream {
     /// - Parameter count: the number of characters to back out.
     /// - Returns: The number of characters actually backed out in case there weren't `count` characters available.
     ///
-    open func markBackup(count: Int = 1) -> Int { lock.withLock { return ((isOpen && (count > 0)) ? _markBackup(count: count) : 0) } }
+    @discardableResult open func markBackup(count: Int = 1) -> Int { lock.withLock { return ((isOpen && (count > 0)) ? _markBackup(count: count) : 0) } }
 
     /*==========================================================================================================*/
     /// Marks the current position in the stream.

@@ -71,7 +71,7 @@ open class MarkInputStream: InputStream {
 
     /*==========================================================================================================*/
     /// Main initializer. Initializes this stream with the backing stream.
-    ///
+    /// 
     /// - Parameters:
     ///   - inputStream: The backing input stream.
     ///   - maxMarkLength: The maximum distance the read pointer will be allowed to get from the mark pointer.
@@ -90,7 +90,7 @@ open class MarkInputStream: InputStream {
     /// Initializes and returns an `MarkInputStream` object for reading from a given
     /// <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code> object. The stream must be
     /// opened before it can be used.
-    ///
+    /// 
     /// - Parameter data: The data object from which to read. The contents of data are copied.
     ///
     public override convenience init(data: Data) {
@@ -101,7 +101,7 @@ open class MarkInputStream: InputStream {
     /// Initializes and returns an `MarkInputStream` object for reading from a given
     /// <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code> object. The stream must be
     /// opened before it can be used.
-    ///
+    /// 
     /// - Parameters:
     ///   - data: The data object from which to read. The contents of data are copied.
     ///   - maxMarkLength: The maximum distance the read pointer will be allowed to get from the mark pointer.
@@ -114,14 +114,14 @@ open class MarkInputStream: InputStream {
 
     /*==========================================================================================================*/
     /// Initializes and returns an NSInputStream object that reads data from the file at a given URL.
-    ///
+    /// 
     /// - Parameter url: The URL to the file.
     ///
     public override convenience init?(url: URL) { self.init(url: url, options: [], authenticate: nil, maxMarkLength: Int.max) }
 
     /*==========================================================================================================*/
     /// Initializes and returns an NSInputStream object that reads data from the file at a given URL.
-    ///
+    /// 
     /// - Parameters:
     ///   - url: The URL to the file.
     ///   - options: The options for opening the URL.
@@ -137,7 +137,7 @@ open class MarkInputStream: InputStream {
 
     /*==========================================================================================================*/
     /// Initializes and returns an NSInputStream object that reads data from the file at a given path.
-    ///
+    /// 
     /// - Parameter path: The path to the file.
     ///
     public convenience init?(fileAtPath path: String) {
@@ -146,7 +146,7 @@ open class MarkInputStream: InputStream {
 
     /*==========================================================================================================*/
     /// Initializes and returns an NSInputStream object that reads data from the file at a given path.
-    ///
+    /// 
     /// - Parameters:
     ///   - path: The path to the file.
     ///   - maxMarkLength: The maximum distance the read pointer will be allowed to get from the mark pointer.
@@ -164,7 +164,7 @@ open class MarkInputStream: InputStream {
 
     /*==========================================================================================================*/
     /// Reads up to a given number of bytes into a given buffer.
-    ///
+    /// 
     /// - Parameters:
     ///   - inputBuffer: A data buffer. The buffer must be large enough to contain the number of bytes specified
     ///                  by len.
@@ -185,7 +185,7 @@ open class MarkInputStream: InputStream {
     /*==========================================================================================================*/
     /// Returns by reference a pointer to a read buffer and, by reference, the number of bytes available, and
     /// returns a Boolean value that indicates whether the buffer is available.
-    ///
+    /// 
     /// - Parameters:
     ///   - bufferPtr: Upon return, contains a pointer to a read buffer. The buffer is only valid until the next
     ///                stream operation is performed.
@@ -286,7 +286,7 @@ open class MarkInputStream: InputStream {
     /*==========================================================================================================*/
     /// Backs out the last `count` characters from the most recently set mark without actually removing the entire
     /// mark. You have to have previously called `markSet()` otherwise this method does nothing.
-    ///
+    /// 
     /// - Parameter count: the number of characters to back out.
     /// - Returns: The number of characters actually backed out in case there weren't `count` characters available.
     ///
@@ -338,7 +338,7 @@ open class MarkInputStream: InputStream {
     /*==========================================================================================================*/
     /// Backs out the last `count` characters from the most recently set mark without actually removing the entire
     /// mark. You have to have previously called `markSet()` otherwise this method does nothing.
-    ///
+    /// 
     /// - Parameter count: the number of characters to back out.
     /// - Returns: The number of characters actually backed out in case there weren't `count` characters available.
     ///
@@ -347,7 +347,7 @@ open class MarkInputStream: InputStream {
     /*==========================================================================================================*/
     /// Backs out the last `count` characters from the most recently set mark without actually removing the entire
     /// mark. You have to have previously called `markSet()` otherwise this method does nothing.
-    ///
+    /// 
     /// - Parameters:
     ///   - rb: The mark off the top of the stack.
     ///   - count: The number of characters to back out.
@@ -363,7 +363,7 @@ open class MarkInputStream: InputStream {
 
     /*==========================================================================================================*/
     /// Perform a read.
-    ///
+    /// 
     /// - Parameters:
     ///   - buf: The receiving byte buffer.
     ///   - len: The maximum number of bytes to read.
@@ -406,7 +406,7 @@ open class MarkInputStream: InputStream {
 
     /*==========================================================================================================*/
     /// Remove the current read buffer, created by a call to `getBuffer(_:length:)`, if there is one.
-    ///
+    /// 
     /// - Parameters:
     ///   - bufferPtr: The pointer to a buffer to be nullified.
     ///   - lengthPtr: The pointer to a length to be zeroed.
@@ -419,7 +419,7 @@ open class MarkInputStream: InputStream {
 
     /*==========================================================================================================*/
     /// Set the read buffer.
-    ///
+    /// 
     /// - Parameters:
     ///   - inputBuffer: The new buffer.
     ///   - count The number of bytes in the buffer.
@@ -434,7 +434,7 @@ open class MarkInputStream: InputStream {
 
     /*==========================================================================================================*/
     /// Start a background read.
-    ///
+    /// 
     /// - Parameters:
     ///   - bytes: The buffer to use for the input.
     ///   - size: The size of the buffer.
@@ -450,7 +450,7 @@ open class MarkInputStream: InputStream {
 
     /*==========================================================================================================*/
     /// Read a chunk of data from the input stream.
-    ///
+    /// 
     /// - Parameters:
     ///   - bytes: The buffer to use for the input.
     ///   - size: The size of the buffer.

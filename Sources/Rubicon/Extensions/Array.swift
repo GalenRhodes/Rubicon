@@ -25,11 +25,11 @@ import Foundation
 extension Array {
     /*==========================================================================================================*/
     /// Shorthand for:
-    ///
+    /// 
     /// ```
     /// anArray[anArray.index(anArray.endIndex, offsetBy: -Swift.min(cc, anArray.count)) ..< anArray.endIndex]
     /// ```
-    ///
+    /// 
     /// - Parameter cc: The number of elements to get.
     /// - Returns: An array slice of the last `cc` elements.
     ///
@@ -43,11 +43,11 @@ extension Array {
 
     /*==========================================================================================================*/
     /// Shorthand for:
-    ///
+    /// 
     /// ```
     /// anArray[anArray.startIndex ..< anArray.index(anArray.startIndex, offsetBy: Swift.min(cc, anArray.count))]
     /// ```
-    ///
+    /// 
     /// - Parameter cc: The number of elements to get.
     /// - Returns: An array slice of the first `cc` elements.
     ///
@@ -57,20 +57,20 @@ extension Array {
 extension Array where Element == Character {
     /*==========================================================================================================*/
     /// Allows for easy equality check between Strings and Character Arrays. Instead of having to write:
-    ///
+    /// 
     /// ```
     /// let array: [Character] = [ "G", "a", "l", "e", "n" ]
     /// let string: String = "Galen"
     /// if String(array) == string { /* do something */ }
     /// ```
     /// You can now just write:
-    ///
+    /// 
     /// ```
     /// let array:  [Character] = [ "G", "a", "l", "e", "n" ]
     /// let string: String      = "Galen"
     /// if array == string { /* do something */ }
     /// ```
-    ///
+    /// 
     /// - Parameters:
     ///   - lhs: The Character Array.
     ///   - rhs: The String
@@ -80,20 +80,20 @@ extension Array where Element == Character {
 
     /*==========================================================================================================*/
     /// Allows for easy inequality check between Strings and Character Arrays. Instead of having to write:
-    ///
+    /// 
     /// ```
     /// let array: [Character] = [ "G", "a", "l", "e", "n" ]
     /// let string: String = "Galen"
     /// if String(array) != string { /* do something */ }
     /// ```
     /// You can now just write:
-    ///
+    /// 
     /// ```
     /// let array:  [Character] = [ "G", "a", "l", "e", "n" ]
     /// let string: String      = "Galen"
     /// if array != string { /* do something */ }
     /// ```
-    ///
+    /// 
     /// - Parameters:
     ///   - lhs: The Character Array.
     ///   - rhs: The String
@@ -103,20 +103,20 @@ extension Array where Element == Character {
 
     /*==========================================================================================================*/
     /// Allows for easy equality check between Strings and Character Arrays. Instead of having to write:
-    ///
+    /// 
     /// ```
     /// let array: [Character] = [ "G", "a", "l", "e", "n" ]
     /// let string: String = "Galen"
     /// if String(array) == string { /* do something */ }
     /// ```
     /// You can now just write:
-    ///
+    /// 
     /// ```
     /// let array:  [Character] = [ "G", "a", "l", "e", "n" ]
     /// let string: String      = "Galen"
     /// if array == string { /* do something */ }
     /// ```
-    ///
+    /// 
     /// - Parameters:
     ///   - lhs: The String
     ///   - rhs: The Character Array.
@@ -126,20 +126,20 @@ extension Array where Element == Character {
 
     /*==========================================================================================================*/
     /// Allows for easy inequality check between Strings and Character Arrays. Instead of having to write:
-    ///
+    /// 
     /// ```
     /// let array: [Character] = [ "G", "a", "l", "e", "n" ]
     /// let string: String = "Galen"
     /// if String(array) != string { /* do something */ }
     /// ```
     /// You can now just write:
-    ///
+    /// 
     /// ```
     /// let array:  [Character] = [ "G", "a", "l", "e", "n" ]
     /// let string: String      = "Galen"
     /// if array != string { /* do something */ }
     /// ```
-    ///
+    /// 
     /// - Parameters:
     ///   - lhs: The String
     ///   - rhs: The Character Array.

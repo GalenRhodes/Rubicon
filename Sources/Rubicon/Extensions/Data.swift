@@ -28,7 +28,7 @@ public extension Data {
     /// Allows creating of a <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code>
     /// struct from an <code>[input
     /// stream](https://developer.apple.com/documentation/foundation/inputstream)</code>.
-    ///
+    /// 
     /// - Parameter inputStream: the <code>[input
     ///                          stream](https://developer.apple.com/documentation/foundation/inputstream)</code>.
     ///
@@ -49,7 +49,7 @@ public extension Data {
     /// For some reason `withUnsafeMutableBytes<T>(block:)` was deprecated on the grounds that the
     /// [Data](https://developer.apple.com/documentation/foundation/data/) object could have a
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> length.
-    ///
+    /// 
     /// - Parameter block: the closure.
     /// - Returns: The results of executing the closure.
     /// - Throws: Any exception thrown by the closure.
@@ -68,7 +68,7 @@ public extension Data {
     /// For some reason `withUnsafeBytes<T>(block:)` was deprecated on the grounds that the
     /// [Data](https://developer.apple.com/documentation/foundation/data/) object could have a
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> length.
-    ///
+    /// 
     /// - Parameter block: the closure.
     /// - Returns: The results of executing the closure.
     /// - Throws: Any exception thrown by the closure.

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>TreeNode Class Reference</title>
+    <title>StopWatch Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Class/TreeNode" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Class/StopWatch" class="dashAnchor"></a>
 
-    <a title="TreeNode Class Reference"></a>
+    <a title="StopWatch Class Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html"> Reference</a>
       <img class="carat" src="../img/carat.png" />
-      TreeNode Class Reference
+      StopWatch Class Reference
     </p>
 
     <div class="content-wrapper">
@@ -58,18 +58,6 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/AtomicValue.html">AtomicValue</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/BinaryTreeDictionary.html">BinaryTreeDictionary</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/BinaryTreeDictionary/Iterator.html">– Iterator</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/BinaryTreeDictionary/Keys.html">– Keys</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/BinaryTreeDictionary/Values.html">– Values</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/CString.html">CString</a>
@@ -141,19 +129,19 @@
                 <a class="nav-group-task-link" href="../Classes/SimpleStringCharInputStream.html">SimpleStringCharInputStream</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/StopWatch.html">StopWatch</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/StopWatch/LabelLength.html">– LabelLength</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/StopWatch/Field.html">– Field</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/StringCharInputStream.html">StringCharInputStream</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/ThreadLocal.html">ThreadLocal</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/TreeNode.html">TreeNode</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/TreeNode/Color.html">– Color</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/TreeNode/Side.html">– Side</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/UnnamedSemaphore.html">UnnamedSemaphore</a>
@@ -431,6 +419,9 @@
                 <a class="nav-group-task-link" href="../Functions/getSysTime_28delta_3A_29_5F_24s5deltaS2i_5FtcD.html">getSysTime(delta:)</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions/getSysTimeAdjustment_28_29_5F_24sSiycD.html">getSysTimeAdjustment()</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Functions/ifNil_28_5F_3Athen_3AelseThen_3A_29_5F_24s_5F4then8elseThenq_5FxSg_5Fq_5FyKXEq_5FxKXEtKcr0_5FluD.html">ifNil(_:then:elseThen:)</a>
               </li>
               <li class="nav-group-task">
@@ -636,21 +627,18 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>TreeNode</h1>
+            <h1>StopWatch</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">K</span> <span class="p">:</span> <span class="kt">Comparable</span><span class="p">,</span> <span class="kt">K</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">TreeNode</span><span class="p">:</span> <span class="kt">Equatable</span> <span class="k">where</span> <span class="kt">V</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">TreeNode</span><span class="p">:</span> <span class="kt">Hashable</span> <span class="k">where</span> <span class="kt">V</span><span class="p">:</span> <span class="kt">Hashable</span></code></pre>
-<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">TreeNode</span><span class="p">:</span> <span class="kt">Encodable</span> <span class="k">where</span> <span class="kt">K</span><span class="p">:</span> <span class="kt">Encodable</span><span class="p">,</span> <span class="kt">V</span><span class="p">:</span> <span class="kt">Encodable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">StopWatch</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">StopWatch</span><span class="p">:</span> <span class="kt">CustomStringConvertible</span></code></pre>
 
                 </div>
               </div>
-            <p>Implements a single node for a classic Red/Black Binary Tree.</p>
-
+            
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L34-L253">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/StopWatch.swift#L21-L89">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -662,27 +650,27 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon8TreeNodeC5ColorO"></a>
-                    <a name="//apple_ref/swift/Enum/Color" class="dashAnchor"></a>
-                    <a class="direct-link" href="../Classes/TreeNode/Color.html">Color</a>
+                    <a name="/s:7Rubicon9StopWatchC11LabelLengthO"></a>
+                    <a name="//apple_ref/swift/Enum/LabelLength" class="dashAnchor"></a>
+                    <a class="direct-link" href="../Classes/StopWatch/LabelLength.html">LabelLength</a>
                     </code>
                   </div>
                 </li>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon8TreeNodeC4SideO"></a>
-                    <a name="//apple_ref/swift/Enum/Side" class="dashAnchor"></a>
-                    <a class="direct-link" href="../Classes/TreeNode/Side.html">Side</a>
+                    <a name="/s:7Rubicon9StopWatchC5FieldV"></a>
+                    <a name="//apple_ref/swift/Struct/Field" class="dashAnchor"></a>
+                    <a class="direct-link" href="../Classes/StopWatch/Field.html">Field</a>
                     </code>
                   </div>
                 </li>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon8TreeNodeC5countSivp"></a>
-                    <a name="//apple_ref/swift/Property/count" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC5countSivp">count</a>
+                    <a name="/s:7Rubicon9StopWatchC9startTimeSivp"></a>
+                    <a name="//apple_ref/swift/Property/startTime" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon9StopWatchC9startTimeSivp">startTime</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -696,12 +684,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">fileprivate</span><span class="p">(</span><span class="k">set</span><span class="p">)</span> <span class="k">var</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">startTime</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/StopWatch.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -709,9 +697,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon8TreeNodeC5colorAC5ColorOyxq__Gvp"></a>
-                    <a name="//apple_ref/swift/Property/color" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC5colorAC5ColorOyxq__Gvp">color</a>
+                    <a name="/s:7Rubicon9StopWatchC8stopTimeSivp"></a>
+                    <a name="//apple_ref/swift/Property/stopTime" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon9StopWatchC8stopTimeSivp">stopTime</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -725,12 +713,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">fileprivate</span><span class="p">(</span><span class="k">set</span><span class="p">)</span> <span class="k">var</span> <span class="nv">color</span><span class="p">:</span> <span class="kt"><a href="../Classes/TreeNode/Color.html">Color</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">stopTime</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/StopWatch.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -738,9 +726,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon8TreeNodeC6parentACyxq_GSgvp"></a>
-                    <a name="//apple_ref/swift/Property/parent" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC6parentACyxq_GSgvp">parent</a>
+                    <a name="/s:7Rubicon9StopWatchC11elapsedTimeSivp"></a>
+                    <a name="//apple_ref/swift/Property/elapsedTime" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon9StopWatchC11elapsedTimeSivp">elapsedTime</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -754,12 +742,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">fileprivate</span><span class="p">(</span><span class="k">set</span><span class="p">)</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">parent</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">elapsedTime</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/StopWatch.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -767,9 +755,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon8TreeNodeC9leftChildACyxq_GSgvp"></a>
-                    <a name="//apple_ref/swift/Property/leftChild" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC9leftChildACyxq_GSgvp">leftChild</a>
+                    <a name="/s:7Rubicon9StopWatchC9isRunningSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isRunning" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon9StopWatchC9isRunningSbvp">isRunning</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -783,12 +771,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">fileprivate</span><span class="p">(</span><span class="k">set</span><span class="p">)</span> <span class="k">var</span> <span class="nv">leftChild</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">isRunning</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/StopWatch.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -796,9 +784,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon8TreeNodeC10rightChildACyxq_GSgvp"></a>
-                    <a name="//apple_ref/swift/Property/rightChild" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC10rightChildACyxq_GSgvp">rightChild</a>
+                    <a name="/s:7Rubicon9StopWatchC11labelLengthAC05LabelE0Ovp"></a>
+                    <a name="//apple_ref/swift/Property/labelLength" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon9StopWatchC11labelLengthAC05LabelE0Ovp">labelLength</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -812,12 +800,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">fileprivate</span><span class="p">(</span><span class="k">set</span><span class="p">)</span> <span class="k">var</span> <span class="nv">rightChild</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">labelLength</span><span class="p">:</span> <span class="kt"><a href="../Classes/StopWatch/LabelLength.html">LabelLength</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/StopWatch.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -825,9 +813,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon8TreeNodeC3keyxvp"></a>
-                    <a name="//apple_ref/swift/Property/key" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC3keyxvp">key</a>
+                    <a name="/s:7Rubicon9StopWatchC9lastFieldAC0E0Vvp"></a>
+                    <a name="//apple_ref/swift/Property/lastField" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon9StopWatchC9lastFieldAC0E0Vvp">lastField</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -841,12 +829,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">fileprivate</span><span class="p">(</span><span class="k">set</span><span class="p">)</span> <span class="k">var</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">K</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">lastField</span><span class="p">:</span> <span class="kt"><a href="../Classes/StopWatch/Field.html">Field</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/StopWatch.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -854,9 +842,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon8TreeNodeC5valueq_vp"></a>
-                    <a name="//apple_ref/swift/Property/value" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC5valueq_vp">value</a>
+                    <a name="/s:7Rubicon9StopWatchC11labelLength9lastField5startA2C05LabelE0O_AC0G0VSbtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(labelLength:lastField:start:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon9StopWatchC11labelLength9lastField5startA2C05LabelE0O_AC0G0VSbtcfc">init(labelLength:<wbr>lastField:<wbr>start:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -870,12 +858,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">V</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">labelLength</span><span class="p">:</span> <span class="kt"><a href="../Classes/StopWatch/LabelLength.html">LabelLength</a></span> <span class="o">=</span> <span class="o">.</span><span class="kt">Long</span><span class="p">,</span> <span class="nv">lastField</span><span class="p">:</span> <span class="kt"><a href="../Classes/StopWatch/Field.html">Field</a></span> <span class="o">=</span> <span class="o">.</span><span class="kt">Millis</span><span class="p">,</span> <span class="nv">start</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/StopWatch.swift#L69-L74">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -883,9 +871,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon8TreeNodeC7siblingACyxq_GSgvp"></a>
-                    <a name="//apple_ref/swift/Property/sibling" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC7siblingACyxq_GSgvp">sibling</a>
+                    <a name="/s:7Rubicon9StopWatchC5startyyF"></a>
+                    <a name="//apple_ref/swift/Method/start()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon9StopWatchC5startyyF">start()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -899,13 +887,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">sibling</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">start</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/StopWatch.swift#L76-L79">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -913,9 +900,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon8TreeNodeC11grandfatherACyxq_GSgvp"></a>
-                    <a name="//apple_ref/swift/Property/grandfather" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC11grandfatherACyxq_GSgvp">grandfather</a>
+                    <a name="/s:7Rubicon9StopWatchC4stopyyF"></a>
+                    <a name="//apple_ref/swift/Method/stop()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon9StopWatchC4stopyyF">stop()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -929,13 +916,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">grandfather</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">stop</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/StopWatch.swift#L81-L88">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -943,9 +929,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon8TreeNodeC5uncleACyxq_GSgvp"></a>
-                    <a name="//apple_ref/swift/Property/uncle" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC5uncleACyxq_GSgvp">uncle</a>
+                    <a name="/s:7Rubicon9StopWatchC4daysSivp"></a>
+                    <a name="//apple_ref/swift/Property/days" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon9StopWatchC4daysSivp">days</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -959,13 +945,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">uncle</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">days</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/StopWatch.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -973,9 +958,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon8TreeNodeC04rootC0ACyxq_Gvp"></a>
-                    <a name="//apple_ref/swift/Property/rootNode" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC04rootC0ACyxq_Gvp">rootNode</a>
+                    <a name="/s:7Rubicon9StopWatchC5hoursSivp"></a>
+                    <a name="//apple_ref/swift/Property/hours" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon9StopWatchC5hoursSivp">hours</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -989,13 +974,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">rootNode</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hours</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/StopWatch.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1003,9 +987,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon8TreeNodeC5firstACyxq_Gvp"></a>
-                    <a name="//apple_ref/swift/Property/first" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC5firstACyxq_Gvp">first</a>
+                    <a name="/s:7Rubicon9StopWatchC7minutesSivp"></a>
+                    <a name="//apple_ref/swift/Property/minutes" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon9StopWatchC7minutesSivp">minutes</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1019,13 +1003,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">first</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minutes</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/StopWatch.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1033,9 +1016,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon8TreeNodeC4lastACyxq_Gvp"></a>
-                    <a name="//apple_ref/swift/Property/last" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC4lastACyxq_Gvp">last</a>
+                    <a name="/s:7Rubicon9StopWatchC7secondsSivp"></a>
+                    <a name="//apple_ref/swift/Property/seconds" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon9StopWatchC7secondsSivp">seconds</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1049,13 +1032,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">last</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">seconds</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/StopWatch.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1063,9 +1045,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon8TreeNodeC6isRootSbvp"></a>
-                    <a name="//apple_ref/swift/Property/isRoot" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC6isRootSbvp">isRoot</a>
+                    <a name="/s:7Rubicon9StopWatchC6millisSivp"></a>
+                    <a name="//apple_ref/swift/Property/millis" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon9StopWatchC6millisSivp">millis</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1079,13 +1061,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">isRoot</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">millis</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/StopWatch.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1093,9 +1074,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon8TreeNodeC5indexSivp"></a>
-                    <a name="//apple_ref/swift/Property/index" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC5indexSivp">index</a>
+                    <a name="/s:7Rubicon9StopWatchC6microsSivp"></a>
+                    <a name="//apple_ref/swift/Property/micros" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon9StopWatchC6microsSivp">micros</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1109,13 +1090,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">micros</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/StopWatch.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1123,9 +1103,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon8TreeNodeC4sideAC4SideOyxq__Gvp"></a>
-                    <a name="//apple_ref/swift/Property/side" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC4sideAC4SideOyxq__Gvp">side</a>
+                    <a name="/s:7Rubicon9StopWatchC5nanosSivp"></a>
+                    <a name="//apple_ref/swift/Property/nanos" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon9StopWatchC5nanosSivp">nanos</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1139,13 +1119,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">side</span><span class="p">:</span> <span class="kt"><a href="../Classes/TreeNode/Side.html">Side</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">nanos</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/StopWatch.swift#L">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1153,9 +1132,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon8TreeNodeC3key5valueACyxq_Gx_q_tcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(key:value:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC3key5valueACyxq_Gx_q_tcfc">init(key:<wbr>value:<wbr>)</a>
+                    <a name="/s:s23CustomStringConvertibleP11descriptionSSvp"></a>
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s23CustomStringConvertibleP11descriptionSSvp">description</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1169,370 +1148,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">K</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">V</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L64-L68">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon8TreeNodeCyACyxq_GSgxcip"></a>
-                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeCyACyxq_GSgxcip">subscript(_:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">K</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L81-L87">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon8TreeNodeCyACyxq_GSgAA9ShadowIntVcip"></a>
-                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeCyACyxq_GSgAA9ShadowIntVcip">subscript(_:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">position</span><span class="p">:</span> <span class="kt"><a href="../Classes/BinaryTreeDictionary.html">BinaryTreeDictionary</a></span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;.</span><span class="kt">Index</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L89-L91">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon8TreeNodeC5getBy5indexACyxq_GSgSi_tF"></a>
-                    <a name="//apple_ref/swift/Method/getBy(index:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC5getBy5indexACyxq_GSgSi_tF">getBy(index:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getBy</span><span class="p">(</span><span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L93-L99">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon8TreeNodeC7forEach7executeyyACyxq_GKXE_tKF"></a>
-                    <a name="//apple_ref/swift/Method/forEach(execute:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC7forEach7executeyyACyxq_GKXE_tKF">forEach(execute:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">forEach</span><span class="p">(</span><span class="n">execute</span> <span class="nv">body</span><span class="p">:</span> <span class="p">(</span><span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">rethrows</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L101-L105">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon8TreeNodeC15forEachReversed7executeyyACyxq_GKXE_tKF"></a>
-                    <a name="//apple_ref/swift/Method/forEachReversed(execute:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC15forEachReversed7executeyyACyxq_GKXE_tKF">forEachReversed(execute:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">forEachReversed</span><span class="p">(</span><span class="n">execute</span> <span class="nv">body</span><span class="p">:</span> <span class="p">(</span><span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">rethrows</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L107-L111">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon8TreeNodeC3add3key5valueACyxq_Gx_q_tF"></a>
-                    <a name="//apple_ref/swift/Method/add(key:value:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC3add3key5valueACyxq_Gx_q_tF">add(key:<wbr>value:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt">K</span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt">V</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L113-L129">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon8TreeNodeC6removeACyxq_GSgyF"></a>
-                    <a name="//apple_ref/swift/Method/remove()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon8TreeNodeC6removeACyxq_GSgyF">remove()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">remove</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L148-L167">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Available%20where%20%60V%60%3A%20%60Equatable%60"></a>
-                <a name="//apple_ref/swift/Section/Available where `V`: `Equatable`" class="dashAnchor"></a>
-                <div class="section-name-container">
-                  <a class="section-name-link" href="#/Available%20where%20%60V%60%3A%20%60Equatable%60"></a>
-                  <h3 class="section-name"><p>Available where <code>V</code>: <code>Equatable</code></p>
-</h3>
-                </div>
-              </div>
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:SQ2eeoiySbx_xtFZ"></a>
-                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SQ2eeoiySbx_xtFZ">==(_:<wbr>_:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">TreeNode</span><span class="o">&lt;</span><span class="kt">K</span><span class="p">,</span> <span class="kt">V</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Available%20where%20%60V%60%3A%20%60Hashable%60"></a>
-                <a name="//apple_ref/swift/Section/Available where `V`: `Hashable`" class="dashAnchor"></a>
-                <div class="section-name-container">
-                  <a class="section-name-link" href="#/Available%20where%20%60V%60%3A%20%60Hashable%60"></a>
-                  <h3 class="section-name"><p>Available where <code>V</code>: <code>Hashable</code></p>
-</h3>
-                </div>
-              </div>
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:SH4hash4intoys6HasherVz_tF"></a>
-                    <a name="//apple_ref/swift/Method/hash(into:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SH4hash4intoys6HasherVz_tF">hash(into:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">hash</span><span class="p">(</span><span class="n">into</span> <span class="nv">hasher</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">Hasher</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L260-L263">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:SH9hashValueSivp"></a>
-                    <a name="//apple_ref/swift/Property/hashValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SH9hashValueSivp">hashValue</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">hashValue</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L265-L269">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Available%20where%20%60K%60%3A%20%60Encodable%60%2C%20%60V%60%3A%20%60Encodable%60"></a>
-                <a name="//apple_ref/swift/Section/Available where `K`: `Encodable`, `V`: `Encodable`" class="dashAnchor"></a>
-                <div class="section-name-container">
-                  <a class="section-name-link" href="#/Available%20where%20%60K%60%3A%20%60Encodable%60%2C%20%60V%60%3A%20%60Encodable%60"></a>
-                  <h3 class="section-name"><p>Available where <code>K</code>: <code>Encodable</code>, <code>V</code>: <code>Encodable</code></p>
-</h3>
-                </div>
-              </div>
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:SE6encode2toys7Encoder_p_tKF"></a>
-                    <a name="//apple_ref/swift/Method/encode(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SE6encode2toys7Encoder_p_tKF">encode(to:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">encode</span><span class="p">(</span><span class="n">to</span> <span class="nv">encoder</span><span class="p">:</span> <span class="kt">Encoder</span><span class="p">)</span> <span class="k">throws</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/BinaryTree/TreeNode.swift#L274-L277">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/StopWatch.swift#L137-L151">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1545,7 +1166,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-07-02)</p>
+      <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-08-12)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

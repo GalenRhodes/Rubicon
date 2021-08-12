@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1117D035A8FA81FD3FF0CE5C /* Hasher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D1C1FC0F0FA476E369C8 /* Hasher.swift */; };
-		1117D03DA3BBC27101EC56EB /* TreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D42A0A892A55AD7F0C6D /* TreeNode.swift */; };
 		1117D0438E55FD170186888E /* CharStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D4E1FE7DC31ACC3EDD25 /* CharStream.swift */; };
 		1117D067B34035FC4DED2A5F /* StringCharInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D75AC0C7F9E876B68A79 /* StringCharInputStream.swift */; };
 		1117D0805A382262EF0AC933 /* StopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D6657CA8454FB290DCBD /* StopWatch.swift */; };
@@ -22,7 +21,6 @@
 		1117D3BF4199C365362CA9FC /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D142AFC8171D31FCF975 /* Character.swift */; };
 		1117D3E5CCF75F6ECD21A303 /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DCED9641BC9CB805ADEE /* ReadWriteLock.swift */; };
 		1117D4302066214D581AB6FC /* DynamicFixedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D67CB2830A48B5C56761 /* DynamicFixedArray.swift */; };
-		1117D46F0FC21E611EACD4BB /* BinaryTreeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD043B53015865ED9D07 /* BinaryTreeDictionary.swift */; };
 		1117D4D2A49C3108EB6EDDB0 /* NamedSemaphore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DDF6B294E466C7A185D5 /* NamedSemaphore.swift */; };
 		1117D4D610BD1CE87B0D3771 /* SimpleCharInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D2ABF7C69D75E6443601 /* SimpleCharInputStream.swift */; };
 		1117D4E52C7BBAEBD59B32C8 /* MathTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA2A40FD9973202012F3 /* MathTools.swift */; };
@@ -155,7 +153,6 @@
 		1117D3F516CE662DE8B89675 /* ByteInputStreamTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteInputStreamTests.swift; sourceTree = "<group>"; };
 		1117D42244601FA54CAFC111 /* FloatingPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingPoint.swift; sourceTree = "<group>"; };
 		1117D4271C0293ABF2DE0360 /* DateComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateComponents.swift; sourceTree = "<group>"; };
-		1117D42A0A892A55AD7F0C6D /* TreeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeNode.swift; sourceTree = "<group>"; };
 		1117D44BFD572284A94D3903 /* FileList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileList.swift; sourceTree = "<group>"; };
 		1117D48068F75B12E30F5E83 /* IConvCharInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IConvCharInputStream.swift; sourceTree = "<group>"; };
 		1117D4AB901932DB18E55F30 /* compname.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = compname.txt; sourceTree = "<group>"; };
@@ -208,7 +205,6 @@
 		1117DC9BADDBA69F813099F5 /* Test2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Test2.xml; sourceTree = "<group>"; };
 		1117DCCAFD14362EB9197440 /* RubiconTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RubiconTests.swift; sourceTree = "<group>"; };
 		1117DCED9641BC9CB805ADEE /* ReadWriteLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadWriteLock.swift; sourceTree = "<group>"; };
-		1117DD043B53015865ED9D07 /* BinaryTreeDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryTreeDictionary.swift; sourceTree = "<group>"; };
 		1117DD04DE1A261A5A69F113 /* Test3.xml */ = {isa = PBXFileReference; fileEncoding = 2483028224; lastKnownFileType = text.xml; path = Test3.xml; sourceTree = "<group>"; };
 		1117DD3A2A9798417B58BDA0 /* ThreadLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadLocal.swift; sourceTree = "<group>"; };
 		1117DD56CCB5ACD6CFD3A297 /* Test2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Test2.xml; sourceTree = "<group>"; };
@@ -504,7 +500,6 @@
 		83C67A74250EC02000C0F21E /* Rubicon */ = {
 			isa = PBXGroup;
 			children = (
-				83C67A94250EC19700C0F21E /* BinaryTree */,
 				83C67A9B250EC19800C0F21E /* Buffers */,
 				83C67A9E250EC19800C0F21E /* Extensions */,
 				83C67AA7250EC19800C0F21E /* Streams */,
@@ -547,15 +542,6 @@
 				1117DB0E8BD3288141E13FE0 /* RubiconTests */,
 			);
 			path = Tests;
-			sourceTree = "<group>";
-		};
-		83C67A94250EC19700C0F21E /* BinaryTree */ = {
-			isa = PBXGroup;
-			children = (
-				1117D42A0A892A55AD7F0C6D /* TreeNode.swift */,
-				1117DD043B53015865ED9D07 /* BinaryTreeDictionary.swift */,
-			);
-			path = BinaryTree;
 			sourceTree = "<group>";
 		};
 		83C67A9B250EC19800C0F21E /* Buffers */ = {
@@ -770,9 +756,9 @@
 			);
 			mainGroup = 83C67A68250EC02000C0F21E;
 			packageReferences = (
-				83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer" */,
-				83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer" */,
-				832AC49826B2D83E00A3DB9F /* XCRemoteSwiftPackageReference "Chadakoin" */,
+				83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer.git" */,
+				83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer.git" */,
+				832AC49826B2D83E00A3DB9F /* XCRemoteSwiftPackageReference "Chadakoin.git" */,
 			);
 			productRefGroup = 83C67A73250EC02000C0F21E /* Products */;
 			projectDirPath = "";
@@ -842,8 +828,6 @@
 				1117D78FA7573ACB14D9AB9A /* StringXForm.swift in Sources */,
 				1117D0438E55FD170186888E /* CharStream.swift in Sources */,
 				1117D6C58C8DF1A23EE40B26 /* IConvCharInputStream.swift in Sources */,
-				1117D03DA3BBC27101EC56EB /* TreeNode.swift in Sources */,
-				1117D46F0FC21E611EACD4BB /* BinaryTreeDictionary.swift in Sources */,
 				1117DC5BF2A398C1D36EA0E7 /* RegularExpression.swift in Sources */,
 				1117D4302066214D581AB6FC /* DynamicFixedArray.swift in Sources */,
 				1117DF27B358A367D4C2876E /* IConv.swift in Sources */,
@@ -1242,7 +1226,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		832AC49826B2D83E00A3DB9F /* XCRemoteSwiftPackageReference "Chadakoin" */ = {
+		832AC49826B2D83E00A3DB9F /* XCRemoteSwiftPackageReference "Chadakoin.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/GalenRhodes/Chadakoin.git";
 			requirement = {
@@ -1250,7 +1234,7 @@
 				minimumVersion = 1.0.5;
 			};
 		};
-		83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer" */ = {
+		83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/GalenRhodes/RingBuffer.git";
 			requirement = {
@@ -1258,7 +1242,7 @@
 				minimumVersion = 1.0.12;
 			};
 		};
-		83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer" */ = {
+		83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/GalenRhodes/PGDocFixer.git";
 			requirement = {
@@ -1271,17 +1255,17 @@
 /* Begin XCSwiftPackageProductDependency section */
 		832AC49926B2D83E00A3DB9F /* Chadakoin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 832AC49826B2D83E00A3DB9F /* XCRemoteSwiftPackageReference "Chadakoin" */;
+			package = 832AC49826B2D83E00A3DB9F /* XCRemoteSwiftPackageReference "Chadakoin.git" */;
 			productName = Chadakoin;
 		};
 		83BA732E254ABED0009B8351 /* RingBuffer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer" */;
+			package = 83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer.git" */;
 			productName = RingBuffer;
 		};
 		83C67AEF250EC40E00C0F21E /* PGDocFixer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer" */;
+			package = 83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer.git" */;
 			productName = PGDocFixer;
 		};
 /* End XCSwiftPackageProductDependency section */

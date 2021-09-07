@@ -39,6 +39,7 @@
 		1117D81AC449E98F667D5F43 /* ByteOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DACFCBB5FA296F4438AB /* ByteOrder.swift */; };
 		1117D87015D5A6D05CA3688C /* SimpleIConvCharInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D81C98C71BC7BD4F245B /* SimpleIConvCharInputStream.swift */; };
 		1117D8974555204639F771FD /* iconv.h in Headers */ = {isa = PBXBuildFile; fileRef = 1117D8F31A530CDA758E62B8 /* iconv.h */; };
+		1117D92CD6AB08BB4D3598E9 /* NSRegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DAAA4F574B2408DB4FBF /* NSRegularExpression.swift */; };
 		1117D950F78C930E935486EF /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D9A1691382C37AA03237 /* Thread.swift */; };
 		1117D98AC365F3CF051F1549 /* ShadowInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D2704AA1CC45A15EDC5B /* ShadowInt.swift */; };
 		1117D9D892409C1C5407AA50 /* ThreadLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD3A2A9798417B58BDA0 /* ThreadLocal.swift */; };
@@ -192,6 +193,7 @@
 		1117DA2A40FD9973202012F3 /* MathTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathTools.swift; sourceTree = "<group>"; };
 		1117DA84761CE0531CC2B150 /* StringXForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringXForm.swift; sourceTree = "<group>"; };
 		1117DA9EAF3A9AAB76EFA62D /* XCTestManifests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
+		1117DAAA4F574B2408DB4FBF /* NSRegularExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRegularExpression.swift; sourceTree = "<group>"; };
 		1117DACFCBB5FA296F4438AB /* ByteOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteOrder.swift; sourceTree = "<group>"; };
 		1117DB2451A33528B3C60877 /* TimerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerTests.swift; sourceTree = "<group>"; };
 		1117DB7C8A6D6A5F5D46B3BA /* RubiconTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RubiconTests.swift; sourceTree = "<group>"; };
@@ -576,6 +578,7 @@
 				1117D23FF878E626C51AA636 /* CharacterSet.swift */,
 				1117DFFD880F237687D8BE44 /* StringProtocol.swift */,
 				1117DBD4B424D66383DB6DC7 /* Dictionary.swift */,
+				1117DAAA4F574B2408DB4FBF /* NSRegularExpression.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -861,6 +864,7 @@
 				1117D5753B50B9C2C6F41E5F /* PGErrors.swift in Sources */,
 				1117D10FC30D8E68C4E8D473 /* Dictionary.swift in Sources */,
 				1117D0805A382262EF0AC933 /* StopWatch.swift in Sources */,
+				1117D92CD6AB08BB4D3598E9 /* NSRegularExpression.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

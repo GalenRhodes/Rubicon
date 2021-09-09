@@ -90,7 +90,7 @@ import CoreFoundation
         #if os(Windows)
             /*==================================================================================================*/
             /// Create a new named semaphore.
-            /// 
+            ///
             /// - Parameters:
             ///   - name: The name of the semaphore.
             ///   - initialValue: The initial value of the semaphore. Must be between
@@ -110,7 +110,7 @@ import CoreFoundation
 
             /*==================================================================================================*/
             /// Create a new named semaphore.
-            /// 
+            ///
             /// - Parameters:
             ///   - name: The name of the semaphore.
             ///   - initialValue: The initial value of the semaphore. The maximum value is OS dependent. On macOS
@@ -124,7 +124,7 @@ import CoreFoundation
         #else
             /*==================================================================================================*/
             /// Create a new named semaphore.
-            /// 
+            ///
             /// - Parameters:
             ///   - name: The name of the semaphore.
             ///   - initialValue: The initial value of the semaphore. Must be between
@@ -158,7 +158,7 @@ import CoreFoundation
 
             /*==================================================================================================*/
             /// Create a new named semaphore.
-            /// 
+            ///
             /// - Parameters:
             ///   - name: The name of the semaphore.
             ///   - initialValue: The initial value of the semaphore. The maximum value is OS dependent. On macOS
@@ -174,7 +174,7 @@ import CoreFoundation
         /// Release the semaphore. Increments the value by one (1). If the value was previously less than or equal
         /// to <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0) then a waiting thread will be woken up and
         /// allowed to acquire the semaphore.
-        /// 
+        ///
         /// - Returns: `true` if successful. If the value before calling `release()` is already equal to the
         ///            maximum value then it is left unchanged and `false` is returned.
         ///
@@ -201,7 +201,7 @@ import CoreFoundation
         /*======================================================================================================*/
         /// Attempt to acquire the semaphore. If the value before calling is less than or equal to
         /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0) then this method fails by returning `false`.
-        /// 
+        ///
         /// - Returns: `true` if successful. `false` if value is less than or equal to
         ///            <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0).
         ///
@@ -220,7 +220,7 @@ import CoreFoundation
         /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0) then the calling thread is blocked until
         /// either the value is greater than <code>[zero](https://en.wikipedia.org/wiki/0)</code> (0) or until the
         /// amount of time specified by `until` has elapsed.
-        /// 
+        ///
         /// - Parameter until: the absolute time that this method will wait trying to acquire the semaphore.
         /// - Returns: `true` if successful or `false` if the specified time has elapsed.
         ///
@@ -228,10 +228,9 @@ import CoreFoundation
             #if os(macOS) || os(tvOS) || os(watchOS) || os(iOS)
                 return false
             #elseif os(Windows)
-                guard var time: DWORD = absoluteTimeSpecFrom(date: until) else { return false }
                 return false
             #else
-                guard var time: timespec = absoluteTimeSpecFrom(date: until) else { return false }
+                guard var time: timespec = until.absoluteTimeSpec() else { return false }
                 let ret: Int32 = sem_timedwait(_sem, &time)
                 guard (ret == 0) || (errno == ETIMEDOUT) else { fatalError(CErrors.getErrorFor(code: errno).description) }
                 return (ret == 0)

@@ -152,13 +152,13 @@ open class Conditional: LockCondition {
     open func lock(before limit: Date) -> Bool {
         #if os(Windows) || os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
             if cmutex.tryLock() { return true }
-            while let time: PGLockTime = PGGetLockTime(from: limit) {
+            while let time = limit.absoluteTimeSpec() {
                 tmutex.lWait(until: time)
                 if cmutex.tryLock() { return true }
             }
             return false
         #else
-            guard var time: PGLockTime = PGGetLockTime(from: limit) else { return false }
+            guard var time = limit.absoluteTimeSpec() else { return false }
             return (testOSFatalError(pthread_mutex_timedlock(cmutex.mutex, &time), ETIMEDOUT) == 0)
         #endif
     }
@@ -179,7 +179,7 @@ open class Conditional: LockCondition {
     }
 
     open func wait(until limit: Date) -> Bool {
-        guard let time: PGLockTime = PGGetLockTime(from: limit) else { return false }
+        guard let time = limit.absoluteTimeSpec() else { return false }
         return cmutex.wait(until: time)
     }
 
@@ -233,14 +233,6 @@ open class Conditional: LockCondition {
         if let limit = limit { return wait(until: limit) }
         wait()
         return true
-    }
-
-    private func PGGetLockTime(from date: Date) -> PGLockTime? {
-        #if os(Windows)
-            return absoluteTimeSpecFrom(date: date)
-        #else
-            return absoluteTimeSpecFrom(date: date)
-        #endif
     }
 }
 

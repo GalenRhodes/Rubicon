@@ -28,7 +28,7 @@ import CoreFoundation
 /*==============================================================================================================*/
 /// Thread Local Property Wrapper. A property marked with this wrapper will reserve storage for each thread so
 /// that the values gotten and set will only be seen by that thread.
-/// 
+///
 /// NOTE: DispatchQueues reuse threads. This means that multiple items put onto a dispatch queue may see and
 /// manipulate each other's data.
 ///

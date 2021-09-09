@@ -25,40 +25,37 @@ import Foundation
 @propertyWrapper
 public struct StringXForm {
 
-    private var value: String
-    private let xform: [XForms]
+    private var value:  String
+    private let xforms: XForms
 
-    public enum XForms {
-        case lowercased
-        case uppercased
-        case trimmed
+    public struct XForms: OptionSet {
+        public let rawValue: UInt8
+
+        public static let lowercased = XForms(rawValue: 1 << 0)
+        public static let uppercased = XForms(rawValue: 1 << 1)
+        public static let trimmed    = XForms(rawValue: 1 << 2)
+
+        public init(rawValue: UInt8) { self.rawValue = rawValue }
     }
 
     public var wrappedValue: String {
         get { value }
         set {
             value = newValue
-            for xf in xform {
-                switch xf {
-                    case .lowercased:
-                        value = value.lowercased()
-                    case .uppercased:
-                        value = value.uppercased()
-                    case .trimmed:
-                        value = value.trimmed
-                }
-            }
+            if xforms.contains(.lowercased) { value = value.lowercased() }
+            if xforms.contains(.uppercased) { value = value.uppercased() }
+            if xforms.contains(.trimmed) { value = value.trimmed }
         }
     }
 
-    public init(_ xform: [XForms]) {
+    public init(_ xforms: XForms) {
         self.value = ""
-        self.xform = xform
+        self.xforms = xforms
     }
 
-    public init(wrappedValue: String, _ xform: [XForms]) {
+    public init(wrappedValue: String, _ xforms: XForms) {
         self.value = ""
-        self.xform = xform
+        self.xforms = xforms
         self.wrappedValue = wrappedValue
     }
 }
@@ -66,43 +63,40 @@ public struct StringXForm {
 @propertyWrapper
 public struct OStringXForm {
 
-    private var value: String?
-    private let xform: [XForms]
+    private var value:  String?
+    private let xforms: XForms
 
-    public enum XForms {
-        case lowercased
-        case uppercased
-        case trimmed
+    public struct XForms: OptionSet {
+        public let rawValue: UInt8
+
+        public static let lowercased = XForms(rawValue: 1 << 0)
+        public static let uppercased = XForms(rawValue: 1 << 1)
+        public static let trimmed    = XForms(rawValue: 1 << 2)
+
+        public init(rawValue: UInt8) { self.rawValue = rawValue }
     }
 
     public var wrappedValue: String? {
         get { value }
         set {
-            value = newValue
-            if var v = newValue {
-                for xf in xform {
-                    switch xf {
-                        case .lowercased:
-                            v = v.lowercased()
-                        case .uppercased:
-                            v = v.uppercased()
-                        case .trimmed:
-                            v = v.trimmed
-                    }
-                }
-                value = v
+            self.value = newValue
+            if var value = newValue {
+                if xforms.contains(.lowercased) { value = value.lowercased() }
+                if xforms.contains(.uppercased) { value = value.uppercased() }
+                if xforms.contains(.trimmed) { value = value.trimmed }
+                self.value = value
             }
         }
     }
 
-    public init(_ xform: [XForms]) {
+    public init(_ xforms: XForms) {
         self.value = nil
-        self.xform = xform
+        self.xforms = xforms
     }
 
-    public init(wrappedValue: String?, _ xform: [XForms]) {
+    public init(wrappedValue: String?, _ xforms: XForms) {
         self.value = nil
-        self.xform = xform
+        self.xforms = xforms
         self.wrappedValue = wrappedValue
     }
 }

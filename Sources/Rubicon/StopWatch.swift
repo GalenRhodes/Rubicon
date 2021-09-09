@@ -18,8 +18,60 @@
 import Foundation
 import CoreFoundation
 
-open class StopWatch {
+public class StopWatch {
+
     public enum LabelLength: Int { case Long = 0, Medium = 1, Short = 2 }
+
+    public fileprivate(set) var startTime:   Int  = 0
+    public fileprivate(set) var stopTime:    Int  = 0
+    public fileprivate(set) var elapsedTime: Int  = 0
+    public fileprivate(set) var isRunning:   Bool = false
+
+    public let labelLength: LabelLength
+    public let lastField:   Field
+
+    @usableFromInline let offset:    Int
+    @usableFromInline var descCache: String?    = nil
+    @usableFromInline var values:    [SWValues] = []
+
+    public init(labelLength: LabelLength = .Long, lastField: Field = .Millis, start: Bool = true) {
+        self.labelLength = labelLength
+        self.lastField = lastField
+        self.offset = getSysTimeAdjustment()
+        if start { self.start() }
+    }
+
+    public func start() {
+        guard !isRunning else { return }
+        isRunning = true
+        stopTime = 0
+        elapsedTime = 0
+        values = Field.allFields.map { ($0, 0) }
+        descCache = nil
+        startTime = getSysTime()
+    }
+
+    public func stop() {
+        guard isRunning else { return }
+        stopTime = getSysTime()
+        descCache = nil
+        isRunning = false
+        elapsedTime = ((stopTime == 0) ? 0 : (stopTime - startTime - offset))
+        values = Field.allFields.map { ($0, $0.calcValue(nanos: elapsedTime)) }
+    }
+}
+
+extension StopWatch {
+    @usableFromInline typealias SWValues = (field: Field, value: Int)
+    @usableFromInline typealias SWRounding = (value: Int, carry: Int)
+
+    @inlinable public var days:    Int { values[Field.Days.index].value }
+    @inlinable public var hours:   Int { values[Field.Hours.index].value }
+    @inlinable public var minutes: Int { values[Field.Mins.index].value }
+    @inlinable public var seconds: Int { values[Field.Secs.index].value }
+    @inlinable public var millis:  Int { values[Field.Millis.index].value }
+    @inlinable public var micros:  Int { values[Field.Micros.index].value }
+    @inlinable public var nanos:   Int { values[Field.Nanos.index].value }
 
     public struct Field {
         //@f:0
@@ -40,96 +92,41 @@ open class StopWatch {
 
         public static let allFields: [Field] = [ .Days, .Hours, .Mins, .Secs, .Millis, .Micros, .Nanos, ]
 
-        let mod:   Int
-        let div:   Int
-        let index: Int
+        @usableFromInline let mod:   Int
+        @usableFromInline let div:   Int
+        @usableFromInline let index: Int
 
-        private init(index: Int, div: Int, mod: Int) {
+        @inlinable init(index: Int, div: Int, mod: Int) {
             self.mod = mod
             self.div = div
             self.index = index
         }
     }
-
-    typealias SWValues = (field: Field, value: Int)
-    typealias SWRounding = (value: Int, carry: Int)
-
-    private let offset:    Int
-    private var descCache: String?    = nil
-    private var values:    [SWValues] = []
-
-    public private(set) var startTime:   Int  = 0
-    public private(set) var stopTime:    Int  = 0
-    public private(set) var elapsedTime: Int  = 0
-    public private(set) var isRunning:   Bool = false
-
-    public let labelLength: LabelLength
-    public let lastField:   Field
-
-    public init(labelLength: LabelLength = .Long, lastField: Field = .Millis, start: Bool = true) {
-        self.labelLength = labelLength
-        self.lastField = lastField
-        self.offset = getSysTimeAdjustment()
-        if start { self._start() }
-    }
-
-    open func start() {
-        guard !isRunning else { return }
-        _start()
-    }
-
-    open func stop() {
-        guard isRunning else { return }
-        stopTime = getSysTime()
-        descCache = nil
-        isRunning = false
-        elapsedTime = ((stopTime == 0) ? 0 : (stopTime - startTime - offset))
-        values = Field.allFields.map { ($0, $0.calcValue(nanos: elapsedTime)) }
-    }
 }
 
 extension StopWatch.Field: Hashable {
 
-    public func hash(into hasher: inout Hasher) { hasher.combine(index) }
+    @inlinable public func hash(into hasher: inout Hasher) { hasher.combine(index) }
 
-    public static func == (lhs: Self, rhs: Self) -> Bool { (lhs.index == rhs.index) }
+    @inlinable public static func == (lhs: Self, rhs: Self) -> Bool { (lhs.index == rhs.index) }
 }
 
 extension StopWatch.Field: Comparable {
 
-    public static func < (lhs: Self, rhs: Self) -> Bool { (lhs.index < rhs.index) }
+    @inlinable public static func < (lhs: Self, rhs: Self) -> Bool { (lhs.index < rhs.index) }
 }
 
 extension StopWatch.Field {
 
-    func calcRounding(_ value: Int) -> Int { ((value + (mod / 2)) / mod) }
+    @inlinable func calcRounding(_ value: Int) -> Int { ((value + (mod / 2)) / mod) }
 
-    func calcOverflow(_ v: Int) -> StopWatch.SWRounding { (value: (v % mod), carry: (v / mod)) }
+    @inlinable func calcOverflow(_ v: Int) -> StopWatch.SWRounding { (value: (v % mod), carry: (v / mod)) }
 
-    func calcValue(nanos: Int) -> Int { ((nanos / div) % mod) }
+    @inlinable func calcValue(nanos: Int) -> Int { ((nanos / div) % mod) }
 
-    func label(_ length: StopWatch.LabelLength) -> String { Self.names[length.rawValue][index] }
+    @inlinable func label(_ length: StopWatch.LabelLength) -> String { Self.names[length.rawValue][index] }
 
-    func toString(_ value: Int, length: StopWatch.LabelLength) -> String { "\(value) \(label(length))" }
-}
-
-extension StopWatch {
-    public var days:    Int { values[Field.Days.index].value }
-    public var hours:   Int { values[Field.Hours.index].value }
-    public var minutes: Int { values[Field.Mins.index].value }
-    public var seconds: Int { values[Field.Secs.index].value }
-    public var millis:  Int { values[Field.Millis.index].value }
-    public var micros:  Int { values[Field.Micros.index].value }
-    public var nanos:   Int { values[Field.Nanos.index].value }
-
-    func _start() {
-        isRunning = true
-        stopTime = 0
-        elapsedTime = 0
-        values = Field.allFields.map { ($0, 0) }
-        descCache = nil
-        startTime = getSysTime()
-    }
+    @inlinable func toString(_ value: Int, length: StopWatch.LabelLength) -> String { "\(value) \(label(length))" }
 }
 
 extension StopWatch: CustomStringConvertible {
@@ -150,7 +147,7 @@ extension StopWatch: CustomStringConvertible {
         return d
     }
 
-    func roundUp(_ i: Int) -> SWRounding {
+    @inlinable func roundUp(_ i: Int) -> SWRounding {
         let (fld, val) = values[i]
         let idx        = (i + 1)
 
@@ -160,7 +157,7 @@ extension StopWatch: CustomStringConvertible {
         return fld.calcOverflow(calcRounding(idx: idx, value: val))
     }
 
-    func calcRounding(idx: Int, value: Int) -> Int {
+    @inlinable func calcRounding(idx: Int, value: Int) -> Int {
         let (fld, val): SWValues = values[idx]
         return (value + fld.calcRounding(val))
     }

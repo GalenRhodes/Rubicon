@@ -1,6 +1,6 @@
 /*******************************************************************************************************************************************************************************//*
  *     PROJECT: Rubicon
- *    FILENAME: FileList.swift
+ *    FILENAME: FileManager.swift
  *         IDE: AppCode
  *      AUTHOR: Galen Rhodes
  *        DATE: 6/25/21
@@ -22,57 +22,6 @@ public enum FilePathError: Error {
     case RecursiveSymLink(path: String)
     case BadSymLink(path: String)
     case FilenameEncoding(path: String)
-}
-
-extension Dictionary where Key == FileAttributeKey, Value == Any {
-//@f:0
-    #if (os(macOS) || os(iOS) || os(watchOS) || os(tvOS))
-        @inlinable public var fileCreationDate:          Date?     { (self as NSDictionary).fileCreationDate()          }
-        @inlinable public var fileExtensionHidden:       Bool      { (self as NSDictionary).fileExtensionHidden()       }
-        @inlinable public var fileGroupOwnerAccountID:   NSNumber? { (self as NSDictionary).fileGroupOwnerAccountID()   }
-        @inlinable public var fileGroupOwnerAccountName: String?   { (self as NSDictionary).fileGroupOwnerAccountName() }
-        @inlinable public var fileHFSCreatorCode:        OSType    { (self as NSDictionary).fileHFSCreatorCode()        }
-        @inlinable public var fileHFSTypeCode:           OSType    { (self as NSDictionary).fileHFSTypeCode()           }
-        @inlinable public var fileIsAppendOnly:          Bool      { (self as NSDictionary).fileIsAppendOnly()          }
-        @inlinable public var fileIsImmutable:           Bool      { (self as NSDictionary).fileIsImmutable()           }
-        @inlinable public var fileModificationDate:      Date?     { (self as NSDictionary).fileModificationDate()      }
-        @inlinable public var fileOwnerAccountID:        NSNumber? { (self as NSDictionary).fileOwnerAccountID()        }
-        @inlinable public var fileOwnerAccountName:      String?   { (self as NSDictionary).fileOwnerAccountName()      }
-        @inlinable public var filePosixPermissions:      Int       { (self as NSDictionary).filePosixPermissions()      }
-        @inlinable public var fileSize:                  UInt64    { (self as NSDictionary).fileSize()                  }
-        @inlinable public var fileSystemFileNumber:      Int       { (self as NSDictionary).fileSystemFileNumber()      }
-        @inlinable public var fileSystemNumber:          Int       { (self as NSDictionary).fileSystemNumber()          }
-    #else
-        @inlinable public var fileCreationDate:          Date?     { let v = self[FileAttributeKey.creationDate];          return (((v == nil) ? nil : (v! as? Date)))              }
-        @inlinable public var fileExtensionHidden:       Bool      { let v = self[FileAttributeKey.extensionHidden];       return (((v == nil) ? nil : (v! as? Bool))     ?? false) }
-        @inlinable public var fileGroupOwnerAccountID:   NSNumber? { let v = self[FileAttributeKey.groupOwnerAccountID];   return (((v == nil) ? nil : (v! as? NSNumber)))          }
-        @inlinable public var fileGroupOwnerAccountName: String?   { let v = self[FileAttributeKey.groupOwnerAccountName]; return (((v == nil) ? nil : (v! as? String)))            }
-        @inlinable public var fileHFSCreatorCode:        OSType    { let v = self[FileAttributeKey.hfsCreatorCode];        return (((v == nil) ? nil : (v! as? OSType))   ?? 0)     }
-        @inlinable public var fileHFSTypeCode:           OSType    { let v = self[FileAttributeKey.hfsTypeCode];           return (((v == nil) ? nil : (v! as? OSType))   ?? 0)     }
-        @inlinable public var fileIsAppendOnly:          Bool      { let v = self[FileAttributeKey.appendOnly];            return (((v == nil) ? nil : (v! as? Bool))     ?? false) }
-        @inlinable public var fileIsImmutable:           Bool      { let v = self[FileAttributeKey.immutable];             return (((v == nil) ? nil : (v! as? Bool))     ?? false) }
-        @inlinable public var fileModificationDate:      Date?     { let v = self[FileAttributeKey.modificationDate];      return (((v == nil) ? nil : (v! as? Date)))              }
-        @inlinable public var fileOwnerAccountID:        NSNumber? { let v = self[FileAttributeKey.ownerAccountID];        return (((v == nil) ? nil : (v! as? NSNumber)))          }
-        @inlinable public var fileOwnerAccountName:      String?   { let v = self[FileAttributeKey.ownerAccountName];      return (((v == nil) ? nil : (v! as? String)))            }
-        @inlinable public var filePosixPermissions:      Int       { let v = self[FileAttributeKey.posixPermissions];      return (((v == nil) ? nil : (v! as? Int))      ?? 0)     }
-        @inlinable public var fileSize:                  UInt64    { let v = self[FileAttributeKey.size];                  return (((v == nil) ? nil : (v! as? UInt64))   ?? 0)     }
-        @inlinable public var fileSystemFileNumber:      Int       { let v = self[FileAttributeKey.systemFileNumber];      return (((v == nil) ? nil : (v! as? Int))      ?? 0)     }
-        @inlinable public var fileSystemNumber:          Int       { let v = self[FileAttributeKey.systemNumber];          return (((v == nil) ? nil : (v! as? Int))      ?? 0)     }
-    #endif
-//@f:1
-
-    @inlinable public var fileType: FileAttributeType {
-        guard let t = (self[.type] as? String) else { return .typeUnknown }
-        switch t {
-            case FileAttributeType.typeBlockSpecial.rawValue:     return .typeBlockSpecial
-            case FileAttributeType.typeDirectory.rawValue:        return .typeDirectory
-            case FileAttributeType.typeRegular.rawValue:          return .typeRegular
-            case FileAttributeType.typeSymbolicLink.rawValue:     return .typeSymbolicLink
-            case FileAttributeType.typeSocket.rawValue:           return .typeSocket
-            case FileAttributeType.typeCharacterSpecial.rawValue: return .typeCharacterSpecial
-            default:                                              return .typeUnknown
-        }
-    }
 }
 
 extension FileManager {
@@ -98,7 +47,7 @@ extension FileManager {
 
     /*==========================================================================================================*/
     /// Get a list of file from a directory.
-    /// 
+    ///
     /// - Parameters:
     ///   - atPath: The directory to get the list of files from.
     ///   - resolveSymLinks: If `true` then any symbolic links found will be resolved before being sent to the the
@@ -137,15 +86,15 @@ extension FileManager {
 
     /*==========================================================================================================*/
     /// Recursively resolve a symbolic link.
-    /// 
+    ///
     /// This method resolves all symbolic links, extra `/` characters, and references to `.` and `..` in `path`.
     /// It will resolve both absolute and relative paths and return the absolute pathname corresponding to `path`.
     /// All components of `path` must exist when this method is called.
-    /// 
+    ///
     /// This method behaves like the [Linux readlink
     /// utility](https://man7.org/linux/man-pages/man1/readlink.1.html) when using the `--canonicalize-existing`
     /// flag.
-    /// 
+    ///
     /// - Parameter path: The path to resolve.
     /// - Returns: The resolved file.
     /// - Throws: If an I/O error occurs or if one of the symbolic link components is broken.

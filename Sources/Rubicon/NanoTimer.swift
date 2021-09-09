@@ -65,14 +65,14 @@ open class NanoTimer {
     /*==========================================================================================================*/
     /// The number of nanoseconds between calls to the the `block`.
     ///
-    public let nanos:     PGTimeT
+    public let nanos:     time_t
 
     /*==========================================================================================================*/
     /// Initializes the timer to call the `block` every `nanos` nanoseconds.
     /// 
     /// - Parameter nanos: the number of nanoseconds. Must be less than `OneSecondNanos`.
     ///
-    public init(nanos: PGTimeT) {
+    public init(nanos: time_t) {
         self.nanos = nanos
     }
 
@@ -82,7 +82,7 @@ open class NanoTimer {
     /// - Parameter time:
     ///
     public init(time: timespec) {
-        self.nanos = PGTimeT((time.tv_sec * OneSecondNanos) + time.tv_nsec)
+        self.nanos = time_t((time.tv_sec * OneSecondNanos) + time.tv_nsec)
     }
 
     deinit {
@@ -124,12 +124,12 @@ open class NanoTimer {
 
     private func _startLongDelay() {
         worker1 = PGThread(startNow: true, qualityOfService: .userInteractive) {
-            var next: PGTimeT   = getSysTime(delta: self.nanos)
-            let adj:  PGTimeT   = (next - 3_000)
+            var next: time_t   = getSysTime(delta: self.nanos)
+            let adj:  time_t   = (next - 3_000)
             var tmsp: timespec = timespec(tv_sec: 0, tv_nsec: 3_000)
 
             while self.running {
-                let now: PGTimeT = getSysTime()
+                let now: time_t = getSysTime()
 
                 if now >= next {
                     if self.skip > 0 {
@@ -158,7 +158,7 @@ open class NanoTimer {
 
     private func _startShortDelay() {
         worker1 = PGThread(startNow: true, qualityOfService: .userInteractive) {
-            var next: PGTimeT = getSysTime(delta: self.nanos)
+            var next: time_t = getSysTime(delta: self.nanos)
 
             while self.running {
                 if getSysTime() >= next {

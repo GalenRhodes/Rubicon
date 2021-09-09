@@ -30,6 +30,51 @@ import CoreFoundation
     import Glibc
 #endif
 
+/*==============================================================================================================*/
+/// Cover function for the C standard library function `strerror(int)`. Returns a Swift
+/// <code>[String](https://developer.apple.com/documentation/swift/string/)</code>.
+///
+/// - Parameter code: the OS error code.
+/// - Returns: A Swift <code>[String](https://developer.apple.com/documentation/swift/string/)</code> with the OS
+///            error message.
+///
+@inlinable public func StrError(_ code: Int32) -> String {
+    (CString.newCCharBufferOf(length: 1000) {
+        ((strerror_r(code, $0, $1) == 0) ? strlen($0) : -1)
+    })?.string ?? "Unknown Error: \(code)"
+}
+
+/*==============================================================================================================*/
+/// Test the result of a C standard library function call to see if an error has occurred. If so then throw a
+/// fatal error with the message of the error. Usually any
+/// non-<code>[zero](https://en.wikipedia.org/wiki/0)</code> value is considered an error. In some cases though a
+/// non-<code>[zero](https://en.wikipedia.org/wiki/0)</code> error is just informational and in those cases you
+/// can tell this function to ignore those as well.
+///
+/// For example, in a call to `pthread_mutex_trylock(...)`, an return code of `EBUSY` simply means that the lock
+/// is already held by another thread while a code of `EINVAL` means that the mutex passed to the function was not
+/// properly initialized. So you could call this function like so:
+///
+/// <pre>
+///     let locked: Bool = (testOSFatalError(pthread_mutex_trylock(mutex), EBUSY) == 0)
+/// </pre>
+///
+/// In this case the constant `locked` will be `true` if the thread successfully obtained ownership of the lock or
+/// `false` if another thread still owns the lock. If the return code was any other value beside 0
+/// (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) or EBUSY then a fatal error occurs.
+///
+/// - Parameters:
+///   - results: The results of the call.
+///   - otherOk: Other values besides 0 (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) that should be
+///              considered OK and not cause a fatal error.
+/// - Returns: The value of results.
+///
+@inlinable @discardableResult public func testOSFatalError(_ results: Int32, _ otherOk: Int32...) -> Int32 {
+    if results == 0 { return results }
+    for other: Int32 in otherOk { if results == other { return results } }
+    fatalError(StrError(results))
+}
+
 //@f:0
 /*==============================================================================================================*/
 /// Allows wrapping the errors returned by calls to the Standard C Library so they can be thrown as exceptions.
@@ -1196,7 +1241,7 @@ public enum CErrors: Equatable, Error, CustomStringConvertible {
 
     /*==========================================================================================================*/
     /// Returns the error for the given code.
-    /// 
+    ///
     /// - Parameter code: the OS error code.
     /// - Returns: The matching error.
     ///

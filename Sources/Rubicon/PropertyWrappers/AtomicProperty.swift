@@ -18,63 +18,22 @@
 import Foundation
 import CoreFoundation
 
-#if os(Windows)
-    import WinSDK
-    fileprivate typealias OSRWLock = UnsafeMutablePointer<SRWLOCK>
-#elseif CYGWIN
-    fileprivate typealias OSRWLock = UnsafeMutablePointer<pthread_rwlock_t?>
-#else
-    fileprivate typealias OSRWLock = UnsafeMutablePointer<pthread_rwlock_t>
-#endif
-
 /*==============================================================================================================*/
 /// A property wrapper to ensure that read/write access to a resource is atomic with respect to writes. Encloses
 /// access to the property with a read/write mutex (lock) so that any writes to the property completely finish
 /// before any reads are allowed.
 ///
 @propertyWrapper
-public class Atomic<T> {
+public struct Atomic<T> {
+    @usableFromInline var value: T
+    @usableFromInline let lock:  MutexLock = MutexLock()
 
-    private let lock:  OSRWLock
-    private var value: T
-
-    public var wrappedValue: T {
-        get {
-            #if os(Windows)
-                AcquireSRWLockShared(lock)
-                defer { ReleaseSRWLockShared(lock) }
-            #else
-                guard pthread_rwlock_rdlock(lock) == 0 else { fatalError() }
-                defer { guard pthread_rwlock_unlock(lock) == 0 else { fatalError() } }
-            #endif
-            return value
-        }
-        set {
-            #if os(Windows)
-                AcquireSRWLockExclusive(lock)
-                defer { ReleaseSRWLockExclusive(lock) }
-            #else
-                guard pthread_rwlock_wrlock(lock) == 0 else { fatalError() }
-                defer { guard pthread_rwlock_unlock(lock) == 0 else { fatalError() } }
-            #endif
-            value = newValue
-        }
+    @inlinable public var wrappedValue: T {
+        get { lock.withLock { value } }
+        set { lock.withLock { value = newValue } }
     }
 
     public init(wrappedValue: T) {
-        lock = OSRWLock.allocate(capacity: 1)
-        #if os(Windows)
-            InitializeSRWLock(lock)
-        #else
-            guard pthread_rwlock_init(lock, nil) == 0 else { fatalError() }
-        #endif
         value = wrappedValue
-    }
-
-    deinit {
-        #if !os(Windows)
-            pthread_rwlock_destroy(lock)
-        #endif
-        lock.deallocate()
     }
 }

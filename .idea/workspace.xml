@@ -28,11 +28,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Post Update.">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Simplified ThreadLocal property wrappewr.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/Rubicon.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/Rubicon.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/PropertyWrappers/ThreadLocal.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/PropertyWrappers/ThreadLocal.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/PropertyWrappers/AtomicProperty.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/PropertyWrappers/AtomicProperty.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -412,14 +410,7 @@
       <workItem from="1627645635369" duration="68000" />
       <workItem from="1631036329956" duration="26158000" />
       <workItem from="1631215370229" duration="7300000" />
-      <workItem from="1631278444669" duration="892000" />
-    </task>
-    <task id="LOCAL-00242" summary="Linux Tests">
-      <created>1623881879299</created>
-      <option name="number" value="00242" />
-      <option name="presentableId" value="LOCAL-00242" />
-      <option name="project" value="LOCAL" />
-      <updated>1623881879299</updated>
+      <workItem from="1631278444669" duration="1112000" />
     </task>
     <task id="LOCAL-00243" summary="Linux Tests">
       <created>1623881996102</created>
@@ -757,7 +748,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631273850380</updated>
     </task>
-    <option name="localTasksCounter" value="291" />
+    <task id="LOCAL-00291" summary="Simplified ThreadLocal property wrappewr.">
+      <created>1631279378240</created>
+      <option name="number" value="00291" />
+      <option name="presentableId" value="LOCAL-00291" />
+      <option name="project" value="LOCAL" />
+      <updated>1631279378241</updated>
+    </task>
+    <option name="localTasksCounter" value="292" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -790,7 +788,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added peek() to CharInputStream protocol." />
     <MESSAGE value="Added lock() and unlock() to CharStream protocol." />
     <MESSAGE value="Added withLock(_:) to CharStream protocol." />
     <MESSAGE value="Added Semaphore class." />
@@ -815,7 +812,8 @@
     <MESSAGE value="Updated to latest version of Chadakoin." />
     <MESSAGE value="Made sure MarkInputStream.getProperty(forKey:) passes down to underlying input stream." />
     <MESSAGE value="Post Update." />
-    <option name="LAST_COMMIT_MESSAGE" value="Post Update." />
+    <MESSAGE value="Simplified ThreadLocal property wrappewr." />
+    <option name="LAST_COMMIT_MESSAGE" value="Simplified ThreadLocal property wrappewr." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

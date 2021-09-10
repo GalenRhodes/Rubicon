@@ -20,19 +20,19 @@ import CoreFoundation
 
 @propertyWrapper
 public struct Triggered<T> {
-    public typealias Trigger = (T) -> T
+    public typealias Trigger = (T, Bool) -> T
 
     @usableFromInline var value: T
     @usableFromInline let block: Trigger
 
     @inlinable public var wrappedValue: T {
-        get { value }
-        mutating set { value = block(newValue) }
+        get { block(value, false) }
+        mutating set { value = block(newValue, true) }
     }
 
     @inlinable public init(wrappedValue: T, onInit: Bool = true, _ block: @escaping Trigger) {
         self.block = block
-        if onInit { value = self.block(wrappedValue) }
+        if onInit { value = self.block(wrappedValue, true) }
         else { value = wrappedValue }
     }
 }

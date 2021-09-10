@@ -29,25 +29,25 @@ import CoreFoundation
 ///         /* do something when possiblyNil is 'nil' */
 ///     }
 /// ```
-///
+/// 
 /// This is fine but I wanted to do the same thing with a conditional expression like you can in C/C++/Objective-C:
 /// ```
 ///     let x = (let v = possiblyNil ? v.name : "no name") // This will not compile. 😩
 /// ```
-///
+/// 
 /// I know I could always do this:
 /// ```
 ///     let x = ((possiblyNil == nil) ? "no name" : v!.name) // This will compile.
 /// ```
 /// But the OCD side of me really dislikes that '!' being there even though I know it will never cause a fatal
 /// error. It just rubs up against that nerve seeing it there. 🤢
-///
+/// 
 /// So I created this function to simulate the functionality of the above using closures.
-///
+/// 
 /// ```
 ///     let x = when(possiblyNil, isNil: "No Name") { $0.name } // This will compile. 😁
 /// ```
-///
+/// 
 /// - Parameters:
 ///   - expression: The expression to test for `nil`.
 ///   - c1: The closure to execute if `obj` IS `nil`.

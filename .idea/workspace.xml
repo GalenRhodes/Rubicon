@@ -29,31 +29,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Post Update.">
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Date.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/PropertyWrappers/Triggered.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools/CollectionTools.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools/ConditionalExpressions.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools/DateTimeTools.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools/DebugTools.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools/IOTools.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools/OSTools.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools/Processes.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools/Tools.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Rubicon.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/CErrors.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/CErrors.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/CStrings.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/CStrings.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Conditional.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Conditional.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/NamedSemaphore.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/NamedSemaphore.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Dictionary.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Dictionary.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/FileList.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/FileManager.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/MathTools.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools/MathTools.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/NanoTimer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/NanoTimer.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/PropertyWrappers/StringXForm.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/PropertyWrappers/StringXForm.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/PropertyWrappers/ThreadLocal.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/PropertyWrappers/ThreadLocal.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/StopWatch.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/StopWatch.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer (Jazzy).xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer (Jazzy).xcscheme" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/ByteOrder.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/ByteOrder.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/NSRegularExpression.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/NSRegularExpression.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Text/RegularExpression.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Text/RegularExpression.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Text/StringFormat.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Text/StringFormat.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools/Tools.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools/Tools.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +137,7 @@
       <recent name="$PROJECT_DIR$/Sources/semaphore" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Rubicon">
+  <component name="RunManager" selected="Application.DocFixer (Jazzy)">
     <list>
       <item itemvalue="Application.Experiments" />
       <item itemvalue="Application.DocFixer Remote" />
@@ -431,14 +414,8 @@
       <workItem from="1627588591242" duration="906000" />
       <workItem from="1627645436171" duration="171000" />
       <workItem from="1627645635369" duration="68000" />
-      <workItem from="1631036329956" duration="25472000" />
-    </task>
-    <task id="LOCAL-00240" summary="Linux Tests">
-      <created>1623877874982</created>
-      <option name="number" value="00240" />
-      <option name="presentableId" value="LOCAL-00240" />
-      <option name="project" value="LOCAL" />
-      <updated>1623877874982</updated>
+      <workItem from="1631036329956" duration="26158000" />
+      <workItem from="1631215370229" duration="7119000" />
     </task>
     <task id="LOCAL-00241" summary="Linux Tests">
       <created>1623877962962</created>
@@ -776,7 +753,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631106297704</updated>
     </task>
-    <option name="localTasksCounter" value="289" />
+    <task id="LOCAL-00289" summary="Post Update.">
+      <created>1631192911064</created>
+      <option name="number" value="00289" />
+      <option name="presentableId" value="LOCAL-00289" />
+      <option name="project" value="LOCAL" />
+      <updated>1631192911064</updated>
+    </task>
+    <option name="localTasksCounter" value="290" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

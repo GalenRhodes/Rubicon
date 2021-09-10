@@ -24,7 +24,7 @@ import CoreFoundation
 /*==============================================================================================================*/
 /// Applications that run on Linux need to have the main dispatch queue running in order to use Grand Central
 /// Dispatch. This function does that.
-///
+/// 
 /// - Parameter exec: The closure that runs your application.
 /// - Returns: The exit code for your application or `1` if your application threw an uncaught error.
 ///
@@ -45,7 +45,7 @@ import CoreFoundation
 
 /*==============================================================================================================*/
 /// Execute a program and capture it's output.
-///
+/// 
 /// - Parameters:
 ///   - exec: The program to execute.
 ///   - args: The command line arguments for the program.
@@ -63,7 +63,7 @@ public func execute(exec: String, args: [String], stdin: Data, stdout: inout Dat
 
 /*==============================================================================================================*/
 /// Execute a program and capture it's output.
-///
+/// 
 /// - Parameters:
 ///   - exec: The program to execute.
 ///   - args: The command line arguments for the program.
@@ -103,7 +103,7 @@ public func execute(exec: String, args: [String], stdin: Any? = nil, stdout: ino
 
 /*==============================================================================================================*/
 /// Execute a program and capture it's output.
-///
+/// 
 /// - Parameters:
 ///   - exec: The program to execute.
 ///   - args: The command line arguments for the program.
@@ -135,7 +135,7 @@ public func execute(exec: String, args: [String], stdin: String, stdout: inout S
 
 /*==============================================================================================================*/
 /// Execute a program and capture it's output.
-///
+/// 
 /// - Parameters:
 ///   - exec: The program to execute.
 ///   - args: The command line arguments for the program.
@@ -157,7 +157,7 @@ public func execute(exec: String, args: [String], stdin: Any? = nil, stdout: ino
 /*==============================================================================================================*/
 /// Execute a program and capture it's output. Anything written to stderr by the program is discarded unless
 /// `discardStderr` is set to `false` in which case it is routed to the system's stderr channel.
-///
+/// 
 /// - Parameters:
 ///   - exec: The program to execute.
 ///   - args: The command line arguments for the program.
@@ -184,7 +184,7 @@ public func execute(exec: String, args: [String], stdin: Any? = nil, stdout: ino
 /*==============================================================================================================*/
 /// Execute a program. Anything written to stderr or stdout by the program is discarded unless `discardOutput` is
 /// set to `false` in which case it is routed to the system's stderr and stdout channels.
-///
+/// 
 /// - Parameters:
 ///   - exec: The program to execute.
 ///   - args: The command line arguments for the program.
@@ -207,7 +207,7 @@ public func execute(exec: String, args: [String], stdin: Any? = nil, discardOutp
 
 /*==============================================================================================================*/
 /// Launch a process and return.
-///
+/// 
 /// - Parameter process: The process to launch.
 /// - Returns: `true` if successful.
 ///
@@ -218,7 +218,7 @@ public func execute(exec: String, args: [String], stdin: Any? = nil, discardOutp
 
 /*==============================================================================================================*/
 /// Launch a process and return.
-///
+/// 
 /// - Parameters:
 ///   - process: The process to launch.
 ///   - error: Receives any error.
@@ -237,4 +237,3 @@ public func execute(exec: String, args: [String], stdin: Any? = nil, discardOutp
         return false
     }
 }
-

@@ -26,8 +26,6 @@ import CoreFoundation
     import WinSDK
 #endif
 
-public typealias CFByteOrderEnum = __CFByteOrder
-
 /*==============================================================================================================*/
 /// Values that indicate should be sorted against another object.
 ///
@@ -54,18 +52,18 @@ infix operator <=>: ComparisonPrecedence
 /*==============================================================================================================*/
 /// Compares two objects to see what their `SortOrdering` is. Both objects have to conform to the
 /// [`Comparable`](https://swiftdoc.org/v5.1/protocol/comparable/) protocol.
-///
+/// 
 /// Usage:
 /// ```
 ///     func `foo(str1: String, str2: String)` { switch str1 <=> str2 { case .LessThan: `print("'\(str1)`' comes
 ///     before '\(str2)'") case .EqualTo: `print("'\(str1)`' is the same as '\(str2)'") case .GreaterThan:
 ///     `print("'\(str1)`' comes after '\(str2)'") } }
 /// ```
-///
+/// 
 /// - Parameters:
 ///   - l: The left hand operand
 ///   - r: The right hand operand
-///
+/// 
 /// - Returns: `SortOrdering.LessThan`, `SortOrdering.EqualTo`, `SortOrdering.GreaterThan` as the left-hand
 ///            operand should be sorted before, at the same place as, or after the right-hand operand.
 ///
@@ -83,21 +81,21 @@ infix operator <=>: ComparisonPrecedence
 /// `leftArray[1]` to `rightArray[1]` and so on until it finds the first pair of objects that do not of the same
 /// sort ordering and returns ordering. If all the objects in the same positions in both arrays are
 /// `SortOrdering.Same` then this function returns `SortOrdering.Same`.
-///
+/// 
 /// Example:
 /// ```
 ///     let array1: [Int] = [ 1, 2, 3, 4 ] let array2: [Int] = [ 1, 2, 3, 4 ] let array3: [Int] = [ 1, 2, 3 ] let
 ///     array4: [Int] = [ 1, 2, 5, 6 ]
-///
+/// 
 ///     let result1: SortOrdering = array1 <=> array2 // result1 is set to `SortOrdering.EqualTo` let result2:
 ///     SortOrdering = array1 <=> array3 // result2 is set to `SortOrdering.GreaterThan` let result3: SortOrdering
 ///     = array1 <=> array4 // result3 is set to `SortOrdering.LessThan`
 /// ```
-///
+/// 
 /// - Parameters:
 ///   - l: The left hand array operand
 ///   - r: The right hand array operand
-///
+/// 
 /// - Returns: `SortOrdering.LessThan`, `SortOrdering.EqualTo`, `SortOrdering.GreaterThan` as the left-hand array
 ///            comes before, in the same place as, or after the right-hand array.
 ///
@@ -118,7 +116,7 @@ infix operator <=>: ComparisonPrecedence
 /// If the `maxLength` is less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then return the largest
 /// integer possible (<code>[Int.max](https://developer.apple.com/documentation/swift/int/1540171-max)</code>)
 /// otherwise returns the value of `maxLength`.
-///
+/// 
 /// - Parameter maxLength: the length to fix.
 /// - Returns: Either the value of `maxLength` or
 ///            <code>[Int.max](https://developer.apple.com/documentation/swift/int/1540171-max)</code>.
@@ -130,12 +128,12 @@ infix operator <=>: ComparisonPrecedence
 /// ```
 ///     if number == 1 || number == 5 || number == 99 { /* do something */ }
 /// ```
-///
+/// 
 /// You can now do this:
 /// ```
 ///     if `value(number, isOneOf: 1, 5, 99)` { /* do something */ }
 /// ```
-///
+/// 
 /// - Parameters:
 ///   - value: The value to be tested.
 ///   - isOneOf: The desired values.
@@ -148,7 +146,7 @@ infix operator <=>: ComparisonPrecedence
 /*==============================================================================================================*/
 /// Calculate the number of instances of a given datatype will occupy a given number of bytes. For example, if
 /// given a type of `Int64.self` and a byte count of 16 then this function will return a value of 2.
-///
+/// 
 /// - Parameters:
 ///   - type: The target datatype.
 ///   - value: The number of bytes.
@@ -159,7 +157,7 @@ infix operator <=>: ComparisonPrecedence
 /*==============================================================================================================*/
 /// Calculate the number of bytes that make up a given number of instances of the given datatype. For example if
 /// given a datatype of `Int64.self` and a count of 2 then this function will return 16.
-///
+/// 
 /// - Parameters:
 ///   - type: The target datatype.
 ///   - value: The number of instances of the datatype.
@@ -169,7 +167,7 @@ infix operator <=>: ComparisonPrecedence
 
 /*==============================================================================================================*/
 /// Get a hash value from just about anything.
-///
+/// 
 /// - Parameter v: The item you want the hash of.
 /// - Returns: The hash.
 ///
@@ -183,7 +181,7 @@ infix operator <=>: ComparisonPrecedence
 /// ```
 /// type(of: o) == t.self
 /// ```
-///
+/// 
 /// - Parameters:
 ///   - o: The instance to check the type of.
 ///   - t: The type to check for.

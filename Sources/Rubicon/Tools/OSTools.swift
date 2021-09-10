@@ -23,7 +23,7 @@ import CoreFoundation
 
 /*==============================================================================================================*/
 /// Which
-///
+/// 
 /// - Parameter names: The programs to look for.
 /// - Returns: The paths to the programs. If any program couldn't be found then that entry is `nil`.
 ///
@@ -60,7 +60,7 @@ public func which(names: [String]) -> [String?] {
 
 /*==============================================================================================================*/
 /// Which
-///
+/// 
 /// - Parameter name: The program to look for.
 /// - Returns: The path to the program or `nil` if it couldn't be found.
 ///

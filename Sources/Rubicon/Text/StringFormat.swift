@@ -55,11 +55,11 @@ extension StringProtocol {
                 out.append(contentsOf: self[idx ..< range.lowerBound])
                 idx = range.lowerBound
 
-                if var convSpec = match.groups[6].subString {
-                    let argSpec = match.groups[2].subString
-                    let flags   = FlagSet(match.groups[3].subString, convSpec: &convSpec)
-                    let scale   = (match.groups[4].subString?.toInteger() ?? 1).clamp(minValue: 1)
-                    let prec    = (match.groups[5].subString?.toInteger() ?? 6).clamp(minValue: 1)
+                if var convSpec = match[6].subString {
+                    let argSpec = match[2].subString
+                    let flags   = FlagSet(match[3].subString, convSpec: &convSpec)
+                    let scale   = (match[4].subString?.toInteger() ?? 1).clamp(minValue: 1)
+                    let prec    = (match[5].subString?.toInteger() ?? 6).clamp(minValue: 1)
                     let _arg    = getFormatArgument(argSpec: argSpec, argIndex: &aIdx, prevArgIndex: &pIdx, args: args)
 
                     switch convSpec {
@@ -80,7 +80,7 @@ extension StringProtocol {
                                     case "r": out.append(flags.isUppercase ? "\r\n" : "\r")
                                     case "s": formatString(to: &out, argument: arg, scale: scale, prec: prec, flags: flags)
                                     case "x": formatHexadecimal(to: &out, argument: arg, scale: scale, flags: flags)
-                                    default:  formatDateTime(to: &out, dateSpecifier: match.groups[7].subString, argument: arg, scale: scale, flags: flags)
+                                    default:  formatDateTime(to: &out, dateSpecifier: match[7].subString, argument: arg, scale: scale, flags: flags)
                                 }
                             }
                             else {

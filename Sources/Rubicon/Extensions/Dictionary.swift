@@ -80,4 +80,3 @@ extension Dictionary where Key == FileAttributeKey, Value == Any {
         }
     }
 }
-

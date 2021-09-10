@@ -38,7 +38,7 @@ infix operator <?: ComparisonPrecedence
 
 /*==============================================================================================================*/
 /// Append a new element to an <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
-///
+/// 
 /// - Parameters:
 ///   - lhs: The <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>
 ///   - rhs: The new element
@@ -49,7 +49,7 @@ infix operator <?: ComparisonPrecedence
 /// Append the contents of the right-hand
 /// <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> oprand to the left-hand
 /// <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> oprand.
-///
+/// 
 /// - Parameters:
 ///   - lhs: The receiving <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 ///   - rhs: The source <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
@@ -59,7 +59,7 @@ infix operator <?: ComparisonPrecedence
 /*==============================================================================================================*/
 /// Checks to see if the <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> (left-hand
 /// operand) contains the right-hand operand.
-///
+/// 
 /// - Parameters:
 ///   - lhs: The <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 ///   - rhs: The object to search for in the
@@ -73,7 +73,7 @@ infix operator <?: ComparisonPrecedence
 /// Checks to see if the left-hand <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>
 /// contains all of the elements in the right-hand
 /// <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
-///
+/// 
 /// - Parameters:
 ///   - lhs: The left-hand <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 ///   - rhs: The right-hand <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.

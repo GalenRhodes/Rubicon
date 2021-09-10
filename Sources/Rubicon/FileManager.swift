@@ -47,7 +47,7 @@ extension FileManager {
 
     /*==========================================================================================================*/
     /// Get a list of file from a directory.
-    ///
+    /// 
     /// - Parameters:
     ///   - atPath: The directory to get the list of files from.
     ///   - resolveSymLinks: If `true` then any symbolic links found will be resolved before being sent to the the
@@ -86,15 +86,15 @@ extension FileManager {
 
     /*==========================================================================================================*/
     /// Recursively resolve a symbolic link.
-    ///
+    /// 
     /// This method resolves all symbolic links, extra `/` characters, and references to `.` and `..` in `path`.
     /// It will resolve both absolute and relative paths and return the absolute pathname corresponding to `path`.
     /// All components of `path` must exist when this method is called.
-    ///
+    /// 
     /// This method behaves like the [Linux readlink
     /// utility](https://man7.org/linux/man-pages/man1/readlink.1.html) when using the `--canonicalize-existing`
     /// flag.
-    ///
+    /// 
     /// - Parameter path: The path to resolve.
     /// - Returns: The resolved file.
     /// - Throws: If an I/O error occurs or if one of the symbolic link components is broken.

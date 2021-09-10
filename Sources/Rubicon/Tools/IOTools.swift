@@ -28,7 +28,7 @@ public let BasicBufferSize: Int = 4096
 
 /*==============================================================================================================*/
 /// Read the data from a Pipe and return it as a string.
-///
+/// 
 /// - Parameters:
 ///   - pipe: The pipe to read from.
 ///   - encoding: The encoding. Defaults to `UTF-8`.

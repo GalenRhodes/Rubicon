@@ -57,7 +57,7 @@ open class CString {
     /// <code>[String](https://developer.apple.com/documentation/swift/string/)</code>. The characters of the
     /// <code>[String](https://developer.apple.com/documentation/swift/string/)</code> will be encoded as a series
     /// of UTF-8 bytes.
-    ///
+    /// 
     /// - Parameter string: the string.
     ///
     public init(string: String) {
@@ -75,7 +75,7 @@ open class CString {
     /*==========================================================================================================*/
     /// Initialize this object with the contents of the byte (unsigned char) buffer. The bytes will be interpreted
     /// as a series of characters encoded with the given character encoding.
-    ///
+    /// 
     /// - Parameters:
     ///   - byteBuffer: The byte buffer.
     ///   - hasNullTerminator: `true` if the buffer includes a `nil` terminating character. Defaults to `false`.
@@ -89,7 +89,7 @@ open class CString {
     /*==========================================================================================================*/
     /// Initialize this object with the contents of the character (signed char) buffer. The characters will be
     /// interpreted as a series of characters encoded with the given character encoding.
-    ///
+    /// 
     /// - Parameters:
     ///   - charBuffer: The character buffer.
     ///   - hasNullTerminator: `true` if the buffer includes a `nil` terminating character. Defaults to `false`.
@@ -106,7 +106,7 @@ open class CString {
     /// string MUST be `nil` terminated. If the length is less than
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> and the string is NOT `nil` terminated then the
     /// behavior of this initializer is undefined.
-    ///
+    /// 
     /// - Parameters:
     ///   - cString: The pointer to the characters.
     ///   - length: The length of the string. If less than <code>[zero](https://en.wikipedia.org/wiki/0)</code>
@@ -128,7 +128,7 @@ open class CString {
     /// string MUST be `nil` terminated. If the length is less than
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> and the string is NOT `nil` terminated then the
     /// behavior of this initializer is undefined.
-    ///
+    /// 
     /// - Parameters:
     ///   - cString: The pointer to the characters.
     ///   - length: The length of the string. If less than <code>[zero](https://en.wikipedia.org/wiki/0)</code>
@@ -148,7 +148,7 @@ open class CString {
     /// string MUST be `nil` terminated. If the length is less than
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> and the string is NOT `nil` terminated then the
     /// behavior of this initializer is undefined.
-    ///
+    /// 
     /// - Parameters:
     ///   - cString: The pointer to the bytes.
     ///   - length: The length of the string. If less than <code>[zero](https://en.wikipedia.org/wiki/0)</code>
@@ -171,7 +171,7 @@ open class CString {
     /// length is not given or is less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the string
     /// MUST be `nil` terminated. If the length is less than <code>[zero](https://en.wikipedia.org/wiki/0)</code>
     /// and the string is NOT `nil` terminated then the behavior of this initializer is undefined.
-    ///
+    /// 
     /// - Parameters:
     ///   - cString: The pointer to the bytes.
     ///   - length: The length of the string. If less than <code>[zero](https://en.wikipedia.org/wiki/0)</code>
@@ -190,7 +190,7 @@ open class CString {
 
     /*==========================================================================================================*/
     /// Used internally.
-    ///
+    /// 
     /// - Parameters:
     ///   - cString: The characters.
     ///   - length: The number of characters.
@@ -209,7 +209,7 @@ open class CString {
     /// Execute the block with an
     /// <code>[UnsafeBufferPointer](https://developer.apple.com/documentation/swift/unsafebufferpointer/)</code>
     /// of <code>[Int8](https://developer.apple.com/documentation/swift/int8/)</code> characters.
-    ///
+    /// 
     /// - Parameter block: the block to execute.
     /// - Returns: The value returned by the block.
     /// - Throws: Any error thrown by the block.
@@ -222,7 +222,7 @@ open class CString {
     /// Execute the block with an
     /// <code>[UnsafeBufferPointer](https://developer.apple.com/documentation/swift/unsafebufferpointer/)</code>
     /// of UTF-8 encoded characters.
-    ///
+    /// 
     /// - Parameter block: the block to execute.
     /// - Returns: The value returned by the block.
     /// - Throws: Any error thrown by the block.
@@ -236,7 +236,7 @@ open class CString {
     /*==========================================================================================================*/
     /// Execute the block with an UnsafePointer of
     /// <code>[Int8](https://developer.apple.com/documentation/swift/int8/)</code> characters.
-    ///
+    /// 
     /// - Parameter block: the block to execute.
     /// - Returns: The value returned by the block.
     /// - Throws: Any error thrown by the block.
@@ -251,7 +251,7 @@ open class CString {
 
     /*==========================================================================================================*/
     /// Execute the block with an UnsafePointer of UTF-8 characters.
-    ///
+    /// 
     /// - Parameter block: the block to execute.
     /// - Returns: The value returned by the block.
     /// - Throws: Any error thrown by the block.
@@ -268,20 +268,20 @@ open class CString {
 
     /*==========================================================================================================*/
     /// Create a new CString and do something with it right away. So, for example, instead of having to do this:
-    ///
+    /// 
     /// <pre>
     ///    let buffer = UnsafeMutablePointer<Int8>.allocate(capacity: 256)
     ///    defer { buffer.deallocate() }
     ///    guard strerror_r(code, buffer, 255) == 0 else { return "Unknown Error: \(code)" }
     ///    let str = String(utf8String: buffer) ?? "Unknown Error: \(code)"
     /// </pre>
-    ///
+    /// 
     /// You can, instead, do this:
-    ///
+    /// 
     /// <pre>
     ///     let str = (CString.newUtf8BufferOf(length: 255) { ((strerror_r(code, $0, $1) == 0) ? strlen($0) : -1) })?.string ?? "Unknown Error: \(code)"
     /// </pre>
-    ///
+    /// 
     /// - Parameters:
     ///   - length: The length of the buffer to create NOT INCLUDING the `nil` terminator.
     ///   - block: The closure that will get executed. The buffer and it's length, NOT INCLUDING the `nil`
@@ -301,20 +301,20 @@ open class CString {
 
     /*==========================================================================================================*/
     /// Create a new CString and do something with it right away. So, for example, instead of having to do this:
-    ///
+    /// 
     /// <pre>
     ///    let buffer = UnsafeMutablePointer<Int8>.allocate(capacity: 256)
     ///    defer { buffer.deallocate() }
     ///    guard strerror_r(code, buffer, 255) == 0 else { return "Unknown Error: \(code)" }
     ///    let str = String(cString: buffer, encoding: String.Encoding.windowsCP1250) ?? "Unknown Error: \(code)"
     /// </pre>
-    ///
+    /// 
     /// You can, instead, do this:
-    ///
+    /// 
     /// <pre>
     ///     let str = (CString.newCCharBufferOf(length: 255, encoding: String.Encoding.windowsCP1250) { ((strerror_r(code, $0, $1) == 0) ? strlen($0) : -1) })?.string ?? "Unknown Error: \(code)"
     /// </pre>
-    ///
+    /// 
     /// - Parameters:
     ///   - length: The length of the buffer to create NOT INCLUDING the `nil` terminator.
     ///   - encoding: The encoding that the characters are expected to be in. Defaults to UTF-8.
@@ -386,7 +386,7 @@ func cString001(_ string: String) -> CCharBuffer {
 
 /*==============================================================================================================*/
 /// Get the length of a `nil`-terminated C string of type 'signed char' (Int8).
-///
+/// 
 /// - Parameters:
 ///   - cStringPtr: The C string.
 ///   - length: The maximum possible length of the string. If less than
@@ -402,7 +402,7 @@ func cString001(_ string: String) -> CCharBuffer {
 
 /*==============================================================================================================*/
 /// Get the length of a `nil`-terminated C string of type 'unsigned char' (UInt8).
-///
+/// 
 /// - Parameters:
 ///   - cStringPtr: The C string.
 ///   - length: The maximum possible length of the string. If less than

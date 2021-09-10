@@ -13,7 +13,7 @@ public typealias RegExResult = NSTextCheckingResult
 /// Convienience function to build an instance of
 /// <code>[RegEx](https://developer.apple.com/documentation/foundation/nsregularexpression/)</code> that includes
 /// the option to have anchors ('^' and '$') match the beginning and end of lines instead of the entire input.
-///
+/// 
 /// - Parameter pattern: the regular expression pattern.
 /// - Returns: The instance of
 ///            <code>[RegEx](https://developer.apple.com/documentation/foundation/nsregularexpression/)</code>
@@ -55,28 +55,14 @@ extension NSRegularExpression {
     }
 }
 
-extension NSRegularExpression.Options {
-    @inlinable static func convert(from options: RegularExpression.Options) -> Self {
-        var o: Self = []
-        if options.contains(.caseInsensitive) { o.insert(.caseInsensitive) }
-        if options.contains(.allowCommentsAndWhitespace) { o.insert(.allowCommentsAndWhitespace) }
-        if options.contains(.ignoreMetacharacters) { o.insert(.ignoreMetacharacters) }
-        if options.contains(.dotMatchesLineSeparators) { o.insert(.dotMatchesLineSeparators) }
-        if options.contains(.anchorsMatchLines) { o.insert(.anchorsMatchLines) }
-        if options.contains(.useUnixLineSeparators) { o.insert(.useUnixLineSeparators) }
-        if options.contains(.useUnicodeWordBoundaries) { o.insert(.useUnicodeWordBoundaries) }
-        return o
-    }
-}
-
-extension NSRegularExpression.MatchingOptions {
-    @inlinable static func convert(from options: RegularExpression.MatchingOptions) -> Self {
-        var o: Self = []
-        if options.contains(.reportProgress) { o.insert(.reportProgress) }
-        if options.contains(.reportCompletion) { o.insert(.reportCompletion) }
-        if options.contains(.anchored) { o.insert(.anchored) }
-        if options.contains(.withTransparentBounds) { o.insert(.withTransparentBounds) }
-        if options.contains(.withoutAnchoringBounds) { o.insert(.withoutAnchoringBounds) }
+extension NSRegularExpression.MatchingFlags {
+    @inlinable func convert() -> RegularExpression.MatchingFlags {
+        var o: RegularExpression.MatchingFlags = []
+        if contains(.progress) { o.insert(.progress) }
+        if contains(.completed) { o.insert(.completed) }
+        if contains(.hitEnd) { o.insert(.hitEnd) }
+        if contains(.requiredEnd) { o.insert(.requiredEnd) }
+        if contains(.internalError) { o.insert(.internalError) }
         return o
     }
 }

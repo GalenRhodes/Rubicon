@@ -18,6 +18,8 @@
 import Foundation
 import CoreFoundation
 
+public typealias CFByteOrderEnum = __CFByteOrder
+
 public enum ByteOrder {
     case BigEndian
     case LittleEndian

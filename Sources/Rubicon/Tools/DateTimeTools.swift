@@ -38,7 +38,7 @@ public let OneSecondMillis: time_t = 1_000
 
 /*==============================================================================================================*/
 /// Get the system time in nanoseconds.
-///
+/// 
 /// - Parameter delta: The number of nanoseconds to add to the system time.
 /// - Returns: The system time plus the value of `delta`.
 ///
@@ -53,7 +53,7 @@ fileprivate let sysTimeAdjLock: MutexLock = MutexLock()
 
 /*==============================================================================================================*/
 /// Calculates the average overhead of calling `getSysTime(delta:)` so that it can be factored into calculations.
-///
+/// 
 /// - Returns: The average time in nanoseconds to call `getSysTime(delta:)`.
 ///
 public func getSysTimeAdjustment() -> Int {
@@ -85,7 +85,7 @@ public func getSysTimeAdjustment() -> Int {
 /// possible limitations in the timer resolution of the hardware). An unmasked signal will cause
 /// `NanoSleep(seconds:nanos:)` to terminate the sleep early, regardless of the `SA_RESTART` value on the
 /// interrupting signal.
-///
+/// 
 /// - Parameters:
 ///   - seconds: The number of seconds to sleep.
 ///   - nanos: The number of additional nanoseconds to sleep.
@@ -106,7 +106,7 @@ public func NanoSleep(seconds: time_t = 0, nanos: Int = 0) -> Int {
 /// possible limitations in the timer resolution of the hardware). An unmasked signal will cause
 /// `NanoSleep(seconds:nanos:)` to terminate the sleep early, regardless of the `SA_RESTART` value on the
 /// interrupting signal.
-///
+/// 
 /// - Parameters:
 ///   - seconds: The number of seconds to sleep.
 ///   - nanos: The number of additional nanoseconds to sleep.

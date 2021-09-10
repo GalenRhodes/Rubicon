@@ -139,14 +139,14 @@ import CoreFoundation
                     if errno == EEXIST {
                         let s = sem_open(self.name, 0)
                         if s == SEM_FAILED {
-                            error = CErrors.getErrorFor(code: errno)
+                            error = CErrors(code: errno)
                             return nil
                         }
                         _owns = false
                         _sem = s!
                     }
                     else {
-                        error = CErrors.getErrorFor(code: errno)
+                        error = CErrors(code: errno)
                         return nil
                     }
                 }
@@ -194,7 +194,7 @@ import CoreFoundation
         public func acquire() {
             #if os(Windows)
             #else
-                guard sem_wait(_sem) == 0 else { fatalError(CErrors.getErrorFor(code: errno).description) }
+                guard sem_wait(_sem) == 0 else { fatalError(CErrors(code: errno).description) }
             #endif
         }
 
@@ -210,7 +210,7 @@ import CoreFoundation
                 return false
             #else
                 let ret: Int32 = sem_trywait(_sem)
-                guard (ret == 0) || (errno == EAGAIN) else { fatalError(CErrors.getErrorFor(code: errno).description) }
+                guard (ret == 0) || (errno == EAGAIN) else { fatalError(CErrors(code: errno).description) }
                 return (ret == 0)
             #endif
         }

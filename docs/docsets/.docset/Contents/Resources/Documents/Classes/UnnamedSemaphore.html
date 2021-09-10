@@ -54,9 +54,6 @@
             <a class="nav-group-name-link" href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/Atomic.html">Atomic</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/AtomicValue.html">AtomicValue</a>
               </li>
               <li class="nav-group-task">
@@ -141,9 +138,6 @@
                 <a class="nav-group-task-link" href="../Classes/StringCharInputStream.html">StringCharInputStream</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/ThreadLocal.html">ThreadLocal</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/UnnamedSemaphore.html">UnnamedSemaphore</a>
               </li>
             </ul>
@@ -191,9 +185,6 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/ByteOrder.html">ByteOrder</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Enums/CErrors.html">CErrors</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Enums/CharStreamError.html">CharStreamError</a>
@@ -513,6 +504,12 @@
             <a class="nav-group-name-link" href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Atomic.html">Atomic</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/CErrors.html">CErrors</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/OStringXForm.html">OStringXForm</a>
               </li>
               <li class="nav-group-task">
@@ -526,6 +523,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/StringXForm/XForms.html">– XForms</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/ThreadLocal.html">ThreadLocal</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/Triggered.html">Triggered</a>
@@ -637,7 +637,7 @@ of the same process. If you need a semaphore that is visible to multiple process
 <code><a href="../Classes/NamedSemaphore.html">NamedSemaphore</a></code>.</p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/UnnamedSemaphore.swift#L26-L128">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Semaphore/UnnamedSemaphore.swift#L26-L128">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -671,7 +671,7 @@ of the same process. If you need a semaphore that is visible to multiple process
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/UnnamedSemaphore.swift#L30">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Semaphore/UnnamedSemaphore.swift#L30">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -704,7 +704,7 @@ greater than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code>.</p
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/UnnamedSemaphore.swift#L37">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Semaphore/UnnamedSemaphore.swift#L37">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -774,7 +774,7 @@ or <code><a href="../Classes/UnnamedSemaphore.html#/s:7Rubicon16UnnamedSemaphore
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/UnnamedSemaphore.swift#L58-L62">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Semaphore/UnnamedSemaphore.swift#L58-L62">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -812,7 +812,7 @@ allowed to acquire the semaphore.</p>
        value then it is left unchanged and <code>false</code> is returned.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/UnnamedSemaphore.swift#L72-L78">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Semaphore/UnnamedSemaphore.swift#L72-L78">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -844,7 +844,7 @@ greater than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> (0)
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/UnnamedSemaphore.swift#L85-L90">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Semaphore/UnnamedSemaphore.swift#L85-L90">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -880,7 +880,7 @@ greater than <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> (0)
        <code><a href="https://en.wikipedia.org/wiki/0">zero</a></code> (0).</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/UnnamedSemaphore.swift#L99-L105">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Semaphore/UnnamedSemaphore.swift#L99-L105">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -936,7 +936,7 @@ time specified by <code>until</code> has elapsed.</p>
                         <p><code>true</code> if successful or <code>false</code> if the specified time has elapsed.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/UnnamedSemaphore.swift#L116-L127">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Semaphore/UnnamedSemaphore.swift#L116-L127">Show on GitHub</a>
                       </div>
                     </section>
                   </div>

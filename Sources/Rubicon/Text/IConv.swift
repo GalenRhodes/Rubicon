@@ -276,8 +276,8 @@ import CoreFoundation
             let stop: Bool = try outBuff.withBytes { p, l, c -> Bool in try body(p, c) }
 
             switch iconvRes {
-                case .InvalidSequence: throw CErrors.ILSEQ()
-                case .OtherError:      throw CErrors.UNKNOWN(code: -1)
+                case .InvalidSequence: throw CErrors.EILSEQ
+                case .OtherError:      throw CErrors.UNKNOWN
                 default:               break
             }
 

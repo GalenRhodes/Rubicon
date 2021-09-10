@@ -533,6 +533,41 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/CErrors.swift",
+      "line": 90,
+      "symbol": "CErrors",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/CErrors.swift",
+      "line": 91,
+      "symbol": "CErrors.code",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/CErrors.swift",
+      "line": 94,
+      "symbol": "CErrors.init(code:description:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/CErrors.swift",
+      "line": 99,
+      "symbol": "CErrors.init(code:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/CErrors.swift",
+      "line": 107,
+      "symbol": "CErrors.UNKNOWN",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Collections/DynamicFixedArray.swift",
       "line": 25,
       "symbol": "DynamicFixedArray",
@@ -1443,27 +1478,6 @@
       "warning": "undocumented"
     },
     {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/NamedSemaphore.swift",
-      "line": 41,
-      "symbol": "NamedSemaphore.OSMaximumNameLength",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/NamedSemaphore.swift",
-      "line": 50,
-      "symbol": "NamedSemaphore.OSMaximumValue",
-      "symbol_kind": "source.lang.swift.decl.var.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/NamedSemaphore.swift",
-      "line": 56,
-      "symbol": "NamedSemaphore.name",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/PGSemaphore.swift",
       "line": 21,
       "symbol": "PGSemaphore",
@@ -1566,6 +1580,27 @@
       "line": 142,
       "symbol": "ReadWriteLock.tryWithWriteLock(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Semaphore/NamedSemaphore.swift",
+      "line": 41,
+      "symbol": "NamedSemaphore.OSMaximumNameLength",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Semaphore/NamedSemaphore.swift",
+      "line": 50,
+      "symbol": "NamedSemaphore.OSMaximumValue",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Semaphore/NamedSemaphore.swift",
+      "line": 56,
+      "symbol": "NamedSemaphore.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
@@ -2235,14 +2270,14 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/PropertyWrappers/AtomicProperty.swift",
-      "line": 41,
+      "line": 31,
       "symbol": "Atomic.wrappedValue",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/PropertyWrappers/AtomicProperty.swift",
-      "line": 64,
+      "line": 36,
       "symbol": "Atomic.init(wrappedValue:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -2361,14 +2396,14 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/PropertyWrappers/ThreadLocal.swift",
-      "line": 45,
+      "line": 33,
       "symbol": "ThreadLocal.wrappedValue",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/PropertyWrappers/ThreadLocal.swift",
-      "line": 60,
+      "line": 44,
       "symbol": "ThreadLocal.init(wrappedValue:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

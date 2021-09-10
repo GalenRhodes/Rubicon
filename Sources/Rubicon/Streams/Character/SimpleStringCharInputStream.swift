@@ -110,7 +110,7 @@ private func convertData(_ data: Data, _ encodingName: String) throws -> String 
         let resp   = iconv.convert(input: input, output: output)
 
         switch resp {
-            case .UnknownEncoding: throw CErrors.INVAL(description: "Unknown Character Encoding: \(encodingName)")
+            case .UnknownEncoding: throw CErrors.EINVAL
             case .OtherError:      throw StreamError.UnknownError()
             default:               break
         }

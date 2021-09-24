@@ -22,6 +22,9 @@
 
 import Foundation
 
+public typealias StringIndex = String.Index
+public typealias StringRange = Range<StringIndex>
+
 extension String {
 //@f:0
     #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
@@ -77,7 +80,7 @@ extension String {
     ///   - count: The number of times to prepend the character.
     /// - Returns: The index of first character in the string BEFORE calling this method.
     ///
-    @inlinable @discardableResult public mutating func prepend(_ char: Character, count: Int = 1) -> String.Index {
+    @inlinable @discardableResult public mutating func prepend(_ char: Character, count: Int = 1) -> StringIndex {
         for _ in (0 ..< count) { insert(char, at: startIndex) }
         return (index(startIndex, offsetBy: count, limitedBy: endIndex) ?? endIndex)
     }
@@ -92,7 +95,7 @@ extension String {
     /// - Parameter c: The collection of characters to prepend.
     /// - Returns: The index of first character in the string BEFORE calling this method.
     ///
-    @inlinable @discardableResult public mutating func prepend<C>(contentsOf c: C) -> String.Index where C: Collection, C.Element == Character {
+    @inlinable @discardableResult public mutating func prepend<C>(contentsOf c: C) -> StringIndex where C: Collection, C.Element == Character {
         insert(contentsOf: c, at: startIndex)
         return (index(startIndex, offsetBy: c.count, limitedBy: endIndex) ?? endIndex)
     }

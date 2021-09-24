@@ -34,8 +34,8 @@ open class SimpleStringCharInputStream: SimpleCharInputStream {
     open          var isEOF:             Bool          { lck.withLock { ((status != .open) || (index == eIdx))                           } }
 
     internal      let string:            String
-    internal      let eIdx:              String.Index
-    internal      var index:             String.Index
+    internal      let eIdx:              StringIndex
+    internal      var index:             StringIndex
     internal      var status:            Stream.Status = .notOpen
     internal lazy var lck:               RecursiveLock = RecursiveLock()
     //@f:1

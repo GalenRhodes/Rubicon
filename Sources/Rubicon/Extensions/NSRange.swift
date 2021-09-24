@@ -28,7 +28,7 @@ import Foundation
 public extension NSRange {
     /*==========================================================================================================*/
     /// Converts this <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> into a
-    /// [Range](https://developer.apple.com/documentation/swift/range)&lt;[String.Index](https://developer.apple.com/documentation/swift/string/index)&gt;
+    /// [Range](https://developer.apple.com/documentation/swift/range)&lt;[StringIndex](https://developer.apple.com/documentation/swift/string/index)&gt;
     /// for the given <code>[String](https://developer.apple.com/documentation/swift/string)</code>. Returns `nil`
     /// if this <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> is not valid
     /// for the given [String](https://developer.apple.com/documentation/swift/string)</code>.
@@ -39,7 +39,7 @@ public extension NSRange {
     ///            if this <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> is
     ///            not valid.
     ///
-    func strRange<S>(string: S) -> Range<String.Index>? where S : StringProtocol {
-        Range<String.Index>(self, in: String(string))
+    func strRange<S>(string: S) -> StringRange? where S : StringProtocol {
+        StringRange(self, in: String(string))
     }
 }

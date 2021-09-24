@@ -19,7 +19,7 @@ import Foundation
 import CoreFoundation
 
 open class StringCharInputStream: SimpleStringCharInputStream, CharInputStream {
-    typealias MarkItem = (TextPosition, String.Index)
+    typealias MarkItem = (TextPosition, StringIndex)
 
     //@f:0
     open     var markCount: Int          { lck.withLock { mstk.count } }

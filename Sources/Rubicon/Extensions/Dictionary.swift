@@ -20,8 +20,10 @@ import CoreFoundation
 
 extension Dictionary {
 
-    public func remapValues(_ body: (Key, Value) throws -> (Key, Value)) rethrows -> [Key:Value] {
-        var out: [Key:Value] = [:]
+    public func remapValues<V>(_ body: (Key, Value) throws -> (Key, V)) rethrows -> [Key: V] { try mapKV { (key, value) in try body(key, value) } }
+
+    public func mapKV<K, V>(_ body: (Key, Value) throws -> (K, V)) rethrows -> [K: V] where K: Hashable {
+        var out: [K: V] = [:]
         for (key, value) in self {
             let (k, v) = try body(key, value)
             out[k] = v

@@ -107,7 +107,7 @@ extension RegularExpression {
     ///                     protocol.
     /// - Returns: The escaped string.
     ///
-    @inlinable public class func escapedPattern<S>(for string: S) -> String where S: StringProtocol { NSRegularExpression.escapedPattern(for: toString(string)) }
+    @inlinable public class func escapedPattern<S>(for string: S) -> String where S: StringProtocol { NSRegularExpression.escapedPattern(for: string.asString) }
 
     /*==========================================================================================================*/
     /// Returns a template string by adding backslash escapes as necessary to protect any characters that would
@@ -127,7 +127,7 @@ extension RegularExpression {
     ///                     protocol.
     /// - Returns: The escaped template string.
     ///
-    @inlinable public class func escapedTemplate<S>(for string: S) -> String where S: StringProtocol { NSRegularExpression.escapedTemplate(for: toString(string)) }
+    @inlinable public class func escapedTemplate<S>(for string: S) -> String where S: StringProtocol { NSRegularExpression.escapedTemplate(for: string.asString) }
 
     /*==========================================================================================================*/
     /// Returns the number of matches of the regular expression within the specified range of the string.
@@ -138,7 +138,7 @@ extension RegularExpression {
     ///   - range: The range of the string to search.
     /// - Returns: The number of matches of the regular expression.
     ///
-    @inlinable public func numberOfMatches(in str: String, options: MatchingOptions = [], range: Range<String.Index>) -> Int {
+    @inlinable public func numberOfMatches(in str: String, options: MatchingOptions = [], range: StringRange) -> Int {
         nsRegex.numberOfMatches(in: str, options: options.convert(), range: NSRange(range, in: str))
     }
 
@@ -153,7 +153,7 @@ extension RegularExpression {
     /// - Returns: The number of matches of the regular expression.
     ///
     @inlinable public func numberOfMatches<S>(in str: S, options: MatchingOptions = []) -> Int where S: StringProtocol {
-        let s = toString(str)
+        let s = str.asString
         return numberOfMatches(in: s, options: options, range: s.fullRange)
     }
 
@@ -166,8 +166,8 @@ extension RegularExpression {
     ///   - range: The range of the string to search.
     /// - Returns: The range of the first match of `nil` if the match was not found.
     ///
-    @inlinable public func rangeOfFirstMatch(in str: String, options: MatchingOptions = [], range: Range<String.Index>) -> Range<String.Index>? {
-        str.range(nsRange: nsRegex.rangeOfFirstMatch(in: str, options: options.convert(), range: NSRange(range, in: str)))
+    @inlinable public func rangeOfFirstMatch(in str: String, options: MatchingOptions = [], range: StringRange) -> StringRange? {
+        StringRange(nsRegex.rangeOfFirstMatch(in: str, options: options.convert(), range: NSRange(range, in: str)), in: str)
     }
 
     /*==========================================================================================================*/
@@ -180,8 +180,8 @@ extension RegularExpression {
     ///   - options: The matching options to use. See `RegularExpression.MatchingOptions` for possible values.
     /// - Returns: The range of the first match of `nil` if the match was not found.
     ///
-    @inlinable public func rangeOfFirstMatch<S>(in str: S, options: MatchingOptions = []) -> Range<String.Index>? where S: StringProtocol {
-        let s = toString(str)
+    @inlinable public func rangeOfFirstMatch<S>(in str: S, options: MatchingOptions = []) -> StringRange? where S: StringProtocol {
+        let s = str.asString
         return rangeOfFirstMatch(in: s, options: options, range: s.fullRange)
     }
 
@@ -195,7 +195,7 @@ extension RegularExpression {
     /// - Returns: The first `RegularExpression.Match` found in the search string or `nil` if the match was not
     ///            found.
     ///
-    @inlinable public func firstMatch(in str: String, options: MatchingOptions = [], range: Range<String.Index>) -> Match? {
+    @inlinable public func firstMatch(in str: String, options: MatchingOptions = [], range: StringRange) -> Match? {
         guard let match = nsRegex.firstMatch(in: str, options: options.convert(), range: NSRange(range, in: str)) else { return nil }
         return Match(str, match: match)
     }
@@ -212,7 +212,7 @@ extension RegularExpression {
     ///            found.
     ///
     @inlinable public func firstMatch<S>(in str: S, options: MatchingOptions = []) -> Match? where S: StringProtocol {
-        let s = toString(str)
+        let s = str.asString
         return firstMatch(in: s, options: options, range: s.fullRange)
     }
 
@@ -226,7 +226,7 @@ extension RegularExpression {
     /// - Returns: An array of `RegularExpression.Match`s found in the search string or an empty array if the
     ///            match was not found.
     ///
-    @inlinable public func matches(in str: String, options: MatchingOptions = [], range: Range<String.Index>) -> [Match] {
+    @inlinable public func matches(in str: String, options: MatchingOptions = [], range: StringRange) -> [Match] {
         nsRegex.matches(in: str, options: options.convert(), range: NSRange(range, in: str)).map { Match(str, match: $0)! }
     }
 
@@ -242,7 +242,7 @@ extension RegularExpression {
     ///            match was not found.
     ///
     @inlinable public func matches<S>(in str: S, options: MatchingOptions = []) -> [Match] where S: StringProtocol {
-        let s = toString(str)
+        let s = str.asString
         return matches(in: s, options: options, range: s.fullRange)
     }
 
@@ -309,15 +309,16 @@ extension RegularExpression {
     ///   - options: The matching options to report. See `RegularExpression.MatchingOptions` for the supported
     ///              values.
     ///   - range: The range of the string to search.
-    ///   - body: The Block that is called for each match found in the search string. The Block takes two (2)
-    ///           parameters&#58; <dl><dt><b><i>match</i></b></dt><dd>An instance of `RegularExpression.Match` or
-    ///           `nil` if the Block is simply being called with the flags
-    ///           `RegularExpression.MatchingFlags.completed`, `RegularExpression.MatchingFlags.hitEnd`, or
-    ///           `RegularExpression.MatchingFlags.internalError`</dd> <dt><b><i>flags</i></b></dt><dd>An array of
-    ///           `RegularExpression.MatchingFlags`.</dd></dl> The closure returns `true` to stop the enumeration
-    ///           or `false` to continue to the next match.
+    ///   - body: The closure that is called for each match found in the search string. The closure takes three
+    ///     (3) parameters: <dl><dt><b><i>match</i></b></dt><dd>An instance of `RegularExpression.Match` or `nil`
+    ///     if the closure is simply being called to report progress or an internal error.</dd>
+    ///     <dt><b><i>flags</i></b></dt><dd>An instance of `RegularExpression.MatchingFlags`</dd>
+    ///     <dt><b><i>stop</i></b></dt><dd>A reference to a `Bool` value. The closure can set the value to `true`
+    ///     to stop further processing of the array. The `stop` argument is an out-only argument. You should only
+    ///     ever set this `Bool` to `true` within the closure.</dd></dl> The closure returns `Void`.
+    /// - Throws: Any exception thrown by the closure.
     ///
-    @inlinable public func forEachMatch(in str: String, options: MatchingOptions = [], range: Range<String.Index>, using body: MatchEnumClosure) rethrows {
+    @inlinable public func forEach(in str: String, options: MatchingOptions = [], range: StringRange, using body: MatchEnumClosure) rethrows {
         try withoutActuallyEscaping(body) { (_body) -> Void in
             var error: Error? = nil
             nsRegex.enumerateMatches(in: str, options: options.convert(), range: NSRange(range, in: str)) { result, flags, stop in
@@ -366,13 +367,14 @@ extension RegularExpression {
     /// have no effect for methods other than this method.
     /// 
     /// The `RegularExpression.MatchingFlags.hitEnd` matching flag is set in the flags passed to the Block if the
-    /// current match operation reached the end of the search range. The
-    /// `RegularExpression.MatchingFlags.requiredEnd` matching flag is set in the flags passed to the Block if the
-    /// current match depended on the location of the end of the search range.
+    /// current match operation reached the end of the search range.
     /// 
-    /// The `RegularExpression.MatchingFlags` matching flag is set in the flags passed to the block if matching
-    /// failed due to an internal error (such as an expression requiring exponential memory allocations) without
-    /// examining the entire search range.
+    ///  The `RegularExpression.MatchingFlags.requiredEnd` matching flag is set in the flags passed to the Block
+    ///  if the current match depended on the location of the end of the search range.
+    /// 
+    /// The `RegularExpression.MatchingFlags.internalError` matching flag is set in the flags passed to the block
+    /// if matching failed due to an internal error (such as an expression requiring exponential memory
+    /// allocations) without examining the entire search range.
     /// 
     /// The `RegularExpression.Options.anchored`, `RegularExpression.Options.withTransparentBounds`, and
     /// `RegularExpression.Options.withoutAnchoringBounds` regular expression options, specified in the options
@@ -399,17 +401,59 @@ extension RegularExpression {
     ///          protocol.
     ///   - options: The matching options to report. See `RegularExpression.MatchingOptions` for the supported
     ///              values.
-    ///   - body: The Block that is called for each match found in the search string. The Block takes two (2)
-    ///           parameters&#58; <dl><dt><b><i>match</i></b></dt><dd>An instance of `RegularExpression.Match` or
-    ///           `nil` if the Block is simply being called with the flags
-    ///           `RegularExpression.MatchingFlags.completed`, `RegularExpression.MatchingFlags.hitEnd`, or
-    ///           `RegularExpression.MatchingFlags.internalError`</dd> <dt><b><i>flags</i></b></dt><dd>An array of
-    ///           `RegularExpression.MatchingFlags`.</dd></dl> The closure returns `true` to stop the enumeration
-    ///           or `false` to continue to the next match.
+    ///   - body: The closure that is called for each match found in the search string. The closure takes three
+    ///     (3) parameters: <dl><dt><b><i>match</i></b></dt><dd>An instance of `RegularExpression.Match` or `nil`
+    ///     if the closure is simply being called to report progress or an internal error.</dd>
+    ///     <dt><b><i>flags</i></b></dt><dd>An instance of `RegularExpression.MatchingFlags`</dd>
+    ///     <dt><b><i>stop</i></b></dt><dd>A reference to a `Bool` value. The closure can set the value to `true`
+    ///     to stop further processing of the array. The `stop` argument is an out-only argument. You should only
+    ///     ever set this `Bool` to `true` within the closure.</dd></dl> The closure returns `Void`.
+    /// - Throws: Any exception thrown by the closure.
     ///
-    @inlinable public func forEachMatch<S>(in str: S, options: MatchingOptions = [], using block: MatchEnumClosure) rethrows where S: StringProtocol {
-        let s: String = toString(str)
-        try forEachMatch(in: s, options: options, range: str.fullRange, using: block)
+    @inlinable public func forEach<S>(in str: S, options: MatchingOptions = [], using block: MatchEnumClosure) rethrows where S: StringProtocol {
+        let s: String = str.asString
+        try forEach(in: s, options: options, range: str.fullRange, using: block)
+    }
+
+    /*==========================================================================================================*/
+    /// Convenience form of `forEach(in:options:range:using)`. The closure never receives a `nil` Match object no
+    /// matter which MatchingOptions are specified. However, you also do not receive progress updates.
+    /// 
+    /// - Parameters:
+    ///   - str: The string to search.
+    ///   - options: The matching options to report. See `RegularExpression.MatchingOptions` for the supported
+    ///              values.
+    ///   - range: The range of the string to search.
+    ///   - body: The closure that is called for each match found in the search string. The closure takes two (2)
+    ///     parameters: <dl><dt><b><i>match</i></b></dt><dd>An instance of `RegularExpression.Match`</dd>
+    ///     <dt><b><i>stop</i></b></dt><dd>A reference to a `Bool` value. The closure can set the value to `true`
+    ///     to stop further processing of the array. The `stop` argument is an out-only argument. You should only
+    ///     ever set this `Bool` to `true` within the closure.</dd></dl> The closure returns `Void`.
+    /// - Throws: Any exception thrown by the closure.
+    ///
+    @inlinable public func forEachMatch(in str: String, options: MatchingOptions = [], range: StringRange, using body: (Match, inout Bool) throws -> Void) rethrows {
+        try forEach(in: str, options: options, range: range) { (m, _, s) in if let _m = m { try body(_m, &s) } }
+    }
+
+    /*==========================================================================================================*/
+    /// Convenience form of `forEach(in:options:range:using)`. The closure never receives a `nil` Match object no
+    /// matter which MatchingOptions are specified. However, you also do not receive progress updates.
+    /// 
+    /// - Parameters:
+    ///   - str: An object that implements the
+    ///          <code>[StringProtocol](https://developer.apple.com/documentation/swift/StringProtocol)</code>
+    ///          protocol.
+    ///   - options: The matching options to report. See `RegularExpression.MatchingOptions` for the supported
+    ///              values.
+    ///   - body: The closure that is called for each match found in the search string. The closure takes two (2)
+    ///     parameters: <dl><dt><b><i>match</i></b></dt><dd>An instance of `RegularExpression.Match`</dd>
+    ///     <dt><b><i>stop</i></b></dt><dd>A reference to a `Bool` value. The closure can set the value to `true`
+    ///     to stop further processing of the array. The `stop` argument is an out-only argument. You should only
+    ///     ever set this `Bool` to `true` within the closure.</dd></dl> The closure returns `Void`.
+    /// - Throws: Any exception thrown by the closure.
+    ///
+    @inlinable public func forEachMatch<S>(in str: S, options: MatchingOptions = [], using body: (Match, inout Bool) throws -> Void) rethrows where S: StringProtocol {
+        try forEach(in: str, options: options) { (m, _, s) in if let _m = m { try body(_m, &s) } }
     }
 
     /*==========================================================================================================*/
@@ -432,8 +476,8 @@ extension RegularExpression {
     ///           parameter which is an array of `RegularExpression.Group` objects representing each capture group
     ///           and returns `true` to stop the enumeration or `false` to continue to the next match.
     ///
-    @inlinable public func forEachMatchGroup(in str: String, options: MatchingOptions = [], range: Range<String.Index>, using body: ([Group], inout Bool) throws -> Void) rethrows {
-        try forEachMatch(in: str, options: options, range: range) { match, _, stop in
+    @inlinable public func forEachMatchGroup(in str: String, options: MatchingOptions = [], range: StringRange, using body: ([Group], inout Bool) throws -> Void) rethrows {
+        try forEach(in: str, options: options, range: range) { match, _, stop in
             if let m = match {
                 var groups: [Group] = []
                 for g in m { groups <+ g }
@@ -464,7 +508,7 @@ extension RegularExpression {
     ///           and returns `true` to stop the enumeration or `false` to continue to the next match.
     ///
     @inlinable public func forEachMatchGroup<S>(in str: S, options: MatchingOptions = [], using block: ([Group], inout Bool) throws -> Void) rethrows where S: StringProtocol {
-        let s: String = toString(str)
+        let s: String = str.asString
         try forEachMatchGroup(in: s, options: options, range: s.fullRange, using: block)
     }
 
@@ -481,7 +525,7 @@ extension RegularExpression {
     ///           stop the enumeration or `false` to continue to the next match. Any of the strings in the array
     ///           may be `nil` if that capture group did not participate in the match.
     ///
-    @inlinable public func forEachMatchString(in str: String, options: MatchingOptions = [], range: Range<String.Index>, using body: ([String?], inout Bool) throws -> Void) rethrows {
+    @inlinable public func forEachMatchString(in str: String, options: MatchingOptions = [], range: StringRange, using body: ([String?], inout Bool) throws -> Void) rethrows {
         try forEachMatchGroup(in: str, options: options, range: range) { groups, stop in try body(groups.map { $0.subString }, &stop) }
     }
 
@@ -500,7 +544,7 @@ extension RegularExpression {
     ///           may be `nil` if that capture group did not participate in the match.
     ///
     @inlinable public func forEachMatchString<S>(in str: S, options: MatchingOptions = [], using body: ([String?], inout Bool) throws -> Void) rethrows where S: StringProtocol {
-        let s: String = toString(str)
+        let s: String = str.asString
         try forEachMatchGroup(in: s, options: options, range: s.fullRange) { groups, stop in try body(groups.map { $0.subString }, &stop) }
     }
 
@@ -518,7 +562,7 @@ extension RegularExpression {
     ///   - templ: The replacement template.
     /// - Returns: A tuple with the modified string and the number of replacements made.
     ///
-    @inlinable public func stringByReplacingMatches(in str: String, options: MatchingOptions = [], range: Range<String.Index>, withTemplate templ: String) -> (String, Int) {
+    @inlinable public func stringByReplacingMatches(in str: String, options: MatchingOptions = [], range: StringRange, withTemplate templ: String) -> (String, Int) {
         let mStr = NSMutableString(string: str)
         let cc   = nsRegex.replaceMatches(in: mStr, options: options.convert(), range: NSRange(range, in: str), withTemplate: templ)
         return (String(mStr), cc)
@@ -540,7 +584,7 @@ extension RegularExpression {
     /// - Returns: A tuple with the modified string and the number of replacements made.
     ///
     @inlinable public func stringByReplacingMatches<S>(in str: S, options: MatchingOptions = [], withTemplate templ: String) -> (String, Int) where S: StringProtocol {
-        let s: String = toString(str)
+        let s: String = str.asString
         return stringByReplacingMatches(in: s, options: options, range: s.fullRange, withTemplate: templ)
     }
 
@@ -557,12 +601,12 @@ extension RegularExpression {
     /// - Returns: A tuple with the modified string and the number of replacements made.
     /// - Throws: If the closure throws an error.
     ///
-    @inlinable public func stringByReplacingMatches(in str: String, options: MatchingOptions = [], range: Range<String.Index>? = nil, using body: (Match) throws -> String) rethrows -> (String, Int) {
+    @inlinable public func stringByReplacingMatches(in str: String, options: MatchingOptions = [], range: StringRange? = nil, using body: (Match) throws -> String) rethrows -> (String, Int) {
         var out: String       = ""
         var cc:  Int          = 0
-        var idx: String.Index = str.startIndex
+        var idx: StringIndex = str.startIndex
 
-        try forEachMatch(in: str, options: options, range: range ?? str.fullRange) { m, _, _ in
+        try forEach(in: str, options: options, range: range ?? str.fullRange) { m, _, _ in
             if let m = m {
                 out.append(contentsOf: str[idx ..< m.range.lowerBound])
                 out.append(contentsOf: try body(m))
@@ -590,12 +634,10 @@ extension RegularExpression {
     /// - Throws: If the closure throws an error.
     ///
     @inlinable public func stringByReplacingMatches<S>(in str: S, options: MatchingOptions = [], using body: (Match) throws -> String) rethrows -> (String, Int) where S: StringProtocol {
-        let s: String = toString(str)
+        let s: String = str.asString
         return try stringByReplacingMatches(in: s, options: options, range: s.fullRange, using: body)
     }
 }
-
-@inlinable func toString<S>(_ str: S) -> String where S: StringProtocol { (str as? String) ?? String(str) }
 
 extension RegularExpression {
     /*==========================================================================================================*/
@@ -683,7 +725,7 @@ extension RegularExpression {
 
     /*==========================================================================================================*/
     /// Set by the Block as the matching progresses, completes, or fails. Used by the method
-    /// `forEachMatch(in:options:range:using:)`.
+    /// `forEach(in:options:range:using:)`.
     ///
     public struct MatchingFlags: OptionSet {
         /*======================================================================================================*/
@@ -728,7 +770,7 @@ extension RegularExpression {
         /*======================================================================================================*/
         /// The range within the search string for the entire match.
         ///
-        public let range:  Range<String.Index>
+        public let range:  StringRange
         /*======================================================================================================*/
         /// The sub-string of the entire match region.
         ///
@@ -752,7 +794,7 @@ extension RegularExpression {
 
         @usableFromInline init?(_ str: String, match: NSTextCheckingResult?) {
             guard let _match = match else { return nil }
-            guard let _range = Range<String.Index>(_match.range, in: str) else { return nil }
+            guard let _range = StringRange(_match.range, in: str) else { return nil }
             string = str
             range = _range
             nsMatch = _match
@@ -771,7 +813,7 @@ extension RegularExpression {
         /// The range of the search string for this capture group of `nil` if this capture group did not
         /// participate in the match.
         ///
-        public let range: Range<String.Index>?
+        public let range: StringRange?
         /*======================================================================================================*/
         /// The substring of the search string for this capture group of `nil` if this capture group did not
         /// participate in the match.
@@ -780,7 +822,7 @@ extension RegularExpression {
 
         @usableFromInline init(_ string: String, range: NSRange) {
             self.string = string
-            self.range = ((range.location == NSNotFound) ? nil : Range<String.Index>(range, in: string))
+            self.range = ((range.location == NSNotFound) ? nil : StringRange(range, in: string))
         }
     }
 

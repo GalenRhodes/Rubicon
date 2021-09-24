@@ -24,24 +24,22 @@ import Foundation
 import CoreFoundation
 
 #if !os(Windows)
-    #if os(Linux) || os(WASI)
+    #if os(Linux) || os(Android) || os(WASI)
         import iconv
+        let EncListSep: String = "\\s*/\\s*"
+    #else
+        let EncListSep: String = "\\s+"
     #endif
 
     /*==========================================================================================================*/
     /// This class represents a wrapper around the libiconv functions.
     ///
     open class IConv {
-
         /*======================================================================================================*/
         /// The response from IConv.
         ///
         public typealias Response = (results: Results, inputBytesUsed: Int, outputBytesUsed: Int)
 
-        /*======================================================================================================*/
-        /// A list of all the available character encodings on this system.
-        ///
-        public static var encodingsList: [String] = getEncodingsList()
         /*======================================================================================================*/
         /// The name of the source character encoding.
         ///
@@ -58,6 +56,20 @@ import CoreFoundation
         /// If `true` then IConv will enable transliteration.
         ///
         public let enableTransliterate: Bool
+        /*======================================================================================================*/
+        /// A list of all the available character encodings on this system.
+        ///
+        public static var encodingsList: [String] = {
+            var stdout: String = ""
+            guard let exePath = which(name: "iconv") else { return [ "UTF-8" ] }
+            guard execute(exec: exePath, args: [ "-l" ], stdout: &stdout) == 0 else { return [ "UTF-8" ] }
+            guard let rx = RegularExpression(pattern: EncListSep) else { return [ "UTF-8" ] }
+            var arr: [String]     = []
+            var idx: StringIndex = stdout.startIndex
+            rx.forEach(in: stdout) { match, _, _ in if let m = match { fooo(&arr, stdout, &idx, m.range) } }
+            fooo(&arr, stdout, idx, stdout.endIndex)
+            return Array<String>(Set<String>(arr)).sorted()
+        }()
 
         /*======================================================================================================*/
         /// Enumeration of the possible results of the conversion.
@@ -99,10 +111,9 @@ import CoreFoundation
         /// is disposed of by ARC.
         ///
         open func close() {
-            if let h = handle {
-                iconv_close(h)
-                handle = nil
-            }
+            guard let h = handle else { return }
+            iconv_close(h)
+            handle = nil
         }
 
         /*======================================================================================================*/
@@ -138,6 +149,7 @@ import CoreFoundation
             var inP:   CCharPointer? = UnsafeMutableRawPointer(mutating: input).bindMemory(to: CChar.self, capacity: inSz)
             var outP:  CCharPointer? = output.bindMemory(to: CChar.self, capacity: outSz)
             let res:   Int           = iconv(h, &inP, &inSz, &outP, &outSz)
+
             return getResponse(callResponse: res, inUsed: (length - inSz), outUsed: (maxLength - outSz))
         }
 
@@ -180,17 +192,17 @@ import CoreFoundation
 
             for byte: UInt8 in utf8str {
                 if bInput.append(byte: byte) == nil {
-                    guard foo(&data, bOutput, iconv.convert(input: bInput, output: bOutput), false) else { return nil }
+                    guard processIconvResults(&data, bOutput, iconv.convert(input: bInput, output: bOutput), false) else { return nil }
                     bInput.append(byte: byte)
                 }
             }
 
-            if bInput.count > 0 { guard foo(&data, bOutput, iconv.convert(input: bInput, output: bOutput), true) else { return nil } }
-            guard foo(&data, bOutput, iconv.finalConvert(output: bOutput), true) else { return nil }
+            if bInput.count > 0 { guard processIconvResults(&data, bOutput, iconv.convert(input: bInput, output: bOutput), true) else { return nil } }
+            guard processIconvResults(&data, bOutput, iconv.finalConvert(output: bOutput), true) else { return nil }
             return data
         }
 
-        private static func foo(_ data: inout Data, _ bOutput: MutableManagedByteBuffer, _ results: Results, _ isFinal: Bool) -> Bool {
+        private static func processIconvResults(_ data: inout Data, _ bOutput: MutableManagedByteBuffer, _ results: Results, _ isFinal: Bool) -> Bool {
             switch results {
                 case .InvalidSequence:    return false
                 case .UnknownEncoding:    return false
@@ -285,31 +297,6 @@ import CoreFoundation
         }
 
         /*======================================================================================================*/
-        /// Get the list of available encodings.
-        /// 
-        /// - Returns: An array of strings.
-        ///
-        private static func getEncodingsList() -> [String] {
-            var stdout: String   = ""
-            var stderr: String   = ""
-            let def:    [String] = [ "UTF-8" ]
-
-            guard let exePath = which(name: "iconv") else { return def }
-
-            if execute(exec: exePath, args: [ "-l" ], stdout: &stdout, stderr: &stderr) == 0 {
-                #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-                    let results: Set<String> = Set<String>(stdout.split(on: "\\s+", limit: 0))
-                #else
-                    let results: Set<String> = Set<String>(stdout.split(on: "/\\S*/\\s*", limit: -1))
-                #endif
-                return Array<String>(results).sorted()
-            }
-            else {
-                return def
-            }
-        }
-
-        /*======================================================================================================*/
         /// Convert the data returned from the call to `iconv(_ :, _:, _:, _:, _:)` to a `Response` tuple.
         /// 
         /// - Parameters:
@@ -341,5 +328,15 @@ import CoreFoundation
         private var value: iconv_t? = nil
 
         init(wrappedValue: iconv_t?) { self.wrappedValue = wrappedValue }
+    }
+
+    fileprivate func fooo(_ arr: inout [String], _ str: String, _ sIdx: StringIndex, _ eIdx: StringIndex) {
+        let s = String(str[sIdx ..< eIdx]).trimmed
+        if s.count > 0 { arr <+ s }
+    }
+
+    fileprivate func fooo(_ arr: inout [String], _ str: String, _ sIdx: inout StringIndex, _ range: StringRange) {
+        fooo(&arr, str, sIdx, range.lowerBound)
+        sIdx = range.upperBound
     }
 #endif

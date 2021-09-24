@@ -23,12 +23,9 @@ infix operator !=~: ComparisonPrecedence
 
 extension StringProtocol {
 
-    @inlinable public var lastIndex: String.Index? { ((endIndex > startIndex) ? index(before: endIndex) : nil) }
+    @inlinable public var lastIndex: StringIndex? { startIndex < endIndex ? index(before: endIndex) : nil }
 
-    @inlinable public func toInteger(defaultValue: Int = 0) -> Int {
-        let sstr = ((self as? String) ?? String(self))
-        return (Int(sstr) ?? defaultValue)
-    }
+    @inlinable public func toInteger(defaultValue: Int = 0) -> Int { (Int(self.asString) ?? defaultValue) }
 
     @inlinable func withLastCharsRemoved(_ count: Int) -> String {
         guard let idx = index(endIndex, offsetBy: -count, limitedBy: startIndex) else { return "" }
@@ -44,7 +41,7 @@ extension StringProtocol {
     /*==========================================================================================================*/
     /// Returns an array that cover the entire string.
     ///
-    public var fullRange:   Range<String.Index> { (startIndex ..< endIndex) }
+    public var fullRange:   StringRange { (startIndex ..< endIndex) }
 
     /*==========================================================================================================*/
     /// This property returns a copy of the string with whitespaces, newlines, and control characters trimmed from
@@ -55,7 +52,7 @@ extension StringProtocol {
     /*==========================================================================================================*/
     /// A copy of this string with '+' characters replaced with spaces and percent encodings decoded.
     ///
-    public var urlDecoded:  String { replacingOccurrences(of: "+", with: " ").removingPercentEncoding ?? String(self) }
+    public var urlDecoded:  String { replacingOccurrences(of: "+", with: " ").removingPercentEncoding ?? self.asString }
 
     /*==========================================================================================================*/
     /// This property returns an instance of
@@ -93,13 +90,7 @@ extension StringProtocol {
     ///   - body: A closure that takes an element of the sequence as a parameter.
     /// - Throws: Any error thrown by the closure.
     ///
-    public func forEach(inRange: Range<String.Index>, _ body: (Character) throws -> Void) rethrows {
-        var idx = inRange.lowerBound
-        while idx < inRange.upperBound {
-            try body(self[idx])
-            formIndex(after: &idx)
-        }
-    }
+    public func forEach(inRange rng: StringRange, _ body: (Character) throws -> Void) rethrows { for ch in self[rng] { try body(ch) } }
 
     /*==========================================================================================================*/
     /// Calls the given closure on each element in the sub-sequence defined by the given match and group in the
@@ -115,11 +106,9 @@ extension StringProtocol {
     /// - Throws: Any error thrown by the closure.
     ///
     @discardableResult public func forEach(match: RegularExpression.Match?, group: Int = 0, _ body: (Character) throws -> Void) rethrows -> Bool {
-        if let m = match, let r = m[group].range {
-            try forEach(inRange: r, body)
-            return true
-        }
-        return false
+        guard let m = match, let r = m[group].range else { return false }
+        try forEach(inRange: r, body)
+        return true
     }
 
     /*==========================================================================================================*/
@@ -176,7 +165,7 @@ extension StringProtocol {
     ///   - idx: The index in this string to start looking.
     /// - Returns: The index or `nil` if none of the characters are found.
     ///
-    public func firstIndex(ofAnyOf chars: Character..., from idx: String.Index) -> String.Index? {
+    public func firstIndex(ofAnyOf chars: Character..., from idx: StringIndex) -> StringIndex? {
         var oIdx = idx
         while oIdx < endIndex {
             if chars.contains(self[oIdx]) { return oIdx }
@@ -186,38 +175,14 @@ extension StringProtocol {
     }
 
     /*==========================================================================================================*/
-    /// Returns a `[String.Index](https://developer.apple.com/documentation/swift/string/index)>` into this string
+    /// Returns a `[StringIndex](https://developer.apple.com/documentation/swift/string/index)>` into this string
     /// from an integer offset.
     /// 
     /// - Parameter idx: the integer offset into the string
-    /// - Returns: An instance of `[String.Index](https://developer.apple.com/documentation/swift/string/index)>`
+    /// - Returns: An instance of `[StringIndex](https://developer.apple.com/documentation/swift/string/index)>`
     ///
-    public func index(idx: Int) -> String.Index {
+    public func index(idx: Int) -> StringIndex {
         index(startIndex, offsetBy: idx)
-    }
-
-    /*==========================================================================================================*/
-    /// Returns an instance of
-    /// `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>`
-    /// from an instance of <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code>.
-    /// If <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> is invalid for
-    /// this string then `nil` is returned.
-    /// 
-    /// - Parameter nsRange: the
-    ///                      <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code>
-    ///                      to convert to
-    ///                      `[Range](https://developer.apple.com/documentation/swift/range/)<Index>`
-    /// - Returns: An instance of
-    ///            `[Range](https://developer.apple.com/documentation/swift/range)<[String.Index](https://developer.apple.com/documentation/swift/string/index)>`
-    ///            or `nil` if the
-    ///            <code>[NSRange](https://developer.apple.com/documentation/foundation/nsrange)</code> was
-    ///            invalid for this string.
-    ///
-    public func range(nsRange: NSRange) -> Range<String.Index>? {
-        guard nsRange.location != NSNotFound else {
-            return nil
-        }
-        return nsRange.strRange(string: self)
     }
 
     /*==========================================================================================================*/
@@ -275,94 +240,9 @@ extension StringProtocol {
     ///
     public func matches(pattern: String) throws -> Bool {
         var e: Error? = nil
-        if let regex = RegularExpression(pattern: pattern, error: &e) {
-            if let match = regex.firstMatch(in: String(self)) {
-                if let r = match[0].range {
-                    return (r.lowerBound == startIndex) && (r.upperBound == endIndex)
-                }
-            }
-            return false
-        }
-        throw e!
-    }
-
-    /*==========================================================================================================*/
-    /// Given a valid range for for this string, return a UTF-16 based NSRange structure.
-    /// 
-    /// - Parameter range: the range.
-    /// - Returns: The NSRange.
-    ///
-    public func nsRange(_ range: Range<String.Index>) -> NSRange { NSRange(range, in: self) }
-
-    /*==========================================================================================================*/
-    /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that
-    /// contains the <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the
-    /// given `from:` and `to:` bounds. A <code>[fatal
-    /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds
-    /// are invalid for the string.
-    /// 
-    /// - Parameters:
-    ///   - from: The index of the start of the substring.
-    ///   - to: The index (exclusive) of the end of the string.
-    /// - Returns: The substring
-    ///
-    public func substr(from fromIdx: Int = 0, to toIdx: Int) -> String {
-        String(self[fromIdx ..< toIdx])
-    }
-
-    /*==========================================================================================================*/
-    /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that
-    /// contains the <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the
-    /// given `from:` index for the `length:` characters. A <code>[fatal
-    /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds
-    /// are invalid for the string.
-    /// 
-    /// - Parameters:
-    ///   - from: The index of the start of the substring.
-    ///   - length: The number of characters to include in the substring.
-    /// - Returns: The substring
-    ///
-    public func substr(from fromIdx: Int = 0, length: Int) -> String {
-        substr(from: fromIdx, to: (fromIdx + length))
-    }
-
-    /*==========================================================================================================*/
-    /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that
-    /// contains the <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the
-    /// given <code>[Range](https://developer.apple.com/documentation/swift/Range)</code>. A <code>[fatal
-    /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds
-    /// are invalid for the string.
-    /// 
-    /// - Parameter range: the <code>[Range](https://developer.apple.com/documentation/swift/Range)</code> of the
-    ///                    <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
-    /// - Returns: A new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance
-    ///            that contains the
-    ///            <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
-    ///
-    public func substr(from fromIdx: Int) -> String {
-        String(self[index(idx: fromIdx) ..< endIndex])
-    }
-
-    /*==========================================================================================================*/
-    /// Returns a new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance that
-    /// contains the <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the
-    /// given <code>[NSRange](https://developer.apple.com/documentation/foundation/NSRange)</code>. A <code>[fatal
-    /// error](https://developer.apple.com/documentation/swift/1538698-fatalerror)</code> is thrown if the bounds
-    /// are invalid for the string.
-    /// 
-    /// - Parameter nsRange: the
-    ///                      <code>[NSRange](https://developer.apple.com/documentation/foundation/NSRange)</code>
-    ///                      of the
-    ///                      <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>
-    /// - Returns: A new <code>[String](https://developer.apple.com/documentation/swift/string/)</code> instance
-    ///            that contains the
-    ///            <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
-    ///
-    public func substr(nsRange: NSRange) -> String {
-        guard let range: Range<String.Index> = self.range(nsRange: nsRange) else {
-            fatalError("NSRange values invalid for this string.")
-        }
-        return String(self[range])
+        guard let regex = RegularExpression(pattern: pattern, error: &e) else { throw e! }
+        guard let match = regex.firstMatch(in: String(self)) else { return false }
+        return (match.range.lowerBound == startIndex) && (match.range.upperBound == endIndex)
     }
 
     /*==========================================================================================================*/
@@ -438,47 +318,10 @@ extension StringProtocol {
     ///            expression pattern. If the regular expression pattern is invalid then this string will be
     ///            returned as the only element.
     ///
-    public func split(on pattern: String, limit lim: Int = 0, error: inout Error?) -> [String] {
-        let str = String(self)
-        guard lim != 1 else { return [ str ] }
-        guard let rx = RegularExpression(pattern: pattern, error: &error) else { return [ str ] }
-
-        var results:    [String]     = []
-        var lIdx:       String.Index = str.startIndex
-        var limitWatch: Int          = 1
-
-        rx.forEachMatch(in: str) { m, _, stop in
-            if let m = m {
-                if limitWatch == 1 && m.range.lowerBound == str.startIndex {
-                    if m.range.upperBound > m.range.lowerBound {
-                        results <+ ""
-                        lIdx = m.range.upperBound
-                        limitWatch += 1
-                    }
-                }
-                else {
-                    results <+ String(str[lIdx ..< m.range.lowerBound])
-                    lIdx = m.range.upperBound
-                    limitWatch += 1
-                }
-                if lim > 0 && limitWatch == lim {
-                    results <+ String(str[lIdx ..< str.endIndex])
-                    lIdx = str.endIndex
-                    stop = true
-                }
-            }
-        }
-
-        if lIdx < str.endIndex { results <+ String(str[lIdx ..< str.endIndex]) }
-
-        if lim == 0 && results.count > 1 {
-            var i = results.endIndex
-            repeat { i -= 1 } while i > results.startIndex && results[i].isEmpty
-            i += 1
-            results.removeSubrange(i ..< results.endIndex)
-        }
-
-        return results
+    public func split(on pattern: String, limit: Int = 0, error: inout Error?) -> [String] {
+        guard limit != 1 else { return [ asString ] }
+        guard let rx = RegularExpression(pattern: pattern, error: &error) else { return [ asString ] }
+        return _split(string: asString, regex: rx, limit: limit > 0 ? limit - 1 : Int.max, truncateEmpties: limit == 0)
     }
 
     /*==========================================================================================================*/
@@ -557,4 +400,26 @@ extension StringProtocol {
         var error: Error? = nil
         return split(on: pattern, limit: lim, error: &error)
     }
+}
+
+fileprivate func _split(string str: String, regex rx: RegularExpression, limit lm: Int, truncateEmpties tr: Bool) -> [String] {
+    let ranges = _collectRanges(string: str, regex: rx, limit: lm, startIndex: str.startIndex)
+    var rIdx   = ranges.endIndex
+    if tr { while ranges.startIndex < rIdx && ranges[ranges.index(before: rIdx)].isEmpty { ranges.formIndex(before: &rIdx) } }
+    return ranges[ranges.startIndex ..< rIdx].map { String(str[$0]) }
+}
+
+private func _collectRanges(string str: String, regex rx: RegularExpression, limit lm: Int, startIndex sIdx: StringIndex) -> [StringRange] {
+    var eIdx:   StringIndex   = sIdx
+    var ranges: [StringRange] = []
+    rx.forEach(in: str) { m, _, f in if let _m = m { f = _split(range: _m.range, startIndex: sIdx, lastIndex: &eIdx, limit: lm, ranges: &ranges) } }
+    ranges.append(eIdx ..< str.endIndex)
+    return ranges
+}
+
+private func _split(range r: StringRange, startIndex: StringIndex, lastIndex: inout StringIndex, limit: Int, ranges: inout [StringRange]) -> Bool {
+    guard !(lastIndex == startIndex && lastIndex == r.lowerBound && r.isEmpty) else { return false }
+    ranges.append(lastIndex ..< r.lowerBound)
+    lastIndex = r.upperBound
+    return ranges.count >= limit
 }

@@ -118,7 +118,7 @@ public func execute(exec: String, args: [String], stdin: String, stdout: inout S
     let thread = PGThread(startNow: false, qualityOfService: .utility) {
         var bytes:  [UInt8]             = Array<UInt8>(repeating: 0, count: 1024)
         var used:   Int                 = 0
-        var range:  Range<String.Index> = (stdin.startIndex ..< stdin.startIndex)
+        var range:  StringRange = (stdin.startIndex ..< stdin.startIndex)
         var result: Bool                = stdin.getBytes(&bytes, maxLength: 1024, usedLength: &used, encoding: encoding, range: stdin.fullRange, remaining: &range)
 
         while result {

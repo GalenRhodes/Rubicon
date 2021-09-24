@@ -33,7 +33,7 @@ import CoreFoundation
 /*==============================================================================================================*/
 /// Cover function for the C standard library function `strerror(int)`. Returns a Swift
 /// <code>[String](https://developer.apple.com/documentation/swift/string/)</code>.
-///
+/// 
 /// - Parameter code: the OS error code.
 /// - Returns: A Swift <code>[String](https://developer.apple.com/documentation/swift/string/)</code> with the OS
 ///            error message.
@@ -62,19 +62,19 @@ import CoreFoundation
 /// non-<code>[zero](https://en.wikipedia.org/wiki/0)</code> value is considered an error. In some cases though a
 /// non-<code>[zero](https://en.wikipedia.org/wiki/0)</code> error is just informational and in those cases you
 /// can tell this function to ignore those as well.
-///
+/// 
 /// For example, in a call to `pthread_mutex_trylock(...)`, an return code of `EBUSY` simply means that the lock
 /// is already held by another thread while a code of `EINVAL` means that the mutex passed to the function was not
 /// properly initialized. So you could call this function like so:
-///
+/// 
 /// <pre>
 ///     let locked: Bool = (testOSFatalError(pthread_mutex_trylock(mutex), EBUSY) == 0)
 /// </pre>
-///
+/// 
 /// In this case the constant `locked` will be `true` if the thread successfully obtained ownership of the lock or
 /// `false` if another thread still owns the lock. If the return code was any other value beside 0
 /// (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) or EBUSY then a fatal error occurs.
-///
+/// 
 /// - Parameters:
 ///   - results: The results of the call.
 ///   - otherOk: Other values besides 0 (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) that should be
@@ -104,7 +104,7 @@ public struct CErrors: Error, CustomStringConvertible, Hashable {
 
     @inlinable public static func == (lhs: CErrors, rhs: CErrors) -> Bool { lhs.code == rhs.code }
 
-    public static let UNKNOWN: CErrors = CErrors(code: -1, description: "Uknown Error")
+    public static let UNKNOWN: CErrors = CErrors(code: -1, description: "Unknown Error")
 
     #if (os(macOS) || os(iOS) || os(tvOS) || os(watchOS))
         // MARK: Apple OS

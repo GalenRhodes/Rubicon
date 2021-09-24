@@ -43,12 +43,12 @@ extension StringProtocol {
     ///
     public func format(_ args: Any?...) -> String {
         var out:  String       = ""
-        var idx:  String.Index = startIndex
+        var idx:  StringIndex = startIndex
         var aIdx: Int          = args.startIndex
         var pIdx: Int?         = nil
 
         guard let regex = RegularExpression(pattern: FormatPattern) else { formatFatalError(message: WildAssErrorMessage) }
-        regex.forEachMatch(in: String(self)) { match, flags, b in
+        regex.forEach(in: String(self)) { match, flags, b in
             if let match = match {
                 let range = match.range
 

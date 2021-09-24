@@ -28,7 +28,7 @@ extension NSRegularExpression {
 
     @inlinable public func enumerateMatches(in string: String,
                           options: MatchingOptions = [],
-                          range: Range<String.Index>,
+                          range: StringRange,
                           using block: MatchClosure) rethrows {
         try withoutActuallyEscaping(block) { (_block) in
             var error: Error? = nil

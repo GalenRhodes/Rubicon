@@ -46,7 +46,7 @@ import CoreFoundation
         /*======================================================================================================*/
         /// Creates a new instance of IConvCharInputStream with the given InputStream, encodingName, and whether
         /// or not the given InputStream should be closed when this stream is discarded or closed.
-        /// 
+        ///
         /// - Parameters:
         ///   - inputStream: The underlying byte InputStream.
         ///   - encodingName: The character encoding name.
@@ -90,7 +90,7 @@ import CoreFoundation
         /*======================================================================================================*/
         /// Backs out the last `count` characters from the most recently set mark without actually removing the
         /// entire mark. You have to have previously called `markSet()` otherwise this method does nothing.
-        /// 
+        ///
         /// - Parameter count: the number of characters to back out.
         /// - Returns: The number of characters actually backed out in case there weren't `count` characters
         ///            available.
@@ -98,7 +98,7 @@ import CoreFoundation
         @discardableResult open func markBackup(count: Int = 1) -> Int { withLock { isOpen ? _markBackup(count: count) : 0 } }
 
         override func _open() {
-            guard status == .notOpen else { return }
+            guard st == .notOpen else { return }
             _position = (1, 1)
             super._open()
         }
@@ -159,7 +159,7 @@ import CoreFoundation
             let rBefore: Range<Int> = (s ..< p)
 
             _position = m.pos
-            buffer.insert(contentsOf: m.data[rAfter], at: 0)
+            cBuf.insert(contentsOf: m.data[rAfter], at: 0)
             m.data[rBefore].forEach { textPositionUpdate($0, pos: &_position, tabWidth: _tabWidth) }
             m.data.removeSubrange(rAfter)
 

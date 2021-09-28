@@ -26,10 +26,9 @@ import CoreFoundation
 open class EasyByteBuffer: MutableManagedByteBuffer {
     //@f:0
     public let length: Int
-    open   var count:  Int = 0
+    public var count:  Int = 0
+    public let bytes:  UnsafeMutablePointer<UInt8>
     //@f:1
-
-    private let bytes: UnsafeMutablePointer<UInt8>
 
     public init(length: Int) {
         self.length = length

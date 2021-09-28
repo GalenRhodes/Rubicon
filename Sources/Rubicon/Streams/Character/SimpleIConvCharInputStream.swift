@@ -19,34 +19,34 @@ import Foundation
 import CoreFoundation
 import Chadakoin
 
-public let   LINE_FEED_CODEPOINT: UInt32    = 0x0A
-public let   CRLF_CHARACTER:      Character = "\r\n"
-public let   CR_CHARACTER:        Character = "\r"
-public let   LF_CHARACTER:        Character = "\n"
+public let LINE_FEED_CODEPOINT: UInt32    = 0x0A
+public let CRLF_CHARACTER:      Character = "\r\n"
+public let CR_CHARACTER:        Character = "\r"
+public let LF_CHARACTER:        Character = "\n"
 
 /*==============================================================================================================*/
 /// There is a possibility that the endian of the system is not known. In that case we default to `little` endian
 /// because that's the most common these days.
 ///
-internal let ENCODE_TO_NAME:      String    = "UTF-32\((MachineByteOrder == .BigEndian) ? "BE" : "LE")"
+@usableFromInline let ENCODE_TO_NAME:     String = "UTF-32\((MachineByteOrder == .BigEndian) ? "BE" : "LE")"
 /*==============================================================================================================*/
 /// The size of this buffer might seem excessive at first but even small SBCs are now coming with Gigabit ethernet
 /// and 4GB of RAM. Even an entry level MacMini comes with 8GB of RAM. So this buffer size is probably a bit on
 /// the small side.
 ///
-internal let INPUT_BUFFER_SIZE:   Int       = 256
+@usableFromInline let INPUT_BUFFER_SIZE:  Int    = 256
 /*==============================================================================================================*/
 /// The size of this buffer might seem excessive at first but even small SBCs are now coming with Gigabit ethernet
 /// and 4GB of RAM. Even an entry level MacMini comes with 8GB of RAM. So this buffer size is probably a bit on
 /// the small side.
 ///
-internal let OUTPUT_BUFFER_SIZE:  Int       = ((INPUT_BUFFER_SIZE * MemoryLayout<UInt32>.stride) + MemoryLayout<UInt32>.stride)
+@usableFromInline let OUTPUT_BUFFER_SIZE: Int    = ((INPUT_BUFFER_SIZE * MemoryLayout<UInt32>.stride) + MemoryLayout<UInt32>.stride)
 /*==============================================================================================================*/
 /// The size of this buffer might seem excessive at first but even small SBCs are now coming with Gigabit ethernet
 /// and 4GB of RAM. Even an entry level MacMini comes with 8GB of RAM. So this buffer size is probably a bit on
 /// the small side.
 ///
-internal let MAX_READ_AHEAD:      Int       = 65_536
+@usableFromInline let MAX_READ_AHEAD:     Int    = 65_536
 
 #if !os(Windows)
     open class SimpleIConvCharInputStream: SimpleCharInputStream {
@@ -54,46 +54,38 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
         /*======================================================================================================*/
         /// `true` if the stream is at the end-of-file.
         ///
-        open          var isEOF:             Bool          { (streamStatus == .atEnd)                                                                              }
+        open              var isEOF:             Bool          { (streamStatus == .atEnd)                                                                                 }
         /*======================================================================================================*/
         /// `true` if the stream has characters ready to be read.
         ///
-        open          var hasCharsAvailable: Bool          { withLock { (isOpen && (hasBChars || (noError && isRunning)))                                        } }
+        open              var hasCharsAvailable: Bool          { withLock { (isOpen && (hasBChars || (noError && thread.isRunning)))                                    } }
         /*======================================================================================================*/
         /// The error.
         ///
-        open          var streamError:       Error?        { withLock { ((isOpen && buffer.isEmpty) ? error : nil)                                               } }
+        open              var streamError:       Error?        { withLock { ((isOpen && cBuf.isEmpty) ? err : nil)                                                      } }
         /*======================================================================================================*/
         /// The status of the `CharInputStream`.
         ///
-        open          var streamStatus:      Stream.Status { withLock { (isOpen ? (hasBChars ? .open : (nErr ? (isRunning ? .open : .atEnd) : .error)) : status) } }
+        open              var streamStatus:      Stream.Status { withLock { (isOpen ? (hasBChars ? .open : (nErr ? (thread.isRunning ? .open : .atEnd) : .error)) : st) } }
         /*======================================================================================================*/
         /// The human readable name of the encoding.
         ///
-        public        let encodingName:      String
+        public                 let encodingName:      String
 
-        internal      let autoClose:         Bool
-        internal      let inputStream:       InputStream
-        private       let cLock:             Conditional   = Conditional()
-        private       var locked:            Bool          = false
-        internal      var status:            Stream.Status = .notOpen
-        internal      var isRunning:         Bool          = false
-        internal      var error:             Error?        = nil
-        internal lazy var buffer:            [Character]   = []
-        internal      var thread:            Thread?       = nil
-
-        internal      var isOpen:            Bool          { (status == .open)                                                   }
-        internal      var nErr:              Bool          { (error == nil)                                                      }
-        internal      var noError:           Bool          { (nErr || hasBChars)                                                 }
-        internal      var hasBChars:         Bool          { !buffer.isEmpty                                                     }
-        internal      var canWait:           Bool          { (isOpen && nErr && isRunning)                                       }
-        internal      var inputStreamIsOpen: Bool          { Rubicon.value(inputStream.streamStatus, isOneOf: .closed, .notOpen) }
+        @usableFromInline      let autoClose:         Bool
+        @usableFromInline      let input:             InputStream
+        @usableFromInline      var st:                Stream.Status = .notOpen
+        @usableFromInline      var err:               Error?        = nil
+        @usableFromInline      var cBuf:              [Character]   = []
+        @usableFromInline      let cLck:              Conditional   = Conditional()
+        @usableFromInline      let iLck:              MutexLock     = MutexLock()
+        @usableFromInline lazy var thread:            IC            = IC(encodingName) { [weak self] in while let s = self, s._doRead() {} }
         //@f:1
 
         /*======================================================================================================*/
         /// Creates a new instance of IConvCharInputStream with the given InputStream, encodingName, and whether
         /// or not the given InputStream should be closed when this stream is discarded or closed.
-        /// 
+        ///
         /// - Parameters:
         ///   - inputStream: The underlying byte InputStream.
         ///   - encodingName: The character encoding name.
@@ -103,13 +95,13 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
         public init(inputStream: InputStream, encodingName: String, autoClose: Bool = true) {
             self.encodingName = encodingName
             self.autoClose = autoClose
-            self.inputStream = inputStream
+            self.input = inputStream
         }
 
         /*======================================================================================================*/
         /// Creates a new instance of IConvCharInputStream with the given URL and encodingName. If opening a
         /// stream with the URL fails then `nil` is returned.
-        /// 
+        ///
         /// - Parameters:
         ///   - url: The URL.
         ///   - encodingName: The character encoding name.
@@ -124,7 +116,7 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
         /*======================================================================================================*/
         /// Creates a new instance of IConvCharInputStream with the given filename and encodingName. If opening a
         /// stream with the filename fails then `nil` is returned.
-        /// 
+        ///
         /// - Parameters:
         ///   - fileAtPath: The filename.
         ///   - encodingName: The character encoding name.
@@ -136,7 +128,7 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
 
         /*======================================================================================================*/
         /// Creates a new instance of IConvCharInputStream with the given bytes and encodingName.
-        /// 
+        ///
         /// - Parameters:
         ///   - data: The bytes to read.
         ///   - encodingName: The character encoding name.
@@ -145,19 +137,9 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
             self.init(inputStream: InputStream(data: data), encodingName: encodingName, autoClose: true)
         }
 
-        open func lock() {
-            cLock.lock()
-        }
-
-        open func unlock() {
-            cLock.unlock()
-        }
-
-        open func withLock<T>(_ body: () throws -> T) rethrows -> T { try cLock.withLock(body) }
-
         /*======================================================================================================*/
         /// Read one character.
-        /// 
+        ///
         /// - Returns: The next character or `nil` if EOF.
         /// - Throws: If an I/O error occurs.
         ///
@@ -165,7 +147,7 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
 
         /*======================================================================================================*/
         /// Read and return one character without actually removing it from the input stream.
-        /// 
+        ///
         /// - Returns: The next character or `nil` if EOF.
         /// - Throws: If an I/O error occurs.
         ///
@@ -175,7 +157,7 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
         /// Read <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s from the
         /// stream and append them to the given character array. This method is identical to
         /// `read(chars:,maxLength:)` except that the receiving array is not cleared before the data is read.
-        /// 
+        ///
         /// - Parameters:
         ///   - chars: The <code>[Array](https://developer.apple.com/documentation/swift/Array)</code> to receive
         ///            the <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s.
@@ -190,11 +172,7 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
         ///            end-of-file.
         /// - Throws: If an I/O error occurs.
         ///
-        open func append(to chars: inout [Character], maxLength: Int) throws -> Int {
-            return try withLock {
-                try _append(to: &chars, maxLength: maxLength)
-            }
-        }
+        open func append(to chars: inout [Character], maxLength: Int) throws -> Int { try withLock { try _append(to: &chars, maxLength: maxLength) } }
 
         /*======================================================================================================*/
         /// Open the stream. Once a stream has been opened it can never be re-opened.
@@ -206,117 +184,145 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
         ///
         open func close() { withLock { _close() } }
 
-        func _read() throws -> Character? {
-            while canWait && buffer.isEmpty { cLock.broadcastWait() }
-            guard isOpen else { return nil }
-            guard noError else { throw error! }
-            return buffer.popFirst()
-        }
+        func _read() throws -> Character? { try _waitForChar { cBuf.popFirst() } }
 
-        func _peek() throws -> Character? {
-            while canWait && buffer.isEmpty { cLock.broadcastWait() }
-            guard isOpen else { return nil }
-            guard noError else { throw error! }
-            return buffer.first
-        }
+        func _peek() throws -> Character? { try _waitForChar { cBuf.first } }
 
         func _append(to chars: inout [Character], maxLength: Int) throws -> Int {
             guard isOpen else { return 0 }
             let ln = ((maxLength < 0) ? Int.max : maxLength)
             var cc = 0
             while cc < ln {
-                while canWait && buffer.isEmpty {
-                    cLock.broadcastWait()
-                }
-
-                guard isOpen else { break }
-                guard noError else { throw error! }
-                guard hasBChars else { break }
-
-                let i = min(buffer.count, (ln - cc))
+                guard try _waitForChars() && hasBChars else { break }
+                let i = min(cBuf.count, (ln - cc))
                 let r = (0 ..< i)
-
-                chars.append(contentsOf: buffer[r])
-                buffer.removeSubrange(r)
+                chars.append(contentsOf: cBuf[r])
+                cBuf.removeSubrange(r)
                 cc += i
-                //if canWait { cLock.broadcastWait() }
             }
 
             return cc
         }
 
         func _open() {
-            guard status == .notOpen else { return }
-            status = .open
-            isRunning = true
-            thread = Thread { [weak self] in
-                var hangingCR = false
-                let input     = EasyByteBuffer(length: INPUT_BUFFER_SIZE)
-                let output    = EasyByteBuffer(length: OUTPUT_BUFFER_SIZE)
-                let iconv     = IConv(toEncoding: ENCODE_TO_NAME, fromEncoding: (self?.encodingName ?? "UTF-8"), ignoreErrors: true, enableTransliterate: true)
-                defer { iconv.close() }
-                while let s = self { guard s.doBackground(iconv, input, output, &hangingCR) else { break } }
-            }
-            thread?.qualityOfService = .utility
-            thread?.start()
+            guard st == .notOpen else { return }
+            st = .open
+            thread.start()
         }
 
         func _close() {
-            guard status == .open else { return }
-            status = .closed
-            while isRunning { cLock.broadcastWait() }
-            buffer.removeAll()
-            error = nil
+            guard st == .open else { return }
+            st = .closed
+            while thread.isRunning { cLck.broadcastWait() }
+            cBuf.removeAll()
+            err = nil
         }
 
-        func doBackground(_ iconv: IConv, _ input: EasyByteBuffer, _ output: EasyByteBuffer, _ hangingCR: inout Bool) -> Bool {
-            withLock {
-                isRunning = doBackgroundRead(iconv, input, output, &hangingCR)
-                if !isRunning { doEndGame(iconv, input, output, hangingCR) }
-                return isRunning
-            }
-        }
+        private func _doRead() -> Bool { thread.processNextBlock(input, cLck, &cBuf, &err, isOpen) }
 
-        func doBackgroundRead(_ iconv: IConv, _ input: EasyByteBuffer, _ output: EasyByteBuffer, _ hangingCR: inout Bool) -> Bool {
-            do {
-                guard isOpen else { return false }
-                if inputStream.streamStatus == .notOpen {
-                    inputStream.open()
-                }
-                while buffer.count >= MAX_READ_AHEAD { guard cLock.broadcastWait(until: Date(timeIntervalSinceNow: 0.25)) && isOpen else { return isOpen } }
-                return try readChars(iconv: iconv, input: input, output: output, hangingCR: &hangingCR)
-            }
-            catch let e {
-                error = e
-                return false
-            }
-        }
+        @usableFromInline class IC: PGThread {
+            @usableFromInline let ic:   IConv
+            @usableFromInline let iBuf: EasyByteBuffer = EasyByteBuffer(length: INPUT_BUFFER_SIZE)
+            @usableFromInline let oBuf: EasyByteBuffer = EasyByteBuffer(length: OUTPUT_BUFFER_SIZE)
+            @usableFromInline var hcr:  Bool           = false
 
-        func readChars(iconv: IConv, input: EasyByteBuffer, output: EasyByteBuffer, hangingCR: inout Bool) throws -> Bool {
-            guard try isOpen && inputStream.read(to: input) > 0 else { return false }
-            let results = iconv.convert(input: input, output: output)
-            try handleLastIConvResults(iConvResults: results, output: output, hangingCR: &hangingCR, isFinal: false)
+            @usableFromInline init(_ eName: String, _ block: @escaping PGThread.PGThreadBlock) {
+                self.ic = IConv(toEncoding: ENCODE_TO_NAME, fromEncoding: eName, ignoreErrors: true, enableTransliterate: true)
+                super.init(startNow: false, qualityOfService: .utility, block: block)
+            }
+
+            deinit { ic.close() }
+        }
+    }
+
+    extension SimpleIConvCharInputStream {
+        @inlinable var isOpen:            Bool { (st == .open) }
+        @inlinable var nErr:              Bool { (err == nil) }
+        @inlinable var noError:           Bool { (nErr || hasBChars) }
+        @inlinable var hasBChars:         Bool { !cBuf.isEmpty }
+        @inlinable var canWait:           Bool { (isOpen && nErr && thread.isRunning) }
+        @inlinable var inputStreamIsOpen: Bool { !Rubicon.value(input.streamStatus, isOneOf: .closed, .notOpen) }
+
+        @inlinable public func withLock<T>(_ body: () throws -> T) rethrows -> T { try cLck.withLock(body) }
+
+        @inlinable func _waitForChars() throws -> Bool {
+            while canWait && cBuf.isEmpty { cLck.broadcastWait() }
+            guard isOpen else { return false }
+            guard noError else { throw err! }
             return true
         }
 
-        func handleLastIConvResults(iConvResults res: IConv.Results, output: EasyByteBuffer, hangingCR: inout Bool, isFinal f: Bool) throws {
+        @inlinable func _waitForChar(_ body: () throws -> Character?) throws -> Character? { try _waitForChars() ? try body() : nil }
+
+        @inlinable func _closeInput() { if autoClose && inputStreamIsOpen { input.close() } }
+    }
+
+    extension SimpleIConvCharInputStream.IC {
+        @inlinable var isRunning: Bool { isStarted && !isDone }
+
+        @usableFromInline func processNextBlock(_ input: InputStream, _ lock: Conditional, _ cBuf: inout [Character], _ err: inout Error?, _ isOpen: @autoclosure () -> Bool) -> Bool {
+            lock.withLock {
+                do {
+                    guard isOpen() else { return false }
+                    if input.streamStatus == .notOpen { input.open() }
+                    while cBuf.count >= MAX_READ_AHEAD { guard lock.broadcastWait(until: Date(timeIntervalSinceNow: 2.0)) else { return isOpen() } }
+                    guard try isOpen() && input.read(to: iBuf) > 0 else { return try doEndGame(output: &cBuf) }
+                    return try doConv(output: &cBuf, final: false)
+                }
+                catch let e {
+                    err = e
+                    return (try? doEndGame(output: &cBuf)) ?? false
+                }
+            }
+        }
+
+        @inlinable func doEndGame(output cBuf: inout [Character]) throws -> Bool {
+            if iBuf.count > 0 { try doConv(output: &cBuf, final: false) }
+            try doConv(output: &cBuf, final: true)
+            return false
+        }
+
+        @discardableResult @inlinable func doConv(output cBuf: inout [Character], final f: Bool) throws -> Bool {
+            let results: IConv.Results = (f ? ic.finalConvert(output: oBuf) : ic.convert(input: iBuf, output: oBuf))
+            try handleLastIConvResults(iConvResults: results, output: &cBuf, final: f)
+            return true
+        }
+
+        @inlinable func handleLastIConvResults(iConvResults res: IConv.Results, output cBuf: inout [Character], final f: Bool) throws {
             switch res {
-                case .UnknownEncoding:    throw CharStreamError.UnknownCharacterEncoding(description: encodingName)
-                case .OtherError:         throw StreamError.UnknownError()
-                case .IncompleteSequence: storeChars(output, &hangingCR); if f { buffer <+ UnicodeReplacementChar }
-                default:                  storeChars(output, &hangingCR)
+                case .UnknownEncoding:
+                    throw CharStreamError.UnknownCharacterEncoding(description: ic.fromEncoding)
+                case .OtherError:
+                    throw StreamError.UnknownError()
+                case .IncompleteSequence:
+                    storeChars(output: &cBuf)
+                    if f { cBuf <+ UnicodeReplacementChar }
+                default:
+                    storeChars(output: &cBuf)
             }
         }
 
-        func storeChars(_ output: EasyByteBuffer, _ hangingCR: inout Bool) {
-            output.withBufferAs(type: UInt32.self) { (p: UnsafeMutablePointer<UInt32>, length: Int, count: inout Int) -> Void in
-                guard count > 0 else { hangingCR = false; return }
-                var idx = storeHangingCR(data: p, hangingCR: &hangingCR)
-                while idx < count { hangingCR = storeNextChar(data: p, count: count, index: &idx) }
+        @inlinable func storeChars(output cBuf: inout [Character]) {
+            oBuf.withBufferAs(type: UInt32.self) { (p: UnsafeMutablePointer<UInt32>, length: Int, count: inout Int) -> Void in
+                guard count > 0 else { hcr = false; return }
+                var idx = storeHangingCR(data: p, output: &cBuf)
+                while idx < count { hcr = storeNextChar(data: p, count: count, index: &idx, output: &cBuf) }
             }
         }
 
-        func storeNextChar(data p: UnsafeMutablePointer<UInt32>, count: Int, index idx: inout Int) -> Bool {
+        @inlinable func storeHangingCR(data p: UnsafeMutablePointer<UInt32>, output cBuf: inout [Character]) -> Int {
+            var idx = 0
+            if hcr {
+                hcr = false
+                if p[idx] == LINE_FEED_CODEPOINT {
+                    cBuf.append(CRLF_CHARACTER)
+                    idx++
+                }
+            }
+            return idx
+        }
+
+        @inlinable func storeNextChar(data p: UnsafeMutablePointer<UInt32>, count: Int, index idx: inout Int, output cBuf: inout [Character]) -> Bool {
             var ch = Character(codePoint: p[idx++])
             if ch == CR_CHARACTER {
                 guard idx < count else { return true }
@@ -325,36 +331,8 @@ internal let MAX_READ_AHEAD:      Int       = 65_536
                     idx++
                 }
             }
-            buffer <+ ch
+            cBuf <+ ch
             return false
-        }
-
-        func storeHangingCR(data p: UnsafeMutablePointer<UInt32>, hangingCR: inout Bool) -> Int {
-            var idx = 0
-            if hangingCR {
-                hangingCR = false
-                if p[idx] == LINE_FEED_CODEPOINT {
-                    buffer.append(CRLF_CHARACTER)
-                    idx++
-                }
-            }
-            return idx
-        }
-
-        func doEndGame(_ iconv: IConv, _ input: EasyByteBuffer, _ output: EasyByteBuffer, _ hangingCR: Bool) {
-            var hangingCR = hangingCR
-            do {
-                if autoClose && inputStreamIsOpen { inputStream.close() }
-                if input.count > 0 {
-                    let r = iconv.convert(input: input, output: output)
-                    try handleLastIConvResults(iConvResults: r, output: output, hangingCR: &hangingCR, isFinal: false)
-                }
-                let r = iconv.finalConvert(output: output)
-                try handleLastIConvResults(iConvResults: r, output: output, hangingCR: &hangingCR, isFinal: true)
-            }
-            catch let e {
-                error = e
-            }
         }
     }
 #endif

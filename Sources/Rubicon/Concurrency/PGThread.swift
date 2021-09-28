@@ -23,19 +23,25 @@
 import Foundation
 
 /*==============================================================================================================*/
-/// The closure type for `PGThread` and `NanoTimer`
-///
-public typealias PGThreadBlock = () -> Void
-
-/*==============================================================================================================*/
 /// A subclass of `Thread` that allows the closure to be set after it has been created.
 ///
 open class PGThread: Thread {
 
-    private let cond: Conditional = Conditional()
+    /*==============================================================================================================*/
+    /// The closure type for `PGThread` and `NanoTimer`
+    ///
+    public typealias PGThreadBlock = () throws -> Void
 
-    public private(set) var isDone:    Bool = false
-    public private(set) var isStarted: Bool = false
+    //@f:0
+    private let _lock:      Conditional = Conditional()
+    private var _isDone:    Bool        = false
+    private var _isStarted: Bool        = false
+    private var _error:     Error?      = nil
+
+    public  var isDone:     Bool        { _lock.withLock { _isDone    } }
+    public  var isStarted:  Bool        { _lock.withLock { _isStarted } }
+    public  var error:      Error?      { _lock.withLock { _error     } }
+    //@f:1
 
     /*==========================================================================================================*/
     /// The `block` for the thread to execute. This can only be set before the thread is executed. Attempting to
@@ -54,15 +60,15 @@ open class PGThread: Thread {
 
     /*==========================================================================================================*/
     /// Initializes the thread with the given `closure` and if `startNow` is set to `true`, starts it right away.
-    /// 
+    ///
     /// - Parameters:
     ///   - startNow: If set to `true` the thread is created in a running state.
     ///   - qualityOfService:  The quality of service.
     ///   - block: The `block` for the thread to execute.
     ///
-    public convenience init(startNow: Bool = false, qualityOfService: QualityOfService = .default, block: @escaping PGThreadBlock) {
-        self.init()
+    public init(startNow: Bool = false, qualityOfService: QualityOfService = .default, block: @escaping PGThreadBlock) {
         self.block = block
+        super.init()
         self.qualityOfService = qualityOfService
         if startNow { start() }
     }
@@ -72,9 +78,11 @@ open class PGThread: Thread {
     /// Documentation</a>
     ///
     open override func start() {
-        cond.withLock {
-            isStarted = true
-            isDone = false
+        _lock.withLock {
+            guard !_isStarted else { return }
+            _error = nil
+            _isStarted = true
+            _isDone = false
             super.start()
         }
     }
@@ -83,28 +91,48 @@ open class PGThread: Thread {
     /// The main function. We're making this final because we don't want it overridden.
     ///
     public override final func main() {
-        block()
-        cond.withLock { isDone = true }
+        do {
+            try run()
+            _lock.withLock { _isDone = true }
+        }
+        catch let e {
+            _lock.withLock {
+                _error = e
+                _isDone = true
+            }
+        }
+    }
+
+    /*==========================================================================================================*/
+    /// The new main function. Subclasses can overrice this method.
+    ///
+    open func run() throws -> Void {
+        try block()
     }
 
     /*==========================================================================================================*/
     /// Waits for the thread to finish executing.
     ///
-    public func join() { cond.withLock { if isStarted { while !isDone { cond.broadcastWait() } } } }
+    open func join() {
+        _lock.withLock {
+            guard _isStarted else { return }
+            while !_isDone { _lock.broadcastWait() }
+        }
+    }
 
     /*==========================================================================================================*/
     /// Waits until the given date for the thread to finish executing.
-    /// 
+    ///
     /// - Parameter limit: the point in time to wait until for the thread to execute. If the time is in the past
     ///                    then the method will return immediately.
     /// - Returns: `true` if the thread finished executing before the given time or `false` if the time was
     ///            reached or the thread has not been started yet.
     ///
-    public func join(until limit: Date) -> Bool {
-        cond.withLock {
-            guard isStarted else { return false }
-            while !isDone { guard cond.broadcastWait(until: limit) else { return false } }
-            return true
+    open func join(until limit: Date) -> Bool {
+        _lock.withLock {
+            guard _isStarted else { return false }
+            while !_isDone || _lock.broadcastWait(until: limit) {}
+            return _isDone
         }
     }
 }

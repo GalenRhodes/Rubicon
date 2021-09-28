@@ -27,7 +27,6 @@ public enum CharStreamError: Error {
 }
 
 public protocol CharStream {
-
     /*==========================================================================================================*/
     /// The human readable name of the encoding.
     ///
@@ -52,10 +51,6 @@ public protocol CharStream {
     /// Close the stream.
     ///
     func close()
-
-    func lock()
-
-    func unlock()
 
     func withLock<T>(_ body: () throws -> T) rethrows -> T
 }

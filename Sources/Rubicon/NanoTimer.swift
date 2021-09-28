@@ -41,14 +41,15 @@ public enum NanoTimerError: Error {
 ///
 open class NanoTimer {
 
+    public typealias PGThreadBlock = () -> Void
+
     private var running: Bool = false
     private var gate:    UInt = 0
     private var skip:    UInt = 0
 
+    private var worker1: PGThread?     = nil
+    private var worker2: PGThread?     = nil
     private let lock:    RecursiveLock = RecursiveLock()
-    private var worker1: PGThread?       = nil
-    private var worker2: PGThread?       = nil
-    private let cond:    Conditional     = Conditional()
 
     /*==========================================================================================================*/
     /// The block that gets called every `nanos` nanoseconds.
@@ -58,9 +59,7 @@ open class NanoTimer {
     /*==========================================================================================================*/
     /// Returns `true` if the timer is running. Returns `false` if the timer has been `stop`ped.
     ///
-    public var isRunning: Bool {
-        running
-    }
+    public var isRunning: Bool { lock.withLock { running } }
 
     /*==========================================================================================================*/
     /// The number of nanoseconds between calls to the the `block`.
@@ -69,7 +68,7 @@ open class NanoTimer {
 
     /*==========================================================================================================*/
     /// Initializes the timer to call the `block` every `nanos` nanoseconds.
-    /// 
+    ///
     /// - Parameter nanos: the number of nanoseconds. Must be less than `OneSecondNanos`.
     ///
     public init(nanos: time_t) {
@@ -78,7 +77,7 @@ open class NanoTimer {
 
     /*==========================================================================================================*/
     /// Initializes the timer to call the block.
-    /// 
+    ///
     /// - Parameter time:
     ///
     public init(time: timespec) {
@@ -92,7 +91,7 @@ open class NanoTimer {
     /*==========================================================================================================*/
     /// Adds a number of timer cycles to skip to the existing number. The timer will skip a number of timer
     /// firings when told to.
-    /// 
+    ///
     /// - Parameter skip: The number of cycles to skip.
     ///
     public func add(skip: UInt = 1) {
@@ -123,6 +122,7 @@ open class NanoTimer {
     }
 
     private func _startLongDelay() {
+        running = true
         worker1 = PGThread(startNow: true, qualityOfService: .userInteractive) {
             var next: time_t   = getSysTime(delta: self.nanos)
             let adj:  time_t   = (next - 3_000)
@@ -153,10 +153,10 @@ open class NanoTimer {
                 }
             }
         }
-        running = true
     }
 
     private func _startShortDelay() {
+        running = true
         worker1 = PGThread(startNow: true, qualityOfService: .userInteractive) {
             var next: time_t = getSysTime(delta: self.nanos)
 
@@ -180,7 +180,6 @@ open class NanoTimer {
                 }
             }
         }
-        running = true
     }
 
     /*==========================================================================================================*/

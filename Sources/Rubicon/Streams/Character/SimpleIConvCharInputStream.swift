@@ -218,8 +218,6 @@ public let LF_CHARACTER:        Character = "\n"
             err = nil
         }
 
-        private func _doRead() -> Bool { thread.processNextBlock(input, cLck, &cBuf, &err, isOpen) }
-
         @usableFromInline class IC: PGThread {
             @usableFromInline let ic:   IConv
             @usableFromInline let iBuf: EasyByteBuffer = EasyByteBuffer(length: INPUT_BUFFER_SIZE)
@@ -232,6 +230,22 @@ public let LF_CHARACTER:        Character = "\n"
             }
 
             deinit { ic.close() }
+
+            @usableFromInline func processNextBlock(_ input: InputStream, _ lock: Conditional, _ cBuf: inout [Character], _ err: inout Error?, _ isOpen: @autoclosure () -> Bool) -> Bool {
+                lock.withLock {
+                    do {
+                        guard isOpen() else { return false }
+                        if input.streamStatus == .notOpen { input.open() }
+                        while cBuf.count >= MAX_READ_AHEAD { guard lock.broadcastWait(until: Date(timeIntervalSinceNow: 2.0)) else { return isOpen() } }
+                        guard try isOpen() && input.read(to: iBuf) > 0 else { return try doEndGame(output: &cBuf) }
+                        return try doConv(output: &cBuf, final: false)
+                    }
+                    catch let e {
+                        err = e
+                        return (try? doEndGame(output: &cBuf)) ?? false
+                    }
+                }
+            }
         }
     }
 
@@ -255,37 +269,23 @@ public let LF_CHARACTER:        Character = "\n"
         @inlinable func _waitForChar(_ body: () throws -> Character?) throws -> Character? { try _waitForChars() ? try body() : nil }
 
         @inlinable func _closeInput() { if autoClose && inputStreamIsOpen { input.close() } }
+
+        @inlinable func _doRead() -> Bool { thread.processNextBlock(input, cLck, &cBuf, &err, isOpen) }
     }
 
     extension SimpleIConvCharInputStream.IC {
         @inlinable var isRunning: Bool { isStarted && !isDone }
 
-        @usableFromInline func processNextBlock(_ input: InputStream, _ lock: Conditional, _ cBuf: inout [Character], _ err: inout Error?, _ isOpen: @autoclosure () -> Bool) -> Bool {
-            lock.withLock {
-                do {
-                    guard isOpen() else { return false }
-                    if input.streamStatus == .notOpen { input.open() }
-                    while cBuf.count >= MAX_READ_AHEAD { guard lock.broadcastWait(until: Date(timeIntervalSinceNow: 2.0)) else { return isOpen() } }
-                    guard try isOpen() && input.read(to: iBuf) > 0 else { return try doEndGame(output: &cBuf) }
-                    return try doConv(output: &cBuf, final: false)
-                }
-                catch let e {
-                    err = e
-                    return (try? doEndGame(output: &cBuf)) ?? false
-                }
-            }
+        @discardableResult @inlinable func doConv(output cBuf: inout [Character], final f: Bool) throws -> Bool {
+            let results: IConv.Results = (f ? ic.finalConvert(output: oBuf) : ic.convert(input: iBuf, output: oBuf))
+            try handleLastIConvResults(iConvResults: results, output: &cBuf, final: f)
+            return true
         }
 
         @inlinable func doEndGame(output cBuf: inout [Character]) throws -> Bool {
             if iBuf.count > 0 { try doConv(output: &cBuf, final: false) }
             try doConv(output: &cBuf, final: true)
             return false
-        }
-
-        @discardableResult @inlinable func doConv(output cBuf: inout [Character], final f: Bool) throws -> Bool {
-            let results: IConv.Results = (f ? ic.finalConvert(output: oBuf) : ic.convert(input: iBuf, output: oBuf))
-            try handleLastIConvResults(iConvResults: results, output: &cBuf, final: f)
-            return true
         }
 
         @inlinable func handleLastIConvResults(iConvResults res: IConv.Results, output cBuf: inout [Character], final f: Bool) throws {

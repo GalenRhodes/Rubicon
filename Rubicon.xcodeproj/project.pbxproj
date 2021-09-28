@@ -53,6 +53,7 @@
 		1117DB005960C8847B27F6F8 /* StringProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DFFD880F237687D8BE44 /* StringProtocol.swift */; };
 		1117DB2981DA9EEA1794C0A9 /* PGThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D14B363B54E578A54336 /* PGThread.swift */; };
 		1117DB9D26E36984B25ED3B6 /* MathTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD84AEA3091616F4FB46 /* MathTools.swift */; };
+		1117DC560206CD08C95BE167 /* Runner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D104117BC8F5E379EADD /* Runner.swift */; };
 		1117DC5BF2A398C1D36EA0E7 /* RegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DC953EC772053F764FDE /* RegularExpression.swift */; };
 		1117DD4EFDE8572C3C5CEF4A /* CErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D6A7CE94A310891BDE0F /* CErrors.swift */; };
 		1117DD7DFD059A61F8F73744 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D44BFD572284A94D3903 /* FileManager.swift */; };
@@ -142,6 +143,7 @@
 		1117D0693DF7EAFD66B1A94C /* Test_UTF-8.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Test_UTF-8.xml"; sourceTree = "<group>"; };
 		1117D0CCE7F6EC932D84A298 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		1117D0EF2E0346BF617231CB /* Test_UTF-8_ext.dtd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Test_UTF-8_ext.dtd"; sourceTree = "<group>"; };
+		1117D104117BC8F5E379EADD /* Runner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Runner.swift; sourceTree = "<group>"; };
 		1117D122C5781ED4C73150D5 /* ManageByteBufferTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageByteBufferTests.swift; sourceTree = "<group>"; };
 		1117D142AFC8171D31FCF975 /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		1117D147FD51C32FD524340C /* DebugTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugTools.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				1117DCED9641BC9CB805ADEE /* ReadWriteLock.swift */,
 				1117D6F3E0FF3FC135C390D7 /* PGSemaphore.swift */,
 				1117DEAD54B3EAD01A797B20 /* Semaphore */,
+				1117D104117BC8F5E379EADD /* Runner.swift */,
 			);
 			path = Concurrency;
 			sourceTree = "<group>";
@@ -917,6 +920,7 @@
 				1117D2B5F87A5145E42F27A4 /* Triggered.swift in Sources */,
 				1117D3E66CFEF0A6F20E4A05 /* UnnamedSemaphore.swift in Sources */,
 				1117DFD31CB50DCD66D53455 /* NamedSemaphore.swift in Sources */,
+				1117DC560206CD08C95BE167 /* Runner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

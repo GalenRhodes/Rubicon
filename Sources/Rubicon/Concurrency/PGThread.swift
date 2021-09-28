@@ -104,7 +104,7 @@ open class PGThread: Thread {
     }
 
     /*==========================================================================================================*/
-    /// The new main function. Subclasses can overrice this method.
+    /// The new main function. Subclasses can override this method.
     ///
     open func run() throws -> Void {
         try block()

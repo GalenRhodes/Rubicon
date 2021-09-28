@@ -63,7 +63,6 @@ open class MarkInputStream: InputStream {
     @usableFromInline var error:             Error?           = nil
     @usableFromInline var st:                Stream.Status    = .notOpen
     @usableFromInline var run:               Bool             = false
-    private      lazy var thread:            Thread           = Thread { [weak self] in let bBuf = EasyByteBuffer(length: InputBufferSize); while let s = self, s._doBackground(buffer: bBuf) {} }
     //@f:1
 
     /*==========================================================================================================*/
@@ -220,13 +219,19 @@ open class MarkInputStream: InputStream {
     ///
     open override func open() {
         withLock {
-            // Only open if the stream has NEVER been opened before.
-            guard st == .notOpen else { return }
-            if input.streamStatus == .notOpen { input.open() }
-            st = .open
-            run = true
-            thread.qualityOfService = .utility
-            thread.start()
+            do {
+                // Only open if the stream has NEVER been opened before.
+                guard st == .notOpen else { return }
+                if input.streamStatus == .notOpen { input.open() }
+                st = .open
+                run = true
+                try thread.start()
+            }
+            catch let e {
+                run = false
+                error = e
+                if autoClose { input.close() }
+            }
         }
     }
 
@@ -335,41 +340,39 @@ open class MarkInputStream: InputStream {
     ///
     private func _markSet() { mstk <+ RingByteBuffer(initialCapacity: InputBufferSize) }
 
-    /*==========================================================================================================*/
-    /// Start a background read.
-    ///
-    /// - Parameters:
-    ///   - bytes: The buffer to use for the input.
-    ///   - size: The size of the buffer.
-    /// - Returns: `true` if this method can be called again.
-    ///
-    private func _doBackground(buffer bBuf: EasyByteBuffer) -> Bool {
-        cond.withLock {
-            func foo(_ cc: Int) throws -> Bool {
-                guard cc == 0 else { throw input.streamError ?? StreamError.UnknownError() }
-                return false
-            }
+    private func _closeInput() { if autoClose && input.streamStatus != .notOpen { input.close() } }
 
-            run = bBuf.withBytes { (b, l, _) in
-                do {
-                    while isOpen && rBuf.count >= MaxInputBufferSize { guard cond.broadcastWait(until: Date(timeIntervalSinceNow: BackgroundWaitTime)) else { return (isOpen) } }
-                    guard isOpen else { return false }
-                    let cc = input.read(b, maxLength: l)
-                    guard cc > 0 else { return try foo(cc) }
-                    rBuf.append(src: UnsafeRawPointer(b), length: cc)
-                    return true
-                }
-                catch let e {
-                    error = e
+    private func _runLoop(buffer bBuf: UnsafeMutablePointer<UInt8>, maxLength l: Int) -> Bool {
+        cond.withLock {
+            do {
+                while isOpen && rBuf.count >= MaxInputBufferSize { guard cond.broadcastWait(until: Date(timeIntervalSinceNow: BackgroundWaitTime)) else { return isOpen } }
+                guard isOpen else { return false }
+                let cc = input.read(bBuf, maxLength: l)
+                guard cc > 0 else {
+                    guard cc == 0 else { throw input.streamError ?? StreamError.UnknownError() }
                     return false
                 }
+                rBuf.append(src: UnsafeRawPointer(bBuf), length: cc)
+                return true
             }
-            if !run { _closeInput() }
-            return run
+            catch let e {
+                error = e
+                return false
+            }
         }
     }
 
-    private func _closeInput() { if autoClose && input.streamStatus != .notOpen { input.close() } }
+    private lazy var thread: Runner<Void, Void> = Runner<Void, Void>(startNow: false, qualityOfService: .utility) { [weak self] (_) in
+        let bBuf = UnsafeMutablePointer<UInt8>.allocate(capacity: InputBufferSize)
+        defer { bBuf.deallocate() }
+        while let s = self {
+            guard s._runLoop(buffer: bBuf, maxLength: InputBufferSize) else {
+                s._closeInput()
+                s.run = false
+                break
+            }
+        }
+    }
 
     deinit { _closeInput() }
 }

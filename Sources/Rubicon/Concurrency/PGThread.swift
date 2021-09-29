@@ -27,7 +27,7 @@ import Foundation
 ///
 open class PGThread: Thread {
 
-    /*==============================================================================================================*/
+    /*==========================================================================================================*/
     /// The closure type for `PGThread` and `NanoTimer`
     ///
     public typealias PGThreadBlock = () throws -> Void
@@ -60,7 +60,7 @@ open class PGThread: Thread {
 
     /*==========================================================================================================*/
     /// Initializes the thread with the given `closure` and if `startNow` is set to `true`, starts it right away.
-    ///
+    /// 
     /// - Parameters:
     ///   - startNow: If set to `true` the thread is created in a running state.
     ///   - qualityOfService:  The quality of service.
@@ -122,7 +122,7 @@ open class PGThread: Thread {
 
     /*==========================================================================================================*/
     /// Waits until the given date for the thread to finish executing.
-    ///
+    /// 
     /// - Parameter limit: the point in time to wait until for the thread to execute. If the time is in the past
     ///                    then the method will return immediately.
     /// - Returns: `true` if the thread finished executing before the given time or `false` if the time was

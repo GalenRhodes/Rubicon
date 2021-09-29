@@ -27,12 +27,12 @@ open class EasyByteBuffer: MutableManagedByteBuffer {
     //@f:0
     public let length: Int
     public var count:  Int = 0
-    public let bytes:  UnsafeMutablePointer<UInt8>
+    public let bytes:  BytePointer
     //@f:1
 
     public init(length: Int) {
         self.length = length
-        bytes = UnsafeMutablePointer<UInt8>.allocate(capacity: length)
+        bytes = BytePointer.allocate(capacity: length)
         bytes.initialize(repeating: 0, count: length)
     }
 
@@ -94,7 +94,7 @@ open class EasyByteBuffer: MutableManagedByteBuffer {
         count = cc
     }
 
-    @discardableResult open func withBytes<V>(_ body: (UnsafeMutablePointer<UInt8>, Int, inout Int) throws -> V) rethrows -> V {
+    @discardableResult open func withBytes<V>(_ body: (BytePointer, Int, inout Int) throws -> V) rethrows -> V {
         var cc = count
         let r  = try body(bytes, length, &cc)
         count = cc.clamp(minValue: 0, maxValue: length)
@@ -108,7 +108,7 @@ open class EasyByteBuffer: MutableManagedByteBuffer {
         return r
     }
 
-    @discardableResult open func withBytes<V>(_ body: (UnsafePointer<UInt8>, inout Int) throws -> V) rethrows -> V {
+    @discardableResult open func withBytes<V>(_ body: (ByteROPointer, inout Int) throws -> V) rethrows -> V {
         var cc = count
         let rs = try body(bytes, &cc)
         count = cc.clamp(minValue: 0, maxValue: length)

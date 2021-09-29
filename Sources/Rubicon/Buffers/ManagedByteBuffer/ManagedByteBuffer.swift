@@ -34,7 +34,7 @@ public protocol ManagedByteBuffer {
 
     @discardableResult func withBufferAs<T, V>(type: T.Type, _ body: (UnsafePointer<T>, inout Int) throws -> V) rethrows -> V
 
-    @discardableResult func withBytes<V>(_ body: (UnsafePointer<UInt8>, inout Int) throws -> V) rethrows -> V
+    @discardableResult func withBytes<V>(_ body: (ByteROPointer, inout Int) throws -> V) rethrows -> V
 
     @discardableResult func withBytes<V>(_ body: (UnsafeBufferPointer<UInt8>, inout Int) throws -> V) rethrows -> V
 }
@@ -45,11 +45,11 @@ public protocol MutableManagedByteBuffer: ManagedByteBuffer {
 
     @discardableResult func withBufferAs<T, V>(type: T.Type, _ body: (UnsafeMutableBufferPointer<T>, inout Int) throws -> V) rethrows -> V
 
-    @discardableResult func withBytes<V>(_ body: (UnsafeMutablePointer<UInt8>, Int, inout Int) throws -> V) rethrows -> V
+    @discardableResult func withBytes<V>(_ body: (BytePointer, Int, inout Int) throws -> V) rethrows -> V
 
     /*==========================================================================================================*/
     /// Executes the given closure with an UnsafeMutableBufferPointer representing the buffer.
-    /// 
+    ///
     /// - Parameter body: The closure which takes two parameters: <ol><li>The instance of
     ///                                                           UnsafeMutableBufferPointer</li><li>The count of
     ///                                                           the valid bytes in the buffer passed by
@@ -62,7 +62,7 @@ public protocol MutableManagedByteBuffer: ManagedByteBuffer {
     /*==========================================================================================================*/
     /// Relocates a block of bytes to the beginning of the buffer region. The number of bytes relocated will be
     /// from the given index to the end of the buffer.
-    /// 
+    ///
     /// - Parameter idx: the index of the first byte of the block of bytes to move to the beginning of the buffer.
     /// - Returns: The number of bytes moved.
     ///
@@ -70,7 +70,7 @@ public protocol MutableManagedByteBuffer: ManagedByteBuffer {
 
     /*==========================================================================================================*/
     /// Relocates a block of bytes to the beginning of the buffer region.
-    /// 
+    ///
     /// - Parameters:
     ///   - idx: The index of the first byte of the block of bytes to move to the beginning of the buffer.
     ///   - cc: The number of bytes.

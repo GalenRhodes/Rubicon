@@ -69,7 +69,7 @@ open class DataByteBuffer: MutableManagedByteBuffer {
         }
     }
 
-    @discardableResult open func withBytes<V>(_ body: (UnsafePointer<UInt8>, inout Int) throws -> V) rethrows -> V {
+    @discardableResult open func withBytes<V>(_ body: (ByteROPointer, inout Int) throws -> V) rethrows -> V {
         try data.withUnsafeBytes { (raw: UnsafeRawBufferPointer) -> V in
             if let p = raw.baseAddress {
                 var cc = count
@@ -95,7 +95,7 @@ open class DataByteBuffer: MutableManagedByteBuffer {
         }
     }
 
-    @discardableResult open func withBytes<V>(_ body: (UnsafeMutablePointer<UInt8>, Int, inout Int) throws -> V) rethrows -> V {
+    @discardableResult open func withBytes<V>(_ body: (BytePointer, Int, inout Int) throws -> V) rethrows -> V {
         try data.withUnsafeMutableBytes { (raw: UnsafeMutableRawBufferPointer) -> V in
             if let p = raw.baseAddress {
                 var cc = count

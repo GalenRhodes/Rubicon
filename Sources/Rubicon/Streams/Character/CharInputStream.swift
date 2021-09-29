@@ -75,7 +75,7 @@ public protocol CharInputStream: SimpleCharInputStream {
     /*==========================================================================================================*/
     /// Backs out the last `count` characters from the most recently set mark without actually removing the entire
     /// mark. You have to have previously called `markSet()` otherwise this method does nothing.
-    ///
+    /// 
     /// - Parameter count: the number of characters to back out.
     /// - Returns: The number of characters actually backed out in case there weren't `count` characters available.
     ///

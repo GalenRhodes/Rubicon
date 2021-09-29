@@ -23,7 +23,7 @@
         <a class="header-link" href="../index.html">
           Rubicon©
         </a>
-         (59% documented)
+         (57% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -118,6 +118,12 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/RingByteBuffer.html">RingByteBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Runner.html">Runner</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Runner/RunnerError.html">– RunnerError</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/SimpleIConvCharInputStream.html">SimpleIConvCharInputStream</a>
@@ -581,9 +587,6 @@
                 <a class="nav-group-task-link" href="../Typealiases/MutexLock.html">MutexLock</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Typealiases/PGThreadBlock.html">PGThreadBlock</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Typealiases/QWordBuffer.html">QWordBuffer</a>
               </li>
               <li class="nav-group-task">
@@ -649,7 +652,7 @@ treating the data like a stream of bytes. The three basic operations are <code>g
 <p>NOTE: This class is NOT thread safe.</p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L43-L389">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L43-L378">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -811,6 +814,35 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:7Rubicon14RingByteBufferC10isNotEmptySbvp"></a>
+                    <a name="//apple_ref/swift/Property/isNotEmpty" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC10isNotEmptySbvp">isNotEmpty</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="k">var</span> <span class="nv">isNotEmpty</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L74">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:7Rubicon14RingByteBufferC15initialCapacityACSi_tcfc"></a>
                     <a name="//apple_ref/swift/Method/init(initialCapacity:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:7Rubicon14RingByteBufferC15initialCapacityACSi_tcfc">init(initialCapacity:<wbr>)</a>
@@ -852,7 +884,7 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L79">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L80">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -877,7 +909,7 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">func</span> <span class="nf">clear</span><span class="p">(</span><span class="nv">keepingCapacity</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">func</span> <span class="nf">clear</span><span class="p">(</span><span class="nv">keepingCapacity</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -902,7 +934,7 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L89">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L90">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -955,7 +987,7 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                         <p><code>true</code> if the byte was retrived or <code>false</code> if the buffer was empty.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L97">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L98">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -989,7 +1021,7 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                         <p>The next byte or <code>nil</code> if the buffer is empty.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L104">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L105">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1054,7 +1086,7 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                         <p>The number of bytes actually gotten.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L115">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L116">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1079,7 +1111,8 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">func</span> <span class="nf">get</span><span class="p">(</span><span class="nv">dest</span><span class="p">:</span> <span class="kt"><a href="../Classes/EasyByteBuffer.html">EasyByteBuffer</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">func</span> <span class="nf">get</span><span class="p">(</span><span class="nv">dest</span><span class="p">:</span> <span class="kt"><a href="../Classes/EasyByteBuffer.html">EasyByteBuffer</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -1107,7 +1140,7 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                         <p>The number of bytes actually gotten.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L125-L133">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L126-L134">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1186,7 +1219,7 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                         <p>The number of bytes added to <code>destData</code>.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L147-L166">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L148-L167">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1251,7 +1284,7 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                         <p>The number of bytes actually read.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L176-L178">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L177-L179">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1300,7 +1333,7 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L185">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L186">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1349,7 +1382,7 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L192">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L193">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1410,7 +1443,7 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L201">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L202">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1459,7 +1492,7 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L209-L216">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L210-L217">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1467,9 +1500,9 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon14RingByteBufferC6append3src6length9maxLengthySV_S2itF"></a>
-                    <a name="//apple_ref/swift/Method/append(src:length:maxLength:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon14RingByteBufferC6append3src6length9maxLengthySV_S2itF">append(src:<wbr>length:<wbr>maxLength:<wbr>)</a>
+                    <a name="/s:7Rubicon14RingByteBufferC6append3src6lengthySV_SitF"></a>
+                    <a name="//apple_ref/swift/Method/append(src:length:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon14RingByteBufferC6append3src6lengthySV_SitF">append(src:<wbr>length:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1484,7 +1517,7 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">func</span> <span class="nf">append</span><span class="p">(</span><span class="nv">src</span><span class="p">:</span> <span class="kt">UnsafeRawPointer</span><span class="p">,</span> <span class="nv">length</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">maxLength</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kt">Int</span><span class="o">.</span><span class="n">max</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">func</span> <span class="nf">append</span><span class="p">(</span><span class="nv">src</span><span class="p">:</span> <span class="kt">UnsafeRawPointer</span><span class="p">,</span> <span class="nv">length</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1495,7 +1528,7 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                             <tr>
                               <td>
                                 <code>
-                                <em>rawSrc</em>
+                                <em>src</em>
                                 </code>
                               </td>
                               <td>
@@ -1520,7 +1553,7 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L225-L236">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L226-L228">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1569,7 +1602,7 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L246">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L235">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1618,7 +1651,7 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L253">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L242">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1667,7 +1700,7 @@ treating the data like a stream of bytes. The three basic operations are <code>g
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L260">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L249">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1717,7 +1750,7 @@ read via <code>get(buffer:maxLength:)</code>.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L269">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L258">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1766,7 +1799,7 @@ read via <code>get(buffer:maxLength:)</code>.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L276">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L265">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1828,7 +1861,7 @@ will be read via <code>get(buffer:maxLength:)</code>.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L286">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L275">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1890,7 +1923,7 @@ will be read via <code>get(buffer:maxLength:)</code>.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L296">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L285">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1940,7 +1973,7 @@ will be read via <code>get(buffer:maxLength:)</code>.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L304">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L293">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1990,7 +2023,7 @@ will be read via <code>get(buffer:maxLength:)</code>.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L312">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L301">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2040,7 +2073,7 @@ will be read via <code>get(buffer:maxLength:)</code>.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L320">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L309">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2090,7 +2123,7 @@ will be read via <code>get(buffer:maxLength:)</code>.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L328-L335">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L317-L324">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2148,7 +2181,7 @@ will be read via <code>get(buffer:maxLength:)</code>.</p>
                         <p>The bytes read.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L344-L361">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L333-L350">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2182,7 +2215,7 @@ will be read via <code>get(buffer:maxLength:)</code>.</p>
                         <p>The number of bytes swapped.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L374">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L363">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2216,7 +2249,7 @@ will be read via <code>get(buffer:maxLength:)</code>.</p>
                         <p>The number of bytes swapped.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L381">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L370">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2250,7 +2283,7 @@ will be read via <code>get(buffer:maxLength:)</code>.</p>
                         <p>The number of bytes swapped.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L388">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Buffers/RingByteBuffer.swift#L377">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -2263,7 +2296,7 @@ will be read via <code>get(buffer:maxLength:)</code>.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="noopener" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-09-24)</p>
+      <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="noopener" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-09-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="noopener" rel="external">jazzy ♪♫ v0.14.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="noopener" rel="external">Realm</a> project.</p>
     </section>
   </body>

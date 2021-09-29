@@ -317,77 +317,84 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
-      "line": 34,
+      "line": 30,
+      "symbol": "EasyByteBuffer.bytes",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
+      "line": 33,
       "symbol": "EasyByteBuffer.init(length:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
-      "line": 40,
+      "line": 39,
       "symbol": "EasyByteBuffer.init(buffer:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
-      "line": 55,
+      "line": 54,
       "symbol": "EasyByteBuffer.append(byte:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
-      "line": 61,
+      "line": 60,
       "symbol": "EasyByteBuffer.append(contentsOf:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
-      "line": 98,
+      "line": 97,
       "symbol": "EasyByteBuffer.withBytes(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
-      "line": 112,
+      "line": 111,
       "symbol": "EasyByteBuffer.withBytes(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
-      "line": 119,
+      "line": 118,
       "symbol": "EasyByteBuffer.withBytes(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
-      "line": 126,
+      "line": 125,
       "symbol": "EasyByteBuffer.withBufferAs(type:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
-      "line": 134,
+      "line": 133,
       "symbol": "EasyByteBuffer.withBufferAs(type:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
-      "line": 142,
+      "line": 141,
       "symbol": "EasyByteBuffer.withBufferAs(type:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift",
-      "line": 150,
+      "line": 149,
       "symbol": "EasyByteBuffer.withBufferAs(type:_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -488,6 +495,13 @@
       "line": 29,
       "symbol": "RingByteBufferError.InvalidArgument(description:)",
       "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/RingByteBuffer.swift",
+      "line": 74,
+      "symbol": "RingByteBuffer.isNotEmpty",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
@@ -1493,15 +1507,22 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/PGThread.swift",
-      "line": 37,
+      "line": 41,
       "symbol": "PGThread.isDone",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/PGThread.swift",
-      "line": 38,
+      "line": 42,
       "symbol": "PGThread.isStarted",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/PGThread.swift",
+      "line": 43,
+      "symbol": "PGThread.error",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
@@ -1579,6 +1600,174 @@
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/ReadWriteLock.swift",
       "line": 142,
       "symbol": "ReadWriteLock.tryWithWriteLock(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 21,
+      "symbol": "Runner",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 22,
+      "symbol": "Runner.SignalGetter",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 23,
+      "symbol": "Runner.ClosureType",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 25,
+      "symbol": "Runner.RunnerError",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 26,
+      "symbol": "Runner.RunnerError.AlreadyStarted",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 27,
+      "symbol": "Runner.RunnerError.NotYetStarted",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 28,
+      "symbol": "Runner.RunnerError.AlreadyFinished",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 29,
+      "symbol": "Runner.RunnerError.InternalError",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 33,
+      "symbol": "Runner.qualityOfService",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 34,
+      "symbol": "Runner.isStarted",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 35,
+      "symbol": "Runner.isRunning",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 36,
+      "symbol": "Runner.isDone",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 37,
+      "symbol": "Runner.didFail",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 38,
+      "symbol": "Runner.error",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 39,
+      "symbol": "Runner.results",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 40,
+      "symbol": "Runner.startTime",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 41,
+      "symbol": "Runner.endTime",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 54,
+      "symbol": "Runner.init(startNow:qualityOfService:execute:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 59,
+      "symbol": "Runner.start()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 66,
+      "symbol": "Runner.signal(with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 74,
+      "symbol": "Runner.getResults()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 83,
+      "symbol": "Runner.getResults(until:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 92,
+      "symbol": "Runner.wait()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Concurrency/Runner.swift",
+      "line": 94,
+      "symbol": "Runner.wait(until:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -2269,6 +2458,13 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/NanoTimer.swift",
+      "line": 44,
+      "symbol": "NanoTimer.PGThreadBlock",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/PGErrors.swift",
       "line": 28,
       "symbol": "PGErrors",
@@ -2739,42 +2935,35 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
-      "line": 75,
-      "symbol": "CharInputStream.markUpdate()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
-      "line": 88,
+      "line": 86,
       "symbol": "CharInputStream.markBackup()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
-      "line": 90,
+      "line": 88,
       "symbol": "CharInputStream.markUpdate()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
-      "line": 93,
+      "line": 91,
       "symbol": "tabCalc(pos:tabSize:)",
       "symbol_kind": "source.lang.swift.decl.function.free",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
-      "line": 95,
+      "line": 93,
       "symbol": "textPositionUpdate(_:pos:tabWidth:)",
       "symbol_kind": "source.lang.swift.decl.function.free",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharInputStream.swift",
-      "line": 97,
+      "line": 95,
       "symbol": "nextCharPosition(currentPosition:character:tabWidth:)",
       "symbol_kind": "source.lang.swift.decl.function.free",
       "warning": "undocumented"
@@ -2802,21 +2991,7 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharStream.swift",
-      "line": 56,
-      "symbol": "CharStream.lock()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharStream.swift",
-      "line": 58,
-      "symbol": "CharStream.unlock()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/CharStream.swift",
-      "line": 60,
+      "line": 55,
       "symbol": "CharStream.withLock(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -2879,21 +3054,14 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift",
-      "line": 148,
-      "symbol": "SimpleIConvCharInputStream.lock()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "line": 52,
+      "symbol": "SimpleIConvCharInputStream",
+      "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift",
-      "line": 152,
-      "symbol": "SimpleIConvCharInputStream.unlock()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift",
-      "line": 156,
+      "line": 260,
       "symbol": "SimpleIConvCharInputStream.withLock(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -2956,14 +3124,14 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/MarkInputStream.swift",
-      "line": 161,
+      "line": 157,
       "symbol": "MarkInputStream.property(forKey:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/MarkInputStream.swift",
-      "line": 163,
+      "line": 159,
       "symbol": "MarkInputStream.setProperty(_:forKey:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

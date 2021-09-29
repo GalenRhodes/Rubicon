@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>PGThreadBlock Type Alias Reference</title>
+    <title>Runner Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,16 +14,16 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Alias/PGThreadBlock" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Class/Runner" class="dashAnchor"></a>
 
-    <a title="PGThreadBlock Type Alias Reference"></a>
+    <a title="Runner Class Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="../index.html">
           Rubicon©
         </a>
-         (59% documented)
+         (57% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html"> Reference</a>
       <img class="carat" src="../img/carat.png" />
-      PGThreadBlock Type Alias Reference
+      Runner Class Reference
     </p>
 
     <div class="content-wrapper">
@@ -118,6 +118,12 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/RingByteBuffer.html">RingByteBuffer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Runner.html">Runner</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Runner/RunnerError.html">– RunnerError</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/SimpleIConvCharInputStream.html">SimpleIConvCharInputStream</a>
@@ -581,9 +587,6 @@
                 <a class="nav-group-task-link" href="../Typealiases/MutexLock.html">MutexLock</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Typealiases/PGThreadBlock.html">PGThreadBlock</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Typealiases/QWordBuffer.html">QWordBuffer</a>
               </li>
               <li class="nav-group-task">
@@ -633,31 +636,525 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>PGThreadBlock</h1>
+            <h1>Runner</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">PGThreadBlock</span> <span class="o">=</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">Runner</span><span class="o">&lt;</span><span class="kt">SignalType</span><span class="p">,</span> <span class="kt">ResultType</span><span class="o">&gt;</span></code></pre>
 
                 </div>
               </div>
-            <p>The closure type for <code><a href="../Classes/PGThread.html">PGThread</a></code> and <code><a href="../Classes/NanoTimer.html">NanoTimer</a></code></p>
-
+            
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/PGThread.swift#L28">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Runner.swift#L21-L125">Show on GitHub</a>
               </div>
           </div>
         </section>
 
         <section class="section">
           <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon6RunnerC12SignalGettera"></a>
+                    <a name="//apple_ref/swift/Alias/SignalGetter" class="dashAnchor"></a>
+                    <a class="direct-link" href="../Classes/Runner/SignalGetter.html">SignalGetter</a>
+                    </code>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon6RunnerC11ClosureTypea"></a>
+                    <a name="//apple_ref/swift/Alias/ClosureType" class="dashAnchor"></a>
+                    <a class="direct-link" href="../Classes/Runner/ClosureType.html">ClosureType</a>
+                    </code>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon6RunnerC0B5ErrorO"></a>
+                    <a name="//apple_ref/swift/Enum/RunnerError" class="dashAnchor"></a>
+                    <a class="direct-link" href="../Classes/Runner/RunnerError.html">RunnerError</a>
+                    </code>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon6RunnerC16qualityOfServiceSo09NSQualitydE0Vvp"></a>
+                    <a name="//apple_ref/swift/Property/qualityOfService" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon6RunnerC16qualityOfServiceSo09NSQualitydE0Vvp">qualityOfService</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">qualityOfService</span><span class="p">:</span> <span class="kt">QualityOfService</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Runner.swift#L33">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon6RunnerC9isStartedSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isStarted" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon6RunnerC9isStartedSbvp">isStarted</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">isStarted</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Runner.swift#L34">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon6RunnerC9isRunningSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isRunning" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon6RunnerC9isRunningSbvp">isRunning</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">isRunning</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Runner.swift#L35">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon6RunnerC6isDoneSbvp"></a>
+                    <a name="//apple_ref/swift/Property/isDone" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon6RunnerC6isDoneSbvp">isDone</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">isDone</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Runner.swift#L36">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon6RunnerC7didFailSbvp"></a>
+                    <a name="//apple_ref/swift/Property/didFail" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon6RunnerC7didFailSbvp">didFail</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">didFail</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Runner.swift#L37">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon6RunnerC5errors5Error_pSgvp"></a>
+                    <a name="//apple_ref/swift/Property/error" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon6RunnerC5errors5Error_pSgvp">error</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Runner.swift#L38">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon6RunnerC7resultsq_Sgvp"></a>
+                    <a name="//apple_ref/swift/Property/results" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon6RunnerC7resultsq_Sgvp">results</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">results</span><span class="p">:</span> <span class="kt">ResultType</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Runner.swift#L39">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon6RunnerC9startTime10Foundation4DateVSgvp"></a>
+                    <a name="//apple_ref/swift/Property/startTime" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon6RunnerC9startTime10Foundation4DateVSgvp">startTime</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">startTime</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Runner.swift#L40">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon6RunnerC7endTime10Foundation4DateVSgvp"></a>
+                    <a name="//apple_ref/swift/Property/endTime" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon6RunnerC7endTime10Foundation4DateVSgvp">endTime</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">endTime</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Runner.swift#L41">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon6RunnerC8startNow16qualityOfService7executeACyxq_GSb_So09NSQualityfG0Vq_xSgyXEKctcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(startNow:qualityOfService:execute:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon6RunnerC8startNow16qualityOfService7executeACyxq_GSb_So09NSQualityfG0Vq_xSgyXEKctcfc">init(startNow:<wbr>qualityOfService:<wbr>execute:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">startNow</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nv">qualityOfService</span><span class="p">:</span> <span class="kt">QualityOfService</span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span> <span class="n">execute</span> <span class="nv">closure</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Classes/Runner/ClosureType.html">ClosureType</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Runner.swift#L54-L57">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon6RunnerC5startyyKF"></a>
+                    <a name="//apple_ref/swift/Method/start()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon6RunnerC5startyyKF">start()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">start</span><span class="p">()</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Runner.swift#L59-L64">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon6RunnerC6signal4withyx_tKF"></a>
+                    <a name="//apple_ref/swift/Method/signal(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon6RunnerC6signal4withyx_tKF">signal(with:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">signal</span><span class="p">(</span><span class="n">with</span> <span class="nv">sig</span><span class="p">:</span> <span class="kt">SignalType</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Runner.swift#L66-L72">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon6RunnerC10getResultsq_yKF"></a>
+                    <a name="//apple_ref/swift/Method/getResults()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon6RunnerC10getResultsq_yKF">getResults()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">getResults</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">ResultType</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Runner.swift#L74-L81">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon6RunnerC10getResults5untilq_Sg10Foundation4DateV_tKF"></a>
+                    <a name="//apple_ref/swift/Method/getResults(until:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon6RunnerC10getResults5untilq_Sg10Foundation4DateV_tKF">getResults(until:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">getResults</span><span class="p">(</span><span class="n">until</span> <span class="nv">limit</span><span class="p">:</span> <span class="kt">Date</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">ResultType</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Runner.swift#L83-L90">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon6RunnerC4waityyKF"></a>
+                    <a name="//apple_ref/swift/Method/wait()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon6RunnerC4waityyKF">wait()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">wait</span><span class="p">()</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Runner.swift#L92">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon6RunnerC4wait5untilSb10Foundation4DateV_tKF"></a>
+                    <a name="//apple_ref/swift/Method/wait(until:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon6RunnerC4wait5untilSb10Foundation4DateV_tKF">wait(until:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">wait</span><span class="p">(</span><span class="n">until</span> <span class="nv">limit</span><span class="p">:</span> <span class="kt">Date</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Concurrency/Runner.swift#L94">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </section>
 
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="noopener" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-09-24)</p>
+      <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="noopener" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-09-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="noopener" rel="external">jazzy ♪♫ v0.14.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="noopener" rel="external">Realm</a> project.</p>
     </section>
   </body>

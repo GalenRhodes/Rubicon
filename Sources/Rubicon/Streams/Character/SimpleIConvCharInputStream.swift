@@ -85,7 +85,7 @@ public let LF_CHARACTER:        Character = "\n"
         /*======================================================================================================*/
         /// Creates a new instance of IConvCharInputStream with the given InputStream, encodingName, and whether
         /// or not the given InputStream should be closed when this stream is discarded or closed.
-        ///
+        /// 
         /// - Parameters:
         ///   - inputStream: The underlying byte InputStream.
         ///   - encodingName: The character encoding name.
@@ -101,7 +101,7 @@ public let LF_CHARACTER:        Character = "\n"
         /*======================================================================================================*/
         /// Creates a new instance of IConvCharInputStream with the given URL and encodingName. If opening a
         /// stream with the URL fails then `nil` is returned.
-        ///
+        /// 
         /// - Parameters:
         ///   - url: The URL.
         ///   - encodingName: The character encoding name.
@@ -116,7 +116,7 @@ public let LF_CHARACTER:        Character = "\n"
         /*======================================================================================================*/
         /// Creates a new instance of IConvCharInputStream with the given filename and encodingName. If opening a
         /// stream with the filename fails then `nil` is returned.
-        ///
+        /// 
         /// - Parameters:
         ///   - fileAtPath: The filename.
         ///   - encodingName: The character encoding name.
@@ -128,7 +128,7 @@ public let LF_CHARACTER:        Character = "\n"
 
         /*======================================================================================================*/
         /// Creates a new instance of IConvCharInputStream with the given bytes and encodingName.
-        ///
+        /// 
         /// - Parameters:
         ///   - data: The bytes to read.
         ///   - encodingName: The character encoding name.
@@ -139,7 +139,7 @@ public let LF_CHARACTER:        Character = "\n"
 
         /*======================================================================================================*/
         /// Read one character.
-        ///
+        /// 
         /// - Returns: The next character or `nil` if EOF.
         /// - Throws: If an I/O error occurs.
         ///
@@ -147,7 +147,7 @@ public let LF_CHARACTER:        Character = "\n"
 
         /*======================================================================================================*/
         /// Read and return one character without actually removing it from the input stream.
-        ///
+        /// 
         /// - Returns: The next character or `nil` if EOF.
         /// - Throws: If an I/O error occurs.
         ///
@@ -157,7 +157,7 @@ public let LF_CHARACTER:        Character = "\n"
         /// Read <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s from the
         /// stream and append them to the given character array. This method is identical to
         /// `read(chars:,maxLength:)` except that the receiving array is not cleared before the data is read.
-        ///
+        /// 
         /// - Parameters:
         ///   - chars: The <code>[Array](https://developer.apple.com/documentation/swift/Array)</code> to receive
         ///            the <code>[Character](https://developer.apple.com/documentation/swift/Character)</code>s.

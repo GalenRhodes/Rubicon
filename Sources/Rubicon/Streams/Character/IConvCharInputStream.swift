@@ -46,7 +46,7 @@ import CoreFoundation
         /*======================================================================================================*/
         /// Creates a new instance of IConvCharInputStream with the given InputStream, encodingName, and whether
         /// or not the given InputStream should be closed when this stream is discarded or closed.
-        ///
+        /// 
         /// - Parameters:
         ///   - inputStream: The underlying byte InputStream.
         ///   - encodingName: The character encoding name.
@@ -90,7 +90,7 @@ import CoreFoundation
         /*======================================================================================================*/
         /// Backs out the last `count` characters from the most recently set mark without actually removing the
         /// entire mark. You have to have previously called `markSet()` otherwise this method does nothing.
-        ///
+        /// 
         /// - Parameter count: the number of characters to back out.
         /// - Returns: The number of characters actually backed out in case there weren't `count` characters
         ///            available.

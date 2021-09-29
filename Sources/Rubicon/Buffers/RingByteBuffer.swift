@@ -55,6 +55,7 @@ open class RingByteBuffer {
     /*==========================================================================================================*/
     /// Returns `true` if there are bytes in the ring buffer.
     ///
+    @available(*, deprecated, renamed: "isNotEmpty")
     public final var hasBytesAvailable: Bool { isNotEmpty }
 
     /*==========================================================================================================*/
@@ -147,20 +148,27 @@ open class RingByteBuffer {
     ///
     public final func get(dest: inout Data, maxLength: Int = -1, overWrite: Bool = true) -> Int {
         if overWrite { dest.removeAll(keepingCapacity: true) }
+        return _foo(maxLength: maxLength) { buff, x in dest.append(buff, count: x) }
+    }
 
-        let mx: Int = min(count, ((maxLength < 0) ? Int.max : maxLength))
+    public final func get(dest: inout [UInt8], maxLength: Int = -1, overWrite: Bool = true) -> Int {
+        if overWrite { dest.removeAll(keepingCapacity: true) }
+        return _foo(maxLength: maxLength) { buff, x in dest.append(contentsOf: UnsafeBufferPointer<UInt8>(start: buff, count: x)) }
+    }
+
+    private func _foo(maxLength: Int, _ body: (ByteROPointer, Int) -> Void) -> Int {
+        guard maxLength != 0 && count > 0 else { return 0 }
+
         var cc: Int = 0
+        let mx      = min(count, ((maxLength < 0) ? Int.max : maxLength))
+        let bLen    = min(mx, 1024)
+        let buff    = BytePointer.allocate(capacity: bLen)
+        defer { buff.deallocate() }
 
-        if mx > 0 {
-            let bLen: Int         = min(mx, 1024)
-            let buff: BytePointer = BytePointer.allocate(capacity: bLen)
-
-            defer { buff.deallocate() }
-            while (cc < mx) && (count > 0) {
-                let x: Int = PGReadFromRingBuffer(buffer, buff, min(bLen, (mx - cc)))
-                cc += x
-                dest.append(buff, count: x)
-            }
+        while cc < mx && count > 0 {
+            let x = PGReadFromRingBuffer(buffer, UnsafeMutableRawPointer(buff), min(bLen, (mx - cc)))
+            body(buff, x)
+            cc += x
         }
 
         return cc
@@ -208,7 +216,7 @@ open class RingByteBuffer {
     ///   - ezBuffer: The buffer to append bytes from.
     ///
     public final func append(src: EasyByteBuffer, reset: Bool = true) {
-        src.withBytes { (bytes: UnsafePointer<UInt8>, count: inout Int) -> Void in
+        src.withBytes { (bytes: ByteROPointer, count: inout Int) -> Void in
             if count > 0 {
                 append(src: bytes, length: count)
                 if reset { count = 0 }
@@ -315,7 +323,7 @@ open class RingByteBuffer {
     /// - Parameter ezBuffer: the source data.
     ///
     public final func prepend(src b: EasyByteBuffer, reset: Bool = true) {
-        b.withBytes { (bytes: UnsafePointer<UInt8>, count: inout Int) -> Void in
+        b.withBytes { (bytes: ByteROPointer, count: inout Int) -> Void in
             if count > 0 {
                 prepend(src: bytes, length: count)
                 if reset { count = 0 }

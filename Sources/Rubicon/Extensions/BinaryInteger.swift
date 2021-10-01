@@ -36,7 +36,7 @@ extension BinaryInteger {
     /*==========================================================================================================*/
     /// If the value is less than minValue then the minValue is returned. If the value is greater than maxValue
     /// then maxValue is returned. Otherwise this value is returned.
-    /// 
+    ///
     /// - Parameters:
     ///   - minValue: The minimum value.
     ///   - maxValue: The maximum value.
@@ -50,6 +50,8 @@ extension BinaryInteger {
     @inlinable public func clamp(maxValue: Self) -> Self { min(self, maxValue) }
 
     @inlinable public func clamp(_ range: Range<Self>) -> Self { clamp(minValue: range.lowerBound, maxValue: (range.upperBound - 1)) }
+
+    @inlinable public func clamp(_ range: ClosedRange<Self>) -> Self { clamp(minValue: range.lowerBound, maxValue: range.upperBound) }
 
     @inlinable public func inRange(_ range: Range<Self>) -> Bool { range.contains(self) }
 

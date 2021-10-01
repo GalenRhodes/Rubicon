@@ -499,9 +499,16 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/RingByteBuffer.swift",
-      "line": 74,
+      "line": 75,
       "symbol": "RingByteBuffer.isNotEmpty",
       "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Buffers/RingByteBuffer.swift",
+      "line": 154,
+      "symbol": "RingByteBuffer.get(dest:maxLength:overWrite:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
@@ -3124,14 +3131,14 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/MarkInputStream.swift",
-      "line": 157,
+      "line": 100,
       "symbol": "MarkInputStream.property(forKey:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/MarkInputStream.swift",
-      "line": 159,
+      "line": 102,
       "symbol": "MarkInputStream.setProperty(_:forKey:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

@@ -49,7 +49,7 @@ public protocol MutableManagedByteBuffer: ManagedByteBuffer {
 
     /*==========================================================================================================*/
     /// Executes the given closure with an UnsafeMutableBufferPointer representing the buffer.
-    ///
+    /// 
     /// - Parameter body: The closure which takes two parameters: <ol><li>The instance of
     ///                                                           UnsafeMutableBufferPointer</li><li>The count of
     ///                                                           the valid bytes in the buffer passed by
@@ -62,7 +62,7 @@ public protocol MutableManagedByteBuffer: ManagedByteBuffer {
     /*==========================================================================================================*/
     /// Relocates a block of bytes to the beginning of the buffer region. The number of bytes relocated will be
     /// from the given index to the end of the buffer.
-    ///
+    /// 
     /// - Parameter idx: the index of the first byte of the block of bytes to move to the beginning of the buffer.
     /// - Returns: The number of bytes moved.
     ///
@@ -70,7 +70,7 @@ public protocol MutableManagedByteBuffer: ManagedByteBuffer {
 
     /*==========================================================================================================*/
     /// Relocates a block of bytes to the beginning of the buffer region.
-    ///
+    /// 
     /// - Parameters:
     ///   - idx: The index of the first byte of the block of bytes to move to the beginning of the buffer.
     ///   - cc: The number of bytes.

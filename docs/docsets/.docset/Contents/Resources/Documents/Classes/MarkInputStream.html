@@ -648,7 +648,7 @@
 mark places in with a call to <code>markSet()</code> and to return to with a call to <code>markRelease()</code>.</p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L35-L395">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L35-L286">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -782,9 +782,9 @@ order to determine the availability of bytes.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:7Rubicon15MarkInputStreamC05inputD09autoClose03maxB6LengthACSo07NSInputD0C_SbSitcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(inputStream:autoClose:maxMarkLength:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon15MarkInputStreamC05inputD09autoClose03maxB6LengthACSo07NSInputD0C_SbSitcfc">init(inputStream:<wbr>autoClose:<wbr>maxMarkLength:<wbr>)</a>
+                    <a name="/s:7Rubicon15MarkInputStreamC05inputD09autoCloseACSo07NSInputD0C_Sbtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(inputStream:autoClose:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon15MarkInputStreamC05inputD09autoCloseACSo07NSInputD0C_Sbtcfc">init(inputStream:<wbr>autoClose:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -799,7 +799,7 @@ order to determine the availability of bytes.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">inputStream</span><span class="p">:</span> <span class="kt">InputStream</span><span class="p">,</span> <span class="nv">autoClose</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">maxMarkLength</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kt">Int</span><span class="o">.</span><span class="n">max</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">inputStream</span><span class="p">:</span> <span class="kt">InputStream</span><span class="p">,</span> <span class="nv">autoClose</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -822,20 +822,6 @@ order to determine the availability of bytes.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>maxMarkLength</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The maximum distance the read pointer will be allowed to get from the mark pointer.
-           Once the read pointer moves this many bytes past the mark pointer then the mark pointer
-           will be moved to keep up.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
                                 <em>autoClose</em>
                                 </code>
                               </td>
@@ -850,7 +836,7 @@ order to determine the availability of bytes.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L79-L83">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L75-L79">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -901,72 +887,7 @@ opened before it can be used.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L92-L94">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon15MarkInputStreamC4data03maxB6LengthAC10Foundation4DataV_Sitcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(data:maxMarkLength:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon15MarkInputStreamC4data03maxB6LengthAC10Foundation4DataV_Sitcfc">init(data:<wbr>maxMarkLength:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Initializes and returns an <code>MarkInputStream</code> object for reading from a given
-<code><a href="https://developer.apple.com/documentation/foundation/data/">Data</a></code> object. The stream must be
-opened before it can be used.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">maxMarkLength</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>data</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The data object from which to read. The contents of data are copied.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>maxMarkLength</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The maximum distance the read pointer will be allowed to get from the mark pointer.
-           Once the read pointer moves this many bytes past the mark pointer then the mark pointer
-           will be moved to keep up.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L107-L109">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L89-L91">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1015,206 +936,7 @@ opened before it can be used.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L116">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon15MarkInputStreamC3url7options12authenticate03maxB6LengthACSg10Foundation3URLV_Shy9Chadakoin08URLInputD10OptionItemOGAL22AuthenticationResponseOSo20NSURLProtectionSpaceCcSgSitcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(url:options:authenticate:maxMarkLength:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon15MarkInputStreamC3url7options12authenticate03maxB6LengthACSg10Foundation3URLV_Shy9Chadakoin08URLInputD10OptionItemOGAL22AuthenticationResponseOSo20NSURLProtectionSpaceCcSgSitcfc">init(url:<wbr>options:<wbr>authenticate:<wbr>maxMarkLength:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Initializes and returns an NSInputStream object that reads data from the file at a given URL.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="kt">URLInputStreamOptions</span> <span class="o">=</span> <span class="p">[],</span> <span class="nv">authenticate</span><span class="p">:</span> <span class="kt">AuthenticationCallback</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">maxMarkLength</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="kt">Int</span><span class="o">.</span><span class="n">max</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>url</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The URL to the file.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>options</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The options for opening the URL.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>authenticate</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The closure to handle authentication challenges.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>maxMarkLength</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The maximum distance the read pointer will be allowed to get from the mark pointer.
-           Once the read pointer moves this many bytes past the mark pointer then the mark pointer
-           will be moved to keep up.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L129-L132">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@M@Rubicon@objc(cs)MarkInputStream(im)initWithFileAtPath:"></a>
-                    <a name="//apple_ref/swift/Method/init(fileAtPath:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@Rubicon@objc(cs)MarkInputStream(im)initWithFileAtPath:">init(fileAtPath:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Initializes and returns an NSInputStream object that reads data from the file at a given path.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">?(</span><span class="n">fileAtPath</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>path</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The path to the file.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L139-L141">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:7Rubicon15MarkInputStreamC10fileAtPath03maxB6LengthACSgSS_Sitcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(fileAtPath:maxMarkLength:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:7Rubicon15MarkInputStreamC10fileAtPath03maxB6LengthACSgSS_Sitcfc">init(fileAtPath:<wbr>maxMarkLength:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Initializes and returns an NSInputStream object that reads data from the file at a given path.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">?(</span><span class="n">fileAtPath</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">maxMarkLength</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>path</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The path to the file.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>maxMarkLength</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The maximum distance the read pointer will be allowed to get from the mark pointer.
-           Once the read pointer moves this many bytes past the mark pointer then the mark pointer
-           will be moved to keep up.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L152-L155">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L98">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1243,7 +965,7 @@ opened before it can be used.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L157">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L100">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1272,7 +994,7 @@ opened before it can be used.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L159">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L102">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1297,7 +1019,7 @@ opened before it can be used.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">read</span><span class="p">(</span><span class="n">_</span> <span class="nv">inputBuffer</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">UInt8</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">maxLength</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">read</span><span class="p">(</span><span class="n">_</span> <span class="nv">inputBuffer</span><span class="p">:</span> <span class="kt"><a href="../Typealiases/BytePointer.html">BytePointer</a></span><span class="p">,</span> <span class="nv">maxLength</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -1343,7 +1065,7 @@ opened before it can be used.</p>
                                                          be obtained with streamError.</li></ul></p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L175-L191">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L118-L131">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1369,7 +1091,7 @@ returns a Boolean value that indicates whether the buffer is available.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">getBuffer</span><span class="p">(</span><span class="n">_</span> <span class="nv">bufferPtr</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">UInt8</span><span class="o">&gt;</span><span class="p">?</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">length</span> <span class="nv">lengthPtr</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">getBuffer</span><span class="p">(</span><span class="n">_</span> <span class="nv">bufferPtr</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt"><a href="../Typealiases/BytePointer.html">BytePointer</a></span><span class="p">?</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">length</span> <span class="nv">lengthPtr</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -1410,7 +1132,7 @@ returns a Boolean value that indicates whether the buffer is available.</p>
                         <p><code>true</code> if the buffer is available, otherwise <code>false</code>.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L203-L214">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L143-L154">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1441,7 +1163,7 @@ be closed and reopened.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L220-L236">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L160-L174">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1474,7 +1196,7 @@ for its properties.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L244-L257">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L182-L194">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1504,7 +1226,7 @@ for its properties.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L262">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L199">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1534,7 +1256,7 @@ for its properties.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L267-L274">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L204-L211">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1564,7 +1286,7 @@ for its properties.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L279-L286">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L216-L223">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1594,7 +1316,7 @@ for its properties.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L291-L299">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L228-L236">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1624,7 +1346,7 @@ for its properties.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L304-L313">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L241-L250">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1679,7 +1401,254 @@ mark. You have to have previously called <code><a href="../Classes/MarkInputStre
                         <p>The number of characters actually backed out in case there weren&rsquo;t <code>count</code> characters available.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L322-L336">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L259-L273">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon15MarkInputStreamC3url7options12authenticateACSg10Foundation3URLV_Shy9Chadakoin08URLInputD10OptionItemOGAK22AuthenticationResponseOSo20NSURLProtectionSpaceCcSgtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(url:options:authenticate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon15MarkInputStreamC3url7options12authenticateACSg10Foundation3URLV_Shy9Chadakoin08URLInputD10OptionItemOGAK22AuthenticationResponseOSo20NSURLProtectionSpaceCcSgtcfc">init(url:<wbr>options:<wbr>authenticate:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes and returns an <code>MarkInputStream</code> object that reads data from the file at a given URL.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="kt">URLInputStreamOptions</span><span class="p">,</span> <span class="nv">authenticate</span><span class="p">:</span> <span class="kt">AuthenticationCallback</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The URL to the file.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>options</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The options for opening the URL.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>authenticate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The closure to handle authentication challenges.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L300-L303">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon15MarkInputStreamC3url7optionsACSg10Foundation3URLV_Shy9Chadakoin08URLInputD10OptionItemOGtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(url:options:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon15MarkInputStreamC3url7optionsACSg10Foundation3URLV_Shy9Chadakoin08URLInputD10OptionItemOGtcfc">init(url:<wbr>options:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes and returns an <code>MarkInputStream</code> object that reads data from the file at a given URL.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="kt">URLInputStreamOptions</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The URL to the file.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>options</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The options for opening the URL.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L312-L314">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7Rubicon15MarkInputStreamC3url12authenticateACSg10Foundation3URLV_9Chadakoin22AuthenticationResponseOSo20NSURLProtectionSpaceCcSgtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(url:authenticate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7Rubicon15MarkInputStreamC3url12authenticateACSg10Foundation3URLV_9Chadakoin22AuthenticationResponseOSo20NSURLProtectionSpaceCcSgtcfc">init(url:<wbr>authenticate:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes and returns an <code>MarkInputStream</code> object that reads data from the file at a given URL.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span> <span class="nv">authenticate</span><span class="p">:</span> <span class="kt">AuthenticationCallback</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>url</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The URL to the file.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>authenticate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The closure to handle authentication challenges.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L323-L325">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@Rubicon@objc(cs)MarkInputStream(im)initWithFileAtPath:"></a>
+                    <a name="//apple_ref/swift/Method/init(fileAtPath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@Rubicon@objc(cs)MarkInputStream(im)initWithFileAtPath:">init(fileAtPath:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes and returns an <code>MarkInputStream</code> object that reads data from the file at a given path.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">?(</span><span class="n">fileAtPath</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>path</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The path to the file.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L332-L335">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1692,7 +1661,7 @@ mark. You have to have previously called <code><a href="../Classes/MarkInputStre
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="noopener" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-09-29)</p>
+      <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="noopener" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-09-30)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="noopener" rel="external">jazzy ♪♫ v0.14.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="noopener" rel="external">Realm</a> project.</p>
     </section>
   </body>

@@ -89,7 +89,7 @@ open class Runner<SignalType, ResultType> {
         }
     }
 
-    open func wait() throws { try wait(until: Date.distantFuture) }
+    open func wait() throws { _ = try wait(until: Date.distantFuture) }
 
     open func wait(until limit: Date) throws -> Bool { try lock.withLock { try _wait(until: limit) } }
 

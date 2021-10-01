@@ -39,19 +39,19 @@ open class MarkInputStream: InputStream {
     /// has bytes available to read, otherwise `false`. May also return `true` if a read must be attempted in
     /// order to determine the availability of bytes.
     ///
-    open override     var hasBytesAvailable: Bool             { withLock { (isOpen) && (rBuf.isNotEmpty || run) } }
+    open override     var hasBytesAvailable: Bool             { _withLock { (st == .open) && (rBuf.isNotEmpty || thread.isRunning) } }
     /*==========================================================================================================*/
     /// Returns the receiver’s status.
     ///
-    open override     var streamStatus:      Stream.Status    { withLock { ((isOpen) ? (rBuf.isEmpty ? ((error == nil) ? (run ? st : .atEnd) : .error) : st) : st) as Stream.Status } }
+    open override     var streamStatus:      Stream.Status    { _withLock { ((st == .open) ? (rBuf.isEmpty ? ((error == nil) ? (thread.isRunning ? st : .atEnd) : .error) : st) : st) as Stream.Status } }
     /*==========================================================================================================*/
     /// Returns an NSError object representing the stream error.
     ///
-    open override     var streamError:       Error?           { withLock { error } }
+    open override     var streamError:       Error?           { _withLock { error } }
     /*==========================================================================================================*/
     /// The number of marked positions for this stream.
     ///
-    open              var markCount:         Int              { withLock { mstk.count } }
+    open              var markCount:         Int              { _withLock { mstk.count } }
 
     @usableFromInline let autoClose:         Bool
     @usableFromInline let input:             InputStream
@@ -78,7 +78,6 @@ open class MarkInputStream: InputStream {
         super.init(data: Data())
     }
 
-
     /*==========================================================================================================*/
     /// Initializes and returns an `MarkInputStream` object for reading from a given
     /// <code>[Data](https://developer.apple.com/documentation/foundation/data/)</code> object. The stream must be
@@ -95,11 +94,27 @@ open class MarkInputStream: InputStream {
     ///
     /// - Parameter url: The URL to the file.
     ///
-    public override convenience init?(url: URL) { self.init(url: url, options: [], authenticate: nil) }
+    public override convenience init?(url: URL) {
+        self.init(url: url, options: [], authenticate: nil)
+    }
 
-    open override func property(forKey key: PropertyKey) -> Any? { withLock { input.property(forKey: key) } }
+    /*==========================================================================================================*/
+    /// Initializes and returns an `MarkInputStream` object that reads data from the file at a given path.
+    ///
+    /// - Parameter path: The path to the file.
+    ///
+    public convenience init?(fileAtPath path: String) {
+        guard let stream = InputStream(fileAtPath: path) else { return nil }
+        self.init(inputStream: stream, autoClose: true)
+    }
 
-    open override func setProperty(_ property: Any?, forKey key: PropertyKey) -> Bool { withLock { input.setProperty(property, forKey: key) } }
+    open override func property(forKey key: PropertyKey) -> Any? {
+        _withLock { input.property(forKey: key) }
+    }
+
+    open override func setProperty(_ property: Any?, forKey key: PropertyKey) -> Bool {
+        _withLock { input.setProperty(property, forKey: key) }
+    }
 
     /*==========================================================================================================*/
     /// Reads up to a given number of bytes into a given buffer.
@@ -116,12 +131,12 @@ open class MarkInputStream: InputStream {
     ///                                                              be obtained with streamError.</li></ul>
     ///
     open override func read(_ inputBuffer: BytePointer, maxLength: Int) -> Int {
-        withLock {
+        _withLock {
             var cc = 0
             _clearTempBuffer()
-            while isOpen && cc < maxLength {
-                while isOpen && rBuf.isEmpty && run { cond.broadcastWait() }
-                guard isOpen else { return 0 }
+            while st == .open && cc < maxLength {
+                while st == .open && rBuf.isEmpty && thread.isRunning { cond.broadcastWait() }
+                guard st == .open else { return 0 }
                 guard rBuf.isNotEmpty else { return (error == nil ? 0 : -1) }
                 let i = rBuf.get(dest: (inputBuffer + cc) as BytePointer, maxLength: (maxLength - cc))
                 cc += i
@@ -141,10 +156,10 @@ open class MarkInputStream: InputStream {
     /// - Returns: `true` if the buffer is available, otherwise `false`.
     ///
     open override func getBuffer(_ bufferPtr: UnsafeMutablePointer<BytePointer?>, length lengthPtr: UnsafeMutablePointer<Int>) -> Bool {
-        withLock {
+        _withLock {
             _clearTempBuffer()
-            while isOpen && rBuf.count < MaxInputBufferSize && run { cond.broadcastWait() }
-            guard isOpen && rBuf.count > 0 else { return false }
+            while st == .open && rBuf.count < MaxInputBufferSize && thread.isRunning { cond.broadcastWait() }
+            guard st == .open && rBuf.isNotEmpty else { return false }
             tBuf = EasyByteBuffer(length: rBuf.count)
             rBuf.get(dest: tBuf!)
             bufferPtr.pointee = tBuf!.bytes
@@ -158,7 +173,7 @@ open class MarkInputStream: InputStream {
     /// be closed and reopened.
     ///
     open override func open() {
-        withLock {
+        _withLock {
             do {
                 // Only open if the stream has NEVER been opened before.
                 guard st == .notOpen else { return }
@@ -167,7 +182,6 @@ open class MarkInputStream: InputStream {
                 try thread.start()
             }
             catch let e {
-                run = false
                 error = e
                 if autoClose { input.close() }
             }
@@ -181,12 +195,12 @@ open class MarkInputStream: InputStream {
     /// for its properties.
     ///
     open override func close() {
-        withLock {
+        _withLock {
             // Only close it if it was previously opened.
-            guard (isOpen) else { return }
+            guard (st == .open) else { return }
             st = .closed
             // Wait for the thread to end...
-            while run { cond.broadcastWait() }
+            while thread.isRunning { cond.broadcastWait() }
             mstk.forEach { $0.clear() }
             mstk.removeAll()
             rBuf.clear()
@@ -197,17 +211,16 @@ open class MarkInputStream: InputStream {
     /*==========================================================================================================*/
     /// Marks the current position in the stream.
     ///
-    open func markSet() { withLock { if isOpen { _markSet() } } }
+    open func markSet() { _withLock { if st == .open { _markSet() } } }
 
     /*==========================================================================================================*/
     /// Returns to the last marked position in the stream.
     ///
     open func markReturn() {
-        withLock {
-            if isOpen, let rb = mstk.popLast() {
-                _clearTempBuffer()
-                rBuf.prepend(src: rb)
-            }
+        _withLock {
+            guard st == .open, let rb = mstk.popLast() else { return }
+            _clearTempBuffer()
+            rBuf.prepend(src: rb)
         }
     }
 
@@ -215,11 +228,10 @@ open class MarkInputStream: InputStream {
     /// Deletes the last marked position in the stream.
     ///
     open func markDelete() {
-        withLock {
-            if isOpen, let rb1 = mstk.popLast(), let rb2 = mstk.last {
-                _clearTempBuffer()
-                rb2.append(src: rb1)
-            }
+        _withLock {
+            guard st == .open, let rb1 = mstk.popLast(), let rb2 = mstk.last else { return }
+            _clearTempBuffer()
+            rb2.append(src: rb1)
         }
     }
 
@@ -227,9 +239,9 @@ open class MarkInputStream: InputStream {
     /// Effectively the same as performing a `markReturn()` followed by a `markSet()`.
     ///
     open func markReset() {
-        withLock {
+        _withLock {
             _clearTempBuffer()
-            guard isOpen else { return }
+            guard st == .open else { return }
             guard let rb = mstk.last else { return _markSet() }
             rBuf.prepend(src: rb)
             rb.clear(keepingCapacity: true)
@@ -240,9 +252,9 @@ open class MarkInputStream: InputStream {
     /// Effectively the same as performing a `markDelete()` followed by a `markSet()`.
     ///
     open func markClear() {
-        withLock {
+        _withLock {
             _clearTempBuffer()
-            guard isOpen else { return }
+            guard st == .open else { return }
             guard let rb = mstk.popLast() else { return _markSet() }
             if let rb2 = mstk.last { rb2.append(src: rb) }
             mstk.append(rb)
@@ -258,28 +270,34 @@ open class MarkInputStream: InputStream {
     /// - Returns: The number of characters actually backed out in case there weren't `count` characters available.
     ///
     @discardableResult open func markBackup(count: Int = 1) -> Int {
-        withLock {
+        _withLock {
             _clearTempBuffer()
-            guard isOpen && count > 0 else { return 0 }
-            guard let rb = mstk.last, rb.count > 0 else { return 0 }
+            guard let rb = mstk.last, rb.count > 0 && st == .open && count > 0 else { return 0 }
 
-            let cc    = min(count, rb.count)
-            let bytes = UnsafeMutableRawPointer.allocate(byteCount: cc, alignment: MemoryLayout<UInt8>.alignment)
-            defer { bytes.deallocate() }
+            let cc = min(count, rb.count)
+            let bf = UnsafeMutableRawPointer.allocate(byteCount: cc, alignment: MemoryLayout<UInt8>.alignment)
+            defer { bf.deallocate() }
 
-            let rc = rb.getFromEnd(dest: bytes, maxLength: cc)
-            rBuf.prepend(src: bytes, length: rc)
+            let rc = rb.getFromEnd(dest: bf, maxLength: cc)
+            rBuf.prepend(src: bf, length: rc)
             return rc
         }
     }
 
     deinit { _closeInput() }
+
+    /*==========================================================================================================*/
+    /// A background thread that reads from the backing input stream. The background thread continuously calls
+    /// `_runLoop(buffer:maxLength:)` until it returns `false`.
+    ///
+    @usableFromInline lazy var thread: Runner<Bool, Void> = Runner<Bool, Void>(startNow: false, qualityOfService: .utility) { [weak self] (_) in
+        let bBuf = BytePointer.allocate(capacity: InputBufferSize)
+        defer { bBuf.deallocate() }
+        while let s = self { guard s._runLoop(buffer: bBuf, maxLength: InputBufferSize) else { s._closeInput(); break } }
+    }
 }
 
 extension MarkInputStream {
-    @inlinable var isOpen: Bool { st == .open }
-    @inlinable var run:    Bool { isOpen && thread.isRunning }
-
     /*==========================================================================================================*/
     /// Initializes and returns an `MarkInputStream` object that reads data from the file at a given URL.
     ///
@@ -316,16 +334,6 @@ extension MarkInputStream {
     }
 
     /*==========================================================================================================*/
-    /// Initializes and returns an `MarkInputStream` object that reads data from the file at a given path.
-    ///
-    /// - Parameter path: The path to the file.
-    ///
-    @inlinable public convenience init?(fileAtPath path: String) {
-        guard let stream = InputStream(fileAtPath: path) else { return nil }
-        self.init(inputStream: stream, autoClose: true)
-    }
-
-    /*==========================================================================================================*/
     /// Marks the current position in the stream.
     ///
     @inlinable func _markSet() {
@@ -333,12 +341,26 @@ extension MarkInputStream {
     }
 
     /*==========================================================================================================*/
-    /// If `autoClose` is `true` then this method closes the backing input stream. If `autoClose` is `false`
-    /// then this method does nothing.
+    /// If `autoClose` is `true` then this method closes the backing input stream. If `autoClose` is `false` then
+    /// this method does nothing.
     ///
     @inlinable func _closeInput() {
         if autoClose && input.streamStatus != .notOpen { input.close() }
     }
+
+    /*==========================================================================================================*/
+    /// Locks/Unlocks both internal and external locks.
+    ///
+    /// - Parameter body: The closure to execute with both locks locked.
+    /// - Returns: The value turned from the closure.
+    /// - Throws: Any error thrown by the closure.
+    ///
+    @inlinable func _withLock<T>(_ body: () throws -> T) rethrows -> T { try lock.withLock { try cond.withLock { try body() } } }
+
+    /*==========================================================================================================*/
+    /// Clears the temporary buffer that may have been created by a call to `getBuffer(_:length:)`.
+    ///
+    @inlinable func _clearTempBuffer() { if tBuf != nil { tBuf = nil } }
 
     /*==========================================================================================================*/
     /// This method is called by the background thread to read a block of data from the backing input stream.
@@ -346,14 +368,14 @@ extension MarkInputStream {
     /// - Parameters:
     ///   - bBuf: A byte buffer.
     ///   - l: The size of the byte buffer.
-    /// - Returns: `true` if there is more to read of `false` if the backing input stream is at EOF or there
-    ///            was an error in the underlying input stream.
+    /// - Returns: `true` if there is more to read of `false` if the backing input stream is at EOF or there was
+    ///            an error in the underlying input stream.
     ///
     @usableFromInline func _runLoop(buffer bBuf: BytePointer, maxLength l: Int) -> Bool {
         cond.withLock {
             do {
-                while isOpen && rBuf.count >= MaxInputBufferSize { guard cond.broadcastWait(until: Date(timeIntervalSinceNow: BackgroundWaitTime)) else { return isOpen } }
-                guard isOpen else { return false }
+                while st == .open && rBuf.count >= MaxInputBufferSize { guard cond.broadcastWait(until: Date(timeIntervalSinceNow: BackgroundWaitTime)) else { return st == .open } }
+                guard st == .open else { return false }
                 let cc = input.read(bBuf, maxLength: l)
                 guard cc > 0 else {
                     guard cc == 0 else { throw input.streamError ?? StreamError.UnknownError() }
@@ -368,26 +390,4 @@ extension MarkInputStream {
             }
         }
     }
-
-    /*==========================================================================================================*/
-    /// A background thread that reads from the backing input stream. The background thread continuously
-    /// calls `_runLoop(buffer:maxLength:)` until it returns `false`.
-    ///
-    @usableFromInline lazy var thread: Runner<Bool, Void> = Runner<Bool, Void>(startNow: false, qualityOfService: .utility) { [weak self] (_) in
-        let bBuf = BytePointer.allocate(capacity: InputBufferSize)
-        defer { bBuf.deallocate() }
-        while let s = self { guard s._runLoop(buffer: bBuf, maxLength: InputBufferSize) else { s._closeInput(); break } }
-    }
-
-    /// Locks/Unlocks both internal and external locks.
-    ///
-    /// - Parameter body: The closure to execute with both locks locked.
-    /// - Returns: The value turned from the closure.
-    /// - Throws: Any error thrown by the closure.
-    ///
-    @inlinable func withLock<T>(_ body: () throws -> T) rethrows -> T { try lock.withLock { try cond.withLock { try body() } } }
-
-    /// Clears the temporary buffer that may have been created by a call to `getBuffer(_:length:)`.
-    ///
-    @inlinable func _clearTempBuffer() { if tBuf != nil { tBuf = nil } }
 }

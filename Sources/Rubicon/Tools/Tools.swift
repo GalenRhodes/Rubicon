@@ -189,39 +189,128 @@ infix operator <=>: ComparisonPrecedence
 ///
 @inlinable public func isType<O, T>(_ o: O, _ t: T.Type) -> Bool { (type(of: o) == t) }
 
+/*==============================================================================================================*/
+/// A type alias for the closure used by `xferBytes(read:write:maxLength:bufferSize:)` to read bytes into an
+/// intermediate buffer.
+///
+/// If successful the closure returns either the number of bytes put into the buffer or `nil` to indicate that the
+/// End-of-Input has been reached and that there are no more bytes left to read. Returning a value of 0
+/// (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) DOES NOT indicate that the End-of-Input has been
+/// reached. Only returning `nil` will indicate the End-of-Input. This implies that returning a value of 0
+/// (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) is a valid byte count that also indicates that there
+/// are more bytes to be read. This way the closure can, for example, also be used to simply update a progress
+/// indicator rather than returning any bytes.
+///
+/// The closure takes two parameters:
+///
+/// <table class="gsr">
+///     <thead>
+///         <tr>
+///             <th align="left">Parameter</th>
+///             <th align="left">Description</th>
+///         </tr>
+///     </thead>
+///     <tbody>
+///         <tr>
+///             <td align="left"><code>BytePointer</code></td>
+///             <td align="left">The buffer to read bytes into.</td>
+///         </tr>
+///         <tr>
+///             <td align="left"><code>Int</code></td>
+///             <td align="left">The maximum number of bytes the buffer can hold.</td>
+///         </tr>
+///     </tbody>
+/// </table>
+///
 public typealias XferInClosure = (BytePointer, Int) throws -> Int?
+
+/*==============================================================================================================*/
+/// A type alias for the closure used by `xferBytes(read:write:maxLength:bufferSize:)` to write bytes from an
+/// intermediate buffer.
+///
+/// If successful the closure returns either the number of bytes written from the buffer or `nil` to indicate that
+/// the End-of-Output has been reached and that the output cannot receive anymore data. Returning a value of 0
+/// (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) DOES NOT indicate that the End-of-Output has been
+/// reached. Only returning `nil` will indicate the End-of-Output. This implies that returning a value of 0
+/// (<code>[zero](https://en.wikipedia.org/wiki/0)</code>) is a valid byte count that also indicates that more
+/// bytes can be written. This way the closure can, for example, also be used to simply update a progress
+/// indicator rather than writing any bytes.
+///
+/// The closure takes two parameters:
+///
+/// <table class="gsr">
+///     <thead>
+///         <tr>
+///             <th align="left">Parameter</th>
+///             <th align="left">Description</th>
+///         </tr>
+///     </thead>
+///     <tbody>
+///         <tr>
+///             <td align="left"><code>ByteROPointer</code></td>
+///             <td align="left">The buffer to write from.</td>
+///         </tr>
+///         <tr>
+///             <td align="left"><code>Int</code></td>
+///             <td align="left">The number of bytes in the buffer.</td>
+///         </tr>
+///     </tbody>
+/// </table>
+///
 public typealias XferOutClosure = (ByteROPointer, Int) throws -> Int?
 
-public func xferBytes(read: XferInClosure, write: XferOutClosure, maxLength mx: Int, bufferSize sz: Int = 1_048_576) rethrows -> Int {
-    guard mx > 0 else { return 0 }
+/*==============================================================================================================*/
+/// Transfer bytes.
+///
+/// - Parameters:
+///   - bufferSize: The maximum size of the buffer.
+///   - maxLength: The maximum number of bytes to transfer.
+///   - read: The closure to read a block of bytes into a buffer.
+///   - write: The closure to write a block of bytes from a buffer.
+/// - Returns: The actual number of bytes transfered.
+/// - Throws: Any error thrown by either closure.
+///
+public func xferBytes(bufferSize: Int = 1_048_576, maxLength: Int, read: XferInClosure, write: XferOutClosure) rethrows -> Int {
+    guard maxLength > 0 else { return 0 }
 
-    let bf = BytePointer.allocate(capacity: sz)
-    defer { bf.deallocate() }
+    let buffer = BytePointer.allocate(capacity: bufferSize)
+    defer { buffer.deallocate() }
 
-    return try __foo20211001_01(bf, sz, read, write, mx)
+    return try xferBytes(buffer: buffer, bufferSize: bufferSize, maxLength: maxLength, read: read, write: write)
 }
 
-@inlinable func __foo20211001_01(_ bf: BytePointer, _ sz: Int, _ read: XferInClosure, _ write: XferOutClosure, _ mx: Int) rethrows -> Int {
-    var tcc = 0 // total so far
-    var bcc = 0 // left over bytes in buffer
-
-    while tcc < mx {
-        guard let x = try read((bf + bcc), min((mx - tcc), (sz - bcc))) else { break }
-        guard try __foo20211001_02(bf, (bcc + x), &bcc, &tcc, write) else { return tcc }
+public func xferBytes(buffer bf: BytePointer, bufferSize sz: Int, maxLength mx: Int, read: XferInClosure, write: XferOutClosure) rethrows -> Int {
+    func _xferBytes_02(_ buffer: BytePointer, _ leftOverByteCount: Int, _ newLeftOverByteCount: inout Int, _ totalBytesCopied: inout Int, _ write: XferOutClosure) rethrows -> Bool {
+        guard let bytesWritten = try write(buffer, leftOverByteCount) else { return false }
+        totalBytesCopied += bytesWritten                                                         // update total so far
+        newLeftOverByteCount = (leftOverByteCount - bytesWritten).clamp(0 ... leftOverByteCount) // update left over byte count
+        if newLeftOverByteCount > 0 {
+            MemMove(dest: buffer, src: (buffer + bytesWritten) as BytePointer, count: newLeftOverByteCount)
+        }
+        return true
     }
 
-    while tcc < mx && bcc > 0 { guard try __foo20211001_02(bf, bcc, &bcc, &tcc, write) else { break } }
-    return tcc
+    var totalBytesCopied  = 0 // total so far
+    var leftOverByteCount = 0 // left over bytes in buffer
+
+    while totalBytesCopied < mx {
+        guard let x = try read((bf + leftOverByteCount), min((mx - totalBytesCopied), (sz - leftOverByteCount))) else { break }
+        guard try _xferBytes_02(bf, (leftOverByteCount + x), &leftOverByteCount, &totalBytesCopied, write) else { return totalBytesCopied }
+    }
+
+    while totalBytesCopied < mx && leftOverByteCount > 0 {
+        guard try _xferBytes_02(bf, leftOverByteCount, &leftOverByteCount, &totalBytesCopied, write) else { break }
+    }
+    return totalBytesCopied
 }
 
-@inlinable func __foo20211001_02(_ bf: BytePointer, _ bcc: Int, _ rcc: inout Int, _ tcc: inout Int, _ write: XferOutClosure) rethrows -> Bool {
-    guard let x = try write(bf, bcc) else { return false }
-    tcc += x                                               // update total so far
-    rcc = (bcc - x).clamp(0 ... bcc)                       // update left over byte count
-    if rcc > 0 { MemMove(dest: bf, src: (bf + x) as BytePointer, count: rcc) }
-    return true
-}
-
+/// Convienience function for the C function `memmove`.
+///
+/// - Parameters:
+///   - dest: The destination pointer.
+///   - src: The source pointer.
+///   - count: The number of bytes to move.
+///
 @inlinable public func MemMove(dest: BytePointer, src: ByteROPointer, count: Int) {
     memmove(UnsafeMutableRawPointer(dest), UnsafeRawPointer(src), count)
 }

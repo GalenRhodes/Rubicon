@@ -350,6 +350,9 @@
                 <a class="nav-group-task-link" href="../Functions/HashOfAnything_28_5F_3A_29_5F_24sySiypcD.html">HashOfAnything(_:)</a>
               </li>
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions/MemMove_28dest_3Asrc_3Acount_3A_29_5F_24s4dest3src5countySpys5UInt8VG_5FSPyAEGSitcD.html">MemMove(dest:src:count:)</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Functions/NanoSleep_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosS2i_5FSitcD.html">NanoSleep(seconds:nanos:)</a>
               </li>
               <li class="nav-group-task">
@@ -471,6 +474,9 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Functions/which_28names_3A_29_5F_24s5namesSaySSSgGSaySSG_5FtcD.html">which(names:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions/xferBytes_28read_3Awrite_3AmaxLength_3AbufferSize_3A_29_5F_24s4read5write9maxLength10bufferSizeS2iSgSpys5UInt8VG_5FSitKXE_5FAESPyAGG_5FSitKXES2itKcD.html">xferBytes(read:write:maxLength:bufferSize:)</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Functions/~~_28_5F_3A_29_5F_24syxxcs17FixedWidthIntegerRzluD.html">~~(_:)</a>
@@ -628,6 +634,12 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Typealiases/WordROPointer.html">WordROPointer</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases/XferInClosure.html">XferInClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases/XferOutClosure.html">XferOutClosure</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -648,7 +660,7 @@
 mark places in with a call to <code>markSet()</code> and to return to with a call to <code>markRelease()</code>.</p>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L35-L286">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L35-L298">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -887,7 +899,7 @@ opened before it can be used.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L89-L91">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L88-L90">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -936,7 +948,56 @@ opened before it can be used.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L98">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L97-L99">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@Rubicon@objc(cs)MarkInputStream(im)initWithFileAtPath:"></a>
+                    <a name="//apple_ref/swift/Method/init(fileAtPath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@Rubicon@objc(cs)MarkInputStream(im)initWithFileAtPath:">init(fileAtPath:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes and returns an <code>MarkInputStream</code> object that reads data from the file at a given path.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">?(</span><span class="n">fileAtPath</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>path</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The path to the file.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L106-L109">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -965,7 +1026,7 @@ opened before it can be used.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L100">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L111-L113">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -994,7 +1055,7 @@ opened before it can be used.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L102">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L115-L117">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1065,7 +1126,7 @@ opened before it can be used.</p>
                                                          be obtained with streamError.</li></ul></p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L118-L131">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L133-L146">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1132,7 +1193,7 @@ returns a Boolean value that indicates whether the buffer is available.</p>
                         <p><code>true</code> if the buffer is available, otherwise <code>false</code>.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L143-L154">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L158-L169">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1163,7 +1224,7 @@ be closed and reopened.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L160-L174">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L175-L189">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1196,7 +1257,7 @@ for its properties.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L182-L194">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L197-L209">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1226,7 +1287,7 @@ for its properties.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L199">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L214">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1256,7 +1317,7 @@ for its properties.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L204-L211">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L219-L225">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1286,7 +1347,7 @@ for its properties.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L216-L223">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L230-L236">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1316,7 +1377,7 @@ for its properties.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L228-L236">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L241-L249">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1346,7 +1407,7 @@ for its properties.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L241-L250">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L254-L263">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1401,7 +1462,7 @@ mark. You have to have previously called <code><a href="../Classes/MarkInputStre
                         <p>The number of characters actually backed out in case there weren&rsquo;t <code>count</code> characters available.</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L259-L273">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L272-L285">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1475,7 +1536,7 @@ mark. You have to have previously called <code><a href="../Classes/MarkInputStre
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L300-L303">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L309-L312">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1537,7 +1598,7 @@ mark. You have to have previously called <code><a href="../Classes/MarkInputStre
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L312-L314">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L321-L323">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1599,56 +1660,7 @@ mark. You have to have previously called <code><a href="../Classes/MarkInputStre
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L323-L325">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/c:@CM@Rubicon@objc(cs)MarkInputStream(im)initWithFileAtPath:"></a>
-                    <a name="//apple_ref/swift/Method/init(fileAtPath:)" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@CM@Rubicon@objc(cs)MarkInputStream(im)initWithFileAtPath:">init(fileAtPath:<wbr>)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Initializes and returns an <code>MarkInputStream</code> object that reads data from the file at a given path.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">convenience</span> <span class="nf">init</span><span class="p">?(</span><span class="n">fileAtPath</span> <span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>path</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The path to the file.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L332-L335">Show on GitHub</a>
+                        <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Streams/MarkInputStream.swift#L332-L334">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1661,7 +1673,7 @@ mark. You have to have previously called <code><a href="../Classes/MarkInputStre
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="noopener" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-09-30)</p>
+      <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="noopener" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-10-01)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="noopener" rel="external">jazzy ♪♫ v0.14.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="noopener" rel="external">Realm</a> project.</p>
     </section>
   </body>

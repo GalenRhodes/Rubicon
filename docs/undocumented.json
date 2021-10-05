@@ -1837,13 +1837,20 @@
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/BinaryInteger.swift",
       "line": 54,
-      "symbol": "BinaryInteger.inRange(_:)",
+      "symbol": "BinaryInteger.clamp(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/BinaryInteger.swift",
       "line": 56,
+      "symbol": "BinaryInteger.inRange(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Extensions/BinaryInteger.swift",
+      "line": 58,
       "symbol": "BinaryInteger.inRange(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -3131,14 +3138,14 @@
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/MarkInputStream.swift",
-      "line": 100,
+      "line": 111,
       "symbol": "MarkInputStream.property(forKey:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Streams/MarkInputStream.swift",
-      "line": 102,
+      "line": 115,
       "symbol": "MarkInputStream.setProperty(_:forKey:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
@@ -3224,6 +3231,13 @@
       "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Tools/Tools.swift",
       "line": 144,
       "symbol": "value(_:isOneOf:)",
+      "symbol_kind": "source.lang.swift.decl.function.free",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/grhodes/Projects/2020/SwiftProjects/Rubicon/Sources/Rubicon/Tools/Tools.swift",
+      "line": 307,
+      "symbol": "MemMove(dest:src:count:)",
       "symbol_kind": "source.lang.swift.decl.function.free",
       "warning": "undocumented"
     }

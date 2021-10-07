@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>&lt;=&gt;(_:_:) Function Reference</title>
+    <title>xferBytes(bufferSize:maxLength:read:write:) Function Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Function/&lt;=&gt;(_:_:)" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Function/xferBytes(bufferSize:maxLength:read:write:)" class="dashAnchor"></a>
 
-    <a title="&lt;=&gt;(_:_:) Function Reference"></a>
+    <a title="xferBytes(bufferSize:maxLength:read:write:) Function Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html"> Reference</a>
       <img class="carat" src="../img/carat.png" alt=""/>
-      &lt;=&gt;(_:_:) Function Reference
+      xferBytes(bufferSize:maxLength:read:write:) Function Reference
     </p>
 
     <div class="content-wrapper">
@@ -651,33 +651,20 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>&lt;=&gt;(_:_:)</h1>
+            <h1>xferBytes(bufferSize:maxLength:read:write:)</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="o">&lt;=&gt;</span> <span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">l</span><span class="p">:</span> <span class="p">[</span><span class="kt">T</span><span class="p">?],</span> <span class="nv">r</span><span class="p">:</span> <span class="p">[</span><span class="kt">T</span><span class="p">?])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Enums/SortOrdering.html">SortOrdering</a></span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Comparable</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">xferBytes</span><span class="p">(</span><span class="nv">bufferSize</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1_048_576</span><span class="p">,</span> <span class="nv">maxLength</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">read</span><span class="p">:</span> <span class="kt"><a href="../Typealiases/XferInClosure.html">XferInClosure</a></span><span class="p">,</span> <span class="nv">write</span><span class="p">:</span> <span class="kt"><a href="../Typealiases/XferOutClosure.html">XferOutClosure</a></span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
 
                 </div>
               </div>
-            <p>Compares two arrays to see what their <code><a href="../Enums/SortOrdering.html">SortOrdering</a></code> is. The objects of both arrays have to conform to the
-<a href="https://swiftdoc.org/v5.1/protocol/comparable/"><code>Comparable</code></a> protocol. This method first compares the number
-of objects in each array. If they are not the same then the function will return <code>SortOrdering.Before</code> or
-<code>SortOrdering.After</code> as the left-hand array has fewer or more objects than the right-hand array. If the both
-hold the same number of objects then the function compares each object in the left-hand array to the object in
-the same position in the right-hand array. In other words it compares <code>leftArray[0]</code> to <code>rightArray[0]</code>,
-<code>leftArray[1]</code> to <code>rightArray[1]</code> and so on until it finds the first pair of objects that do not of the same
-sort ordering and returns ordering. If all the objects in the same positions in both arrays are
-<code>SortOrdering.Same</code> then this function returns <code>SortOrdering.Same</code>.</p>
+            <p>Transfer bytes.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    Any error thrown by either closure.
 
-<p>Example:</p>
-<pre class="highlight swift"><code>    <span class="k">let</span> <span class="nv">array1</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">]</span> <span class="k">let</span> <span class="nv">array2</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">]</span> <span class="k">let</span> <span class="nv">array3</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">]</span> <span class="k">let</span>
-    <span class="nv">array4</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span> <span class="p">]</span>
-
-    <span class="k">let</span> <span class="nv">result1</span><span class="p">:</span> <span class="kt">SortOrdering</span> <span class="o">=</span> <span class="n">array1</span> <span class="o">&lt;=&gt;</span> <span class="n">array2</span> <span class="c1">// result1 is set to `SortOrdering.EqualTo` let result2:</span>
-    <span class="kt">SortOrdering</span> <span class="o">=</span> <span class="n">array1</span> <span class="o">&lt;=&gt;</span> <span class="n">array3</span> <span class="c1">// result2 is set to `SortOrdering.GreaterThan` let result3: SortOrdering</span>
-    <span class="o">=</span> <span class="n">array1</span> <span class="o">&lt;=&gt;</span> <span class="n">array4</span> <span class="c1">// result3 is set to `SortOrdering.LessThan`</span>
-</code></pre>
+</div>
 
               <div>
                 <h4>Parameters</h4>
@@ -686,24 +673,48 @@ sort ordering and returns ordering. If all the objects in the same positions in 
                       <tr>
                         <td>
                           <code>
-                          <em>l</em>
+                          <em>bufferSize</em>
                           </code>
                         </td>
                         <td>
                           <div>
-                            <p>The left hand array operand</p>
+                            <p>The maximum size of the buffer.</p>
                           </div>
                         </td>
                       </tr>
                       <tr>
                         <td>
                           <code>
-                          <em>r</em>
+                          <em>maxLength</em>
                           </code>
                         </td>
                         <td>
                           <div>
-                            <p>The right hand array operand</p>
+                            <p>The maximum number of bytes to transfer.</p>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>
+                          <em>read</em>
+                          </code>
+                        </td>
+                        <td>
+                          <div>
+                            <p>The closure to read a block of bytes into a buffer.</p>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <code>
+                          <em>write</em>
+                          </code>
+                        </td>
+                        <td>
+                          <div>
+                            <p>The closure to write a block of bytes from a buffer.</p>
                           </div>
                         </td>
                       </tr>
@@ -712,11 +723,10 @@ sort ordering and returns ordering. If all the objects in the same positions in 
               </div>
               <div>
                 <h4>Return Value</h4>
-                <p><code><a href="../Enums/SortOrdering.html#/s:7Rubicon12SortOrderingO8LessThanyA2CmF">SortOrdering.LessThan</a></code>, <code><a href="../Enums/SortOrdering.html#/s:7Rubicon12SortOrderingO7EqualToyA2CmF">SortOrdering.EqualTo</a></code>, <code><a href="../Enums/SortOrdering.html#/s:7Rubicon12SortOrderingO11GreaterThanyA2CmF">SortOrdering.GreaterThan</a></code> as the left-hand array
-       comes before, in the same place as, or after the right-hand array.</p>
+                <p>The actual number of bytes transfered.</p>
               </div>
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Tools/Tools.swift#L102-L113">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Tools/Tools.swift#L273-L280">Show on GitHub</a>
               </div>
           </div>
         </section>

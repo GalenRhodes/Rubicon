@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>xferBytes(read:write:maxLength:bufferSize:) Function Reference</title>
+    <title>xferBytes(buffer:bufferSize:maxLength:read:write:) Function Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Function/xferBytes(read:write:maxLength:bufferSize:)" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Function/xferBytes(buffer:bufferSize:maxLength:read:write:)" class="dashAnchor"></a>
 
-    <a title="xferBytes(read:write:maxLength:bufferSize:) Function Reference"></a>
+    <a title="xferBytes(buffer:bufferSize:maxLength:read:write:) Function Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -26,15 +26,15 @@
          (57% documented)
       </p>
     
-      <p class="header-col--secondary">
+      <div class="header-col--secondary">
         <form role="search" action="../search.json">
           <input type="text" placeholder="Search documentation" data-typeahead>
         </form>
-      </p>
+      </div>
     
         <p class="header-col header-col--secondary">
           <a class="header-link" href="https://github.com/GalenRhodes/Rubicon">
-            <img class="header-icon" src="../img/gh.png"/>
+            <img class="header-icon" src="../img/gh.png" alt="GitHub"/>
             View on GitHub
           </a>
         </p>
@@ -43,8 +43,8 @@
 
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html"> Reference</a>
-      <img class="carat" src="../img/carat.png" />
-      xferBytes(read:write:maxLength:bufferSize:) Function Reference
+      <img class="carat" src="../img/carat.png" alt=""/>
+      xferBytes(buffer:bufferSize:maxLength:read:write:) Function Reference
     </p>
 
     <div class="content-wrapper">
@@ -476,7 +476,10 @@
                 <a class="nav-group-task-link" href="../Functions/which_28names_3A_29_5F_24s5namesSaySSSgGSaySSG_5FtcD.html">which(names:)</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Functions/xferBytes_28read_3Awrite_3AmaxLength_3AbufferSize_3A_29_5F_24s4read5write9maxLength10bufferSizeS2iSgSpys5UInt8VG_5FSitKXE_5FAESPyAGG_5FSitKXES2itKcD.html">xferBytes(read:write:maxLength:bufferSize:)</a>
+                <a class="nav-group-task-link" href="../Functions/xferBytes_28buffer_3AbufferSize_3AmaxLength_3Aread_3Awrite_3A_29_5F_24s6buffer0A4Size9maxLength4read5writeSiSpys5UInt8VG_5FS3iSgAH_5FSitKXEAISPyAGG_5FSitKXEtKcD.html">xferBytes(buffer:bufferSize:maxLength:read:write:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Functions/xferBytes_28bufferSize_3AmaxLength_3Aread_3Awrite_3A_29_5F_24s10bufferSize9maxLength4read5writeS2i_5FS2iSgSpys5UInt8VG_5FSitKXEAESPyAGG_5FSitKXEtKcD.html">xferBytes(bufferSize:maxLength:read:write:)</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Functions/~~_28_5F_3A_29_5F_24syxxcs17FixedWidthIntegerRzluD.html">~~(_:)</a>
@@ -648,82 +651,17 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>xferBytes(read:write:maxLength:bufferSize:)</h1>
+            <h1>xferBytes(buffer:bufferSize:maxLength:read:write:)</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">xferBytes</span><span class="p">(</span><span class="nv">read</span><span class="p">:</span> <span class="kt"><a href="../Typealiases/XferInClosure.html">XferInClosure</a></span><span class="p">,</span> <span class="nv">write</span><span class="p">:</span> <span class="kt"><a href="../Typealiases/XferOutClosure.html">XferOutClosure</a></span><span class="p">,</span> <span class="nv">maxLength</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">bufferSize</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">1_048_576</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">xferBytes</span><span class="p">(</span><span class="n">buffer</span> <span class="nv">bf</span><span class="p">:</span> <span class="kt"><a href="../Typealiases/BytePointer.html">BytePointer</a></span><span class="p">,</span> <span class="n">bufferSize</span> <span class="nv">sz</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">maxLength</span> <span class="nv">mx</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">read</span><span class="p">:</span> <span class="kt"><a href="../Typealiases/XferInClosure.html">XferInClosure</a></span><span class="p">,</span> <span class="nv">write</span><span class="p">:</span> <span class="kt"><a href="../Typealiases/XferOutClosure.html">XferOutClosure</a></span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
 
                 </div>
               </div>
-            <p>Transfer bytes.</p>
-<div class="aside aside-throws">
-    <p class="aside-title">Throws</p>
-    Any error thrown by either closure.
-
-</div>
-
-              <div>
-                <h4>Parameters</h4>
-                <table class="graybox">
-                  <tbody>
-                      <tr>
-                        <td>
-                          <code>
-                          <em>read</em>
-                          </code>
-                        </td>
-                        <td>
-                          <div>
-                            <p>The closure to read a block of bytes into a buffer.</p>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <code>
-                          <em>write</em>
-                          </code>
-                        </td>
-                        <td>
-                          <div>
-                            <p>The closure to write a block of bytes from a buffer.</p>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <code>
-                          <em>maxLength</em>
-                          </code>
-                        </td>
-                        <td>
-                          <div>
-                            <p>The maximum number of bytes to transfer.</p>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <code>
-                          <em>bufferSize</em>
-                          </code>
-                        </td>
-                        <td>
-                          <div>
-                            <p>The maximum size of the buffer.</p>
-                          </div>
-                        </td>
-                      </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div>
-                <h4>Return Value</h4>
-                <p>The actual number of bytes transfered.</p>
-              </div>
+            
               <div class="slightly-smaller">
-                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Tools/Tools.swift#L273-L305">Show on GitHub</a>
+                <a href="https://github.com/GalenRhodes/Rubicon/blob/master/Sources/Rubicon/Tools/Tools.swift#L282-L305">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -736,9 +674,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="noopener" rel="external">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-10-01)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="noopener" rel="external">jazzy ♪♫ v0.14.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="noopener" rel="external">Realm</a> project.</p>
+      <p>&copy; 2021 <a class="link" href="https://blog.projectgalen.com" target="_blank" rel="external noopener">Galen Rhodes</a>. All rights reserved. (Last updated: 2021-10-06)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external noopener">jazzy ♪♫ v0.14.1</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external noopener">Realm</a> project.</p>
     </section>
   </body>
-</div>
 </html>

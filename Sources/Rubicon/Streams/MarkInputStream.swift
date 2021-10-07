@@ -136,8 +136,8 @@ open class MarkInputStream: InputStream {
             _clearTempBuffer()
             while st == .open && cc < maxLength {
                 while st == .open && rBuf.isEmpty && thread.isRunning { cond.broadcastWait() }
-                guard st == .open else { return 0 }
-                guard rBuf.isNotEmpty else { return (error == nil ? 0 : -1) }
+                guard st == .open else { return cc }
+                guard rBuf.isNotEmpty else { return ((cc > 0) ? cc : ((error == nil) ? 0 : -1)) }
                 let i = rBuf.get(dest: (inputBuffer + cc) as BytePointer, maxLength: (maxLength - cc))
                 cc += i
             }
@@ -374,20 +374,43 @@ extension MarkInputStream {
     @usableFromInline func _runLoop(buffer bBuf: BytePointer, maxLength l: Int) -> Bool {
         cond.withLock {
             do {
-                while st == .open && rBuf.count >= MaxInputBufferSize { guard cond.broadcastWait(until: Date(timeIntervalSinceNow: BackgroundWaitTime)) else { return st == .open } }
-                guard st == .open else { return false }
-                let cc = input.read(bBuf, maxLength: l)
-                guard cc > 0 else {
-                    guard cc == 0 else { throw input.streamError ?? StreamError.UnknownError() }
-                    return false
-                }
-                rBuf.append(src: UnsafeRawPointer(bBuf), length: cc)
-                return true
+                return try _innerRunLoop(buffer: bBuf, maxLength: l)
             }
             catch let e {
                 error = e
                 return false
             }
         }
+    }
+
+    /*==========================================================================================================*/
+    /// Called by `_runLoop(buffer:maxLength:)`.
+    /// 
+    /// - Parameters:
+    ///   - bBuf: A byte buffer.
+    ///   - l: The size of the byte buffer.
+    /// - Returns: `true` if there is more to read of `false` if the backing input stream is at EOF or there was
+    ///            an error in the underlying input stream.
+    /// - Throws: If an I/O error occurs.
+    ///
+    @inlinable func _innerRunLoop(buffer bBuf: BytePointer, maxLength l: Int) throws -> Bool {
+        while st == .open && rBuf.count >= MaxInputBufferSize { guard cond.broadcastWait(until: Date(timeIntervalSinceNow: BackgroundWaitTime)) else { return st == .open } }
+        guard st == .open else { return false }
+        let cc = input.read(bBuf, maxLength: l)
+        guard cc > 0 else { return try _innerRunLoopEnd(cc) }
+        rBuf.append(src: UnsafeRawPointer(bBuf), length: cc)
+        return true
+    }
+
+    /*==========================================================================================================*/
+    /// Called by `_innerRunLoop(buffer:maxLength:)`.
+    /// 
+    /// - Parameter cc: The return code from the input stream.
+    /// - Returns: <code>[Zero](https://en.wikipedia.org/wiki/0)</code> if End-of-Input.
+    /// - Throws: If the return code was -1.
+    ///
+    @inlinable func _innerRunLoopEnd(_ cc: Int) throws -> Bool {
+        guard cc == 0 else { throw input.streamError ?? StreamError.UnknownError() }
+        return false
     }
 }

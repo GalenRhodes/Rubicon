@@ -29,9 +29,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Cleanup">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/DocFixer__Jazzy_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/DocFixer__Jazzy_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.jazzy.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.jazzy.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/BinaryInteger.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/BinaryInteger.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer (Jazzy).xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer (Jazzy).xcscheme" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools/Tools.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools/Tools.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Classes.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classes.html" afterDir="false" />
@@ -121,6 +122,7 @@
       <change beforePath="$PROJECT_DIR$/docs/Functions.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/--_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/--_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/HashOfAnything_28_5F_3A_29_5F_24sySiypcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/HashOfAnything_28_5F_3A_29_5F_24sySiypcD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/MemMove_28dest_3Asrc_3Acount_3A_29_5F_24s4dest3src5countySpys5UInt8VG_5FSPyAEGSitcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/MemMove_28dest_3Asrc_3Acount_3A_29_5F_24s4dest3src5countySpys5UInt8VG_5FSPyAEGSitcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/NanoSleep2_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosySi_5FSitcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/NanoSleep2_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosySi_5FSitcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/NanoSleep_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosS2i_5FSitcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/NanoSleep_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosS2i_5FSitcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/StrError_28_5F_3A_29_5F_24sySSs5Int32VcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/StrError_28_5F_3A_29_5F_24sySSs5Int32VcD.html" afterDir="false" />
@@ -169,6 +171,7 @@
       <change beforePath="$PROJECT_DIR$/docs/Functions/when_28_5F_3AisNil_3AnotNil_3A_29_5F_24s_5F5isNil03notB0xq_5FSg_5FxyKXKxq_5FKXEtKcr0_5FluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/when_28_5F_3AisNil_3AnotNil_3A_29_5F_24s_5F5isNil03notB0xq_5FSg_5FxyKXKxq_5FKXEtKcr0_5FluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/which_28name_3A_29_5F_24s4nameSSSgSS_5FtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/which_28name_3A_29_5F_24s4nameSSSgSS_5FtcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/which_28names_3A_29_5F_24s5namesSaySSSgGSaySSG_5FtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/which_28names_3A_29_5F_24s5namesSaySSSgGSaySSG_5FtcD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/xferBytes_28read_3Awrite_3AmaxLength_3AbufferSize_3A_29_5F_24s4read5write9maxLength10bufferSizeS2iSgSpys5UInt8VG_5FSitKXE_5FAESPyAGG_5FSitKXES2itKcD.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Functions/~~_28_5F_3A_29_5F_24syxxcs17FixedWidthIntegerRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Functions/~~_28_5F_3A_29_5F_24syxxcs17FixedWidthIntegerRzluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Global Variables.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Global Variables.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Global Variables/BasicBufferSize.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Global Variables/BasicBufferSize.html" afterDir="false" />
@@ -235,6 +238,8 @@
       <change beforePath="$PROJECT_DIR$/docs/Typealiases/WordPointer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/WordPointer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Typealiases/WordROBuffer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/WordROBuffer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Typealiases/WordROPointer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/WordROPointer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/XferInClosure.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/XferInClosure.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/XferOutClosure.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Typealiases/XferOutClosure.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/AtomicValue.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/AtomicValue.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/CString.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/CString.html" afterDir="false" />
@@ -322,6 +327,7 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/--_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/--_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/HashOfAnything_28_5F_3A_29_5F_24sySiypcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/HashOfAnything_28_5F_3A_29_5F_24sySiypcD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/MemMove_28dest_3Asrc_3Acount_3A_29_5F_24s4dest3src5countySpys5UInt8VG_5FSPyAEGSitcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/MemMove_28dest_3Asrc_3Acount_3A_29_5F_24s4dest3src5countySpys5UInt8VG_5FSPyAEGSitcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/NanoSleep2_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosySi_5FSitcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/NanoSleep2_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosySi_5FSitcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/NanoSleep_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosS2i_5FSitcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/NanoSleep_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosS2i_5FSitcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/StrError_28_5F_3A_29_5F_24sySSs5Int32VcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/StrError_28_5F_3A_29_5F_24sySSs5Int32VcD.html" afterDir="false" />
@@ -370,6 +376,7 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/when_28_5F_3AisNil_3AnotNil_3A_29_5F_24s_5F5isNil03notB0xq_5FSg_5FxyKXKxq_5FKXEtKcr0_5FluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/when_28_5F_3AisNil_3AnotNil_3A_29_5F_24s_5F5isNil03notB0xq_5FSg_5FxyKXKxq_5FKXEtKcr0_5FluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/which_28name_3A_29_5F_24s4nameSSSgSS_5FtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/which_28name_3A_29_5F_24s4nameSSSgSS_5FtcD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/which_28names_3A_29_5F_24s5namesSaySSSgGSaySSG_5FtcD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/which_28names_3A_29_5F_24s5namesSaySSSgGSaySSG_5FtcD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/xferBytes_28read_3Awrite_3AmaxLength_3AbufferSize_3A_29_5F_24s4read5write9maxLength10bufferSizeS2iSgSpys5UInt8VG_5FSitKXE_5FAESPyAGG_5FSitKXES2itKcD.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/~~_28_5F_3A_29_5F_24syxxcs17FixedWidthIntegerRzluD.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/~~_28_5F_3A_29_5F_24syxxcs17FixedWidthIntegerRzluD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/BasicBufferSize.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/BasicBufferSize.html" afterDir="false" />
@@ -436,6 +443,8 @@
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/WordPointer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/WordPointer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/WordROBuffer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/WordROBuffer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/WordROPointer.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/WordROPointer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/XferInClosure.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/XferInClosure.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/XferOutClosure.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/XferOutClosure.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/search.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/search.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/docSet.dsidx" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/docSet.dsidx" afterDir="false" />
@@ -454,7 +463,7 @@
       <option value="directory" />
     </option>
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="macos_macos_arm64" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="macos_macos_x86_64" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -488,13 +497,13 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Tools/Tools.swift" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Extensions/Dictionary.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Tools/Tools.swift" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="amon5vo6" />
@@ -544,13 +553,9 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.DocFixer (Jazzy)">
-    <configuration default="true" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
-      <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
-        <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
-      </EXTENSION>
-      <embedded_app_extension_list />
+    <configuration default="true" type="Application" factoryName="Application">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
@@ -844,6 +849,10 @@
       <workItem from="1633046146721" duration="11233000" />
       <workItem from="1633433694818" duration="81000" />
       <workItem from="1633433815129" duration="2000" />
+      <workItem from="1633434064576" duration="545000" />
+      <workItem from="1633438736323" duration="34000" />
+      <workItem from="1633438790823" duration="1064000" />
+      <workItem from="1633532080227" duration="914000" />
     </task>
     <task id="LOCAL-00253" summary="Linux Tests">
       <created>1623892236470</created>

@@ -131,13 +131,9 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.DocFixer (Jazzy)">
-    <configuration default="true" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
-      <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
-        <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
-      </EXTENSION>
-      <embedded_app_extension_list />
+    <configuration default="true" type="Application" factoryName="Application">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
@@ -435,14 +431,8 @@
       <workItem from="1633438736323" duration="34000" />
       <workItem from="1633438790823" duration="1064000" />
       <workItem from="1633532080227" duration="995000" />
-      <workItem from="1634237075722" duration="11000" />
-    </task>
-    <task id="LOCAL-00254" summary="Linux Tests">
-      <created>1623892709481</created>
-      <option name="number" value="00254" />
-      <option name="presentableId" value="LOCAL-00254" />
-      <option name="project" value="LOCAL" />
-      <updated>1623892709481</updated>
+      <workItem from="1634237075722" duration="1089000" />
+      <workItem from="1634762241350" duration="767000" />
     </task>
     <task id="LOCAL-00255" summary="Linux Tests">
       <created>1623893012332</created>
@@ -780,7 +770,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633567678271</updated>
     </task>
-    <option name="localTasksCounter" value="303" />
+    <task id="LOCAL-00303" summary="Cleanup">
+      <created>1634237166806</created>
+      <option name="number" value="00303" />
+      <option name="presentableId" value="LOCAL-00303" />
+      <option name="project" value="LOCAL" />
+      <updated>1634237166807</updated>
+    </task>
+    <option name="localTasksCounter" value="304" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

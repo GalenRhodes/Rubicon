@@ -21,9 +21,58 @@ import CoreFoundation
 infix operator ==~: ComparisonPrecedence
 infix operator !=~: ComparisonPrecedence
 
+let CTRLS: [Character] = [
+    "␀", // 0
+    "␁", // 1
+    "␂", // 2
+    "␃", // 3
+    "␄", // 4
+    "␅", // 5
+    "␆", // 6
+    "␇", // 7
+    "␈", // 8
+    "␉", // 9
+    "␊", // 10
+    "␋", // 11
+    "␌", // 12
+    "␍", // 13
+    "␎", // 14
+    "␏", // 15
+    "␐", // 16
+    "␑", // 17
+    "␒", // 18
+    "␓", // 19
+    "␔", // 20
+    "␕", // 21
+    "␖", // 22
+    "␗", // 23
+    "␘", // 24
+    "␙", // 25
+    "␚", // 26
+    "␛", // 27
+    "␜", // 28
+    "␝", // 29
+    "␞", // 30
+    "␟", // 31
+    "␠", // 32
+]
+
 extension StringProtocol {
 
     @inlinable public var lastIndex: StringIndex? { startIndex < endIndex ? index(before: endIndex) : nil }
+
+    public var visCtrl: String {
+        var out: String = ""
+
+        for ch in self {
+            let utf8Ch = ch.utf8
+            let _b     = (utf8Ch.count == 1 ? utf8Ch[utf8Ch.startIndex] : nil)
+            guard let b = _b, ((b < 32) || (b == 127)) else { out.append(ch); continue }
+            out.append(b == 127 ? "␡" : CTRLS[Int(b)])
+        }
+
+        return out
+    }
 
     @inlinable public func toInteger(defaultValue: Int = 0) -> Int { (Int(self.asString) ?? defaultValue) }
 
@@ -63,7 +112,7 @@ extension StringProtocol {
 
     /*==========================================================================================================*/
     /// Case insensitive equals.
-    /// 
+    ///
     /// - Parameters:
     ///   - lhs: The left-hand string
     ///   - rhs: The right-hand string
@@ -73,7 +122,7 @@ extension StringProtocol {
 
     /*==========================================================================================================*/
     /// Case insensitive NOT equals.
-    /// 
+    ///
     /// - Parameters:
     ///   - lhs: The left-hand string
     ///   - rhs: The right-hand string
@@ -84,7 +133,7 @@ extension StringProtocol {
     /*==========================================================================================================*/
     /// Calls the given closure on each element in the sub-sequence defined by the given range in the same order
     /// as a for-in loop.
-    /// 
+    ///
     /// - Parameters:
     ///   - inRange: The range of characters to iterate over.
     ///   - body: A closure that takes an element of the sequence as a parameter.
@@ -97,7 +146,7 @@ extension StringProtocol {
     /// same order as a for-in loop. In this method the range of the sub-sequence is taken from the given
     /// `RegularExpression.Match` object and an optional index for the capture group. If the group is not provided
     /// then the entire match region is assumed.
-    /// 
+    ///
     /// - Parameters:
     ///   - match: The `RegularExpression.Match` object from a previously executed `RegularExpression` search.
     ///   - group: The index of a capture group (`RegularExpression.Group`) within the given match.
@@ -114,7 +163,7 @@ extension StringProtocol {
     /*==========================================================================================================*/
     /// Get the position (line, column) of the index in the given string relative to the given starting position
     /// (line, column).
-    /// 
+    ///
     /// - Parameters:
     ///   - idx: The index.
     ///   - position: The starting position. Defaults to (1, 1).
@@ -134,13 +183,13 @@ extension StringProtocol {
     /*==========================================================================================================*/
     /// Returns the <code>[Character](https://developer.apple.com/documentation/swift/Character)</code> at the
     /// `idx`th integer position in the string.
-    /// 
+    ///
     /// - Parameter idx: the integer offset into the
     ///                  <code>[String](https://developer.apple.com/documentation/swift/String)</code>.
     /// - Returns: The <code>[Character](https://developer.apple.com/documentation/swift/Character)</code> at the
     ///            offset indicated by `idx`.
     ///
-    public subscript(_ idx: Int) -> Character {
+    @inlinable public subscript(_ idx: Int) -> Character {
         self[self.index(self.startIndex, offsetBy: idx)]
     }
 
@@ -148,18 +197,72 @@ extension StringProtocol {
     /// Returns the <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code> of the
     /// given <code>[Range](https://developer.apple.com/documentation/swift/Range)</code>. A fatal error is thrown
     /// if the range is invalid for the string.
-    /// 
+    ///
     /// - Parameter range: the <code>[Range](https://developer.apple.com/documentation/swift/Range)</code> of the
     ///                    <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
     /// - Returns: The <code>[Substring](https://developer.apple.com/documentation/swift/Substring)</code>.
     ///
-    public subscript(_ range: Range<Int>) -> Substring {
-        Substring(self[index(idx: range.lowerBound) ..< index(idx: range.upperBound)])
+    @inlinable public subscript(_ range: Range<Int>) -> SubSequence {
+        self[index(idx: range.lowerBound) ..< index(idx: range.upperBound)]
+    }
+
+    @inlinable public subscript(_ range: ClosedRange<Int>) -> SubSequence {
+        self[index(idx: range.lowerBound) ... index(idx: range.upperBound)]
+    }
+
+    @inlinable public subscript(_ range: PartialRangeFrom<Int>) -> SubSequence {
+        self[index(idx: range.lowerBound)...]
+    }
+
+    @inlinable public subscript(_ range: PartialRangeUpTo<Int>) -> SubSequence {
+        self[..<index(idx: range.upperBound)]
+    }
+
+    @inlinable public subscript(_ range: PartialRangeThrough<Int>) -> SubSequence {
+        self[...index(idx: range.upperBound)]
+    }
+
+    @inlinable public func padding<S>(toLength l: Int, withPad p: S, startingAt i: Int = 0, onRight f: Bool) -> String where S: StringProtocol {
+        guard !f else { return padding(toLength: l, withPad: p, startingAt: i) }
+        return (l > 0 ? (l > count ? "\(p.shift(count: i).fill(count: l - count))\(self)" : String(self[..<l])) : "")
+    }
+
+    @inlinable public func fill(count cc: Int) -> String {
+        cc > 0 ? String(String(repeating: String(self), count: ((cc / count) + 1))[..<cc]) : ""
+    }
+
+    @inlinable public func shift(count cc: Int) -> String {
+        guard (1 ..< count).contains(cc) else { return asString }
+        return "\(self[cc...])\(self[..<cc])"
+    }
+
+    @inlinable func left(count cc: Int) -> String {
+        guard cc < count else { return asString }
+        return String(self[..<cc])
+    }
+
+    @inlinable func right(count cc: Int) -> String {
+        guard cc < count else { return asString }
+        return String(self[(count - cc)...])
+    }
+
+    /*==========================================================================================================*/
+    /// Return a copy of this string truncated to a certain number of characters. If the number of characters in
+    /// this string is less than `count` then a copy of this string is returned.
+    ///
+    /// - Parameters:
+    ///   - cc: The maximum number of characters in the returned string.
+    ///   - f: If true the characters will be removed from the end of the string. If false the characters
+    ///        will be removed from the front of the string. The default is true.
+    /// - Returns: A copy of this string with, at most, `count` characters.
+    ///
+    @inlinable func truncate(count cc: Int, backEnd f: Bool = true) -> String {
+        ((cc <= 0) ? "" : ((cc >= count) ? asString : String(f ? self[..<cc] : self[(count - cc)...])))
     }
 
     /*==========================================================================================================*/
     /// Returns the index of the first encounter of any of the given characters starting at the given index.
-    /// 
+    ///
     /// - Parameters:
     ///   - chars: The characters to look for.
     ///   - idx: The index in this string to start looking.
@@ -177,7 +280,7 @@ extension StringProtocol {
     /*==========================================================================================================*/
     /// Returns a `[StringIndex](https://developer.apple.com/documentation/swift/string/index)>` into this string
     /// from an integer offset.
-    /// 
+    ///
     /// - Parameter idx: the integer offset into the string
     /// - Returns: An instance of `[StringIndex](https://developer.apple.com/documentation/swift/string/index)>`
     ///
@@ -187,7 +290,7 @@ extension StringProtocol {
 
     /*==========================================================================================================*/
     /// Checks to see if this string has any of the given prefixes.
-    /// 
+    ///
     /// - Parameter prefixes: the list of prefixes.
     /// - Returns: `true` if this string has any of the prefixes.
     ///
@@ -198,7 +301,7 @@ extension StringProtocol {
 
     /*==========================================================================================================*/
     /// Checks to see if this string has any of the given suffixes.
-    /// 
+    ///
     /// - Parameter suffixes: the list of suffixes.
     /// - Returns: `true` if this string has any of the suffixes.
     ///
@@ -216,7 +319,7 @@ extension StringProtocol {
     /// Clusters](https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html#ID293) will be split
     /// into there individual character components. For example, the American Flag Emoji (🇺🇸) will be split into
     /// the individual unicode characters 🇺 and 🇸 instead of the single American Flag Emoji.
-    /// 
+    ///
     /// - Parameter splitClusters: `true` if [Grapheme
     ///                            Clusters](https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html#ID293)
     ///                            should be broken apart.
@@ -233,7 +336,7 @@ extension StringProtocol {
 
     /*==========================================================================================================*/
     /// Test this string to see if it matches the given regular expression pattern.
-    /// 
+    ///
     /// - Parameter pattern: the pattern.
     /// - Returns: `true` if the pattern matches this entire string exactly once.
     /// - Throws: If the pattern is malformed.
@@ -264,9 +367,9 @@ extension StringProtocol {
     /// pattern will be applied as many times as possible and the array can have any length. If n is
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the regular expression pattern will be applied
     /// as many times as possible, the array can have any length, and trailing empty strings will be discarded.
-    /// 
+    ///
     /// The string "`boo:and:foo`", for example, yields the following results with these parameters:
-    /// 
+    ///
     /// <table class="gsr">
     ///     <thead>
     ///         <tr>
@@ -308,12 +411,12 @@ extension StringProtocol {
     ///         </tr>
     ///     </tbody>
     /// </table>
-    /// 
+    ///
     /// - Parameters:
     ///   - pattern: The delimiting regular expression pattern.
     ///   - lim: The result threshold, as described above.
     ///   - error: If the pattern was invalid then this pass-by-reference parameter will hold the error.
-    /// 
+    ///
     /// - Returns: The array of strings computed by splitting this string around matches of the given regular
     ///            expression pattern. If the regular expression pattern is invalid then this string will be
     ///            returned as the only element.
@@ -343,9 +446,9 @@ extension StringProtocol {
     /// pattern will be applied as many times as possible and the array can have any length. If n is
     /// <code>[zero](https://en.wikipedia.org/wiki/0)</code> then the regular expression pattern will be applied
     /// as many times as possible, the array can have any length, and trailing empty strings will be discarded.
-    /// 
+    ///
     /// The string "`boo:and:foo`", for example, yields the following results with these parameters:
-    /// 
+    ///
     /// <table class="gsr">
     ///     <thead>
     ///         <tr>
@@ -387,11 +490,11 @@ extension StringProtocol {
     ///         </tr>
     ///     </tbody>
     /// </table>
-    /// 
+    ///
     /// - Parameters:
     ///   - pattern: The delimiting regular expression pattern
     ///   - lim: The result threshold, as described above
-    /// 
+    ///
     /// - Returns: The array of strings computed by splitting this string around matches of the given regular
     ///            expression pattern. If the regular expression pattern is invalid then this string will be
     ///            returned as the only element.

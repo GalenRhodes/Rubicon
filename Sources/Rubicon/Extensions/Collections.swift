@@ -26,7 +26,7 @@ extension Collection {
 
     /*==========================================================================================================*/
     /// Returns an array of all the elements of this array for which the predicate closure returns `true`.
-    /// 
+    ///
     /// - Parameter predicate: A closure that takes an element of the sequence as its argument and returns a
     ///                        Boolean value indicating whether the element should be included in the returned
     ///                        array.
@@ -47,7 +47,7 @@ extension Collection {
     /// Iterates over the collection executing the closure for each element. If the closure returns `true` for an
     /// element then iteration halts and `true` is returned. If the closure returns `false` for all the elements
     /// then `false` is returned.
-    /// 
+    ///
     /// - Parameter body: the closure which takes the element as it's only parameter and returns a boolean.
     /// - Returns: `false` if the closure returns `false` for all the elements in the collection.
     /// - Throws: Any error thrown by the closure.
@@ -61,7 +61,7 @@ extension Collection {
     /// Iterates over the collection executing the closure for each element. If the closure returns `false` for an
     /// element then iteration halts and `false` is returned. If the closure returns `true` for all the elements
     /// then `true` is returned.
-    /// 
+    ///
     /// - Parameter body: the closure which takes the element as it's only parameter and returns a boolean.
     /// - Returns: `true` if the closure returns `true` for all the elements in the collection.
     /// - Throws: Any error thrown by the closure.
@@ -96,21 +96,18 @@ extension Collection where Element == Character {
     /*==========================================================================================================*/
     /// Return this collection as a string.  If this collection is actually a string then it simply returns itself.
     ///
-    @inlinable public var asString:  String {
-        guard let s = (self as? String) else { return String(self) }
-        return s
-    }
+    @inlinable public var asString:  String { ((self as? String) ?? String(self)) }
 
     /*==========================================================================================================*/
     /// Returns the first character in the collection.
-    /// 
+    ///
     /// - Precondition: There has to be at least one character in the collection or a fatal error will be thrown.
     ///
     @inlinable public var firstChar: Character { self[startIndex] }
 
     /*==========================================================================================================*/
     /// Returns the last character in the collection.
-    /// 
+    ///
     /// - Precondition: There has to be at least one character in the collection or a fatal error will be thrown.
     ///
     @inlinable public var lastChar:  Character { self[lastIndex] }
@@ -122,7 +119,7 @@ extension Collection where Element == Character {
     /*==========================================================================================================*/
     /// If this character collection starts and ends with either a single or double quote then those quotes are
     /// remove from the returned string.
-    /// 
+    ///
     /// - Precondition: The starting and ending character must be the same. If, for example, the string is
     ///                 "Robert' then the quotes
     ///                 *are not* removed.
@@ -147,7 +144,7 @@ extension Collection where Element == Character {
 
     /*==========================================================================================================*/
     /// Returns a String with all XML entity references converted to their characters.
-    /// 
+    ///
     /// - Returns: A String.
     ///
     public func decodeXMLEntities() -> String {
@@ -181,7 +178,7 @@ extension Collection where Element == Character {
     /*==========================================================================================================*/
     /// Returns a string with all XML entities converted to their references. For example, the character '&' will
     /// be converted to the reference "&amp;".
-    /// 
+    ///
     /// - Returns: A String
     ///
     public func encodeXMLEntities() -> String {

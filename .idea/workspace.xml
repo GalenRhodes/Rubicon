@@ -28,7 +28,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Clean up of StringFormat.">
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="No comment.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -132,9 +132,13 @@
     </key>
   </component>
   <component name="RunManager" selected="XCTest.StringFormatTests">
-    <configuration default="true" type="Application" factoryName="Application">
+    <configuration default="true" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
+      <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
+        <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
+      </EXTENSION>
+      <embedded_app_extension_list />
       <method v="2">
-        <option name="Make" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
@@ -440,14 +444,8 @@
       <workItem from="1635416239514" duration="38406000" />
       <workItem from="1635512785052" duration="723000" />
       <workItem from="1635776118766" duration="1066000" />
-      <workItem from="1635944198451" duration="7000" />
-    </task>
-    <task id="LOCAL-00258" summary="Linux Tests">
-      <created>1623893597668</created>
-      <option name="number" value="00258" />
-      <option name="presentableId" value="LOCAL-00258" />
-      <option name="project" value="LOCAL" />
-      <updated>1623893597668</updated>
+      <workItem from="1635944198451" duration="53000" />
+      <workItem from="1636067994827" duration="7000" />
     </task>
     <task id="LOCAL-00259" summary="Linux Tests">
       <created>1623930918144</created>
@@ -785,7 +783,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635517908537</updated>
     </task>
-    <option name="localTasksCounter" value="307" />
+    <task id="LOCAL-00307" summary="No comment.">
+      <created>1635944243646</created>
+      <option name="number" value="00307" />
+      <option name="presentableId" value="LOCAL-00307" />
+      <option name="project" value="LOCAL" />
+      <updated>1635944243646</updated>
+    </task>
+    <option name="localTasksCounter" value="308" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -818,7 +823,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Updated Package.swift." />
     <MESSAGE value="Bug fix in StringFormat." />
     <MESSAGE value="Workaround for Opensource version of NSRegularExpression.enumerateMatches(in:options:range:using:) marking the closure as @escaping." />
     <MESSAGE value="Linux Tests" />
@@ -843,7 +847,8 @@
     <MESSAGE value="Reworked CErrors" />
     <MESSAGE value="Cleanup" />
     <MESSAGE value="Clean up of StringFormat." />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean up of StringFormat." />
+    <MESSAGE value="No comment." />
+    <option name="LAST_COMMIT_MESSAGE" value="No comment." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

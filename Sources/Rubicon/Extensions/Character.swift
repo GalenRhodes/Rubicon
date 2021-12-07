@@ -1,4 +1,4 @@
-/************************************************************************//**
+/*=================================================================================================================================================================================*
  *     PROJECT: Rubicon
  *    FILENAME: Character.swift
  *         IDE: AppCode
@@ -18,19 +18,20 @@
  * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- *//************************************************************************/
+ *===============================================================================================================================================================================*/
 
 import Foundation
 
 /*==============================================================================================================*/
 /// This special character is used as a replacement when an invalid Unicode code point is encountered.
 ///
-public let UnicodeReplacementChar: Character = "�"
+public let UnicodeReplacementChar:   Character     = "�"
+public let UnicodeReplacementScalar: UnicodeScalar = UnicodeScalar(0xFFFD)!
 
 extension Character {
     /*==========================================================================================================*/
     /// Creates a new `Character` from the given UTF-32 code point.
-    /// 
+    ///
     /// - Parameter codePoint: the code point.
     ///
     public init(codePoint: UInt32) {
@@ -40,15 +41,10 @@ extension Character {
     /*==========================================================================================================*/
     /// Creates a new `Character` from the given `UnicodeScalar`. If the scalar is `nil` then an instance of the
     /// `UnicodeReplacementChar` (�) will be created.
-    /// 
+    ///
     /// - Parameter s: the Unicode Scalar.
     ///
     public init(scalar s: UnicodeScalar?) {
-        if let s = s {
-            self.init(s)
-        }
-        else {
-            self.init(unicodeScalarLiteral: UnicodeReplacementChar)
-        }
+        self.init(s ?? UnicodeReplacementScalar)
     }
 }

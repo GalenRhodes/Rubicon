@@ -28,4 +28,34 @@ extension CharacterSet {
     /// character sets.
     ///
     public static let whitespacesAndNewlinesAndControlCharacters: CharacterSet = CharacterSet.whitespacesAndNewlines.union(CharacterSet.controlCharacters)
+
+    @inlinable public init(codePoints: Int...) {
+        self.init(codePoints.map({ UnicodeScalar($0)! }))
+    }
+
+    @inlinable public init(codePointRanges: ClosedRange<Int>...) { self.init(codePointRanges: codePointRanges) }
+
+    @inlinable public init(codePointRanges: [ClosedRange<Int>]) {
+        self.init()
+        codePointRanges.map({ (UnicodeScalar($0.lowerBound)! ... UnicodeScalar($0.upperBound)!) }).forEach({ insert(charactersIn: $0) })
+    }
+
+    @inlinable public init(codePointRanges: Range<Int>...) { self.init(codePointRanges: codePointRanges) }
+
+    @inlinable public init(codePointRanges: [Range<Int>]) {
+        self.init()
+        codePointRanges.map({ (UnicodeScalar($0.lowerBound)! ..< UnicodeScalar($0.upperBound)!) }).forEach({ insert(charactersIn: $0) })
+    }
+
+    @inlinable public func union(codePoints: Int...) -> CharacterSet {
+        union(CharacterSet(codePoints.map({ UnicodeScalar($0)! })))
+    }
+
+    @inlinable public func union(codePointRanges: ClosedRange<Int>...) -> CharacterSet {
+        union(CharacterSet(codePointRanges: codePointRanges))
+    }
+
+    @inlinable public func union(codePointRanges: Range<Int>...) -> CharacterSet {
+        union(CharacterSet(codePointRanges: codePointRanges))
+    }
 }

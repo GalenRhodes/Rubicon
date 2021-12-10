@@ -39,7 +39,7 @@ private func nDebugIndent(_ count: Int, _ string: inout String, _ msg: String) {
 /// method outputs text in a nested fashion. Calling this method with NestType.In increases the nesting level.
 /// Calling this method with NestType.Out decreases the nesting level. Calling this method with NestType.None
 /// keeps the nesting level the same.
-/// 
+///
 /// - Parameters:
 ///   - nestType: The nesting type.
 ///   - obj: The objects to print. They are converted to a string with `String(describing:)`.
@@ -74,7 +74,7 @@ public func nDebug(_ nestType: NestType = .None, _ obj: Any..., separator: Strin
 /*==============================================================================================================*/
 /// Returns a <code>[String](https://developer.apple.com/documentation/swift/string/)</code> that represents the
 /// given integer in hexadecimal format.
-/// 
+///
 /// - Parameters:
 ///   - n: The integer number.
 ///   - pad: 0 means no padding. negative number means the number is padded with spaces to that many places.
@@ -106,7 +106,7 @@ public func toHex<T: BinaryInteger>(_ n: T, pad: Int = 0) -> String {
 /*==============================================================================================================*/
 /// Simple function to convert an integer number into a string represented as a series of ones - "1" - or zeros -
 /// "0" starting with the high bits first and the low bits to the right.
-/// 
+///
 /// - Parameters:
 ///   - n: The integer number.
 ///   - sep: The string will be grouped into octets separated by a space unless you provide a separator string in
@@ -138,7 +138,7 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 
 /*==============================================================================================================*/
 /// Output debugging text. This method only produces output when the code is compiled with a `-DDEBUG` flag.
-/// 
+///
 /// - Parameters:
 ///   - obj: The objects to print. They are converted to string with `String(describing:)`.
 ///   - separator: The string to put between objects. Defaults to a single space character.
@@ -152,7 +152,7 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
 
 /*==============================================================================================================*/
 /// Output debugging text. This method only produces output when the code is compiled with a `-DDEBUG` flag.
-/// 
+///
 /// - Parameters:
 ///   - obj: The objects to print. They are converted to string with `String(describing:)`.
 ///   - separator: The string to put between objects. Defaults to a single space character.
@@ -175,4 +175,9 @@ public func toBinary<T: BinaryInteger>(_ n: T, sep: String? = nil, pad: Int = 0)
         }
         print("", terminator: term)
     #endif
+}
+
+@inlinable public func debugQuote<S>(_ str: S?, _ q: Character = "\"") -> String where S: StringProtocol {
+    guard let s = str else { return "nil" }
+    return "\(q)\(s)\(q)"
 }

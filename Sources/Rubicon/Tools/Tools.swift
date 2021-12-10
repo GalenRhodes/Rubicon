@@ -27,92 +27,6 @@ import CoreFoundation
 #endif
 
 /*==============================================================================================================*/
-/// Values that indicate should be sorted against another object.
-///
-public enum SortOrdering: Int {
-    /*==========================================================================================================*/
-    /// One object comes before another object.
-    ///
-    case LessThan    = -1
-    /*==========================================================================================================*/
-    /// One object holds the same place as another object.
-    ///
-    case EqualTo     = 0
-    /*==========================================================================================================*/
-    /// One object comes after another object.
-    ///
-    case GreaterThan = 1
-}
-
-/*==============================================================================================================*/
-/// A new operator for comparing two objects.
-///
-infix operator <=>: ComparisonPrecedence
-
-/*==============================================================================================================*/
-/// Compares two objects to see what their `SortOrdering` is. Both objects have to conform to the
-/// [`Comparable`](https://swiftdoc.org/v5.1/protocol/comparable/) protocol.
-///
-/// Usage:
-/// ```
-///     func `foo(str1: String, str2: String)` { switch str1 <=> str2 { case .LessThan: `print("'\(str1)`' comes
-///     before '\(str2)'") case .EqualTo: `print("'\(str1)`' is the same as '\(str2)'") case .GreaterThan:
-///     `print("'\(str1)`' comes after '\(str2)'") } }
-/// ```
-///
-/// - Parameters:
-///   - l: The left hand operand
-///   - r: The right hand operand
-///
-/// - Returns: `SortOrdering.LessThan`, `SortOrdering.EqualTo`, `SortOrdering.GreaterThan` as the left-hand
-///            operand should be sorted before, at the same place as, or after the right-hand operand.
-///
-@inlinable public func <=> <T: Comparable>(l: T?, r: T?) -> SortOrdering {
-    (l == nil ? (r == nil ? .EqualTo : .LessThan) : (r == nil ? .GreaterThan : (l! < r! ? .LessThan : (l! > r! ? .GreaterThan : .EqualTo))))
-}
-
-/*==============================================================================================================*/
-/// Compares two arrays to see what their `SortOrdering` is. The objects of both arrays have to conform to the
-/// [`Comparable`](https://swiftdoc.org/v5.1/protocol/comparable/) protocol. This method first compares the number
-/// of objects in each array. If they are not the same then the function will return `SortOrdering.Before` or
-/// `SortOrdering.After` as the left-hand array has fewer or more objects than the right-hand array. If the both
-/// hold the same number of objects then the function compares each object in the left-hand array to the object in
-/// the same position in the right-hand array. In other words it compares `leftArray[0]` to `rightArray[0]`,
-/// `leftArray[1]` to `rightArray[1]` and so on until it finds the first pair of objects that do not of the same
-/// sort ordering and returns ordering. If all the objects in the same positions in both arrays are
-/// `SortOrdering.Same` then this function returns `SortOrdering.Same`.
-///
-/// Example:
-/// ```
-///     let array1: [Int] = [ 1, 2, 3, 4 ] let array2: [Int] = [ 1, 2, 3, 4 ] let array3: [Int] = [ 1, 2, 3 ] let
-///     array4: [Int] = [ 1, 2, 5, 6 ]
-///
-///     let result1: SortOrdering = array1 <=> array2 // result1 is set to `SortOrdering.EqualTo` let result2:
-///     SortOrdering = array1 <=> array3 // result2 is set to `SortOrdering.GreaterThan` let result3: SortOrdering
-///     = array1 <=> array4 // result3 is set to `SortOrdering.LessThan`
-/// ```
-///
-/// - Parameters:
-///   - l: The left hand array operand
-///   - r: The right hand array operand
-///
-/// - Returns: `SortOrdering.LessThan`, `SortOrdering.EqualTo`, `SortOrdering.GreaterThan` as the left-hand array
-///            comes before, in the same place as, or after the right-hand array.
-///
-@inlinable public func <=> <T: Comparable>(l: [T?], r: [T?]) -> SortOrdering {
-    var cc: SortOrdering = (l.count <=> r.count)
-
-    if cc == .EqualTo {
-        for i: Int in (0 ..< l.count) {
-            cc = (l[i] <=> r[i])
-            guard cc == .EqualTo else { break }
-        }
-    }
-
-    return cc
-}
-
-/*==============================================================================================================*/
 /// If the `maxLength` is less than <code>[zero](https://en.wikipedia.org/wiki/0)</code> then return the largest
 /// integer possible (<code>[Int.max](https://developer.apple.com/documentation/swift/int/1540171-max)</code>)
 /// otherwise returns the value of `maxLength`.
@@ -314,9 +228,4 @@ public func xferBytes(buffer bf: BytePointer, bufferSize sz: Int, maxLength mx: 
 ///
 @inlinable public func MemMove(dest: BytePointer, src: ByteROPointer, count: Int) {
     memmove(UnsafeMutableRawPointer(dest), UnsafeRawPointer(src), count)
-}
-
-@inlinable public func debugQuote<S>(_ str: S?, _ q: Character = "\"") -> String where S: StringProtocol {
-    guard let s = str else { return "nil" }
-    return "\(q)\(s)\(q)"
 }

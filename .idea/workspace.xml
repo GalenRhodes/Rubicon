@@ -29,24 +29,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Extensions to CharacterSet.">
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools/Compare.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/AtomicValue.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/AtomicValue.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/ManagedByteBuffer/DataByteBuffer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/ManagedByteBuffer/DataByteBuffer.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/ManagedByteBuffer/ManagedByteBuffer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/ManagedByteBuffer/ManagedByteBuffer.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/ByteOrder.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/ByteOrder.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Collections/ShadowInt.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Collections/ShadowInt.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/ReadWriteLock.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/ReadWriteLock.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/BinaryInteger.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/BinaryInteger.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Collections.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Collections.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/DateComponents.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/DateComponents.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/FloatingPoint.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/FloatingPoint.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Hasher.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Hasher.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/PropertyWrappers/AtomicProperty.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/PropertyWrappers/AtomicProperty.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/PropertyWrappers/ThreadLocal.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/PropertyWrappers/ThreadLocal.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleCharInputStream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/StringCharInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/StringCharInputStream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Text/StringFormat.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Text/StringFormat.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Messages.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Messages.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools/DebugTools.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools/DebugTools.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools/Processes.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools/Processes.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools/Tools.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Tools/Tools.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +111,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="RubiconTests" />
+    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="Rubicon" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -465,14 +454,7 @@
       <workItem from="1636067994827" duration="80000" />
       <workItem from="1636719228236" duration="3288000" />
       <workItem from="1638825357126" duration="7673000" />
-      <workItem from="1639142739968" duration="1337000" />
-    </task>
-    <task id="LOCAL-00262" summary="Linux Tests">
-      <created>1623931234492</created>
-      <option name="number" value="00262" />
-      <option name="presentableId" value="LOCAL-00262" />
-      <option name="project" value="LOCAL" />
-      <updated>1623931234492</updated>
+      <workItem from="1639142739968" duration="4260000" />
     </task>
     <task id="LOCAL-00263" summary="Applied temporary workaround for InputStream.streamError bug that was causing a trap in Linux.">
       <created>1623940483186</created>
@@ -810,7 +792,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638882858526</updated>
     </task>
-    <option name="localTasksCounter" value="311" />
+    <task id="LOCAL-00311" summary="Extensions to CharacterSet.">
+      <created>1639157034135</created>
+      <option name="number" value="00311" />
+      <option name="presentableId" value="LOCAL-00311" />
+      <option name="project" value="LOCAL" />
+      <updated>1639157034135</updated>
+    </task>
+    <option name="localTasksCounter" value="312" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

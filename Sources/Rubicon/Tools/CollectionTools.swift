@@ -18,6 +18,24 @@
 import Foundation
 import CoreFoundation
 
+/*===========================================================================================================================================================================*/
+/// Iterate through two collections simultaniously. Both collections must have the same number of elements.
+///
+/// - Parameters:
+///   - c1: The first collection.
+///   - c2: The second collection.
+///   - body: The closure called for each element in both collections. If you want the iteration to stop then set the third parameter to true.
+/// - Throws: Any error thrown by the closure.
+///
+public func syncIterate<T>(c1: T, c2: T, do body: (T.Element, T.Element, inout Bool) throws -> Void) rethrows where T: Collection, T.Index == Int {
+    guard c1.count == c2.count else { fatalError("The collections to not have the same number of elements.") }
+    var stop: Bool = false
+    for i in (0 ..< c1.count) {
+        try body(c1[i + c1.startIndex], c2[i + c2.startIndex], &stop)
+        if stop { break }
+    }
+}
+
 /*==============================================================================================================*/
 /// Operator for appending new elements to an
 /// <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> container.
@@ -38,7 +56,7 @@ infix operator <?: ComparisonPrecedence
 
 /*==============================================================================================================*/
 /// Append a new element to an <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
-/// 
+///
 /// - Parameters:
 ///   - lhs: The <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>
 ///   - rhs: The new element
@@ -49,7 +67,7 @@ infix operator <?: ComparisonPrecedence
 /// Append the contents of the right-hand
 /// <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> oprand to the left-hand
 /// <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> oprand.
-/// 
+///
 /// - Parameters:
 ///   - lhs: The receiving <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 ///   - rhs: The source <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
@@ -59,7 +77,7 @@ infix operator <?: ComparisonPrecedence
 /*==============================================================================================================*/
 /// Checks to see if the <code>[Array](https://developer.apple.com/documentation/swift/array/)</code> (left-hand
 /// operand) contains the right-hand operand.
-/// 
+///
 /// - Parameters:
 ///   - lhs: The <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 ///   - rhs: The object to search for in the
@@ -73,7 +91,7 @@ infix operator <?: ComparisonPrecedence
 /// Checks to see if the left-hand <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>
 /// contains all of the elements in the right-hand
 /// <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
-/// 
+///
 /// - Parameters:
 ///   - lhs: The left-hand <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.
 ///   - rhs: The right-hand <code>[Array](https://developer.apple.com/documentation/swift/array/)</code>.

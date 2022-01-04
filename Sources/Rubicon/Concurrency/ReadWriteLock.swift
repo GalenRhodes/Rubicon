@@ -17,7 +17,11 @@
 
 import Foundation
 import CoreFoundation
-
+#if canImport(Darwin)
+    import Darwin
+#elseif canImport(Glibc)
+    import Glibc
+#endif
 #if os(Windows)
     import WinSDK
     fileprivate typealias OSRWLock = UnsafeMutablePointer<SRWLOCK>

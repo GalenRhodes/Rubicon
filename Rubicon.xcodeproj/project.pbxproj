@@ -23,7 +23,6 @@
 		1117D2C6E8D38475C5C674D5 /* StringFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DB9676B8889E6B91EC70 /* StringFormat.swift */; };
 		1117D3B6E9FCFDAD8238B604 /* AtomicValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D2AE1568A8C3741A86AE /* AtomicValue.swift */; };
 		1117D3BF4199C365362CA9FC /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D142AFC8171D31FCF975 /* Character.swift */; };
-		1117D3E5CCF75F6ECD21A303 /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DCED9641BC9CB805ADEE /* ReadWriteLock.swift */; };
 		1117D3E66CFEF0A6F20E4A05 /* UnnamedSemaphore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D15087187DB380CA7FCA /* UnnamedSemaphore.swift */; };
 		1117D4302066214D581AB6FC /* DynamicFixedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D67CB2830A48B5C56761 /* DynamicFixedArray.swift */; };
 		1117D45120FECEBDC9DA90CA /* AtomicProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D32DD30FC95584F4AFFE /* AtomicProperty.swift */; };
@@ -36,7 +35,6 @@
 		1117D6347992E68048C95BA4 /* ManagedByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D4ECADC357DE0E875BAE /* ManagedByteBuffer.swift */; };
 		1117D65D83145BB91FD6BA5B /* RubiconTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DB7C8A6D6A5F5D46B3BA /* RubiconTests.swift */; };
 		1117D6C58C8DF1A23EE40B26 /* IConvCharInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D48068F75B12E30F5E83 /* IConvCharInputStream.swift */; };
-		1117D70E28E2029E40D5DAC1 /* ThreadLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DF69DED451E0EFD247CD /* ThreadLocal.swift */; };
 		1117D74784A19EC684B6F858 /* Rubicon.h in Headers */ = {isa = PBXBuildFile; fileRef = 1117DF3E94A76767AA3C37E3 /* Rubicon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1117D7C7D25FDB87F0E87004 /* NSLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D545C41CE3C16FAD6B9F /* NSLock.swift */; };
 		1117D7F4980BF2BAC1D33F97 /* CollectionTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DFEEF6717D644AFA77C6 /* CollectionTools.swift */; };
@@ -71,6 +69,7 @@
 		1117DF691C2CDD9B9009766E /* Processes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D583DEDEB8800311B427 /* Processes.swift */; };
 		1117DFAA0AE0006304938EEC /* BinaryInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DDD0B2FEC71052547523 /* BinaryInteger.swift */; };
 		1117DFD31CB50DCD66D53455 /* NamedSemaphore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D1C57DE625B200F2A8F1 /* NamedSemaphore.swift */; };
+		831F4AA92784D62300B278B9 /* ReadWriteLock in Frameworks */ = {isa = PBXBuildFile; productRef = 831F4AA82784D62300B278B9 /* ReadWriteLock */; };
 		832AC49A26B2D83E00A3DB9F /* Chadakoin in Frameworks */ = {isa = PBXBuildFile; productRef = 832AC49926B2D83E00A3DB9F /* Chadakoin */; };
 		8398BC14266A6CB200671FE0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8398BC13266A6CB200671FE0 /* main.swift */; };
 		8398BC18266A6D3D00671FE0 /* Rubicon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C67A72250EC02000C0F21E /* Rubicon.framework */; };
@@ -227,7 +226,6 @@
 		1117DC9BADDBA69F813099F5 /* Test2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Test2.xml; sourceTree = "<group>"; };
 		1117DCCAFD14362EB9197440 /* RubiconTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RubiconTests.swift; sourceTree = "<group>"; };
 		1117DCD7A7312DAE72D45E8A /* DateTimeTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimeTools.swift; sourceTree = "<group>"; };
-		1117DCED9641BC9CB805ADEE /* ReadWriteLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadWriteLock.swift; sourceTree = "<group>"; };
 		1117DD04DE1A261A5A69F113 /* Test3.xml */ = {isa = PBXFileReference; fileEncoding = 2483028224; lastKnownFileType = text.xml; path = Test3.xml; sourceTree = "<group>"; };
 		1117DD349FF1395C55BA8BC0 /* ConditionalExpressions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionalExpressions.swift; sourceTree = "<group>"; };
 		1117DD56CCB5ACD6CFD3A297 /* Test2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Test2.xml; sourceTree = "<group>"; };
@@ -247,7 +245,6 @@
 		1117DF108631813F676A7FE5 /* .jazzy.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .jazzy.yaml; sourceTree = "<group>"; };
 		1117DF3E94A76767AA3C37E3 /* Rubicon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rubicon.h; sourceTree = "<group>"; };
 		1117DF5398773AE150F0A585 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		1117DF69DED451E0EFD247CD /* ThreadLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadLocal.swift; sourceTree = "<group>"; };
 		1117DFB1957508BC2D87A10D /* compname.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = compname.txt; sourceTree = "<group>"; };
 		1117DFCED82B09847E7A42BD /* PGErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PGErrors.swift; sourceTree = "<group>"; };
 		1117DFEEF6717D644AFA77C6 /* CollectionTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionTools.swift; sourceTree = "<group>"; };
@@ -290,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83C7E7C2263879E500F3C28E /* RingBuffer in Frameworks */,
+				831F4AA92784D62300B278B9 /* ReadWriteLock in Frameworks */,
 				832AC49A26B2D83E00A3DB9F /* Chadakoin in Frameworks */,
 				83F8D66925C47EC0004DD445 /* libiconv.tbd in Frameworks */,
 			);
@@ -320,7 +318,6 @@
 				1117D14B363B54E578A54336 /* PGThread.swift */,
 				1117DD6F29A83E7E9C004F89 /* Conditional.swift */,
 				1117D545C41CE3C16FAD6B9F /* NSLock.swift */,
-				1117DCED9641BC9CB805ADEE /* ReadWriteLock.swift */,
 				1117D6F3E0FF3FC135C390D7 /* PGSemaphore.swift */,
 				1117DEAD54B3EAD01A797B20 /* Semaphore */,
 				1117D104117BC8F5E379EADD /* Runner.swift */,
@@ -392,7 +389,6 @@
 			children = (
 				1117D86E31397A37C9C11F6B /* StringXForm.swift */,
 				1117D32DD30FC95584F4AFFE /* AtomicProperty.swift */,
-				1117DF69DED451E0EFD247CD /* ThreadLocal.swift */,
 				1117D1B0FB45E46EB6D29EA1 /* Triggered.swift */,
 			);
 			path = PropertyWrappers;
@@ -730,6 +726,7 @@
 			packageProductDependencies = (
 				83BA732E254ABED0009B8351 /* RingBuffer */,
 				832AC49926B2D83E00A3DB9F /* Chadakoin */,
+				831F4AA82784D62300B278B9 /* ReadWriteLock */,
 			);
 			productName = Rubicon;
 			productReference = 83C67A72250EC02000C0F21E /* Rubicon.framework */;
@@ -814,6 +811,7 @@
 				83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer" */,
 				83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer" */,
 				832AC49826B2D83E00A3DB9F /* XCRemoteSwiftPackageReference "Chadakoin" */,
+				831F4AA72784D62300B278B9 /* XCRemoteSwiftPackageReference "ReadWriteLock" */,
 			);
 			productRefGroup = 83C67A73250EC02000C0F21E /* Products */;
 			projectDirPath = "";
@@ -891,7 +889,6 @@
 				1117D6347992E68048C95BA4 /* ManagedByteBuffer.swift in Sources */,
 				1117DDC441FB1F14D7A8EAEB /* DataByteBuffer.swift in Sources */,
 				1117DFAA0AE0006304938EEC /* BinaryInteger.swift in Sources */,
-				1117D3E5CCF75F6ECD21A303 /* ReadWriteLock.swift in Sources */,
 				1117D3B6E9FCFDAD8238B604 /* AtomicValue.swift in Sources */,
 				1117D81AC449E98F667D5F43 /* ByteOrder.swift in Sources */,
 				1117D98AC365F3CF051F1549 /* ShadowInt.swift in Sources */,
@@ -925,7 +922,6 @@
 				1117D17F00FD9AFE0E696F5E /* Messages.swift in Sources */,
 				1117D946F6A77852CFB4B974 /* StringXForm.swift in Sources */,
 				1117D45120FECEBDC9DA90CA /* AtomicProperty.swift in Sources */,
-				1117D70E28E2029E40D5DAC1 /* ThreadLocal.swift in Sources */,
 				1117D90D89752E118FE3E97C /* Triggered.swift in Sources */,
 				1117DA3D55894722127D8041 /* Compare.swift in Sources */,
 			);
@@ -1294,6 +1290,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		831F4AA72784D62300B278B9 /* XCRemoteSwiftPackageReference "ReadWriteLock" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GalenRhodes/ReadWriteLock.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		832AC49826B2D83E00A3DB9F /* XCRemoteSwiftPackageReference "Chadakoin" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/GalenRhodes/Chadakoin.git";
@@ -1321,6 +1325,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		831F4AA82784D62300B278B9 /* ReadWriteLock */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 831F4AA72784D62300B278B9 /* XCRemoteSwiftPackageReference "ReadWriteLock" */;
+			productName = ReadWriteLock;
+		};
 		832AC49926B2D83E00A3DB9F /* Chadakoin */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 832AC49826B2D83E00A3DB9F /* XCRemoteSwiftPackageReference "Chadakoin" */;

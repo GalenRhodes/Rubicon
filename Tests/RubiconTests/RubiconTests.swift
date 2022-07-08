@@ -23,52 +23,6 @@ let testFile:     String = "\(testFilesDir)/Test_UTF-8.xml"
 
 public class RubiconTests: XCTestCase {
 
-    func testIsType() throws {
-        let a: Int = 0
-        let b: Int64 = 0
-
-        print("a: \(isType(a, Int.self))")
-        print("b: \(isType(b, Int.self))")
-    }
-
-    func testGetFileList() throws {
-        do {
-            let list = try FileManager.default.directoryFiles(atPath: "\(FileManager.default.currentDirectoryPath)", resolveSymLinks: true, traverseDirectorySymLinks: false) { p, f, a in
-                (a.fileType == .typeRegular) && f.hasSuffix(".swift")
-            }
-
-            for f in list {
-                print(f)
-            }
-        }
-        catch let e {
-            XCTFail("ERROR: \(e)")
-        }
-    }
-
-    func testResolve() throws {
-        print(try FileManager.default.realPath(path: "alink/idea"))
-    }
-
-    func testTextPosition() throws {
-        guard let byteInputStream = InputStream(fileAtPath: testFile) else { throw StreamError.FileNotFound(description: testFile) }
-        let inputStream = IConvCharInputStream(inputStream: byteInputStream, encodingName: "UTF-8", autoClose: true)
-        inputStream.open()
-        var buffer: [Character] = []
-        inputStream.markSet()
-        _ = try inputStream.read(chars: &buffer, maxLength: 58)
-        var str = String(buffer)
-        print(str)
-        nDebug(.None, "Characters read: \(str.count); Text Position: (\(inputStream.position.lineNumber), \(inputStream.position.columnNumber))")
-        nDebug(.None, "Backing up 10 characters...")
-        inputStream.markBackup(count: 10)
-        nDebug(.None, "                     Text Position: (\(inputStream.position.lineNumber), \(inputStream.position.columnNumber))")
-        nDebug(.None, "Re-reading 10 characters...")
-        _ = try inputStream.read(chars: &buffer, maxLength: 10)
-        str = String(buffer)
-        print(str)
-        nDebug(.None, "Characters read: \(str.count); Text Position: (\(inputStream.position.lineNumber), \(inputStream.position.columnNumber))")
-    }
 
     public override func setUp() {}
 

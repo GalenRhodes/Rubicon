@@ -29,7 +29,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Updated Readme file.">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Rubicon.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Rubicon.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +43,7 @@
       <option value="directory" />
     </option>
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="macos_macos_x86_64" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="macos_macos_arm64" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -103,30 +105,15 @@
     <option name="showVisibilityIcons" value="true" />
     <option name="sortByType" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="Rubicon" />
-    <property name="OverrideImplement.combined" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="TODO_SCOPE" value="All Places" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="cidr.known.project.marker" value="true" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT&#10;Swift" />
-    <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Tests/RubiconTests/Files" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-    <property name="settings.editor.splitter.proportion" value="0.2698145" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Tests/RubiconTests/Files" />
@@ -135,20 +122,11 @@
       <recent name="$PROJECT_DIR$/Sources/semaphore" />
     </key>
   </component>
-  <component name="RunManager" selected="XCTest.StringFormatTests">
-    <configuration default="true" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
-      <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
-        <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
-      </EXTENSION>
-      <embedded_app_extension_list />
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.DocFixer (Jazzy)">
     <list>
-      <item itemvalue="Application.DocFixer Remote" />
-      <item itemvalue="Application.DocFixer (swift-doc)" />
       <item itemvalue="Application.DocFixer (Jazzy)" />
+      <item itemvalue="Application.DocFixer (swift-doc)" />
+      <item itemvalue="Application.DocFixer Remote" />
       <item itemvalue="Application.Experiments" />
       <item itemvalue="Application.Rubicon" />
       <item itemvalue="XCTest.RubiconTests" />
@@ -460,6 +438,9 @@
       <workItem from="1641646412920" duration="488000" />
       <workItem from="1642098663354" duration="731000" />
       <workItem from="1645452556804" duration="57000" />
+      <workItem from="1657386129589" duration="40000" />
+      <workItem from="1657386312140" duration="29000" />
+      <workItem from="1657386507764" duration="4000" />
     </task>
     <task id="LOCAL-00268" summary="Deprecated `markUpdate()`. Renamed it to `markClear()`.">
       <created>1624370677623</created>

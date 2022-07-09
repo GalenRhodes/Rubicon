@@ -30,128 +30,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Updated Readme file.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer (Jazzy).xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer (Jazzy).xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer (swift-doc).xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer (swift-doc).xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer Remote.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer Remote.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/Experiments.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/Experiments.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/Rubicon.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/Rubicon.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/RubiconTests.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/RubiconTests.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/StringFormatTests.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/StringFormatTests.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Experiments/Other.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/AtomicValue.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/Buffers.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/ManagedByteBuffer/DataByteBuffer.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/ManagedByteBuffer/EasyByteBuffer.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/ManagedByteBuffer/ManagedByteBuffer.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/ByteOrder.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/CErrors.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/CStrings.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Closable.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Collections/DynamicFixedArray.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Collections/ShadowInt.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Conditional.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/NSLock.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/PGSemaphore.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/PGThread.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Runner.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Semaphore/NamedSemaphore.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Semaphore/UnnamedSemaphore.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Array.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/ArraySlice.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/BinaryInteger.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Character.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/CharacterSet.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Collections.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Data.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Date.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/DateComponents.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/DateFormatter.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Dictionary.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/FloatingPoint.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/NSRange.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/NSRegularExpression.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Range.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/RangeReplaceableCollection.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Stream.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/String.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/StringProtocol.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extensions/Thread.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/FileManager.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Messages.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/String.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/NanoTimer.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/PGErrors.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/PropertyWrappers/AtomicProperty.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/PropertyWrappers/StringXForm.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/PropertyWrappers/Triggered.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Rubicon.h" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Rubicon.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/StopWatch.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/CharInputStream.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/CharStream.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleCharInputStream.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/Character/StringCharInputStream.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Text/IConv.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Text/RegularExpression.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Text/StringFormat.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools/CollectionTools.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools/Compare.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools/ConditionalExpressions.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools/DateTimeTools.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools/DebugTools.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools/IOTools.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools/MathTools.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools/OSTools.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools/Processes.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Tools/Tools.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/RubiconTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/RubiconTests/RubiconTests.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/StringFormatTests.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/ByteInputStreamTests.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/CalendarTests.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test copy.dtd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test copy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test.dtd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test2 copy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test3 copy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test4 copy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-16BE copy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-16BE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-16BE_ext copy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-16BE_ext.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-16LE_ext copy.dtd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-16LE_ext.dtd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-32LE copy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-32LE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-8 copy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-8_ext copy.dtd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-8_ext copy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-8_ext.dtd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_UTF-8_ext.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_WINDOWS-1252 copy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/Test_WINDOWS-1252.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/compname copy.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Files/compname.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/IConvTests.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/LongevityTests.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/ManageByteBufferTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Functions.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/RubiconTests.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/StringTests.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/ThreadLocalTests.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/TimerTests.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/RubiconTests/XCTestManifests.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/Working/old.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestsBackup/Working/test.swift" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,6 +80,9 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+  </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="amon5vo6" />
   </component>
@@ -222,20 +103,20 @@
     <option name="showVisibilityIcons" value="true" />
     <option name="sortByType" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "OBJC.PRESERVED_TARGET_SELECTION": "Rubicon",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "cidr.known.project.marker": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Language Defaults"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;OBJC.PRESERVED_TARGET_SELECTION&quot;: &quot;Rubicon&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Language Defaults&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Tests/RubiconTests/Files" />
@@ -245,13 +126,9 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Rubicon">
-    <configuration default="true" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
-      <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
-        <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
-      </EXTENSION>
-      <embedded_app_extension_list />
+    <configuration default="true" type="Application" factoryName="Application">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
@@ -576,14 +453,8 @@
       <workItem from="1652719546345" duration="1211000" />
       <workItem from="1652722409789" duration="317000" />
       <workItem from="1654190987869" duration="101000" />
-      <workItem from="1657297080443" duration="3749000" />
-    </task>
-    <task id="LOCAL-00269" summary="Added a bunch of file pathname utilities.">
-      <created>1624650473661</created>
-      <option name="number" value="00269" />
-      <option name="presentableId" value="LOCAL-00269" />
-      <option name="project" value="LOCAL" />
-      <updated>1624650473662</updated>
+      <workItem from="1657297080443" duration="3784000" />
+      <workItem from="1657372180239" duration="22000" />
     </task>
     <task id="LOCAL-00270" summary="New general purpose errors added.">
       <created>1624975330294</created>
@@ -921,7 +792,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645452682819</updated>
     </task>
-    <option name="localTasksCounter" value="318" />
+    <task id="LOCAL-00318" summary="Updated Readme file.">
+      <created>1657317124647</created>
+      <option name="number" value="00318" />
+      <option name="presentableId" value="LOCAL-00318" />
+      <option name="project" value="LOCAL" />
+      <updated>1657317124648</updated>
+    </task>
+    <option name="localTasksCounter" value="319" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

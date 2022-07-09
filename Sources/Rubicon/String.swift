@@ -17,32 +17,128 @@
 
 import Foundation
 import CoreFoundation
-#if canImport(Darwin)
-    import Darwin
-#elseif canImport(Glibc)
-    import Glibc
-#elseif canImport(WinSDK)
-    import WinSDK
-#endif
 
-extension CharacterSet {
-
-    /// Shorthand for `.whitespacesAndNewlines.union(.controlCharacters)`.
-    public static let whitespacesAndNewlinesAndControlCharacters: CharacterSet = .whitespacesAndNewlines.union(.controlCharacters)
-
-    public func satisfies(character ch: Character) -> Bool { ch.unicodeScalars.allSatisfy { contains($0) } }
-
-    public func satisfies(string str: String) -> Bool { str.unicodeScalars.allSatisfy { contains($0) } }
-}
+public typealias StringIndex = String.Index
+public typealias StringRange = Range<StringIndex>
 
 extension String {
 
+    /*-------------------------------------------------------------------------------------------------------------------------*/
     /// Shorthand for `startIndex ..< endIndex`.
-    public var allRange: Range<String.Index> { startIndex ..< endIndex }
+    public var allRange:     StringRange { startIndex ..< endIndex }
 
-    public var trimmed: String { trimmingCharacters(in: .whitespacesAndNewlinesAndControlCharacters) }
+    /*-------------------------------------------------------------------------------------------------------------------------*/
+    // Shorthand for `NSRange(startIndex ..< endIndex, in: self)`
+    public var allNSRange:   NSRange { NSRange(startIndex ..< endIndex, in: self) }
 
-    public var leftTrimmed: String { whenNotNil(firstIndex { !CharacterSet.whitespacesAndNewlinesAndControlCharacters.satisfies(character: $0) }) { String(self[$0...]) } else: { "" } }
+    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /// Shorthand for `trimmingCharacters(in: .whitespacesAndNewlinesAndControlCharacters)`.
+    public var trimmed:      String { trimmingCharacters(in: .whitespacesAndNewlinesAndControlCharacters) }
 
-    public var rightTrimmed: String { "" }
+    /*-------------------------------------------------------------------------------------------------------------------------*/
+    public var leftTrimmed:  String { leftTrimmingCharacters(in: .whitespacesAndNewlinesAndControlCharacters) }
+
+    /*-------------------------------------------------------------------------------------------------------------------------*/
+    public var rightTrimmed: String { rightTrimmingCharacters(in: .whitespacesAndNewlinesAndControlCharacters) }
+
+    /*-------------------------------------------------------------------------------------------------------------------------*/
+    public func leftTrimmingCharacters(in cs: CharacterSet) -> String {
+        whenNotNil(firstIndex { !cs.satisfies(character: $0) }) { substring($0...) } else: { "" }
+    }
+
+    /*-------------------------------------------------------------------------------------------------------------------------*/
+    public func rightTrimmingCharacters(in cs: CharacterSet) -> String {
+        // I'm not certain that `lastIndex` does or will always search from the end of the string going forward so we'll just do it ourselves.
+        var idx: StringIndex = endIndex
+        while idx > startIndex {
+            formIndex(before: &idx)
+            guard cs.satisfies(character: self[idx]) else { return substring(...idx) }
+        }
+        return ""
+    }
+
+    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /// Shorthand for `StringIndex(utf16Offset:,in:)`.
+    ///
+    /// - Parameter o: The integer offset measured in UTF-16 code points.
+    /// - Returns: The string index.
+    ///
+    public func index(utf16Offset o: Int) -> StringIndex {
+        StringIndex(utf16Offset: o, in: self)
+    }
+
+    /*-------------------------------------------------------------------------------------------------------------------------*/
+    public func range(_ nsRange: NSRange) -> StringRange {
+        whenNotNil(StringRange(nsRange, in: self), { $0 }, else: { fatalError("Range indices not valid.") })
+    }
+
+    /*-------------------------------------------------------------------------------------------------------------------------*/
+    public func utf16Offset(index: StringIndex) -> Int {
+        index.utf16Offset(in: self)
+    }
+
+    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /// Shorthand for `NSRange(range, in: self)`
+    ///
+    /// - Parameter range: An instance of `Range<String.Index>`
+    /// - Returns: An instance of `NSRange`
+    ///
+    public func nsRange(range: StringRange) -> NSRange {
+        NSRange(range, in: self)
+    }
+
+    public func substring(_ range: NSRange) -> String? {
+        guard let r = StringRange(range, in: self) else { return nil }
+        return String(self[r])
+    }
+
+    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /// Shorthand for `String(self[range])`.
+    ///
+    /// - Parameter range: An instance of `Range<String.Index>`.
+    /// - Returns: A new string containing the substring from the given range.
+    ///
+    public func substring(_ range: StringRange) -> String {
+        String(self[range])
+    }
+
+    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /// Shorthand for `String(self[range])`.
+    ///
+    /// - Parameter range: An instance of `ClosedRange<String.Index>`.
+    /// - Returns: A new string containing the substring from the given range.
+    ///
+    public func substring(_ range: ClosedRange<StringIndex>) -> String {
+        String(self[range])
+    }
+
+    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /// Shorthand for `String(self[range])`.
+    ///
+    /// - Parameter range: An instance of `PartialRangeUpTo<String.Index>`.
+    /// - Returns: A new string containing the substring from the given range.
+    ///
+    public func substring(_ range: PartialRangeUpTo<StringIndex>) -> String {
+        String(self[range])
+    }
+
+    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /// Shorthand for `String(self[range])`.
+    ///
+    /// - Parameter range: An instance of `PartialRangeThrough<String.Index>`.
+    /// - Returns: A new string containing the substring from the given range.
+    ///
+    public func substring(_ range: PartialRangeThrough<StringIndex>) -> String {
+        String(self[range])
+    }
+
+    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /// Shorthand for `String(self[range])`.
+    ///
+    /// - Parameter range: An instance of `PartialRangeFrom<String.Index>`.
+    /// - Returns: A new string containing the substring from the given range.
+    ///
+    public func substring(_ range: PartialRangeFrom<StringIndex>) -> String {
+        String(self[range])
+    }
 }

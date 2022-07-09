@@ -29,12 +29,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Updated Readme file.">
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer (Jazzy).xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer (swift-doc).xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/DocFixer Remote.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/Experiments.xcscheme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/RubiconTests.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/RubiconTests.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/StringFormatTests.xcscheme" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/CharacterSet.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Functions.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Functions.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/String.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/String.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -454,14 +453,7 @@
       <workItem from="1652722409789" duration="317000" />
       <workItem from="1654190987869" duration="101000" />
       <workItem from="1657297080443" duration="3784000" />
-      <workItem from="1657372180239" duration="93000" />
-    </task>
-    <task id="LOCAL-00271" summary="Added extension Dictionary.remapValues(_:).">
-      <created>1625147799095</created>
-      <option name="number" value="00271" />
-      <option name="presentableId" value="LOCAL-00271" />
-      <option name="project" value="LOCAL" />
-      <updated>1625147799095</updated>
+      <workItem from="1657372180239" duration="3600000" />
     </task>
     <task id="LOCAL-00272" summary="Added `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`">
       <created>1625150700564</created>
@@ -799,7 +791,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657372203902</updated>
     </task>
-    <option name="localTasksCounter" value="320" />
+    <task id="LOCAL-00320" summary="Updated Readme file.">
+      <created>1657372291350</created>
+      <option name="number" value="00320" />
+      <option name="presentableId" value="LOCAL-00320" />
+      <option name="project" value="LOCAL" />
+      <updated>1657372291350</updated>
+    </task>
+    <option name="localTasksCounter" value="321" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -1,9 +1,9 @@
 /*===============================================================================================================================================================================*
  *     PROJECT: Rubicon
- *    FILENAME: Functions.swift
+ *    FILENAME: CharacterSet.swift
  *         IDE: AppCode
  *      AUTHOR: Galen Rhodes
- *        DATE: July 08, 2022
+ *        DATE: July 09, 2022
  *
  * Copyright © 2022 Project Galen. All rights reserved.
  *
@@ -18,18 +18,12 @@
 import Foundation
 import CoreFoundation
 
-/*-------------------------------------------------------------------------------------------------------------------------*/
-/// Simpler handling of taking one of two actions depending on if the given value is `nil` or not `nil`.
-///
-/// - Parameters:
-///   - value:        The value to test for `nil`.
-///   - notNilAction: The closure to execute if the value is NOT `nil`. This closure takes the non-`nil` value as it's only parameter.
-///   - nilAction:    The closure to execute if the value IS `nil`. This closure takes no parameters.
-/// - Returns: The value returned by the closure that was executed.
-/// - Throws:  Any error thrown by the closure that was executed.
-///
-@discardableResult public func whenNotNil<T, R>(_ value: T?, _ notNilAction: (T) throws -> R, else nilAction: () throws -> R) rethrows -> R {
-    guard let value = value else { return try nilAction() }
-    return try notNilAction(value)
-}
+extension CharacterSet {
 
+    /// Shorthand for `.whitespacesAndNewlines.union(.controlCharacters)`.
+    public static let whitespacesAndNewlinesAndControlCharacters: CharacterSet = .whitespacesAndNewlines.union(.controlCharacters)
+
+    public func satisfies(character ch: Character) -> Bool { ch.unicodeScalars.allSatisfy { contains($0) } }
+
+    public func satisfies(string str: String) -> Bool { str.unicodeScalars.allSatisfy { contains($0) } }
+}

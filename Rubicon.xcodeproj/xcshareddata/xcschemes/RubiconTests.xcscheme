@@ -39,7 +39,7 @@
             </BuildableReference>
             <SelectedTests>
                <Test
-                  Identifier = "RubiconTests/testIsType">
+                  Identifier = "RubiconTests">
                </Test>
             </SelectedTests>
          </TestableReference>

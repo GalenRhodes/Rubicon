@@ -24,15 +24,15 @@ public typealias StringRange = Range<StringIndex>
 extension String {
 
     /*-------------------------------------------------------------------------------------------------------------------------*/
-    /// Shorthand for `startIndex ..< endIndex`.
+    /// Shorthand for `str.startIndex ..< str.endIndex`.
     public var allRange:     StringRange { startIndex ..< endIndex }
 
     /*-------------------------------------------------------------------------------------------------------------------------*/
-    // Shorthand for `NSRange(startIndex ..< endIndex, in: self)`
+    // Shorthand for `NSRange(str.startIndex ..< str.endIndex, in: str)`
     public var allNSRange:   NSRange { NSRange(startIndex ..< endIndex, in: self) }
 
     /*-------------------------------------------------------------------------------------------------------------------------*/
-    /// Shorthand for `trimmingCharacters(in: .whitespacesAndNewlinesAndControlCharacters)`.
+    /// Shorthand for `str.trimmingCharacters(in: .whitespacesAndNewlinesAndControlCharacters)`.
     public var trimmed:      String { trimmingCharacters(in: .whitespacesAndNewlinesAndControlCharacters) }
 
     /*-------------------------------------------------------------------------------------------------------------------------*/
@@ -48,7 +48,8 @@ extension String {
 
     /*-------------------------------------------------------------------------------------------------------------------------*/
     public func rightTrimmingCharacters(in cs: CharacterSet) -> String {
-        // I'm not certain that `lastIndex` does or will always search from the end of the string going forward so we'll just do it ourselves.
+        // I'm not certain that `lastIndex` does or will always search from the end of the string going forward
+        // so we'll just do it ourselves.
         var idx: StringIndex = endIndex
         while idx > startIndex {
             formIndex(before: &idx)
@@ -58,7 +59,7 @@ extension String {
     }
 
     /*-------------------------------------------------------------------------------------------------------------------------*/
-    /// Shorthand for `StringIndex(utf16Offset:,in:)`.
+    /// Shorthand for `StringIndex(utf16Offset: o,in: str)`.
     ///
     /// - Parameter o: The integer offset measured in UTF-16 code points.
     /// - Returns: The string index.
@@ -78,7 +79,7 @@ extension String {
     }
 
     /*-------------------------------------------------------------------------------------------------------------------------*/
-    /// Shorthand for `NSRange(range, in: self)`
+    /// Shorthand for `NSRange(range, in: str)`
     ///
     /// - Parameter range: An instance of `Range<String.Index>`
     /// - Returns: An instance of `NSRange`
@@ -93,7 +94,7 @@ extension String {
     }
 
     /*-------------------------------------------------------------------------------------------------------------------------*/
-    /// Shorthand for `String(self[range])`.
+    /// Shorthand for `String(str[range])`.
     ///
     /// - Parameter range: An instance of `Range<String.Index>`.
     /// - Returns: A new string containing the substring from the given range.
@@ -103,7 +104,7 @@ extension String {
     }
 
     /*-------------------------------------------------------------------------------------------------------------------------*/
-    /// Shorthand for `String(self[range])`.
+    /// Shorthand for `String(str[range])`.
     ///
     /// - Parameter range: An instance of `ClosedRange<String.Index>`.
     /// - Returns: A new string containing the substring from the given range.
@@ -113,7 +114,7 @@ extension String {
     }
 
     /*-------------------------------------------------------------------------------------------------------------------------*/
-    /// Shorthand for `String(self[range])`.
+    /// Shorthand for `String(str[range])`.
     ///
     /// - Parameter range: An instance of `PartialRangeUpTo<String.Index>`.
     /// - Returns: A new string containing the substring from the given range.
@@ -123,7 +124,7 @@ extension String {
     }
 
     /*-------------------------------------------------------------------------------------------------------------------------*/
-    /// Shorthand for `String(self[range])`.
+    /// Shorthand for `String(str[range])`.
     ///
     /// - Parameter range: An instance of `PartialRangeThrough<String.Index>`.
     /// - Returns: A new string containing the substring from the given range.
@@ -133,12 +134,22 @@ extension String {
     }
 
     /*-------------------------------------------------------------------------------------------------------------------------*/
-    /// Shorthand for `String(self[range])`.
+    /// Shorthand for `String(str[range])`.
     ///
     /// - Parameter range: An instance of `PartialRangeFrom<String.Index>`.
     /// - Returns: A new string containing the substring from the given range.
     ///
     public func substring(_ range: PartialRangeFrom<StringIndex>) -> String {
         String(self[range])
+    }
+
+    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /// Shorthand for `str[StringIndex(utf16Offset: i, in: str)]`.
+    ///
+    /// - Parameter i: the UTF-16 offset.
+    /// - Returns: The character at UTF-16 offset.
+    ///
+    public func charAt(utf16Offset i: Int) -> Character {
+        self[StringIndex(utf16Offset: i, in: self)]
     }
 }

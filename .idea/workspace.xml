@@ -28,7 +28,12 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Updated Readme file." />
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Updated Readme file.">
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/NSRecursiveLock.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -453,13 +458,6 @@
       <workItem from="1657297080443" duration="3784000" />
       <workItem from="1657372180239" duration="3600000" />
     </task>
-    <task id="LOCAL-00273" summary="Added `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`">
-      <created>1625150716028</created>
-      <option name="number" value="00273" />
-      <option name="presentableId" value="LOCAL-00273" />
-      <option name="project" value="LOCAL" />
-      <updated>1625150716028</updated>
-    </task>
     <task id="LOCAL-00274" summary="Added test for `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`">
       <created>1625236521882</created>
       <option name="number" value="00274" />
@@ -796,7 +794,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657625938809</updated>
     </task>
-    <option name="localTasksCounter" value="322" />
+    <task id="LOCAL-00322" summary="Updated Readme file.">
+      <created>1657626355799</created>
+      <option name="number" value="00322" />
+      <option name="presentableId" value="LOCAL-00322" />
+      <option name="project" value="LOCAL" />
+      <updated>1657626355799</updated>
+    </task>
+    <option name="localTasksCounter" value="323" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

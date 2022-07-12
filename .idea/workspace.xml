@@ -28,11 +28,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Updated Readme file.">
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" afterDir="false" />
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Rewrite...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/String.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/String.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -454,13 +452,6 @@
       <workItem from="1657297080443" duration="3784000" />
       <workItem from="1657372180239" duration="3600000" />
     </task>
-    <task id="LOCAL-00272" summary="Added `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`">
-      <created>1625150700564</created>
-      <option name="number" value="00272" />
-      <option name="presentableId" value="LOCAL-00272" />
-      <option name="project" value="LOCAL" />
-      <updated>1625150700564</updated>
-    </task>
     <task id="LOCAL-00273" summary="Added `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`">
       <created>1625150716028</created>
       <option name="number" value="00273" />
@@ -797,7 +788,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657372291350</updated>
     </task>
-    <option name="localTasksCounter" value="321" />
+    <task id="LOCAL-00321" summary="Rewrite...">
+      <created>1657468382228</created>
+      <option name="number" value="00321" />
+      <option name="presentableId" value="LOCAL-00321" />
+      <option name="project" value="LOCAL" />
+      <updated>1657468382228</updated>
+    </task>
+    <option name="localTasksCounter" value="322" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -829,7 +827,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added StringProtocol.lastIndex? property." />
     <MESSAGE value="Bug fix in MarkInputStream." />
     <MESSAGE value="Deprecated `markUpdate()`. Renamed it to `markClear()`." />
     <MESSAGE value="Added a bunch of file pathname utilities." />
@@ -854,7 +851,8 @@
     <MESSAGE value="Clean up" />
     <MESSAGE value="syncIterate" />
     <MESSAGE value="Updated Readme file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated Readme file." />
+    <MESSAGE value="Rewrite..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Rewrite..." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

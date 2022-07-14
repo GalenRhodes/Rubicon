@@ -11,6 +11,6 @@
   "undocumented_text": "",
   "title": "Rubicon©",
   "swift_build_tool": "xcodebuild",
-  "build_tool_arguments": [ "-scheme", "Rubicon", "-destination", "platform=macOS,arch=x86_64", "-jobs", "12", ],
+  "build_tool_arguments": [ "-scheme", "Rubicon", "-destination", "platform=macOS", "-jobs", "12", ],
   "separate_global_declarations": true,
 },

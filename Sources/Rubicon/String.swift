@@ -88,6 +88,12 @@ extension String {
         NSRange(range, in: self)
     }
 
+    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /// Shorthand for `String(str[Range<String.Index>(range, in: str)!])`.
+    ///
+    /// - Parameter range: An instance of `Range<String.Index>`.
+    /// - Returns: A new string containing the substring from the given range.
+    ///
     public func substring(_ range: NSRange) -> String? {
         guard let r = StringRange(range, in: self) else { return nil }
         return String(self[r])

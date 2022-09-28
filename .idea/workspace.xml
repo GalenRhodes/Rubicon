@@ -31,6 +31,7 @@
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Rewrite...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/String.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/String.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,6 +128,11 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Rubicon">
+    <configuration default="true" type="Application" factoryName="Application">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Rubicon" />
       <item itemvalue="XCTest.RubiconTests" />
@@ -446,13 +452,9 @@
       <workItem from="1654190987869" duration="101000" />
       <workItem from="1657297080443" duration="3784000" />
       <workItem from="1657372180239" duration="3600000" />
-    </task>
-    <task id="LOCAL-00273" summary="Added `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`">
-      <created>1625150716028</created>
-      <option name="number" value="00273" />
-      <option name="presentableId" value="LOCAL-00273" />
-      <option name="project" value="LOCAL" />
-      <updated>1625150716028</updated>
+      <workItem from="1660061333412" duration="184000" />
+      <workItem from="1664382101040" duration="38000" />
+      <workItem from="1664382381507" duration="1601000" />
     </task>
     <task id="LOCAL-00274" summary="Added test for `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`">
       <created>1625236521882</created>
@@ -790,7 +792,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657468382228</updated>
     </task>
-    <option name="localTasksCounter" value="322" />
+    <task id="LOCAL-00322" summary="Rewrite...">
+      <created>1657626136949</created>
+      <option name="number" value="00322" />
+      <option name="presentableId" value="LOCAL-00322" />
+      <option name="project" value="LOCAL" />
+      <updated>1657626136949</updated>
+    </task>
+    <option name="localTasksCounter" value="323" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

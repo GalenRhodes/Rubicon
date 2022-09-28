@@ -41,15 +41,14 @@ open class RegularExpression {
         }
     }
 
-
     public struct Options: OptionSet, @unchecked Sendable {
-        public static let caseInsensitive:            RegularExpression.Options = RegularExpression.Options(rawValue: 1)
-        public static let allowCommentsAndWhitespace: RegularExpression.Options = RegularExpression.Options(rawValue: 2)
-        public static let ignoreMetacharacters:       RegularExpression.Options = RegularExpression.Options(rawValue: 4)
-        public static let dotMatchesLineSeparators:   RegularExpression.Options = RegularExpression.Options(rawValue: 8)
-        public static let anchorsMatchLines:          RegularExpression.Options = RegularExpression.Options(rawValue: 16)
-        public static let useUnixLineSeparators:      RegularExpression.Options = RegularExpression.Options(rawValue: 32)
-        public static let useUnicodeWordBoundaries:   RegularExpression.Options = RegularExpression.Options(rawValue: 64)
+        public static let caseInsensitive:            RegularExpression.Options = RegularExpression.Options(rawValue: NSRegularExpression.Options.caseInsensitive.rawValue)
+        public static let allowCommentsAndWhitespace: RegularExpression.Options = RegularExpression.Options(rawValue: NSRegularExpression.Options.allowCommentsAndWhitespace.rawValue)
+        public static let ignoreMetacharacters:       RegularExpression.Options = RegularExpression.Options(rawValue: NSRegularExpression.Options.ignoreMetacharacters.rawValue)
+        public static let dotMatchesLineSeparators:   RegularExpression.Options = RegularExpression.Options(rawValue: NSRegularExpression.Options.dotMatchesLineSeparators.rawValue)
+        public static let anchorsMatchLines:          RegularExpression.Options = RegularExpression.Options(rawValue: NSRegularExpression.Options.anchorsMatchLines.rawValue)
+        public static let useUnixLineSeparators:      RegularExpression.Options = RegularExpression.Options(rawValue: NSRegularExpression.Options.useUnixLineSeparators.rawValue)
+        public static let useUnicodeWordBoundaries:   RegularExpression.Options = RegularExpression.Options(rawValue: NSRegularExpression.Options.useUnicodeWordBoundaries.rawValue)
 
         public let rawValue: UInt
 
@@ -57,11 +56,11 @@ open class RegularExpression {
     }
 
     public struct MatchingOptions: OptionSet, @unchecked Sendable {
-        public static let reportProgress:         RegularExpression.MatchingOptions = RegularExpression.MatchingOptions(rawValue: 1)
-        public static let reportCompletion:       RegularExpression.MatchingOptions = RegularExpression.MatchingOptions(rawValue: 2)
-        public static let anchored:               RegularExpression.MatchingOptions = RegularExpression.MatchingOptions(rawValue: 4)
-        public static let withTransparentBounds:  RegularExpression.MatchingOptions = RegularExpression.MatchingOptions(rawValue: 8)
-        public static let withoutAnchoringBounds: RegularExpression.MatchingOptions = RegularExpression.MatchingOptions(rawValue: 16)
+        public static let reportProgress:         RegularExpression.MatchingOptions = RegularExpression.MatchingOptions(rawValue: NSRegularExpression.MatchingOptions.reportProgress.rawValue)
+        public static let reportCompletion:       RegularExpression.MatchingOptions = RegularExpression.MatchingOptions(rawValue: NSRegularExpression.MatchingOptions.reportCompletion.rawValue)
+        public static let anchored:               RegularExpression.MatchingOptions = RegularExpression.MatchingOptions(rawValue: NSRegularExpression.MatchingOptions.anchored.rawValue)
+        public static let withTransparentBounds:  RegularExpression.MatchingOptions = RegularExpression.MatchingOptions(rawValue: NSRegularExpression.MatchingOptions.withTransparentBounds.rawValue)
+        public static let withoutAnchoringBounds: RegularExpression.MatchingOptions = RegularExpression.MatchingOptions(rawValue: NSRegularExpression.MatchingOptions.withoutAnchoringBounds.rawValue)
 
         public let rawValue: UInt
 
@@ -69,11 +68,11 @@ open class RegularExpression {
     }
 
     public struct MatchingFlags: OptionSet, @unchecked Sendable {
-        public static let progress:      RegularExpression.MatchingFlags = RegularExpression.MatchingFlags(rawValue: 1)
-        public static let completed:     RegularExpression.MatchingFlags = RegularExpression.MatchingFlags(rawValue: 2)
-        public static let hitEnd:        RegularExpression.MatchingFlags = RegularExpression.MatchingFlags(rawValue: 4)
-        public static let requiredEnd:   RegularExpression.MatchingFlags = RegularExpression.MatchingFlags(rawValue: 8)
-        public static let internalError: RegularExpression.MatchingFlags = RegularExpression.MatchingFlags(rawValue: 16)
+        public static let progress:      RegularExpression.MatchingFlags = RegularExpression.MatchingFlags(rawValue: RegularExpression.MatchingFlags.progress.rawValue)
+        public static let completed:     RegularExpression.MatchingFlags = RegularExpression.MatchingFlags(rawValue: RegularExpression.MatchingFlags.completed.rawValue)
+        public static let hitEnd:        RegularExpression.MatchingFlags = RegularExpression.MatchingFlags(rawValue: RegularExpression.MatchingFlags.hitEnd.rawValue)
+        public static let requiredEnd:   RegularExpression.MatchingFlags = RegularExpression.MatchingFlags(rawValue: RegularExpression.MatchingFlags.requiredEnd.rawValue)
+        public static let internalError: RegularExpression.MatchingFlags = RegularExpression.MatchingFlags(rawValue: RegularExpression.MatchingFlags.internalError.rawValue)
 
         public let rawValue: UInt
 
@@ -83,52 +82,52 @@ open class RegularExpression {
 
 extension RegularExpression.Options {
     func xlate() -> NSRegularExpression.Options {
-        var o: NSRegularExpression.Options = []
-        if self.contains(.caseInsensitive) { o.insert(.caseInsensitive) }
+        var o: NSRegularExpression.Options = [] //@f:0
+        if self.contains(.caseInsensitive)            { o.insert(.caseInsensitive)            }
         if self.contains(.allowCommentsAndWhitespace) { o.insert(.allowCommentsAndWhitespace) }
-        if self.contains(.ignoreMetacharacters) { o.insert(.ignoreMetacharacters) }
-        if self.contains(.dotMatchesLineSeparators) { o.insert(.dotMatchesLineSeparators) }
-        if self.contains(.anchorsMatchLines) { o.insert(.anchorsMatchLines) }
-        if self.contains(.useUnixLineSeparators) { o.insert(.useUnixLineSeparators) }
-        if self.contains(.useUnicodeWordBoundaries) { o.insert(.useUnicodeWordBoundaries) }
-        return o
+        if self.contains(.ignoreMetacharacters)       { o.insert(.ignoreMetacharacters)       }
+        if self.contains(.dotMatchesLineSeparators)   { o.insert(.dotMatchesLineSeparators)   }
+        if self.contains(.anchorsMatchLines)          { o.insert(.anchorsMatchLines)          }
+        if self.contains(.useUnixLineSeparators)      { o.insert(.useUnixLineSeparators)      }
+        if self.contains(.useUnicodeWordBoundaries)   { o.insert(.useUnicodeWordBoundaries)   }
+        return o //@f:1
     }
 }
 
 extension NSRegularExpression.Options {
     func xlate() -> RegularExpression.Options {
-        var o: RegularExpression.Options = []
-        if self.contains(.caseInsensitive) { o.insert(.caseInsensitive) }
+        var o: RegularExpression.Options = [] //@f:0
+        if self.contains(.caseInsensitive)            { o.insert(.caseInsensitive)            }
         if self.contains(.allowCommentsAndWhitespace) { o.insert(.allowCommentsAndWhitespace) }
-        if self.contains(.ignoreMetacharacters) { o.insert(.ignoreMetacharacters) }
-        if self.contains(.dotMatchesLineSeparators) { o.insert(.dotMatchesLineSeparators) }
-        if self.contains(.anchorsMatchLines) { o.insert(.anchorsMatchLines) }
-        if self.contains(.useUnixLineSeparators) { o.insert(.useUnixLineSeparators) }
-        if self.contains(.useUnicodeWordBoundaries) { o.insert(.useUnicodeWordBoundaries) }
-        return o
+        if self.contains(.ignoreMetacharacters)       { o.insert(.ignoreMetacharacters)       }
+        if self.contains(.dotMatchesLineSeparators)   { o.insert(.dotMatchesLineSeparators)   }
+        if self.contains(.anchorsMatchLines)          { o.insert(.anchorsMatchLines)          }
+        if self.contains(.useUnixLineSeparators)      { o.insert(.useUnixLineSeparators)      }
+        if self.contains(.useUnicodeWordBoundaries)   { o.insert(.useUnicodeWordBoundaries)   }
+        return o //@f:1
     }
 }
 
 extension RegularExpression.MatchingOptions {
     func xlate() -> NSRegularExpression.MatchingOptions {
-        var o: NSRegularExpression.MatchingOptions = []
-        if self.contains(.reportProgress) { o.insert(.reportProgress) }
-        if self.contains(.reportCompletion) { o.insert(.reportCompletion) }
-        if self.contains(.anchored) { o.insert(.anchored) }
-        if self.contains(.withTransparentBounds) { o.insert(.withTransparentBounds) }
+        var o: NSRegularExpression.MatchingOptions = [] //@f:0
+        if self.contains(.reportProgress)         { o.insert(.reportProgress)         }
+        if self.contains(.reportCompletion)       { o.insert(.reportCompletion)       }
+        if self.contains(.anchored)               { o.insert(.anchored)               }
+        if self.contains(.withTransparentBounds)  { o.insert(.withTransparentBounds)  }
         if self.contains(.withoutAnchoringBounds) { o.insert(.withoutAnchoringBounds) }
-        return o
+        return o //@f:1
     }
 }
 
 extension RegularExpression.MatchingFlags {
     func xlate() -> NSRegularExpression.MatchingFlags {
-        var o: NSRegularExpression.MatchingFlags = []
-        if self.contains(.progress) { o.insert(.progress) }
-        if self.contains(.completed) { o.insert(.completed) }
-        if self.contains(.hitEnd) { o.insert(.hitEnd) }
-        if self.contains(.requiredEnd) { o.insert(.requiredEnd) }
+        var o: NSRegularExpression.MatchingFlags = [] //@f:0
+        if self.contains(.progress)      { o.insert(.progress)      }
+        if self.contains(.completed)     { o.insert(.completed)     }
+        if self.contains(.hitEnd)        { o.insert(.hitEnd)        }
+        if self.contains(.requiredEnd)   { o.insert(.requiredEnd)   }
         if self.contains(.internalError) { o.insert(.internalError) }
-        return o
+        return o //@f:1
     }
 }

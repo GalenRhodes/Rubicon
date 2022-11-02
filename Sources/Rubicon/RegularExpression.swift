@@ -21,13 +21,14 @@ import CoreFoundation
 open class RegularExpression {
 
     let regex: NSRegularExpression
-
-    public var pattern:               String { regex.pattern }
-    public var options:               RegularExpression.Options { regex.options.xlate() }
-    public var numberOfCaptureGroups: Int { regex.numberOfCaptureGroups }
+    //@f:0
+    public var pattern:               String                    { regex.pattern               }
+    public var options:               RegularExpression.Options { regex.options.xlate()       }
+    public var numberOfCaptureGroups: Int                       { regex.numberOfCaptureGroups }
+    //@f:1
 
     public init(pattern string: String, options: RegularExpression.Options = []) throws {
-        regex = try NSRegularExpression(pattern: string, options: options.xlate())
+        self.regex = try NSRegularExpression(pattern: string, options: options.xlate())
     }
 
     public convenience init?(pattern string: String, options: RegularExpression.Options = [], error: inout Error?) {
@@ -38,6 +39,101 @@ open class RegularExpression {
         catch let e {
             error = e
             return nil
+        }
+    }
+
+    public func numberOfMatches(in string: String, options: MatchingOptions = [], range: Range<String.Index>? = nil) -> Int {
+        regex.numberOfMatches(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange))
+    }
+
+    public func enumerateMatches(in string: String, options: MatchingOptions = [], range: Range<String.Index>? = nil, using block: (Match?, MatchingFlags, inout Bool) throws -> Void) rethrows {
+        try withoutActuallyEscaping(block) { _block in
+            var error: Error? = nil
+            regex.enumerateMatches(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange)) {
+                do {
+                    var stop: Bool = false
+                    try _block(Match(string, $0), $1.xlate(), &stop)
+                    $2.pointee = ObjCBool(stop)
+                }
+                catch let e {
+                    error = e
+                    $2.pointee = ObjCBool(true)
+                }
+            }
+            if let e = error { throw e }
+        }
+    }
+
+    public func rangeOfFirstMatch(in string: String, options: MatchingOptions = [], range: Range<String.Index>? = nil) -> Range<String.Index>? {
+        let r: NSRange = regex.rangeOfFirstMatch(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange))
+        guard r.location != NSNotFound else { return nil }
+        return Range<String.Index>(r, in: string)
+    }
+
+    public func matches(in string: String, options: MatchingOptions = [], range: Range<String.Index>? = nil) -> [Match] {
+        regex.matches(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange)).map { Match(string, $0)! }
+    }
+
+    public func firstMatch(in string: String, options: MatchingOptions = [], range: Range<String.Index>? = nil) -> Match? {
+        Match(string, regex.firstMatch(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange)))
+    }
+
+    public func stringByReplacingMatches(in string: String, options: MatchingOptions = [], range: Range<String.Index>? = nil, withTemplate tmpl: String) -> String {
+        regex.stringByReplacingMatches(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange), withTemplate: tmpl)
+    }
+
+    public func replaceMatches(in string: inout String, options: MatchingOptions = [], range: Range<String.Index>? = nil, withTemplate tmpl: String) -> Int {
+        let _string = NSMutableString(string: string)
+        let cc      = regex.replaceMatches(in: _string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange), withTemplate: tmpl)
+        string = String(_string)
+        return cc
+    }
+
+    public class func escapedTemplate(for string: String) -> String {
+        NSRegularExpression.escapedTemplate(for: string)
+    }
+
+    public class func escapedPattern(for string: String) -> String {
+        NSRegularExpression.escapedPattern(for: string)
+    }
+
+    public class Match: @unchecked Sendable, RandomAccessCollection {
+        //@f:0
+        public typealias Element = Group?
+        public typealias Index   = Int
+
+        public var range:      Range<String.Index> { groups[0]!.range     }
+        public var substring:  String              { groups[0]!.substring }
+        public var count:      Int                 { groups.count         }
+        public var startIndex: Index               { groups.startIndex    }
+        public var endIndex:   Index               { groups.endIndex      }
+        //@f:1
+
+        public subscript(position: Index) -> Element { groups[position] }
+
+        private let groups: [Element]
+
+        public init?(_ string: String, _ result: NSTextCheckingResult?) {
+            guard let result = result else { return nil }
+            var grps: [Element] = []
+            for i in (0 ..< result.numberOfRanges) {
+                grps.append(Group(i, string, result.range(at: i)))
+            }
+            self.groups = grps
+        }
+    }
+
+    public class Group: @unchecked Sendable {
+        public let range:     Range<String.Index>
+        public let substring: String
+        public let index:     Int
+
+        init?(_ index: Int, _ string: String, _ nsRange: NSRange) {
+            guard nsRange.location != NSNotFound else { return nil }
+            guard let r = Range<String.Index>(nsRange, in: string) else { fatalError() }
+            self.index = index
+            self.range = r
+            self.substring = String(string[r])
         }
     }
 
@@ -131,3 +227,16 @@ extension RegularExpression.MatchingFlags {
         return o //@f:1
     }
 }
+
+extension NSRegularExpression.MatchingFlags {
+    func xlate() -> RegularExpression.MatchingFlags {
+        var o: RegularExpression.MatchingFlags = [] //@f:0
+        if self.contains(.progress)      { o.insert(.progress)      }
+        if self.contains(.completed)     { o.insert(.completed)     }
+        if self.contains(.hitEnd)        { o.insert(.hitEnd)        }
+        if self.contains(.requiredEnd)   { o.insert(.requiredEnd)   }
+        if self.contains(.internalError) { o.insert(.internalError) }
+        return o //@f:1
+    }
+}
+

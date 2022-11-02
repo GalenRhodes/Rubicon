@@ -1,9 +1,9 @@
 /*===============================================================================================================================================================================*
  *     PROJECT: Rubicon
- *    FILENAME: NSRecursiveLock.swift
+ *    FILENAME: Date.swift
  *         IDE: AppCode
  *      AUTHOR: Galen Rhodes
- *        DATE: July 12, 2022
+ *        DATE: October 27, 2022
  *
  * Copyright © 2022 Project Galen. All rights reserved.
  *
@@ -17,12 +17,27 @@
 
 import Foundation
 import CoreFoundation
+#if canImport(Darwin)
+    import Darwin
+#elseif canImport(Glibc)
+    import Glibc
+#elseif canImport(WinSDK)
+    import WinSDK
+#endif
 
-extension NSRecursiveLock {
-
-    public func withLock<T>(_ action: () throws -> T) rethrows -> T {
-        lock()
-        defer { unlock() }
-        return try action()
-    }
+extension Date {
+    #if os(Windows)
+        @inlinable public func absoluteTimeSpec() -> DWORD? {
+            let ti: TimeInterval = timeIntervalSinceNow
+            guard ti > 0 else { return nil }
+            return DWORD(ti * OneSecondMillis)
+        }
+    #else
+        @inlinable public func absoluteTimeSpec() -> timespec? {
+            guard timeIntervalSinceNow > 0 else { return nil }
+            let timeInter: TimeInterval = timeIntervalSince1970
+            let seconds:   Double       = timeInter.rounded(.towardZero)
+            return timespec(tv_sec: Int(seconds), tv_nsec: Int((timeInter - seconds) * 1_000_000_000.0))
+        }
+    #endif
 }

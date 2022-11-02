@@ -29,9 +29,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Rewrite...">
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/ReadWriteLock.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/Date.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/NSRecursiveLock.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Locks.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/String.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/String.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +119,8 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Swift&quot;,
+    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -128,12 +132,17 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Rubicon">
-    <configuration default="true" type="Application" factoryName="Application">
+    <configuration default="true" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
+      <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
+        <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
+      </EXTENSION>
+      <embedded_app_extension_list />
       <method v="2">
-        <option name="Make" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.DocFixer" />
       <item itemvalue="Application.Rubicon" />
       <item itemvalue="XCTest.RubiconTests" />
     </list>
@@ -454,14 +463,16 @@
       <workItem from="1657372180239" duration="3600000" />
       <workItem from="1660061333412" duration="184000" />
       <workItem from="1664382101040" duration="38000" />
-      <workItem from="1664382381507" duration="1601000" />
-    </task>
-    <task id="LOCAL-00274" summary="Added test for `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`">
-      <created>1625236521882</created>
-      <option name="number" value="00274" />
-      <option name="presentableId" value="LOCAL-00274" />
-      <option name="project" value="LOCAL" />
-      <updated>1625236521883</updated>
+      <workItem from="1664382381507" duration="1691000" />
+      <workItem from="1666704012828" duration="1308000" />
+      <workItem from="1666706368703" duration="6650000" />
+      <workItem from="1666789021465" duration="3444000" />
+      <workItem from="1666871260012" duration="2871000" />
+      <workItem from="1667328153102" duration="392000" />
+      <workItem from="1667328646693" duration="562000" />
+      <workItem from="1667329267930" duration="3931000" />
+      <workItem from="1667391989151" duration="2821000" />
+      <workItem from="1667397474050" duration="5497000" />
     </task>
     <task id="LOCAL-00275" summary="Added StopWatch.">
       <created>1625761369297</created>
@@ -799,7 +810,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657626136949</updated>
     </task>
-    <option name="localTasksCounter" value="323" />
+    <task id="LOCAL-00323" summary="Rewrite...">
+      <created>1664383993622</created>
+      <option name="number" value="00323" />
+      <option name="presentableId" value="LOCAL-00323" />
+      <option name="project" value="LOCAL" />
+      <updated>1664383993622</updated>
+    </task>
+    <option name="localTasksCounter" value="324" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

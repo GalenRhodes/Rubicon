@@ -1,19 +1,24 @@
-/*===============================================================================================================================================================================*
- *     PROJECT: Rubicon
- *    FILENAME: RegularExpression.swift
- *         IDE: AppCode
- *      AUTHOR: Galen Rhodes
- *        DATE: July 09, 2022
- *
- * Copyright © 2022 Project Galen. All rights reserved.
- *
- * Permission to use, copy, modify, and distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this
- * permission notice appear in all copies.
- *
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO
- * EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
- * AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- *===============================================================================================================================================================================*/
+// ===========================================================================
+//     PROJECT: Rubicon
+//    FILENAME: RegularExpression.swift
+//         IDE: AppCode
+//      AUTHOR: Galen Rhodes
+//        DATE: July 09, 2022
+//
+// Copyright © 2022 Project Galen. All rights reserved.
+//
+// Permission to use, copy, modify, and distribute this software for any
+// purpose with or without fee is hereby granted, provided that the above
+// copyright notice and this permission notice appear in all copies.
+//
+// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+// WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+// MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+// SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+// WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+// ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
+// IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+// ===========================================================================
 
 import Foundation
 import CoreFoundation
@@ -21,11 +26,11 @@ import CoreFoundation
 open class RegularExpression {
 
     let regex: NSRegularExpression
-    //@f:0
+    /*@f:0*/
     public var pattern:               String                    { regex.pattern               }
     public var options:               RegularExpression.Options { regex.options.xlate()       }
     public var numberOfCaptureGroups: Int                       { regex.numberOfCaptureGroups }
-    //@f:1
+    /*@f:1*/
 
     public init(pattern string: String, options: RegularExpression.Options = []) throws {
         self.regex = try NSRegularExpression(pattern: string, options: options.xlate())
@@ -98,7 +103,7 @@ open class RegularExpression {
     }
 
     public class Match: @unchecked Sendable, RandomAccessCollection {
-        //@f:0
+        /*@f:0*/
         public typealias Element = Group?
         public typealias Index   = Int
 
@@ -107,7 +112,7 @@ open class RegularExpression {
         public var count:      Int                 { groups.count         }
         public var startIndex: Index               { groups.startIndex    }
         public var endIndex:   Index               { groups.endIndex      }
-        //@f:1
+        /*@f:1*/
 
         public subscript(position: Index) -> Element { groups[position] }
 
@@ -178,7 +183,7 @@ open class RegularExpression {
 
 extension RegularExpression.Options {
     func xlate() -> NSRegularExpression.Options {
-        var o: NSRegularExpression.Options = [] //@f:0
+        var o: NSRegularExpression.Options = [] /*@f:0*/
         if self.contains(.caseInsensitive)            { o.insert(.caseInsensitive)            }
         if self.contains(.allowCommentsAndWhitespace) { o.insert(.allowCommentsAndWhitespace) }
         if self.contains(.ignoreMetacharacters)       { o.insert(.ignoreMetacharacters)       }
@@ -186,13 +191,13 @@ extension RegularExpression.Options {
         if self.contains(.anchorsMatchLines)          { o.insert(.anchorsMatchLines)          }
         if self.contains(.useUnixLineSeparators)      { o.insert(.useUnixLineSeparators)      }
         if self.contains(.useUnicodeWordBoundaries)   { o.insert(.useUnicodeWordBoundaries)   }
-        return o //@f:1
+        return o /*@f:1*/
     }
 }
 
 extension NSRegularExpression.Options {
     func xlate() -> RegularExpression.Options {
-        var o: RegularExpression.Options = [] //@f:0
+        var o: RegularExpression.Options = [] /*@f:0*/
         if self.contains(.caseInsensitive)            { o.insert(.caseInsensitive)            }
         if self.contains(.allowCommentsAndWhitespace) { o.insert(.allowCommentsAndWhitespace) }
         if self.contains(.ignoreMetacharacters)       { o.insert(.ignoreMetacharacters)       }
@@ -200,43 +205,43 @@ extension NSRegularExpression.Options {
         if self.contains(.anchorsMatchLines)          { o.insert(.anchorsMatchLines)          }
         if self.contains(.useUnixLineSeparators)      { o.insert(.useUnixLineSeparators)      }
         if self.contains(.useUnicodeWordBoundaries)   { o.insert(.useUnicodeWordBoundaries)   }
-        return o //@f:1
+        return o /*@f:1*/
     }
 }
 
 extension RegularExpression.MatchingOptions {
     func xlate() -> NSRegularExpression.MatchingOptions {
-        var o: NSRegularExpression.MatchingOptions = [] //@f:0
+        var o: NSRegularExpression.MatchingOptions = [] /*@f:0*/
         if self.contains(.reportProgress)         { o.insert(.reportProgress)         }
         if self.contains(.reportCompletion)       { o.insert(.reportCompletion)       }
         if self.contains(.anchored)               { o.insert(.anchored)               }
         if self.contains(.withTransparentBounds)  { o.insert(.withTransparentBounds)  }
         if self.contains(.withoutAnchoringBounds) { o.insert(.withoutAnchoringBounds) }
-        return o //@f:1
+        return o /*@f:1*/
     }
 }
 
 extension RegularExpression.MatchingFlags {
     func xlate() -> NSRegularExpression.MatchingFlags {
-        var o: NSRegularExpression.MatchingFlags = [] //@f:0
+        var o: NSRegularExpression.MatchingFlags = [] /*@f:0*/
         if self.contains(.progress)      { o.insert(.progress)      }
         if self.contains(.completed)     { o.insert(.completed)     }
         if self.contains(.hitEnd)        { o.insert(.hitEnd)        }
         if self.contains(.requiredEnd)   { o.insert(.requiredEnd)   }
         if self.contains(.internalError) { o.insert(.internalError) }
-        return o //@f:1
+        return o /*@f:1*/
     }
 }
 
 extension NSRegularExpression.MatchingFlags {
     func xlate() -> RegularExpression.MatchingFlags {
-        var o: RegularExpression.MatchingFlags = [] //@f:0
+        var o: RegularExpression.MatchingFlags = [] /*@f:0*/
         if self.contains(.progress)      { o.insert(.progress)      }
         if self.contains(.completed)     { o.insert(.completed)     }
         if self.contains(.hitEnd)        { o.insert(.hitEnd)        }
         if self.contains(.requiredEnd)   { o.insert(.requiredEnd)   }
         if self.contains(.internalError) { o.insert(.internalError) }
-        return o //@f:1
+        return o /*@f:1*/
     }
 }
 

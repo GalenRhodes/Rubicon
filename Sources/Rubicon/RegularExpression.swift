@@ -102,6 +102,8 @@ open class RegularExpression {
         NSRegularExpression.escapedPattern(for: string)
     }
 
+    func foo2() -> Void {}
+
     public class Match: @unchecked Sendable, RandomAccessCollection {
         /*@f:0*/
         public typealias Element = Group?

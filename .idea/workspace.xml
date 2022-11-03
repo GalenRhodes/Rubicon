@@ -28,14 +28,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Rewrite...">
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/ReadWriteLock.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/Date.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/NSRecursiveLock.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Locks.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" afterDir="false" />
-    </list>
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Rewrite..." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -108,21 +101,21 @@
     <option name="showVisibilityIcons" value="true" />
     <option name="sortByType" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;OBJC.PRESERVED_TARGET_SELECTION&quot;: &quot;Rubicon&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Swift&quot;,
-    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "OBJC.PRESERVED_TARGET_SELECTION": "Rubicon",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cidr.known.project.marker": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "XcodeSettings",
+    "structure.view.defaults.are.configured": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Tests/RubiconTests/Files" />
@@ -472,14 +465,7 @@
       <workItem from="1667328646693" duration="562000" />
       <workItem from="1667329267930" duration="3931000" />
       <workItem from="1667391989151" duration="2821000" />
-      <workItem from="1667397474050" duration="5497000" />
-    </task>
-    <task id="LOCAL-00275" summary="Added StopWatch.">
-      <created>1625761369297</created>
-      <option name="number" value="00275" />
-      <option name="presentableId" value="LOCAL-00275" />
-      <option name="project" value="LOCAL" />
-      <updated>1625761369298</updated>
+      <workItem from="1667397474050" duration="7152000" />
     </task>
     <task id="LOCAL-00276" summary="Linux fixes.">
       <created>1625770198596</created>
@@ -817,7 +803,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664383993622</updated>
     </task>
-    <option name="localTasksCounter" value="324" />
+    <task id="LOCAL-00324" summary="Rewrite...">
+      <created>1667408753616</created>
+      <option name="number" value="00324" />
+      <option name="presentableId" value="LOCAL-00324" />
+      <option name="project" value="LOCAL" />
+      <updated>1667408753617</updated>
+    </task>
+    <option name="localTasksCounter" value="325" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -848,6 +841,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Bug fix in MarkInputStream." />
     <MESSAGE value="Deprecated `markUpdate()`. Renamed it to `markClear()`." />
@@ -875,6 +869,9 @@
     <MESSAGE value="Updated Readme file." />
     <MESSAGE value="Rewrite..." />
     <option name="LAST_COMMIT_MESSAGE" value="Rewrite..." />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

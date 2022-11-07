@@ -72,14 +72,6 @@ open class FilteredInputStream: InputStream {
         inputStream.close()
     }
 
-    open override func property(forKey key: PropertyKey) -> Any? {
-        inputStream.property(forKey: key)
-    }
-
-    open override func setProperty(_ property: Any?, forKey key: PropertyKey) -> Bool {
-        inputStream.setProperty(property, forKey: key)
-    }
-
     open override func schedule(in aRunLoop: RunLoop, forMode mode: RunLoop.Mode) {
         inputStream.schedule(in: aRunLoop, forMode: mode)
     }
@@ -89,6 +81,14 @@ open class FilteredInputStream: InputStream {
     }
 
     #if os(macOS) || os(tvOS) || os(watchOS) || os(iOS) || os(OSX)
+        open override func property(forKey key: PropertyKey) -> Any? {
+            inputStream.property(forKey: key)
+        }
+
+        open override func setProperty(_ property: Any?, forKey key: PropertyKey) -> Bool {
+            inputStream.setProperty(property, forKey: key)
+        }
+
         open override class func getBoundStreams(withBufferSize bufferSize: Int, inputStream: AutoreleasingUnsafeMutablePointer<InputStream?>?, outputStream: AutoreleasingUnsafeMutablePointer<OutputStream?>?) {
             InputStream.getBoundStreams(withBufferSize: bufferSize, inputStream: inputStream, outputStream: outputStream)
         }

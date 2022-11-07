@@ -28,10 +28,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Updated Readme file.">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Rubicon.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Rubicon.xml" afterDir="false" />
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Rewrite...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Package.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Package.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Experiments/main.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Experiments/main.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +55,7 @@
         <option value="C Header" />
       </list>
     </option>
+    <option name="SCHEME" value="Project" />
   </component>
   <component name="Git.Rebase.Settings">
     <option name="NEW_BASE" value="0.3.0" />
@@ -66,6 +67,11 @@
         <option name="title" value="All" />
       </GitPushTagMode>
     </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -76,14 +82,8 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/MarkInputStream.swift" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Extensions/Dictionary.swift" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Buffers/RingByteBuffer.swift" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/IConvCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleIConvCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Tools/Tools.swift" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/Streams/Character/SimpleStringCharInputStream.swift" root0="FORCE_HIGHLIGHTING" />
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="amon5vo6" />
@@ -107,11 +107,21 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;OBJC.PRESERVED_TARGET_SELECTION&quot;: &quot;Rubicon&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Swift&quot;,
+    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -122,15 +132,15 @@
       <recent name="$PROJECT_DIR$/Sources/semaphore" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DocFixer (Jazzy)">
+  <component name="RunManager" selected="XCTest.RubiconTests">
+    <configuration default="true" type="Application" factoryName="Application">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.DocFixer (Jazzy)" />
-      <item itemvalue="Application.DocFixer (swift-doc)" />
-      <item itemvalue="Application.DocFixer Remote" />
-      <item itemvalue="Application.Experiments" />
       <item itemvalue="Application.Rubicon" />
       <item itemvalue="XCTest.RubiconTests" />
-      <item itemvalue="XCTest.StringFormatTests" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -437,122 +447,34 @@
       <workItem from="1641317054602" duration="1037000" />
       <workItem from="1641646412920" duration="488000" />
       <workItem from="1642098663354" duration="731000" />
-      <workItem from="1645452556804" duration="57000" />
-      <workItem from="1657386129589" duration="40000" />
-      <workItem from="1657386312140" duration="29000" />
-      <workItem from="1657386507764" duration="4000" />
-    </task>
-    <task id="LOCAL-00268" summary="Deprecated `markUpdate()`. Renamed it to `markClear()`.">
-      <created>1624370677623</created>
-      <option name="number" value="00268" />
-      <option name="presentableId" value="LOCAL-00268" />
-      <option name="project" value="LOCAL" />
-      <updated>1624370677623</updated>
-    </task>
-    <task id="LOCAL-00269" summary="Added a bunch of file pathname utilities.">
-      <created>1624650473661</created>
-      <option name="number" value="00269" />
-      <option name="presentableId" value="LOCAL-00269" />
-      <option name="project" value="LOCAL" />
-      <updated>1624650473662</updated>
-    </task>
-    <task id="LOCAL-00270" summary="New general purpose errors added.">
-      <created>1624975330294</created>
-      <option name="number" value="00270" />
-      <option name="presentableId" value="LOCAL-00270" />
-      <option name="project" value="LOCAL" />
-      <updated>1624975330295</updated>
-    </task>
-    <task id="LOCAL-00271" summary="Added extension Dictionary.remapValues(_:).">
-      <created>1625147799095</created>
-      <option name="number" value="00271" />
-      <option name="presentableId" value="LOCAL-00271" />
-      <option name="project" value="LOCAL" />
-      <updated>1625147799095</updated>
-    </task>
-    <task id="LOCAL-00272" summary="Added `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`">
-      <created>1625150700564</created>
-      <option name="number" value="00272" />
-      <option name="presentableId" value="LOCAL-00272" />
-      <option name="project" value="LOCAL" />
-      <updated>1625150700564</updated>
-    </task>
-    <task id="LOCAL-00273" summary="Added `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`">
-      <created>1625150716028</created>
-      <option name="number" value="00273" />
-      <option name="presentableId" value="LOCAL-00273" />
-      <option name="project" value="LOCAL" />
-      <updated>1625150716028</updated>
-    </task>
-    <task id="LOCAL-00274" summary="Added test for `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`">
-      <created>1625236521882</created>
-      <option name="number" value="00274" />
-      <option name="presentableId" value="LOCAL-00274" />
-      <option name="project" value="LOCAL" />
-      <updated>1625236521883</updated>
-    </task>
-    <task id="LOCAL-00275" summary="Added StopWatch.">
-      <created>1625761369297</created>
-      <option name="number" value="00275" />
-      <option name="presentableId" value="LOCAL-00275" />
-      <option name="project" value="LOCAL" />
-      <updated>1625761369298</updated>
-    </task>
-    <task id="LOCAL-00276" summary="Linux fixes.">
-      <created>1625770198596</created>
-      <option name="number" value="00276" />
-      <option name="presentableId" value="LOCAL-00276" />
-      <option name="project" value="LOCAL" />
-      <updated>1625770198597</updated>
-    </task>
-    <task id="LOCAL-00277" summary="Linux fixes.">
-      <created>1625770353779</created>
-      <option name="number" value="00277" />
-      <option name="presentableId" value="LOCAL-00277" />
-      <option name="project" value="LOCAL" />
-      <updated>1625770353779</updated>
-    </task>
-    <task id="LOCAL-00278" summary="Linux fixes.">
-      <created>1625771280456</created>
-      <option name="number" value="00278" />
-      <option name="presentableId" value="LOCAL-00278" />
-      <option name="project" value="LOCAL" />
-      <updated>1625771280456</updated>
-    </task>
-    <task id="LOCAL-00279" summary="Blah, blah, blah.">
-      <created>1625844663176</created>
-      <option name="number" value="00279" />
-      <option name="presentableId" value="LOCAL-00279" />
-      <option name="project" value="LOCAL" />
-      <updated>1625844663176</updated>
-    </task>
-    <task id="LOCAL-00280" summary="Blah, blah, blah.">
-      <created>1625844678565</created>
-      <option name="number" value="00280" />
-      <option name="presentableId" value="LOCAL-00280" />
-      <option name="project" value="LOCAL" />
-      <updated>1625844678565</updated>
-    </task>
-    <task id="LOCAL-00281" summary="Blah, blah, blah.">
-      <created>1627568209446</created>
-      <option name="number" value="00281" />
-      <option name="presentableId" value="LOCAL-00281" />
-      <option name="project" value="LOCAL" />
-      <updated>1627568209447</updated>
-    </task>
-    <task id="LOCAL-00282" summary="Blah, blah, blah.">
-      <created>1627568315667</created>
-      <option name="number" value="00282" />
-      <option name="presentableId" value="LOCAL-00282" />
-      <option name="project" value="LOCAL" />
-      <updated>1627568315667</updated>
-    </task>
-    <task id="LOCAL-00283" summary="Updated to latest version of Chadakoin.">
-      <created>1627587954669</created>
-      <option name="number" value="00283" />
-      <option name="presentableId" value="LOCAL-00283" />
-      <option name="project" value="LOCAL" />
-      <updated>1627587954669</updated>
+      <workItem from="1645452556804" duration="789000" />
+      <workItem from="1645453489316" duration="2767000" />
+      <workItem from="1645624034859" duration="3935000" />
+      <workItem from="1645969548614" duration="13938000" />
+      <workItem from="1647186868565" duration="3254000" />
+      <workItem from="1652719546345" duration="1211000" />
+      <workItem from="1652722409789" duration="317000" />
+      <workItem from="1654190987869" duration="101000" />
+      <workItem from="1657297080443" duration="3784000" />
+      <workItem from="1657372180239" duration="3600000" />
+      <workItem from="1660061333412" duration="184000" />
+      <workItem from="1664382101040" duration="38000" />
+      <workItem from="1664382381507" duration="1691000" />
+      <workItem from="1666704012828" duration="1308000" />
+      <workItem from="1666706368703" duration="6650000" />
+      <workItem from="1666789021465" duration="3444000" />
+      <workItem from="1666871260012" duration="2871000" />
+      <workItem from="1667328153102" duration="392000" />
+      <workItem from="1667328646693" duration="562000" />
+      <workItem from="1667329267930" duration="3931000" />
+      <workItem from="1667391989151" duration="2821000" />
+      <workItem from="1667397474050" duration="14663000" />
+      <workItem from="1667567195566" duration="115000" />
+      <workItem from="1667567322583" duration="956000" />
+      <workItem from="1667568429242" duration="646000" />
+      <workItem from="1667652190915" duration="13632000" />
+      <workItem from="1667677686287" duration="5641000" />
+      <workItem from="1667826290640" duration="2359000" />
     </task>
     <task id="LOCAL-00284" summary="Made sure MarkInputStream.getProperty(forKey:) passes down to underlying input stream.">
       <created>1627590033441</created>
@@ -785,7 +707,119 @@
       <option name="project" value="LOCAL" />
       <updated>1642099507003</updated>
     </task>
-    <option name="localTasksCounter" value="317" />
+    <task id="LOCAL-00317" summary="Updated Readme file.">
+      <created>1645452682819</created>
+      <option name="number" value="00317" />
+      <option name="presentableId" value="LOCAL-00317" />
+      <option name="project" value="LOCAL" />
+      <updated>1645452682819</updated>
+    </task>
+    <task id="LOCAL-00318" summary="Updated Readme file.">
+      <created>1657317124647</created>
+      <option name="number" value="00318" />
+      <option name="presentableId" value="LOCAL-00318" />
+      <option name="project" value="LOCAL" />
+      <updated>1657317124648</updated>
+    </task>
+    <task id="LOCAL-00319" summary="Updated Readme file.">
+      <created>1657372203901</created>
+      <option name="number" value="00319" />
+      <option name="presentableId" value="LOCAL-00319" />
+      <option name="project" value="LOCAL" />
+      <updated>1657372203902</updated>
+    </task>
+    <task id="LOCAL-00320" summary="Updated Readme file.">
+      <created>1657372291350</created>
+      <option name="number" value="00320" />
+      <option name="presentableId" value="LOCAL-00320" />
+      <option name="project" value="LOCAL" />
+      <updated>1657372291350</updated>
+    </task>
+    <task id="LOCAL-00321" summary="Rewrite...">
+      <created>1657468382228</created>
+      <option name="number" value="00321" />
+      <option name="presentableId" value="LOCAL-00321" />
+      <option name="project" value="LOCAL" />
+      <updated>1657468382228</updated>
+    </task>
+    <task id="LOCAL-00322" summary="Rewrite...">
+      <created>1657626136949</created>
+      <option name="number" value="00322" />
+      <option name="presentableId" value="LOCAL-00322" />
+      <option name="project" value="LOCAL" />
+      <updated>1657626136949</updated>
+    </task>
+    <task id="LOCAL-00323" summary="Rewrite...">
+      <created>1664383993622</created>
+      <option name="number" value="00323" />
+      <option name="presentableId" value="LOCAL-00323" />
+      <option name="project" value="LOCAL" />
+      <updated>1664383993622</updated>
+    </task>
+    <task id="LOCAL-00324" summary="Rewrite...">
+      <created>1667408753616</created>
+      <option name="number" value="00324" />
+      <option name="presentableId" value="LOCAL-00324" />
+      <option name="project" value="LOCAL" />
+      <updated>1667408753617</updated>
+    </task>
+    <task id="LOCAL-00325" summary="Rewrite...">
+      <created>1667477996471</created>
+      <option name="number" value="00325" />
+      <option name="presentableId" value="LOCAL-00325" />
+      <option name="project" value="LOCAL" />
+      <updated>1667477996471</updated>
+    </task>
+    <task id="LOCAL-00326" summary="Rewrite...">
+      <created>1667479595470</created>
+      <option name="number" value="00326" />
+      <option name="presentableId" value="LOCAL-00326" />
+      <option name="project" value="LOCAL" />
+      <updated>1667479595470</updated>
+    </task>
+    <task id="LOCAL-00327" summary="Rewrite...">
+      <created>1667485016602</created>
+      <option name="number" value="00327" />
+      <option name="presentableId" value="LOCAL-00327" />
+      <option name="project" value="LOCAL" />
+      <updated>1667485016602</updated>
+    </task>
+    <task id="LOCAL-00328" summary="Rewrite...">
+      <created>1667486528234</created>
+      <option name="number" value="00328" />
+      <option name="presentableId" value="LOCAL-00328" />
+      <option name="project" value="LOCAL" />
+      <updated>1667486528234</updated>
+    </task>
+    <task id="LOCAL-00329" summary="Rewrite...">
+      <created>1667568682235</created>
+      <option name="number" value="00329" />
+      <option name="presentableId" value="LOCAL-00329" />
+      <option name="project" value="LOCAL" />
+      <updated>1667568682235</updated>
+    </task>
+    <task id="LOCAL-00330" summary="Rewrite...">
+      <created>1667569036606</created>
+      <option name="number" value="00330" />
+      <option name="presentableId" value="LOCAL-00330" />
+      <option name="project" value="LOCAL" />
+      <updated>1667569036606</updated>
+    </task>
+    <task id="LOCAL-00331" summary="Rewrite...">
+      <created>1667652220827</created>
+      <option name="number" value="00331" />
+      <option name="presentableId" value="LOCAL-00331" />
+      <option name="project" value="LOCAL" />
+      <updated>1667652220827</updated>
+    </task>
+    <task id="LOCAL-00332" summary="Rewrite...">
+      <created>1667828288217</created>
+      <option name="number" value="00332" />
+      <option name="presentableId" value="LOCAL-00332" />
+      <option name="project" value="LOCAL" />
+      <updated>1667828288217</updated>
+    </task>
+    <option name="localTasksCounter" value="333" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -802,7 +836,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="1.0" />
                       </list>
                     </value>
                   </entry>
@@ -816,8 +850,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added StringProtocol.lastIndex? property." />
     <MESSAGE value="Bug fix in MarkInputStream." />
     <MESSAGE value="Deprecated `markUpdate()`. Renamed it to `markClear()`." />
     <MESSAGE value="Added a bunch of file pathname utilities." />
@@ -842,7 +876,11 @@
     <MESSAGE value="Clean up" />
     <MESSAGE value="syncIterate" />
     <MESSAGE value="Updated Readme file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated Readme file." />
+    <MESSAGE value="Rewrite..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Rewrite..." />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

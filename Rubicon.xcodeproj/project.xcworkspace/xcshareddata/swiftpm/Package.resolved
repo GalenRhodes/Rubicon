@@ -20,15 +20,6 @@
         }
       },
       {
-        "package": "ReadWriteLock",
-        "repositoryURL": "https://github.com/GalenRhodes/ReadWriteLock.git",
-        "state": {
-          "branch": null,
-          "revision": "5e0834a0d461366268eaa557207f45fa3816d727",
-          "version": "1.0.0"
-        }
-      },
-      {
         "package": "RingBuffer",
         "repositoryURL": "https://github.com/GalenRhodes/RingBuffer.git",
         "state": {

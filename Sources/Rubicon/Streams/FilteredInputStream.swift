@@ -88,7 +88,9 @@ open class FilteredInputStream: InputStream {
         inputStream.remove(from: aRunLoop, forMode: mode)
     }
 
-    open override class func getBoundStreams(withBufferSize bufferSize: Int, inputStream: AutoreleasingUnsafeMutablePointer<InputStream?>?, outputStream: AutoreleasingUnsafeMutablePointer<OutputStream?>?) {
-        InputStream.getBoundStreams(withBufferSize: bufferSize, inputStream: inputStream, outputStream: outputStream)
-    }
+    #if os(macOS) || os(tvOS) || os(watchOS) || os(iOS) || os(OSX)
+        open override class func getBoundStreams(withBufferSize bufferSize: Int, inputStream: AutoreleasingUnsafeMutablePointer<InputStream?>?, outputStream: AutoreleasingUnsafeMutablePointer<OutputStream?>?) {
+            InputStream.getBoundStreams(withBufferSize: bufferSize, inputStream: inputStream, outputStream: outputStream)
+        }
+    #endif
 }

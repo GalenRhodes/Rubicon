@@ -1,34 +1,32 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "Chadakoin",
-        "repositoryURL": "https://github.com/GalenRhodes/Chadakoin.git",
-        "state": {
-          "branch": null,
-          "revision": "94f2d763da44399385e679bd6a606ab7a5f9a2cb",
-          "version": "1.0.5"
-        }
-      },
-      {
-        "package": "PGDocFixer",
-        "repositoryURL": "https://github.com/GalenRhodes/PGDocFixer.git",
-        "state": {
-          "branch": null,
-          "revision": "9a5f8b761ddaaadb883fc01f733b5fcbf46d2b3a",
-          "version": "1.0.11"
-        }
-      },
-      {
-        "package": "RingBuffer",
-        "repositoryURL": "https://github.com/GalenRhodes/RingBuffer.git",
-        "state": {
-          "branch": null,
-          "revision": "6e2942abcb75b1edcda2e2d15c5210f8542e92e2",
-          "version": "1.0.12"
-        }
+  "pins" : [
+    {
+      "identity" : "chadakoin",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/GalenRhodes/Chadakoin.git",
+      "state" : {
+        "revision" : "94f2d763da44399385e679bd6a606ab7a5f9a2cb",
+        "version" : "1.0.5"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "pgdocfixer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/GalenRhodes/PGDocFixer.git",
+      "state" : {
+        "revision" : "9a5f8b761ddaaadb883fc01f733b5fcbf46d2b3a",
+        "version" : "1.0.11"
+      }
+    },
+    {
+      "identity" : "ringbuffer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/GalenRhodes/RingBuffer.git",
+      "state" : {
+        "revision" : "6e2942abcb75b1edcda2e2d15c5210f8542e92e2",
+        "version" : "1.0.12"
+      }
+    }
+  ],
+  "version" : 2
 }

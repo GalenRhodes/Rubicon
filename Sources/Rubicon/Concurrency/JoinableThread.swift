@@ -40,10 +40,12 @@ open class JoinableThread {
         get { thread.name }
         set { thread.name = newValue }
     }
-    public var threadPriority:   Double {
-        get { thread.threadPriority }
-        set { thread.threadPriority = newValue }
-    }
+    #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS) || os(OSX)
+        public var threadPriority: Double {
+            get { thread.threadPriority }
+            set { thread.threadPriority = newValue }
+        }
+    #endif
     public var qualityOfService: QualityOfService {
         get { thread.qualityOfService }
         set { thread.qualityOfService = newValue }
@@ -53,19 +55,33 @@ open class JoinableThread {
         set { thread.stackSize = newValue }
     }
 
-    public init(name: String? = nil, threadPriority: Double? = nil, qualityOfService: QualityOfService? = nil) {
-        block = {}
-        thread.name = name
-        if let p = threadPriority { thread.threadPriority = p }
-        if let q = qualityOfService { thread.qualityOfService = q }
-    }
+    #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS) || os(OSX)
+        public init(name: String? = nil, threadPriority: Double? = nil, qualityOfService: QualityOfService? = nil) {
+            block = {}
+            thread.name = name
+            if let p = threadPriority { thread.threadPriority = p }
+            if let q = qualityOfService { thread.qualityOfService = q }
+        }
 
-    public init(name: String? = nil, threadPriority: Double? = nil, qualityOfService: QualityOfService? = nil, _ block: @escaping () -> Void) {
-        self.block = block
-        thread.name = name
-        if let p = threadPriority { thread.threadPriority = p }
-        if let q = qualityOfService { thread.qualityOfService = q }
-    }
+        public init(name: String? = nil, threadPriority: Double? = nil, qualityOfService: QualityOfService? = nil, _ block: @escaping () -> Void) {
+            self.block = block
+            thread.name = name
+            if let p = threadPriority { thread.threadPriority = p }
+            if let q = qualityOfService { thread.qualityOfService = q }
+        }
+    #else
+        public init(name: String? = nil, qualityOfService: QualityOfService? = nil) {
+            block = {}
+            thread.name = name
+            if let q = qualityOfService { thread.qualityOfService = q }
+        }
+
+        public init(name: String? = nil, qualityOfService: QualityOfService? = nil, _ block: @escaping () -> Void) {
+            self.block = block
+            thread.name = name
+            if let q = qualityOfService { thread.qualityOfService = q }
+        }
+    #endif
 
     public func start() {
         _state.withLock {

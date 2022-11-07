@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.7
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -7,24 +7,21 @@ import PackageDescription
 let package = Package(
     name: "Rubicon",
     platforms: [
-        .macOS(.v10_15),
-        .tvOS(.v13),
-        .iOS(.v13),
-        .watchOS(.v6),
+        .macOS(.v13),
+        .tvOS(.v16),
+        .iOS(.v16),
+        .watchOS(.v9),
     ],
     products: [
         .library(name: "Rubicon", targets: [ "Rubicon", ]),
         .executable(name: "Experiments", targets: [ "Experiments" ]),
     ],
     dependencies: [
-        //.package(name: "RingBuffer", url: "https://github.com/GalenRhodes/RingBuffer", .upToNextMajor(from: "1.0.12")),
-        //.package(name: "Chadakoin", url: "https://github.com/GalenRhodes/Chadakoin", .upToNextMinor(from: "1.0.5")),
     ],
     targets: [
         .systemLibrary(name: "iconv"),
         .target(
             name: "Rubicon",
-            //dependencies: [ "RingBuffer", "iconv", "Chadakoin", ],
             dependencies: [ "iconv", ],
             exclude: [ "Info.plist", ],
             linkerSettings: [

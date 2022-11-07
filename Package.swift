@@ -17,14 +17,15 @@ let package = Package(
         .executable(name: "Experiments", targets: [ "Experiments" ]),
     ],
     dependencies: [
-        .package(name: "RingBuffer", url: "https://github.com/GalenRhodes/RingBuffer", .upToNextMajor(from: "1.0.12")),
-        .package(name: "Chadakoin", url: "https://github.com/GalenRhodes/Chadakoin", .upToNextMinor(from: "1.0.5")),
+        //.package(name: "RingBuffer", url: "https://github.com/GalenRhodes/RingBuffer", .upToNextMajor(from: "1.0.12")),
+        //.package(name: "Chadakoin", url: "https://github.com/GalenRhodes/Chadakoin", .upToNextMinor(from: "1.0.5")),
     ],
     targets: [
         .systemLibrary(name: "iconv"),
         .target(
             name: "Rubicon",
-            dependencies: [ "RingBuffer", "iconv", "Chadakoin", ],
+            //dependencies: [ "RingBuffer", "iconv", "Chadakoin", ],
+            dependencies: [ "iconv", ],
             exclude: [ "Info.plist", ],
             linkerSettings: [
                 .linkedLibrary("iconv", .when( platforms: [ .macOS, .iOS, .tvOS, .watchOS, ])),

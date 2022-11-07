@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,24 +23,13 @@
 		1117DB0EF7385809618DB6EF /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DC7961E78DA424D17468 /* ReadWriteLock.swift */; };
 		1117DDCB50D9601800106781 /* IConvError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D3616D48CD0F47F4A44F /* IConvError.swift */; };
 		1117DF64007BBAB12CA3FB35 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DE2F188BA6C52EBD7572 /* Date.swift */; };
-		832AC49A26B2D83E00A3DB9F /* Chadakoin in Frameworks */ = {isa = PBXBuildFile; productRef = 832AC49926B2D83E00A3DB9F /* Chadakoin */; };
 		8398BC14266A6CB200671FE0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8398BC13266A6CB200671FE0 /* main.swift */; };
 		8398BC18266A6D3D00671FE0 /* Rubicon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C67A72250EC02000C0F21E /* Rubicon.framework */; };
 		83C67A7C250EC02000C0F21E /* Rubicon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C67A72250EC02000C0F21E /* Rubicon.framework */; };
-		83C67AED250EC3CF00C0F21E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C67AEB250EC3C200C0F21E /* main.swift */; };
-		83C7E7C2263879E500F3C28E /* RingBuffer in Frameworks */ = {isa = PBXBuildFile; productRef = 83BA732E254ABED0009B8351 /* RingBuffer */; };
-		83C7E7C3263879E500F3C28E /* PGDocFixer in Frameworks */ = {isa = PBXBuildFile; productRef = 83C67AEF250EC40E00C0F21E /* PGDocFixer */; };
 		83F8D66925C47EC0004DD445 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 83F8D66825C47E99004DD445 /* libiconv.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		83490117252E0FE900D67809 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83C67A69250EC02000C0F21E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 83C67A71250EC02000C0F21E;
-			remoteInfo = Rubicon;
-		};
 		8398BC1A266A6D3D00671FE0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83C67A69250EC02000C0F21E /* Project object */;
@@ -59,15 +48,6 @@
 
 /* Begin PBXCopyFilesBuildPhase section */
 		8398BC0F266A6CB200671FE0 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-		83C67AE2250EC39F00C0F21E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -126,7 +106,6 @@
 		83C67A90250EC15200C0F21E /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		83C67AD1250EC1F200C0F21E /* LinuxMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinuxMain.swift; sourceTree = "<group>"; };
 		83C67ADE250EC34B00C0F21E /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		83C67AE4250EC39F00C0F21E /* DocFixer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DocFixer; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C67AEB250EC3C200C0F21E /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		83F8D66825C47E99004DD445 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -144,8 +123,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83C7E7C2263879E500F3C28E /* RingBuffer in Frameworks */,
-				832AC49A26B2D83E00A3DB9F /* Chadakoin in Frameworks */,
 				83F8D66925C47EC0004DD445 /* libiconv.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,14 +132,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				83C67A7C250EC02000C0F21E /* Rubicon.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		83C67AE1250EC39F00C0F21E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83C7E7C3263879E500F3C28E /* PGDocFixer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +267,6 @@
 			children = (
 				83C67A72250EC02000C0F21E /* Rubicon.framework */,
 				83C67A7B250EC02000C0F21E /* RubiconTests.xctest */,
-				83C67AE4250EC39F00C0F21E /* DocFixer */,
 				8398BC11266A6CB200671FE0 /* Experiments */,
 			);
 			name = Products;
@@ -409,8 +377,6 @@
 			);
 			name = Rubicon;
 			packageProductDependencies = (
-				83BA732E254ABED0009B8351 /* RingBuffer */,
-				832AC49926B2D83E00A3DB9F /* Chadakoin */,
 			);
 			productName = Rubicon;
 			productReference = 83C67A72250EC02000C0F21E /* Rubicon.framework */;
@@ -436,27 +402,6 @@
 			productReference = 83C67A7B250EC02000C0F21E /* RubiconTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		83C67AE3250EC39F00C0F21E /* DocFixer */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 83C67AE8250EC39F00C0F21E /* Build configuration list for PBXNativeTarget "DocFixer" */;
-			buildPhases = (
-				83C67AE0250EC39F00C0F21E /* Sources */,
-				83C67AE1250EC39F00C0F21E /* Frameworks */,
-				83C67AE2250EC39F00C0F21E /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				83490118252E0FE900D67809 /* PBXTargetDependency */,
-			);
-			name = DocFixer;
-			packageProductDependencies = (
-				83C67AEF250EC40E00C0F21E /* PGDocFixer */,
-			);
-			productName = DocFixer;
-			productReference = 83C67AE4250EC39F00C0F21E /* DocFixer */;
-			productType = "com.apple.product-type.tool";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -477,9 +422,6 @@
 					83C67A7A250EC02000C0F21E = {
 						CreatedOnToolsVersion = 11.7;
 					};
-					83C67AE3250EC39F00C0F21E = {
-						CreatedOnToolsVersion = 11.7;
-					};
 				};
 			};
 			buildConfigurationList = 83C67A6C250EC02000C0F21E /* Build configuration list for PBXProject "Rubicon" */;
@@ -492,9 +434,6 @@
 			);
 			mainGroup = 83C67A68250EC02000C0F21E;
 			packageReferences = (
-				83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer" */,
-				83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer" */,
-				832AC49826B2D83E00A3DB9F /* XCRemoteSwiftPackageReference "Chadakoin" */,
 			);
 			productRefGroup = 83C67A73250EC02000C0F21E /* Products */;
 			projectDirPath = "";
@@ -502,7 +441,6 @@
 			targets = (
 				83C67A71250EC02000C0F21E /* Rubicon */,
 				83C67A7A250EC02000C0F21E /* RubiconTests */,
-				83C67AE3250EC39F00C0F21E /* DocFixer */,
 				8398BC10266A6CB200671FE0 /* Experiments */,
 			);
 		};
@@ -562,22 +500,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83C67AE0250EC39F00C0F21E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83C67AED250EC3CF00C0F21E /* main.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		83490118252E0FE900D67809 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 83C67A71250EC02000C0F21E /* Rubicon */;
-			targetProxy = 83490117252E0FE900D67809 /* PBXContainerItemProxy */;
-		};
 		8398BC1B266A6D3D00671FE0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 83C67A71250EC02000C0F21E /* Rubicon */;
@@ -855,34 +780,6 @@
 			};
 			name = Release;
 		};
-		83C67AE9250EC39F00C0F21E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
-				ENABLE_HARDENED_RUNTIME = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_DISABLE_SAFETY_CHECKS = NO;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		83C67AEA250EC39F00C0F21E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = Q5XWZ7S7E9;
-				ENABLE_HARDENED_RUNTIME = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_DISABLE_SAFETY_CHECKS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -922,61 +819,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83C67AE8250EC39F00C0F21E /* Build configuration list for PBXNativeTarget "DocFixer" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				83C67AE9250EC39F00C0F21E /* Debug */,
-				83C67AEA250EC39F00C0F21E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		832AC49826B2D83E00A3DB9F /* XCRemoteSwiftPackageReference "Chadakoin" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/GalenRhodes/Chadakoin.git";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 1.0.5;
-			};
-		};
-		83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/GalenRhodes/RingBuffer.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.12;
-			};
-		};
-		83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/GalenRhodes/PGDocFixer.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		832AC49926B2D83E00A3DB9F /* Chadakoin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 832AC49826B2D83E00A3DB9F /* XCRemoteSwiftPackageReference "Chadakoin" */;
-			productName = Chadakoin;
-		};
-		83BA732E254ABED0009B8351 /* RingBuffer */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 83BA732D254ABED0009B8351 /* XCRemoteSwiftPackageReference "RingBuffer" */;
-			productName = RingBuffer;
-		};
-		83C67AEF250EC40E00C0F21E /* PGDocFixer */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 83C67AEE250EC40E00C0F21E /* XCRemoteSwiftPackageReference "PGDocFixer" */;
-			productName = PGDocFixer;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83C67A69250EC02000C0F21E /* Project object */;
 }

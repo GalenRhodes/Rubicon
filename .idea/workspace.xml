@@ -29,7 +29,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Rewrite...">
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/JoinableThread.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/LockedValue.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/Process.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConv.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConvError.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/String.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/String.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Functions.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Functions.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/RubiconTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/RubiconTests/RubiconTests.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +139,12 @@
       <recent name="$PROJECT_DIR$/Sources/semaphore" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Rubicon">
+  <component name="RunManager" selected="XCTest.RubiconTests">
+    <configuration default="true" type="Application" factoryName="Application">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Rubicon" />
       <item itemvalue="XCTest.RubiconTests" />
@@ -465,14 +479,9 @@
       <workItem from="1667567195566" duration="115000" />
       <workItem from="1667567322583" duration="956000" />
       <workItem from="1667568429242" duration="646000" />
-      <workItem from="1667652190915" duration="12000" />
-    </task>
-    <task id="LOCAL-00282" summary="Blah, blah, blah.">
-      <created>1627568315667</created>
-      <option name="number" value="00282" />
-      <option name="presentableId" value="LOCAL-00282" />
-      <option name="project" value="LOCAL" />
-      <updated>1627568315667</updated>
+      <workItem from="1667652190915" duration="13632000" />
+      <workItem from="1667677686287" duration="5641000" />
+      <workItem from="1667826290640" duration="1967000" />
     </task>
     <task id="LOCAL-00283" summary="Updated to latest version of Chadakoin.">
       <created>1627587954669</created>
@@ -810,7 +819,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667569036606</updated>
     </task>
-    <option name="localTasksCounter" value="331" />
+    <task id="LOCAL-00331" summary="Rewrite...">
+      <created>1667652220827</created>
+      <option name="number" value="00331" />
+      <option name="presentableId" value="LOCAL-00331" />
+      <option name="project" value="LOCAL" />
+      <updated>1667652220827</updated>
+    </task>
+    <option name="localTasksCounter" value="332" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -1,9 +1,9 @@
 // ===========================================================================
 //     PROJECT: Rubicon
-//    FILENAME: RubiconTests.swift
+//    FILENAME: IConvError.swift
 //         IDE: AppCode
 //      AUTHOR: Galen Rhodes
-//        DATE: July 09, 2022
+//        DATE: November 05, 2022
 //
 // Copyright © 2022 Project Galen. All rights reserved.
 //
@@ -20,34 +20,12 @@
 // IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 // ===========================================================================
 
-import XCTest
-@testable import Rubicon
+import Foundation
 
-let testFilesDir: String = "Tests/RubiconTests/Files"
-let testFile:     String = "\(testFilesDir)/Test_UTF-8.xml"
-
-public class RubiconTests: XCTestCase {
-
-    public override func setUp() {}
-
-    public override func tearDown() {}
-
-    public func testIConvList() {
-        do {
-            let list: [String] = try IConv.getEncodingList()
-
-            for s in list {
-                print(s)
-            }
-        }
-        catch let error {
-            print(error)
-        }
-    }
-
-    #if !(os(macOS) || os(tvOS) || os(iOS) || os(watchOS))
-        public static var allTests: [(String, (RubiconTests) -> () throws -> Void)] {
-            [ ("RubiconTests", testIConvList), ]
-        }
-    #endif
+public enum IConvError: Error {
+    case NoAvailableFileDescriptors
+    case TooManyFilesOpen
+    case InsufficientMemory
+    case UnknownCharacterEncoding
+    case UnknownError(code: Int32)
 }

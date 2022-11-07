@@ -38,3 +38,12 @@ import CoreFoundation
     return try notNilAction(value)
 }
 
+public func isValue<T>(_ value: T, in values: T...) -> Bool where T: Equatable {
+    for v in values { if v == value { return true } }
+    return false
+}
+
+public func isObject<T>(_ object: T, in objects: T...) -> Bool where T: AnyObject {
+    for o in objects { if o === object { return true } }
+    return false
+}

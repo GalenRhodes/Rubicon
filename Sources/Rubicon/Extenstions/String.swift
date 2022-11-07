@@ -163,4 +163,36 @@ extension String {
     public func charAt(utf16Offset i: Int) -> Character {
         self[StringIndex(utf16Offset: i, in: self)]
     }
+
+    public func split(pattern: String, limit: Int = -1) -> [String] {
+        guard limit != 1 && self != "" else { return [ self ] }
+
+        var error:     Error?                = nil
+        var list:      [Range<String.Index>] = []
+        var lastIndex: String.Index          = startIndex
+        let trimEmpty: Bool                  = (limit < 0)
+
+        guard let regex = RegularExpression(pattern: pattern, error: &error) else {
+            if let e = error { fatalError(e.localizedDescription) }
+            fatalError("Invalid Pattern: \(pattern)")
+        }
+
+        regex.enumerateMatches(in: self) { match, _, stop in
+            guard let match = match else { return }
+            list.append(lastIndex ..< match.range.lowerBound)
+            lastIndex = match.range.upperBound
+            if (limit > 0) && (list.count >= (limit - 1)) {
+                list.append(lastIndex ..< endIndex)
+                lastIndex = endIndex
+                stop = true
+            }
+        }
+
+        if trimEmpty {
+            while let rng = list.last, rng.isEmpty { list.removeLast() }
+            if list.count == 0 { return [ "" ] }
+        }
+
+        return list.map { String(self[$0]) }
+    }
 }

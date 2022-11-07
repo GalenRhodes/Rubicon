@@ -30,10 +30,17 @@ open class FilteredInputStream: InputStream {
     open override var streamError:       Error? { inputStream.streamError }
     open override var hasBytesAvailable: Bool { inputStream.hasBytesAvailable }
 
-    open override var delegate: StreamDelegate? {
-        get { inputStream.delegate }
-        set { inputStream.delegate = newValue }
-    }
+    #if os(macOS) || os(tvOS) || os(watchOS) || os(iOS) || os(OSX)
+        open override unowned(unsafe) var delegate: StreamDelegate? {
+            get { inputStream.delegate }
+            set { inputStream.delegate = newValue }
+        }
+    #else
+        open override weak var delegate: StreamDelegate? {
+            get { inputStream.delegate }
+            set { inputStream.delegate = newValue }
+        }
+    #endif
 
     public init(inputStream: InputStream) {
         self.inputStream = inputStream
@@ -91,6 +98,14 @@ open class FilteredInputStream: InputStream {
 
         open override class func getBoundStreams(withBufferSize bufferSize: Int, inputStream: AutoreleasingUnsafeMutablePointer<InputStream?>?, outputStream: AutoreleasingUnsafeMutablePointer<OutputStream?>?) {
             InputStream.getBoundStreams(withBufferSize: bufferSize, inputStream: inputStream, outputStream: outputStream)
+        }
+    #else
+        open override func property(forKey key: PropertyKey) -> AnyObject? {
+            inputStream.property(forKey: key)
+        }
+
+        open override func setProperty(_ property: AnyObject?, forKey key: PropertyKey) -> Bool {
+            inputStream.setProperty(property, forKey: key)
         }
     #endif
 }

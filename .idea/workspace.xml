@@ -29,6 +29,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Rewrite...">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/FilteredOutputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/FilteredOutputStream.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -478,14 +479,7 @@
       <workItem from="1667652190915" duration="13632000" />
       <workItem from="1667677686287" duration="5641000" />
       <workItem from="1667826290640" duration="2359000" />
-      <workItem from="1667830279457" duration="7118000" />
-    </task>
-    <task id="LOCAL-00293" summary="Updated Triggered property wrapper to include get as well as set.">
-      <created>1631279767546</created>
-      <option name="number" value="00293" />
-      <option name="presentableId" value="LOCAL-00293" />
-      <option name="project" value="LOCAL" />
-      <updated>1631279767546</updated>
+      <workItem from="1667830279457" duration="7573000" />
     </task>
     <task id="LOCAL-00294" summary="Reworked CErrors">
       <created>1631292161240</created>
@@ -823,7 +817,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667915567991</updated>
     </task>
-    <option name="localTasksCounter" value="342" />
+    <task id="LOCAL-00342" summary="Rewrite...">
+      <created>1667916715087</created>
+      <option name="number" value="00342" />
+      <option name="presentableId" value="LOCAL-00342" />
+      <option name="project" value="LOCAL" />
+      <updated>1667916715087</updated>
+    </task>
+    <option name="localTasksCounter" value="343" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -50,29 +50,52 @@ public class FilteredOutputStream: OutputStream {
 
     public init(outputStream: OutputStream) {
         self.outputStream = outputStream
-        super.init()
+        #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS) || os(macOS)
+            super.init()
+        #else
+            super.init(toMemory: ())
+        #endif
     }
 
-    public override required init(toMemory: Void) {
-        self.outputStream = OutputStream(toMemory: toMemory)
-        super.init()
-    }
+    #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS) || os(macOS)
+        public override init(toMemory: Void) {
+            self.outputStream = OutputStream(toMemory: toMemory)
+            super.init()
+        }
+    #else
+        public required init(toMemory: Void) {
+            self.outputStream = OutputStream(toMemory: toMemory)
+            super.init(toMemory: ())
+        }
+    #endif
 
     public override init(toBuffer buffer: UnsafeMutablePointer<UInt8>, capacity: Int) {
         self.outputStream = OutputStream(toBuffer: buffer, capacity: capacity)
-        super.init()
+        #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS) || os(macOS)
+            super.init()
+        #else
+            super.init(toMemory: ())
+        #endif
     }
 
     public override init?(url: URL, append shouldAppend: Bool) {
         guard let os = OutputStream(url: url, append: shouldAppend) else { return nil }
         self.outputStream = os
-        super.init()
+        #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS) || os(macOS)
+            super.init()
+        #else
+            super.init(toMemory: ())
+        #endif
     }
 
     public init?(toFileAtPath path: String, append shouldAppend: Bool) {
         guard let os = OutputStream(toFileAtPath: path, append: shouldAppend) else { return nil }
         self.outputStream = os
-        super.init()
+        #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS) || os(macOS)
+            super.init()
+        #else
+            super.init(toMemory: ())
+        #endif
     }
 
     public override func write(_ buffer: UnsafePointer<UInt8>, maxLength len: Int) -> Int {

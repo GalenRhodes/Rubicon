@@ -29,11 +29,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Rewrite...">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/FilteredOutputStream.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestFiles/SampleText-UTF16.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/FilteredOutputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/FilteredOutputStream.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -482,14 +478,7 @@
       <workItem from="1667652190915" duration="13632000" />
       <workItem from="1667677686287" duration="5641000" />
       <workItem from="1667826290640" duration="2359000" />
-      <workItem from="1667830279457" duration="6233000" />
-    </task>
-    <task id="LOCAL-00292" summary="Simplified Atomic property wrapper.">
-      <created>1631279574062</created>
-      <option name="number" value="00292" />
-      <option name="presentableId" value="LOCAL-00292" />
-      <option name="project" value="LOCAL" />
-      <updated>1631279574062</updated>
+      <workItem from="1667830279457" duration="7118000" />
     </task>
     <task id="LOCAL-00293" summary="Updated Triggered property wrapper to include get as well as set.">
       <created>1631279767546</created>
@@ -827,7 +816,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667836055160</updated>
     </task>
-    <option name="localTasksCounter" value="341" />
+    <task id="LOCAL-00341" summary="Rewrite...">
+      <created>1667915567991</created>
+      <option name="number" value="00341" />
+      <option name="presentableId" value="LOCAL-00341" />
+      <option name="project" value="LOCAL" />
+      <updated>1667915567991</updated>
+    </task>
+    <option name="localTasksCounter" value="342" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

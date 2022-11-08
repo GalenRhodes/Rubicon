@@ -53,7 +53,7 @@ public class FilteredOutputStream: OutputStream {
         super.init()
     }
 
-    public override init(toMemory: Void) {
+    public override required init(toMemory: Void) {
         self.outputStream = OutputStream(toMemory: toMemory)
         super.init()
     }

@@ -27,5 +27,8 @@ public enum IConvError: Error {
     case TooManyFilesOpen
     case InsufficientMemory
     case UnknownCharacterEncoding
+    case InvalidInputBuffer
+    case InvalidOutuptBuffer
+    case InvalidMultiByteSequence
     case UnknownError(code: Int32)
 }

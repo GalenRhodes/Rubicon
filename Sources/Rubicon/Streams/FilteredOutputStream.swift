@@ -36,6 +36,7 @@ public class FilteredOutputStream: OutputStream {
     public override var hasSpaceAvailable: Bool { outputStream.hasSpaceAvailable }
     public override var streamStatus:      Status { outputStream.streamStatus }
     public override var streamError:       Error? { outputStream.streamError }
+
     #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS) || os(macOS)
         public override unowned(unsafe) var delegate: StreamDelegate? {
             get { outputStream.delegate }
@@ -50,17 +51,13 @@ public class FilteredOutputStream: OutputStream {
 
     public init(outputStream: OutputStream) {
         self.outputStream = outputStream
-        #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS) || os(macOS)
-            super.init()
-        #else
-            super.init(toMemory: ())
-        #endif
+        super.init(toMemory: ())
     }
 
     #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS) || os(macOS)
         public override init(toMemory: Void) {
             self.outputStream = OutputStream(toMemory: toMemory)
-            super.init()
+            super.init(toMemory: ())
         }
     #else
         public required init(toMemory: Void) {
@@ -71,31 +68,19 @@ public class FilteredOutputStream: OutputStream {
 
     public override init(toBuffer buffer: UnsafeMutablePointer<UInt8>, capacity: Int) {
         self.outputStream = OutputStream(toBuffer: buffer, capacity: capacity)
-        #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS) || os(macOS)
-            super.init()
-        #else
-            super.init(toMemory: ())
-        #endif
+        super.init(toMemory: ())
     }
 
     public override init?(url: URL, append shouldAppend: Bool) {
         guard let os = OutputStream(url: url, append: shouldAppend) else { return nil }
         self.outputStream = os
-        #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS) || os(macOS)
-            super.init()
-        #else
-            super.init(toMemory: ())
-        #endif
+        super.init(toMemory: ())
     }
 
     public init?(toFileAtPath path: String, append shouldAppend: Bool) {
         guard let os = OutputStream(toFileAtPath: path, append: shouldAppend) else { return nil }
         self.outputStream = os
-        #if os(OSX) || os(iOS) || os(watchOS) || os(tvOS) || os(macOS)
-            super.init()
-        #else
-            super.init(toMemory: ())
-        #endif
+        super.init(toMemory: ())
     }
 
     public override func write(_ buffer: UnsafePointer<UInt8>, maxLength len: Int) -> Int {

@@ -47,15 +47,13 @@ open class FilteredInputStream: InputStream {
         super.init(data: Data())
     }
 
-    public override init(data: Data) {
-        self.inputStream = InputStream(data: data)
-        super.init(data: Data())
+    public override convenience init(data: Data) {
+        self.init(inputStream: InputStream(data: data))
     }
 
-    public override init?(url: URL) {
+    public override convenience init?(url: URL) {
         guard let inputStream = InputStream(url: url) else { return nil }
-        self.inputStream = inputStream
-        super.init(data: Data())
+        self.init(inputStream: inputStream)
     }
 
     public convenience init?(fileAtPath path: String) {

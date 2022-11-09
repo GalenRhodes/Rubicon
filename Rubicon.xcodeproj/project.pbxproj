@@ -3,12 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1117D0F1B962248F62A8D100 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D632FC8E800546B32BB5 /* Data.swift */; };
 		1117D2E146C9310BB041FAB0 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D909BC62F350A2999B09 /* String.swift */; };
+		1117D377EB306B756ED37427 /* Buffers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D0970D22A3D78D542FA0 /* Buffers.swift */; };
 		1117D41974EFB7083C9F30D4 /* JoinableThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD5D250390B8E2D737A3 /* JoinableThread.swift */; };
 		1117D484B80AE935D317E61C /* IConv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D49C5E937629C40CFB64 /* IConv.swift */; };
 		1117D48CCA825ECF66AE2B9A /* LockedValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D160860DBE7FDC6AFDAA /* LockedValue.swift */; };
@@ -23,9 +24,12 @@
 		1117DA306C61AF3B74D7A689 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DFF31B9915D6BE0D4DE2 /* Process.swift */; };
 		1117DB0EF7385809618DB6EF /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DC7961E78DA424D17468 /* ReadWriteLock.swift */; };
 		1117DBCD6D2A9B99785B0073 /* SampleText-UTF16.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1117DCC40F97CB1013BE4515 /* SampleText-UTF16.txt */; };
+		1117DC9D7D4E7707428E0CC7 /* SwiftRingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DBECA6C56D8C2EBB619A /* SwiftRingBuffer.swift */; };
 		1117DDCB50D9601800106781 /* IConvError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D3616D48CD0F47F4A44F /* IConvError.swift */; };
+		1117DE8676E1E1B1519564F6 /* IConvInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D87E97E9452BA8D05AAF /* IConvInputStream.swift */; };
 		1117DF64007BBAB12CA3FB35 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DE2F188BA6C52EBD7572 /* Date.swift */; };
 		1117DF7187CB62D16CCB7E1C /* FilteredOutputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D2896B0C64360D6C5138 /* FilteredOutputStream.swift */; };
+		831867F0291BEB1A00FDDDD9 /* RingBuffer in Frameworks */ = {isa = PBXBuildFile; productRef = 831867EF291BEB1A00FDDDD9 /* RingBuffer */; };
 		8398BC14266A6CB200671FE0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8398BC13266A6CB200671FE0 /* main.swift */; };
 		8398BC18266A6D3D00671FE0 /* Rubicon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C67A72250EC02000C0F21E /* Rubicon.framework */; };
 		83C67A7C250EC02000C0F21E /* Rubicon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C67A72250EC02000C0F21E /* Rubicon.framework */; };
@@ -65,6 +69,7 @@
 		1117D057FC73A6200E871B09 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
 		1117D0693DF7EAFD66B1A94C /* Test_UTF-8.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Test_UTF-8.xml"; sourceTree = "<group>"; };
 		1117D077258D3A31F798AD24 /* FilteredInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilteredInputStream.swift; sourceTree = "<group>"; };
+		1117D0970D22A3D78D542FA0 /* Buffers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buffers.swift; sourceTree = "<group>"; };
 		1117D0CCE7F6EC932D84A298 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		1117D14C505633AFAC0D4B6E /* Test.dtd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Test.dtd; sourceTree = "<group>"; };
 		1117D160860DBE7FDC6AFDAA /* LockedValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockedValue.swift; sourceTree = "<group>"; };
@@ -80,6 +85,7 @@
 		1117D6A07B8B839E727D8B7F /* Test_UTF-16BE.xml */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.xml; path = "Test_UTF-16BE.xml"; sourceTree = "<group>"; };
 		1117D6B7932B94AFE725F242 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		1117D731A81E409200E11D10 /* Test_UTF-16LE_ext.dtd */ = {isa = PBXFileReference; fileEncoding = 2483028224; lastKnownFileType = text.xml; path = "Test_UTF-16LE_ext.dtd"; sourceTree = "<group>"; };
+		1117D87E97E9452BA8D05AAF /* IConvInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IConvInputStream.swift; sourceTree = "<group>"; };
 		1117D8932CDCB401EBCE19FD /* Test.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Test.xml; sourceTree = "<group>"; };
 		1117D8F31A530CDA758E62B8 /* iconv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iconv.h; sourceTree = "<group>"; };
 		1117D8FC5E8870A806990EA8 /* Test4.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Test4.xml; sourceTree = "<group>"; };
@@ -92,6 +98,7 @@
 		1117DB7C8A6D6A5F5D46B3BA /* RubiconTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RubiconTests.swift; sourceTree = "<group>"; };
 		1117DBAACB45BB76001F3CD4 /* Test_UTF-8_ext.dtd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Test_UTF-8_ext.dtd"; sourceTree = "<group>"; };
 		1117DBD95F0A94119136985F /* semaphore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = semaphore.h; sourceTree = "<group>"; };
+		1117DBECA6C56D8C2EBB619A /* SwiftRingBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftRingBuffer.swift; sourceTree = "<group>"; };
 		1117DC7961E78DA424D17468 /* ReadWriteLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadWriteLock.swift; sourceTree = "<group>"; };
 		1117DC8F7AD2D2685C91C2D9 /* Rubicon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rubicon.h; sourceTree = "<group>"; };
 		1117DCC40F97CB1013BE4515 /* SampleText-UTF16.txt */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text; path = "SampleText-UTF16.txt"; sourceTree = "<group>"; };
@@ -129,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				831867F0291BEB1A00FDDDD9 /* RingBuffer in Frameworks */,
 				83F8D66925C47EC0004DD445 /* libiconv.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,6 +159,7 @@
 				1117DC7961E78DA424D17468 /* ReadWriteLock.swift */,
 				1117DD5D250390B8E2D737A3 /* JoinableThread.swift */,
 				1117D160860DBE7FDC6AFDAA /* LockedValue.swift */,
+				1117D0970D22A3D78D542FA0 /* Buffers.swift */,
 			);
 			path = Concurrency;
 			sourceTree = "<group>";
@@ -168,6 +177,7 @@
 			children = (
 				1117D49C5E937629C40CFB64 /* IConv.swift */,
 				1117D3616D48CD0F47F4A44F /* IConvError.swift */,
+				1117D87E97E9452BA8D05AAF /* IConvInputStream.swift */,
 			);
 			path = IConv;
 			sourceTree = "<group>";
@@ -299,6 +309,7 @@
 				1117D54EC238CA7216FC79F6 /* Extenstions */,
 				1117DC41C4A2D9E4B0FDC782 /* Streams */,
 				1117D149BC6877A6EF744B77 /* IConv */,
+				1117DBECA6C56D8C2EBB619A /* SwiftRingBuffer.swift */,
 			);
 			path = Rubicon;
 			sourceTree = "<group>";
@@ -375,6 +386,8 @@
 				8398BC1B266A6D3D00671FE0 /* PBXTargetDependency */,
 			);
 			name = Experiments;
+			packageProductDependencies = (
+			);
 			productName = Experiments;
 			productReference = 8398BC11266A6CB200671FE0 /* Experiments */;
 			productType = "com.apple.product-type.tool";
@@ -394,6 +407,7 @@
 			);
 			name = Rubicon;
 			packageProductDependencies = (
+				831867EF291BEB1A00FDDDD9 /* RingBuffer */,
 			);
 			productName = Rubicon;
 			productReference = 83C67A72250EC02000C0F21E /* Rubicon.framework */;
@@ -451,6 +465,7 @@
 			);
 			mainGroup = 83C67A68250EC02000C0F21E;
 			packageReferences = (
+				831867EE291BEB1A00FDDDD9 /* XCRemoteSwiftPackageReference "RingBuffer" */,
 			);
 			productRefGroup = 83C67A73250EC02000C0F21E /* Products */;
 			projectDirPath = "";
@@ -509,6 +524,9 @@
 				1117D48CCA825ECF66AE2B9A /* LockedValue.swift in Sources */,
 				1117DF7187CB62D16CCB7E1C /* FilteredOutputStream.swift in Sources */,
 				1117D0F1B962248F62A8D100 /* Data.swift in Sources */,
+				1117DE8676E1E1B1519564F6 /* IConvInputStream.swift in Sources */,
+				1117DC9D7D4E7707428E0CC7 /* SwiftRingBuffer.swift in Sources */,
+				1117D377EB306B756ED37427 /* Buffers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -840,6 +858,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		831867EE291BEB1A00FDDDD9 /* XCRemoteSwiftPackageReference "RingBuffer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GalenRhodes/RingBuffer.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		831867EF291BEB1A00FDDDD9 /* RingBuffer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 831867EE291BEB1A00FDDDD9 /* XCRemoteSwiftPackageReference "RingBuffer" */;
+			productName = RingBuffer;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83C67A69250EC02000C0F21E /* Project object */;
 }

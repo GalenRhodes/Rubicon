@@ -47,84 +47,76 @@ open class RegularExpression {
         }
     }
 
-    open func numberOfMatches(in string: String, options: MatchingOptions = [], range: Range</// >? = nil) -> Int {
-    regex.numberOfMatches
+    open func numberOfMatches(in string: String, options: MatchingOptions = [], range: StringRange? = nil) -> Int {
+        regex.numberOfMatches(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange))
+    }
 
-(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange))
-}
-
-open func enumerateMatches(in string: String, options: MatchingOptions = [], range: Range</// >? = nil, using block: (Match?, MatchingFlags, inout Bool) throws -> Void) rethrows {
-try withoutActuallyEscaping(block) { _block in
-    var error: Error? = nil
-    regex.enumerateMatches(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange)) {
-        do {
-            var stop: Bool = false
-            try _block(Match(string, $0), $1.xlate(), &stop)
-            $2.pointee = ObjCBool(stop)
-        }
-        catch let e {
-            error = e
-            $2.pointee = ObjCBool(true)
+    open func enumerateMatches(in string: String, options: MatchingOptions = [], range: StringRange? = nil, using block: (Match?, MatchingFlags, inout Bool) throws -> Void) rethrows {
+        try withoutActuallyEscaping(block) { _block in
+            var error: Error? = nil
+            regex.enumerateMatches(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange)) {
+                do {
+                    var stop: Bool = false
+                    try _block(Match(string, $0), $1.xlate(), &stop)
+                    $2.pointee = ObjCBool(stop)
+                }
+                catch let e {
+                    error = e
+                    $2.pointee = ObjCBool(true)
+                }
+            }
+            if let e = error { throw e }
         }
     }
-    if let e = error { throw e }
-}
-}
 
-open func rangeOfFirstMatch(in string: String, options: MatchingOptions = [], range: Range</// >? = nil) -> Range</// >? {
-let r: NSRange = regex.rangeOfFirstMatch(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange))
-guard r.location != NSNotFound else { return nil }
-return Range</// >(r, in: string)
-}
+    open func rangeOfFirstMatch(in string: String, options: MatchingOptions = [], range: StringRange? = nil) -> StringRange? {
+        let r: NSRange = regex.rangeOfFirstMatch(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange))
+        guard r.location != NSNotFound else { return nil }
+        return StringRange(r, in: string)
+    }
 
-open func matches(in string: String, options: MatchingOptions = [], range: Range</// >? = nil) -> [Match] {
-regex.matches
+    open func matches(in string: String, options: MatchingOptions = [], range: StringRange? = nil) -> [Match] {
+        regex.matches(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange)).map { Match(string, $0)! }
+    }
 
-(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange)).map { Match(string, $0)! }
-}
+    open func firstMatch(in string: String, options: MatchingOptions = [], range: StringRange? = nil) -> Match? {
+        Match(string, regex.firstMatch(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange)))
+    }
 
-open func firstMatch(in string: String, options: MatchingOptions = [], range: Range</// >? = nil) -> Match? {
-Match
+    open func stringByReplacingMatches(in string: String, options: MatchingOptions = [], range: StringRange? = nil, withTemplate tmpl: String) -> String {
+        regex.stringByReplacingMatches(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange), withTemplate: tmpl)
+    }
 
-(string, regex.firstMatch(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange)))
-}
+    open func replaceMatches(in string: inout String, options: MatchingOptions = [], range: StringRange? = nil, withTemplate tmpl: String) -> Int {
+        let _string = NSMutableString(string: string)
+        let cc      = regex.replaceMatches(in: _string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange), withTemplate: tmpl)
+        string = String(_string)
+        return cc
+    }
 
-open func stringByReplacingMatches(in string: String, options: MatchingOptions = [], range: Range</// >? = nil, withTemplate tmpl: String) -> String {
-regex.stringByReplacingMatches
-
-(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange), withTemplate: tmpl)
-}
-
-open func replaceMatches(in string: inout String, options: MatchingOptions = [], range: Range</// >? = nil, withTemplate tmpl: String) -> Int {
-let _string = NSMutableString(string: string)
-let cc      = regex.replaceMatches(in: _string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange), withTemplate: tmpl)
-string = String(_string)
-return cc
-}
-
-open class func escapedTemplate(for string: String) -> String {
-    NSRegularExpression.escapedTemplate(for: string)
-}
+    open class func escapedTemplate(for string: String) -> String {
+        NSRegularExpression.escapedTemplate(for: string)
+    }
 
     open class func escapedPattern(for string: String) -> String {
         NSRegularExpression.escapedPattern(for: string)
     }
 
-public struct Match: @unchecked Sendable, RandomAccessCollection {
-    public typealias Element = Group?
-    public typealias Index = Int
+    public struct Match: @unchecked Sendable, RandomAccessCollection {
+        public typealias Element = Group?
+        public typealias Index = Int
 
-    public let range:      Range</// >
-    public let substring:  String
-    public let count:      Int
-    public let startIndex: Index
-    public let endIndex:   Index
+        public let range:      StringRange
+        public let substring:  String
+        public let count:      Int
+        public let startIndex: Index
+        public let endIndex:   Index
 
-    public subscript(position: Index) -> Element { groups[position] }
+        public subscript(position: Index) -> Element { groups[position] }
 
-    private let groups: [Element]
+        private let groups: [Element]
 
-    public init?(_ string: String, _ result: NSTextCheckingResult?) {
+        public init?(_ string: String, _ result: NSTextCheckingResult?) {
             guard let result = result else { return nil }
             var grps: [Element] = []
             for i in (0 ..< result.numberOfRanges) {
@@ -139,18 +131,18 @@ public struct Match: @unchecked Sendable, RandomAccessCollection {
         }
     }
 
-public struct Group: @unchecked Sendable {
-    public let range:     Range</// >
-    public let substring: String
-    public let index:     Int
+    public struct Group: @unchecked Sendable {
+        public let range:     StringRange
+        public let substring: String
+        public let index:     Int
 
-    init?(_ index: Int, _ string: String, _ nsRange: NSRange) {
-        guard nsRange.location != NSNotFound else { return nil }
-        guard let r = Range</// >(nsRange, in: string) else { fatalError() }
-        self.index = index
-        self.range = r
-        self.substring = String(string[r])
-    }
+        init?(_ index: Int, _ string: String, _ nsRange: NSRange) {
+            guard nsRange.location != NSNotFound else { return nil }
+            guard let r = StringRange(nsRange, in: string) else { fatalError() }
+            self.index = index
+            self.range = r
+            self.substring = String(string[r])
+        }
     }
 
     public struct Options: OptionSet, @unchecked Sendable {

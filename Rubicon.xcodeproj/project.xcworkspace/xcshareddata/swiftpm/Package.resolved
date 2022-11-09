@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "ringbuffer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/GalenRhodes/RingBuffer.git",
+      "state" : {
+        "revision" : "6e2942abcb75b1edcda2e2d15c5210f8542e92e2",
+        "version" : "1.0.12"
+      }
+    }
+  ],
+  "version" : 2
+}

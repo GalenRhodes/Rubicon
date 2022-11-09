@@ -31,7 +31,7 @@ import CoreFoundation
 #endif
 
 extension NSLocking {
-    @inlinable public func withLock<T>(_ action: () throws -> T) rethrows -> T {
+    @discardableResult @inlinable public func withLock<T>(_ action: () throws -> T) rethrows -> T {
         lock()
         defer { unlock() }
         return try action()
@@ -39,13 +39,13 @@ extension NSLocking {
 }
 
 extension NSLock {
-    @inlinable public func tryWithLock<T>(_ action: () throws -> T) rethrows -> T? {
+    @discardableResult @inlinable public func tryWithLock<T>(_ action: () throws -> T) rethrows -> T? {
         guard `try`() else { return nil }
         defer { unlock() }
         return try action()
     }
 
-    @inlinable public func withLock<T>(before limit: Date, _ action: () throws -> T) rethrows -> T? {
+    @discardableResult @inlinable public func withLock<T>(before limit: Date, _ action: () throws -> T) rethrows -> T? {
         guard lock(before: limit) else { return nil }
         defer { unlock() }
         return try action()
@@ -53,13 +53,13 @@ extension NSLock {
 }
 
 extension NSRecursiveLock {
-    @inlinable public func tryWithLock<T>(_ action: () throws -> T) rethrows -> T? {
+    @discardableResult @inlinable public func tryWithLock<T>(_ action: () throws -> T) rethrows -> T? {
         guard `try`() else { return nil }
         defer { unlock() }
         return try action()
     }
 
-    @inlinable public func withLock<T>(before limit: Date, _ action: () throws -> T) rethrows -> T? {
+    @discardableResult @inlinable public func withLock<T>(before limit: Date, _ action: () throws -> T) rethrows -> T? {
         guard lock(before: limit) else { return nil }
         defer { unlock() }
         return try action()
@@ -67,7 +67,7 @@ extension NSRecursiveLock {
 }
 
 extension NSCondition {
-    @inlinable public func withLockWait<T>(broadcast bc: Bool = false, for predicate: () throws -> Bool, _ action: () throws -> T) rethrows -> T {
+    @discardableResult @inlinable public func withLockWait<T>(broadcast bc: Bool = false, for predicate: () throws -> Bool, _ action: () throws -> T) rethrows -> T {
         lock()
         defer { unlock() }
         while try (!predicate()) {
@@ -80,7 +80,7 @@ extension NSCondition {
         return try action()
     }
 
-    @inlinable public func withLockWait<T>(broadcast bc: Bool = false, until limit: Date, for predicate: () throws -> Bool, _ action: () throws -> T) rethrows -> T? {
+    @discardableResult @inlinable public func withLockWait<T>(broadcast bc: Bool = false, until limit: Date, for predicate: () throws -> Bool, _ action: () throws -> T) rethrows -> T? {
         lock()
         defer { unlock() }
         while try (!predicate()) {

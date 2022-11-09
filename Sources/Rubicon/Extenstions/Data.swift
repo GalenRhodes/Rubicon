@@ -1,9 +1,9 @@
 // ===========================================================================
 //     PROJECT: Rubicon
-//    FILENAME: IConvError.swift
+//    FILENAME: Data.swift
 //         IDE: AppCode
 //      AUTHOR: Galen Rhodes
-//        DATE: November 05, 2022
+//        DATE: November 09, 2022
 //
 // Copyright © 2022 Project Galen. All rights reserved.
 //
@@ -21,14 +21,10 @@
 // ===========================================================================
 
 import Foundation
+import CoreFoundation
 
-public enum IConvError: Error {
-    case NoAvailableFileDescriptors
-    case TooManyFilesOpen
-    case InsufficientMemory
-    case UnknownCharacterEncoding
-    case InvalidInputBuffer
-    case InvalidOutputBuffer
-    case InvalidMultiByteSequence
-    case UnknownError(code: Int32)
+extension Data {
+    @inlinable public func asString(encoding: String.Encoding = .utf8) -> String? {
+        String(data: self, encoding: encoding)
+    }
 }

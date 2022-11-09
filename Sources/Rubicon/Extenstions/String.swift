@@ -28,31 +28,31 @@ public typealias StringRange = Range<StringIndex>
 
 extension String {
 
-    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     /// Shorthand for `str.startIndex ..< str.endIndex`.
-    public var allRange:     StringRange { startIndex ..< endIndex }
+    @inlinable public var allRange:     StringRange { startIndex ..< endIndex }
 
-    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     // Shorthand for `NSRange(str.startIndex ..< str.endIndex, in: str)`
-    public var allNSRange:   NSRange { NSRange(startIndex ..< endIndex, in: self) }
+    @inlinable public var allNSRange:   NSRange { NSRange(startIndex ..< endIndex, in: self) }
 
-    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     /// Shorthand for `str.trimmingCharacters(in: .whitespacesAndNewlinesAndControlCharacters)`.
-    public var trimmed:      String { trimmingCharacters(in: .whitespacesAndNewlinesAndControlCharacters) }
+    @inlinable public var trimmed:      String { trimmingCharacters(in: .whitespacesAndNewlinesAndControlCharacters) }
 
-    /*-------------------------------------------------------------------------------------------------------------------------*/
-    public var leftTrimmed:  String { leftTrimmingCharacters(in: .whitespacesAndNewlinesAndControlCharacters) }
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+    @inlinable public var leftTrimmed:  String { leftTrimmingCharacters(in: .whitespacesAndNewlinesAndControlCharacters) }
 
-    /*-------------------------------------------------------------------------------------------------------------------------*/
-    public var rightTrimmed: String { rightTrimmingCharacters(in: .whitespacesAndNewlinesAndControlCharacters) }
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+    @inlinable public var rightTrimmed: String { rightTrimmingCharacters(in: .whitespacesAndNewlinesAndControlCharacters) }
 
-    /*-------------------------------------------------------------------------------------------------------------------------*/
-    public func leftTrimmingCharacters(in cs: CharacterSet) -> String {
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+    @inlinable public func leftTrimmingCharacters(in cs: CharacterSet) -> String {
         whenNotNil(firstIndex { !cs.satisfies(character: $0) }) { substring($0...) } else: { "" }
     }
 
-    /*-------------------------------------------------------------------------------------------------------------------------*/
-    public func rightTrimmingCharacters(in cs: CharacterSet) -> String {
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+    @inlinable public func rightTrimmingCharacters(in cs: CharacterSet) -> String {
         // I'm not certain that `lastIndex` does or will always search from the end of the string going forward
         // so we'll just do it ourselves.
         var idx: StringIndex = endIndex
@@ -63,136 +63,210 @@ extension String {
         return ""
     }
 
-    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     /// Shorthand for `StringIndex(utf16Offset: o,in: str)`.
     ///
     /// - Parameter o: The integer offset measured in UTF-16 code points.
     /// - Returns: The string index.
     ///
-    public func index(utf16Offset o: Int) -> StringIndex {
+    @inlinable public func index(utf16Offset o: Int) -> StringIndex {
         StringIndex(utf16Offset: o, in: self)
     }
 
-    /*-------------------------------------------------------------------------------------------------------------------------*/
-    public func range(_ nsRange: NSRange) -> StringRange {
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+    @inlinable public func range(_ nsRange: NSRange) -> StringRange {
         whenNotNil(StringRange(nsRange, in: self), { $0 }, else: { fatalError("Range indices not valid.") })
     }
 
-    /*-------------------------------------------------------------------------------------------------------------------------*/
-    public func utf16Offset(index: StringIndex) -> Int {
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+    @inlinable public func utf16Offset(index: StringIndex) -> Int {
         index.utf16Offset(in: self)
     }
 
-    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     /// Shorthand for `NSRange(range, in: str)`
     ///
     /// - Parameter range: An instance of `Range<String.Index>`
     /// - Returns: An instance of `NSRange`
     ///
-    public func nsRange(range: StringRange) -> NSRange {
+    @inlinable public func nsRange(range: StringRange) -> NSRange {
         NSRange(range, in: self)
     }
 
-    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     /// Shorthand for `String(str[Range<String.Index>(range, in: str)!])`.
     ///
     /// - Parameter range: An instance of `Range<String.Index>`.
     /// - Returns: A new string containing the substring from the given range.
     ///
-    public func substring(_ range: NSRange) -> String? {
+    @inlinable public func substring(_ range: NSRange) -> String? {
         guard let r = StringRange(range, in: self) else { return nil }
         return String(self[r])
     }
 
-    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     /// Shorthand for `String(str[range])`.
     ///
     /// - Parameter range: An instance of `Range<String.Index>`.
     /// - Returns: A new string containing the substring from the given range.
     ///
-    public func substring(_ range: StringRange) -> String {
+    @inlinable public func substring(_ range: StringRange) -> String {
         String(self[range])
     }
 
-    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     /// Shorthand for `String(str[range])`.
     ///
     /// - Parameter range: An instance of `ClosedRange<String.Index>`.
     /// - Returns: A new string containing the substring from the given range.
     ///
-    public func substring(_ range: ClosedRange<StringIndex>) -> String {
+    @inlinable public func substring(_ range: ClosedRange<StringIndex>) -> String {
         String(self[range])
     }
 
-    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     /// Shorthand for `String(str[range])`.
     ///
     /// - Parameter range: An instance of `PartialRangeUpTo<String.Index>`.
     /// - Returns: A new string containing the substring from the given range.
     ///
-    public func substring(_ range: PartialRangeUpTo<StringIndex>) -> String {
+    @inlinable public func substring(_ range: PartialRangeUpTo<StringIndex>) -> String {
         String(self[range])
     }
 
-    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     /// Shorthand for `String(str[range])`.
     ///
     /// - Parameter range: An instance of `PartialRangeThrough<String.Index>`.
     /// - Returns: A new string containing the substring from the given range.
     ///
-    public func substring(_ range: PartialRangeThrough<StringIndex>) -> String {
+    @inlinable public func substring(_ range: PartialRangeThrough<StringIndex>) -> String {
         String(self[range])
     }
 
-    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     /// Shorthand for `String(str[range])`.
     ///
     /// - Parameter range: An instance of `PartialRangeFrom<String.Index>`.
     /// - Returns: A new string containing the substring from the given range.
     ///
-    public func substring(_ range: PartialRangeFrom<StringIndex>) -> String {
+    @inlinable public func substring(_ range: PartialRangeFrom<StringIndex>) -> String {
         String(self[range])
     }
 
-    /*-------------------------------------------------------------------------------------------------------------------------*/
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     /// Shorthand for `str[StringIndex(utf16Offset: i, in: str)]`.
     ///
     /// - Parameter i: the UTF-16 offset.
     /// - Returns: The character at UTF-16 offset.
     ///
-    public func charAt(utf16Offset i: Int) -> Character {
+    @inlinable public func charAt(utf16Offset i: Int) -> Character {
         self[StringIndex(utf16Offset: i, in: self)]
     }
 
-    public func split(pattern: String, limit: Int = -1) -> [String] {
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+    /// Splits this string around matches of the given regular expression.
+    ///
+    /// Works like the <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html#split(java.lang.String,int)">java.lang.String.split(String, int)</a>
+    /// method in Java.
+    ///
+    /// <b>UNLIKE</b> the Java version, this method also contains an option to also retrieve the separators too.
+    ///
+    /// The array returned by this method contains each substring of this string that is terminated by another substring that
+    /// matches the given expression or is terminated by the end of the string. The substrings in the array are in the order in
+    /// which they occur in this string. If the expression does not match any part of the input then the resulting array has
+    /// just one element, namely this string.
+    ///
+    /// When there is a positive-width match at the beginning of this string then an empty leading substring is included at the
+    /// beginning of the resulting array. A zero-width match at the beginning however never produces such empty leading
+    /// substring.
+    ///
+    /// The limit parameter controls the number of times the pattern is applied and therefore affects the length of the
+    /// resulting array.
+    ///
+    /// If the limit is positive then the pattern will be applied at most limit - 1 times, the array's length will be no
+    /// greater than limit, and the array's last entry will contain all input beyond the last matched delimiter.
+    ///
+    /// If the limit is zero then the pattern will be applied as many times as possible, the array can have any length, and
+    /// trailing empty strings will be discarded.
+    ///
+    /// If the limit is negative then the pattern will be applied as many times as possible and the array can have any length.
+    ///
+    /// The string "boo:and:foo", for example, yields the following results with these parameters:
+    ///
+    /// | Regex | Limit | Keep&nbsp;</br>Separators | Result                                            |
+    /// |:-----:|:-----:|:-------------------------:|:--------------------------------------------------|
+    /// |   :   |   2   |        false              | { "boo", "and:foo" }                              |
+    /// |   :   |   5   |        false              | { "boo", "and", "foo" }                           |
+    /// |   :   |  -2   |        false              | { "boo", "and", "foo" }                           |
+    /// |   o   |   5   |        false              | { "b", "", ":and:f", "", "" }                     |
+    /// |   o   |  -2   |        false              | { "b", "", ":and:f", "", "" }                     |
+    /// |   o   |   0   |        false              | { "b", "", ":and:f" }                             |
+    /// |   :   |   3   |        true               | { "boo", ":", "and:foo" }                         |
+    /// |   :   |   5   |        true               | { "boo", ":", "and", ":", "foo" }                 |
+    /// |   :   |  -2   |        true               | { "boo", ":", "and", ":", "foo" }                 |
+    /// |   o   |  15   |        true               | { "b", "o", "", "o", ":and:f", "o", "", "o", "" } |
+    /// |   o   |  -2   |        true               | { "b", "o", "", "o", ":and:f", "o", "", "o", "" } |
+    /// |   o   |   0   |        true               | { "b", "o", "", "o", ":and:f", "o", "", "o" }     |
+    ///
+    /// - Parameters:
+    ///   - regex:          The delimiting regular expression
+    ///   - limit:          The result threshold, as described above. The default is 0 (zero).
+    ///   - keepSeparators: If true then the separators are also included as separate elements in between the match elements.
+    ///                     If false (the default) they are not included.
+    /// - Returns: The array of strings computed by splitting this string around matches of the given regular expression.
+    ///            This array will always contain at least one element.
+    ///
+    public func split(regex: String, limit: Int = 0, keepSeparators: Bool = false) -> [String] {
         guard limit != 1 && self != "" else { return [ self ] }
 
-        var error:     Error?                = nil
-        var list:      [Range<String.Index>] = []
-        var lastIndex: String.Index          = startIndex
-        let trimEmpty: Bool                  = (limit < 0)
+        var error:     Error?        = nil
+        var list:      [StringRange] = []
+        var lastIndex: StringIndex   = startIndex
 
-        guard let regex = RegularExpression(pattern: pattern, error: &error) else {
+        guard let rx = RegularExpression(pattern: regex, error: &error) else {
             if let e = error { fatalError(e.localizedDescription) }
-            fatalError("Invalid Pattern: \(pattern)")
+            fatalError("Invalid Pattern: \(regex)")
         }
 
-        regex.enumerateMatches(in: self) { match, _, stop in
-            guard let match = match else { return }
-            list.append(lastIndex ..< match.range.lowerBound)
-            lastIndex = match.range.upperBound
-            if (limit > 0) && (list.count >= (limit - 1)) {
-                list.append(lastIndex ..< endIndex)
-                lastIndex = endIndex
-                stop = true
+        rx.enumerateMatches(in: self) { match, _, stop in
+            guard let range = match?.range else { return }
+            _split(range: range, limit: limit, keepSeparators: keepSeparators, lastIndex: &lastIndex, stop: &stop, list: &list)
+        }
+
+        if limit == 0 {
+            while let rng = list.last, rng.isEmpty {
+                list.removeLast()
+            }
+            if list.count == 0 {
+                return [ "" ]
             }
         }
 
-        if trimEmpty {
-            while let rng = list.last, rng.isEmpty { list.removeLast() }
-            if list.count == 0 { return [ "" ] }
+        return list.map { String(self[$0]) }
+    }
+
+    @inlinable func _split(range: StringRange, limit: Int, keepSeparators: Bool, lastIndex: inout StringIndex, stop: inout Bool, list: inout [StringRange]) {
+        if (range.lowerBound > startIndex) || (!range.isEmpty) {
+            list.append(lastIndex ..< range.lowerBound)
         }
 
-        return list.map { String(self[$0]) }
+        lastIndex = range.upperBound
+
+        if (limit > 0) && (list.count >= (limit - 1)) {
+            _endSplit(lastIndex: &lastIndex, stop: &stop, list: &list)
+        }
+        else if keepSeparators {
+            list.append(range)
+            if (limit > 0) && (list.count >= (limit - 1)) {
+                _endSplit(lastIndex: &lastIndex, stop: &stop, list: &list)
+            }
+        }
+    }
+
+    @usableFromInline func _endSplit(lastIndex: inout StringIndex, stop: inout Bool, list: inout [StringRange]) {
+        list.append(lastIndex ..< endIndex)
+        lastIndex = endIndex
+        stop = true
     }
 }

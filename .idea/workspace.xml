@@ -29,9 +29,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Rewrite...">
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/Data.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/Process.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/Process.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/String.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/String.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConv.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConv.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConvError.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConvError.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -480,14 +485,7 @@
       <workItem from="1667652190915" duration="13632000" />
       <workItem from="1667677686287" duration="5641000" />
       <workItem from="1667826290640" duration="2359000" />
-      <workItem from="1667830279457" duration="18644000" />
-    </task>
-    <task id="LOCAL-00297" summary="Cleanup">
-      <created>1632497296937</created>
-      <option name="number" value="00297" />
-      <option name="presentableId" value="LOCAL-00297" />
-      <option name="project" value="LOCAL" />
-      <updated>1632497296937</updated>
+      <workItem from="1667830279457" duration="23975000" />
     </task>
     <task id="LOCAL-00298" summary="Cleanup">
       <created>1632838614796</created>
@@ -825,7 +823,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667918421764</updated>
     </task>
-    <option name="localTasksCounter" value="346" />
+    <task id="LOCAL-00346" summary="Rewrite...">
+      <created>1667940663930</created>
+      <option name="number" value="00346" />
+      <option name="presentableId" value="LOCAL-00346" />
+      <option name="project" value="LOCAL" />
+      <updated>1667940663931</updated>
+    </task>
+    <option name="localTasksCounter" value="347" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

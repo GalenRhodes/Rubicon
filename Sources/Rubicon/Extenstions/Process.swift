@@ -34,7 +34,7 @@ extension Process {
 
     public class func execute(executableURL url: URL, arguments args: [String], inputString: String?, encoding: String.Encoding = .utf8) throws -> (Int32, String?, String?) {
         let (code, outData, errData) = try execute(executableURL: url, arguments: args, inputData: inputString?.data(using: encoding))
-        return (code, String(data: outData, encoding: encoding), String(data: errData, encoding: encoding))
+        return (code, outData.asString(encoding: encoding), errData.asString(encoding: encoding))
     }
 
     public class func execute(executableURL url: URL, arguments args: [String], inputData: Data?) throws -> (Int32, Data, Data) {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1117D0F1B962248F62A8D100 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D632FC8E800546B32BB5 /* Data.swift */; };
 		1117D2E146C9310BB041FAB0 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D909BC62F350A2999B09 /* String.swift */; };
 		1117D41974EFB7083C9F30D4 /* JoinableThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD5D250390B8E2D737A3 /* JoinableThread.swift */; };
 		1117D484B80AE935D317E61C /* IConv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D49C5E937629C40CFB64 /* IConv.swift */; };
@@ -74,6 +75,7 @@
 		1117D49C5E937629C40CFB64 /* IConv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IConv.swift; sourceTree = "<group>"; };
 		1117D4AB901932DB18E55F30 /* compname.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = compname.txt; sourceTree = "<group>"; };
 		1117D4AEAB93FC8D2AC152BE /* Test_WINDOWS-1252.xml */ = {isa = PBXFileReference; fileEncoding = 12; lastKnownFileType = text.xml; path = "Test_WINDOWS-1252.xml"; sourceTree = "<group>"; };
+		1117D632FC8E800546B32BB5 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		1117D675AFDA886277BA02FB /* Format.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Format.md; sourceTree = "<group>"; };
 		1117D6A07B8B839E727D8B7F /* Test_UTF-16BE.xml */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text.xml; path = "Test_UTF-16BE.xml"; sourceTree = "<group>"; };
 		1117D6B7932B94AFE725F242 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				1117D909BC62F350A2999B09 /* String.swift */,
 				1117D96669249882F236E3D7 /* CharacterSet.swift */,
 				1117DFF31B9915D6BE0D4DE2 /* Process.swift */,
+				1117D632FC8E800546B32BB5 /* Data.swift */,
 			);
 			path = Extenstions;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				1117D41974EFB7083C9F30D4 /* JoinableThread.swift in Sources */,
 				1117D48CCA825ECF66AE2B9A /* LockedValue.swift in Sources */,
 				1117DF7187CB62D16CCB7E1C /* FilteredOutputStream.swift in Sources */,
+				1117D0F1B962248F62A8D100 /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

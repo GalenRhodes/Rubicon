@@ -99,7 +99,7 @@ open class IConv {
 
     open func convert(input: UnsafeBufferPointer<UInt8>, output: UnsafeMutableBufferPointer<UInt8>) throws -> (Status, Int, Int) {
         guard let i = input.baseAddress else { throw IConvError.InvalidInputBuffer }
-        guard let o = output.baseAddress else { throw IConvError.InvalidOutuptBuffer }
+        guard let o = output.baseAddress else { throw IConvError.InvalidOutputBuffer }
         return try convert(input: i, inputSize: input.count, output: o, outputSize: output.count)
     }
 
@@ -112,7 +112,7 @@ open class IConv {
     }
 
     open func finalize(output: UnsafeMutableBufferPointer<UInt8>) throws -> (Status, Int, Int) {
-        guard let o = output.baseAddress else { throw IConvError.InvalidOutuptBuffer }
+        guard let o = output.baseAddress else { throw IConvError.InvalidOutputBuffer }
         return try finalize(output: o, outputSize: output.count)
     }
 
@@ -124,9 +124,9 @@ open class IConv {
         let (_, stdOut, _) = try Process.execute(executableURL: URL(fileURLWithPath: "/usr/bin/iconv"), arguments: [ "-l" ], inputString: nil)
         if let str = stdOut {
             #if os(Linux)
-                return str.split(pattern: "//\\s+").sorted()
+                return str.split(regex: "//\\s+").sorted()
             #elseif os(iOS) || os(macOS) || os(OSX) || os(tvOS) || os(watchOS)
-                return str.split(pattern: "\\s+").sorted()
+                return str.split(regex: "\\s+").sorted()
             #endif
         }
         return []

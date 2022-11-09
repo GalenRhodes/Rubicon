@@ -43,7 +43,7 @@ public func isValue<T>(_ value: T, in values: T...) -> Bool where T: Equatable {
     return false
 }
 
-public func isObject<T>(_ object: T, in objects: T...) -> Bool where T: AnyObject {
-    for o in objects { if o === object { return true } }
+public func isValue<T>(_ value: T, in values: T...) -> Bool where T: AnyObject {
+    for o in values { if o === value { return true } }
     return false
 }

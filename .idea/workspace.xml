@@ -29,16 +29,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Rewrite...">
-      <change afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Buffers.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConvInputStream.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/SwiftRingBuffer.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Locks.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Locks.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Streams/FilteredInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/FilteredInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/SwiftRingBuffer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/SwiftRingBuffer.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -487,14 +479,7 @@
       <workItem from="1667652190915" duration="13632000" />
       <workItem from="1667677686287" duration="5641000" />
       <workItem from="1667826290640" duration="2359000" />
-      <workItem from="1667830279457" duration="34123000" />
-    </task>
-    <task id="LOCAL-00300" summary="Cleanup">
-      <created>1632862976550</created>
-      <option name="number" value="00300" />
-      <option name="presentableId" value="LOCAL-00300" />
-      <option name="project" value="LOCAL" />
-      <updated>1632862976550</updated>
+      <workItem from="1667830279457" duration="34395000" />
     </task>
     <task id="LOCAL-00301" summary="Cleanup">
       <created>1632949355132</created>
@@ -832,7 +817,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668001839018</updated>
     </task>
-    <option name="localTasksCounter" value="349" />
+    <task id="LOCAL-00349" summary="Rewrite...">
+      <created>1668016012824</created>
+      <option name="number" value="00349" />
+      <option name="presentableId" value="LOCAL-00349" />
+      <option name="project" value="LOCAL" />
+      <updated>1668016012824</updated>
+    </task>
+    <option name="localTasksCounter" value="350" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

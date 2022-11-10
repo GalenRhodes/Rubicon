@@ -52,14 +52,14 @@ func doIt() {
 
     Thread.sleep(forTimeInterval: 10)
     t.cancel()
-    while !(t.isFinished || t.isCancelled) {}
-    Thread.sleep(forTimeInterval: 5)
+    while !(t.isFinished && t.isCancelled) {}
     print("isFinished: \(t.isFinished)")
     print("isCanceled: \(t.isCancelled)")
 }
 
 DispatchQueue.main.async {
     doIt()
+    Thread.sleep(forTimeInterval: 0.1)
     exit(0)
 }
 dispatchMain()

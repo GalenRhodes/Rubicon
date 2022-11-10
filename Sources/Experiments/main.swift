@@ -23,12 +23,43 @@
 import Foundation
 import Rubicon
 
-do {
-    let list = try IConv.getEncodingList()
-    for s in list {
-        print(s)
+class Test {
+    let s = "Hello"
+
+    init() {}
+
+    deinit { print("I'm done too.") }
+}
+
+class TThread: Thread {
+    let other: Test = Test()
+
+    override func main() {
+        defer { print("T: Canceled!") }
+        while !isCancelled {
+            print("T: \(other.s)")
+            Thread.sleep(forTimeInterval: 0.5)
+        }
     }
+
+    deinit { print("DONE") }
 }
-catch let e {
-    print("ERROR: \(e)")
+
+func doIt() {
+    let t: TThread = TThread()
+    t.qualityOfService = .background
+    t.start()
+
+    Thread.sleep(forTimeInterval: 10)
+    t.cancel()
+    while !(t.isFinished || t.isCancelled) {}
+    Thread.sleep(forTimeInterval: 5)
+    print("isFinished: \(t.isFinished)")
+    print("isCanceled: \(t.isCancelled)")
 }
+
+DispatchQueue.main.async {
+    doIt()
+    exit(0)
+}
+dispatchMain()

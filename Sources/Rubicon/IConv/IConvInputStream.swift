@@ -31,20 +31,20 @@ import CoreFoundation
 #endif
 
 public let MaxReadAheadLimit: Int = 65536
+public let ReadMoreThreshold: Int = (65536 - 2048)
 
 public class IConvInputStream: FilteredInputStream {
 
     @usableFromInline let _ringBuffer: SwRingBuffer = SwRingBuffer(initialSize: MaxReadAheadLimit)
-    @usableFromInline let _lock:       NSCondition  = NSCondition()
     @usableFromInline var _error:      Error?       = nil
     @usableFromInline var _status:     Status
     @usableFromInline var _iconv:      IConv
     @usableFromInline let _thread:     IConvInputStreamThread
 
 /*@f:0*/
-    public override var streamStatus:      Status { _lock.withLock { _status                       } }
-    public override var streamError:       Error? { _lock.withLock { _error                        } }
-    public override var hasBytesAvailable: Bool   { _lock.withLock { inputStream.hasBytesAvailable } }
+    public override var streamStatus:      Status { _thread.lock.withLock { _status                                                  } }
+    public override var streamError:       Error? { _thread.lock.withLock { _error                                                   } }
+    public override var hasBytesAvailable: Bool   { _thread.lock.withLock { (_ringBuffer.count > 0) || inputStream.hasBytesAvailable } }
 /*@f:1*/
 
     public init(inputStream: InputStream, to outputEncoding: String = "UTF-8", from inputEncoding: String, options: IConv.Options = .None) throws {
@@ -53,45 +53,67 @@ public class IConvInputStream: FilteredInputStream {
         _iconv = try IConv(to: outputEncoding, from: inputEncoding, options: options)
         _thread = IConvInputStreamThread()
         super.init(inputStream: inputStream)
-        _thread.inputStream = self
-        if inputStream.streamStatus != .notOpen { _thread.start() }
+        if inputStream.streamStatus != .notOpen { _thread.start(self) }
+    }
+
+    deinit {
+        close()
     }
 
     public override func read(_ buffer: UnsafeMutablePointer<UInt8>, maxLength len: Int) -> Int {
-        _lock.withLock {
-            var cc = 0
-
-            while cc < len {
-                let c = _ringBuffer.getNext(into: buffer, maxLength: len - cc)
-            }
-
-            return cc
-        }
+        super.read(buffer, maxLength: len)
     }
 
     public override func open() {
-        _lock.withLock {
-            if _status == Status.notOpen { inputStream.open() }
+        _thread.lock.withLock {
+            if _status == Status.notOpen {
+                inputStream.open()
+                _thread.start(self)
+            }
             _status = inputStream.streamStatus
             _error = inputStream.streamError
         }
     }
 
     public override func close() {
+        if _thread.isExecuting {
+            _thread.cancel()
+        }
+        _status = .closed
         super.close()
     }
 }
 
 @usableFromInline class IConvInputStreamThread: Thread {
-
-    @usableFromInline weak var inputStream: IConvInputStream? = nil
-
-    override init() {
-        super.init()
-        self.qualityOfService = .background
-    }
+    let lock: NSCondition = NSCondition()
 
     override func main() {
-        super.main()
+        lock.withLock {
+            while true {
+            }
+        }
     }
+
+    func start(_ inputStream: IConvInputStream) {
+        lock.withLock {
+            if !(isExecuting || isFinished || isCancelled) {
+                self._inputStream = inputStream
+                self.qualityOfService = .background
+                super.start()
+            }
+        }
+    }
+
+    override func start() { fatalError() }
+
+    override func cancel() {
+        lock.withLock {
+            if !(isFinished || isCancelled) {
+                _inputStream = nil
+                super.cancel()
+            }
+        }
+    }
+
+    private weak var _inputStream: IConvInputStream? = nil
 }

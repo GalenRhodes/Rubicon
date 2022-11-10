@@ -67,35 +67,41 @@ extension NSRecursiveLock {
 }
 
 extension NSCondition {
-    @discardableResult @inlinable public func withLock<T>(_ action: () throws -> T) rethrows -> T {
+    @discardableResult @inlinable public func withLock<T>(broadcast bc: Bool = false, _ action: () throws -> T) rethrows -> T {
         lock()
-        defer { unlock() }
+        defer {/*@f:0*/
+            if bc { broadcast() } else { signal() }
+            unlock()/*@f:1*/
+        }
         return try action()
     }
 
     @discardableResult @inlinable public func withLockWait<T>(broadcast bc: Bool = false, for predicate: () throws -> Bool, _ action: () throws -> T) rethrows -> T {
-        lock()
-        defer { unlock() }
-        while try (!predicate()) {
-            wait()
+        try withLock(broadcast: bc) {
+            while try (!predicate()) {
+                wait()
+            }
+            return try action()
         }
-        defer {
-            if bc { broadcast() }
-            else { signal() }
-        }
-        return try action()
     }
 
     @discardableResult @inlinable public func withLockWait<T>(broadcast bc: Bool = false, until limit: Date, for predicate: () throws -> Bool, _ action: () throws -> T) rethrows -> T? {
-        lock()
-        defer { unlock() }
-        while try (!predicate()) {
-            guard wait(until: limit) else { return nil }
+        try withLock(broadcast: bc) {
+            while try (!predicate()) {
+                guard wait(until: limit) else { return nil }
+            }
+            return try action()
         }
-        defer {
-            if bc { broadcast() }
-            else { signal() }
+    }
+
+    @inlinable public func withLockWaitForCondition(broadcast bc: Bool = false, _ predicate: () throws -> Bool) rethrows {
+        try withLock(broadcast: bc) { while try (!predicate()) { wait() } }
+    }
+
+    @inlinable public func withLockWaitForCondition(broadcast bc: Bool = false, until limit: Date, _ predicate: () throws -> Bool) rethrows -> Bool {
+        try withLock(broadcast: bc) {
+            while try (!predicate()) { guard wait(until: limit) else { return false } }
+            return true
         }
-        return try action()
     }
 }

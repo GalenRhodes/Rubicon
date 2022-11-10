@@ -31,23 +31,12 @@ import CoreFoundation
 #endif
 
 @propertyWrapper public struct LockedValue<T> {
-    fileprivate var _wrappedValue: T
-    fileprivate let _lock:         NSCondition = NSCondition()
+    private var _wrappedValue: T
+    public let  lock:          NSCondition = NSCondition()
 
     public var wrappedValue: T {
-        get {
-            _lock.lock()
-            defer { _lock.unlock() }
-            return _wrappedValue
-        }
-        set {
-            _lock.lock()
-            defer {
-                _lock.signal()
-                _lock.unlock()
-            }
-            _wrappedValue = newValue
-        }
+        get { lock.withLock { _wrappedValue } }
+        set { lock.withLock { _wrappedValue = newValue } }
     }
 
     public init(wrappedValue: T) {
@@ -55,47 +44,23 @@ import CoreFoundation
     }
 
     public mutating func withLock<R>(_ action: (inout T) throws -> R) rethrows -> R {
-        _lock.lock()
-        defer {
-            _lock.signal()
-            _lock.unlock()
-        }
-        return try action(&_wrappedValue)
+        try lock.withLock { try action(&_wrappedValue) }
     }
 
     public func isValue(_ predicate: (T) -> Bool) -> Bool {
-        _lock.lock()
-        defer { _lock.unlock() }
-        return predicate(_wrappedValue)
+        lock.withLock { predicate(_wrappedValue) }
     }
 
-    public mutating func waitFor(condition predicate: (T) -> Bool) {
-        _lock.lock()
-        defer {
-            _lock.signal()
-            _lock.unlock()
-        }
-        while !predicate(_wrappedValue) { _lock.wait() }
+    public func waitForCondition(_ predicate: (T) -> Bool) {
+        lock.withLockWaitForCondition { predicate(_wrappedValue) }
     }
 
     public mutating func waitFor<R>(condition predicate: (T) -> Bool, thenWithLock action: (inout T) throws -> R) rethrows -> R {
-        _lock.lock()
-        defer {
-            _lock.signal()
-            _lock.unlock()
-        }
-        while !predicate(_wrappedValue) { _lock.wait() }
-        return try action(&_wrappedValue)
+        try lock.withLockWait(for: { predicate(_wrappedValue) }) { try action(&_wrappedValue) }
     }
 
     public mutating func waitFor<R>(condition predicate: (T) -> Bool, until limit: Date, thenWithLock action: (inout T) throws -> R) rethrows -> R? {
-        _lock.lock()
-        defer {
-            _lock.signal()
-            _lock.unlock()
-        }
-        while !predicate(_wrappedValue) { if !_lock.wait(until: limit) { return nil } }
-        return try action(&_wrappedValue)
+        try lock.withLockWait(until: limit, for: { predicate(_wrappedValue) }) { try action(&_wrappedValue) }
     }
 }
 

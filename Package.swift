@@ -3,34 +3,33 @@
 
 import PackageDescription
 
-//@f:0
 let package = Package(
-    name: "Rubicon",
-    platforms: [
-        .macOS(.v13),
-        .tvOS(.v16),
-        .iOS(.v16),
-        .watchOS(.v9),
-    ],
-    products: [
-        .library(name: "Rubicon", targets: [ "Rubicon", ]),
-        .executable(name: "Experiments", targets: [ "Experiments" ]),
-    ],
-    dependencies: [
-    ],
-    targets: [
-        .systemLibrary(name: "iconv"),
-        .target(
-            name: "Rubicon",
-            dependencies: [ "iconv", ],
-            exclude: [ "Info.plist", ],
-            linkerSettings: [
-                .linkedLibrary("iconv", .when( platforms: [ .macOS, .iOS, .tvOS, .watchOS, ])),
-                .linkedLibrary("pthread", .when(platforms: [ .linux, .android, .wasi, ])),
-            ]
-        ),
-        .testTarget(name: "RubiconTests", dependencies: [ "Rubicon", ], exclude: [ "Info.plist", ], resources: [ .copy("Files"), ]),
-        .executableTarget(name: "Experiments", dependencies: [ "Rubicon", ])
-    ]
+  name: "Rubicon",
+  platforms: [
+      .macOS(.v13),
+      .tvOS(.v16),
+      .iOS(.v16),
+      .watchOS(.v9),
+  ],
+  products: [
+      .library(name: "Rubicon", targets: [ "Rubicon", ]),
+      .executable(name: "Experiments", targets: [ "Experiments" ]),
+  ],
+  dependencies: [
+      .package(name: "RingBuffer", url: "https://github.com/GalenRhodes/RingBuffer", .upToNextMajor(from: "1.0.12")),
+  ],
+  targets: [
+      .systemLibrary(name: "iconv"),
+      .target(
+        name: "Rubicon",
+        dependencies: [ "iconv", ],
+        exclude: [ "Info.plist", ],
+        linkerSettings: [
+            .linkedLibrary("iconv", .when(platforms: [ .macOS, .iOS, .tvOS, .watchOS, ])),
+            .linkedLibrary("pthread", .when(platforms: [ .linux, .android, .wasi, ])),
+        ]
+      ),
+      .testTarget(name: "RubiconTests", dependencies: [ "Rubicon", ], exclude: [ "Info.plist", ], resources: [ .copy("Files"), ]),
+      .executableTarget(name: "Experiments", dependencies: [ "Rubicon", ])
+  ]
 )
-//@f:1

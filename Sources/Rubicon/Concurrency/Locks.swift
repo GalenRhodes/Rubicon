@@ -31,18 +31,11 @@ import CoreFoundation
 #endif
 
 extension NSLocking {
-
-    #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS) || os(OSX)
-        // Do Nothing
-    #else
-
-        //        @discardableResult @inlinable public func withLock<T>(_ action: () throws -> T) rethrows -> T {
-        //            lock()
-        //            defer { unlock() }
-        //            return try action()
-        //        }
-
-    #endif
+    @discardableResult @inlinable public func withLock<T>(_ action: () throws -> T) rethrows -> T {
+        lock()
+        defer { unlock() }
+        return try action()
+    }
 }
 
 extension NSLock {

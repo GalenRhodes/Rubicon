@@ -29,7 +29,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Rewrite...">
-      <change beforePath="$PROJECT_DIR$/Package.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Package.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Locks.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Locks.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -480,14 +480,7 @@
       <workItem from="1667826290640" duration="2359000" />
       <workItem from="1667830279457" duration="35070000" />
       <workItem from="1668086320058" duration="3645000" />
-      <workItem from="1668092505531" duration="3047000" />
-    </task>
-    <task id="LOCAL-00306" summary="Clean up of StringFormat.">
-      <created>1635517908536</created>
-      <option name="number" value="00306" />
-      <option name="presentableId" value="LOCAL-00306" />
-      <option name="project" value="LOCAL" />
-      <updated>1635517908537</updated>
+      <workItem from="1668092505531" duration="3113000" />
     </task>
     <task id="LOCAL-00307" summary="No comment.">
       <created>1635944243646</created>
@@ -825,7 +818,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668098215331</updated>
     </task>
-    <option name="localTasksCounter" value="355" />
+    <task id="LOCAL-00355" summary="Rewrite...">
+      <created>1668098288085</created>
+      <option name="number" value="00355" />
+      <option name="presentableId" value="LOCAL-00355" />
+      <option name="project" value="LOCAL" />
+      <updated>1668098288085</updated>
+    </task>
+    <option name="localTasksCounter" value="356" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

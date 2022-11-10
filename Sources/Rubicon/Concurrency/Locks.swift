@@ -36,11 +36,11 @@ extension NSLocking {
         // Do Nothing
     #else
 
-        @discardableResult @inlinable public func withLock<T>(_ action: () throws -> T) rethrows -> T {
-            lock()
-            defer { unlock() }
-            return try action()
-        }
+        //        @discardableResult @inlinable public func withLock<T>(_ action: () throws -> T) rethrows -> T {
+        //            lock()
+        //            defer { unlock() }
+        //            return try action()
+        //        }
 
     #endif
 }

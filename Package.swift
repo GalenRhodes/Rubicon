@@ -22,7 +22,7 @@ let package = Package(
       .systemLibrary(name: "iconv"),
       .target(
         name: "Rubicon",
-        dependencies: [ "iconv", ],
+        dependencies: [ "iconv", "RingBuffer", ],
         exclude: [ "Info.plist", ],
         linkerSettings: [
             .linkedLibrary("iconv", .when(platforms: [ .macOS, .iOS, .tvOS, .watchOS, ])),

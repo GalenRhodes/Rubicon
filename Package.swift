@@ -16,17 +16,17 @@ let package = Package(
       .executable(name: "Experiments", targets: [ "Experiments" ]),
   ],
   dependencies: [
-      .package(url: "https://github.com/GalenRhodes/RingBuffer", "1.0.12" ..< "2.0.0")),
-],
-targets: [
-    .systemLibrary(name: "iconv"),
-    .target(
-      name: "Rubicon",
-      dependencies: [ "iconv", ],
-      exclude: [ "Info.plist", ],
-      linkerSettings: [
-          .linkedLibrary("iconv", .when(platforms: [ .macOS, .iOS, .tvOS, .watchOS, ])),
-          .linkedLibrary("pthread", .when(platforms: [ .linux, .android, .wasi, ])),
+      .package(url: "https://github.com/GalenRhodes/RingBuffer", "1.0.12" ..< "2.0.0"),
+  ],
+  targets: [
+      .systemLibrary(name: "iconv"),
+      .target(
+        name: "Rubicon",
+        dependencies: [ "iconv", ],
+        exclude: [ "Info.plist", ],
+        linkerSettings: [
+            .linkedLibrary("iconv", .when(platforms: [ .macOS, .iOS, .tvOS, .watchOS, ])),
+            .linkedLibrary("pthread", .when(platforms: [ .linux, .android, .wasi, ])),
         ]
       ),
       .testTarget(name: "RubiconTests", dependencies: [ "Rubicon", ], exclude: [ "Info.plist", ], resources: [ .copy("Files"), ]),

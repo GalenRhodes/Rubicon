@@ -24,7 +24,7 @@
 		1117DA306C61AF3B74D7A689 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DFF31B9915D6BE0D4DE2 /* Process.swift */; };
 		1117DB0EF7385809618DB6EF /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DC7961E78DA424D17468 /* ReadWriteLock.swift */; };
 		1117DBCD6D2A9B99785B0073 /* SampleText-UTF16.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1117DCC40F97CB1013BE4515 /* SampleText-UTF16.txt */; };
-		1117DC9D7D4E7707428E0CC7 /* SwiftRingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DBECA6C56D8C2EBB619A /* SwiftRingBuffer.swift */; };
+		1117DC9D7D4E7707428E0CC7 /* SwRingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DBECA6C56D8C2EBB619A /* SwRingBuffer.swift */; };
 		1117DDCB50D9601800106781 /* IConvError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D3616D48CD0F47F4A44F /* IConvError.swift */; };
 		1117DE8676E1E1B1519564F6 /* IConvInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D87E97E9452BA8D05AAF /* IConvInputStream.swift */; };
 		1117DF64007BBAB12CA3FB35 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DE2F188BA6C52EBD7572 /* Date.swift */; };
@@ -98,7 +98,7 @@
 		1117DB7C8A6D6A5F5D46B3BA /* RubiconTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RubiconTests.swift; sourceTree = "<group>"; };
 		1117DBAACB45BB76001F3CD4 /* Test_UTF-8_ext.dtd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Test_UTF-8_ext.dtd"; sourceTree = "<group>"; };
 		1117DBD95F0A94119136985F /* semaphore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = semaphore.h; sourceTree = "<group>"; };
-		1117DBECA6C56D8C2EBB619A /* SwiftRingBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftRingBuffer.swift; sourceTree = "<group>"; };
+		1117DBECA6C56D8C2EBB619A /* SwRingBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwRingBuffer.swift; sourceTree = "<group>"; };
 		1117DC7961E78DA424D17468 /* ReadWriteLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadWriteLock.swift; sourceTree = "<group>"; };
 		1117DC8F7AD2D2685C91C2D9 /* Rubicon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rubicon.h; sourceTree = "<group>"; };
 		1117DCC40F97CB1013BE4515 /* SampleText-UTF16.txt */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text; path = "SampleText-UTF16.txt"; sourceTree = "<group>"; };
@@ -309,7 +309,7 @@
 				1117D54EC238CA7216FC79F6 /* Extenstions */,
 				1117DC41C4A2D9E4B0FDC782 /* Streams */,
 				1117D149BC6877A6EF744B77 /* IConv */,
-				1117DBECA6C56D8C2EBB619A /* SwiftRingBuffer.swift */,
+				1117DBECA6C56D8C2EBB619A /* SwRingBuffer.swift */,
 			);
 			path = Rubicon;
 			sourceTree = "<group>";
@@ -525,7 +525,7 @@
 				1117DF7187CB62D16CCB7E1C /* FilteredOutputStream.swift in Sources */,
 				1117D0F1B962248F62A8D100 /* Data.swift in Sources */,
 				1117DE8676E1E1B1519564F6 /* IConvInputStream.swift in Sources */,
-				1117DC9D7D4E7707428E0CC7 /* SwiftRingBuffer.swift in Sources */,
+				1117DC9D7D4E7707428E0CC7 /* SwRingBuffer.swift in Sources */,
 				1117D377EB306B756ED37427 /* Buffers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

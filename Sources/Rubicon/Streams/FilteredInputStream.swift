@@ -24,7 +24,7 @@ import Foundation
 import CoreFoundation
 
 open class FilteredInputStream: InputStream {
-    private let inputStream: InputStream
+    @usableFromInline let inputStream: InputStream
 
     open override var streamStatus:      Status { inputStream.streamStatus }
     open override var streamError:       Error? { inputStream.streamError }

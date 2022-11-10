@@ -31,11 +31,18 @@ import CoreFoundation
 #endif
 
 extension NSLocking {
-    @discardableResult @inlinable public func withLock<T>(_ action: () throws -> T) rethrows -> T {
-        lock()
-        defer { unlock() }
-        return try action()
-    }
+
+    #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS) || os(OSX)
+        // Do Nothing
+    #else
+
+        @discardableResult @inlinable public func withLock<T>(_ action: () throws -> T) rethrows -> T {
+            lock()
+            defer { unlock() }
+            return try action()
+        }
+
+    #endif
 }
 
 extension NSLock {
@@ -67,6 +74,12 @@ extension NSRecursiveLock {
 }
 
 extension NSCondition {
+    @discardableResult @inlinable public func withLock<T>(_ action: () throws -> T) rethrows -> T {
+        lock()
+        defer { unlock() }
+        return try action()
+    }
+
     @discardableResult @inlinable public func withLockWait<T>(broadcast bc: Bool = false, for predicate: () throws -> Bool, _ action: () throws -> T) rethrows -> T {
         lock()
         defer { unlock() }

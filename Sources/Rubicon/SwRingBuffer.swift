@@ -24,7 +24,7 @@ import Foundation
 import CoreFoundation
 import RingBuffer
 
-public class SwiftRingBuffer {
+public class SwRingBuffer {
 
     @usableFromInline var ringBuffer: UnsafeMutablePointer<PGRingBuffer>
     @usableFromInline let byteBuffer: UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: 1)
@@ -46,100 +46,24 @@ public class SwiftRingBuffer {
         lock.withLock { PGDefragRingBuffer(ringBuffer) }
     }
 
-    @inlinable func _prepend(data: UnsafeRawPointer, length: Int) {
-        guard PGPrependToRingBuffer(ringBuffer, data, length) else { fatalError("Insufficient Memory") }
+    @inlinable public func throwAway(length: Int) -> Int {
+        lock.withLock { let cc = min(length, PGRingBufferCount(ringBuffer)); PGRingBufferConsume(ringBuffer, length); return cc }
     }
-
-    @inlinable func _append(data: UnsafeRawPointer, length: Int) {
-        guard PGAppendToRingBuffer(ringBuffer, data, length) else { fatalError("Insufficient Memory") }
-    }
-
-    @inlinable func _getNext(into buffer: UnsafeMutableRawPointer, maxLength limit: Int) -> Int {
-        PGReadFromRingBuffer(ringBuffer, buffer, limit)
-    }
-
-    @inlinable func _getLast(into buffer: UnsafeMutableRawPointer, maxLength limit: Int) -> Int {
-        PGReadLastFromRingBuffer(ringBuffer, buffer, limit)
-    }
-
-    @usableFromInline func _get(into data: inout Data, maxLength limit: Int, using block: (UnsafeMutablePointer<UInt8>, Int) -> Int) -> Int {
-        lock.withLock {
-            var bytesRead  = 0
-            let bufferSize = min(8192, limit)
-            let buffer     = UnsafeMutablePointer<UInt8>.allocate(capacity: bufferSize)
-
-            defer { buffer.deallocate() }
-
-            while bytesRead < limit {
-                let bc = block(buffer, min(bufferSize, (limit - bytesRead)))
-                guard bc > 0 else { break }
-                bytesRead += bc
-                data.append(buffer, count: bc)
-            }
-
-            return bytesRead
-        }
-    }
-}
-
-extension SwiftRingBuffer {
 
     @inlinable public func getNext(into data: inout Data, maxLength limit: Int = Int.max) -> Int {
         lock.withLock { _get(into: &data, maxLength: limit) { _getNext(into: $0, maxLength: $1) } }
-    }
-
-    @inlinable public func getLast(into data: inout Data, maxLength limit: Int = Int.max) -> Int {
-        lock.withLock { _get(into: &data, maxLength: limit) { _getLast(into: $0, maxLength: $1) } }
-    }
-
-    @inlinable public func getLastByte() -> UInt8? {
-        lock.withLock { _getLast(into: byteBuffer, maxLength: 1) == 1 ? byteBuffer.pointee : nil }
     }
 
     @inlinable public func getNextByte() -> UInt8? {
         lock.withLock { _getNext(into: byteBuffer, maxLength: 1) == 1 ? byteBuffer.pointee : nil }
     }
 
-    @inlinable public func append(_ byte: UInt8) {
-        lock.withLock {
-            byteBuffer.pointee = byte
-            _append(data: byteBuffer, length: 1)
-        }
-    }
-
     @inlinable public func getNext(into buffer: UnsafeMutableRawPointer, maxLength limit: Int) -> Int {
         lock.withLock { _getNext(into: buffer, maxLength: limit) }
     }
 
-    @inlinable public func getLast(into buffer: UnsafeMutableRawPointer, maxLength limit: Int) -> Int {
-        lock.withLock { _getLast(into: buffer, maxLength: limit) }
-    }
-
-    @inlinable public func append(data: UnsafeRawPointer, length: Int) {
-        lock.withLock { _append(data: data, length: length) }
-    }
-
-    @inlinable public func prepend(data: UnsafeRawPointer, length: Int) {
-        lock.withLock { _prepend(data: data, length: length) }
-    }
-
-    @inlinable public func prepend(_ byte: UInt8) {
-        lock.withLock {
-            byteBuffer.pointee = byte
-            _prepend(data: byteBuffer, length: 1)
-        }
-    }
-
     @inlinable public func getNext(maxLength limit: Int = Int.max) -> Data {
-        var data = Data()
-        _ = getNext(into: &data, maxLength: limit)
-        return data
-    }
-
-    @inlinable public func getLast(maxLength limit: Int = Int.max) -> Data {
-        var data = Data()
-        _ = getLast(into: &data, maxLength: limit)
-        return data
+        var data = Data(); _ = getNext(into: &data, maxLength: limit); return data
     }
 
     @inlinable public func getNext(into buffer: UnsafeMutablePointer<UInt8>, maxLength limit: Int) -> Int {
@@ -150,17 +74,8 @@ extension SwiftRingBuffer {
         getNext(into: UnsafeMutableRawPointer(buffer), maxLength: limit)
     }
 
-    @inlinable public func getLast(into buffer: UnsafeMutablePointer<UInt8>, maxLength limit: Int) -> Int {
-        getLast(into: UnsafeMutableRawPointer(buffer), maxLength: limit)
-    }
-
-    @inlinable public func getLast(into buffer: UnsafeMutablePointer<Int8>, maxLength limit: Int) -> Int {
-        getLast(into: UnsafeMutableRawPointer(buffer), maxLength: limit)
-    }
-
     @inlinable public func getNext(into buffer: UnsafeMutableRawBufferPointer) -> Int {
-        guard let ptr = buffer.baseAddress else { fatalError() }
-        return getNext(into: ptr, maxLength: buffer.count)
+        buffer.withBaseAddress { getNext(into: $0, maxLength: $1) }
     }
 
     @inlinable public func getNext(into buffer: UnsafeMutableBufferPointer<UInt8>) -> Int {
@@ -171,9 +86,24 @@ extension SwiftRingBuffer {
         getNext(into: UnsafeMutableRawBufferPointer(buffer))
     }
 
+    @inlinable public func getLastByte() -> UInt8? {
+        lock.withLock { _getLast(into: byteBuffer, maxLength: 1) == 1 ? byteBuffer.pointee : nil }
+    }
+
+    @inlinable public func getLast(maxLength limit: Int = Int.max) -> Data {
+        var data = Data(); _ = getLast(into: &data, maxLength: limit); return data
+    }
+
+    @inlinable public func getLast(into data: inout Data, maxLength limit: Int = Int.max) -> Int {
+        lock.withLock { _get(into: &data, maxLength: limit) { _getLast(into: $0, maxLength: $1) } }
+    }
+
+    @inlinable public func getLast(into buffer: UnsafeMutableRawPointer, maxLength limit: Int) -> Int {
+        lock.withLock { _getLast(into: buffer, maxLength: limit) }
+    }
+
     @inlinable public func getLast(into buffer: UnsafeMutableRawBufferPointer) -> Int {
-        guard let ptr = buffer.baseAddress else { fatalError() }
-        return getLast(into: ptr, maxLength: buffer.count)
+        buffer.withBaseAddress { getLast(into: $0, maxLength: $1) }
     }
 
     @inlinable public func getLast(into buffer: UnsafeMutableBufferPointer<UInt8>) -> Int {
@@ -184,8 +114,28 @@ extension SwiftRingBuffer {
         getLast(into: UnsafeMutableRawBufferPointer(buffer))
     }
 
+    @inlinable public func getLast(into buffer: UnsafeMutablePointer<UInt8>, maxLength limit: Int) -> Int {
+        getLast(into: UnsafeMutableRawPointer(buffer), maxLength: limit)
+    }
+
+    @inlinable public func getLast(into buffer: UnsafeMutablePointer<Int8>, maxLength limit: Int) -> Int {
+        getLast(into: UnsafeMutableRawPointer(buffer), maxLength: limit)
+    }
+
+    @inlinable public func append(_ byte: UInt8) {
+        lock.withLock { byteBuffer.pointee = byte; _append(data: byteBuffer, length: 1) }
+    }
+
+    @inlinable public func append(_ byte: Int8) {
+        append(UInt8(bitPattern: byte))
+    }
+
     @inlinable public func append(data: Data) {
         data.withUnsafeBytes { (ptr: UnsafeRawBufferPointer) -> Void in append(data: ptr) }
+    }
+
+    @inlinable public func append(data: UnsafeRawPointer, length: Int) {
+        lock.withLock { _append(data: data, length: length) }
     }
 
     @inlinable public func append(data: UnsafeRawBufferPointer) {
@@ -208,8 +158,16 @@ extension SwiftRingBuffer {
         append(data: UnsafeRawBufferPointer(data))
     }
 
-    @inlinable public func append(_ byte: Int8) {
-        append(UInt8(bitPattern: byte))
+    @inlinable public func prepend(_ byte: UInt8) {
+        lock.withLock { byteBuffer.pointee = byte; _prepend(data: byteBuffer, length: 1) }
+    }
+
+    @inlinable public func prepend(_ byte: Int8) {
+        prepend(UInt8(bitPattern: byte))
+    }
+
+    @inlinable public func prepend(data: UnsafeRawPointer, length: Int) {
+        lock.withLock { _prepend(data: data, length: length) }
     }
 
     @inlinable public func prepend(data: UnsafeRawBufferPointer) {
@@ -232,7 +190,37 @@ extension SwiftRingBuffer {
         prepend(data: UnsafeRawBufferPointer(data))
     }
 
-    @inlinable public func prepend(_ byte: Int8) {
-        prepend(UInt8(bitPattern: byte))
+    @inlinable func _prepend(data: UnsafeRawPointer, length: Int) {
+        guard PGPrependToRingBuffer(ringBuffer, data, length) else { fatalError("Insufficient Memory") }
+    }
+
+    @inlinable func _append(data: UnsafeRawPointer, length: Int) {
+        guard PGAppendToRingBuffer(ringBuffer, data, length) else { fatalError("Insufficient Memory") }
+    }
+
+    @inlinable func _getNext(into buffer: UnsafeMutableRawPointer, maxLength limit: Int) -> Int {
+        PGReadFromRingBuffer(ringBuffer, buffer, limit)
+    }
+
+    @inlinable func _getLast(into buffer: UnsafeMutableRawPointer, maxLength limit: Int) -> Int {
+        PGReadLastFromRingBuffer(ringBuffer, buffer, limit)
+    }
+
+    @inlinable func _get(into data: inout Data, maxLength limit: Int, using block: (UnsafeMutablePointer<UInt8>, Int) -> Int) -> Int {
+        let bufferSize = min(8192, limit)
+        let buffer     = UnsafeMutablePointer<UInt8>.allocate(capacity: bufferSize)
+        defer { buffer.deallocate() }
+        return _get(&data, buffer, bufferSize, limit, block)
+    }
+
+    @usableFromInline func _get(_ data: inout Data, _ buffer: UnsafeMutablePointer<UInt8>, _ bufferSize: Int, _ limit: Int, _ block: (UnsafeMutablePointer<UInt8>, Int) -> Int) -> Int {
+        var bytesRead = 0
+        while bytesRead < limit {
+            let bc = block(buffer, min(bufferSize, (limit - bytesRead)))
+            guard bc > 0 else { break }
+            bytesRead += bc
+            data.append(buffer, count: bc)
+        }
+        return bytesRead
     }
 }

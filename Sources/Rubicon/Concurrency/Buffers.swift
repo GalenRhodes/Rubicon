@@ -28,6 +28,7 @@ extension UnsafeRawBufferPointer {
         guard let ptr = baseAddress else { fatalError(errorMessage) }
         return try block(ptr, count)
     }
+
 }
 
 extension UnsafeMutableRawBufferPointer {
@@ -51,4 +52,23 @@ extension UnsafeMutableBufferPointer {
         guard let ptr = baseAddress else { fatalError(errorMessage) }
         return try block(ptr, count)
     }
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/// Creates a mutable buffer or a specific type and capacity and then calls the given closure with that buffer. After the closure has executed
+/// the buffer is deallocated automatically.
+///
+/// <b>NOTE:</b> The closure is responsible for initializing and de-initializing the buffer if needed.
+///
+/// - Parameters:
+///   - type: The type of data the buffer will hold.
+///   - capacity: The number of items of the given type that the buffer will hold.
+///   - action: The closure.
+/// - Returns: Whatever the closure returns.
+/// - Throws: Anything the closure throws.
+///
+@discardableResult public func withTemporaryBuffer<T, R>(ofType type: T.Type, capacity: Int, _ action: (UnsafeMutablePointer<T>, Int) throws -> R) rethrows -> R {
+    let buffer = UnsafeMutablePointer<T>.allocate(capacity: capacity)
+    defer { buffer.deallocate() }
+    return try action(buffer, capacity)
 }

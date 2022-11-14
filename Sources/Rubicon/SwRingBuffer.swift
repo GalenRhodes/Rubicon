@@ -46,6 +46,10 @@ public class SwRingBuffer {
         lock.withLock { PGDefragRingBuffer(ringBuffer) }
     }
 
+    @inlinable public func clear(keepCapacity: Bool = false) {
+        PGClearRingBuffer(ringBuffer, keepCapacity)
+    }
+
     @inlinable public func throwAway(length: Int) -> Int {
         lock.withLock { let cc = min(length, PGRingBufferCount(ringBuffer)); PGRingBufferConsume(ringBuffer, length); return cc }
     }
@@ -66,24 +70,8 @@ public class SwRingBuffer {
         var data = Data(); _ = getNext(into: &data, maxLength: limit); return data
     }
 
-    @inlinable public func getNext(into buffer: UnsafeMutablePointer<UInt8>, maxLength limit: Int) -> Int {
-        getNext(into: UnsafeMutableRawPointer(buffer), maxLength: limit)
-    }
-
-    @inlinable public func getNext(into buffer: UnsafeMutablePointer<Int8>, maxLength limit: Int) -> Int {
-        getNext(into: UnsafeMutableRawPointer(buffer), maxLength: limit)
-    }
-
     @inlinable public func getNext(into buffer: UnsafeMutableRawBufferPointer) -> Int {
         buffer.withBaseAddress { getNext(into: $0, maxLength: $1) }
-    }
-
-    @inlinable public func getNext(into buffer: UnsafeMutableBufferPointer<UInt8>) -> Int {
-        getNext(into: UnsafeMutableRawBufferPointer(buffer))
-    }
-
-    @inlinable public func getNext(into buffer: UnsafeMutableBufferPointer<Int8>) -> Int {
-        getNext(into: UnsafeMutableRawBufferPointer(buffer))
     }
 
     @inlinable public func getLastByte() -> UInt8? {
@@ -106,22 +94,6 @@ public class SwRingBuffer {
         buffer.withBaseAddress { getLast(into: $0, maxLength: $1) }
     }
 
-    @inlinable public func getLast(into buffer: UnsafeMutableBufferPointer<UInt8>) -> Int {
-        getLast(into: UnsafeMutableRawBufferPointer(buffer))
-    }
-
-    @inlinable public func getLast(into buffer: UnsafeMutableBufferPointer<Int8>) -> Int {
-        getLast(into: UnsafeMutableRawBufferPointer(buffer))
-    }
-
-    @inlinable public func getLast(into buffer: UnsafeMutablePointer<UInt8>, maxLength limit: Int) -> Int {
-        getLast(into: UnsafeMutableRawPointer(buffer), maxLength: limit)
-    }
-
-    @inlinable public func getLast(into buffer: UnsafeMutablePointer<Int8>, maxLength limit: Int) -> Int {
-        getLast(into: UnsafeMutableRawPointer(buffer), maxLength: limit)
-    }
-
     @inlinable public func append(_ byte: UInt8) {
         lock.withLock { byteBuffer.pointee = byte; _append(data: byteBuffer, length: 1) }
     }
@@ -140,22 +112,6 @@ public class SwRingBuffer {
 
     @inlinable public func append(data: UnsafeRawBufferPointer) {
         data.withBaseAddress { append(data: $0, length: $1) }
-    }
-
-    @inlinable public func append(data: UnsafePointer<UInt8>, length: Int) {
-        append(data: UnsafeRawPointer(data), length: length)
-    }
-
-    @inlinable public func append(data: UnsafePointer<Int8>, length: Int) {
-        append(data: UnsafeRawPointer(data), length: length)
-    }
-
-    @inlinable public func append(data: UnsafeBufferPointer<UInt8>) {
-        append(data: UnsafeRawBufferPointer(data))
-    }
-
-    @inlinable public func append(data: UnsafeBufferPointer<Int8>) {
-        append(data: UnsafeRawBufferPointer(data))
     }
 
     @inlinable public func prepend(_ byte: UInt8) {

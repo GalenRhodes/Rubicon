@@ -67,41 +67,50 @@ extension NSRecursiveLock {
 }
 
 extension NSCondition {
-    @discardableResult @inlinable public func withLock<T>(broadcast bc: Bool = false, _ action: () throws -> T) rethrows -> T {
+    @inlinable @discardableResult public func withLock<T>(_ action: () throws -> T) rethrows -> T {
         lock()
-        defer {/*@f:0*/
-            if bc { broadcast() } else { signal() }
-            unlock()/*@f:1*/
+        defer {
+            broadcast()
+            unlock()
         }
         return try action()
     }
 
-    @discardableResult @inlinable public func withLockWait<T>(broadcast bc: Bool = false, for predicate: () throws -> Bool, _ action: () throws -> T) rethrows -> T {
-        try withLock(broadcast: bc) {
-            while try (!predicate()) {
-                wait()
-            }
+    @inlinable @discardableResult public func withLock<T>(if pred: @autoclosure () -> Bool, _ action: () throws -> T) rethrows -> T? {
+        try withLock {
+            guard pred() else { return nil }
             return try action()
         }
     }
 
-    @discardableResult @inlinable public func withLockWait<T>(broadcast bc: Bool = false, until limit: Date, for predicate: () throws -> Bool, _ action: () throws -> T) rethrows -> T? {
-        try withLock(broadcast: bc) {
-            while try (!predicate()) {
-                guard wait(until: limit) else { return nil }
-            }
+    @inlinable @discardableResult public func withLockWait<T>(while pred: @autoclosure () -> Bool, _ action: () throws -> T) rethrows -> T {
+        try withLock {
+            wait(while: pred())
             return try action()
         }
     }
 
-    @inlinable public func withLockWaitForCondition(broadcast bc: Bool = false, _ predicate: () throws -> Bool) rethrows {
-        try withLock(broadcast: bc) { while try (!predicate()) { wait() } }
+    @inlinable @discardableResult public func withLockWait<T>(until limit: Date, while pred: @autoclosure () -> Bool, _ action: () throws -> T) rethrows -> T? {
+        try withLock {
+            guard wait(until: limit, while: pred()) else { return nil }
+            return try action()
+        }
     }
 
-    @inlinable public func withLockWaitForCondition(broadcast bc: Bool = false, until limit: Date, _ predicate: () throws -> Bool) rethrows -> Bool {
-        try withLock(broadcast: bc) {
-            while try (!predicate()) { guard wait(until: limit) else { return false } }
-            return true
-        }
+    @inlinable public func withLockWait(while pred: @autoclosure () -> Bool) {
+        withLock { wait(while: pred()) }
+    }
+
+    @inlinable public func withLockWait(until limit: Date, while pred: @autoclosure () -> Bool) -> Bool {
+        withLock { wait(until: limit, while: pred()) }
+    }
+
+    @inlinable public func wait(while pred: @autoclosure () -> Bool) {
+        while pred() { wait() }
+    }
+
+    @inlinable public func wait(until limit: Date, while pred: @autoclosure () -> Bool) -> Bool {
+        while pred() { guard wait(until: limit) else { return !pred() } }
+        return true
     }
 }

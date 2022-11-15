@@ -66,46 +66,105 @@ public class IConvInputStream: InputStream {
     }
 }
 
+/*==========================================================================================================================================================*/
 @usableFromInline class IConvInputStreamThread: Thread {
 
-    enum State { case Run, Skip, End }/*@f:0*/
+    enum State { case Run, Skip, End }
 
-    private           let inputStream: InputStream
-    private           let iconv:       IConv
-    private           let readBuffer:  UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: ReadBufferSize)
-    private           let iconvBuffer: UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: IConvBufferSize)
-    private           let outBuffer:   SwRingBuffer                = SwRingBuffer(initialSize: MaxReadAheadLimit)
-    private           var allDone:     Bool                        = false
-    @usableFromInline let lock:        NSCondition                 = NSCondition()
+    /*@f:0*/
+    private           let inputStream:    InputStream
+    private           let inputEncoding:  String
+    private           let outputEncoding: String
+    private           let options:        IConv.Options
+    private           let outBuffer:      SwRingBuffer = SwRingBuffer(initialSize: MaxReadAheadLimit)
+    private           var allDone:        Bool         = false
+    private           var error:          Error?       = nil
+    @usableFromInline let lock:           NSCondition  = NSCondition()
 
-    @usableFromInline override var isFinished:  Bool { (allDone || super.isFinished) }
+    @usableFromInline override var isFinished:  Bool { lock.withLock { pIsFinished  } }
+    @usableFromInline override var isCancelled: Bool { lock.withLock { super.isCancelled } }
+    @usableFromInline override var isExecuting: Bool { lock.withLock { pIsExecuting } }
+
+    private var pIsFinished:  Bool { (allDone || super.isFinished)   }
+    private var pIsExecuting: Bool { (super.isExecuting && !allDone) }
     /*@f:1*/
+
     init(_ inputStream: InputStream, _ outputEncoding: String, _ inputEncoding: String, _ options: IConv.Options) throws {
         self.inputStream = inputStream
-        self.iconv = try IConv(to: outputEncoding, from: inputEncoding, options: options)
+        self.outputEncoding = outputEncoding
+        self.inputEncoding = inputEncoding
+        self.options = options
         super.init()
     }
 
     deinit {
         print("DEBUG: deinit called. Deallocating buffer.")
+        cancel()
+    }
+
+    override func main() {
         lock.withLock {
-            if !allDone {
-                super.cancel()
-                while !allDone { lock.wait() }
+            defer { allDone = true }
+            do {
+                let iconv:       IConv                       = try IConv(to: outputEncoding, from: inputEncoding, options: options)
+                let readBuffer:  UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: ReadBufferSize)
+                let iconvBuffer: UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: IConvBufferSize)
+                var offset:      Int                         = 0
+
+                defer {
+                    readBuffer.deallocate()
+                    iconvBuffer.deallocate()
+                }
+
+                while !super.isCancelled {
+                    guard foo1 else { break }
+                    let (st, ic, oc, sz) = foo2(iconv, readBuffer, iconvBuffer, offset)
+                    guard sz > 0 else { break }
+
+                    if oc > 0 {
+                        outBuffer.append(data: iconvBuffer, length: oc)
+                        lock.broadcast()
+                    }
+
+                    switch st {
+                        case .Error(let e): throw e
+                        default:
+                            let x = sz - ic
+                            if x > 0 { memcpy(readBuffer, (readBuffer + ic), x) }
+                            offset = x
+                    }
+                }
             }
-            readBuffer.deallocate()
-            iconvBuffer.deallocate()
+            catch let e {
+                error = e
+            }
         }
     }
 
-    public func read(_ buffer: UnsafeMutablePointer<UInt8>, maxLength len: Int) -> Int {
+    private var foo1: Bool {
+        lock.wait(while: ((outBuffer.count > ReadMoreThreshold) && !super.isCancelled))
+        return !super.isCancelled
+    }
+
+    private func foo2(_ iconv: IConv, _ readBuffer: UnsafeMutablePointer<UInt8>, _ iconvBuffer: UnsafeMutablePointer<UInt8>, _ lastIn: Int) -> (IConv.Status, Int, Int, Int) {
+        let cc = inputStream.read(readBuffer + lastIn, maxLength: ReadBufferSize - lastIn)
+        guard cc > 0 else { return (IConv.Status.Complete, 0, 0, 0) }
+        let sz           = (lastIn + cc)
+        let (st, ic, oc) = iconv.convert(input: readBuffer, inputSize: sz, output: iconvBuffer, outputSize: IConvBufferSize)
+        return (st, ic, oc, sz)
+    }
+
+    func read(_ buffer: UnsafeMutablePointer<UInt8>, maxLength len: Int) -> Int {
         lock.withLock {
             var cc = 0
+
             while cc < len {
-                while outBuffer.isEmpty && !allDone { lock.wait() }
-                guard !allDone else { break }
+                lock.wait(while: outBuffer.isEmpty && !allDone)
+                if allDone { return cc }
                 cc += outBuffer.getNext(into: buffer + cc, maxLength: len - cc)
+                lock.broadcast()
             }
+
             return cc
         }
     }
@@ -118,17 +177,9 @@ public class IConvInputStream: InputStream {
     }
 
     override func cancel() {
-        lock.withLock {
+        lock.withLock(if: !allDone) {
             super.cancel()
-            while !allDone { lock.wait() }
-        }
-    }
-
-    override func main() {
-        lock.withLock {
-            defer { allDone = true }
-            while !isCancelled {
-            }
+            lock.wait(while: !allDone)
         }
     }
 }

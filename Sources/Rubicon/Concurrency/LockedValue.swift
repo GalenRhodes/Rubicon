@@ -22,13 +22,6 @@
 
 import Foundation
 import CoreFoundation
-#if canImport(Darwin)
-    import Darwin
-#elseif canImport(Glibc)
-    import Glibc
-#elseif canImport(WinSDK)
-    import WinSDK
-#endif
 
 @propertyWrapper public struct LockedValue<T> {
     private var _wrappedValue: T
@@ -51,16 +44,19 @@ import CoreFoundation
         lock.withLock { predicate(_wrappedValue) }
     }
 
-    public func waitForCondition(_ predicate: (T) -> Bool) {
-        lock.withLockWaitForCondition { predicate(_wrappedValue) }
+    public func waitWhile(_ predicate: (T) -> Bool) {
+        lock.withLockWait(while: predicate(_wrappedValue))
     }
 
-    public mutating func waitFor<R>(condition predicate: (T) -> Bool, thenWithLock action: (inout T) throws -> R) rethrows -> R {
-        try lock.withLockWait(for: { predicate(_wrappedValue) }) { try action(&_wrappedValue) }
+    public func waitUntil(_ limit: Date, while predicate: (T) -> Bool) -> Bool {
+        lock.withLockWait(until: limit, while: predicate(_wrappedValue))
     }
 
-    public mutating func waitFor<R>(condition predicate: (T) -> Bool, until limit: Date, thenWithLock action: (inout T) throws -> R) rethrows -> R? {
-        try lock.withLockWait(until: limit, for: { predicate(_wrappedValue) }) { try action(&_wrappedValue) }
+    public mutating func withLock<R>(whenNot predicate: (T) -> Bool, _ action: (inout T) throws -> R) rethrows -> R {
+        try lock.withLockWait(while: predicate(_wrappedValue)) { try action(&_wrappedValue) }
+    }
+
+    public mutating func withLock<R>(whenNot predicate: (T) -> Bool, waitUntil limit: Date, _ action: (inout T) throws -> R) rethrows -> R? {
+        try lock.withLockWait(until: limit, while: predicate(_wrappedValue)) { try action(&_wrappedValue) }
     }
 }
-

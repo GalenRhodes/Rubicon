@@ -124,6 +124,6 @@ open class JoinableThread {
     }
 
     public func join() {
-        _state.waitForCondition { $0 != .Executing }
+        _state.waitWhile { $0 == .Executing }
     }
 }

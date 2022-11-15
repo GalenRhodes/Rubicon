@@ -33,19 +33,18 @@ import iconv
 
 open class IConv {
 
-    fileprivate var conversionDescriptor: iconv_t
-
-    public let inputEncoding:  String
-    public let outputEncoding: String
-    public let options:        Options
+    private var cd:             iconv_t
+    public let  inputEncoding:  String
+    public let  outputEncoding: String
+    public let  options:        Options
 
     public init(to outputEncoding: String = "UTF-8", from inputEncoding: String, options: Options = .None) throws {
         self.inputEncoding = inputEncoding
         self.outputEncoding = outputEncoding
         self.options = options
-        self.conversionDescriptor = iconv_open(outputEncoding + options.flag, inputEncoding)
+        self.cd = iconv_open(outputEncoding + options.flag, inputEncoding)
 
-        if self.conversionDescriptor == (iconv_t)(bitPattern: -1) {
+        if self.cd == (iconv_t)(bitPattern: -1) {
             switch errno {
                 case EMFILE: throw IConvError.NoAvailableFileDescriptors
                 case ENFILE: throw IConvError.TooManyFilesOpen
@@ -57,67 +56,47 @@ open class IConv {
     }
 
     deinit {
-        iconv_close(conversionDescriptor)
+        iconv_close(cd)
     }
 
     open func convert(inputData: Data) throws -> (Status, Int, Data) {
-        try inputData.withUnsafeBytes { (bp: UnsafeRawBufferPointer) -> (Status, Int, Data) in
-            try bp.withMemoryRebound(to: CChar.self) { (bp: UnsafeBufferPointer<CChar>) -> (Status, Int, Data) in
-                guard let input = bp.baseAddress else { throw IConvError.InvalidInputBuffer }
-                let outputSize: Int                         = ((bp.count + 10) * 4)
-                let output:     UnsafeMutablePointer<CChar> = UnsafeMutablePointer<CChar>.allocate(capacity: outputSize)
-                let results                                 = try convert(input: input, inputSize: bp.count, output: output, outputSize: outputSize)
-                return (results.0, results.1, Data(bytes: UnsafeRawPointer(output), count: results.2))
+        inputData.withUnsafeBytes { (ip: UnsafeRawBufferPointer) -> (Status, Int, Data) in
+            let op           = UnsafeMutableRawBufferPointer.allocate(byteCount: ((ip.count + 10) * 4), alignment: MemoryLayout<CChar>.alignment)
+            let (st, ic, oc) = convert(input: ip, output: op)
+            return op.withBaseAddress { b, _ in (st, ic, Data(bytes: b, count: oc)) }
+        }
+    }
+
+    open func convert(input: UnsafeRawBufferPointer, output: UnsafeMutableRawBufferPointer) -> (Status, Int, Int) {
+        input.withBaseAddress { ip, il -> (Status, Int, Int) in
+            output.withBaseAddress { op, ol -> (Status, Int, Int) in
+                convert(input: ip, inputSize: il, output: op, outputSize: ol)
             }
         }
     }
 
-    open func finalize() throws -> (Status, Int, Data) {
-        let outputSize                          = 40
-        let output: UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: outputSize)
-        let results                             = try finalize(output: output, outputSize: outputSize)
-        return (results.0, results.1, Data(bytes: UnsafeRawPointer(output), count: results.2))
+    open func convert(input: UnsafeRawPointer, inputSize: Int, output: UnsafeMutableRawPointer, outputSize: Int) -> (Status, Int, Int) {
+        convert0(UnsafeMutableRawPointer(mutating: input), inputSize, output, outputSize)
     }
 
-    open func convert(input: UnsafePointer<UInt8>, inputSize: Int, output: UnsafeMutablePointer<UInt8>, outputSize: Int) throws -> (Status, Int, Int) {
-        try output.withMemoryRebound(to: CChar.self, capacity: outputSize) { o in
-            try input.withMemoryRebound(to: CChar.self, capacity: inputSize) { i in
-                try convert(input: i, inputSize: inputSize, output: o, outputSize: outputSize)
-            }
-        }
+    open func finalize() throws -> (Status, Data) {
+        let outputSize = 40
+        let op         = UnsafeMutableRawPointer.allocate(byteCount: outputSize, alignment: MemoryLayout<CChar>.alignment)
+        let (st, oc)   = finalize(output: op, outputSize: outputSize)
+        return (st, Data(bytes: op, count: oc))
     }
 
-    open func convert(input: UnsafePointer<CChar>, inputSize: Int, output: UnsafeMutablePointer<CChar>, outputSize: Int) throws -> (Status, Int, Int) {
-        let inputBuffer: UnsafeMutablePointer<CChar> = UnsafeMutablePointer<CChar>.allocate(capacity: inputSize)
-        inputBuffer.initialize(from: input, count: inputSize)
-        defer {
-            inputBuffer.deinitialize(count: inputSize)
-            inputBuffer.deallocate()
-        }
-        return try convert(input: inputBuffer, inputSize: inputSize, output: output, outputSize: outputSize)
+    open func finalize(output: UnsafeMutableRawBufferPointer) -> (Status, Int) {
+        output.withBaseAddress { finalize(output: $0, outputSize: $1) }
     }
 
-    open func convert(input: UnsafeBufferPointer<UInt8>, output: UnsafeMutableBufferPointer<UInt8>) throws -> (Status, Int, Int) {
-        guard let i = input.baseAddress else { throw IConvError.InvalidInputBuffer }
-        guard let o = output.baseAddress else { throw IConvError.InvalidOutputBuffer }
-        return try convert(input: i, inputSize: input.count, output: o, outputSize: output.count)
+    open func finalize(output: UnsafeMutableRawPointer, outputSize: Int) -> (Status, Int) {
+        let (st, _, oc) = convert0(nil, 0, output, outputSize)
+        return (st, oc)
     }
 
-    open func finalize(output: UnsafeMutablePointer<UInt8>, outputSize: Int) throws -> (Status, Int, Int) {
-        try output.withMemoryRebound(to: CChar.self, capacity: outputSize) { try finalize(output: $0, outputSize: outputSize) }
-    }
-
-    open func finalize(output: UnsafeMutablePointer<CChar>, outputSize: Int) throws -> (Status, Int, Int) {
-        try convert(input: nil, inputSize: 0, output: output, outputSize: outputSize)
-    }
-
-    open func finalize(output: UnsafeMutableBufferPointer<UInt8>) throws -> (Status, Int, Int) {
-        guard let o = output.baseAddress else { throw IConvError.InvalidOutputBuffer }
-        return try finalize(output: o, outputSize: output.count)
-    }
-
-    open func reset() {
-        _ = try? convert(input: nil, inputSize: 0, output: nil, outputSize: 0)
+    @discardableResult open func reset() -> (Status, Int, Int) {
+        convert0(nil, 0, nil, 0)
     }
 
     open class func getEncodingList() throws -> [String] {
@@ -132,7 +111,7 @@ open class IConv {
         return []
     }
 
-    public enum Status { case Complete, InvalidSequence, IncompleteSequence, OutputBufferFull }
+    public enum Status { case Complete, InvalidSequence, IncompleteSequence, OutputBufferFull, Error(_ error: IConvError) }
 
     public enum Options {
         case None, Ignore, Transliterate
@@ -146,19 +125,52 @@ open class IConv {
         }
     }
 
-    fileprivate func convert(input: UnsafeMutablePointer<CChar>?, inputSize: Int, output: UnsafeMutablePointer<CChar>?, outputSize: Int) throws -> (Status, Int, Int) {
-        var inputBuffer:     UnsafeMutablePointer<CChar>? = input
-        var outputBuffer:    UnsafeMutablePointer<CChar>? = output
-        var inputRemaining:  Int                          = inputSize
-        var outputRemaining: Int                          = outputSize
-        let returnValue:     Int                          = iconv(conversionDescriptor, &inputBuffer, &inputRemaining, &outputBuffer, &outputRemaining)
+    private func convert0(_ input: UnsafeMutableRawPointer?, _ inputSize: Int, _ output: UnsafeMutableRawPointer?, _ outputSize: Int) -> (Status, Int, Int) {
+        if let input = input, let output = output {
+            return convert1(input, inputSize, output, outputSize)
+        }
+        else if let output = output {
+            return convert2(output, outputSize)
+        }
+        else {
+            return convert3()
+        }
+    }
 
-        if returnValue == -1 {
+    private func convert1(_ input: UnsafeMutableRawPointer, _ inputSize: Int, _ output: UnsafeMutableRawPointer, _ outputSize: Int) -> (Status, Int, Int) {
+        input.withMemoryRebound(to: CChar.self, capacity: inputSize) { ip in
+            output.withMemoryRebound(to: CChar.self, capacity: outputSize) { op in
+                var inputBuffer:  UnsafeMutablePointer<CChar>? = ip
+                var outputBuffer: UnsafeMutablePointer<CChar>? = op
+                return convertX(&inputBuffer, inputSize, &outputBuffer, outputSize)
+            }
+        }
+    }
+
+    private func convert2(_ output: UnsafeMutableRawPointer, _ outputSize: Int) -> (Status, Int, Int) {
+        output.withMemoryRebound(to: CChar.self, capacity: outputSize) { op in
+            var inputBuffer:  UnsafeMutablePointer<CChar>? = nil
+            var outputBuffer: UnsafeMutablePointer<CChar>? = op
+            return convertX(&inputBuffer, 0, &outputBuffer, outputSize)
+        }
+    }
+
+    private func convert3() -> (Status, Int, Int) {
+        var inputBuffer:  UnsafeMutablePointer<CChar>? = nil
+        var outputBuffer: UnsafeMutablePointer<CChar>? = nil
+        return convertX(&inputBuffer, 0, &outputBuffer, 0)
+    }
+
+    private func convertX(_ inputBuffer: inout UnsafeMutablePointer<CChar>?, _ inputSize: Int, _ outputBuffer: inout UnsafeMutablePointer<CChar>?, _ outputSize: Int) -> (Status, Int, Int) {
+        var inputRemaining:  Int = inputSize
+        var outputRemaining: Int = outputSize
+
+        if iconv(cd, &inputBuffer, &inputRemaining, &outputBuffer, &outputRemaining) == -1 {
             switch errno {
                 case EILSEQ: return (.InvalidSequence, inputSize - inputRemaining, outputSize - outputRemaining)
                 case EINVAL: return (.IncompleteSequence, inputSize - inputRemaining, outputSize - outputRemaining)
                 case E2BIG:  return (.OutputBufferFull, inputSize - inputRemaining, outputSize - outputRemaining)
-                default: throw IConvError.UnknownError(code: errno)
+                default:     return (.Error(IConvError.UnknownError(code: errno)), inputSize - inputRemaining, outputSize - outputRemaining)
             }
         }
 

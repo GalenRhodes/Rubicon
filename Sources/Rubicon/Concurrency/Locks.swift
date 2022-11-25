@@ -85,32 +85,45 @@ extension NSCondition {
 
     @inlinable @discardableResult public func withLockWait<T>(while pred: @autoclosure () -> Bool, _ action: () throws -> T) rethrows -> T {
         try withLock {
-            wait(while: pred())
+            while pred() { wait() }
             return try action()
         }
     }
 
     @inlinable @discardableResult public func withLockWait<T>(until limit: Date, while pred: @autoclosure () -> Bool, _ action: () throws -> T) rethrows -> T? {
         try withLock {
-            guard wait(until: limit, while: pred()) else { return nil }
+            while pred() { guard wait(until: limit) else { return nil } }
             return try action()
         }
     }
 
     @inlinable public func withLockWait(while pred: @autoclosure () -> Bool) {
-        withLock { wait(while: pred()) }
+        withLock { while pred() { wait() } }
     }
 
     @inlinable public func withLockWait(until limit: Date, while pred: @autoclosure () -> Bool) -> Bool {
-        withLock { wait(until: limit, while: pred()) }
+        withLock {
+            while pred() { guard wait(until: limit) else { return false } }
+            return true
+        }
     }
 
     @inlinable public func wait(while pred: @autoclosure () -> Bool) {
         while pred() { wait() }
     }
 
-    @inlinable public func wait(until limit: Date, while pred: @autoclosure () -> Bool) -> Bool {
+    @inlinable public func wait(while pred: @autoclosure () -> Bool, until limit: Date) -> Bool {
         while pred() { guard wait(until: limit) else { return !pred() } }
         return true
+    }
+
+    @inlinable public func wait<T>(while pred: @autoclosure () -> Bool, _ action: () throws -> T) rethrows -> T {
+        while pred() { wait() }
+        return try action()
+    }
+
+    @inlinable public func wait<T>(while pred: @autoclosure () -> Bool, until limit: Date, _ action: () throws -> T) rethrows -> T? {
+        while pred() { guard wait(until: limit) else { return nil } }
+        return try action()
     }
 }

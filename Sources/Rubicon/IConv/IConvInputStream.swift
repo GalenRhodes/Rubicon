@@ -23,18 +23,22 @@
 #if !os(Windows)
     import Foundation
     import CoreFoundation
+    import RingBuffer
     #if canImport(Darwin)
         import Darwin
     #elseif canImport(Glibc)
         import Glibc
     #endif
 
-    public let MaxReadAheadLimit: Int = 65536
-    public let ReadMoreThreshold: Int = (65536 - 2048)
-    public let ReadBufferSize:    Int = 4096
-    public let IConvBufferSize:   Int = ((ReadBufferSize + 2) * 4)
+    /*==========================================================================================================================================================*/
 
     public class IConvInputStream: InputStream {
+        public static let   MaxReadAheadLimit: Int = 65536
+        public static let   HeadRoomSize:      Int = (MaxReadAheadLimit / 32)
+        public static let   ReadMoreThreshold: Int = (MaxReadAheadLimit - HeadRoomSize)
+        public static let   ReadBufferSize:    Int = (HeadRoomSize * 2)
+        public static let   IConvBufferSize:   Int = ((ReadBufferSize + 4) * 4)
+
         /*@f:0*/
         public override var delegate:          StreamDelegate? { get { worker.delegate } set { worker.delegate = newValue } }
         public override var hasBytesAvailable: Bool            { worker.hasBytesAvailable }
@@ -64,117 +68,151 @@
         public override func open() { worker.open() }
 
         public override func close() { worker.close() }
-    }
 
-    /*==========================================================================================================================================================*/
-    fileprivate class IConvInputStreamThread: Thread {
+        /*==========================================================================================================================================================*/
+        class IConvInputStreamThread: Thread {
 /*@f:0*/
-        private let _inputStream:  InputStream
-        private let _iconv:        IConv
-        private let _inputBuffer:  UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: ReadBufferSize)
-        private let _iconvBuffer:  UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: IConvBufferSize)
-        private let _outputBuffer: SwRingBuffer                = SwRingBuffer(initialSize: MaxReadAheadLimit)
-        private let _lock:         NSCondition                 = NSCondition()
-        private var _error:        Error?                      = nil
-        private var _allDone:      Bool                        = false
+            private let lock:         NSCondition = NSCondition()
+            private var notDone:      Bool        = true
+            private var error:        Error?
+            private var reader:       Reader!
+            private let inputStream:  InputStream
 
-        override var isFinished:  Bool { _lock.withLock { (super.isFinished || _allDone)   } }
-        override var isExecuting: Bool { _lock.withLock { (super.isExecuting && !_allDone) } }
-        override var isCancelled: Bool { _lock.withLock { (super.isCancelled)              } }
+            override var isFinished:  Bool { lock.withLock { (super.isFinished || !notDone) } }
+            override var isExecuting: Bool { lock.withLock { (super.isExecuting && notDone) } }
+            override var isCancelled: Bool { lock.withLock { (super.isCancelled)            } }
 
-        var streamStatus:      Stream.Status   { _lock.withLock { _inputStream.streamStatus          } }
-        var streamError:       Error?          { _lock.withLock { _error ?? _inputStream.streamError } }
-        var hasBytesAvailable: Bool            { _lock.withLock { _inputStream.hasBytesAvailable     } }
-        var delegate:          StreamDelegate? { get { _lock.withLock { _inputStream.delegate } } set { _lock.withLock { _inputStream.delegate = newValue } } }
+            var streamError:       Error?          { lock.withLock { error ?? inputStream.streamError } }
+            var hasBytesAvailable: Bool            { lock.withLock { inputStream.hasBytesAvailable    } }
+            var delegate:          StreamDelegate? { get { lock.withLock { inputStream.delegate } } set { lock.withLock { inputStream.delegate = newValue } } }
 /*@f:1*/
-        init(_ inputStream: InputStream, _ inputEncoding: String, _ toEncoding: String, _ options: IConv.Options) throws {
-            self._inputStream = inputStream
-            self._iconv = try IConv(to: toEncoding, from: inputEncoding, options: options)
-            super.init()
-            _start()
-        }
-
-        deinit {
-            close()
-            _inputBuffer.deallocate()
-            _iconvBuffer.deallocate()
-        }
-
-        override func start() { _lock.withLock { _start() } }
-
-        override func cancel() { _lock.withLock { _cancel() } }
-
-        func open() {
-            _lock.withLock {
-                if _inputStream.streamStatus == .notOpen {
-                    _inputStream.open()
-                    qualityOfService = .background
-                    super.start()
-                }
-            }
-        }
-
-        func close() {
-            _lock.withLock {
-                _inputStream.close()
-                cancel()
-            }
-        }
-
-        func read(_ buffer: UnsafeMutablePointer<UInt8>, maxLength len: Int) -> Int {
-            _lock.withLock {
-                var cc = 0
-                while cc < len {
-                    _lock.wait(while: _outputBuffer.isEmpty && !_allDone)
-                    if _allDone { return cc }
-                    cc += _outputBuffer.getNext(into: buffer + cc, maxLength: len - cc)
-                    _lock.broadcast()
-                }
-                return cc
-            }
-        }
-
-        @inlinable var running:  Bool { !super.isCancelled }
-        @inlinable var needMore: Bool { (_outputBuffer.count > ReadMoreThreshold) }
-
-        override func main() {
-            _lock.withLock {
-                defer { _allDone = true }
-                var inputOffset = 0
-
-                repeat {
-                    guard _foo01() else { break }
-                    let cc = _inputStream.read(_inputBuffer + inputOffset, maxLength: ReadBufferSize - inputOffset)
-                    guard cc > 0 else { break }
-
-                    let inputBytes = (inputOffset + cc)
-                    let res        = _iconv.convert(input: _inputBuffer, inputSize: inputBytes, output: _iconvBuffer, outputSize: IConvBufferSize)
-
-                    switch res.0 {
-                        case .Complete, .IncompleteSequence, .InvalidSequence, .OutputBufferFull:
-
-                            break
-                        case .Error(let e):
-                            _error = e
-                            return
+            var streamStatus: Stream.Status {
+                lock.withLock {
+                    let st = inputStream.streamStatus
+                    switch st {
+                        case .notOpen, .error, .closed, .opening: return st
+                        case .open, .reading, .writing:           return ((error == nil) ? .open : .error)
+                        case .atEnd:                              return ((error == nil) ? ((reader.bytesAvailable > 0) ? .open : .atEnd) : .error)
+                        @unknown default:                         return ((error == nil) ? st : .error)
                     }
                 }
-                while true
             }
-        }
 
-        private func _foo01() -> Bool {
-            while (running && needMore) { _lock.wait() }
-            return running
-        }
+            init(_ inputStream: InputStream, _ inputEncoding: String, _ toEncoding: String, _ options: IConv.Options) throws {
+                self.inputStream = inputStream
+                super.init()
+                self.reader = try Reader(inputEncoding, toEncoding, options)
+                pStart()
+            }
 
-        private func _start() {
-            if !isValue(_inputStream.streamStatus, in: .notOpen, .error, .closed) {
+            deinit {
+                close()
+            }
+
+            override func start() { lock.withLock { pStart() } }
+
+            override func cancel() {
+                lock.withLock {
+                    guard notDone else { return }
+                    super.cancel()
+                    while notDone { lock.wait() }
+                }
+            }
+
+            func open() {
+                lock.withLock {
+                    if inputStream.streamStatus == .notOpen {
+                        inputStream.open()
+                        rStart()
+                    }
+                }
+            }
+
+            func close() {
+                lock.withLock {
+                    super.cancel()
+                    inputStream.close()
+                }
+            }
+
+            func read(_ buffer: UnsafeMutablePointer<UInt8>, maxLength len: Int) -> Int {
+                var cc = 0
+                while cc < len { guard reader.read(buffer, len, lock, &cc, notDone) else { break } }
+                return cc
+            }
+
+            private func pStart() {
+                if isValue(inputStream.streamStatus, in: .closed, .atEnd, .error) { notDone = false }
+                else if inputStream.streamStatus != .notOpen { rStart() }
+            }
+
+            private func rStart() {
                 qualityOfService = .background
                 super.start()
             }
-        }
 
-        private func _cancel() { super.cancel() }
+            override func main() {
+                defer { notDone = false }
+                reader.readLoop(lock, inputStream, &error, !super.isCancelled)
+            }
+
+            /*==========================================================================================================================================================*/
+            class Reader {
+
+                var bytesAvailable: Int { outputBuffer.count }
+
+                private var inIdx:        Int                         = 0
+                private let inputBuffer:  UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: ReadBufferSize)
+                private let iconvBuffer:  UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: IConvBufferSize)
+                private let outputBuffer: SwRingBuffer                = SwRingBuffer(initialSize: MaxReadAheadLimit)
+                private let iconv:        IConv
+
+                init(_ inputEncoding: String, _ toEncoding: String, _ options: IConv.Options) throws {
+                    self.iconv = try IConv(to: toEncoding, from: inputEncoding, options: options)
+                }
+
+                deinit {
+                    inputBuffer.deallocate()
+                    iconvBuffer.deallocate()
+                }
+
+                func read(_ buffer: UnsafeMutablePointer<UInt8>, _ len: Int, _ lock: NSCondition, _ cc: inout Int, _ isRunning: @autoclosure () -> Bool) -> Bool {
+                    lock.withLock {
+                        lock.wait(while: outputBuffer.isEmpty && isRunning())
+                        guard isRunning() else { return false }
+                        cc += outputBuffer.getNext(into: (buffer + cc), maxLength: (len - cc))
+                        return true
+                    }
+                }
+
+                func readLoop(_ lock: NSCondition, _ inputStream: InputStream, _ error: inout Error?, _ isRunning: @autoclosure () -> Bool) {
+                    lock.withLock {
+                        while isRunning() {
+                            while (isRunning() && (outputBuffer.count > ReadMoreThreshold)) { lock.wait() }
+                            guard isRunning() && readAndConvert(inputStream, &error) else { break }
+                        }
+                    }
+                }
+
+                func readAndConvert(_ inputStream: InputStream, _ error: inout Error?) -> Bool {
+                    let cc = inputStream.read((inputBuffer + inIdx), maxLength: (ReadBufferSize - inIdx))
+                    return ((cc > 0) && convert(byteCount: (inIdx + cc), error: &error))
+                }
+
+                func convert(byteCount bc: Int, error: inout Error?) -> Bool {
+                    let rs = iconv.convert(input: inputBuffer, inputSize: bc, output: iconvBuffer, outputSize: IConvBufferSize)
+
+                    switch rs.status {
+                        case .Error(let e):
+                            error = e
+                            return false
+                        default:
+                            if rs.outputCount > 0 { outputBuffer.append(data: iconvBuffer, length: rs.outputCount) }
+                            inIdx = ((PGMemCpy(inputBuffer, (inputBuffer + rs.inputCount), (bc - rs.inputCount)) > 0) ? rs.inputCount : 0)
+                            return true
+                    }
+                }
+            }
+        }
     }
 #endif

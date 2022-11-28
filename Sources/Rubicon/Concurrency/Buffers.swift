@@ -54,6 +54,18 @@ extension UnsafeMutableBufferPointer {
     }
 }
 
+extension UnsafeRawPointer {
+    @inlinable public func asMutable<R>(_ block: (UnsafeMutableRawPointer) throws -> R) rethrows -> R {
+        try block(UnsafeMutableRawPointer(mutating: self))
+    }
+}
+
+extension UnsafePointer {
+    @inlinable public func asMutable<R>(_ block: (UnsafeMutablePointer<Pointee>) throws -> R) rethrows -> R {
+        try block(UnsafeMutablePointer<Pointee>(mutating: self))
+    }
+}
+
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /// Creates a mutable buffer or a specific type and capacity and then calls the given closure with that buffer. After the closure has executed
 /// the buffer is deallocated automatically.
@@ -71,4 +83,23 @@ extension UnsafeMutableBufferPointer {
     let buffer = UnsafeMutablePointer<T>.allocate(capacity: capacity)
     defer { buffer.deallocate() }
     return try action(buffer, capacity)
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/// Creates a mutable buffer or a specific type and capacity and then calls the given closure with that buffer. After the closure has executed
+/// the buffer is deallocated automatically.
+///
+/// <b>NOTE:</b> The closure is responsible for initializing and de-initializing the buffer if needed.
+///
+/// - Parameters:
+///   - byteCount: The number of items of the given type that the buffer will hold.
+///   - alignment: The alignment.
+///   - action: The closure.
+/// - Returns: Whatever the closure returns.
+/// - Throws: Anything the closure throws.
+///
+@discardableResult public func withTemporaryRawBuffer<R>(byteCount: Int, alignment: Int, _ action: (UnsafeMutableRawPointer, Int) throws -> R) rethrows -> R {
+    let buffer = UnsafeMutableRawPointer.allocate(byteCount: byteCount, alignment: alignment)
+    defer { buffer.deallocate() }
+    return try action(buffer, byteCount)
 }

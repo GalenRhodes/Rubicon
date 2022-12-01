@@ -48,11 +48,6 @@ import CoreFoundation
     return false
 }
 
-@inlinable public func osWhich(executable name: String) throws -> String? {
-    let (exitCode, outStr, _) = try Process.execute(executableURL: URL(fileURLWithPath: "/bin/sh"), arguments: [ "-c", "which \"\(name)\"" ], inputString: nil)
-    return exitCode == 0 ? outStr?.trimmed : nil
-}
-
 /*==============================================================================================================*/
 /// Get a hash value from just about anything.
 ///

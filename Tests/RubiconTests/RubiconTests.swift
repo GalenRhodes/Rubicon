@@ -43,7 +43,7 @@ public class RubiconTests: XCTestCase {
     }
 
     private func whichExample(exe: String) throws {
-        if let path = try osWhich(executable: exe) { print("\"\(exe)\" is located at \"\(path)\"") }
+        if let path = try ProcessInfo.osWhich(executable: exe) { print("\"\(exe)\" is located at \"\(path)\"") }
         else { print("\"\(exe)\" was not found!") }
     }
 

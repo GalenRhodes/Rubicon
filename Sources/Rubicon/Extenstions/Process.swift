@@ -30,14 +30,30 @@ import CoreFoundation
     import WinSDK
 #endif
 
-extension Process {
+public enum ProcessErrors: Error {
+    case ExecutableNotFound
+}
 
-    public class func execute(executableURL url: URL, arguments args: [String], inputString: String?, encoding: String.Encoding = .utf8) throws -> (Int32, String?, String?) {
-        let (code, outData, errData) = try execute(executableURL: url, arguments: args, inputData: inputString?.data(using: encoding))
-        return (code, outData.asString(encoding: encoding), errData.asString(encoding: encoding))
+extension Process {
+    public typealias ExecuteResults = (exitCode: Int32, stdOut: String, stdErr: String)
+    public typealias ExecuteDataResults = (exitCode: Int32, stdOut: Data, stdErr: Data)
+
+    @inlinable public class func execute(whichExecutable exe: String, arguments args: [String], inputData: Data?) throws -> ExecuteDataResults {
+        guard let _exe = try ProcessInfo.osWhich(executable: exe) else { throw ProcessErrors.ExecutableNotFound }
+        return try execute(executableURL: URL(fileURLWithPath: _exe), arguments: args, inputData: inputData)
     }
 
-    public class func execute(executableURL url: URL, arguments args: [String], inputData: Data?) throws -> (Int32, Data, Data) {
+    @inlinable public class func execute(whichExecutable exe: String, arguments args: [String], inputString: String?, encoding: String.Encoding = .utf8) throws -> ExecuteResults {
+        guard let _exe = try ProcessInfo.osWhich(executable: exe) else { throw ProcessErrors.ExecutableNotFound }
+        return try execute(executableURL: URL(fileURLWithPath: _exe), arguments: args, inputString: inputString, encoding: encoding)
+    }
+
+    @inlinable public class func execute(executableURL url: URL, arguments args: [String], inputString: String?, encoding: String.Encoding = .utf8) throws -> ExecuteResults {
+        let r = try execute(executableURL: url, arguments: args, inputData: inputString?.data(using: encoding))
+        return (r.exitCode, r.stdOut.asString(encoding: encoding) ?? "", r.stdErr.asString(encoding: encoding) ?? "")
+    }
+
+    public class func execute(executableURL url: URL, arguments args: [String], inputData: Data?) throws -> ExecuteDataResults {
         let outThread: ProcessReadThread   = ProcessReadThread()
         let errThread: ProcessReadThread   = ProcessReadThread()
         let innThread: ProcessWriteThread? = (inputData == nil) ? nil : ProcessWriteThread(inputData!)
@@ -86,4 +102,42 @@ fileprivate class ProcessReadThread: JoinableThread {
             data.append(d)
         }
     }
+}
+
+extension ProcessInfo {
+
+    #if os(Windows)
+        @inlinable public class func osShell(shell: String = "cmd.exe", arguments: [String], inputData: Data?) throws -> Process.ExecuteDataResults {
+            let _args = ((arguments.count > 0) ? [ "/c", argString(arguments: arguments) ] : [ "/c" ])
+            return try Process.execute(executableURL: URL(fileURLWithPath: shell), arguments: _args, inputData: inputData)
+        }
+
+        @inlinable public class func osShell(shell: String = "cmd.exe", arguments: [String], inputString: String? = nil, encoding: String.Encoding = .utf8) throws -> Process.ExecuteResults {
+            let _args = ((arguments.count > 0) ? [ "/c", argString(arguments: arguments) ] : [ "/c" ])
+            return try Process.execute(executableURL: URL(fileURLWithPath: shell), arguments: _args, inputString: inputString, encoding: encoding)
+        }
+
+        @inlinable class func argString(arguments args: [String]) -> String {
+            "\"\(args.map({ $0.replacing("\"", with: "\\\"") }).joined(separator: "\" \""))\""
+        }
+    #else
+        @inlinable public class func osShell(shell: String = "/bin/sh", arguments: [String], inputData: Data?) throws -> Process.ExecuteDataResults {
+            let _args = ((arguments.count > 0) ? [ "-c", argString(arguments: arguments) ] : [ "-c" ])
+            return try Process.execute(executableURL: URL(fileURLWithPath: shell), arguments: _args, inputData: inputData)
+        }
+
+        @inlinable public class func osShell(shell: String = "/bin/sh", arguments: [String], inputString: String? = nil, encoding: String.Encoding = .utf8) throws -> Process.ExecuteResults {
+            let _args = ((arguments.count > 0) ? [ "-c", argString(arguments: arguments) ] : [ "-c" ])
+            return try Process.execute(executableURL: URL(fileURLWithPath: shell), arguments: _args, inputString: inputString, encoding: encoding)
+        }
+
+        @inlinable public class func osWhich(executable name: String) throws -> String? {
+            let r = try osShell(arguments: [ "which", argString(arguments: [ name ]) ])
+            return r.exitCode == 0 ? r.stdOut.trimmed : nil
+        }
+
+        @inlinable class func argString(arguments args: [String]) -> String {
+            args.map({ $0.replacing(" ", with: "\\ ") }).joined(separator: " ")
+        }
+    #endif
 }

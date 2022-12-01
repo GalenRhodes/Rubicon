@@ -23,39 +23,33 @@
 import Foundation
 import Rubicon
 
-let cond:          NSCondition = NSCondition()
-let threadCount:   Int         = 100
-var activeThreads: Int         = 0
-var flag:          Bool        = false
-var threads:       [Thread]    = []
+struct Test: Hashable {
+    let a: String
+
+    init(_ a: String) {
+        self.a = a
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(a)
+    }
+
+    static func == (lhs: Test, rhs: Test) -> Bool {
+        if lhs.a != rhs.a { return false }
+        return true
+    }
+}
 
 func doIt() {
-    print("Launching \(threadCount) threads...")
+    let s1 = Test("Galen")
+    let s2 = Test("Rhodes")
+    let o1 = s1 as AnyObject
+    let o2 = s2 as AnyObject
 
-    for _ in (1 ... threadCount) {
-        let aThread = Thread(block: {
-            cond.withLock {
-                activeThreads += 1
-                print("Thread \(activeThreads) started.")
-            }
-            cond.withLockWait(while: !flag) {
-                print("Thread \(activeThreads) finished.")
-                activeThreads -= 1
-            }
-        })
-
-        threads.append(aThread)
-        aThread.qualityOfService = Thread.main.qualityOfService
-        aThread.start()
-    }
-
-    cond.withLockWait(while: activeThreads < threadCount) {
-        print("Setting flag to true...")
-        flag = true
-    }
-    cond.withLockWait(while: activeThreads > 0) {
-        print("Done")
-    }
+    print("\(s1.hashValue)")
+    print("\(s2.hashValue)")
+    print("\(ObjectIdentifier(o1).hashValue)")
+    print("\(ObjectIdentifier(o2).hashValue)")
 }
 
 DispatchQueue.main.async {

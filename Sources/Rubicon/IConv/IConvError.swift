@@ -30,5 +30,6 @@ public enum IConvError: Error {
     case InvalidInputBuffer
     case InvalidOutputBuffer
     case InvalidMultiByteSequence
+    case IconvExecutableNotFound
     case UnknownError(code: Int32)
 }

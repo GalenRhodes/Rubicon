@@ -32,17 +32,17 @@
     #endif
 
     open class IConv {
-        public static let FinalizeOutputSize: Int = 40
+        public typealias IConvResults = (inPtr: UnsafeMutablePointer<CChar>?, inUnusedCount: Int, outPtr: UnsafeMutablePointer<CChar>?, outUnusedCount: Int, errorCode: Int32)
 
-        public typealias Result = (status: Status, inputCount: Int, outputCount: Int)
-        public typealias DataResult = (status: Status, inputCount: Int, output: Data)
-        public typealias FinalResult = (status: Status, outputCount: Int)
-        public typealias FinalDataResult = (status: Status, output: Data)
+        public static let INPUT_BUFFER_SIZE:  Int = 4096
+        public static let OUTPUT_BUFFER_SIZE: Int = ((INPUT_BUFFER_SIZE + 10) * 4)
 
-        private var cd:             iconv_t
-        public let  inputEncoding:  String
-        public let  outputEncoding: String
-        public let  options:        Options
+        @usableFromInline var cd:   iconv_t
+        @usableFromInline let lock: NSLock = NSLock()
+
+        public let inputEncoding:  String
+        public let outputEncoding: String
+        public let options:        Options
 
         public init(to outputEncoding: String = "UTF-8", from inputEncoding: String, options: Options = .None) throws {
             self.inputEncoding = inputEncoding
@@ -65,8 +65,71 @@
             iconv_close(cd)
         }
 
+        open func convert(input: (UnsafeMutableRawPointer, Int) throws -> Int, output: (UnsafeRawPointer, Int) throws -> Bool) throws -> (inputCount: Int, outputCount: Int) {
+            try lock.withLock {
+                let inBuff   = UnsafeMutableRawPointer.allocate(byteCount: IConv.INPUT_BUFFER_SIZE, alignment: MemoryLayout<CChar>.alignment)
+                let outBuff  = UnsafeMutableRawPointer.allocate(byteCount: IConv.OUTPUT_BUFFER_SIZE, alignment: MemoryLayout<CChar>.alignment)
+                var inIndex  = 0
+                var totalIn  = 0
+                var totalOut = 0
+
+                defer {
+                    inBuff.deallocate()
+                    outBuff.deallocate()
+                }
+
+                _ = try IConv.iConvert(cd: cd, inPtr: nil, inBuffSz: 0, outPtr: nil, outBuffSz: 0)
+
+                repeat {
+                    let readCount = try input((inBuff + inIndex), (IConv.INPUT_BUFFER_SIZE - inIndex))
+                    guard readCount > 0 else { return try doFinalize(outBuff, output, totalIn, totalOut) }
+                    let (inRemaining, outUsed) = try doConvert(inBuff, (inIndex + readCount), outBuff)
+
+                    inIndex = inRemaining
+                    totalIn += readCount
+                    totalOut += outUsed
+
+                    guard try output(outBuff, outUsed) else { return (totalIn, totalOut) }
+                }
+                while true
+            }
+        }
+
+        @inlinable func doFinalize(_ outBuff: UnsafeMutableRawPointer, _ output: (UnsafeRawPointer, Int) throws -> Bool, _ totalIn: Int, _ totalOut: Int) throws -> (Int, Int) {
+            let outCount = try (IConv.OUTPUT_BUFFER_SIZE - foo02(nil, 0, outBuff, IConv.OUTPUT_BUFFER_SIZE).outUnusedCount)
+            _ = try output(outBuff, outCount)
+            return (totalIn, totalOut + outCount)
+        }
+
+        @inlinable func doConvert(_ inBuff: UnsafeMutableRawPointer, _ inBuffSz: Int, _ outBuff: UnsafeMutableRawPointer) throws -> (Int, Int) {
+            let results = try asCharPtr(inBuff, inBuffSz) { try foo02($0, inBuffSz, outBuff, IConv.OUTPUT_BUFFER_SIZE) }
+            memcpy(inBuff, results.inPtr!, results.inUnusedCount)
+            return (results.inUnusedCount, IConv.OUTPUT_BUFFER_SIZE - results.outUnusedCount)
+        }
+
+        @inlinable func foo02(_ inPtr: UnsafeMutablePointer<CChar>?, _ inSz: Int, _ outBuff: UnsafeMutableRawPointer, _ outSz: Int) throws -> IConvResults {
+            try asCharPtr(outBuff, outSz) { try IConv.iConvert(cd: cd, inPtr: inPtr, inBuffSz: inSz, outPtr: $0, outBuffSz: outSz) }
+        }
+
+        @inlinable func asCharPtr<R>(_ buff: UnsafeMutableRawPointer, _ sz: Int, _ action: (UnsafeMutablePointer<CChar>) throws -> R) rethrows -> R {
+            try buff.withMemoryRebound(to: CChar.self, capacity: sz, action)
+        }
+
+        open class func iConvert(cd: iconv_t, inPtr: UnsafeMutablePointer<CChar>?, inBuffSz: Int, outPtr: UnsafeMutablePointer<CChar>?, outBuffSz: Int) throws -> IConvResults {
+            var inPtrPtr:     UnsafeMutablePointer<CChar>? = inPtr
+            var outPtrPtr:    UnsafeMutablePointer<CChar>? = outPtr
+            var inRemaining:  Int                          = inBuffSz
+            var outRemaining: Int                          = outBuffSz
+            let iconvResult:  Int                          = iconv(cd, &inPtrPtr, &inRemaining, &outPtrPtr, &outRemaining)
+            let e:            Int32                        = errno
+
+            guard iconvResult != -1 || isValue(e, in: EILSEQ, EINVAL, E2BIG) else { throw IConvError.UnknownError(code: e) }
+            return (inPtrPtr, inRemaining, outPtrPtr, outRemaining, ((iconvResult == -1) ? e : 0))
+        }
+
         open class func getEncodingList() throws -> [String] {
-            let (_, stdOut, _) = try Process.execute(executableURL: URL(fileURLWithPath: "/usr/bin/iconv"), arguments: [ "-l" ], inputString: nil)
+            guard let _exe = try osWhich(executable: "iconv") else { throw IConvError.IconvExecutableNotFound }
+            let (_, stdOut, _) = try Process.execute(executableURL: URL(fileURLWithPath: _exe), arguments: [ "-l" ], inputString: nil)
             if let str = stdOut {
                 #if os(Linux)
                     return str.split(regex: "//\\s+").sorted()
@@ -76,8 +139,6 @@
             }
             return []
         }
-
-        public enum Status { case Complete, InvalidSequence, IncompleteSequence, OutputBufferFull, Error(_ error: IConvError) }
 
         public enum Options {
             case None, Ignore, Transliterate
@@ -90,64 +151,5 @@
                 }
             }
         }
-
-        @usableFromInline func _convert(_ ip: UnsafeMutablePointer<CChar>?, _ inputSize: Int, _ op: UnsafeMutablePointer<CChar>?, _ outputSize: Int) -> Result {
-            var inputBuffer:  UnsafeMutablePointer<CChar>? = ip
-            var outputBuffer: UnsafeMutablePointer<CChar>? = op
-            var inRem:        Int                          = inputSize
-            var outRem:       Int                          = outputSize
-
-            let r:     Int   = iconv(cd, &inputBuffer, &inRem, &outputBuffer, &outRem)
-            let inCc:  Int   = (inputSize - inRem)
-            let outCc: Int   = (outputSize - outRem)
-            let er:    Int32 = errno
-
-            if r != -1 { return (.Complete, inCc, outCc) }
-
-            switch er {
-                case EILSEQ: return (.InvalidSequence, inCc, outCc)
-                case EINVAL: return (.IncompleteSequence, inCc, outCc)
-                case E2BIG:  return (.OutputBufferFull, inCc, outCc)
-                default:     return (.Error(IConvError.UnknownError(code: er)), inCc, outCc)
-            }
-        }
-    }
-
-    extension IConv {
-        @inlinable public func convert(inputData: Data) throws -> DataResult {
-            inputData.withUnsafeBytes { (ip: UnsafeRawBufferPointer) -> DataResult in
-                let op = UnsafeMutableRawBufferPointer.allocate(byteCount: ((ip.count + 10) * 4), alignment: MemoryLayout<CChar>.alignment)
-                let rs = convert(input: ip, output: op)
-                return op.withBaseAddress { b, _ in (rs.status, rs.inputCount, Data(bytes: b, count: rs.outputCount)) }
-            }
-        }
-
-        @inlinable public func convert(input: UnsafeRawBufferPointer, output: UnsafeMutableRawBufferPointer) -> Result {
-            input.withBaseAddress { ip, il in output.withBaseAddress { op, ol in convert(input: ip, inputSize: il, output: op, outputSize: ol) } }
-        }
-
-        @inlinable public func convert(input: UnsafeRawPointer, inputSize: Int, output: UnsafeMutableRawPointer, outputSize: Int) -> Result {
-            input.asMutable { mp in
-                mp.withMemoryRebound(to: CChar.self, capacity: inputSize) { ip in
-                    output.withMemoryRebound(to: CChar.self, capacity: outputSize) { op in _convert(ip, inputSize, op, outputSize) }
-                }
-            }
-        }
-
-        @inlinable public func finalize() throws -> FinalDataResult {
-            withTemporaryRawBuffer(byteCount: IConv.FinalizeOutputSize, alignment: MemoryLayout<CChar>.alignment) {
-                let rs = finalize(output: $0, outputSize: $1)
-                return (rs.status, Data(bytes: $0, count: rs.outputCount))
-            }
-        }
-
-        @inlinable public func finalize(output: UnsafeMutableRawPointer, outputSize: Int) -> FinalResult {
-            let r = output.withMemoryRebound(to: CChar.self, capacity: outputSize) { _convert(nil, 0, $0, outputSize) }
-            return (r.status, r.outputCount)
-        }
-
-        @inlinable public func finalize(output: UnsafeMutableRawBufferPointer) -> FinalResult { output.withBaseAddress { finalize(output: $0, outputSize: $1) } }
-
-        @inlinable @discardableResult public func reset() -> Result { return _convert(nil, 0, nil, 0) }
     }
 #endif

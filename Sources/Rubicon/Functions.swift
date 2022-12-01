@@ -33,17 +33,46 @@ import CoreFoundation
 /// - Returns: The value returned by the closure that was executed.
 /// - Throws:  Any error thrown by the closure that was executed.
 ///
-@discardableResult public func whenNotNil<T, R>(_ value: T?, _ notNilAction: (T) throws -> R, else nilAction: () throws -> R) rethrows -> R {
+@discardableResult @inlinable public func whenNotNil<T, R>(_ value: T?, _ notNilAction: (T) throws -> R, else nilAction: () throws -> R) rethrows -> R {
     guard let value = value else { return try nilAction() }
     return try notNilAction(value)
 }
 
-public func isValue<T>(_ value: T, in values: T...) -> Bool where T: Equatable {
-    for v in values { if v == value { return true } }
+@inlinable public func isValue<T>(_ value: T, in values: T...) -> Bool where T: Equatable {
+    for v in values { if v == value || (v as AnyObject) === (value as AnyObject) { return true } }
     return false
 }
 
-public func isValue<T>(_ value: T, in values: T...) -> Bool where T: AnyObject {
+@inlinable public func isValue<T>(_ value: T, in values: T...) -> Bool where T: AnyObject {
     for o in values { if o === value { return true } }
     return false
 }
+
+@inlinable public func osWhich(executable name: String) throws -> String? {
+    let (exitCode, outStr, _) = try Process.execute(executableURL: URL(fileURLWithPath: "/bin/sh"), arguments: [ "-c", "which \"\(name)\"" ], inputString: nil)
+    return exitCode == 0 ? outStr?.trimmed : nil
+}
+
+/*==============================================================================================================*/
+/// Get a hash value from just about anything.
+///
+/// - Parameter v: The item you want the hash of.
+/// - Returns: The hash.
+///
+@inlinable public func HashOfAnything(_ v: Any) -> Int {
+    if let x = (v as? AnyHashable) { return x.hashValue }
+    return ObjectIdentifier(v as AnyObject).hashValue
+}
+
+/*==============================================================================================================*/
+/// Somewhat shorthand for:
+/// ```
+/// type(of: o) == t.self
+/// ```
+///
+/// - Parameters:
+///   - o: The instance to check the type of.
+///   - t: The type to check for.
+/// - Returns: `true` if the type of `o` is equal to `t`.
+///
+@inlinable public func isType<O, T>(_ o: O, _ t: T.Type) -> Bool { (type(of: o) == t) }

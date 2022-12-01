@@ -32,6 +32,21 @@ public class RubiconTests: XCTestCase {
 
     public override func tearDown() {}
 
+    public func testWhich() {
+        do {
+            try whichExample(exe: "iconv")
+            try whichExample(exe: "iconvss")
+        }
+        catch let error {
+            print(error)
+        }
+    }
+
+    private func whichExample(exe: String) throws {
+        if let path = try osWhich(executable: exe) { print("\"\(exe)\" is located at \"\(path)\"") }
+        else { print("\"\(exe)\" was not found!") }
+    }
+
     public func testIConvList() {
         do {
             let list: [String] = try IConv.getEncodingList()

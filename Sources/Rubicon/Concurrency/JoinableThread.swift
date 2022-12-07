@@ -24,106 +24,75 @@ import Foundation
 import CoreFoundation
 
 open class JoinableThread {
+    /*@f:0*/
+    public typealias ThreadBlock = () throws -> Void
 
-    enum State { case NotStarted, Starting, Executing, Finished, Canceled, FinishedCanceled }
+    public var error: Error? = nil
 
-    @LockedValue var state: State = .NotStarted
+    private enum State { case NotStarted, Starting, Executing, Cancelled, Error, Finished, FinishedCancelled, FinishedError }
 
-    lazy var thread: Thread = Thread { [self] in self._main() }
-    let block: () -> Void
+    private var block:  ThreadBlock
+    private var thread: Thread!
+    private var state:  State         = .NotStarted
+    private let lock:   NSCondition   = NSCondition()
 
-    public var isExecuting: Bool { _state.isValue { $0 == .Executing } }
-    public var isFinished: Bool { _state.isValue { $0 == .Finished || $0 == .FinishedCanceled } }
-    public var isCanceled: Bool { _state.isValue { $0 == .FinishedCanceled } }
-    public var isMainThread:     Bool { thread.isMainThread }
-    public var name:             String? {
-        get { thread.name }
-        set { thread.name = newValue }
+    public var threadDictionary: NSMutableDictionary { thread.threadDictionary }
+    public var isMainThread:     Bool                { thread.isMainThread     }
+
+    public var isExecuting:      Bool                { lock.withLock { isValue(state, in: .Executing, .Cancelled)                        } }
+    public var isFinished:       Bool                { lock.withLock { isValue(state, in: .Finished, .FinishedCancelled, .FinishedError) } }
+    public var isCancelled:      Bool                { lock.withLock { isValue(state, in: .Cancelled, .FinishedCancelled)                } }
+    public var isError:          Bool                { lock.withLock { (error != nil) || isValue(state, in: .Error, .FinishedError)      } }
+
+    public var name:             String?             { get { thread.name             } set { thread.name = newValue             } }
+    public var qualityOfService: QualityOfService    { get { thread.qualityOfService } set { thread.qualityOfService = newValue } }
+    public var stackSize:        Int                 { get { thread.stackSize        } set { thread.stackSize = newValue        } }
+    /*@f:1*/
+
+    public init(name: String? = nil, qualityOfService: QualityOfService? = nil, _ block: @escaping ThreadBlock = {}) {
+        self.block = block
+        self.thread = Thread { self._main() }
+        self.thread.name = name
+        if let q = qualityOfService { self.thread.qualityOfService = q }
     }
-    #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS) || os(OSX)
-        public var threadPriority: Double {
-            get { thread.threadPriority }
-            set { thread.threadPriority = newValue }
-        }
-    #endif
-    public var qualityOfService: QualityOfService {
-        get { thread.qualityOfService }
-        set { thread.qualityOfService = newValue }
-    }
-    public var stackSize:        Int {
-        get { thread.stackSize }
-        set { thread.stackSize = newValue }
-    }
 
-    #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS) || os(OSX)
-        public init(name: String? = nil, threadPriority: Double? = nil, qualityOfService: QualityOfService? = nil) {
-            block = {}
-            thread.name = name
-            if let p = threadPriority { thread.threadPriority = p }
-            if let q = qualityOfService { thread.qualityOfService = q }
-        }
-
-        public init(name: String? = nil, threadPriority: Double? = nil, qualityOfService: QualityOfService? = nil, _ block: @escaping () -> Void) {
-            self.block = block
-            thread.name = name
-            if let p = threadPriority { thread.threadPriority = p }
-            if let q = qualityOfService { thread.qualityOfService = q }
-        }
-    #else
-        public init(name: String? = nil, qualityOfService: QualityOfService? = nil) {
-            block = {}
-            thread.name = name
-            if let q = qualityOfService { thread.qualityOfService = q }
-        }
-
-        public init(name: String? = nil, qualityOfService: QualityOfService? = nil, _ block: @escaping () -> Void) {
-            self.block = block
-            thread.name = name
-            if let q = qualityOfService { thread.qualityOfService = q }
-        }
-    #endif
+    open func main() throws { try block() }
 
     public func start() {
-        _state.withLock {
-            if $0 == .NotStarted {
-                $0 = .Starting
-                thread.start()
-            }
+        lock.withLock {
+            guard state == .NotStarted else { return }
+            state = .Starting
+            thread.start()
         }
     }
 
     public func cancel() {
-        _state.withLock {
-            if $0 == .Executing {
-                $0 = .Canceled
-                thread.cancel()
+        lock.withLock {
+            guard state == .Executing else { return }
+            state = .Cancelled
+            thread.cancel()
+        }
+    }
+
+    public func join() throws {
+        lock.withLockWait(while: !isValue(state, in: .Finished, .FinishedCancelled, .FinishedError))
+        if let e = error { throw e }
+    }
+
+    private func _main() {
+        lock.withLock {
+            guard state == .Starting else { return }
+            state = .Executing
+        }
+        do {
+            try main()
+            lock.withLock { state = ((state == .Cancelled) ? .FinishedCancelled : .Finished) }
+        }
+        catch let e {
+            lock.withLock {
+                error = e
+                state = .FinishedError
             }
         }
-    }
-
-    func _main() {
-        let flag = _state.withLock {
-            guard $0 == .Starting else { return false }
-            $0 = .Executing
-            return true
-        }
-        if flag {
-            main()
-            _state.withLock {
-                switch $0 {
-                    case .Executing: $0 = .Finished
-                    case .Canceled: $0 = .FinishedCanceled
-                    default: break
-                }
-            }
-        }
-    }
-
-    open func main() {
-        block()
-    }
-
-    public func join() {
-        _state.waitWhile { $0 == .Executing }
     }
 }

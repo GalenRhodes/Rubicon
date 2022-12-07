@@ -30,114 +30,234 @@ import CoreFoundation
     import WinSDK
 #endif
 
+/*==========================================================================================================================================================================*/
 public enum ProcessErrors: Error {
     case ExecutableNotFound
 }
 
 extension Process {
-    public typealias ExecuteResults = (exitCode: Int32, stdOut: String, stdErr: String)
+    @usableFromInline static let BufferSize: Int = 1024
+/*@f:0*/
+    public typealias ExecuteResults     = (exitCode: Int32, stdOut: String, stdErr: String)
     public typealias ExecuteDataResults = (exitCode: Int32, stdOut: Data, stdErr: Data)
-
-    @inlinable public class func execute(whichExecutable exe: String, arguments args: [String], inputData: Data?) throws -> ExecuteDataResults {
-        guard let _exe = try ProcessInfo.osWhich(executable: exe) else { throw ProcessErrors.ExecutableNotFound }
-        return try execute(executableURL: URL(fileURLWithPath: _exe), arguments: args, inputData: inputData)
+    public typealias Source             = (UnsafeMutablePointer<UInt8>, Int) throws -> Int
+    public typealias Target             = (UnsafePointer<UInt8>, Int) throws -> Void
+/*@f:1*/
+    /*==========================================================================================================================================================================*/
+    /// Executes a given executable in a separate process and returns the data returned on STDOUT and STDERR during the execution of the process. In this case, instead of
+    /// passing an absolute URL you pass just the name of the executable and the Unix/Linux command `which` (`where` on Windows) is used to locate it.
+    ///
+    /// - Parameters:
+    ///   - exe: The name of the executable (binary) that will be found using the `which` shell command (`where` on Windows).
+    ///   - args: The command line arguments to be passed to the process.
+    ///   - env: Environment variables to pass to the process.
+    ///   - stdIn: The string of data to pass to the process on STDIN. If no input data is needed then pass `nil`. (Optional)
+    ///   - end: The character encoding to use to convert the input and output.
+    /// - Returns: A tuple with the exit code, STDOUT, and STDERR - (exitCode: Int32, stdOut: String, stdErr: String).
+    /// - Throws: If `Process.run()` throws an exception or `ProcessErrors.ExecutableNotFound` if the executable could not be found.
+    ///
+    @inlinable public class func execute(whichExecutable exe: String, arguments args: [String], environment env: [String: String]? = nil, inputString stdIn: String?, encoding end: String.Encoding = .utf8) throws -> ExecuteResults {
+        guard let exeUrlStr = try osWhich(executable: exe) else { throw ProcessErrors.ExecutableNotFound }
+        return try execute(executableURL: URL(fileURLWithPath: exeUrlStr), arguments: args, environment: env, inputString: stdIn, encoding: end)
     }
 
-    @inlinable public class func execute(whichExecutable exe: String, arguments args: [String], inputString: String?, encoding: String.Encoding = .utf8) throws -> ExecuteResults {
-        guard let _exe = try ProcessInfo.osWhich(executable: exe) else { throw ProcessErrors.ExecutableNotFound }
-        return try execute(executableURL: URL(fileURLWithPath: _exe), arguments: args, inputString: inputString, encoding: encoding)
+    /*==========================================================================================================================================================================*/
+    /// Executes a given executable in a separate process and returns the data returned on STDOUT and STDERR during the execution of the process. In this case, instead of
+    /// passing an absolute URL you pass just the name of the executable and the Unix/Linux command `which` (`where` on Windows) is used to locate it.
+    ///
+    /// - Parameters:
+    ///   - exe: The name of the executable (binary) that will be found using the `which` shell command (`where` on Windows).
+    ///   - args: The command line arguments to be passed to the process.
+    ///   - env: Environment variables to pass to the process. (Optional)
+    ///   - stdIn: The data to pass to the process on STDIN. If no input data is needed then pass `nil`. (Optional)
+    /// - Returns: A tuple with the exit code, STDOUT, and STDERR - (exitCode: Int32, stdOut: Data, stdErr: Data).
+    /// - Throws: If `Process.run()` throws an exception or `ProcessErrors.ExecutableNotFound` if the executable could not be found.
+    ///
+    @inlinable public class func execute(whichExecutable exe: String, arguments args: [String], environment env: [String: String]? = nil, inputData stdIn: Data?) throws -> ExecuteDataResults {
+        guard let exeUrlStr = try osWhich(executable: exe) else { throw ProcessErrors.ExecutableNotFound }
+        return try execute(executableURL: URL(fileURLWithPath: exeUrlStr), arguments: args, environment: env, inputData: stdIn)
     }
 
-    @inlinable public class func execute(executableURL url: URL, arguments args: [String], inputString: String?, encoding: String.Encoding = .utf8) throws -> ExecuteResults {
-        let r = try execute(executableURL: url, arguments: args, inputData: inputString?.data(using: encoding))
-        return (r.exitCode, r.stdOut.asString(encoding: encoding) ?? "", r.stdErr.asString(encoding: encoding) ?? "")
+    /*==========================================================================================================================================================================*/
+    /// Executes a given executable in a separate process and returns the data returned on STDOUT and STDERR during the execution of the process.
+    ///
+    /// - Parameters:
+    ///   - url: The file URL to the executable (binary).
+    ///   - args: The command line arguments to be passed to the process.
+    ///   - env: Environment variables to pass to the process.
+    ///   - stdIn: The string of data to pass to the process on STDIN. If no input data is needed then pass `nil`. (Optional)
+    ///   - enc: The character encoding to use to convert the input and output.
+    /// - Returns: A tuple with the exit code, STDOUT, and STDERR - (exitCode: Int32, stdOut: String, stdErr: String).
+    /// - Throws: If `Process.run()` throws an exception.
+    ///
+    @inlinable public class func execute(executableURL url: URL, arguments args: [String], environment env: [String: String]? = nil, inputString stdIn: String?, encoding enc: String.Encoding = .utf8) throws -> ExecuteResults {
+        let r = try execute(executableURL: url, arguments: args, inputData: stdIn?.data(using: enc))
+        return (r.exitCode, r.stdOut.asString(encoding: enc) ?? "", r.stdErr.asString(encoding: enc) ?? "")
     }
 
-    public class func execute(executableURL url: URL, arguments args: [String], inputData: Data?) throws -> ExecuteDataResults {
-        let outThread: ProcessReadThread   = ProcessReadThread()
-        let errThread: ProcessReadThread   = ProcessReadThread()
-        let innThread: ProcessWriteThread? = (inputData == nil) ? nil : ProcessWriteThread(inputData!)
-        let proc:      Process             = Process()
-
-        proc.arguments = args
-        proc.executableURL = url
-        proc.standardOutput = outThread.pipe
-        proc.standardError = errThread.pipe
-        if innThread != nil { proc.standardInput = innThread!.pipe }
-
-        try proc.run()
-        outThread.start()
-        errThread.start()
-        innThread?.start()
-        proc.waitUntilExit()
-        innThread?.join()
-        errThread.join()
-        outThread.join()
-
-        return (proc.terminationStatus, outThread.data, errThread.data)
-    }
-}
-
-fileprivate class ProcessWriteThread: JoinableThread {
-    let pipe: Pipe = Pipe()
-    let data: Data
-
-    init(_ data: Data) {
-        self.data = data
-        super.init()
+    /*==========================================================================================================================================================================*/
+    /// Executes a given executable in a separate process and returns the data returned on STDOUT and STDERR during the execution of the process.
+    ///
+    /// - Parameters:
+    ///   - url: The file URL to the executable (binary).
+    ///   - args: The command line arguments to be passed to the process.
+    ///   - env: Environment variables to pass to the process. (Optional)
+    ///   - stdIn: The data to pass to the process on STDIN. If no input data is needed then pass `nil`. (Optional)
+    /// - Returns: A tuple with the exit code, STDOUT, and STDERR - (exitCode: Int32, stdOut: Data, stdErr: Data).
+    /// - Throws: If `Process.run()` throws an exception.
+    ///
+    public class func execute(executableURL url: URL, arguments args: [String], environment env: [String: String]? = nil, inputData stdIn: Data?) throws -> ExecuteDataResults {
+        var out: Data = Data()
+        var err: Data = Data()
+        let ts = try execute(executableURL: url, arguments: args, environment: env, stdIn: getStdInThread(stdIn: stdIn), stdOut: { out.append($0, count: $1) }, stdErr: { err.append($0, count: $1) })
+        return (ts, out, err)
     }
 
-    override func main() { pipe.fileHandleForWriting.write(self.data) }
-}
+    /*==========================================================================================================================================================================*/
+    /// Executes a given executable in a separate process and returns the exit code.
+    ///
+    /// - Parameters:
+    ///   - url: The file URL to the executable (binary).
+    ///   - args: The command line arguments to be passed to the process.
+    ///   - env: Environment variables to pass to the process. (Optional)
+    ///   - stdIn: A closure to provide data to the STDIN of the process.
+    ///   - stdOut: A closure to collect the data from STDOUT of the process.
+    ///   - stdErr: A closure to collect the data from STDERR of the process.
+    /// - Returns: A tuple with the exit code, STDOUT, and STDERR - (exitCode: Int32, stdOut: Data, stdErr: Data).
+    /// - Throws: If `Process.run()` or any of the closures throw an exception.
+    ///
+    public class func execute(executableURL url: URL, arguments args: [String] = [], environment env: [String: String]? = nil, stdIn: Source?, stdOut: Target?, stdErr: Target?) throws -> Int32 {
+        let outThread: ProcessReadToTargetThread?    = ((stdOut == nil) ? nil : ProcessReadToTargetThread(stdOut!))
+        let errThread: ProcessReadToTargetThread?    = ((stdErr == nil) ? nil : ProcessReadToTargetThread(stdErr!))
+        let inThread:  ProcessWriteFromSourceThread? = ((stdIn == nil) ? nil : ProcessWriteFromSourceThread(stdIn!))
+        let process:   Process                       = Process()
 
-fileprivate class ProcessReadThread: JoinableThread {
-    let pipe: Pipe = Pipe()
-    var data: Data = Data()
+        process.arguments = args
+        process.executableURL = url
+        if let t = outThread { process.standardOutput = t.pipe }
+        if let t = errThread { process.standardError = t.pipe }
+        if let t = inThread { process.standardInput = t.pipe }
+        if let e = env, e.count > 0 { process.environment = e }
 
-    init() { super.init() }
-
-    override func main() {
-        while let d = try? pipe.fileHandleForReading.read(upToCount: 8192) {
-            guard d.count > 0 else { break }
-            data.append(d)
-        }
+        try process.run()
+        start(threads: outThread, errThread, inThread)
+        process.waitUntilExit()
+        try join(threads: outThread, errThread, inThread)
+        return process.terminationStatus
     }
-}
 
-extension ProcessInfo {
-
-    #if os(Windows)
-        @inlinable public class func osShell(shell: String = "cmd.exe", arguments: [String], inputData: Data?) throws -> Process.ExecuteDataResults {
-            let _args = ((arguments.count > 0) ? [ "/c", argString(arguments: arguments) ] : [ "/c" ])
-            return try Process.execute(executableURL: URL(fileURLWithPath: shell), arguments: _args, inputData: inputData)
-        }
-
-        @inlinable public class func osShell(shell: String = "cmd.exe", arguments: [String], inputString: String? = nil, encoding: String.Encoding = .utf8) throws -> Process.ExecuteResults {
-            let _args = ((arguments.count > 0) ? [ "/c", argString(arguments: arguments) ] : [ "/c" ])
-            return try Process.execute(executableURL: URL(fileURLWithPath: shell), arguments: _args, inputString: inputString, encoding: encoding)
-        }
-
-        @inlinable class func argString(arguments args: [String]) -> String {
-            "\"\(args.map({ $0.replacing("\"", with: "\\\"") }).joined(separator: "\" \""))\""
-        }
-    #else
-        @inlinable public class func osShell(shell: String = "/bin/sh", arguments: [String], inputData: Data?) throws -> Process.ExecuteDataResults {
-            let _args = ((arguments.count > 0) ? [ "-c", argString(arguments: arguments) ] : [ "-c" ])
-            return try Process.execute(executableURL: URL(fileURLWithPath: shell), arguments: _args, inputData: inputData)
-        }
-
-        @inlinable public class func osShell(shell: String = "/bin/sh", arguments: [String], inputString: String? = nil, encoding: String.Encoding = .utf8) throws -> Process.ExecuteResults {
-            let _args = ((arguments.count > 0) ? [ "-c", argString(arguments: arguments) ] : [ "-c" ])
-            return try Process.execute(executableURL: URL(fileURLWithPath: shell), arguments: _args, inputString: inputString, encoding: encoding)
-        }
-
-        @inlinable public class func osWhich(executable name: String) throws -> String? {
+    /*==========================================================================================================================================================================*/
+    public class func osWhich(executable name: String) throws -> String? {
+        #if os(Windows)
+            let r = try osShell(arguments: [ "where", argString(arguments: [ name ]) ])
+            guard r.exitCode == 0 else { return nil }
+            let a = r.stdOut.trimmed.split(regex: "\\r\\n|\\r|\\n")
+            return ((a.count > 0) ? a[0] : nil)
+        #else
             let r = try osShell(arguments: [ "which", argString(arguments: [ name ]) ])
-            return r.exitCode == 0 ? r.stdOut.trimmed : nil
+            return ((r.exitCode == 0) ? r.stdOut.trimmed : nil)
+        #endif
+    }
+
+    /*==========================================================================================================================================================================*/
+    public class func osShell(shell: String? = nil, arguments args: [String], environment env: [String: String]? = nil, inputData stdIn: Data?) throws -> ExecuteDataResults {
+        let r = getOsShellArguments(shell: shell, arguments: args)
+        return try Process.execute(executableURL: URL(fileURLWithPath: r.shellExec), arguments: r.args, environment: env, inputData: stdIn)
+    }
+
+    /*==========================================================================================================================================================================*/
+    public class func osShell(shell: String? = nil, arguments args: [String], environment env: [String: String]? = nil, inputString stdIn: String? = nil, encoding enc: String.Encoding = .utf8) throws -> ExecuteResults {
+        let r = getOsShellArguments(shell: shell, arguments: args)
+        return try Process.execute(executableURL: URL(fileURLWithPath: r.shellExec), arguments: r.args, environment: env, inputString: stdIn, encoding: enc)
+    }
+
+    /*==========================================================================================================================================================================*/
+    private class func getStdInThread(stdIn: Data?) -> Source? {
+        guard let stdIn = stdIn else { return nil }
+        var cc = 0
+        return {
+            let usableBytes = min($1, (stdIn.count - cc))
+            if usableBytes > 0 {
+                stdIn.copyBytes(to: $0, from: (cc ..< (cc + usableBytes)))
+                cc += usableBytes
+            }
+            return usableBytes
+        }
+    }
+
+    /*==========================================================================================================================================================================*/
+    private class func argString(arguments args: [String]) -> String {
+        #if os(Windows)
+            "\"\(args.map({ $0.replacing("\"", with: "\\\"") }).joined(separator: "\" \""))\""
+        #else
+            args.map({ $0.replacing(" ", with: "\\ ") }).joined(separator: " ")
+        #endif
+    }
+
+    /*==========================================================================================================================================================================*/
+    private class func getOsShellArguments(shell: String?, arguments: [String]) -> (shellExec: String, args: [String]) {
+        #if os(Windows)
+            return ((shell ?? "cmd.exe"), ((arguments.count > 0) ? [ "/c", argString(arguments: arguments) ] : [ "/c" ]))
+        #else
+            return ((shell ?? "/bin/sh"), ((arguments.count > 0) ? [ "-c", argString(arguments: arguments) ] : [ "-c" ]))
+        #endif
+    }
+
+    /*==========================================================================================================================================================================*/
+    private class func start(threads: JoinableThread?...) {
+        for t in threads { if let t = t { t.start() } }
+    }
+
+    /*==========================================================================================================================================================================*/
+    private class func join(threads: JoinableThread?...) throws {
+        for t in threads { if let t = t { try t.join() } }
+    }
+
+    /*==========================================================================================================================================================================*/
+    private class ProcessWriteFromSourceThread: JoinableThread {
+        let pipe:   Pipe = Pipe()
+        let source: Source
+
+        init(_ source: @escaping Source) {
+            self.source = source
+            super.init()
         }
 
-        @inlinable class func argString(arguments args: [String]) -> String {
-            args.map({ $0.replacing(" ", with: "\\ ") }).joined(separator: " ")
+        override func main() throws {
+            let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: BufferSize)
+            defer { buffer.deallocate() }
+            var cc = try source(buffer, BufferSize)
+            while cc > 0 { cc = try write(buffer, byteCount: cc) }
         }
-    #endif
+
+        @inlinable func write(_ buffer: UnsafeMutablePointer<UInt8>, byteCount cc: Int) throws -> Int {
+            try pipe.fileHandleForWriting.write(contentsOf: UnsafeBufferPointer<UInt8>(start: buffer, count: cc))
+            return try source(buffer, BufferSize)
+        }
+    }
+
+    /*==========================================================================================================================================================================*/
+    private class ProcessReadToTargetThread: JoinableThread {
+        let pipe:   Pipe = Pipe()
+        let target: Target
+
+        init(_ target: @escaping Target) {
+            self.target = target
+            super.init()
+        }
+
+        override func main() throws {
+            while let d = try pipe.fileHandleForReading.read(upToCount: BufferSize), d.count > 0 {
+                try send(d)
+            }
+        }
+
+        @inlinable func send(_ d: Data) throws { try d.withUnsafeBytes { (b: UnsafeRawBufferPointer) in try send(b) } }
+
+        @inlinable func send(_ b: UnsafeRawBufferPointer) throws { try b.withMemoryRebound(to: UInt8.self) { try send($0) } }
+
+        @inlinable func send(_ b: UnsafeBufferPointer<UInt8>) throws { try b.withBaseAddress { try send($0, length: $1) } }
+
+        @inlinable func send(_ p: UnsafePointer<UInt8>, length l: Int) throws { try target(p, l) }
+    }
 }

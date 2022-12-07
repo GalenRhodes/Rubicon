@@ -23,33 +23,16 @@
 import Foundation
 import Rubicon
 
-struct Test: Hashable {
-    let a: String
-
-    init(_ a: String) {
-        self.a = a
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(a)
-    }
-
-    static func == (lhs: Test, rhs: Test) -> Bool {
-        if lhs.a != rhs.a { return false }
-        return true
-    }
-}
 
 func doIt() {
-    let s1 = Test("Galen")
-    let s2 = Test("Rhodes")
-    let o1 = s1 as AnyObject
-    let o2 = s2 as AnyObject
-
-    print("\(s1.hashValue)")
-    print("\(s2.hashValue)")
-    print("\(ObjectIdentifier(o1).hashValue)")
-    print("\(ObjectIdentifier(o2).hashValue)")
+    do {
+        let r = try Process.execute(executableURL: URL(fileURLWithPath: "/usr/bin/iconv"), arguments: [ "-l" ], inputString: nil)
+        print("Exit Code: \(r.exitCode)")
+        print(r.stdOut)
+    }
+    catch let e {
+        print("ERROR: \(e)")
+    }
 }
 
 DispatchQueue.main.async {

@@ -23,6 +23,7 @@
 import Foundation
 import CoreFoundation
 
+/*==========================================================================================================================================================================*/
 open class RegularExpression {
 
     let regex: NSRegularExpression
@@ -32,10 +33,12 @@ open class RegularExpression {
     open var numberOfCaptureGroups: Int                       { regex.numberOfCaptureGroups }
     /*@f:1*/
 
+    /*==========================================================================================================================================================================*/
     public init(pattern string: String, options: RegularExpression.Options = []) throws {
         self.regex = try NSRegularExpression(pattern: string, options: options.xlate())
     }
 
+    /*==========================================================================================================================================================================*/
     public convenience init?(pattern string: String, options: RegularExpression.Options = [], error: inout Error?) {
         do {
             try self.init(pattern: string, options: options)
@@ -47,10 +50,12 @@ open class RegularExpression {
         }
     }
 
+    /*==========================================================================================================================================================================*/
     open func numberOfMatches(in string: String, options: MatchingOptions = [], range: StringRange? = nil) -> Int {
         regex.numberOfMatches(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange))
     }
 
+    /*==========================================================================================================================================================================*/
     open func enumerateMatches(in string: String, options: MatchingOptions = [], range: StringRange? = nil, using block: (Match?, MatchingFlags, inout Bool) throws -> Void) rethrows {
         try withoutActuallyEscaping(block) { _block in
             var error: Error? = nil
@@ -69,24 +74,29 @@ open class RegularExpression {
         }
     }
 
+    /*==========================================================================================================================================================================*/
     open func rangeOfFirstMatch(in string: String, options: MatchingOptions = [], range: StringRange? = nil) -> StringRange? {
         let r: NSRange = regex.rangeOfFirstMatch(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange))
         guard r.location != NSNotFound else { return nil }
         return StringRange(r, in: string)
     }
 
+    /*==========================================================================================================================================================================*/
     open func matches(in string: String, options: MatchingOptions = [], range: StringRange? = nil) -> [Match] {
         regex.matches(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange)).map { Match(string, $0)! }
     }
 
+    /*==========================================================================================================================================================================*/
     open func firstMatch(in string: String, options: MatchingOptions = [], range: StringRange? = nil) -> Match? {
         Match(string, regex.firstMatch(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange)))
     }
 
+    /*==========================================================================================================================================================================*/
     open func stringByReplacingMatches(in string: String, options: MatchingOptions = [], range: StringRange? = nil, withTemplate tmpl: String) -> String {
         regex.stringByReplacingMatches(in: string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange), withTemplate: tmpl)
     }
 
+    /*==========================================================================================================================================================================*/
     open func replaceMatches(in string: inout String, options: MatchingOptions = [], range: StringRange? = nil, withTemplate tmpl: String) -> Int {
         let _string = NSMutableString(string: string)
         let cc      = regex.replaceMatches(in: _string, options: options.xlate(), range: string.nsRange(range: range ?? string.allRange), withTemplate: tmpl)
@@ -94,14 +104,17 @@ open class RegularExpression {
         return cc
     }
 
+    /*==========================================================================================================================================================================*/
     open class func escapedTemplate(for string: String) -> String {
         NSRegularExpression.escapedTemplate(for: string)
     }
 
+    /*==========================================================================================================================================================================*/
     open class func escapedPattern(for string: String) -> String {
         NSRegularExpression.escapedPattern(for: string)
     }
 
+    /*==========================================================================================================================================================================*/
     public struct Match: @unchecked Sendable, RandomAccessCollection {
         public typealias Element = Group?
         public typealias Index = Int
@@ -119,9 +132,7 @@ open class RegularExpression {
         public init?(_ string: String, _ result: NSTextCheckingResult?) {
             guard let result = result else { return nil }
             var grps: [Element] = []
-            for i in (0 ..< result.numberOfRanges) {
-                grps.append(Group(i, string, result.range(at: i)))
-            }
+            for i in (0 ..< result.numberOfRanges) { grps.append(Group(i, string, result.range(at: i))) }
             self.groups = grps
             self.range = grps[0]!.range
             self.substring = grps[0]!.substring
@@ -131,6 +142,7 @@ open class RegularExpression {
         }
     }
 
+    /*==========================================================================================================================================================================*/
     public struct Group: @unchecked Sendable {
         public let range:     StringRange
         public let substring: String
@@ -145,6 +157,7 @@ open class RegularExpression {
         }
     }
 
+    /*==========================================================================================================================================================================*/
     public struct Options: OptionSet, @unchecked Sendable {
         public static let caseInsensitive:            RegularExpression.Options = RegularExpression.Options(rawValue: NSRegularExpression.Options.caseInsensitive.rawValue)
         public static let allowCommentsAndWhitespace: RegularExpression.Options = RegularExpression.Options(rawValue: NSRegularExpression.Options.allowCommentsAndWhitespace.rawValue)
@@ -159,6 +172,7 @@ open class RegularExpression {
         public init(rawValue: UInt) { self.rawValue = rawValue }
     }
 
+    /*==========================================================================================================================================================================*/
     public struct MatchingOptions: OptionSet, @unchecked Sendable {
         public static let reportProgress:         RegularExpression.MatchingOptions = RegularExpression.MatchingOptions(rawValue: NSRegularExpression.MatchingOptions.reportProgress.rawValue)
         public static let reportCompletion:       RegularExpression.MatchingOptions = RegularExpression.MatchingOptions(rawValue: NSRegularExpression.MatchingOptions.reportCompletion.rawValue)
@@ -171,6 +185,7 @@ open class RegularExpression {
         public init(rawValue: UInt) { self.rawValue = rawValue }
     }
 
+    /*==========================================================================================================================================================================*/
     public struct MatchingFlags: OptionSet, @unchecked Sendable {
         public static let progress:      RegularExpression.MatchingFlags = RegularExpression.MatchingFlags(rawValue: RegularExpression.MatchingFlags.progress.rawValue)
         public static let completed:     RegularExpression.MatchingFlags = RegularExpression.MatchingFlags(rawValue: RegularExpression.MatchingFlags.completed.rawValue)

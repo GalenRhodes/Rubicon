@@ -1,6 +1,6 @@
 // ===========================================================================
 //     PROJECT: Rubicon
-//    FILENAME: LockedValue.swift
+//    FILENAME: AtomicValue.swift
 //         IDE: AppCode
 //      AUTHOR: Galen Rhodes
 //        DATE: November 05, 2022
@@ -23,7 +23,7 @@
 import Foundation
 import CoreFoundation
 
-@propertyWrapper public struct LockedValue<T> {
+@propertyWrapper public struct AtomicValue<T> {
     private var _wrappedValue: T
     public let  lock:          NSCondition = NSCondition()
 
@@ -34,29 +34,5 @@ import CoreFoundation
 
     public init(wrappedValue: T) {
         _wrappedValue = wrappedValue
-    }
-
-    public mutating func withLock<R>(_ action: (inout T) throws -> R) rethrows -> R {
-        try lock.withLock { try action(&_wrappedValue) }
-    }
-
-    public func isValue(_ predicate: (T) -> Bool) -> Bool {
-        lock.withLock { predicate(_wrappedValue) }
-    }
-
-    public func waitWhile(_ predicate: (T) -> Bool) {
-        lock.withLockWait(while: predicate(_wrappedValue))
-    }
-
-    public func waitUntil(_ limit: Date, while predicate: (T) -> Bool) -> Bool {
-        lock.withLockWait(until: limit, while: predicate(_wrappedValue))
-    }
-
-    public mutating func withLock<R>(whenNot predicate: (T) -> Bool, _ action: (inout T) throws -> R) rethrows -> R {
-        try lock.withLockWait(while: predicate(_wrappedValue)) { try action(&_wrappedValue) }
-    }
-
-    public mutating func withLock<R>(whenNot predicate: (T) -> Bool, waitUntil limit: Date, _ action: (inout T) throws -> R) rethrows -> R? {
-        try lock.withLockWait(until: limit, while: predicate(_wrappedValue)) { try action(&_wrappedValue) }
     }
 }

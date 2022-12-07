@@ -23,7 +23,9 @@
 import Foundation
 import CoreFoundation
 
+/*==============================================================================================================================================================================*/
 extension UnsafeRawBufferPointer {
+    /*==========================================================================================================================================================================*/
     @inlinable public func withBaseAddress<R>(errorMessage: String = "Internal Error", _ block: (UnsafeRawPointer, Int) throws -> R) rethrows -> R {
         guard let ptr = baseAddress else { fatalError(errorMessage) }
         return try block(ptr, count)
@@ -31,42 +33,50 @@ extension UnsafeRawBufferPointer {
 
 }
 
+/*==============================================================================================================================================================================*/
 extension UnsafeMutableRawBufferPointer {
+    /*==========================================================================================================================================================================*/
     @inlinable public func withBaseAddress<R>(errorMessage: String = "Internal Error", _ block: (UnsafeMutableRawPointer, Int) throws -> R) rethrows -> R {
         guard let ptr = baseAddress else { fatalError(errorMessage) }
         return try block(ptr, count)
     }
 }
 
+/*==============================================================================================================================================================================*/
 extension UnsafeBufferPointer {
-
+    /*==========================================================================================================================================================================*/
     @inlinable public func withBaseAddress<R>(errorMessage: String = "Internal Error", _ block: (UnsafePointer<Element>, Int) throws -> R) rethrows -> R {
         guard let ptr = baseAddress else { fatalError(errorMessage) }
         return try block(ptr, count)
     }
 }
 
+/*==============================================================================================================================================================================*/
 extension UnsafeMutableBufferPointer {
-
+    /*==========================================================================================================================================================================*/
     @inlinable public func withBaseAddress<R>(errorMessage: String = "Internal Error", _ block: (UnsafeMutablePointer<Element>, Int) throws -> R) rethrows -> R {
         guard let ptr = baseAddress else { fatalError(errorMessage) }
         return try block(ptr, count)
     }
 }
 
+/*==============================================================================================================================================================================*/
 extension UnsafeRawPointer {
+    /*==========================================================================================================================================================================*/
     @inlinable public func asMutable<R>(_ block: (UnsafeMutableRawPointer) throws -> R) rethrows -> R {
         try block(UnsafeMutableRawPointer(mutating: self))
     }
 }
 
+/*==============================================================================================================================================================================*/
 extension UnsafePointer {
+    /*==========================================================================================================================================================================*/
     @inlinable public func asMutable<R>(_ block: (UnsafeMutablePointer<Pointee>) throws -> R) rethrows -> R {
         try block(UnsafeMutablePointer<Pointee>(mutating: self))
     }
 }
 
-/*--------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*==============================================================================================================================================================================*/
 /// Creates a mutable buffer or a specific type and capacity and then calls the given closure with that buffer. After the closure has executed
 /// the buffer is deallocated automatically.
 ///
@@ -85,7 +95,7 @@ extension UnsafePointer {
     return try action(buffer, capacity)
 }
 
-/*--------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*==============================================================================================================================================================================*/
 /// Creates a mutable buffer or a specific type and capacity and then calls the given closure with that buffer. After the closure has executed
 /// the buffer is deallocated automatically.
 ///

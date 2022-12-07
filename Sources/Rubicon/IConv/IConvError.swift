@@ -22,14 +22,28 @@
 
 import Foundation
 
-public enum IConvError: Error {
+public enum IConvError: Error, Equatable {
     case NoAvailableFileDescriptors
     case TooManyFilesOpen
     case InsufficientMemory
     case UnknownCharacterEncoding
     case InvalidInputBuffer
     case InvalidOutputBuffer
-    case InvalidMultiByteSequence
     case IconvExecutableNotFound
+    case IllegalMultiByteSequence
+    case InvalidCharacterForEncoding
+    case OutputBufferTooSmall
     case UnknownError(code: Int32)
+}
+
+extension IConvError {
+    @inlinable static func encodingError(result r: Int, code e: Int32) -> IConvError? {
+        guard r == -1 else { return nil }
+        switch e {
+            case E2BIG:  return .OutputBufferTooSmall
+            case EINVAL: return .InvalidCharacterForEncoding
+            case EILSEQ: return .IllegalMultiByteSequence
+            default:     return .UnknownError(code: e)
+        }
+    }
 }

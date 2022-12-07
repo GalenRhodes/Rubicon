@@ -20,7 +20,7 @@
 // IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 // ===========================================================================
 
-#if !os(Windows)
+#if !(os(Windows) || os(WASI) || os(PS4) || os(Haiku) || os(Android))
 
     import Foundation
     import CoreFoundation
@@ -32,20 +32,34 @@
     #endif
 
     open class IConv {
-        public static let InputBufferSize:  Int = 4096
-        public static let OutputBufferSize: Int = ((InputBufferSize + 10) * 4)
-
-        public typealias IConvResults = (inPtr: UnsafeMutablePointer<CChar>?, inUnusedCount: Int, outPtr: UnsafeMutablePointer<CChar>?, outUnusedCount: Int, errorCode: Int32)
-
+/*@f:0*/
+        public typealias Source       = (UnsafeMutableRawPointer, Int) throws -> Int
+        public typealias Target       = (UnsafeRawPointer, Int) throws -> Bool
+        public typealias IConvResults = (inputCount: Int, outputCount: Int)
+/*@f:1*/
         public enum Option { case None, Ignore, Transliterate }
 
+        @usableFromInline static let InputBufferSize:  Int = 4096
+        @usableFromInline static let OutputBufferSize: Int = ((InputBufferSize + 10) * 4)
         @usableFromInline var cd:   iconv_t
         @usableFromInline let lock: NSLock = NSLock()
 
+        /// The name of the input encoding.
         public let inputEncoding:  String
+        /// The name of the output encoding.
         public let outputEncoding: String
+        /// The options for translation.
         public let option:         Option
 
+        /*==========================================================================================================================================================================*/
+        /// Create a new instance of `IConv` to convert characters from one encoding format to another.
+        ///
+        /// - Parameters:
+        ///   - outputEncoding: A string containing the name of the inbound character encoding. (Defaults to `"UTF-8"`)
+        ///   - inputEncoding: A string containing the name of the outbound character encoding.
+        ///   - option: One of `IConv.Option.None`, `IConv.Option.Ignore`, or `IConv.Option.Transliterate`. (Defaults to `IConv.Option.None`)
+        /// - Throws: If either the `outputEncoding` or the `inputEncoding` are not valid or some other error occurs.
+        ///
         public init(to outputEncoding: String = "UTF-8", from inputEncoding: String, option: Option = .None) throws {
             self.inputEncoding = inputEncoding
             self.outputEncoding = outputEncoding
@@ -67,7 +81,16 @@
             iconv_close(cd)
         }
 
-        open func convert(input: (UnsafeMutableRawPointer, Int) throws -> Int, output: (UnsafeRawPointer, Int) throws -> Bool) throws -> (inputCount: Int, outputCount: Int) {
+        /*==========================================================================================================================================================================*/
+        /// Convert a stream of characters from the input encoding to the output encoding.
+        ///
+        /// - Parameters:
+        ///   - input:
+        ///   - output:
+        /// - Returns: A tuple of type `IConvResults` that contains the number of bytes read from input and the number of bytes written to the output.
+        /// - Throws: If there was an error during translation or if one of the closures threw and error.
+        ///
+        open func convert(input: Source, output: Target) throws -> IConvResults {
             try lock.withLock {
                 let inBuff   = UnsafeMutableRawPointer.allocate(byteCount: IConv.InputBufferSize, alignment: MemoryLayout<CChar>.alignment)
                 let outBuff  = UnsafeMutableRawPointer.allocate(byteCount: IConv.OutputBufferSize, alignment: MemoryLayout<CChar>.alignment)
@@ -80,7 +103,7 @@
                     outBuff.deallocate()
                 }
 
-                _ = try IConv.iConvert(cd: cd, inPtr: nil, inBuffSz: 0, outPtr: nil, outBuffSz: 0)
+                try initialize()
 
                 repeat {
                     let readCount = try input((inBuff + inIndex), (IConv.InputBufferSize - inIndex))
@@ -97,51 +120,71 @@
             }
         }
 
-        open class func iConvert(cd: iconv_t, inPtr: UnsafeMutablePointer<CChar>?, inBuffSz: Int, outPtr: UnsafeMutablePointer<CChar>?, outBuffSz: Int) throws -> IConvResults {
-            var inPtrPtr:     UnsafeMutablePointer<CChar>? = inPtr
-            var outPtrPtr:    UnsafeMutablePointer<CChar>? = outPtr
-            var inRemaining:  Int                          = inBuffSz
-            var outRemaining: Int                          = outBuffSz
-            let iconvResult:  Int                          = iconv(cd, &inPtrPtr, &inRemaining, &outPtrPtr, &outRemaining)
-            let e:            Int32                        = errno
-
-            guard iconvResult != -1 || isValue(e, in: EILSEQ, EINVAL, E2BIG) else { throw IConvError.UnknownError(code: e) }
-            return (inPtrPtr, inRemaining, outPtrPtr, outRemaining, ((iconvResult == -1) ? e : 0))
-        }
-
+        /*==========================================================================================================================================================================*/
+        /// Get a list of the available encodings on this system.
+        ///
+        /// - Returns: An array of strings with the names of all the encodings supported.
+        /// - Throws: If `iconv` is not available on this system.
+        ///
         open class func getEncodingList() throws -> [String] {
             let r = try Process.execute(whichExecutable: "iconv", arguments: [ "-l" ], inputString: nil)
             #if os(Linux)
                 return r.stdOut.split(regex: "//\\s+").sorted()
-            #elseif os(iOS) || os(macOS) || os(OSX) || os(tvOS) || os(watchOS)
+            #else
                 return r.stdOut.split(regex: "\\s+").sorted()
             #endif
+        }
+
+        @usableFromInline typealias XResults = (inPtr: UnsafeMutablePointer<CChar>?, inUnusedCount: Int, outPtr: UnsafeMutablePointer<CChar>?, outUnusedCount: Int, error: IConvError?)
+
+        /*==========================================================================================================================================================================*/
+        @inlinable class func iConvert(cd: iconv_t, inPtr: UnsafeMutablePointer<CChar>?, inBuffSz: Int, outPtr: UnsafeMutablePointer<CChar>?, outBuffSz: Int) throws -> XResults {
+            var inPtrPtr:     UnsafeMutablePointer<CChar>? = inPtr
+            var outPtrPtr:    UnsafeMutablePointer<CChar>? = outPtr
+            var inRemaining:  Int                          = inBuffSz
+            var outRemaining: Int                          = outBuffSz
+
+            let iconvResult: Int         = iconv(cd, &inPtrPtr, &inRemaining, &outPtrPtr, &outRemaining)
+            let error:       IConvError? = IConvError.encodingError(result: iconvResult, code: errno)
+
+            guard error == nil || isValue(error!, in: .IllegalMultiByteSequence, .OutputBufferTooSmall, .InvalidCharacterForEncoding) else { throw error! }
+            return (inPtrPtr, inRemaining, outPtrPtr, outRemaining, error)
         }
     }
 
     extension IConv {
+        /*==========================================================================================================================================================================*/
+        @inlinable func initialize() throws {
+            _ = try IConv.iConvert(cd: cd, inPtr: nil, inBuffSz: 0, outPtr: nil, outBuffSz: 0)
+        }
+
+        /*==========================================================================================================================================================================*/
         @inlinable func doFinalize(_ outBuff: UnsafeMutableRawPointer, _ output: (UnsafeRawPointer, Int) throws -> Bool, _ totalIn: Int, _ totalOut: Int) throws -> (Int, Int) {
-            let outCount = try (IConv.OutputBufferSize - foo02(nil, 0, outBuff, IConv.OutputBufferSize).outUnusedCount)
+            let outCount = try (IConv.OutputBufferSize - doConvert(nil, 0, outBuff, IConv.OutputBufferSize).outUnusedCount)
             _ = try output(outBuff, outCount)
             return (totalIn, totalOut + outCount)
         }
 
+        /*==========================================================================================================================================================================*/
         @inlinable func doConvert(_ inBuff: UnsafeMutableRawPointer, _ inBuffSz: Int, _ outBuff: UnsafeMutableRawPointer) throws -> (Int, Int) {
-            let results = try asCharPtr(inBuff, inBuffSz) { try foo02($0, inBuffSz, outBuff, IConv.OutputBufferSize) }
+            let results = try asCharPtr(inBuff, inBuffSz) { try doConvert($0, inBuffSz, outBuff, IConv.OutputBufferSize) }
             memcpy(inBuff, results.inPtr!, results.inUnusedCount)
             return (results.inUnusedCount, IConv.OutputBufferSize - results.outUnusedCount)
         }
 
-        @inlinable func foo02(_ inPtr: UnsafeMutablePointer<CChar>?, _ inSz: Int, _ outBuff: UnsafeMutableRawPointer, _ outSz: Int) throws -> IConvResults {
+        /*==========================================================================================================================================================================*/
+        @inlinable func doConvert(_ inPtr: UnsafeMutablePointer<CChar>?, _ inSz: Int, _ outBuff: UnsafeMutableRawPointer, _ outSz: Int) throws -> XResults {
             try asCharPtr(outBuff, outSz) { try IConv.iConvert(cd: cd, inPtr: inPtr, inBuffSz: inSz, outPtr: $0, outBuffSz: outSz) }
         }
 
+        /*==========================================================================================================================================================================*/
         @inlinable func asCharPtr<R>(_ buff: UnsafeMutableRawPointer, _ sz: Int, _ action: (UnsafeMutablePointer<CChar>) throws -> R) rethrows -> R {
             try buff.withMemoryRebound(to: CChar.self, capacity: sz, action)
         }
     }
 
     extension IConv.Option {
+        /*==========================================================================================================================================================================*/
         @inlinable var flag: String {
             switch self {
                 case .None:          return ""

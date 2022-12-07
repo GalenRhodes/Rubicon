@@ -38,13 +38,30 @@ import CoreFoundation
     return try notNilAction(value)
 }
 
+/*-------------------------------------------------------------------------------------------------------------------------*/
+/// Tests if the given `value` is equal to and of the values in the list `values`.
+///
+/// - Parameters:
+///   - value: The `value` to test for equality.
+///   - values: The list of `values` to test `value` against for equality.
+/// - Returns: `true` if any of the `values` is equal to the given `value`.  Otherwise, `false`.
+///
 @inlinable public func isValue<T>(_ value: T, in values: T...) -> Bool where T: Equatable {
-    for v in values { if v == value || (v as AnyObject) === (value as AnyObject) { return true } }
+    for v in values { if v == value { return true } }
     return false
 }
 
-@inlinable public func isValue<T>(_ value: T, in values: T...) -> Bool where T: AnyObject {
-    for o in values { if o === value { return true } }
+/*-------------------------------------------------------------------------------------------------------------------------*/
+/// Tests if the given `object` is the exact same as one of the `objects` in the list. This function tests for identity
+/// `===` rather than equality `==`.  In other words, are the two values occupying the exact same location in memory.
+///
+/// - Parameters:
+///   - object: The `object` to test.
+///   - objects: The list of `objects` to test `object` against.
+/// - Returns: `true` if any of the `objects` is the same as `object`.  Otherwise, `false`.
+///
+@inlinable public func isObject<T>(_ object: T, in objects: T...) -> Bool where T: AnyObject {
+    for o in objects { if o === object { return true } }
     return false
 }
 

@@ -23,75 +23,123 @@
 import Foundation
 import CoreFoundation
 
-open class JoinableThread {
+/*==============================================================================================================================================================================*/
+open class JoinableThread<T> {
     /*@f:0*/
-    public typealias ThreadBlock = () throws -> Void
+    public typealias ThreadBlock = () throws -> T
 
-    public var error: Error? = nil
-
-    private enum State { case NotStarted, Starting, Executing, Cancelled, Error, Finished, FinishedCancelled, FinishedError }
-
-    private var block:  ThreadBlock
-    private var thread: Thread!
-    private var state:  State         = .NotStarted
-    private let lock:   NSCondition   = NSCondition()
+    public var error:            Error?              { thread.lock.withLock { (thread.xFinished ? thread.xError : nil)   } }
+    public var isExecuting:      Bool                { thread.lock.withLock { thread.xExecuting                          } }
+    public var isFinished:       Bool                { thread.lock.withLock { thread.xFinished                           } }
+    public var isCancelled:      Bool                { thread.lock.withLock { thread.xCancelled                          } }
+    public var isError:          Bool                { thread.lock.withLock { thread.xFinished && (thread.xError != nil) } }
 
     public var threadDictionary: NSMutableDictionary { thread.threadDictionary }
     public var isMainThread:     Bool                { thread.isMainThread     }
 
-    public var isExecuting:      Bool                { lock.withLock { isValue(state, in: .Executing, .Cancelled)                        } }
-    public var isFinished:       Bool                { lock.withLock { isValue(state, in: .Finished, .FinishedCancelled, .FinishedError) } }
-    public var isCancelled:      Bool                { lock.withLock { isValue(state, in: .Cancelled, .FinishedCancelled)                } }
-    public var isError:          Bool                { lock.withLock { (error != nil) || isValue(state, in: .Error, .FinishedError)      } }
-
     public var name:             String?             { get { thread.name             } set { thread.name = newValue             } }
     public var qualityOfService: QualityOfService    { get { thread.qualityOfService } set { thread.qualityOfService = newValue } }
     public var stackSize:        Int                 { get { thread.stackSize        } set { thread.stackSize = newValue        } }
+
+    private var thread: XThread<T>!
+    private let block:  ThreadBlock?
     /*@f:1*/
+    /*==========================================================================================================================================================================*/
+    public init(name: String? = nil, qualityOfService: QualityOfService? = nil, stackSize: Int? = nil) {
+        self.block = nil
+        self.thread = XThread<T>(self, name, qualityOfService, stackSize)
+    }
 
-    public init(name: String? = nil, qualityOfService: QualityOfService? = nil, _ block: @escaping ThreadBlock = {}) {
+    /*==========================================================================================================================================================================*/
+    public init(name: String? = nil, qualityOfService: QualityOfService? = nil, stackSize: Int? = nil, _ block: @escaping ThreadBlock) {
         self.block = block
-        self.thread = Thread { self._main() }
-        self.thread.name = name
-        if let q = qualityOfService { self.thread.qualityOfService = q }
+        self.thread = XThread<T>(self, name, qualityOfService, stackSize)
     }
 
-    open func main() throws { try block() }
-
-    public func start() {
-        lock.withLock {
-            guard state == .NotStarted else { return }
-            state = .Starting
-            thread.start()
-        }
+    /*==========================================================================================================================================================================*/
+    open func main() throws -> T {
+        guard let b = block else { throw JoinableThreadError.NothingToExecute }
+        return try b()
     }
 
-    public func cancel() {
-        lock.withLock {
-            guard state == .Executing else { return }
-            state = .Cancelled
-            thread.cancel()
-        }
+    /*==========================================================================================================================================================================*/
+    @discardableResult public func get() throws -> T { try thread.get() }
+
+    /*==========================================================================================================================================================================*/
+    @discardableResult public func join() throws -> T { try thread.get() }
+
+    /*==========================================================================================================================================================================*/
+    public func start() { thread.start() }
+
+    /*==========================================================================================================================================================================*/
+    public func cancel() { thread.cancel() }
+
+    public enum JoinableThreadError: Error {
+        case ThreadNotStarted
+        case NoReturnValue
+        case NothingToExecute
     }
 
-    public func join() throws {
-        lock.withLockWait(while: !isValue(state, in: .Finished, .FinishedCancelled, .FinishedError))
-        if let e = error { throw e }
-    }
+    /*==========================================================================================================================================================================*/
+    private class XThread<T>: Thread {
+        weak var owner: JoinableThread<T>?
+        let lock:         NSCondition = NSCondition()
+        var xCancelled:   Bool        = false
+        var xExecuting:   Bool        = false
+        var xFinished:    Bool        = false
+        var xError:       Error?      = nil
+        var xReturnValue: T?          = nil
+        var xStarted:     Bool { (xCancelled || xExecuting || xFinished) }
 
-    private func _main() {
-        lock.withLock {
-            guard state == .Starting else { return }
-            state = .Executing
+        init(_ owner: JoinableThread<T>, _ name: String?, _ qualityOfService: QualityOfService?, _ stackSize: Int?) {
+            self.owner = owner
+            super.init()
+            self.name = name
+            if let q = qualityOfService { self.qualityOfService = q }
+            if let s = stackSize { self.stackSize = s }
         }
-        do {
-            try main()
-            lock.withLock { state = ((state == .Cancelled) ? .FinishedCancelled : .Finished) }
+
+        public func get() throws -> T {
+            try lock.withLock {
+                guard xStarted else { throw JoinableThreadError.ThreadNotStarted }
+                while xExecuting { lock.wait() }
+                if let e = xError { throw e }
+                guard let r = xReturnValue else { throw JoinableThreadError.NoReturnValue }
+                return r
+            }
         }
-        catch let e {
+
+        override func cancel() {
             lock.withLock {
-                error = e
-                state = .FinishedError
+                guard xExecuting else { return }
+                xCancelled = true
+                super.cancel()
+            }
+        }
+
+        override func start() {
+            lock.withLock {
+                guard !xStarted else { return }
+                xExecuting = true
+                super.start()
+            }
+        }
+
+        override func main() -> Void {
+            do {
+                guard let o = owner else { return }
+                xReturnValue = try o.main()
+                finish(error: nil)
+            }
+            catch let e { finish(error: e) }
+        }
+
+        /*==========================================================================================================================================================================*/
+        private func finish(error e: Error?) {
+            lock.withLock {
+                xError = e
+                xExecuting = false
+                xFinished = true
             }
         }
     }

@@ -223,7 +223,7 @@ extension Process {
             super.init()
         }
 
-        override func main() throws {
+        override func main(isCancelled: () -> Bool) throws {
             let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: BufferSize)
             defer { buffer.deallocate() }
             var cc = try source(buffer, BufferSize)
@@ -246,7 +246,7 @@ extension Process {
             super.init()
         }
 
-        override func main() throws {
+        override func main(isCancelled: () -> Bool) throws {
             while let d = try pipe.fileHandleForReading.read(upToCount: BufferSize), d.count > 0 {
                 try send(d)
             }

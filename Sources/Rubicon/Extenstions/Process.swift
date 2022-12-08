@@ -35,6 +35,7 @@ public enum ProcessErrors: Error {
     case ExecutableNotFound
 }
 
+/*==========================================================================================================================================================================*/
 extension Process {
     @usableFromInline static let BufferSize: Int = 1024
 /*@f:0*/
@@ -127,23 +128,34 @@ extension Process {
     /// - Throws: If `Process.run()` or any of the closures throw an exception.
     ///
     public class func execute(executableURL url: URL, arguments args: [String] = [], environment env: [String: String]? = nil, stdIn: Source?, stdOut: Target?, stdErr: Target?) throws -> Int32 {
-        let outThread: ProcessReadToTargetThread?    = ((stdOut == nil) ? nil : ProcessReadToTargetThread(stdOut!))
-        let errThread: ProcessReadToTargetThread?    = ((stdErr == nil) ? nil : ProcessReadToTargetThread(stdErr!))
-        let inThread:  ProcessWriteFromSourceThread? = ((stdIn == nil) ? nil : ProcessWriteFromSourceThread(stdIn!))
-        let process:   Process                       = Process()
-
-        process.arguments = args
-        process.executableURL = url
-        if let t = outThread { process.standardOutput = t.pipe }
-        if let t = errThread { process.standardError = t.pipe }
-        if let t = inThread { process.standardInput = t.pipe }
-        if let e = env, e.count > 0 { process.environment = e }
-
-        try process.run()
-        start(threads: outThread, errThread, inThread)
+        let (process, inThread, outThread, errThread) = try _execute(url: url, args: args, env: env, stdIn: stdIn, stdOut: stdOut, stdErr: stdErr)
         process.waitUntilExit()
         try join(threads: outThread, errThread, inThread)
         return process.terminationStatus
+    }
+
+    /*==========================================================================================================================================================================*/
+    /// Executes a given executable in a separate process and returns.
+    ///
+    /// - Parameters:
+    ///   - url: The file URL to the executable (binary).
+    ///   - args: The command line arguments to be passed to the process.
+    ///   - env: Environment variables to pass to the process. (Optional)
+    ///   - stdIn: A closure to provide data to the STDIN of the process.
+    ///   - stdOut: A closure to collect the data from STDOUT of the process.
+    ///   - stdErr: A closure to collect the data from STDERR of the process.
+    ///   - onExit: A closure which will be called when the process has finished executing. It takes a single parameter which, when called, will be the processes' termination status.
+    /// - Throws: If `Process.run()` throws an error.
+    ///
+    public class func execute(executableURL url: URL, arguments args: [String] = [], environment env: [String: String]? = nil, stdIn: Source?, stdOut: Target?, stdErr: Target?, onExit: @escaping (Int32) -> Void) throws {
+        let (process, inThread, outThread, errThread) = try _execute(url: url, args: args, env: env, stdIn: stdIn, stdOut: stdOut, stdErr: stdErr)
+        let waitThread = Thread {
+            process.waitUntilExit()
+            try? join(threads: outThread, errThread, inThread)
+            onExit(process.terminationStatus)
+        }
+        waitThread.qualityOfService = .background
+        waitThread.start()
     }
 
     /*==========================================================================================================================================================================*/
@@ -169,6 +181,25 @@ extension Process {
     public class func osShell(shell: String? = nil, arguments args: [String], environment env: [String: String]? = nil, inputString stdIn: String? = nil, encoding enc: String.Encoding = .utf8) throws -> ExecuteResults {
         let r = getOsShellArguments(shell: shell, arguments: args)
         return try Process.execute(executableURL: URL(fileURLWithPath: r.shellExec), arguments: r.args, environment: env, inputString: stdIn, encoding: enc)
+    }
+
+    /*==========================================================================================================================================================================*/
+    private class func _execute(url: URL, args: [String], env: [String: String]?, stdIn: Source?, stdOut: Target?, stdErr: Target?) throws -> (Process, ProcessWriteFromSourceThread?, ProcessReadToTargetThread?, ProcessReadToTargetThread?) {
+        let outThread: ProcessReadToTargetThread?    = ((stdOut == nil) ? nil : ProcessReadToTargetThread(stdOut!))
+        let errThread: ProcessReadToTargetThread?    = ((stdErr == nil) ? nil : ProcessReadToTargetThread(stdErr!))
+        let inThread:  ProcessWriteFromSourceThread? = ((stdIn == nil) ? nil : ProcessWriteFromSourceThread(stdIn!))
+        let process:   Process                       = Process()
+
+        process.arguments = args
+        process.executableURL = url
+        if let t = outThread { process.standardOutput = t.pipe }
+        if let t = errThread { process.standardError = t.pipe }
+        if let t = inThread { process.standardInput = t.pipe }
+        if let e = env, e.count > 0 { process.environment = e }
+
+        try process.run()
+        start(threads: outThread, errThread, inThread)
+        return (process, inThread, outThread, errThread)
     }
 
     /*==========================================================================================================================================================================*/
@@ -210,7 +241,10 @@ extension Process {
 
     /*==========================================================================================================================================================================*/
     private class func join(threads: JoinableThread<Void>?...) throws {
-        for t in threads { if let t = t { try t.get() } }
+        var error: Error? = nil
+        for t in threads { if let t = t { do { try t.get() }
+        catch let e { if error == nil { error = e } } } }
+        if let e = error { throw e }
     }
 
     /*==========================================================================================================================================================================*/
@@ -226,13 +260,12 @@ extension Process {
         override func main(isCancelled: () -> Bool) throws {
             let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: BufferSize)
             defer { buffer.deallocate() }
-            var cc = try source(buffer, BufferSize)
-            while cc > 0 { cc = try write(buffer, byteCount: cc) }
-        }
-
-        @inlinable func write(_ buffer: UnsafeMutablePointer<UInt8>, byteCount cc: Int) throws -> Int {
-            try pipe.fileHandleForWriting.write(contentsOf: UnsafeBufferPointer<UInt8>(start: buffer, count: cc))
-            return try source(buffer, BufferSize)
+            while !isCancelled() {
+                var cc = try source(buffer, BufferSize)
+                guard cc > 0 else { break }
+                try pipe.fileHandleForWriting.write(contentsOf: UnsafeBufferPointer<UInt8>(start: buffer, count: cc))
+                cc = try source(buffer, BufferSize)
+            }
         }
     }
 
@@ -247,17 +280,10 @@ extension Process {
         }
 
         override func main(isCancelled: () -> Bool) throws {
-            while let d = try pipe.fileHandleForReading.read(upToCount: BufferSize), d.count > 0 {
-                try send(d)
+            while !isCancelled() {
+                guard let d = try pipe.fileHandleForReading.read(upToCount: BufferSize), d.count > 0 else { break }
+                try d.withUnsafeBytes { (b: UnsafeRawBufferPointer) in try b.withMemoryRebound(to: UInt8.self) { try $0.withBaseAddress { try target($0, $1) } } }
             }
         }
-
-        @inlinable func send(_ d: Data) throws { try d.withUnsafeBytes { (b: UnsafeRawBufferPointer) in try send(b) } }
-
-        @inlinable func send(_ b: UnsafeRawBufferPointer) throws { try b.withMemoryRebound(to: UInt8.self) { try send($0) } }
-
-        @inlinable func send(_ b: UnsafeBufferPointer<UInt8>) throws { try b.withBaseAddress { try send($0, length: $1) } }
-
-        @inlinable func send(_ p: UnsafePointer<UInt8>, length l: Int) throws { try target(p, l) }
     }
 }

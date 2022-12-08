@@ -28,10 +28,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Process and IConv re-written.">
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="JoinableThread cleaned up.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/JoinableThread.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/JoinableThread.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/Process.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/Process.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -491,14 +490,7 @@
       <workItem from="1669819306084" duration="19104000" />
       <workItem from="1669991116242" duration="10906000" />
       <workItem from="1670334992402" duration="32828000" />
-      <workItem from="1670507137734" duration="5026000" />
-    </task>
-    <task id="LOCAL-00319" summary="Updated Readme file.">
-      <created>1657372203901</created>
-      <option name="number" value="00319" />
-      <option name="presentableId" value="LOCAL-00319" />
-      <option name="project" value="LOCAL" />
-      <updated>1657372203902</updated>
+      <workItem from="1670507137734" duration="6623000" />
     </task>
     <task id="LOCAL-00320" summary="Updated Readme file.">
       <created>1657372291350</created>
@@ -836,7 +828,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670451141594</updated>
     </task>
-    <option name="localTasksCounter" value="368" />
+    <task id="LOCAL-00368" summary="JoinableThread cleaned up.">
+      <created>1670512195195</created>
+      <option name="number" value="00368" />
+      <option name="presentableId" value="LOCAL-00368" />
+      <option name="project" value="LOCAL" />
+      <updated>1670512195195</updated>
+    </task>
+    <option name="localTasksCounter" value="369" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -869,7 +868,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Deprecated `markUpdate()`. Renamed it to `markClear()`." />
     <MESSAGE value="Added a bunch of file pathname utilities." />
     <MESSAGE value="New general purpose errors added." />
     <MESSAGE value="Added extension Dictionary.remapValues(_:)." />
@@ -894,7 +892,8 @@
     <MESSAGE value="Updated Readme file." />
     <MESSAGE value="Rewrite..." />
     <MESSAGE value="Process and IConv re-written." />
-    <option name="LAST_COMMIT_MESSAGE" value="Process and IConv re-written." />
+    <MESSAGE value="JoinableThread cleaned up." />
+    <option name="LAST_COMMIT_MESSAGE" value="JoinableThread cleaned up." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

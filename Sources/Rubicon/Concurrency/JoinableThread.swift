@@ -38,11 +38,20 @@ import CoreFoundation
 ///
 open class JoinableThread<T> {
     /*@f:0*/
-    /// The closure type for this class. Note that it can throw an error AND return a value.
+    /// The closure type for this class. Note that it can throw an error AND return a value. The closure accepts a single parameter which, itself, is a closure
+    /// that can be called to check to see if the thread has been cancelled.
     ///
     public typealias ThreadBlock = (() -> Bool) throws -> T
 
-    public enum JoinableThreadError: Error { case ThreadNotStarted, NothingToExecute }
+    public enum JoinableThreadError: Error {
+        /// This error is thrown if you attempt to call `get()` without first starting the thread.
+        ///
+        case ThreadNotStarted
+        /// This error is thrown if you initialize an instance of `JoinableThread` without providing a closure of type `ThreadBlock` and
+        /// do not override the `main(isCancelled:)` method.
+        ///
+        case NothingToExecute
+    }
 
     /// The error, if any, thrown by the thread during it's execution. This field will always remain `nil` until after the thread has finished executing.
     ///
@@ -68,18 +77,45 @@ open class JoinableThread<T> {
     public var stackSize:        Int                 { get { thread.stackSize        } set { thread.stackSize = newValue        } }
     /*@f:1*/
     /*==========================================================================================================================================================================*/
+    /// Create an instance of `JoinableThread` without a closure of type `ThreadBlock`. This is called when you're subclassing `JoinableThread` and overriding the
+    /// `main(isCancelled:)` method.
+    ///
+    /// - Parameters:
+    ///   - name: The name of the thread.
+    ///   - qualityOfService: The [quality of service](https://developer.apple.com/documentation/foundation/qualityofservice) for the thread.
+    ///   - stackSize: This value must be in bytes and a multiple of 4KB.
+    ///                To change the stack size, you must set this property before starting your thread. Setting the stack size after the thread has started changes the
+    ///                attribute size (which is reflected by the stackSize method), but it does not affect the actual number of pages set aside for the thread.
+    ///
     public init(name: String? = nil, qualityOfService: QualityOfService? = nil, stackSize: Int? = nil) {
         self.block = nil
         self.thread = XThread<T>(self, name, qualityOfService, stackSize)
     }
 
     /*==========================================================================================================================================================================*/
+    /// Create an instance of `JoinableThread` that will execute the provided closure of type `ThreadBlock`.
+    ///
+    /// - Parameters:
+    ///   - name: The name of the thread.
+    ///   - qualityOfService: The [quality of service](https://developer.apple.com/documentation/foundation/qualityofservice) for the thread.
+    ///   - stackSize: This value must be in bytes and a multiple of 4KB.
+    ///                To change the stack size, you must set this property before starting your thread. Setting the stack size after the thread has started changes the
+    ///                attribute size (which is reflected by the stackSize method), but it does not affect the actual number of pages set aside for the thread.
+    ///   - block: The closure that will be executed in a separate thread.
+    ///
     public init(name: String? = nil, qualityOfService: QualityOfService? = nil, stackSize: Int? = nil, _ block: @escaping ThreadBlock) {
         self.block = block
         self.thread = XThread<T>(self, name, qualityOfService, stackSize)
     }
 
     /*==========================================================================================================================================================================*/
+    /// The main method that is executed on a separate thread. If you don't pass a closure of type `ThreadBlock` when creating an instance of `JoinableThread` then you need
+    /// to override this method.  Otherwise a `JoinableThreadError.NothingToExecute` will be thrown if `get()` is called.
+    ///
+    /// - Parameter isCancelled: a closure that can be queried to see if the thread has been cancelled.
+    /// - Returns: Some value.
+    /// - Throws: If an error is thrown during the execution of the thread.
+    ///
     open func main(isCancelled: () -> Bool) throws -> T {
         guard let b = block else { throw JoinableThreadError.NothingToExecute }
         return try b(isCancelled)
@@ -103,9 +139,14 @@ open class JoinableThread<T> {
     @discardableResult public func join() throws -> T { try thread.get() }
 
     /*==========================================================================================================================================================================*/
+    /// Start the thread. If the thread has already been started then a fatal error will be thrown. You can check to see if the thread has already been started by checking
+    /// the `isStarted` field.
+    ///
     public func start() { thread.start() }
 
     /*==========================================================================================================================================================================*/
+    /// Flag the thread as cancelled. If the thread has not yet been started then this method does nothing.
+    ///
     public func cancel() { thread.cancel() }
 
     private var thread: XThread<T>!

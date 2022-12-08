@@ -25,6 +25,7 @@ import XCTest
 
 let testFilesDir: String = "Tests/RubiconTests/Files"
 let testFile:     String = "\(testFilesDir)/Test_UTF-8.xml"
+let testBar:      String = "==================================================================================================================================================================="
 
 public class RubiconTests: XCTestCase {
 
@@ -34,6 +35,7 @@ public class RubiconTests: XCTestCase {
 
     public func testWhich() {
         do {
+            print(testBar)
             try whichExample(exe: "iconv")
             try whichExample(exe: "iconvss")
         }
@@ -47,8 +49,22 @@ public class RubiconTests: XCTestCase {
         else { print("\"\(exe)\" was not found!") }
     }
 
+    public func testProcessExecute() {
+        do {
+            print(testBar)
+            let r = try Process.execute(executableURL: URL(fileURLWithPath: "/usr/bin/iconv"), arguments: [ "-l" ], inputString: nil)
+            print("Exit Code: \(r.exitCode)")
+            print(r.stdOut)
+            print(r.stdErr)
+        }
+        catch let e {
+            print("ERROR: \(e)")
+        }
+    }
+
     public func testIConvList() {
         do {
+            print(testBar)
             let list: [String] = try IConv.getEncodingList()
 
             for s in list {

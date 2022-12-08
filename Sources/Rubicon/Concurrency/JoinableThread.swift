@@ -210,7 +210,7 @@ open class JoinableThread<T> {
 
         /*==========================================================================================================================================================================*/
         private func run(_ owner: JoinableThread<T>) throws {
-            _value = try owner.main { super.isCancelled }
+            _value = try owner.main(isCancelled: { super.isCancelled })
             finish(error: nil)
         }
 

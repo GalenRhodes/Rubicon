@@ -29,6 +29,7 @@ func doIt() {
         let r = try Process.execute(executableURL: URL(fileURLWithPath: "/usr/bin/iconv"), arguments: [ "-l" ], inputString: nil)
         print("Exit Code: \(r.exitCode)")
         print(r.stdOut)
+        print(r.stdErr)
     }
     catch let e {
         print("ERROR: \(e)")

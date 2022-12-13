@@ -76,9 +76,11 @@ public class RubiconTests: XCTestCase {
         }
     }
 
-    #if !(os(macOS) || os(tvOS) || os(iOS) || os(watchOS))
+    #if !(os(macOS) || os(tvOS) || os(iOS) || os(watchOS) || os(OSX))
         public static var allTests: [(String, (RubiconTests) -> () throws -> Void)] {
-            [ ("RubiconTests", testIConvList), ]
+            [ ("RubiconTests", testIConvList),
+              ("RubiconTests", testProcessExecute),
+              ("RubiconTests", testWhich), ]
         }
     #endif
 }

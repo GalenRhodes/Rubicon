@@ -1,6 +1,6 @@
 // ===========================================================================
 //     PROJECT: Rubicon
-//    FILENAME: JoinableThread.swift
+//    FILENAME: XThread.swift
 //         IDE: AppCode
 //      AUTHOR: Galen Rhodes
 //        DATE: November 05, 2022
@@ -36,7 +36,7 @@ import CoreFoundation
 /// library's [Callable](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Callable.html)/[Future](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html)
 /// interface paradigm.
 ///
-open class JoinableThread<T> {
+open class XThread<T> {
     /*@f:0*/
     /// The closure type for this class. Note that it can throw an error AND return a value. The closure accepts a single parameter which, itself, is a closure
     /// that can be called to check to see if the thread has been cancelled.
@@ -89,7 +89,7 @@ open class JoinableThread<T> {
     ///
     public init(name: String? = nil, qualityOfService: QualityOfService? = nil, stackSize: Int? = nil) {
         self.block = nil
-        self.thread = XThread<T>(self, name, qualityOfService, stackSize)
+        self.thread = TThread<T>(self, name, qualityOfService, stackSize)
     }
 
     /*==========================================================================================================================================================================*/
@@ -105,7 +105,7 @@ open class JoinableThread<T> {
     ///
     public init(name: String? = nil, qualityOfService: QualityOfService? = nil, stackSize: Int? = nil, _ block: @escaping ThreadBlock) {
         self.block = block
-        self.thread = XThread<T>(self, name, qualityOfService, stackSize)
+        self.thread = TThread<T>(self, name, qualityOfService, stackSize)
     }
 
     /*==========================================================================================================================================================================*/
@@ -149,11 +149,11 @@ open class JoinableThread<T> {
     ///
     public func cancel() { thread.cancel() }
 
-    private var thread: XThread<T>!
+    private var thread: TThread<T>!
     private let block:  ThreadBlock?
 
     /*==========================================================================================================================================================================*/
-    private class XThread<T>: Thread {
+    private class TThread<T>: Thread {
         private enum PrivateThreadError: Error { case NoReturnValue }
 
 /*@f:0*/
@@ -166,7 +166,7 @@ open class JoinableThread<T> {
 /*@f:1*/
 
         /*==========================================================================================================================================================================*/
-        init(_ owner: JoinableThread<T>, _ name: String?, _ qualityOfService: QualityOfService?, _ stackSize: Int?) {
+        init(_ owner: XThread<T>, _ name: String?, _ qualityOfService: QualityOfService?, _ stackSize: Int?) {
             self._owner = owner
             super.init()
             self.name = name
@@ -209,7 +209,7 @@ open class JoinableThread<T> {
         }
 
         /*==========================================================================================================================================================================*/
-        private func run(_ owner: JoinableThread<T>) throws {
+        private func run(_ owner: XThread<T>) throws {
             _value = try owner.main(isCancelled: { super.isCancelled })
             finish(error: nil)
         }
@@ -228,7 +228,7 @@ open class JoinableThread<T> {
         private      var _error:    Error?      = nil
         private      var _finished: Bool        = false
         private      var _started:  Bool        = false
-        private weak var _owner:    JoinableThread<T>?
+        private weak var _owner:    XThread<T>?
 /*@f:1*/
     }
 }

@@ -235,20 +235,24 @@ extension Process {
     }
 
     /*==========================================================================================================================================================================*/
-    private class func start(threads: JoinableThread<Void>?...) {
+    private class func start(threads: XThread<Void>?...) {
         for t in threads { if let t = t { t.start() } }
     }
 
     /*==========================================================================================================================================================================*/
-    private class func join(threads: JoinableThread<Void>?...) throws {
+    private class func join(threads: XThread<Void>?...) throws {
         var error: Error? = nil
-        for t in threads { if let t = t { do { try t.get() }
-        catch let e { if error == nil { error = e } } } }
+        for t in threads {
+            if let t = t {
+                do { try t.get() }
+                catch let e { if error == nil { error = e } }
+            }
+        }
         if let e = error { throw e }
     }
 
     /*==========================================================================================================================================================================*/
-    private class ProcessWriteFromSourceThread: JoinableThread<Void> {
+    private class ProcessWriteFromSourceThread: XThread<Void> {
         let pipe:   Pipe = Pipe()
         let source: Source
 
@@ -270,7 +274,7 @@ extension Process {
     }
 
     /*==========================================================================================================================================================================*/
-    private class ProcessReadToTargetThread: JoinableThread<Void> {
+    private class ProcessReadToTargetThread: XThread<Void> {
         let pipe:   Pipe = Pipe()
         let target: Target
 

@@ -1,6 +1,6 @@
 // ===========================================================================
 //     PROJECT: Rubicon
-//    FILENAME: RingBuffer.swift
+//    FILENAME: ByteRingBuffer.swift
 //         IDE: AppCode
 //      AUTHOR: Galen Rhodes
 //        DATE: November 09, 2022
@@ -24,7 +24,7 @@ import Foundation
 import CoreFoundation
 import RingBuffer
 
-public class SwRingBuffer {
+public class ByteRingBuffer {
 
     @usableFromInline var ringBuffer: UnsafeMutablePointer<PGRingBuffer>
     @usableFromInline let byteBuffer: UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: 1)

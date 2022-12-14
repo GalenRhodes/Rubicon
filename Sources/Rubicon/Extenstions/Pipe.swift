@@ -35,7 +35,7 @@ extension Pipe {
         var total:      Int        = 0
 
         while cc > 0 {
-            fileHandle.write(contentsOf: UnsafeBufferPointer<UInt8>(start: buffer, count: cc))
+            try fileHandle.write(contentsOf: UnsafeBufferPointer<UInt8>(start: buffer, count: cc))
             total += cc
             cc = try source(buffer, Pipe.BufferSize)
         }

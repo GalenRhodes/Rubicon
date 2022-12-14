@@ -20,7 +20,7 @@
 // IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 // ===========================================================================
 
-#if !(os(Windows) || os(WASI) || os(PS4) || os(Haiku) || os(Android))
+#if os(Linux) || os(iOS) || os(tvOS) || os(watchOS) || os(macOS) || os(macOS)
 
     import Foundation
     import CoreFoundation
@@ -41,6 +41,7 @@
 
         @usableFromInline static let InputBufferSize:  Int = 4096
         @usableFromInline static let OutputBufferSize: Int = ((InputBufferSize + 10) * 4)
+
         @usableFromInline var cd:   iconv_t
         @usableFromInline let lock: NSLock = NSLock()
 

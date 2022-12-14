@@ -25,14 +25,23 @@ import CoreFoundation
 
 public let NoMainErrorMessage: String = "ERROR: main() not implemented and no closure provided."
 
-open class JThread {
+open class JThread: Hashable {
     public typealias ThreadBlock = () -> Void
 
+    @inlinable public class var isMainThread:    Bool { Thread.isMainThread }
+    @inlinable public class var isMultiThreaded: Bool { Thread.isMultiThreaded() }
+
     /*@f:0======================================================================================================================================================================*/
-    @inlinable public var isStarted:   Bool { lock.withLock { executing || finished } }
-    @inlinable public var isFinished:  Bool { lock.withLock { finished              } }
-    @inlinable public var isExecuting: Bool { lock.withLock { executing             } }
-    @inlinable public var isCancelled: Bool { lock.withLock { thread.isCancelled    } }
+    @inlinable public var isStarted:        Bool                { lock.withLock { status != .initialized  } }
+    @inlinable public var isFinished:       Bool                { lock.withLock { status == .finished     } }
+    @inlinable public var isExecuting:      Bool                { lock.withLock { status == .executing    } }
+    @inlinable public var isCancelled:      Bool                { lock.withLock { thread.isCancelled      } }
+    @inlinable public var isMainThread:     Bool                { lock.withLock { thread.isMainThread     } }
+    @inlinable public var threadDictionary: NSMutableDictionary { lock.withLock { thread.threadDictionary } }
+
+    @inlinable public var name:             String?             { get { lock.withLock { thread.name             } } set { thread.name = newValue             } }
+    @inlinable public var stackSize:        Int                 { get { lock.withLock { thread.stackSize        } } set { thread.stackSize = newValue        } }
+    @inlinable public var qualityOfService: QualityOfService    { get { lock.withLock { thread.qualityOfService } } set { thread.qualityOfService = newValue } }
 
     /*@f:1======================================================================================================================================================================*/
     public init(name: String? = nil, qualityOfService qos: QualityOfService? = nil, stackSize ss: Int? = nil, start st: Bool = false) {
@@ -54,19 +63,19 @@ open class JThread {
 
     /*==========================================================================================================================================================================*/
     open func join() {
-        lock.wait(while: executing)
+        lock.wait(while: (status == .executing))
     }
 
     /*==========================================================================================================================================================================*/
     open func join(until limit: Date) -> Bool {
-        lock.wait(while: executing, until: limit)
+        lock.wait(while: (status == .executing), until: limit)
     }
 
     /*==========================================================================================================================================================================*/
     open func start() {
         lock.withLock {
-            guard !(executing || finished) else { return }
-            executing = true
+            guard status == .initialized else { return }
+            status = .starting
             thread.start()
         }
     }
@@ -74,32 +83,42 @@ open class JThread {
     /*==========================================================================================================================================================================*/
     open func cancel() {
         lock.withLock {
-            guard executing && !finished else { return }
+            guard isValue(status, in: .starting, .executing) else { return }
             thread.cancel()
         }
     }
 
     /*@f:0======================================================================================================================================================================*/
+    @usableFromInline enum Status { case initialized, starting, executing, finished }
+
     @usableFromInline typealias TInfo = (name: String?, qualityOfService: QualityOfService?, stackSize: Int?, block: ThreadBlock?)
 
-    @usableFromInline      var executing: Bool        = false
-    @usableFromInline      var finished:  Bool        = false
+    @usableFromInline      var status:    Status      = .initialized
     @usableFromInline lazy var thread:    Thread      = createThread()
     @usableFromInline      let lock:      NSCondition = NSCondition()
     @usableFromInline      let data:      TInfo
 
     /*@f:1======================================================================================================================================================================*/
     private func createThread() -> Thread {
-        let t = Thread { [self] in
+        let thd = Thread { [self] in
+            lock.withLock { status = .executing }
             main()
-            lock.withLock {
-                executing = false
-                finished = true
-            }
+            lock.withLock { status = .finished }
         }
-        t.name = data.name
-        if let q = data.qualityOfService { t.qualityOfService = q }
-        if let s = data.stackSize { t.stackSize = s }
-        return t
+        thd.name = data.name
+        if let q = data.qualityOfService { thd.qualityOfService = q }
+        if let s = data.stackSize { thd.stackSize = s }
+        return thd
     }
+}
+
+extension JThread {
+
+    @inlinable public func hash(into hasher: inout Hasher) { hasher.combine(thread.hashValue) }
+
+    @inlinable public static func == (lhs: JThread, rhs: Thread) -> Bool { lhs.thread === rhs }
+
+    @inlinable public static func == (lhs: Thread, rhs: JThread) -> Bool { lhs === rhs.thread }
+
+    @inlinable public static func == (lhs: JThread, rhs: JThread) -> Bool { lhs === rhs }
 }

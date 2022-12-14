@@ -175,6 +175,16 @@ extension String {
     }
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+    /// Returns an array of strings from the array of string ranges.
+    ///
+    /// - Parameter ranges: the array of string ranges.
+    /// - Returns: an array of strings.
+    ///
+    @inlinable public func strings(fromRanges ranges: [StringRange]) -> [String] {
+        ranges.map { String(self[$0]) }
+    }
+
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     /// Splits this string around matches of the given regular expression.
     ///
     /// Works like the <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html#split(java.lang.String,int)">java.lang.String.split(String, int)</a>
@@ -228,55 +238,76 @@ extension String {
     ///            This array will always contain at least one element.
     ///
     public func split(regex: String, limit: Int = 0, keepSeparators: Bool = false) -> [String] {
-        guard limit != 1 && self != "" else { return [ self ] }
+        guard limit != 1 && !isEmpty else { return [ self ] }
 
         var error:     Error?        = nil
         var list:      [StringRange] = []
         var lastIndex: StringIndex   = startIndex
 
-        guard let rx = RegularExpression(pattern: regex, error: &error) else {
-            if let e = error { fatalError(e.localizedDescription) }
-            fatalError("Invalid Pattern: \(regex)")
-        }
-
-        rx.enumerateMatches(in: self) { match, _, stop in
-            guard let range = match?.range else { return }
-            _split(range: range, limit: limit, keepSeparators: keepSeparators, lastIndex: &lastIndex, stop: &stop, list: &list)
-        }
-
-        if limit == 0 {
-            while let rng = list.last, rng.isEmpty {
-                list.removeLast()
-            }
-            if list.count == 0 {
-                return [ "" ]
-            }
-        }
-
-        return list.map { String(self[$0]) }
+        guard let rx = RegularExpression(pattern: regex, error: &error) else { fatalError(error?.localizedDescription ?? "InvalidPattern: \(regex)") }
+        rx.enumerateMatches(in: self) { match, _, stop in if let range = match?.range { doSplit(range, limit, keepSeparators, &lastIndex, &stop, &list) } }
+        return limit == 0 ? trimRangeList(&list) : strings(fromRanges: list)
     }
 
-    @inlinable func _split(range: StringRange, limit: Int, keepSeparators: Bool, lastIndex: inout StringIndex, stop: inout Bool, list: inout [StringRange]) {
-        if (range.lowerBound > startIndex) || (!range.isEmpty) {
-            list.append(lastIndex ..< range.lowerBound)
-        }
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+    /// Trim empty ranges from the end of the list and return an array of the remaining strings.
+    ///
+    /// - Parameter list: The list of string ranges.
+    /// - Returns: An array of strings.
+    ///
+    @inlinable func trimRangeList(_ list: inout [StringRange]) -> [String] {
+        while let rng = list.last, rng.isEmpty { list.removeLast() }
+        if list.count == 0 { return [ "" ] }
+        return strings(fromRanges: list)
+    }
 
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+    /// Process a single match range.
+    ///
+    /// - Parameters:
+    ///   - range: The range of the substring encompassing the separator.
+    ///   - limit: If greater than zero then this is the maximum number of items we can have in our list.
+    ///   - keepSeparators: A flag that indicates whether or not the caller wants the separator substring included in the results.
+    ///   - lastIndex: The end of the previous match range.
+    ///   - stop: A boolean flag that, if set to `true`, will indicate that splitting should cease.
+    ///   - list: The list of substring ranges.
+    ///
+    @inlinable func doSplit(_ range: StringRange, _ limit: Int, _ keepSeparators: Bool, _ lastIndex: inout StringIndex, _ stop: inout Bool, _ list: inout [StringRange]) {
+        appendSplitItem(range, &lastIndex, &list)
+        guard endSplit(limit, &lastIndex, &stop, &list) && keepSeparators else { return }
+        list.append(range)
+        endSplit(limit, &lastIndex, &stop, &list)
+    }
+
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+    /// Append a split item range.
+    ///
+    /// - Parameters:
+    ///   - range: The range of the substring encompassing the separator.
+    ///   - lastIndex: The end of the previous match range.
+    ///   - list: The list of substring ranges.
+    ///
+    @inlinable func appendSplitItem(_ range: StringRange, _ lastIndex: inout StringIndex, _ list: inout [StringRange]) {
+        if (range.lowerBound > startIndex) || (!range.isEmpty) { list.append(lastIndex ..< range.lowerBound) }
         lastIndex = range.upperBound
-
-        if (limit > 0) && (list.count >= (limit - 1)) {
-            _endSplit(lastIndex: &lastIndex, stop: &stop, list: &list)
-        }
-        else if keepSeparators {
-            list.append(range)
-            if (limit > 0) && (list.count >= (limit - 1)) {
-                _endSplit(lastIndex: &lastIndex, stop: &stop, list: &list)
-            }
-        }
     }
 
-    @usableFromInline func _endSplit(lastIndex: inout StringIndex, stop: inout Bool, list: inout [StringRange]) {
-        list.append(lastIndex ..< endIndex)
-        lastIndex = endIndex
-        stop = true
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+    /// If we've reached the limit for the number of items we can have in our array then we append the remainder of the string and set the stop flag to true.
+    ///
+    /// - Parameters:
+    ///   - limit: If greater than zero then this is the maximum number of items we can have in our list.
+    ///   - lastIndex: The end of the previous match range.
+    ///   - stop: A boolean flag that, if set to `true`, will indicate that splitting should cease.
+    ///   - list: The list of substring ranges.
+    /// - Returns: `true` if we should continue.
+    ///
+    @inlinable @discardableResult func endSplit(_ limit: Int, _ lastIndex: inout StringIndex, _ stop: inout Bool, _ list: inout [StringRange]) -> Bool {
+        if (limit > 0) && (list.count >= (limit - 1)) {
+            list.append(lastIndex ..< endIndex)
+            lastIndex = endIndex
+            stop = true
+        }
+        return !stop
     }
 }

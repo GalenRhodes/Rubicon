@@ -26,7 +26,7 @@ import CoreFoundation
 /*==========================================================================================================================================================================*/
 open class RegularExpression {
 
-    let regex: NSRegularExpression
+    @usableFromInline let regex: NSRegularExpression
     /*@f:0*/
     open var pattern:               String                    { regex.pattern               }
     open var options:               RegularExpression.Options { regex.options.xlate()       }
@@ -118,28 +118,23 @@ open class RegularExpression {
     public struct Match: @unchecked Sendable, RandomAccessCollection {
         public typealias Element = Group?
         public typealias Index = Int
-
-        public let range:      StringRange
-        public let substring:  String
-        public let count:      Int
-        public let startIndex: Index
-        public let endIndex:   Index
-
-        public subscript(position: Index) -> Element { groups[position] }
-
-        private let groups: [Element]
+        /*@f:0*/
+        @inlinable public var range:      StringRange { groups[0]!.range     }
+        @inlinable public var substring:  String      { groups[0]!.substring }
+        @inlinable public var startIndex: Index       { groups.startIndex    }
+        @inlinable public var endIndex:   Index       { groups.endIndex      }
+        @inlinable public var count:      Int         { groups.count         }
+        /*@f:1*/
+        @inlinable public subscript(position: Index) -> Element { groups[position] }
 
         public init?(_ string: String, _ result: NSTextCheckingResult?) {
             guard let result = result else { return nil }
             var grps: [Element] = []
             for i in (0 ..< result.numberOfRanges) { grps.append(Group(i, string, result.range(at: i))) }
             self.groups = grps
-            self.range = grps[0]!.range
-            self.substring = grps[0]!.substring
-            self.count = grps.count
-            self.startIndex = grps.startIndex
-            self.endIndex = grps.endIndex
         }
+
+        @usableFromInline let groups: [Element]
     }
 
     /*==========================================================================================================================================================================*/
@@ -150,7 +145,7 @@ open class RegularExpression {
 
         init?(_ index: Int, _ string: String, _ nsRange: NSRange) {
             guard nsRange.location != NSNotFound else { return nil }
-            guard let r = StringRange(nsRange, in: string) else { fatalError() }
+            guard let r = StringRange(nsRange, in: string) else { fatalError("ERROR: Invalid string range.") }
             self.index = index
             self.range = r
             self.substring = String(string[r])

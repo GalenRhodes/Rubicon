@@ -27,8 +27,9 @@ public typealias Predicate = () -> Bool
 public let NoValueErrorMessage: String = "ERROR: No value."
 
 /*==============================================================================================================================================================================*/
-/// This class offers a little bit more flexibility over the standard Foundation [Thread](https://developer.apple.com/documentation/foundation/thread) class. The standard
-/// Thread class found in [Apple's Foundation library](https://developer.apple.com/documentation/foundation) is pretty bare bones. For starters, unlike the
+/// This class offers a little bit more flexibility over the standard Foundation [Thread](https://developer.apple.com/documentation/foundation/thread) class.
+///
+/// The standard Thread class found in [Apple's Foundation library](https://developer.apple.com/documentation/foundation) is pretty bare bones. For starters, unlike the
 /// [Process](https://developer.apple.com/documentation/foundation/process) class, it lacks any way to [join](https://www.ibm.com/docs/en/aix/7.2?topic=programming-joining-threads)
 /// another thread - that is to say, put one thread to sleep until another thread finishes executing.
 ///
@@ -41,6 +42,7 @@ public let NoValueErrorMessage: String = "ERROR: No value."
 ///
 open class VThread<T> {
 
+    /*==========================================================================================================================================================================*/
     /// The closure type for this class. Note that it can throw an error AND return a value. The closure accepts a single parameter which, itself, is a closure
     /// that can be called to check to see if the thread has been cancelled.
     ///
@@ -66,12 +68,31 @@ open class VThread<T> {
     }
 
     /*==========================================================================================================================================================================*/
+    /// The main entry point routine for the thread.
+    ///
+    /// The default implementation of this method takes the target and selector used to initialize the receiver and invokes the selector on the specified target. If you subclass
+    /// NSThread, you can override this method and use it to implement the main body of your thread instead. If you do so, you do not need to invoke super.
+    ///
+    /// You should never invoke this method directly. You should always start your thread by invoking the start() method.
+    ///
+    /// - Parameter isCancelled:
+    /// - Returns:
+    /// - Throws:
     open func main(isCancelled: Predicate) throws -> T {
         guard let b = data.block else { fatalError(NoMainErrorMessage) }
         return try b(isCancelled)
     }
 
     /*==========================================================================================================================================================================*/
+    /// Start the receiver.
+    ///
+    /// This method asynchronously spawns the new thread and invokes the receiver’s main() method on the new thread. The isExecuting property returns true once the thread
+    /// starts executing, which may occur after the start() method returns.
+    ///
+    /// If you initialized the receiver with a target and selector, the default main() method invokes that selector automatically.
+    ///
+    /// If this thread is the first thread detached in the application, this method posts the NSWillBecomeMultiThreaded with object nil to the default notification center.
+    ///
     open func start() { thread.start() }
 
     /*==========================================================================================================================================================================*/
@@ -103,6 +124,22 @@ open class VThread<T> {
     @usableFromInline      var value:  T?      = nil
     @usableFromInline lazy var thread: JThread = JThread(name: data.name, qualityOfService: data.qualityOfService, stackSize: data.stackSize) { self.main() }
 
+    /*==========================================================================================================================================================================*/
     private func main() { do { value = try main { thread.isCancelled } } catch let e { error = e } }
     /*@f:1*/
+}
+
+extension VThread {
+
+    @inlinable public func hash(into hasher: inout Hasher) { thread.hash(into: &hasher) }
+
+    @inlinable public static func == (lhs: VThread, rhs: JThread) -> Bool { lhs.thread === rhs }
+
+    @inlinable public static func == (lhs: JThread, rhs: VThread) -> Bool { lhs === rhs.thread }
+
+    @inlinable public static func == (lhs: VThread, rhs: Thread) -> Bool { lhs.thread === rhs }
+
+    @inlinable public static func == (lhs: Thread, rhs: VThread) -> Bool { lhs === rhs.thread }
+
+    @inlinable public static func == (lhs: VThread, rhs: VThread) -> Bool { lhs === rhs }
 }

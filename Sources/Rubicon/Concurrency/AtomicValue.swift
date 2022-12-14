@@ -25,7 +25,7 @@ import CoreFoundation
 
 @propertyWrapper public struct AtomicValue<T> {
     private var _wrappedValue: T
-    public let  lock:          NSCondition = NSCondition()
+    public let  lock:          NSLock = NSLock()
 
     public var wrappedValue: T {
         get { lock.withLock { _wrappedValue } }

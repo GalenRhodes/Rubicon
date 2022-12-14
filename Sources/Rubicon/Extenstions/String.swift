@@ -52,6 +52,16 @@ extension String {
     }
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+    @inlinable public var escapedForCommandLine: String {
+        let str = replacing("\\", with: "\\\\").replacing("\"", with: "\\\"")
+        #if os(Windows)
+            return str
+        #else
+            return str.replacing(" ", with: "\\ ")
+        #endif
+    }
+
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     @inlinable public func rightTrimmingCharacters(in cs: CharacterSet) -> String {
         // I'm not certain that `lastIndex` does or will always search from the end of the string going forward
         // so we'll just do it ourselves.

@@ -1,9 +1,9 @@
 // ===========================================================================
 //     PROJECT: Rubicon
-//    FILENAME: JThread.swift
+//    FILENAME: VThread.swift
 //         IDE: AppCode
 //      AUTHOR: Galen Rhodes
-//        DATE: December 12, 2022
+//        DATE: November 05, 2022
 //
 // Copyright © 2022 Project Galen. All rights reserved.
 //
@@ -23,16 +23,35 @@
 import Foundation
 import CoreFoundation
 
-public let NoMainErrorMessage: String = "ERROR: main() not implemented and no closure provided."
+public typealias Predicate = () -> Bool
+public let NoValueErrorMessage: String = "ERROR: No value."
 
-open class JThread {
-    public typealias ThreadBlock = () -> Void
+/*==============================================================================================================================================================================*/
+/// This class offers a little bit more flexibility over the standard Foundation [Thread](https://developer.apple.com/documentation/foundation/thread) class. The standard
+/// Thread class found in [Apple's Foundation library](https://developer.apple.com/documentation/foundation) is pretty bare bones. For starters, unlike the
+/// [Process](https://developer.apple.com/documentation/foundation/process) class, it lacks any way to [join](https://www.ibm.com/docs/en/aix/7.2?topic=programming-joining-threads)
+/// another thread - that is to say, put one thread to sleep until another thread finishes executing.
+///
+/// The other things the standard Foundation Thread class lacks is an easy way to tell if the thread threw an error during execution or to have the thread return a value from
+/// it's execution.
+///
+/// This implementation attempts to solve all of that by behaving similar to [Java's Concurrency](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/package-summary.html)
+/// library's [Callable](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Callable.html)/[Future](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html)
+/// interface paradigm.
+///
+open class VThread<T> {
+
+    /// The closure type for this class. Note that it can throw an error AND return a value. The closure accepts a single parameter which, itself, is a closure
+    /// that can be called to check to see if the thread has been cancelled.
+    ///
+    public typealias ThreadBlock = (Predicate) throws -> T
 
     /*@f:0======================================================================================================================================================================*/
-    @inlinable public var isStarted:   Bool { lock.withLock { executing || finished } }
-    @inlinable public var isFinished:  Bool { lock.withLock { finished              } }
-    @inlinable public var isExecuting: Bool { lock.withLock { executing             } }
-    @inlinable public var isCancelled: Bool { lock.withLock { thread.isCancelled    } }
+    @inlinable public    var isFinished:  Bool   { thread.isFinished  }
+    @inlinable public    var isExecuting: Bool   { thread.isExecuting }
+    @inlinable public    var isCancelled: Bool   { thread.isCancelled }
+    @inlinable public    var isStarted:   Bool   { thread.isStarted   }
+    public internal(set) var error:       Error? = nil
 
     /*@f:1======================================================================================================================================================================*/
     public init(name: String? = nil, qualityOfService qos: QualityOfService? = nil, stackSize ss: Int? = nil, start st: Bool = false) {
@@ -47,59 +66,43 @@ open class JThread {
     }
 
     /*==========================================================================================================================================================================*/
-    open func main() {
+    open func main(isCancelled: Predicate) throws -> T {
         guard let b = data.block else { fatalError(NoMainErrorMessage) }
-        b()
+        return try b(isCancelled)
     }
 
     /*==========================================================================================================================================================================*/
-    open func join() {
-        lock.wait(while: executing)
+    open func start() { thread.start() }
+
+    /*==========================================================================================================================================================================*/
+    open func cancel() { thread.cancel() }
+
+    /*==========================================================================================================================================================================*/
+    open func get() throws -> T {
+        thread.join()
+        return try getValue()
     }
 
     /*==========================================================================================================================================================================*/
-    open func join(until limit: Date) -> Bool {
-        lock.wait(while: executing, until: limit)
+    open func get(until limit: Date) throws -> T? {
+        guard thread.join(until: limit) else { return nil }
+        return try getValue()
     }
 
     /*==========================================================================================================================================================================*/
-    open func start() {
-        lock.withLock {
-            guard !(executing || finished) else { return }
-            executing = true
-            thread.start()
-        }
-    }
-
-    /*==========================================================================================================================================================================*/
-    open func cancel() {
-        lock.withLock {
-            guard executing && !finished else { return }
-            thread.cancel()
-        }
+    @inlinable func getValue() throws -> T {
+        if let e = error { throw e }
+        if let v = value { return v }
+        fatalError(NoValueErrorMessage)
     }
 
     /*@f:0======================================================================================================================================================================*/
     @usableFromInline typealias TInfo = (name: String?, qualityOfService: QualityOfService?, stackSize: Int?, block: ThreadBlock?)
 
-    @usableFromInline      var executing: Bool        = false
-    @usableFromInline      var finished:  Bool        = false
-    @usableFromInline lazy var thread:    Thread      = createThread()
-    @usableFromInline      let lock:      NSCondition = NSCondition()
-    @usableFromInline      let data:      TInfo
+    @usableFromInline      let data:   TInfo
+    @usableFromInline      var value:  T?      = nil
+    @usableFromInline lazy var thread: JThread = JThread(name: data.name, qualityOfService: data.qualityOfService, stackSize: data.stackSize) { self.main() }
 
-    /*@f:1======================================================================================================================================================================*/
-    private func createThread() -> Thread {
-        let t = Thread { [self] in
-            main()
-            lock.withLock {
-                executing = false
-                finished = true
-            }
-        }
-        t.name = data.name
-        if let q = data.qualityOfService { t.qualityOfService = q }
-        if let s = data.stackSize { t.stackSize = s }
-        return t
-    }
+    private func main() { do { value = try main { thread.isCancelled } } catch let e { error = e } }
+    /*@f:1*/
 }

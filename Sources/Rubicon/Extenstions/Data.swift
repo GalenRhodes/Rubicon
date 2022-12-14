@@ -27,4 +27,12 @@ extension Data {
     @inlinable public func asString(encoding: String.Encoding = .utf8) -> String? {
         String(data: self, encoding: encoding)
     }
+
+    @inlinable public func withUnsafeBytes2<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R {
+        try withUnsafeBytes { (p: UnsafeRawBufferPointer) -> R in try body(p) }
+    }
+
+    @inlinable public func withDataReboundAs<T, R>(ofType type: T.Type, _ body: (UnsafePointer<T>, Int) throws -> R) rethrows -> R {
+        try withUnsafeBytes { (p: UnsafeRawBufferPointer) -> R in try p.withMemoryRebound(to: type) { try $0.withBaseAddress { try body($0, $1) } } }
+    }
 }

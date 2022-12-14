@@ -43,6 +43,7 @@ extension Process {
     public typealias ExecuteDataResults = (exitCode: Int32, stdOut: Data, stdErr: Data)
     public typealias Source             = (UnsafeMutablePointer<UInt8>, Int) throws -> Int
     public typealias Target             = (UnsafePointer<UInt8>, Int) throws -> Void
+    public typealias OnExit             = (Int32) -> Void
 /*@f:1*/
     /*==========================================================================================================================================================================*/
     /// Executes a given executable in a separate process and returns the data returned on STDOUT and STDERR during the execution of the process. In this case, instead of
@@ -128,7 +129,7 @@ extension Process {
     /// - Throws: If `Process.run()` or any of the closures throw an exception.
     ///
     public class func execute(executableURL url: URL, arguments args: [String] = [], environment env: [String: String]? = nil, stdIn: Source?, stdOut: Target?, stdErr: Target?) throws -> Int32 {
-        let (process, inThread, outThread, errThread) = try _execute(url: url, args: args, env: env, stdIn: stdIn, stdOut: stdOut, stdErr: stdErr)
+        let (process, inThread, outThread, errThread) = try _execute(url: url, args: args, env: env, stdIn: stdIn, stdOut: stdOut, stdErr: stdErr, onExit: nil)
         process.waitUntilExit()
         try join(threads: outThread, errThread, inThread)
         return process.terminationStatus
@@ -147,18 +148,17 @@ extension Process {
     ///   - onExit: A closure which will be called when the process has finished executing. It takes a single parameter which, when called, will be the processes' termination status.
     /// - Throws: If `Process.run()` throws an error.
     ///
-    public class func execute(executableURL url: URL, arguments args: [String] = [], environment env: [String: String]? = nil, stdIn: Source?, stdOut: Target?, stdErr: Target?, onExit: @escaping (Int32) -> Void) throws {
-        let (process, inThread, outThread, errThread) = try _execute(url: url, args: args, env: env, stdIn: stdIn, stdOut: stdOut, stdErr: stdErr)
-        let waitThread = Thread {
-            process.waitUntilExit()
-            try? join(threads: outThread, errThread, inThread)
-            onExit(process.terminationStatus)
-        }
-        waitThread.qualityOfService = .background
-        waitThread.start()
+    public class func execute(executableURL url: URL, arguments args: [String] = [], environment env: [String: String]? = nil, stdIn: Source?, stdOut: Target?, stdErr: Target?, onExit: @escaping OnExit) throws -> Process {
+        try _execute(url: url, args: args, env: env, stdIn: stdIn, stdOut: stdOut, stdErr: stdErr, onExit: onExit).0
     }
 
     /*==========================================================================================================================================================================*/
+    /// Executes the operating system `which` command to locate an executable in the default path.
+    ///
+    /// - Parameter name: The name of the executable.
+    /// - Returns: The path on the file system to the executable or nil if it could not be found.
+    /// - Throws: on O/S error.
+    ///
     public class func osWhich(executable name: String) throws -> String? {
         #if os(Windows)
             let r = try osShell(arguments: [ "where", argString(arguments: [ name ]) ])
@@ -172,19 +172,54 @@ extension Process {
     }
 
     /*==========================================================================================================================================================================*/
+    /// Executes a command within the operating system command line shell.
+    ///
+    /// - Parameters:
+    ///   - shell: The shell program to execute. On Unix based systems this is `/bin/sh`. On Windows based systems this is `cmd.exe`.
+    ///   - args: The arguments to execute in the shell.
+    ///   - env: Environment variables.
+    ///   - stdIn: Any data to provide on STDIN.
+    /// - Returns: A tuple of type `ExecuteDataResults`.
+    /// - Throws: If there is a problem executing the shell program.
+    ///
     public class func osShell(shell: String? = nil, arguments args: [String], environment env: [String: String]? = nil, inputData stdIn: Data?) throws -> ExecuteDataResults {
         let r = getOsShellArguments(shell: shell, arguments: args)
         return try Process.execute(executableURL: URL(fileURLWithPath: r.shellExec), arguments: r.args, environment: env, inputData: stdIn)
     }
 
     /*==========================================================================================================================================================================*/
+    /// Executes a command within the operating system command line shell.
+    ///
+    /// - Parameters:
+    ///   - shell: The shell program to execute. On Unix based systems this is `/bin/sh`. On Windows based systems this is `cmd.exe`.
+    ///   - args: The arguments to execute in the shell.
+    ///   - env: Environment variables.
+    ///   - stdIn: Any text to provide on STDIN.
+    ///   - enc: The character encoding for the text provided on STDIN. Defaults to `UTF-8`.
+    /// - Returns: A tuple of type `ExecuteDataResults`.
+    /// - Throws: If there is a problem executing the shell program.
+    ///
     public class func osShell(shell: String? = nil, arguments args: [String], environment env: [String: String]? = nil, inputString stdIn: String? = nil, encoding enc: String.Encoding = .utf8) throws -> ExecuteResults {
         let r = getOsShellArguments(shell: shell, arguments: args)
         return try Process.execute(executableURL: URL(fileURLWithPath: r.shellExec), arguments: r.args, environment: env, inputString: stdIn, encoding: enc)
     }
 
     /*==========================================================================================================================================================================*/
-    private class func _execute(url: URL, args: [String], env: [String: String]?, stdIn: Source?, stdOut: Target?, stdErr: Target?) throws -> (Process, ProcessWriteFromSourceThread?, ProcessReadToTargetThread?, ProcessReadToTargetThread?) {
+    /// Utility method used by `execute(executableURL:arguments:environment:stdIn:stdOut:stdErr:)` and `execute(executableURL:arguments:environment:stdIn:stdOut:stdErr:onExit:)`
+    /// to execute the `Process`.
+    ///
+    /// - Parameters:
+    ///   - url: The `URL` of the executable.
+    ///   - args: Command-line arguments.
+    ///   - env: Environment variables.
+    ///   - stdIn: Closure to provide data on `STDIN`.
+    ///   - stdOut: Closure to accept data from `STDOUT`.
+    ///   - stdErr: Closure to accept data from `STDERR`.
+    ///   - onExit: Closure to be called on process completion.
+    /// - Returns: A tuple containing the instance of `Process` and the background threads providing data to `STDIN` and accepting data from `STDOUT` and `STDERR`.
+    /// - Throws: If there was an error executing the process.
+    ///
+    private class func _execute(url: URL, args: [String], env: [String: String]?, stdIn: Source?, stdOut: Target?, stdErr: Target?, onExit: OnExit?) throws -> (Process, ProcessWriteFromSourceThread?, ProcessReadToTargetThread?, ProcessReadToTargetThread?) {
         let outThread: ProcessReadToTargetThread?    = ((stdOut == nil) ? nil : ProcessReadToTargetThread(stdOut!))
         let errThread: ProcessReadToTargetThread?    = ((stdErr == nil) ? nil : ProcessReadToTargetThread(stdErr!))
         let inThread:  ProcessWriteFromSourceThread? = ((stdIn == nil) ? nil : ProcessWriteFromSourceThread(stdIn!))
@@ -196,6 +231,7 @@ extension Process {
         if let t = errThread { process.standardError = t.pipe }
         if let t = inThread { process.standardInput = t.pipe }
         if let e = env, e.count > 0 { process.environment = e }
+        if let h = onExit { process.terminationHandler = { p in h(p.terminationStatus) } }
 
         try process.run()
         start(threads: outThread, errThread, inThread)
@@ -219,9 +255,9 @@ extension Process {
     /*==========================================================================================================================================================================*/
     private class func argString(arguments args: [String]) -> String {
         #if os(Windows)
-            "\"\(args.map({ $0.replacing("\"", with: "\\\"") }).joined(separator: "\" \""))\""
+            "\"\(args.map({ $0.escapedForCommandLine }).joined(separator: "\" \""))\""
         #else
-            args.map({ $0.replacing(" ", with: "\\ ") }).joined(separator: " ")
+            args.map({ $0.escapedForCommandLine }).joined(separator: " ")
         #endif
     }
 
@@ -235,25 +271,26 @@ extension Process {
     }
 
     /*==========================================================================================================================================================================*/
-    private class func start(threads: XThread<Void>?...) {
+    private class func start(threads: VThread<Void>?...) {
         for t in threads { if let t = t { t.start() } }
     }
 
     /*==========================================================================================================================================================================*/
-    private class func join(threads: XThread<Void>?...) throws {
+    private class func join(threads: VThread<Void>?...) throws {
         var error: Error? = nil
-        for t in threads {
-            if let t = t {
-                do { try t.get() }
-                catch let e { if error == nil { error = e } }
-            }
-        }
-        if let e = error { throw e }
+        for t in threads { if let t = t { do { try t.get() } catch let e { if error == nil { error = e } } } } /*@f:0*/
+        if let e = error { throw e } /*@f:1*/
     }
 
     /*==========================================================================================================================================================================*/
-    private class ProcessWriteFromSourceThread: XThread<Void> {
-        let pipe:   Pipe = Pipe()
+    private class ProcessThread: VThread<Void> {
+        let pipe: Pipe = Pipe()
+
+        init() { super.init(qualityOfService: .background) }
+    }
+
+    /*==========================================================================================================================================================================*/
+    private class ProcessWriteFromSourceThread: ProcessThread {
         let source: Source
 
         init(_ source: @escaping Source) {
@@ -261,21 +298,11 @@ extension Process {
             super.init()
         }
 
-        override func main(isCancelled: () -> Bool) throws {
-            let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: BufferSize)
-            defer { buffer.deallocate() }
-            while !isCancelled() {
-                var cc = try source(buffer, BufferSize)
-                guard cc > 0 else { break }
-                try pipe.fileHandleForWriting.write(contentsOf: UnsafeBufferPointer<UInt8>(start: buffer, count: cc))
-                cc = try source(buffer, BufferSize)
-            }
-        }
+        override func main(isCancelled: () -> Bool) throws { try pipe.writeToPipe { isCancelled() ? 0 : try source($0, $1) } }
     }
 
     /*==========================================================================================================================================================================*/
-    private class ProcessReadToTargetThread: XThread<Void> {
-        let pipe:   Pipe = Pipe()
+    private class ProcessReadToTargetThread: ProcessThread {
         let target: Target
 
         init(_ target: @escaping Target) {
@@ -284,9 +311,10 @@ extension Process {
         }
 
         override func main(isCancelled: () -> Bool) throws {
-            while !isCancelled() {
-                guard let d = try pipe.fileHandleForReading.read(upToCount: BufferSize), d.count > 0 else { break }
-                try d.withUnsafeBytes { (b: UnsafeRawBufferPointer) in try b.withMemoryRebound(to: UInt8.self) { try $0.withBaseAddress { try target($0, $1) } } }
+            try pipe.readFromPipe { buffer, length in
+                guard !isCancelled() else { return true }
+                try target(buffer, length)
+                return false
             }
         }
     }

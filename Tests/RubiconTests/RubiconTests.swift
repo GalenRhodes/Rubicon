@@ -51,11 +51,26 @@ public class RubiconTests: XCTestCase {
 
     public func testProcessExecute() {
         do {
+            var stdOutData: Data = Data()
+            var stdErrData: Data = Data()
+
             print(testBar)
-            let r = try Process.execute(executableURL: URL(fileURLWithPath: "/usr/bin/iconv"), arguments: [ "-l" ], inputString: nil)
-            print("Exit Code: \(r.exitCode)")
-            print(r.stdOut)
-            print(r.stdErr)
+            let p = try Process.execute(executableURL: URL(fileURLWithPath: "/usr/bin/iconv"),
+                                        arguments: [ "-l" ],
+                                        stdIn: nil,
+                                        stdOut: { stdOutData.append($0, count: $1) },
+                                        stdErr: { stdErrData.append($0, count: $1) },
+                                        onExit: {
+                                            print("Exit Code: \($0)")
+                                            if stdOutData.count > 0, let str = stdOutData.asString(encoding: .utf8) {
+                                                print(str)
+                                            }
+                                            if stdErrData.count > 0, let str = stdErrData.asString(encoding: .utf8) {
+                                                print(str)
+                                            }
+                                        })
+
+            p.waitUntilExit()
         }
         catch let e {
             print("ERROR: \(e)")

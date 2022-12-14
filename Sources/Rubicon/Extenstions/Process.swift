@@ -283,13 +283,6 @@ extension Process {
     }
 
     /*==========================================================================================================================================================================*/
-    private class ProcessThread: VThread<Void> {
-        let pipe: Pipe = Pipe()
-
-        init() { super.init(qualityOfService: .background) }
-    }
-
-    /*==========================================================================================================================================================================*/
     private class ProcessWriteFromSourceThread: ProcessThread {
         let source: Source
 
@@ -317,5 +310,12 @@ extension Process {
                 return false
             }
         }
+    }
+
+    /*==========================================================================================================================================================================*/
+    private class ProcessThread: VThread<Void> {
+        let pipe: Pipe = Pipe()
+
+        init() { super.init(qualityOfService: .background) }
     }
 }

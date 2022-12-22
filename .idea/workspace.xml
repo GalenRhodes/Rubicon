@@ -29,16 +29,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="JoinableThread cleaned up.">
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/AutoUnsafeMutablePointer.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/AtomicValue.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/AtomicValue.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Threads/JThread.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Threads/JThread.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Threads/VThread.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Threads/VThread.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/Pipe.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/Pipe.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/String.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/String.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Functions.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Functions.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConv.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConv.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/SwRingBuffer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/ByteRingBuffer.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConvInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConvInputStream.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +60,6 @@
         <option value="C Header" />
       </list>
     </option>
-    <option name="SCHEME" value="Project" />
   </component>
   <component name="Git.Rebase.Settings">
     <option name="NEW_BASE" value="0.3.0" />
@@ -92,11 +89,17 @@
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/IConv/IConvInputStream.swift" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="amon5vo6" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="1hVLdn4q9dZBJYcN1EOQjI95yyx" />
   <component name="ProjectLevelVcsManager">
@@ -121,6 +124,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "cidr.known.project.marker": "true",
+    "last_opened_file_path": "/Users/grhodes/Projects/SwiftProjects/Rubicon",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -128,7 +132,7 @@
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Swift",
     "structure.view.defaults.are.configured": "true"
   }
 }]]></component>
@@ -500,14 +504,15 @@
       <workItem from="1670334992402" duration="32828000" />
       <workItem from="1670507137734" duration="8747000" />
       <workItem from="1670866159130" duration="5842000" />
-      <workItem from="1670941614718" duration="28414000" />
-    </task>
-    <task id="LOCAL-00328" summary="Rewrite...">
-      <created>1667486528234</created>
-      <option name="number" value="00328" />
-      <option name="presentableId" value="LOCAL-00328" />
-      <option name="project" value="LOCAL" />
-      <updated>1667486528234</updated>
+      <workItem from="1670941614718" duration="28429000" />
+      <workItem from="1671113616036" duration="378000" />
+      <workItem from="1671114010303" duration="2162000" />
+      <workItem from="1671117063233" duration="3648000" />
+      <workItem from="1671473265007" duration="613000" />
+      <workItem from="1671473892000" duration="442000" />
+      <workItem from="1671474352629" duration="21352000" />
+      <workItem from="1671560906052" duration="415000" />
+      <workItem from="1671716203970" duration="6323000" />
     </task>
     <task id="LOCAL-00329" summary="Rewrite...">
       <created>1667568682235</created>
@@ -845,7 +850,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671029026591</updated>
     </task>
-    <option name="localTasksCounter" value="377" />
+    <task id="LOCAL-00377" summary="JoinableThread cleaned up.">
+      <created>1671046278790</created>
+      <option name="number" value="00377" />
+      <option name="presentableId" value="LOCAL-00377" />
+      <option name="project" value="LOCAL" />
+      <updated>1671046278790</updated>
+    </task>
+    <option name="localTasksCounter" value="378" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

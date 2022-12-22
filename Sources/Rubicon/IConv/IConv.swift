@@ -32,12 +32,26 @@
     #endif
 
     open class IConv {
+
+        public enum Option {
+            case None
+            case Ignore
+            case Transliterate
+        }
+
+        public enum IConvStatus {
+            case IllegalMultiByteSequence
+            case InvalidCharacterForEncoding
+            case OutputBufferTooSmall
+            case NonIdenticalConversions(count: Int)
+        }
+
 /*@f:0*/
-        public typealias Source       = (UnsafeMutableRawPointer, Int) throws -> Int
-        public typealias Target       = (UnsafeRawPointer, Int) throws -> Bool
-        public typealias IConvResults = (inputCount: Int, outputCount: Int)
+        public typealias Source = (UnsafeMutableRawPointer, Int) throws -> Int
+        public typealias Target = (UnsafeRawPointer, Int) throws -> Bool
+        public typealias IConvCounts = (inputCount: Int, outputCount: Int)
+        public typealias IConvResults = (results: IConvStatus, newInputLength: Int, outputLength: Int)
 /*@f:1*/
-        public enum Option { case None, Ignore, Transliterate }
 
         @usableFromInline static let InputBufferSize:  Int = 4096
         @usableFromInline static let OutputBufferSize: Int = ((InputBufferSize + 10) * 4)
@@ -56,12 +70,12 @@
         /// Create a new instance of `IConv` to convert characters from one encoding format to another.
         ///
         /// - Parameters:
-        ///   - outputEncoding: A string containing the name of the inbound character encoding. (Defaults to `"UTF-8"`)
         ///   - inputEncoding: A string containing the name of the outbound character encoding.
+        ///   - outputEncoding: A string containing the name of the inbound character encoding. (Defaults to `"UTF-8"`)
         ///   - option: One of `IConv.Option.None`, `IConv.Option.Ignore`, or `IConv.Option.Transliterate`. (Defaults to `IConv.Option.None`)
         /// - Throws: If either the `outputEncoding` or the `inputEncoding` are not valid or some other error occurs.
         ///
-        public init(to outputEncoding: String = "UTF-8", from inputEncoding: String, option: Option = .None) throws {
+        public init(fromEncoding inputEncoding: String, toEncoding outputEncoding: String = "UTF-8", option: Option = .None) throws {
             self.inputEncoding = inputEncoding
             self.outputEncoding = outputEncoding
             self.option = option
@@ -91,7 +105,7 @@
         /// - Returns: A tuple of type `IConvResults` that contains the number of bytes read from input and the number of bytes written to the output.
         /// - Throws: If there was an error during translation or if one of the closures threw and error.
         ///
-        open func convert(input: Source, output: Target) throws -> IConvResults {
+        open func convert(input: Source, output: Target) throws -> IConvCounts {
             try lock.withLock {
                 let inBuff   = UnsafeMutableRawPointer.allocate(byteCount: IConv.InputBufferSize, alignment: MemoryLayout<CChar>.alignment)
                 let outBuff  = UnsafeMutableRawPointer.allocate(byteCount: IConv.OutputBufferSize, alignment: MemoryLayout<CChar>.alignment)
@@ -116,8 +130,34 @@
                     totalOut += outUsed
 
                     guard try output(outBuff, outUsed) else { return (totalIn, totalOut) }
+                } while true
+            }
+        }
+
+        /*==========================================================================================================================================================================*/
+        open func convert(input: UnsafeMutableRawPointer, inputLength: Int, output: UnsafeMutableRawPointer, outputMaxLength: Int) throws -> IConvResults {
+            try lock.withLock {
+                try input.withMemoryRebound(to: CChar.self, capacity: inputLength) { (pIn: UnsafeMutablePointer<CChar>) -> IConvResults in
+                    try output.withMemoryRebound(to: CChar.self, capacity: outputMaxLength) { (pOut: UnsafeMutablePointer<CChar>) -> IConvResults in
+                        var ppIn:            UnsafeMutablePointer<CChar>? = pIn
+                        var ppOut:           UnsafeMutablePointer<CChar>? = pOut
+                        var inputRemaining:  Int                          = inputLength
+                        var outputRemaining: Int                          = outputMaxLength
+                        let iconvResult:     Int                          = iconv(cd, &ppIn, &inputRemaining, &ppOut, &outputRemaining)
+                        let outputLength:    Int                          = (outputMaxLength - outputRemaining)
+                        let e:               Int32                        = errno
+
+                        if inputRemaining > 0 { memcpy(pIn, ppIn!, inputRemaining) }
+                        guard iconvResult == -1 else { return (results: .NonIdenticalConversions(count: iconvResult), newInputLength: inputRemaining, outputLength: outputLength) }
+
+                        switch e {
+                            case E2BIG:  return (results: .OutputBufferTooSmall, newInputLength: inputRemaining, outputLength: outputLength)
+                            case EINVAL: return (results: .InvalidCharacterForEncoding, newInputLength: inputRemaining, outputLength: outputLength)
+                            case EILSEQ: return (results: .IllegalMultiByteSequence, newInputLength: inputRemaining, outputLength: outputLength)
+                            default:     throw IConvError.UnknownError(code: e)
+                        }
+                    }
                 }
-                while true
             }
         }
 
@@ -128,7 +168,7 @@
         /// - Throws: If `iconv` is not available on this system.
         ///
         open class func getEncodingList() throws -> [String] {
-            let r = try Process.execute(whichExecutable: "iconv", arguments: [ "-l" ], inputString: nil)
+            let r = try Process.execute(whichExecutable: "iconv", arguments: ["-l"], inputString: nil)
             #if os(Linux)
                 return r.stdOut.split(regex: "//\\s+").sorted()
             #else
@@ -136,6 +176,7 @@
             #endif
         }
 
+        /*==========================================================================================================================================================================*/
         @usableFromInline typealias XResults = (inPtr: UnsafeMutablePointer<CChar>?, inUnusedCount: Int, outPtr: UnsafeMutablePointer<CChar>?, outUnusedCount: Int, error: IConvError?)
 
         /*==========================================================================================================================================================================*/

@@ -77,10 +77,7 @@ import CoreFoundation
 }
 
 /*==============================================================================================================*/
-/// Somewhat shorthand for:
-/// ```
-/// type(of: o) == t.self
-/// ```
+/// Somewhat shorthand for: `type(of: o) == t.self`
 ///
 /// - Parameters:
 ///   - o: The instance to check the type of.

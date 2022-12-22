@@ -49,7 +49,7 @@ extension Pipe {
         var data:       Data?      = try fileHandle.read(upToCount: Pipe.BufferSize)
 
         while let d = data, d.count > 0 {
-            guard try ! d.withDataReboundAs(ofType: UInt8.self, { try target($0, $1) }) else { break }
+            guard !(try d.withDataReboundAs(ofType: UInt8.self, { try target($0, $1) })) else { break }
             total += d.count
             data = try fileHandle.read(upToCount: Pipe.BufferSize)
         }

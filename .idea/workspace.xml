@@ -28,16 +28,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="AutoUnsafeMutablePointer">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/AutoUnsafeMutablePointer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/AutoUnsafeMutablePointer.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Threads/JThread.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Threads/JThread.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Threads/VThread.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Threads/VThread.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/Process.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/Process.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConv.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConv.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConvInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConvInputStream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" afterDir="false" />
-    </list>
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="AutoUnsafeMutablePointer" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -132,7 +123,7 @@
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.sourceCode",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
     "structure.view.defaults.are.configured": "true"
   }
 }]]></component>
@@ -514,14 +505,7 @@
       <workItem from="1671560906052" duration="415000" />
       <workItem from="1671716203970" duration="14443000" />
       <workItem from="1671805895457" duration="653000" />
-      <workItem from="1671806691956" duration="2050000" />
-    </task>
-    <task id="LOCAL-00331" summary="Rewrite...">
-      <created>1667652220827</created>
-      <option name="number" value="00331" />
-      <option name="presentableId" value="LOCAL-00331" />
-      <option name="project" value="LOCAL" />
-      <updated>1667652220827</updated>
+      <workItem from="1671806691956" duration="2121000" />
     </task>
     <task id="LOCAL-00332" summary="Rewrite...">
       <created>1667828288217</created>
@@ -859,7 +843,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671808643771</updated>
     </task>
-    <option name="localTasksCounter" value="380" />
+    <task id="LOCAL-00380" summary="AutoUnsafeMutablePointer">
+      <created>1671808896703</created>
+      <option name="number" value="00380" />
+      <option name="presentableId" value="LOCAL-00380" />
+      <option name="project" value="LOCAL" />
+      <updated>1671808896703</updated>
+    </task>
+    <option name="localTasksCounter" value="381" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

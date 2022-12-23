@@ -38,10 +38,10 @@ public final class AutoUnsafeMutablePointer<Pointee>: CVarArg, Hashable, Compara
     @usableFromInline let pointer: UnsafeMutablePointer<Pointee>
     @usableFromInline let count:   Int
 /*@f0*/
-    @inlinable public var _cVarArgEncoding: [Int] { pointer._cVarArgEncoding }
-    @inlinable public var debugDescription: String { pointer.debugDescription }
-    @inlinable public var customMirror:     Mirror { pointer.customMirror }
-    @inlinable public var pointee:          Pointee { pointer.pointee }
+    @inlinable public var _cVarArgEncoding: [Int]   { pointer._cVarArgEncoding }
+    @inlinable public var debugDescription: String  { pointer.debugDescription }
+    @inlinable public var customMirror:     Mirror  { pointer.customMirror     }
+    @inlinable public var pointee:          Pointee { pointer.pointee          }
 /*@f1*/
 
     /*==========================================================================================================================================================================*/

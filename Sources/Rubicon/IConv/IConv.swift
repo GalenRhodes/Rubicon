@@ -46,12 +46,12 @@
             case NonIdenticalConversions(count: Int)
         }
 
-/*@f:0*/
+/*@f0*/
         public typealias Source = (UnsafeMutableRawPointer, Int) throws -> Int
         public typealias Target = (UnsafeRawPointer, Int) throws -> Bool
         public typealias IConvCounts = (inputCount: Int, outputCount: Int)
         public typealias IConvResults = (results: IConvStatus, newInputLength: Int, outputLength: Int)
-/*@f:1*/
+/*@f1*/
 
         @usableFromInline static let InputBufferSize:  Int = 4096
         @usableFromInline static let OutputBufferSize: Int = ((InputBufferSize + 10) * 4)

@@ -31,7 +31,7 @@ open class JThread: Hashable {
     @inlinable public class var isMainThread:    Bool { Thread.isMainThread }
     @inlinable public class var isMultiThreaded: Bool { Thread.isMultiThreaded() }
 
-    /*@f:0======================================================================================================================================================================*/
+    /*@f0======================================================================================================================================================================*/
     @inlinable public var isStarted:        Bool                { lock.withLock { status != .initialized  } }
     @inlinable public var isFinished:       Bool                { lock.withLock { status == .finished     } }
     @inlinable public var isExecuting:      Bool                { lock.withLock { status == .executing    } }
@@ -43,7 +43,7 @@ open class JThread: Hashable {
     @inlinable public var stackSize:        Int                 { get { lock.withLock { thread.stackSize        } } set { thread.stackSize = newValue        } }
     @inlinable public var qualityOfService: QualityOfService    { get { lock.withLock { thread.qualityOfService } } set { thread.qualityOfService = newValue } }
 
-    /*@f:1======================================================================================================================================================================*/
+    /*@f1======================================================================================================================================================================*/
     public init(name: String? = nil, qualityOfService qos: QualityOfService? = nil, stackSize ss: Int? = nil, start st: Bool = false) {
         data = (name: name, qualityOfService: qos, stackSize: ss, block: nil)
         if st { start() }
@@ -88,7 +88,7 @@ open class JThread: Hashable {
         }
     }
 
-    /*@f:0======================================================================================================================================================================*/
+    /*@f0======================================================================================================================================================================*/
     @usableFromInline enum Status { case initialized, starting, executing, finished }
 
     @usableFromInline typealias TInfo = (name: String?, qualityOfService: QualityOfService?, stackSize: Int?, block: ThreadBlock?)
@@ -98,7 +98,7 @@ open class JThread: Hashable {
     @usableFromInline      let lock:      NSCondition = NSCondition()
     @usableFromInline      let data:      TInfo
 
-    /*@f:1======================================================================================================================================================================*/
+    /*@f1======================================================================================================================================================================*/
     private func createThread() -> Thread {
         let thd = Thread { [self] in
             lock.withLock { status = .executing }

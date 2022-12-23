@@ -38,11 +38,11 @@
 
     /*==========================================================================================================================================================================*/
     public class IConvInputStream: InputStream {
-/*@f:0*/
+/*@f0*/
         public override var streamStatus:      Status { thread.lock.withLock { thread.status     } }
         public override var streamError:       Error? { thread.lock.withLock { thread.error      } }
         public override var hasBytesAvailable: Bool   { thread.lock.withLock { thread.bytesAvail } }
-/*@f:1*/
+/*@f1*/
         @usableFromInline let thread: IConvThread
 
         /*======================================================================================================================================================================*/

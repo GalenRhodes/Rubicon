@@ -27,11 +27,11 @@ import CoreFoundation
 open class RegularExpression {
 
     @usableFromInline let regex: NSRegularExpression
-    /*@f:0*/
+    /*@f0*/
     open var pattern:               String                    { regex.pattern               }
     open var options:               RegularExpression.Options { regex.options.xlate()       }
     open var numberOfCaptureGroups: Int                       { regex.numberOfCaptureGroups }
-    /*@f:1*/
+    /*@f1*/
 
     /*==========================================================================================================================================================================*/
     public init(pattern string: String, options: RegularExpression.Options = []) throws {
@@ -118,13 +118,13 @@ open class RegularExpression {
     public struct Match: @unchecked Sendable, RandomAccessCollection {
         public typealias Element = Group?
         public typealias Index = Int
-        /*@f:0*/
+        /*@f0*/
         @inlinable public var range:      StringRange { groups[0]!.range     }
         @inlinable public var substring:  String      { groups[0]!.substring }
         @inlinable public var startIndex: Index       { groups.startIndex    }
         @inlinable public var endIndex:   Index       { groups.endIndex      }
         @inlinable public var count:      Int         { groups.count         }
-        /*@f:1*/
+        /*@f1*/
         @inlinable public subscript(position: Index) -> Element { groups[position] }
 
         public init?(_ string: String, _ result: NSTextCheckingResult?) {
@@ -196,7 +196,7 @@ open class RegularExpression {
 
 extension RegularExpression.Options {
     func xlate() -> NSRegularExpression.Options {
-        var o: NSRegularExpression.Options = [] /*@f:0*/
+        var o: NSRegularExpression.Options = [] /*@f0*/
         if self.contains(.caseInsensitive)            { o.insert(.caseInsensitive)            }
         if self.contains(.allowCommentsAndWhitespace) { o.insert(.allowCommentsAndWhitespace) }
         if self.contains(.ignoreMetacharacters)       { o.insert(.ignoreMetacharacters)       }
@@ -204,13 +204,13 @@ extension RegularExpression.Options {
         if self.contains(.anchorsMatchLines)          { o.insert(.anchorsMatchLines)          }
         if self.contains(.useUnixLineSeparators)      { o.insert(.useUnixLineSeparators)      }
         if self.contains(.useUnicodeWordBoundaries)   { o.insert(.useUnicodeWordBoundaries)   }
-        return o /*@f:1*/
+        return o /*@f1*/
     }
 }
 
 extension NSRegularExpression.Options {
     func xlate() -> RegularExpression.Options {
-        var o: RegularExpression.Options = [] /*@f:0*/
+        var o: RegularExpression.Options = [] /*@f0*/
         if self.contains(.caseInsensitive)            { o.insert(.caseInsensitive)            }
         if self.contains(.allowCommentsAndWhitespace) { o.insert(.allowCommentsAndWhitespace) }
         if self.contains(.ignoreMetacharacters)       { o.insert(.ignoreMetacharacters)       }
@@ -218,43 +218,43 @@ extension NSRegularExpression.Options {
         if self.contains(.anchorsMatchLines)          { o.insert(.anchorsMatchLines)          }
         if self.contains(.useUnixLineSeparators)      { o.insert(.useUnixLineSeparators)      }
         if self.contains(.useUnicodeWordBoundaries)   { o.insert(.useUnicodeWordBoundaries)   }
-        return o /*@f:1*/
+        return o /*@f1*/
     }
 }
 
 extension RegularExpression.MatchingOptions {
     func xlate() -> NSRegularExpression.MatchingOptions {
-        var o: NSRegularExpression.MatchingOptions = [] /*@f:0*/
+        var o: NSRegularExpression.MatchingOptions = [] /*@f0*/
         if self.contains(.reportProgress)         { o.insert(.reportProgress)         }
         if self.contains(.reportCompletion)       { o.insert(.reportCompletion)       }
         if self.contains(.anchored)               { o.insert(.anchored)               }
         if self.contains(.withTransparentBounds)  { o.insert(.withTransparentBounds)  }
         if self.contains(.withoutAnchoringBounds) { o.insert(.withoutAnchoringBounds) }
-        return o /*@f:1*/
+        return o /*@f1*/
     }
 }
 
 extension RegularExpression.MatchingFlags {
     func xlate() -> NSRegularExpression.MatchingFlags {
-        var o: NSRegularExpression.MatchingFlags = [] /*@f:0*/
+        var o: NSRegularExpression.MatchingFlags = [] /*@f0*/
         if self.contains(.progress)      { o.insert(.progress)      }
         if self.contains(.completed)     { o.insert(.completed)     }
         if self.contains(.hitEnd)        { o.insert(.hitEnd)        }
         if self.contains(.requiredEnd)   { o.insert(.requiredEnd)   }
         if self.contains(.internalError) { o.insert(.internalError) }
-        return o /*@f:1*/
+        return o /*@f1*/
     }
 }
 
 extension NSRegularExpression.MatchingFlags {
     func xlate() -> RegularExpression.MatchingFlags {
-        var o: RegularExpression.MatchingFlags = [] /*@f:0*/
+        var o: RegularExpression.MatchingFlags = [] /*@f0*/
         if self.contains(.progress)      { o.insert(.progress)      }
         if self.contains(.completed)     { o.insert(.completed)     }
         if self.contains(.hitEnd)        { o.insert(.hitEnd)        }
         if self.contains(.requiredEnd)   { o.insert(.requiredEnd)   }
         if self.contains(.internalError) { o.insert(.internalError) }
-        return o /*@f:1*/
+        return o /*@f1*/
     }
 }
 

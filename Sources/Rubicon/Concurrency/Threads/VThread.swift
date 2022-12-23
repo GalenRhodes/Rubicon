@@ -48,14 +48,14 @@ open class VThread<T> {
     ///
     public typealias ThreadBlock = (Predicate) throws -> T
 
-    /*@f:0======================================================================================================================================================================*/
+    /*@f0======================================================================================================================================================================*/
     @inlinable public    var isFinished:  Bool   { thread.isFinished  }
     @inlinable public    var isExecuting: Bool   { thread.isExecuting }
     @inlinable public    var isCancelled: Bool   { thread.isCancelled }
     @inlinable public    var isStarted:   Bool   { thread.isStarted   }
     public internal(set) var error:       Error? = nil
 
-    /*@f:1======================================================================================================================================================================*/
+    /*@f1======================================================================================================================================================================*/
     public init(name: String? = nil, qualityOfService qos: QualityOfService? = nil, stackSize ss: Int? = nil, start st: Bool = false) {
         data = (name: name, qualityOfService: qos, stackSize: ss, block: nil)
         if st { start() }
@@ -117,7 +117,7 @@ open class VThread<T> {
         fatalError(NoValueErrorMessage)
     }
 
-    /*@f:0======================================================================================================================================================================*/
+    /*@f0======================================================================================================================================================================*/
     @usableFromInline typealias TInfo = (name: String?, qualityOfService: QualityOfService?, stackSize: Int?, block: ThreadBlock?)
 
     @usableFromInline      let data:   TInfo
@@ -126,7 +126,7 @@ open class VThread<T> {
 
     /*==========================================================================================================================================================================*/
     private func main() { do { value = try main { thread.isCancelled } } catch let e { error = e } }
-    /*@f:1*/
+    /*@f1*/
 }
 
 extension VThread {

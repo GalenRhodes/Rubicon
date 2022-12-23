@@ -28,14 +28,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="JoinableThread cleaned up.">
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/AutoUnsafeMutablePointer.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="AutoUnsafeMutablePointer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/Pipe.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/Pipe.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/AutoUnsafeMutablePointer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/AutoUnsafeMutablePointer.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Functions.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Functions.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConv.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConv.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConvInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConvInputStream.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -132,7 +128,7 @@
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.sourceCode.Swift",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "structure.view.defaults.are.configured": "true"
   }
 }]]></component>
@@ -512,14 +508,9 @@
       <workItem from="1671473892000" duration="442000" />
       <workItem from="1671474352629" duration="21352000" />
       <workItem from="1671560906052" duration="415000" />
-      <workItem from="1671716203970" duration="6323000" />
-    </task>
-    <task id="LOCAL-00329" summary="Rewrite...">
-      <created>1667568682235</created>
-      <option name="number" value="00329" />
-      <option name="presentableId" value="LOCAL-00329" />
-      <option name="project" value="LOCAL" />
-      <updated>1667568682235</updated>
+      <workItem from="1671716203970" duration="14443000" />
+      <workItem from="1671805895457" duration="653000" />
+      <workItem from="1671806691956" duration="1754000" />
     </task>
     <task id="LOCAL-00330" summary="Rewrite...">
       <created>1667569036606</created>
@@ -857,7 +848,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671046278790</updated>
     </task>
-    <option name="localTasksCounter" value="378" />
+    <task id="LOCAL-00378" summary="AutoUnsafeMutablePointer">
+      <created>1671722687629</created>
+      <option name="number" value="00378" />
+      <option name="presentableId" value="LOCAL-00378" />
+      <option name="project" value="LOCAL" />
+      <updated>1671722687629</updated>
+    </task>
+    <option name="localTasksCounter" value="379" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -890,7 +888,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added a bunch of file pathname utilities." />
     <MESSAGE value="New general purpose errors added." />
     <MESSAGE value="Added extension Dictionary.remapValues(_:)." />
     <MESSAGE value="Added `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`" />
@@ -915,7 +912,8 @@
     <MESSAGE value="Rewrite..." />
     <MESSAGE value="Process and IConv re-written." />
     <MESSAGE value="JoinableThread cleaned up." />
-    <option name="LAST_COMMIT_MESSAGE" value="JoinableThread cleaned up." />
+    <MESSAGE value="AutoUnsafeMutablePointer" />
+    <option name="LAST_COMMIT_MESSAGE" value="AutoUnsafeMutablePointer" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

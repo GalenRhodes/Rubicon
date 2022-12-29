@@ -28,22 +28,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="AutoUnsafeMutablePointer">
-      <change afterPath="$PROJECT_DIR$/Sources/Experiments/Info.plist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/ErrorOutput.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/StringsFile.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Package.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Package.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Experiments/main.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Experiments/main.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/ByteRingBuffer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/ByteRingBuffer.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/AtomicValue.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/AtomicValue.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Threads/JThread.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Threads/JThread.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Threads/VThread.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Threads/VThread.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConvInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConvInputStream.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" afterDir="false" />
-    </list>
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Clean up." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -139,7 +124,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "zielu.gittoolbox.app.config.v2",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
     "structure.view.defaults.are.configured": "true"
   }
 }]]></component>
@@ -528,14 +513,7 @@
       <workItem from="1671806691956" duration="6858000" />
       <workItem from="1672234500460" duration="7665000" />
       <workItem from="1672247257619" duration="630000" />
-      <workItem from="1672326297201" duration="1900000" />
-    </task>
-    <task id="LOCAL-00333" summary="Rewrite...">
-      <created>1667828947091</created>
-      <option name="number" value="00333" />
-      <option name="presentableId" value="LOCAL-00333" />
-      <option name="project" value="LOCAL" />
-      <updated>1667828947091</updated>
+      <workItem from="1672326297201" duration="2044000" />
     </task>
     <task id="LOCAL-00334" summary="Rewrite...">
       <created>1667830101172</created>
@@ -873,7 +851,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671808977581</updated>
     </task>
-    <option name="localTasksCounter" value="382" />
+    <task id="LOCAL-00382" summary="Clean up.">
+      <created>1672328338953</created>
+      <option name="number" value="00382" />
+      <option name="presentableId" value="LOCAL-00382" />
+      <option name="project" value="LOCAL" />
+      <updated>1672328338954</updated>
+    </task>
+    <option name="localTasksCounter" value="383" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -906,7 +891,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="New general purpose errors added." />
     <MESSAGE value="Added extension Dictionary.remapValues(_:)." />
     <MESSAGE value="Added `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`" />
     <MESSAGE value="Added test for `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`" />
@@ -931,7 +915,8 @@
     <MESSAGE value="Process and IConv re-written." />
     <MESSAGE value="JoinableThread cleaned up." />
     <MESSAGE value="AutoUnsafeMutablePointer" />
-    <option name="LAST_COMMIT_MESSAGE" value="AutoUnsafeMutablePointer" />
+    <MESSAGE value="Clean up." />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean up." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

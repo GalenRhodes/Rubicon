@@ -23,7 +23,7 @@
 import Foundation
 import CoreFoundation
 
-/*==========================================================================================================================================================================*/
+/*==============================================================================================================================================================================*/
 open class RegularExpression {
 
     @usableFromInline let regex: NSRegularExpression
@@ -195,6 +195,7 @@ open class RegularExpression {
 }
 
 extension RegularExpression.Options {
+    /*==========================================================================================================================================================================*/
     func xlate() -> NSRegularExpression.Options {
         var o: NSRegularExpression.Options = [] /*@f0*/
         if self.contains(.caseInsensitive)            { o.insert(.caseInsensitive)            }
@@ -209,6 +210,7 @@ extension RegularExpression.Options {
 }
 
 extension NSRegularExpression.Options {
+    /*==========================================================================================================================================================================*/
     func xlate() -> RegularExpression.Options {
         var o: RegularExpression.Options = [] /*@f0*/
         if self.contains(.caseInsensitive)            { o.insert(.caseInsensitive)            }
@@ -223,6 +225,7 @@ extension NSRegularExpression.Options {
 }
 
 extension RegularExpression.MatchingOptions {
+    /*==========================================================================================================================================================================*/
     func xlate() -> NSRegularExpression.MatchingOptions {
         var o: NSRegularExpression.MatchingOptions = [] /*@f0*/
         if self.contains(.reportProgress)         { o.insert(.reportProgress)         }
@@ -235,6 +238,7 @@ extension RegularExpression.MatchingOptions {
 }
 
 extension RegularExpression.MatchingFlags {
+    /*==========================================================================================================================================================================*/
     func xlate() -> NSRegularExpression.MatchingFlags {
         var o: NSRegularExpression.MatchingFlags = [] /*@f0*/
         if self.contains(.progress)      { o.insert(.progress)      }
@@ -247,6 +251,7 @@ extension RegularExpression.MatchingFlags {
 }
 
 extension NSRegularExpression.MatchingFlags {
+    /*==========================================================================================================================================================================*/
     func xlate() -> RegularExpression.MatchingFlags {
         var o: RegularExpression.MatchingFlags = [] /*@f0*/
         if self.contains(.progress)      { o.insert(.progress)      }

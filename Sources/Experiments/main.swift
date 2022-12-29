@@ -23,21 +23,44 @@
 import Foundation
 import Rubicon
 
+let projectPath:     String = "/Users/grhodes/Projects/SwiftProjects/Rubicon"
+let sourcePath:      String = "\(projectPath)/Sources/Rubicon"
+let stringsFile:     String = "StringsFile.swift"
+let stringsFilePath: String = "\(sourcePath)/\(stringsFile)"
 
-func doIt() {
-    do {
-        let r = try Process.execute(executableURL: URL(fileURLWithPath: "/usr/bin/iconv"), arguments: [ "-l" ], inputString: nil)
-        print("Exit Code: \(r.exitCode)")
-        print(r.stdOut)
-        print(r.stdErr)
-    }
-    catch let e {
-        print("ERROR: \(e)")
+func doIt() throws {
+    let propKeys: [URLResourceKey]  = [ .nameKey, .pathKey, .isDirectoryKey, .parentDirectoryURLKey ]
+    let fm:       FileManager       = FileManager.default
+    var enc:      String.Encoding   = .ascii
+    let regex1:   RegularExpression = try RegularExpression(pattern: "^// ===+\n(//.*\n)+", options: [ .anchorsMatchLines ])
+
+    for case let fileURL as URL in fm.enumerator(at: URL(filePath: sourcePath), includingPropertiesForKeys: propKeys)! {
+        do {
+            let resVals = try fileURL.resourceValues(forKeys: Set<URLResourceKey>(propKeys))
+            guard let name = resVals.name, let isDirectory = resVals.isDirectory, !isDirectory, name.hasSuffix(".swift") else { continue }
+            guard name != stringsFile else { continue }
+
+            var data = try String(contentsOf: fileURL, usedEncoding: &enc)
+            data = data.trimmed
+
+            regex1.enumerateMatches(in: data) { m, _, _ in
+                guard let m = m else { return }
+                print(m.substring)
+            }
+        }
+        catch let e {
+            print("ERROR: \(e)", to: &ErrorOutput.errorOut)
+        }
     }
 }
 
 DispatchQueue.main.async {
-    doIt()
-    exit(0)
+    do {
+        try doIt()
+        exit(0)
+    }
+    catch let e {
+        print("ERROR: \(e)", to: &ErrorOutput.errorOut)
+    }
 }
 dispatchMain()

@@ -28,7 +28,22 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="AutoUnsafeMutablePointer" />
+    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="AutoUnsafeMutablePointer">
+      <change afterPath="$PROJECT_DIR$/Sources/Experiments/Info.plist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Streams/ErrorOutput.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/StringsFile.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Package.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Package.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Experiments/main.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Experiments/main.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/ByteRingBuffer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/ByteRingBuffer.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/AtomicValue.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/AtomicValue.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Threads/JThread.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Threads/JThread.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Threads/VThread.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Threads/VThread.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConvInputStream.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/IConv/IConvInputStream.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/RegularExpression.swift" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,6 +66,7 @@
         <option value="C Header" />
       </list>
     </option>
+    <option name="SCHEME" value="Project" />
   </component>
   <component name="Git.Rebase.Settings">
     <option name="NEW_BASE" value="0.3.0" />
@@ -120,10 +136,10 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "settings.editor.selected.configurable": "zielu.gittoolbox.app.config.v2",
     "structure.view.defaults.are.configured": "true"
   }
 }]]></component>
@@ -135,10 +151,14 @@
       <recent name="$PROJECT_DIR$/Sources/semaphore" />
     </key>
   </component>
-  <component name="RunManager" selected="XCTest.RubiconTests">
-    <configuration default="true" type="Application" factoryName="Application">
+  <component name="RunManager" selected="Application.Experiments">
+    <configuration default="true" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" IS_LOCATION_SIMULATION_SUPPORTED="false" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
+      <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
+        <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
+      </EXTENSION>
+      <embedded_app_extension_list />
       <method v="2">
-        <option name="Make" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
@@ -505,14 +525,10 @@
       <workItem from="1671560906052" duration="415000" />
       <workItem from="1671716203970" duration="14443000" />
       <workItem from="1671805895457" duration="653000" />
-      <workItem from="1671806691956" duration="2121000" />
-    </task>
-    <task id="LOCAL-00332" summary="Rewrite...">
-      <created>1667828288217</created>
-      <option name="number" value="00332" />
-      <option name="presentableId" value="LOCAL-00332" />
-      <option name="project" value="LOCAL" />
-      <updated>1667828288217</updated>
+      <workItem from="1671806691956" duration="6858000" />
+      <workItem from="1672234500460" duration="7665000" />
+      <workItem from="1672247257619" duration="630000" />
+      <workItem from="1672326297201" duration="1900000" />
     </task>
     <task id="LOCAL-00333" summary="Rewrite...">
       <created>1667828947091</created>
@@ -850,7 +866,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671808896703</updated>
     </task>
-    <option name="localTasksCounter" value="381" />
+    <task id="LOCAL-00381" summary="AutoUnsafeMutablePointer">
+      <created>1671808977581</created>
+      <option name="number" value="00381" />
+      <option name="presentableId" value="LOCAL-00381" />
+      <option name="project" value="LOCAL" />
+      <updated>1671808977581</updated>
+    </task>
+    <option name="localTasksCounter" value="382" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

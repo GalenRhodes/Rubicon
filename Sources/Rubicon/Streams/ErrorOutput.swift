@@ -1,9 +1,9 @@
 // ===========================================================================
 //     PROJECT: Rubicon
-//    FILENAME: AtomicValue.swift
+//    FILENAME: ErrorOutput.swift
 //         IDE: AppCode
 //      AUTHOR: Galen Rhodes
-//        DATE: November 05, 2022
+//        DATE: December 29, 2022
 //
 // Copyright © 2022 Project Galen. All rights reserved.
 //
@@ -23,19 +23,9 @@
 import Foundation
 import CoreFoundation
 
-/*==============================================================================================================================================================================*/
-@propertyWrapper public struct AtomicValue<T> {
-    private var _wrappedValue: T
-    public let  lock:          NSLock = NSLock()
+public struct ErrorOutput: TextOutputStream {
+    public static var errorOut: ErrorOutput = ErrorOutput()
 
-    /*==========================================================================================================================================================================*/
-    public var wrappedValue: T {
-        get { lock.withLock { _wrappedValue } }
-        set { lock.withLock { _wrappedValue = newValue } }
-    }
-
-    /*==========================================================================================================================================================================*/
-    public init(wrappedValue: T) {
-        _wrappedValue = wrappedValue
-    }
+    public func write(_ string: String) { try? FileHandle.standardError.write(contentsOf: string.data(using: .utf8)!) }
 }
+

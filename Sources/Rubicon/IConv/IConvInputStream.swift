@@ -39,9 +39,9 @@
     /*==========================================================================================================================================================================*/
     public class IConvInputStream: InputStream {
 /*@f0*/
-        public override var streamStatus:      Status { thread.lock.withLock { thread.status     } }
-        public override var streamError:       Error? { thread.lock.withLock { thread.error      } }
-        public override var hasBytesAvailable: Bool   { thread.lock.withLock { thread.bytesAvail } }
+        public override var streamError:       Error? { thread.lock.withLock { (thread.status == .error) ? thread.error ?? thread.inputStream.streamError : nil } }
+        public override var streamStatus:      Status { thread.lock.withLock { thread.status                                                                    } }
+        public override var hasBytesAvailable: Bool   { thread.lock.withLock { thread.bytesAvail                                                                } }
 /*@f1*/
         @usableFromInline let thread: IConvThread
 
@@ -83,6 +83,7 @@
             @inlinable var bytesAvail: Bool { isValue(status, in: .opening, .reading) }
             @inlinable var keepGoing:  Bool { (isValue(inputStream.streamStatus, in: .open, .reading) || isCancelled) }
             @inlinable var status:     Stream.Status {
+                guard error == nil || outputBuffer.count > 0 else { return .error }
                 let st = inputStream.streamStatus
                 switch st {
                     case .notOpen, .opening, .closed: return st
@@ -145,14 +146,21 @@
                         notDone = false
                     }
 
-                    while keepGoing {
-                        while keepGoing && outputBuffer.count >= IcOutMaxLen { lock.wait() }
-                        guard keepGoing else { break }
-                        let inByteCount = inputStream.read((inBuffer + inIndex), maxLength: (IcInLength - inIndex))
-                        guard inByteCount > 0 else { break }
-                        let icR = try iconv.convert(input: inBuffer, inputLength: (inIndex + inByteCount), output: icBuffer, outputMaxLength: IcOutLength)
-                        inIndex = icR.newInputLength
-                        outputBuffer.append(data: icBuffer, length: icR.outputLength)
+                    do {
+                        while keepGoing {
+                            while keepGoing && outputBuffer.count >= IcOutMaxLen { lock.wait() }
+                            guard keepGoing else { break }
+
+                            let inByteCount = inputStream.read((inBuffer + inIndex), maxLength: (IcInLength - inIndex))
+                            guard inByteCount > 0 else { break }
+
+                            let icR = try iconv.convert(input: inBuffer, inputLength: (inIndex + inByteCount), output: icBuffer, outputMaxLength: IcOutLength)
+                            inIndex = icR.newInputLength
+                            outputBuffer.append(data: icBuffer, length: icR.outputLength)
+                        }
+                    }
+                    catch let e {
+                        error = e
                     }
                 }
             }

@@ -23,15 +23,17 @@
 import Foundation
 import CoreFoundation
 
+/*==============================================================================================================================================================================*/
 public let NoMainErrorMessage: String = "ERROR: main() not implemented and no closure provided."
 
+/*==============================================================================================================================================================================*/
 open class JThread: Hashable {
     public typealias ThreadBlock = () -> Void
 
     @inlinable public class var isMainThread:    Bool { Thread.isMainThread }
     @inlinable public class var isMultiThreaded: Bool { Thread.isMultiThreaded() }
 
-    /*@f0======================================================================================================================================================================*/
+    /*@f0=======================================================================================================================================================================*/
     @inlinable public var isStarted:        Bool                { lock.withLock { status != .initialized  } }
     @inlinable public var isFinished:       Bool                { lock.withLock { status == .finished     } }
     @inlinable public var isExecuting:      Bool                { lock.withLock { status == .executing    } }
@@ -43,7 +45,7 @@ open class JThread: Hashable {
     @inlinable public var stackSize:        Int                 { get { lock.withLock { thread.stackSize        } } set { thread.stackSize = newValue        } }
     @inlinable public var qualityOfService: QualityOfService    { get { lock.withLock { thread.qualityOfService } } set { thread.qualityOfService = newValue } }
 
-    /*@f1======================================================================================================================================================================*/
+    /*@f1=======================================================================================================================================================================*/
     public init(name: String? = nil, qualityOfService qos: QualityOfService? = nil, stackSize ss: Int? = nil, start st: Bool = false) {
         data = (name: name, qualityOfService: qos, stackSize: ss, block: nil)
         if st { start() }
@@ -114,11 +116,15 @@ open class JThread: Hashable {
 
 extension JThread {
 
+    /*==========================================================================================================================================================================*/
     @inlinable public func hash(into hasher: inout Hasher) { hasher.combine(thread.hashValue) }
 
+    /*==========================================================================================================================================================================*/
     @inlinable public static func == (lhs: JThread, rhs: Thread) -> Bool { lhs.thread === rhs }
 
+    /*==========================================================================================================================================================================*/
     @inlinable public static func == (lhs: Thread, rhs: JThread) -> Bool { lhs === rhs.thread }
 
+    /*==========================================================================================================================================================================*/
     @inlinable public static func == (lhs: JThread, rhs: JThread) -> Bool { lhs === rhs }
 }

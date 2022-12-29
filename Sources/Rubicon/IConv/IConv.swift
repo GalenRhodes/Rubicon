@@ -130,7 +130,8 @@
                     totalOut += outUsed
 
                     guard try output(outBuff, outUsed) else { return (totalIn, totalOut) }
-                } while true
+                }
+                while true
             }
         }
 
@@ -168,7 +169,7 @@
         /// - Throws: If `iconv` is not available on this system.
         ///
         open class func getEncodingList() throws -> [String] {
-            let r = try Process.execute(whichExecutable: "iconv", arguments: ["-l"], inputString: nil)
+            let r = try Process.execute(whichExecutable: "iconv", arguments: [ "-l" ], inputString: nil)
             #if os(Linux)
                 return r.stdOut.split(regex: "//\\s+").sorted()
             #else

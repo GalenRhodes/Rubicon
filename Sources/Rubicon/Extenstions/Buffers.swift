@@ -30,7 +30,6 @@ extension UnsafeRawBufferPointer {
         guard let ptr = baseAddress else { fatalError(errorMessage) }
         return try block(ptr, count)
     }
-
 }
 
 /*==============================================================================================================================================================================*/

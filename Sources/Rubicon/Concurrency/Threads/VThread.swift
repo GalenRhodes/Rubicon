@@ -24,7 +24,6 @@ import Foundation
 import CoreFoundation
 
 public typealias Predicate = () -> Bool
-public let NoValueErrorMessage: String = "ERROR: No value."
 
 /*==============================================================================================================================================================================*/
 /// This class offers a little bit more flexibility over the standard Foundation [Thread](https://developer.apple.com/documentation/foundation/thread) class.

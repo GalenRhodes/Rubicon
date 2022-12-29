@@ -29,10 +29,11 @@ let stringsFile:     String = "StringsFile.swift"
 let stringsFilePath: String = "\(sourcePath)/\(stringsFile)"
 
 func doIt() throws {
-    let propKeys: [URLResourceKey]  = [ .nameKey, .pathKey, .isDirectoryKey, .parentDirectoryURLKey ]
-    let fm:       FileManager       = FileManager.default
-    var enc:      String.Encoding   = .ascii
-    let regex1:   RegularExpression = try RegularExpression(pattern: "^// ===+\n(//.*\n)+", options: [ .anchorsMatchLines ])
+    let propKeys:   [URLResourceKey]  = [ .nameKey, .pathKey, .isDirectoryKey, .parentDirectoryURLKey ]
+    let fm:         FileManager       = FileManager.default
+    var enc:        String.Encoding   = .ascii
+    let regex1:     RegularExpression = try RegularExpression(pattern: "^public\\s+let\\s+(\\w+)\\:\\s*String\\s*\\=\\s*\".*?\"$", options: [ .anchorsMatchLines ])
+    var stringsOut: String            = try String(contentsOf: URL(filePath: stringsFilePath), usedEncoding: &enc)
 
     for case let fileURL as URL in fm.enumerator(at: URL(filePath: sourcePath), includingPropertiesForKeys: propKeys)! {
         do {
@@ -40,18 +41,32 @@ func doIt() throws {
             guard let name = resVals.name, let isDirectory = resVals.isDirectory, !isDirectory, name.hasSuffix(".swift") else { continue }
             guard name != stringsFile else { continue }
 
-            var data = try String(contentsOf: fileURL, usedEncoding: &enc)
-            data = data.trimmed
+            var data:    String      = try String(contentsOf: fileURL, usedEncoding: &enc).trimmed
+            var last:    StringIndex = data.startIndex
+            var out:     String      = ""
+            var changed: Bool        = false
 
             regex1.enumerateMatches(in: data) { m, _, _ in
                 guard let m = m else { return }
-                print(m.substring)
+                out.append(contentsOf: data[last ..< m.range.lowerBound])
+                last = m.range.upperBound
+                stringsOut.append(contentsOf: "\n")
+                stringsOut.append(contentsOf: m.substring)
+                changed = true
             }
+
+            out.append(contentsOf: data[last...])
+
+            guard changed else { continue }
+
+            try out.write(to: fileURL, atomically: false, encoding: .utf8)
         }
         catch let e {
             print("ERROR: \(e)", to: &ErrorOutput.errorOut)
         }
     }
+
+    try stringsOut.write(to: URL(filePath: stringsFilePath), atomically: false, encoding: .utf8)
 }
 
 DispatchQueue.main.async {

@@ -24,9 +24,6 @@ import Foundation
 import CoreFoundation
 import RingBuffer
 
-public let IndexOutOfBoundsError:   String = "ERROR: Index out of bounds."
-public let InsufficientMemoryError: String = "ERROR: Insufficient Memory"
-
 /*==============================================================================================================================================================================*/
 public class ByteRingBuffer {
 

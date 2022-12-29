@@ -23,3 +23,7 @@
 import Foundation
 import CoreFoundation
 
+public let IndexOutOfBoundsError:   String = "ERROR: Index out of bounds."
+public let InsufficientMemoryError: String = "ERROR: Insufficient Memory"
+public let NoValueErrorMessage:     String = "ERROR: No value."
+public let NoMainErrorMessage:      String = "ERROR: main() not implemented and no closure provided."

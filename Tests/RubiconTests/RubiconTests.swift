@@ -19,7 +19,6 @@
 // ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
 // IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 // ===========================================================================
-
 import XCTest
 @testable import Rubicon
 
@@ -28,11 +27,11 @@ let testFile:     String = "\(testFilesDir)/Test_UTF-8.xml"
 let testBar:      String = "==================================================================================================================================================================="
 
 public class RubiconTests: XCTestCase {
-
+    
     public override func setUp() {}
-
+    
     public override func tearDown() {}
-
+    
     public func testWhich() {
         do {
             print(testBar)
@@ -43,17 +42,17 @@ public class RubiconTests: XCTestCase {
             print(error)
         }
     }
-
+    
     private func whichExample(exe: String) throws {
         if let path = try Process.osWhich(executable: exe) { print("\"\(exe)\" is located at \"\(path)\"") }
         else { print("\"\(exe)\" was not found!") }
     }
-
+    
     public func testProcessExecute() {
         do {
             var stdOutData: Data = Data()
             var stdErrData: Data = Data()
-
+            
             print(testBar)
             let p = try Process.execute(executableURL: URL(fileURLWithPath: "/usr/bin/iconv"),
                                         arguments: [ "-l" ],
@@ -61,27 +60,27 @@ public class RubiconTests: XCTestCase {
                                         stdOut: { stdOutData.append($0, count: $1) },
                                         stdErr: { stdErrData.append($0, count: $1) },
                                         onExit: {
-                                            print("Exit Code: \($0)")
-                                            if stdOutData.count > 0, let str = stdOutData.asString(encoding: .utf8) {
-                                                print(str)
-                                            }
-                                            if stdErrData.count > 0, let str = stdErrData.asString(encoding: .utf8) {
-                                                print(str)
-                                            }
-                                        })
-
+                print("Exit Code: \($0)")
+                if stdOutData.count > 0, let str = stdOutData.asString(encoding: .utf8) {
+                    print(str)
+                }
+                if stdErrData.count > 0, let str = stdErrData.asString(encoding: .utf8) {
+                    print(str)
+                }
+            })
+            
             p.waitUntilExit()
         }
         catch let e {
             print("ERROR: \(e)")
         }
     }
-
+    
     public func testIConvList() {
         do {
             print(testBar)
             let list: [String] = try IConv.getEncodingList()
-
+            
             for s in list {
                 print(s)
             }
@@ -90,12 +89,12 @@ public class RubiconTests: XCTestCase {
             print(error)
         }
     }
-
-    #if !(os(macOS) || os(tvOS) || os(iOS) || os(watchOS) || os(OSX))
-        public static var allTests: [(String, (RubiconTests) -> () throws -> Void)] {
-            [ ("RubiconTests", testIConvList),
-              ("RubiconTests", testProcessExecute),
-              ("RubiconTests", testWhich), ]
-        }
-    #endif
+    
+#if !(os(macOS) || os(tvOS) || os(iOS) || os(watchOS) || os(OSX))
+    public static var allTests: [(String, (RubiconTests) -> () throws -> Void)] {
+        [ ("RubiconTests", testIConvList),
+          ("RubiconTests", testProcessExecute),
+          ("RubiconTests", testWhich), ]
+    }
+#endif
 }

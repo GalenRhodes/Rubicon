@@ -3,43 +3,497 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </select>
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="Clean up.">
+    <list default="true" id="6aeec484-a1dd-415e-9f33-f4f3a7360460" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Rubicon.docc/Rubicon.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Rubicon.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Rubicon2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/fileTemplates/includes/Swift File Header.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/fileTemplates/internal/Swift Class.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/fileTemplates/internal/Swift Enum.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/fileTemplates/internal/Swift File.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/fileTemplates/internal/Swift Protocol.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/fileTemplates/internal/Swift Struct.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/rSettings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Experiments.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Rubicon.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/RubiconTests.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/template/template_variable_settings.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/xcode.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/xcode.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Experiments.entitlements" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Experiments/Experiments.entitlements" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/.idea/Rubicon.Rubicon.xcodeproj.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/.idea/Rubicon.xcodeproj.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/Experiments.xcscheme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/Rubicon.xcscheme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/xcshareddata/xcschemes/RubiconTests.xcscheme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/DocFixer/main.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Experiments/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Experiments/main.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Experiments/main.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Rubicon.h" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Rubicon.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestFiles/SampleText-UTF16.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/TestFiles/SampleText-UTF16.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/RubiconTests/RubiconTests.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/RubiconTests/RubiconTests.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/AtomicValue.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/CString.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/Conditional.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/DataByteBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/DynamicFixedArray.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/EasyByteBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/IConv.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/IConv/Response.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/IConv/Results.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/IConvCharInputStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/MarkInputStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/NamedSemaphore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/NanoTimer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/NanoTimer/PGThreadBlock.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/PGThread.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/PGThread/PGThreadBlock.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/ReadWriteLock.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/RegularExpression.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/RegularExpression/Group.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/RegularExpression/Match.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/RegularExpression/Match/Element.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/RegularExpression/Match/Index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/RegularExpression/Match/Iterator.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/RegularExpression/Match/Iterator/Element.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/RegularExpression/MatchEnumClosure.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/RegularExpression/MatchingFlags.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/RegularExpression/MatchingOptions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/RegularExpression/NamedGroup.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/RegularExpression/Options.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/RingByteBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/Runner.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/Runner/ClosureType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/Runner/RunnerError.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/Runner/SignalGetter.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/SimpleIConvCharInputStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/SimpleStringCharInputStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/StopWatch.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/StopWatch/Field.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/StopWatch/LabelLength.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/StringCharInputStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classes/UnnamedSemaphore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Enums.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Enums/ByteOrder.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Enums/CharStreamError.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Enums/FilePathError.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Enums/NanoTimerError.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Enums/NestType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Enums/PGErrors.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Enums/RingByteBufferError.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Enums/SortOrdering.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Enums/StreamError.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/Array.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/ArraySlice.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/BidirectionalCollection.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/BinaryFloatingPoint.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/BinaryInteger.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/Character.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/CharacterSet.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/Collection.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/Data.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/Date.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/DateComponents.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/DateFormatter.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/Dictionary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/FileManager.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/Hasher.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/InputStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/MutexLock.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/NSCondition.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/NSRange.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/NSRegularExpression.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/NSRegularExpression/MatchClosure.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/OutputStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/Range.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/RangeReplaceableCollection.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/RecursiveLock.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/Stream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/Stream/Event.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/Stream/Status.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/String.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/StringProtocol.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Extensions/Thread.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/--_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/HashOfAnything_28_5F_3A_29_5F_24sySiypcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/MemMove_28dest_3Asrc_3Acount_3A_29_5F_24s4dest3src5countySpys5UInt8VG_5FSPyAEGSitcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/NanoSleep2_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosySi_5FSitcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/NanoSleep_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosS2i_5FSitcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/StrError_28_5F_3A_29_5F_24sySSs5Int32VcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/_2B_2B_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/_3C_2B_28_5F_3A_5F_3A_29_5F_24syySayxGz_5FAAtcluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/_3C_2B_28_5F_3A_5F_3A_29_5F_24syySayxGz_5FxtcluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/_3C_3D_3E_28_5F_3A_5F_3A_29_5F_24sy7Rubicon12SortOrderingOSayxSgG_5FAEtcSLRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/_3C_3D_3E_28_5F_3A_5F_3A_29_5F_24sy7Rubicon12SortOrderingOxSg_5FADtcSLRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/_3C_3F_28_5F_3A_5F_3A_29_5F_24sySbSayxG_5FAAtcSQRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/_3C_3F_28_5F_3A_5F_3A_29_5F_24sySbSayxG_5FxtcSQRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/_5E_5E_28_5F_3A_5F_3A_29_5F_24syxx_5FxtcSzRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/cStrLen_28cStringPtr_3Alength_3A_29_5F_24s10cStringPtr6lengthSiSPys4Int8VG_5FSitcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/cStrLen_28cStringPtr_3Alength_3A_29_5F_24s10cStringPtr6lengthSiSPys5UInt8VG_5FSitcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/createMutablePointer_28capacity_3A_29_5F_24s8capacitySpyxGSi_5FtcSzRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/createMutablePointer_28capacity_3AinitialValue_3A_29_5F_24s8capacity12initialValueSpyxGSi_5FxtcluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/createMutableRawPointer_28capacity_3Atype_3A_29_5F_24s8capacity4typeSvSi_5FxmtcSzRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/createMutableRawPointer_28capacity_3Atype_3AinitialValue_3A_29_5F_24s8capacity4type12initialValueSvSi_5FxmxtcluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/debug_28_5F_3Aseparator_3Aterminator_3A_29_5F_24s_5F9separator10terminatorySayypG_5FS2SSgtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/debug_28_5F_3Aseparator_3Aterminator_3A_29_5F_24s_5F9separator10terminatoryypd_5FS2SSgtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/discardMutablePointer_28_5F_3A_5F_3A_29_5F_24syySpyxG_5FSitcluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/discardMutableRawPointer_28_5F_3A_5F_3A_5F_3A_29_5F_24syySv_5FxmSitcluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/execute_28exec_3Aargs_3Astdin_3AdiscardOutput_3A_29_5F_24s4exec4args5stdin13discardOutputSiSS_5FSaySSGypSgSbtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/execute_28exec_3Aargs_3Astdin_3Astdout_3Aencoding_3AdiscardStderr_3A_29_5F_24s4exec4args5stdin6stdout8encoding13discardStderrSiSS_5FSaySSGypSgSSzSS10FoundationE8EncodingVSbtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/execute_28exec_3Aargs_3Astdin_3Astdout_3Astderr_3A_29_5F_24s4exec4args5stdin6stdout6stderrSiSS_5FSaySSG10Foundation4DataVAIzAIztcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/execute_28exec_3Aargs_3Astdin_3Astdout_3Astderr_3A_29_5F_24s4exec4args5stdin6stdout6stderrSiSS_5FSaySSGypSg10Foundation4DataVzAJztcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/execute_28exec_3Aargs_3Astdin_3Astdout_3Astderr_3Aencoding_3A_29_5F_24s4exec4args5stdin6stdout6stderr8encodingSiSS_5FSaySSGS2SzSSzSS10FoundationE8EncodingVtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/execute_28exec_3Aargs_3Astdin_3Astdout_3Astderr_3Aencoding_3A_29_5F_24s4exec4args5stdin6stdout6stderr8encodingSiSS_5FSaySSGypSgSSzSSzSS10FoundationE8EncodingVtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/fixLength_28_5F_3A_29_5F_24syS2icD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/fromBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/getSysTimeAdjustment_28_29_5F_24sSiycD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/getSysTime_28delta_3A_29_5F_24s5deltaS2i_5FtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/isType_28_5F_3A_5F_3A_29_5F_24sySbx_5Fq_5Fmtcr0_5FluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/launchApplication_28exec_3A_29_5F_24s4execs5NeverOs5Int32VSaySSGKXE_5FtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/nDebug_28_5F_3A_5F_3Aseparator_3A_29_5F_24s_5F_5F9separatory7Rubicon8NestTypeO_5FypdSStcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/nextCharPosition_28currentPosition_3Acharacter_3AtabWidth_3A_29_5F_24s15currentPosition9character8tabWidths5Int32V10lineNumber_5FAE06columnH0tAeF_5FAeGt_5FSJs4Int8VtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/readFromPipe_28pipe_3Aencoding_3A_29_5F_24s4pipe8encodingSSSgSo6NSPipeC_5FSS10FoundationE8EncodingVtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/regexML_28pattern_3A_29_5F_24s7patternSo19NSRegularExpressionCSS_5FtKcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/tabCalc_28pos_3AtabSize_3A_29_5F_24s3pos7tabSizes5Int32VAD_5Fs4Int8VtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/textPositionUpdate_28_5F_3Apos_3AtabWidth_3A_29_5F_24s_5F3pos8tabWidthySJ_5Fs5Int32V10lineNumber_5FAD06columnF0tzs4Int8VtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/toBinary_28_5F_3Asep_3Apad_3A_29_5F_24s_5F3sep3padSSx_5FSSSgSitcSzRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/toBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/value_28_5F_3AisOneOf_3A_29_5F_24s_5F7isOneOfSbx_5FSayxGtcSQRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/value_28_5F_3AisOneOf_3A_29_5F_24s_5F7isOneOfSbx_5FxdtcSQRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/when_28_5F_3AisNil_3AnotNil_3A_29_5F_24s_5F5isNil03notB0xq_5FSg_5FxyKXKxq_5FKXEtKcr0_5FluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/which_28name_3A_29_5F_24s4nameSSSgSS_5FtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/which_28names_3A_29_5F_24s5namesSaySSSgGSaySSG_5FtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/xferBytes_28bufferSize_3AmaxLength_3Aread_3Awrite_3A_29_5F_24s10bufferSize9maxLength4read5writeS2i_5FS2iSgSpys5UInt8VG_5FSitKXEAESPyAGG_5FSitKXEtKcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/xferBytes_28buffer_3AbufferSize_3AmaxLength_3Aread_3Awrite_3A_29_5F_24s6buffer0A4Size9maxLength4read5writeSiSpys5UInt8VG_5FS3iSgAH_5FSitKXEAISPyAGG_5FSitKXEtKcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Functions/~~_28_5F_3A_29_5F_24syxxcs17FixedWidthIntegerRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Global Variables.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Global Variables/BasicBufferSize.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Global Variables/CRLF_5FCHARACTER.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Global Variables/CR_5FCHARACTER.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Global Variables/LF_5FCHARACTER.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Global Variables/LINE_5FFEED_5FCODEPOINT.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Global Variables/MachineByteOrder.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Global Variables/OneSecondMicros.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Global Variables/OneSecondMillis.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Global Variables/OneSecondNanos.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Global Variables/StringFormatIsStrict.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Global Variables/UnicodeReplacementChar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Protocols.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Protocols/CharInputStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Protocols/CharStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Protocols/Closable.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Protocols/LockCondition.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Protocols/Locking.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Protocols/ManagedByteBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Protocols/MutableManagedByteBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Protocols/PGSemaphore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Protocols/SimpleCharInputStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Structs.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Structs/Atomic.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Structs/CErrors.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Structs/OStringXForm.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Structs/OStringXForm/XForms.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Structs/ShadowInt.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Structs/ShadowInt/IntegerLiteralType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Structs/ShadowInt/Magnitude.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Structs/ShadowInt/Words.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Structs/StringXForm.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Structs/StringXForm/XForms.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Structs/ThreadLocal.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Structs/Triggered.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Structs/Triggered/Trigger.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/ByteBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/BytePointer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/ByteROBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/ByteROPointer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/CCharBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/CCharPointer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/CCharROBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/CCharROPointer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/CFByteOrderEnum.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/DWordBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/DWordPointer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/DWordROBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/DWordROPointer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/MutexLock.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/QWordBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/QWordPointer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/QWordROBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/QWordROPointer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/RecursiveLock.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/RegEx.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/RegExResult.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/StringIndex.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/StringRange.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/TextPosition.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/WordBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/WordPointer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/WordROBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/WordROPointer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/XferInClosure.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Typealiases/XferOutClosure.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/badge.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/css/highlight.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/css/jazzy.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/AtomicValue.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/CString.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/Conditional.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/DataByteBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/DynamicFixedArray.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/EasyByteBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConv.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConv/Response.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConv/Results.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/IConvCharInputStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/MarkInputStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/NamedSemaphore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/NanoTimer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/NanoTimer/PGThreadBlock.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/PGThread.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/PGThread/PGThreadBlock.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/ReadWriteLock.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RegularExpression.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RegularExpression/Group.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RegularExpression/Match.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RegularExpression/Match/Element.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RegularExpression/Match/Index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RegularExpression/Match/Iterator.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RegularExpression/Match/Iterator/Element.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RegularExpression/MatchEnumClosure.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RegularExpression/MatchingFlags.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RegularExpression/MatchingOptions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RegularExpression/NamedGroup.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RegularExpression/Options.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/RingByteBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/Runner.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/Runner/ClosureType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/Runner/RunnerError.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/Runner/SignalGetter.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/SimpleIConvCharInputStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/SimpleStringCharInputStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/StopWatch.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/StopWatch/Field.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/StopWatch/LabelLength.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/StringCharInputStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Classes/UnnamedSemaphore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/ByteOrder.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/CharStreamError.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/FilePathError.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/NanoTimerError.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/NestType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/PGErrors.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/RingByteBufferError.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/SortOrdering.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Enums/StreamError.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Array.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/ArraySlice.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/BidirectionalCollection.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/BinaryFloatingPoint.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/BinaryInteger.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Character.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/CharacterSet.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Collection.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Data.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Date.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/DateComponents.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/DateFormatter.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Dictionary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/FileManager.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Hasher.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/InputStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/MutexLock.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/NSCondition.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/NSRange.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/NSRegularExpression.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/NSRegularExpression/MatchClosure.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/OutputStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Range.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/RangeReplaceableCollection.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/RecursiveLock.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Stream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Stream/Event.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Stream/Status.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/String.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/StringProtocol.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Extensions/Thread.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/--_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/HashOfAnything_28_5F_3A_29_5F_24sySiypcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/MemMove_28dest_3Asrc_3Acount_3A_29_5F_24s4dest3src5countySpys5UInt8VG_5FSPyAEGSitcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/NanoSleep2_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosySi_5FSitcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/NanoSleep_28seconds_3Ananos_3A_29_5F_24s7seconds5nanosS2i_5FSitcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/StrError_28_5F_3A_29_5F_24sySSs5Int32VcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/_2B_2B_28_5F_3A_29_5F_24syxxzcs17FixedWidthIntegerRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/_3C_2B_28_5F_3A_5F_3A_29_5F_24syySayxGz_5FAAtcluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/_3C_2B_28_5F_3A_5F_3A_29_5F_24syySayxGz_5FxtcluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/_3C_3D_3E_28_5F_3A_5F_3A_29_5F_24sy7Rubicon12SortOrderingOSayxSgG_5FAEtcSLRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/_3C_3D_3E_28_5F_3A_5F_3A_29_5F_24sy7Rubicon12SortOrderingOxSg_5FADtcSLRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/_3C_3F_28_5F_3A_5F_3A_29_5F_24sySbSayxG_5FAAtcSQRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/_3C_3F_28_5F_3A_5F_3A_29_5F_24sySbSayxG_5FxtcSQRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/_5E_5E_28_5F_3A_5F_3A_29_5F_24syxx_5FxtcSzRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/cStrLen_28cStringPtr_3Alength_3A_29_5F_24s10cStringPtr6lengthSiSPys4Int8VG_5FSitcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/cStrLen_28cStringPtr_3Alength_3A_29_5F_24s10cStringPtr6lengthSiSPys5UInt8VG_5FSitcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/createMutablePointer_28capacity_3A_29_5F_24s8capacitySpyxGSi_5FtcSzRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/createMutablePointer_28capacity_3AinitialValue_3A_29_5F_24s8capacity12initialValueSpyxGSi_5FxtcluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/createMutableRawPointer_28capacity_3Atype_3A_29_5F_24s8capacity4typeSvSi_5FxmtcSzRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/createMutableRawPointer_28capacity_3Atype_3AinitialValue_3A_29_5F_24s8capacity4type12initialValueSvSi_5FxmxtcluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/debug_28_5F_3Aseparator_3Aterminator_3A_29_5F_24s_5F9separator10terminatorySayypG_5FS2SSgtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/debug_28_5F_3Aseparator_3Aterminator_3A_29_5F_24s_5F9separator10terminatoryypd_5FS2SSgtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/discardMutablePointer_28_5F_3A_5F_3A_29_5F_24syySpyxG_5FSitcluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/discardMutableRawPointer_28_5F_3A_5F_3A_5F_3A_29_5F_24syySv_5FxmSitcluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/execute_28exec_3Aargs_3Astdin_3AdiscardOutput_3A_29_5F_24s4exec4args5stdin13discardOutputSiSS_5FSaySSGypSgSbtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/execute_28exec_3Aargs_3Astdin_3Astdout_3Aencoding_3AdiscardStderr_3A_29_5F_24s4exec4args5stdin6stdout8encoding13discardStderrSiSS_5FSaySSGypSgSSzSS10FoundationE8EncodingVSbtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/execute_28exec_3Aargs_3Astdin_3Astdout_3Astderr_3A_29_5F_24s4exec4args5stdin6stdout6stderrSiSS_5FSaySSG10Foundation4DataVAIzAIztcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/execute_28exec_3Aargs_3Astdin_3Astdout_3Astderr_3A_29_5F_24s4exec4args5stdin6stdout6stderrSiSS_5FSaySSGypSg10Foundation4DataVzAJztcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/execute_28exec_3Aargs_3Astdin_3Astdout_3Astderr_3Aencoding_3A_29_5F_24s4exec4args5stdin6stdout6stderr8encodingSiSS_5FSaySSGS2SzSSzSS10FoundationE8EncodingVtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/execute_28exec_3Aargs_3Astdin_3Astdout_3Astderr_3Aencoding_3A_29_5F_24s4exec4args5stdin6stdout6stderr8encodingSiSS_5FSaySSGypSgSSzSSzSS10FoundationE8EncodingVtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/fixLength_28_5F_3A_29_5F_24syS2icD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/fromBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/getSysTimeAdjustment_28_29_5F_24sSiycD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/getSysTime_28delta_3A_29_5F_24s5deltaS2i_5FtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/isType_28_5F_3A_5F_3A_29_5F_24sySbx_5Fq_5Fmtcr0_5FluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/launchApplication_28exec_3A_29_5F_24s4execs5NeverOs5Int32VSaySSGKXE_5FtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/nDebug_28_5F_3A_5F_3Aseparator_3A_29_5F_24s_5F_5F9separatory7Rubicon8NestTypeO_5FypdSStcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/nextCharPosition_28currentPosition_3Acharacter_3AtabWidth_3A_29_5F_24s15currentPosition9character8tabWidths5Int32V10lineNumber_5FAE06columnH0tAeF_5FAeGt_5FSJs4Int8VtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/readFromPipe_28pipe_3Aencoding_3A_29_5F_24s4pipe8encodingSSSgSo6NSPipeC_5FSS10FoundationE8EncodingVtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/regexML_28pattern_3A_29_5F_24s7patternSo19NSRegularExpressionCSS_5FtKcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/tabCalc_28pos_3AtabSize_3A_29_5F_24s3pos7tabSizes5Int32VAD_5Fs4Int8VtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/testOSFatalError_28_5F_3A_5F_3A_29_5F_24sys5Int32VAB_5FABdtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/textPositionUpdate_28_5F_3Apos_3AtabWidth_3A_29_5F_24s_5F3pos8tabWidthySJ_5Fs5Int32V10lineNumber_5FAD06columnF0tzs4Int8VtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/toBinary_28_5F_3Asep_3Apad_3A_29_5F_24s_5F3sep3padSSx_5FSSSgSitcSzRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/toBytes_28type_3A_5F_3A_29_5F_24s4type_5FSixm_5FSitcluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/toHex_28_5F_3Apad_3A_29_5F_24s_5F3padSSx_5FSitcSzRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/value_28_5F_3AisOneOf_3A_29_5F_24s_5F7isOneOfSbx_5FSayxGtcSQRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/value_28_5F_3AisOneOf_3A_29_5F_24s_5F7isOneOfSbx_5FxdtcSQRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/when_28_5F_3AisNil_3AnotNil_3A_29_5F_24s_5F5isNil03notB0xq_5FSg_5FxyKXKxq_5FKXEtKcr0_5FluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/which_28name_3A_29_5F_24s4nameSSSgSS_5FtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/which_28names_3A_29_5F_24s5namesSaySSSgGSaySSG_5FtcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/xferBytes_28bufferSize_3AmaxLength_3Aread_3Awrite_3A_29_5F_24s10bufferSize9maxLength4read5writeS2i_5FS2iSgSpys5UInt8VG_5FSitKXEAESPyAGG_5FSitKXEtKcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/xferBytes_28buffer_3AbufferSize_3AmaxLength_3Aread_3Awrite_3A_29_5F_24s6buffer0A4Size9maxLength4read5writeSiSpys5UInt8VG_5FS3iSgAH_5FSitKXEAISPyAGG_5FSitKXEtKcD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Functions/~~_28_5F_3A_29_5F_24syxxcs17FixedWidthIntegerRzluD.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/BasicBufferSize.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/CRLF_5FCHARACTER.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/CR_5FCHARACTER.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/LF_5FCHARACTER.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/LINE_5FFEED_5FCODEPOINT.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/MachineByteOrder.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/OneSecondMicros.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/OneSecondMillis.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/OneSecondNanos.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/StringFormatIsStrict.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Global Variables/UnicodeReplacementChar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/CharInputStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/CharStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/Closable.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/LockCondition.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/Locking.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/ManagedByteBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/MutableManagedByteBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/PGSemaphore.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Protocols/SimpleCharInputStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/Atomic.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/CErrors.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/OStringXForm.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/OStringXForm/XForms.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/ShadowInt.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/ShadowInt/IntegerLiteralType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/ShadowInt/Magnitude.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/ShadowInt/Words.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/StringXForm.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/StringXForm/XForms.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/ThreadLocal.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/Triggered.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Structs/Triggered/Trigger.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/ByteBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/BytePointer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/ByteROBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/ByteROPointer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/CCharBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/CCharPointer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/CCharROBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/CCharROPointer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/CFByteOrderEnum.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/DWordBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/DWordPointer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/DWordROBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/DWordROPointer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/MutexLock.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/QWordBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/QWordPointer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/QWordROBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/QWordROPointer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/RecursiveLock.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/RegEx.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/RegExResult.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/StringIndex.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/StringRange.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/TextPosition.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/WordBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/WordPointer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/WordROBuffer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/WordROPointer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/XferInClosure.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/Typealiases/XferOutClosure.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/css/highlight.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/css/jazzy.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/img/carat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/img/dash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/img/gh.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/img/spinner.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/js/jazzy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/js/jazzy.search.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/js/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/js/lunr.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/js/typeahead.jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/Documents/search.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.docset/Contents/Resources/docSet.dsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docsets/.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/carat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/dash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/gh.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/img/spinner.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/js/jazzy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/js/jazzy.search.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/js/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/js/lunr.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/js/typeahead.jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/search.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/undocumented.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/foo.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="ChangesViewManager">
-    <option name="groupingKeys">
-      <option value="directory" />
-    </option>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="macos_macos_arm64" />
   <component name="ExternalProjectsData">
@@ -47,59 +501,15 @@
       <ProjectState />
     </projectState>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="C Header" />
-      </list>
-    </option>
-    <option name="SCHEME" value="Project" />
-  </component>
-  <component name="Git.Rebase.Settings">
-    <option name="NEW_BASE" value="0.3.0" />
-  </component>
   <component name="Git.Settings">
-    <option name="PUSH_TAGS">
-      <GitPushTagMode>
-        <option name="argument" value="--tags" />
-        <option name="title" value="All" />
-      </GitPushTagMode>
-    </option>
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="master" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="AppCode" />
+    <option name="majorVersion" value="2022" />
+    <option name="minorVersion" value="3.1" />
   </component>
-  <component name="GitToolBoxStore">
-    <option name="projectConfigVersion" value="5" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Sources/Rubicon/IConv/IConvInputStream.swift" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="MacroExpansionManager">
-    <option name="directoryName" value="amon5vo6" />
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
-  <component name="ProjectId" id="1hVLdn4q9dZBJYcN1EOQjI95yyx" />
-  <component name="ProjectLevelVcsManager">
-    <OptionsSetting value="false" id="Update" />
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="2JsIRVpOk795fMcq5cHkMO0cJkH" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="flattenPackages" value="true" />
@@ -109,36 +519,26 @@
     <option name="showVisibilityIcons" value="true" />
     <option name="sortByType" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;OBJC.PRESERVED_TARGET_SELECTION&quot;: &quot;Rubicon&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/grhodes/Projects/SwiftProjects/Rubicon&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
-    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cidr.known.project.marker": "true",
+    "last_opened_file_path": "/Users/grhodes/Projects/SwiftProjects/Rubicon"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Tests/RubiconTests/Files" />
-      <recent name="$PROJECT_DIR$/TestsBackup/RubiconTests/Files" />
-      <recent name="$PROJECT_DIR$/TestsBackup/RubiconTests" />
-      <recent name="$PROJECT_DIR$/Sources/semaphore" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Application.Experiments">
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Rubicon" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Rubicon" TARGET_NAME="Rubicon" CONFIG_NAME="Debug" IS_LOCATION_SIMULATION_SUPPORTED="false" SCHEME_NAME="Rubicon" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
+      <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
+        <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
+      </EXTENSION>
+      <embedded_app_extension_list />
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" IS_LOCATION_SIMULATION_SUPPORTED="false" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
       <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
         <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
@@ -148,788 +548,23 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Application.Experiments" />
-      <item itemvalue="Application.Rubicon" />
-      <item itemvalue="XCTest.RubiconTests" />
-    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ba9ba7d9-b127-4d84-8a3a-70cdeadbc3d5" name="Default Changelist" comment="" />
-      <created>1600091407163</created>
+      <changelist id="6aeec484-a1dd-415e-9f33-f4f3a7360460" name="Changes" comment="" />
+      <created>1672860357015</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1600091407163</updated>
-      <workItem from="1600091409983" duration="8032000" />
-      <workItem from="1600109199849" duration="1531000" />
-      <workItem from="1600291213758" duration="7320000" />
-      <workItem from="1600438759278" duration="13288000" />
-      <workItem from="1600706473668" duration="57000" />
-      <workItem from="1600706559912" duration="7691000" />
-      <workItem from="1600865075575" duration="366000" />
-      <workItem from="1600905988726" duration="4867000" />
-      <workItem from="1600969788833" duration="673000" />
-      <workItem from="1600970711206" duration="772000" />
-      <workItem from="1600971504746" duration="422000" />
-      <workItem from="1600973016743" duration="2407000" />
-      <workItem from="1601038298651" duration="613000" />
-      <workItem from="1601049016307" duration="2190000" />
-      <workItem from="1601137551411" duration="391000" />
-      <workItem from="1601162389734" duration="628000" />
-      <workItem from="1601213348867" duration="383000" />
-      <workItem from="1601219120920" duration="25267000" />
-      <workItem from="1601334226415" duration="36003000" />
-      <workItem from="1601421485953" duration="63000" />
-      <workItem from="1601421564461" duration="3392000" />
-      <workItem from="1601429139084" duration="2918000" />
-      <workItem from="1601470930145" duration="3606000" />
-      <workItem from="1601479361970" duration="100000" />
-      <workItem from="1601479483986" duration="48000" />
-      <workItem from="1601479788757" duration="763000" />
-      <workItem from="1601486841409" duration="267000" />
-      <workItem from="1601487342130" duration="486000" />
-      <workItem from="1601487901282" duration="7158000" />
-      <workItem from="1601555367972" duration="5259000" />
-      <workItem from="1601570010543" duration="10784000" />
-      <workItem from="1601640337042" duration="609000" />
-      <workItem from="1601652147705" duration="1030000" />
-      <workItem from="1601749906854" duration="1390000" />
-      <workItem from="1601898955618" duration="3778000" />
-      <workItem from="1602072564301" duration="5027000" />
-      <workItem from="1602081313399" duration="2956000" />
-      <workItem from="1602170874860" duration="724000" />
-      <workItem from="1602209810998" duration="2311000" />
-      <workItem from="1602296719431" duration="2474000" />
-      <workItem from="1602718851096" duration="278000" />
-      <workItem from="1602719166555" duration="4691000" />
-      <workItem from="1602790968467" duration="10673000" />
-      <workItem from="1602853815120" duration="22970000" />
-      <workItem from="1603023677473" duration="7453000" />
-      <workItem from="1603036935979" duration="10418000" />
-      <workItem from="1603397687768" duration="1105000" />
-      <workItem from="1603418928695" duration="651000" />
-      <workItem from="1603741075482" duration="1381000" />
-      <workItem from="1603957847116" duration="1823000" />
-      <workItem from="1603962792739" duration="726000" />
-      <workItem from="1603983406675" duration="1561000" />
-      <workItem from="1604329170899" duration="531000" />
-      <workItem from="1604597039237" duration="1467000" />
-      <workItem from="1604612065170" duration="40000" />
-      <workItem from="1604675215664" duration="1590000" />
-      <workItem from="1604680910722" duration="189000" />
-      <workItem from="1604779915742" duration="622000" />
-      <workItem from="1604785934527" duration="2825000" />
-      <workItem from="1604940622812" duration="36379000" />
-      <workItem from="1605102321772" duration="6201000" />
-      <workItem from="1605183523184" duration="5686000" />
-      <workItem from="1605204012772" duration="254000" />
-      <workItem from="1605204899828" duration="1012000" />
-      <workItem from="1605276989586" duration="3574000" />
-      <workItem from="1605385220064" duration="2079000" />
-      <workItem from="1605460054184" duration="5987000" />
-      <workItem from="1605720866291" duration="25910000" />
-      <workItem from="1606072007468" duration="879000" />
-      <workItem from="1606342329661" duration="32858000" />
-      <workItem from="1606749795058" duration="68000" />
-      <workItem from="1606749922743" duration="20970000" />
-      <workItem from="1606847555225" duration="13993000" />
-      <workItem from="1606916866028" duration="14379000" />
-      <workItem from="1606947791851" duration="24591000" />
-      <workItem from="1607351402555" duration="453000" />
-      <workItem from="1607353234379" duration="18332000" />
-      <workItem from="1607384678191" duration="13868000" />
-      <workItem from="1607523675870" duration="44848000" />
-      <workItem from="1607702899973" duration="4479000" />
-      <workItem from="1607712519579" duration="10762000" />
-      <workItem from="1607967150766" duration="5417000" />
-      <workItem from="1608050760277" duration="978000" />
-      <workItem from="1608055445992" duration="35775000" />
-      <workItem from="1608215574223" duration="3987000" />
-      <workItem from="1608224104994" duration="8843000" />
-      <workItem from="1608241789318" duration="1077000" />
-      <workItem from="1608299897786" duration="15070000" />
-      <workItem from="1608497733254" duration="19330000" />
-      <workItem from="1608655456789" duration="8913000" />
-      <workItem from="1608992676902" duration="7946000" />
-      <workItem from="1609032667644" duration="4747000" />
-      <workItem from="1609342793951" duration="8839000" />
-      <workItem from="1609440098632" duration="2212000" />
-      <workItem from="1609526654282" duration="12468000" />
-      <workItem from="1609764348038" duration="15027000" />
-      <workItem from="1609852253342" duration="16481000" />
-      <workItem from="1609946317132" duration="10646000" />
-      <workItem from="1610022879165" duration="8036000" />
-      <workItem from="1610037030708" duration="185000" />
-      <workItem from="1610135695579" duration="462000" />
-      <workItem from="1610195795835" duration="2260000" />
-      <workItem from="1610397186765" duration="2292000" />
-      <workItem from="1610459621135" duration="20764000" />
-      <workItem from="1610498447255" duration="16446000" />
-      <workItem from="1610570309897" duration="1280000" />
-      <workItem from="1610995710746" duration="70000" />
-      <workItem from="1611107732149" duration="1449000" />
-      <workItem from="1611149855338" duration="263000" />
-      <workItem from="1611150503796" duration="243000" />
-      <workItem from="1611150786731" duration="1056000" />
-      <workItem from="1611151987224" duration="3894000" />
-      <workItem from="1611159097796" duration="3642000" />
-      <workItem from="1611239376966" duration="7739000" />
-      <workItem from="1611323894484" duration="26252000" />
-      <workItem from="1611498508363" duration="11445000" />
-      <workItem from="1611581711263" duration="33795000" />
-      <workItem from="1611777035762" duration="2430000" />
-      <workItem from="1611862534559" duration="1153000" />
-      <workItem from="1611938984816" duration="871000" />
-      <workItem from="1611941519516" duration="253000" />
-      <workItem from="1611941836075" duration="394000" />
-      <workItem from="1611948663372" duration="375000" />
-      <workItem from="1611951519025" duration="261000" />
-      <workItem from="1611952514763" duration="337000" />
-      <workItem from="1612042532763" duration="10015000" />
-      <workItem from="1612178970174" duration="4592000" />
-      <workItem from="1612318959807" duration="3350000" />
-      <workItem from="1612358879674" duration="685000" />
-      <workItem from="1612444358128" duration="1201000" />
-      <workItem from="1612448818533" duration="3160000" />
-      <workItem from="1612806847115" duration="2178000" />
-      <workItem from="1612964878487" duration="2013000" />
-      <workItem from="1613051837230" duration="24468000" />
-      <workItem from="1613866457541" duration="5387000" />
-      <workItem from="1613926986868" duration="2919000" />
-      <workItem from="1613937060954" duration="399000" />
-      <workItem from="1614171889224" duration="1288000" />
-      <workItem from="1614194970593" duration="338000" />
-      <workItem from="1614199192862" duration="968000" />
-      <workItem from="1614343884214" duration="1165000" />
-      <workItem from="1614453672418" duration="8086000" />
-      <workItem from="1614964238279" duration="2343000" />
-      <workItem from="1615661811331" duration="875000" />
-      <workItem from="1615898440800" duration="254000" />
-      <workItem from="1616167295449" duration="4238000" />
-      <workItem from="1616426817217" duration="1280000" />
-      <workItem from="1616762132594" duration="4441000" />
-      <workItem from="1616927343227" duration="543000" />
-      <workItem from="1616928680230" duration="26000" />
-      <workItem from="1616939049593" duration="41000" />
-      <workItem from="1616939697620" duration="3243000" />
-      <workItem from="1617017326424" duration="25155000" />
-      <workItem from="1617104242870" duration="6578000" />
-      <workItem from="1617232797613" duration="795000" />
-      <workItem from="1617296966708" duration="2843000" />
-      <workItem from="1617377976017" duration="13524000" />
-      <workItem from="1617645700574" duration="1228000" />
-      <workItem from="1617650052421" duration="6912000" />
-      <workItem from="1617808722584" duration="13667000" />
-      <workItem from="1618163545562" duration="1438000" />
-      <workItem from="1618169059193" duration="698000" />
-      <workItem from="1618242752738" duration="4670000" />
-      <workItem from="1618433709995" duration="3207000" />
-      <workItem from="1618453433659" duration="2899000" />
-      <workItem from="1618493978629" duration="127000" />
-      <workItem from="1618494129036" duration="14796000" />
-      <workItem from="1618595077396" duration="5758000" />
-      <workItem from="1618695941503" duration="25691000" />
-      <workItem from="1618916418310" duration="21259000" />
-      <workItem from="1619024372611" duration="5699000" />
-      <workItem from="1619094275336" duration="6091000" />
-      <workItem from="1619198853871" duration="1278000" />
-      <workItem from="1619455151035" duration="5517000" />
-      <workItem from="1619532679281" duration="7049000" />
-      <workItem from="1619543398477" duration="10624000" />
-      <workItem from="1619611611090" duration="23381000" />
-      <workItem from="1619695589618" duration="269000" />
-      <workItem from="1619696038075" duration="160000" />
-      <workItem from="1619696214829" duration="51584000" />
-      <workItem from="1619920741742" duration="8420000" />
-      <workItem from="1620041820633" duration="7328000" />
-      <workItem from="1620059736684" duration="20433000" />
-      <workItem from="1620127268738" duration="27203000" />
-      <workItem from="1620215057252" duration="27241000" />
-      <workItem from="1620260954696" duration="5773000" />
-      <workItem from="1620301617925" duration="5343000" />
-      <workItem from="1620307566089" duration="19985000" />
-      <workItem from="1620389406024" duration="16181000" />
-      <workItem from="1620430940604" duration="5044000" />
-      <workItem from="1620570242511" duration="39403000" />
-      <workItem from="1620731746955" duration="37487000" />
-      <workItem from="1620845550576" duration="365000" />
-      <workItem from="1620847008838" duration="304000" />
-      <workItem from="1620907584253" duration="3817000" />
-      <workItem from="1620919571459" duration="972000" />
-      <workItem from="1620922864726" duration="7663000" />
-      <workItem from="1621005324857" duration="1620000" />
-      <workItem from="1621254800876" duration="598000" />
-      <workItem from="1621885276872" duration="634000" />
-      <workItem from="1622119932216" duration="407000" />
-      <workItem from="1622207510142" duration="15670000" />
-      <workItem from="1622230877545" duration="4545000" />
-      <workItem from="1622245686307" duration="4901000" />
-      <workItem from="1622314643130" duration="6558000" />
-      <workItem from="1622327047299" duration="5203000" />
-      <workItem from="1622337169447" duration="1097000" />
-      <workItem from="1622402214336" duration="7685000" />
-      <workItem from="1622484836388" duration="6580000" />
-      <workItem from="1622543543268" duration="9138000" />
-      <workItem from="1622627164411" duration="2032000" />
-      <workItem from="1622721245250" duration="19856000" />
-      <workItem from="1622813570893" duration="12693000" />
-      <workItem from="1622836473210" duration="2684000" />
-      <workItem from="1623085177717" duration="1883000" />
-      <workItem from="1623239638513" duration="7773000" />
-      <workItem from="1623328666266" duration="656000" />
-      <workItem from="1623414657983" duration="305000" />
-      <workItem from="1623416755264" duration="57000" />
-      <workItem from="1623416831713" duration="57000" />
-      <workItem from="1623416923210" duration="6283000" />
-      <workItem from="1623427476531" duration="123000" />
-      <workItem from="1623432143487" duration="1417000" />
-      <workItem from="1623783416041" duration="5083000" />
-      <workItem from="1623868364071" duration="9264000" />
-      <workItem from="1623890081136" duration="5687000" />
-      <workItem from="1623936679419" duration="9208000" />
-      <workItem from="1624022671435" duration="163000" />
-      <workItem from="1624369614230" duration="1105000" />
-      <workItem from="1624561375872" duration="399000" />
-      <workItem from="1624570209309" duration="109000" />
-      <workItem from="1624589826910" duration="12000" />
-      <workItem from="1624626063546" duration="21562000" />
-      <workItem from="1624974153341" duration="2470000" />
-      <workItem from="1625147313520" duration="2581000" />
-      <workItem from="1625152059416" duration="680000" />
-      <workItem from="1625163949666" duration="253000" />
-      <workItem from="1625235720623" duration="779000" />
-      <workItem from="1625599534289" duration="1199000" />
-      <workItem from="1625600859798" duration="3119000" />
-      <workItem from="1625653974850" duration="5000" />
-      <workItem from="1625655274989" duration="420000" />
-      <workItem from="1625758892091" duration="2516000" />
-      <workItem from="1625769112382" duration="2203000" />
-      <workItem from="1625844426789" duration="75000" />
-      <workItem from="1625844567463" duration="531000" />
-      <workItem from="1625857339348" duration="146000" />
-      <workItem from="1625857516083" duration="536000" />
-      <workItem from="1626297180811" duration="255000" />
-      <workItem from="1627042477022" duration="266000" />
-      <workItem from="1627429731343" duration="627000" />
-      <workItem from="1627504907632" duration="45000" />
-      <workItem from="1627505206708" duration="677000" />
-      <workItem from="1627562134375" duration="2231000" />
-      <workItem from="1627565150154" duration="2037000" />
-      <workItem from="1627587861833" duration="132000" />
-      <workItem from="1627588591242" duration="906000" />
-      <workItem from="1627645436171" duration="171000" />
-      <workItem from="1627645635369" duration="68000" />
-      <workItem from="1631036329956" duration="26158000" />
-      <workItem from="1631215370229" duration="7300000" />
-      <workItem from="1631278444669" duration="11522000" />
-      <workItem from="1631454837492" duration="35000" />
-      <workItem from="1631544974444" duration="40000" />
-      <workItem from="1632399800350" duration="23628000" />
-      <workItem from="1632495266667" duration="14177000" />
-      <workItem from="1632573718463" duration="5503000" />
-      <workItem from="1632748794747" duration="21144000" />
-      <workItem from="1632853791315" duration="9197000" />
-      <workItem from="1632937254231" duration="9258000" />
-      <workItem from="1633045833633" duration="7000" />
-      <workItem from="1633046146721" duration="11233000" />
-      <workItem from="1633433694818" duration="81000" />
-      <workItem from="1633433815129" duration="2000" />
-      <workItem from="1633434064576" duration="545000" />
-      <workItem from="1633438736323" duration="34000" />
-      <workItem from="1633438790823" duration="1064000" />
-      <workItem from="1633532080227" duration="995000" />
-      <workItem from="1634237075722" duration="1089000" />
-      <workItem from="1634762241350" duration="780000" />
-      <workItem from="1635173512356" duration="722000" />
-      <workItem from="1635267563839" duration="17911000" />
-      <workItem from="1635416239514" duration="38406000" />
-      <workItem from="1635512785052" duration="723000" />
-      <workItem from="1635776118766" duration="1066000" />
-      <workItem from="1635944198451" duration="53000" />
-      <workItem from="1636067994827" duration="80000" />
-      <workItem from="1636719228236" duration="3288000" />
-      <workItem from="1638825357126" duration="7673000" />
-      <workItem from="1639142739968" duration="4984000" />
-      <workItem from="1639407037261" duration="2408000" />
-      <workItem from="1639575057105" duration="1992000" />
-      <workItem from="1641243798072" duration="2819000" />
-      <workItem from="1641317054602" duration="1037000" />
-      <workItem from="1641646412920" duration="488000" />
-      <workItem from="1642098663354" duration="731000" />
-      <workItem from="1645452556804" duration="789000" />
-      <workItem from="1645453489316" duration="2767000" />
-      <workItem from="1645624034859" duration="3935000" />
-      <workItem from="1645969548614" duration="13938000" />
-      <workItem from="1647186868565" duration="3254000" />
-      <workItem from="1652719546345" duration="1211000" />
-      <workItem from="1652722409789" duration="317000" />
-      <workItem from="1654190987869" duration="101000" />
-      <workItem from="1657297080443" duration="3784000" />
-      <workItem from="1657372180239" duration="3600000" />
-      <workItem from="1660061333412" duration="184000" />
-      <workItem from="1664382101040" duration="38000" />
-      <workItem from="1664382381507" duration="1691000" />
-      <workItem from="1666704012828" duration="1308000" />
-      <workItem from="1666706368703" duration="6650000" />
-      <workItem from="1666789021465" duration="3444000" />
-      <workItem from="1666871260012" duration="2871000" />
-      <workItem from="1667328153102" duration="392000" />
-      <workItem from="1667328646693" duration="562000" />
-      <workItem from="1667329267930" duration="3931000" />
-      <workItem from="1667391989151" duration="2821000" />
-      <workItem from="1667397474050" duration="14663000" />
-      <workItem from="1667567195566" duration="115000" />
-      <workItem from="1667567322583" duration="956000" />
-      <workItem from="1667568429242" duration="646000" />
-      <workItem from="1667652190915" duration="13632000" />
-      <workItem from="1667677686287" duration="5641000" />
-      <workItem from="1667826290640" duration="2359000" />
-      <workItem from="1667830279457" duration="35070000" />
-      <workItem from="1668086320058" duration="3645000" />
-      <workItem from="1668092505531" duration="15580000" />
-      <workItem from="1668332144001" duration="12075000" />
-      <workItem from="1668522670931" duration="20395000" />
-      <workItem from="1668619932689" duration="973000" />
-      <workItem from="1669324550693" duration="3372000" />
-      <workItem from="1669393285411" duration="8759000" />
-      <workItem from="1669592480454" duration="4786000" />
-      <workItem from="1669647258266" duration="13983000" />
-      <workItem from="1669818202387" duration="573000" />
-      <workItem from="1669819306084" duration="19104000" />
-      <workItem from="1669991116242" duration="10906000" />
-      <workItem from="1670334992402" duration="32828000" />
-      <workItem from="1670507137734" duration="8747000" />
-      <workItem from="1670866159130" duration="5842000" />
-      <workItem from="1670941614718" duration="28429000" />
-      <workItem from="1671113616036" duration="378000" />
-      <workItem from="1671114010303" duration="2162000" />
-      <workItem from="1671117063233" duration="3648000" />
-      <workItem from="1671473265007" duration="613000" />
-      <workItem from="1671473892000" duration="442000" />
-      <workItem from="1671474352629" duration="21352000" />
-      <workItem from="1671560906052" duration="415000" />
-      <workItem from="1671716203970" duration="14443000" />
-      <workItem from="1671805895457" duration="653000" />
-      <workItem from="1671806691956" duration="6858000" />
-      <workItem from="1672234500460" duration="7665000" />
-      <workItem from="1672247257619" duration="630000" />
-      <workItem from="1672326297201" duration="3248000" />
-      <workItem from="1672410620608" duration="608000" />
-      <workItem from="1672419858316" duration="58000" />
+      <updated>1672860357015</updated>
+      <workItem from="1672860360022" duration="35000" />
+      <workItem from="1672860466322" duration="662000" />
+      <workItem from="1672863981200" duration="40000" />
+      <workItem from="1672864038113" duration="2000" />
     </task>
-    <task id="LOCAL-00335" summary="Rewrite...">
-      <created>1667830289747</created>
-      <option name="number" value="00335" />
-      <option name="presentableId" value="LOCAL-00335" />
-      <option name="project" value="LOCAL" />
-      <updated>1667830289748</updated>
-    </task>
-    <task id="LOCAL-00336" summary="Rewrite...">
-      <created>1667831386309</created>
-      <option name="number" value="00336" />
-      <option name="presentableId" value="LOCAL-00336" />
-      <option name="project" value="LOCAL" />
-      <updated>1667831386309</updated>
-    </task>
-    <task id="LOCAL-00337" summary="Rewrite...">
-      <created>1667831865066</created>
-      <option name="number" value="00337" />
-      <option name="presentableId" value="LOCAL-00337" />
-      <option name="project" value="LOCAL" />
-      <updated>1667831865066</updated>
-    </task>
-    <task id="LOCAL-00338" summary="Rewrite...">
-      <created>1667831942016</created>
-      <option name="number" value="00338" />
-      <option name="presentableId" value="LOCAL-00338" />
-      <option name="project" value="LOCAL" />
-      <updated>1667831942016</updated>
-    </task>
-    <task id="LOCAL-00339" summary="Rewrite...">
-      <created>1667835856071</created>
-      <option name="number" value="00339" />
-      <option name="presentableId" value="LOCAL-00339" />
-      <option name="project" value="LOCAL" />
-      <updated>1667835856071</updated>
-    </task>
-    <task id="LOCAL-00340" summary="Rewrite...">
-      <created>1667836055160</created>
-      <option name="number" value="00340" />
-      <option name="presentableId" value="LOCAL-00340" />
-      <option name="project" value="LOCAL" />
-      <updated>1667836055160</updated>
-    </task>
-    <task id="LOCAL-00341" summary="Rewrite...">
-      <created>1667915567991</created>
-      <option name="number" value="00341" />
-      <option name="presentableId" value="LOCAL-00341" />
-      <option name="project" value="LOCAL" />
-      <updated>1667915567991</updated>
-    </task>
-    <task id="LOCAL-00342" summary="Rewrite...">
-      <created>1667916715087</created>
-      <option name="number" value="00342" />
-      <option name="presentableId" value="LOCAL-00342" />
-      <option name="project" value="LOCAL" />
-      <updated>1667916715087</updated>
-    </task>
-    <task id="LOCAL-00343" summary="Rewrite...">
-      <created>1667917163777</created>
-      <option name="number" value="00343" />
-      <option name="presentableId" value="LOCAL-00343" />
-      <option name="project" value="LOCAL" />
-      <updated>1667917163777</updated>
-    </task>
-    <task id="LOCAL-00344" summary="Rewrite...">
-      <created>1667917677525</created>
-      <option name="number" value="00344" />
-      <option name="presentableId" value="LOCAL-00344" />
-      <option name="project" value="LOCAL" />
-      <updated>1667917677525</updated>
-    </task>
-    <task id="LOCAL-00345" summary="Rewrite...">
-      <created>1667918421764</created>
-      <option name="number" value="00345" />
-      <option name="presentableId" value="LOCAL-00345" />
-      <option name="project" value="LOCAL" />
-      <updated>1667918421764</updated>
-    </task>
-    <task id="LOCAL-00346" summary="Rewrite...">
-      <created>1667940663930</created>
-      <option name="number" value="00346" />
-      <option name="presentableId" value="LOCAL-00346" />
-      <option name="project" value="LOCAL" />
-      <updated>1667940663931</updated>
-    </task>
-    <task id="LOCAL-00347" summary="Rewrite...">
-      <created>1668001735311</created>
-      <option name="number" value="00347" />
-      <option name="presentableId" value="LOCAL-00347" />
-      <option name="project" value="LOCAL" />
-      <updated>1668001735311</updated>
-    </task>
-    <task id="LOCAL-00348" summary="Rewrite...">
-      <created>1668001839018</created>
-      <option name="number" value="00348" />
-      <option name="presentableId" value="LOCAL-00348" />
-      <option name="project" value="LOCAL" />
-      <updated>1668001839018</updated>
-    </task>
-    <task id="LOCAL-00349" summary="Rewrite...">
-      <created>1668016012824</created>
-      <option name="number" value="00349" />
-      <option name="presentableId" value="LOCAL-00349" />
-      <option name="project" value="LOCAL" />
-      <updated>1668016012824</updated>
-    </task>
-    <task id="LOCAL-00350" summary="Rewrite...">
-      <created>1668016343390</created>
-      <option name="number" value="00350" />
-      <option name="presentableId" value="LOCAL-00350" />
-      <option name="project" value="LOCAL" />
-      <updated>1668016343390</updated>
-    </task>
-    <task id="LOCAL-00351" summary="Rewrite...">
-      <created>1668097255420</created>
-      <option name="number" value="00351" />
-      <option name="presentableId" value="LOCAL-00351" />
-      <option name="project" value="LOCAL" />
-      <updated>1668097255420</updated>
-    </task>
-    <task id="LOCAL-00352" summary="Rewrite...">
-      <created>1668097607641</created>
-      <option name="number" value="00352" />
-      <option name="presentableId" value="LOCAL-00352" />
-      <option name="project" value="LOCAL" />
-      <updated>1668097607641</updated>
-    </task>
-    <task id="LOCAL-00353" summary="Rewrite...">
-      <created>1668098193296</created>
-      <option name="number" value="00353" />
-      <option name="presentableId" value="LOCAL-00353" />
-      <option name="project" value="LOCAL" />
-      <updated>1668098193296</updated>
-    </task>
-    <task id="LOCAL-00354" summary="Rewrite...">
-      <created>1668098215331</created>
-      <option name="number" value="00354" />
-      <option name="presentableId" value="LOCAL-00354" />
-      <option name="project" value="LOCAL" />
-      <updated>1668098215331</updated>
-    </task>
-    <task id="LOCAL-00355" summary="Rewrite...">
-      <created>1668098288085</created>
-      <option name="number" value="00355" />
-      <option name="presentableId" value="LOCAL-00355" />
-      <option name="project" value="LOCAL" />
-      <updated>1668098288085</updated>
-    </task>
-    <task id="LOCAL-00356" summary="Rewrite...">
-      <created>1668098349189</created>
-      <option name="number" value="00356" />
-      <option name="presentableId" value="LOCAL-00356" />
-      <option name="project" value="LOCAL" />
-      <updated>1668098349189</updated>
-    </task>
-    <task id="LOCAL-00357" summary="Rewrite...">
-      <created>1668098438050</created>
-      <option name="number" value="00357" />
-      <option name="presentableId" value="LOCAL-00357" />
-      <option name="project" value="LOCAL" />
-      <updated>1668098438050</updated>
-    </task>
-    <task id="LOCAL-00358" summary="Rewrite...">
-      <created>1668107441312</created>
-      <option name="number" value="00358" />
-      <option name="presentableId" value="LOCAL-00358" />
-      <option name="project" value="LOCAL" />
-      <updated>1668107441312</updated>
-    </task>
-    <task id="LOCAL-00359" summary="Rewrite...">
-      <created>1668107736590</created>
-      <option name="number" value="00359" />
-      <option name="presentableId" value="LOCAL-00359" />
-      <option name="project" value="LOCAL" />
-      <updated>1668107736590</updated>
-    </task>
-    <task id="LOCAL-00360" summary="Rewrite...">
-      <created>1668436896106</created>
-      <option name="number" value="00360" />
-      <option name="presentableId" value="LOCAL-00360" />
-      <option name="project" value="LOCAL" />
-      <updated>1668436896106</updated>
-    </task>
-    <task id="LOCAL-00361" summary="Rewrite...">
-      <created>1668544753718</created>
-      <option name="number" value="00361" />
-      <option name="presentableId" value="LOCAL-00361" />
-      <option name="project" value="LOCAL" />
-      <updated>1668544753719</updated>
-    </task>
-    <task id="LOCAL-00362" summary="Rewrite...">
-      <created>1669408571488</created>
-      <option name="number" value="00362" />
-      <option name="presentableId" value="LOCAL-00362" />
-      <option name="project" value="LOCAL" />
-      <updated>1669408571488</updated>
-    </task>
-    <task id="LOCAL-00363" summary="Rewrite...">
-      <created>1669668005685</created>
-      <option name="number" value="00363" />
-      <option name="presentableId" value="LOCAL-00363" />
-      <option name="project" value="LOCAL" />
-      <updated>1669668005685</updated>
-    </task>
-    <task id="LOCAL-00364" summary="Rewrite...">
-      <created>1669907759384</created>
-      <option name="number" value="00364" />
-      <option name="presentableId" value="LOCAL-00364" />
-      <option name="project" value="LOCAL" />
-      <updated>1669907759384</updated>
-    </task>
-    <task id="LOCAL-00365" summary="Rewrite...">
-      <created>1669912415536</created>
-      <option name="number" value="00365" />
-      <option name="presentableId" value="LOCAL-00365" />
-      <option name="project" value="LOCAL" />
-      <updated>1669912415536</updated>
-    </task>
-    <task id="LOCAL-00366" summary="Process and IConv re-written.">
-      <created>1670424053818</created>
-      <option name="number" value="00366" />
-      <option name="presentableId" value="LOCAL-00366" />
-      <option name="project" value="LOCAL" />
-      <updated>1670424053818</updated>
-    </task>
-    <task id="LOCAL-00367" summary="Process and IConv re-written.">
-      <created>1670451141594</created>
-      <option name="number" value="00367" />
-      <option name="presentableId" value="LOCAL-00367" />
-      <option name="project" value="LOCAL" />
-      <updated>1670451141594</updated>
-    </task>
-    <task id="LOCAL-00368" summary="JoinableThread cleaned up.">
-      <created>1670512195195</created>
-      <option name="number" value="00368" />
-      <option name="presentableId" value="LOCAL-00368" />
-      <option name="project" value="LOCAL" />
-      <updated>1670512195195</updated>
-    </task>
-    <task id="LOCAL-00369" summary="JoinableThread cleaned up.">
-      <created>1670519080346</created>
-      <option name="number" value="00369" />
-      <option name="presentableId" value="LOCAL-00369" />
-      <option name="project" value="LOCAL" />
-      <updated>1670519080346</updated>
-    </task>
-    <task id="LOCAL-00370" summary="JoinableThread cleaned up.">
-      <created>1670520609220</created>
-      <option name="number" value="00370" />
-      <option name="presentableId" value="LOCAL-00370" />
-      <option name="project" value="LOCAL" />
-      <updated>1670520609220</updated>
-    </task>
-    <task id="LOCAL-00371" summary="JoinableThread cleaned up.">
-      <created>1670521182222</created>
-      <option name="number" value="00371" />
-      <option name="presentableId" value="LOCAL-00371" />
-      <option name="project" value="LOCAL" />
-      <updated>1670521182222</updated>
-    </task>
-    <task id="LOCAL-00372" summary="JoinableThread cleaned up.">
-      <created>1670866164750</created>
-      <option name="number" value="00372" />
-      <option name="presentableId" value="LOCAL-00372" />
-      <option name="project" value="LOCAL" />
-      <updated>1670866164750</updated>
-    </task>
-    <task id="LOCAL-00373" summary="JoinableThread cleaned up.">
-      <created>1670866188241</created>
-      <option name="number" value="00373" />
-      <option name="presentableId" value="LOCAL-00373" />
-      <option name="project" value="LOCAL" />
-      <updated>1670866188241</updated>
-    </task>
-    <task id="LOCAL-00374" summary="JoinableThread cleaned up.">
-      <created>1670940798280</created>
-      <option name="number" value="00374" />
-      <option name="presentableId" value="LOCAL-00374" />
-      <option name="project" value="LOCAL" />
-      <updated>1670940798280</updated>
-    </task>
-    <task id="LOCAL-00375" summary="JoinableThread cleaned up.">
-      <created>1671028940177</created>
-      <option name="number" value="00375" />
-      <option name="presentableId" value="LOCAL-00375" />
-      <option name="project" value="LOCAL" />
-      <updated>1671028940177</updated>
-    </task>
-    <task id="LOCAL-00376" summary="JoinableThread cleaned up.">
-      <created>1671029026591</created>
-      <option name="number" value="00376" />
-      <option name="presentableId" value="LOCAL-00376" />
-      <option name="project" value="LOCAL" />
-      <updated>1671029026591</updated>
-    </task>
-    <task id="LOCAL-00377" summary="JoinableThread cleaned up.">
-      <created>1671046278790</created>
-      <option name="number" value="00377" />
-      <option name="presentableId" value="LOCAL-00377" />
-      <option name="project" value="LOCAL" />
-      <updated>1671046278790</updated>
-    </task>
-    <task id="LOCAL-00378" summary="AutoUnsafeMutablePointer">
-      <created>1671722687629</created>
-      <option name="number" value="00378" />
-      <option name="presentableId" value="LOCAL-00378" />
-      <option name="project" value="LOCAL" />
-      <updated>1671722687629</updated>
-    </task>
-    <task id="LOCAL-00379" summary="AutoUnsafeMutablePointer">
-      <created>1671808643771</created>
-      <option name="number" value="00379" />
-      <option name="presentableId" value="LOCAL-00379" />
-      <option name="project" value="LOCAL" />
-      <updated>1671808643771</updated>
-    </task>
-    <task id="LOCAL-00380" summary="AutoUnsafeMutablePointer">
-      <created>1671808896703</created>
-      <option name="number" value="00380" />
-      <option name="presentableId" value="LOCAL-00380" />
-      <option name="project" value="LOCAL" />
-      <updated>1671808896703</updated>
-    </task>
-    <task id="LOCAL-00381" summary="AutoUnsafeMutablePointer">
-      <created>1671808977581</created>
-      <option name="number" value="00381" />
-      <option name="presentableId" value="LOCAL-00381" />
-      <option name="project" value="LOCAL" />
-      <updated>1671808977581</updated>
-    </task>
-    <task id="LOCAL-00382" summary="Clean up.">
-      <created>1672328338953</created>
-      <option name="number" value="00382" />
-      <option name="presentableId" value="LOCAL-00382" />
-      <option name="project" value="LOCAL" />
-      <updated>1672328338954</updated>
-    </task>
-    <task id="LOCAL-00383" summary="Clean up.">
-      <created>1672328370746</created>
-      <option name="number" value="00383" />
-      <option name="presentableId" value="LOCAL-00383" />
-      <option name="project" value="LOCAL" />
-      <updated>1672328370746</updated>
-    </task>
-    <option name="localTasksCounter" value="384" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="master" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
-    <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added extension Dictionary.remapValues(_:)." />
-    <MESSAGE value="Added `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`" />
-    <MESSAGE value="Added test for `func isType&lt;O, T&gt;(_ o: O, _ t: T.Type) -&gt; Bool`" />
-    <MESSAGE value="Added StopWatch." />
-    <MESSAGE value="Linux fixes." />
-    <MESSAGE value="Blah, blah, blah." />
-    <MESSAGE value="Updated to latest version of Chadakoin." />
-    <MESSAGE value="Made sure MarkInputStream.getProperty(forKey:) passes down to underlying input stream." />
-    <MESSAGE value="Post Update." />
-    <MESSAGE value="Simplified ThreadLocal property wrappewr." />
-    <MESSAGE value="Simplified Atomic property wrapper." />
-    <MESSAGE value="Updated Triggered property wrapper to include get as well as set." />
-    <MESSAGE value="Reworked CErrors" />
-    <MESSAGE value="Cleanup" />
-    <MESSAGE value="Clean up of StringFormat." />
-    <MESSAGE value="No comment." />
-    <MESSAGE value="Extensions to CharacterSet." />
-    <MESSAGE value="Clean up" />
-    <MESSAGE value="syncIterate" />
-    <MESSAGE value="Updated Readme file." />
-    <MESSAGE value="Rewrite..." />
-    <MESSAGE value="Process and IConv re-written." />
-    <MESSAGE value="JoinableThread cleaned up." />
-    <MESSAGE value="AutoUnsafeMutablePointer" />
-    <MESSAGE value="Clean up." />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean up." />
-    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
-    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
-    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="CidrCoverage/Rubicon/Rubicon Tests.json" NAME="Rubicon Tests Coverage Results" MODIFIED="1608608581698" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="llvm-cov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

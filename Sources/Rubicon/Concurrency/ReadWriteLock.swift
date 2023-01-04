@@ -64,29 +64,33 @@ public class ReadWriteLock {
     }
 
     public func tryReadLock() -> Bool {
-        let r = pthread_rwlock_tryrdlock(&_lock)
-        guard ((r == 0) || (r == EBUSY)) else { fatalError("Unable to obtain read lock: \(errorType(r))") }
-        return (r == 0)
+        yyy(results: pthread_rwlock_tryrdlock(&_lock), type: "read")
     }
 
     public func tryWriteLock() -> Bool {
-        let r = pthread_rwlock_trywrlock(&_lock)
-        guard ((r == 0) || (r == EBUSY)) else { fatalError("Unable to obtain write lock: \(errorType(r))") }
-        return (r == 0)
+        yyy(results: pthread_rwlock_trywrlock(&_lock), type: "write")
     }
 
     public func readLock(before limit: Date) -> Bool {
-        var r = pthread_rwlock_tryrdlock(&_lock)
-        while ((r == EBUSY) && (limit.compare(Date()) == .orderedDescending)) { r = pthread_rwlock_tryrdlock(&_lock) }
-        guard ((r == 0) || (r == EBUSY)) else { fatalError("Unable to obtain read lock: \(errorType(r))") }
-        return (r == 0)
+        xxx(before: limit, type: "read") { pthread_rwlock_tryrdlock(&_lock) }
     }
 
     public func writeLock(before limit: Date) -> Bool {
-        var r = pthread_rwlock_trywrlock(&_lock)
-        while ((r == EBUSY) && (limit.compare(Date()) == .orderedDescending)) { r = pthread_rwlock_trywrlock(&_lock) }
-        guard ((r == 0) || (r == EBUSY)) else { fatalError("Unable to obtain write lock: \(errorType(r))") }
-        return (r == 0)
+        xxx(before: limit, type: "write") { pthread_rwlock_trywrlock(&_lock) }
+    }
+
+    private func xxx(before limit: Date, type s: String, _ b: () -> Int32) -> Bool {
+        var r = b()
+        while (r == EBUSY) && (Date() < limit) { r = b() }
+        return yyy(results: r, type: s)
+    }
+
+    private func yyy(results: Int32, type: String) -> Bool {
+        switch results {
+            case 0:     return true
+            case EBUSY: return false
+            default:    fatalError("Unable to obtain \(type) lock: \(errorType(results))")
+        }
     }
 }
 

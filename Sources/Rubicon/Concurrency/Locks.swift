@@ -22,13 +22,6 @@
 
 import Foundation
 import CoreFoundation
-#if canImport(Darwin)
-    import Darwin
-#elseif canImport(Glibc)
-    import Glibc
-#elseif canImport(WinSDK)
-    import WinSDK
-#endif
 
 extension NSLocking {
     @discardableResult @inlinable public func withLock<T>(_ action: () throws -> T) rethrows -> T {

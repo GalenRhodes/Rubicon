@@ -4,21 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aeec484-a1dd-415e-9f33-f4f3a7360460" name="Changes" comment="Commit">
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/UnsafeBufferPointer.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/UnsafeMutableBufferPointer.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/UnsafeMutableRawBufferPointer.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/UnsafePointer.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/UnsafeRawBufferPointer.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/UnsafeRawPointer.swift" afterDir="false" />
+    <list default="true" id="6aeec484-a1dd-415e-9f33-f4f3a7360460" name="Changes" comment="Cleanup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Rubicon.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Experiments/main.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Experiments/main.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/AutoUnsafeMutablePointer.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/AutoUnsafeMutablePointer.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Threads/JThread.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Threads/JoinableThread.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Threads/VThread.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Threads/ValueThread.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/Buffers.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Buffers/Buffers.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/Process.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Extenstions/Process.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Locks.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/Locks.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/ReadWriteLock.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Concurrency/ReadWriteLock.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +103,7 @@
       <workItem from="1672863981200" duration="40000" />
       <workItem from="1672864038113" duration="286000" />
       <workItem from="1672864335838" duration="56000" />
-      <workItem from="1672864406972" duration="1309000" />
+      <workItem from="1672864406972" duration="2645000" />
     </task>
     <task id="LOCAL-00001" summary="Commit">
       <created>1672864278843</created>
@@ -130,7 +119,21 @@
       <option name="project" value="LOCAL" />
       <updated>1672864363183</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Cleanup">
+      <created>1672865917383</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1672865917383</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Cleanup">
+      <created>1672865930876</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1672865930876</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,7 +152,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit" />
+    <MESSAGE value="Cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleanup" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

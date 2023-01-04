@@ -24,7 +24,7 @@ import Foundation
 import CoreFoundation
 
 /*==============================================================================================================================================================================*/
-open class JThread: Hashable {
+open class JoinableThread: Hashable {
     public typealias ThreadBlock = () -> Void
 
     @inlinable public class var isMainThread:    Bool { Thread.isMainThread }
@@ -100,9 +100,9 @@ open class JThread: Hashable {
     /*@f1======================================================================================================================================================================*/
     private func createThread() -> Thread {
         let thd = Thread { [self] in
+            defer { lock.withLock { status = .finished } }
             lock.withLock { status = .executing }
             main()
-            lock.withLock { status = .finished }
         }
         thd.name = data.name
         if let q = data.qualityOfService { thd.qualityOfService = q }
@@ -111,17 +111,17 @@ open class JThread: Hashable {
     }
 }
 
-extension JThread {
+extension JoinableThread {
 
     /*==========================================================================================================================================================================*/
     @inlinable public func hash(into hasher: inout Hasher) { hasher.combine(thread.hashValue) }
 
     /*==========================================================================================================================================================================*/
-    @inlinable public static func == (lhs: JThread, rhs: Thread) -> Bool { lhs.thread === rhs }
+    @inlinable public static func == (lhs: JoinableThread, rhs: Thread) -> Bool { lhs.thread === rhs }
 
     /*==========================================================================================================================================================================*/
-    @inlinable public static func == (lhs: Thread, rhs: JThread) -> Bool { lhs === rhs.thread }
+    @inlinable public static func == (lhs: Thread, rhs: JoinableThread) -> Bool { lhs === rhs.thread }
 
     /*==========================================================================================================================================================================*/
-    @inlinable public static func == (lhs: JThread, rhs: JThread) -> Bool { lhs === rhs }
+    @inlinable public static func == (lhs: JoinableThread, rhs: JoinableThread) -> Bool { lhs === rhs }
 }

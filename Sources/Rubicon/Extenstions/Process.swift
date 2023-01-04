@@ -271,12 +271,12 @@ extension Process {
     }
 
     /*==========================================================================================================================================================================*/
-    private class func start(threads: VThread<Void>?...) {
+    private class func start(threads: ValueThread<Void>?...) {
         for t in threads { if let t = t { t.start() } }
     }
 
     /*==========================================================================================================================================================================*/
-    private class func join(threads: VThread<Void>?...) throws {
+    private class func join(threads: ValueThread<Void>?...) throws {
         var error: Error? = nil
         for t in threads { if let t = t { do { try t.get() } catch let e { if error == nil { error = e } } } } /*@f0*/
         if let e = error { throw e } /*@f1*/
@@ -313,7 +313,7 @@ extension Process {
     }
 
     /*==========================================================================================================================================================================*/
-    private class ProcessThread: VThread<Void> {
+    private class ProcessThread: ValueThread<Void> {
         let pipe: Pipe = Pipe()
 
         init() { super.init(qualityOfService: .background) }

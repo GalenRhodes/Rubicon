@@ -39,7 +39,7 @@ public typealias Predicate = () -> Bool
 /// library's [Callable](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Callable.html)/[Future](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html)
 /// interface paradigm.
 ///
-open class VThread<T> {
+open class ValueThread<T> {
 
     /*==========================================================================================================================================================================*/
     /// The closure type for this class. Note that it can throw an error AND return a value. The closure accepts a single parameter which, itself, is a closure
@@ -121,23 +121,30 @@ open class VThread<T> {
 
     @usableFromInline      let data:   TInfo
     @usableFromInline      var value:  T?      = nil
-    @usableFromInline lazy var thread: JThread = JThread(name: data.name, qualityOfService: data.qualityOfService, stackSize: data.stackSize) { self.main() }
+    @usableFromInline lazy var thread: JoinableThread = JoinableThread(name: data.name, qualityOfService: data.qualityOfService, stackSize: data.stackSize) { self.main() }
 
     /*==========================================================================================================================================================================*/
-    private func main() { do { value = try main { thread.isCancelled } } catch let e { error = e } }
+    private func main() {
+        do {
+            value = try main(isCancelled: { thread.isCancelled })
+        }
+        catch let e {
+            error = e
+        }
+    }
 }/*@f1*/
 
-extension VThread {
+extension ValueThread {
 
     @inlinable public func hash(into hasher: inout Hasher) { thread.hash(into: &hasher) }
 
-    @inlinable public static func == (lhs: VThread, rhs: JThread) -> Bool { lhs.thread === rhs }
+    @inlinable public static func == (lhs: ValueThread, rhs: JoinableThread) -> Bool { lhs.thread === rhs }
 
-    @inlinable public static func == (lhs: JThread, rhs: VThread) -> Bool { lhs === rhs.thread }
+    @inlinable public static func == (lhs: JoinableThread, rhs: ValueThread) -> Bool { lhs === rhs.thread }
 
-    @inlinable public static func == (lhs: VThread, rhs: Thread) -> Bool { lhs.thread === rhs }
+    @inlinable public static func == (lhs: ValueThread, rhs: Thread) -> Bool { lhs.thread === rhs }
 
-    @inlinable public static func == (lhs: Thread, rhs: VThread) -> Bool { lhs === rhs.thread }
+    @inlinable public static func == (lhs: Thread, rhs: ValueThread) -> Bool { lhs === rhs.thread }
 
-    @inlinable public static func == (lhs: VThread, rhs: VThread) -> Bool { lhs === rhs }
+    @inlinable public static func == (lhs: ValueThread, rhs: ValueThread) -> Bool { lhs === rhs }
 }

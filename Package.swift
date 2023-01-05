@@ -29,7 +29,7 @@ let package = Package(
             .linkedLibrary("pthread", .when(platforms: [ .linux, .android, .wasi, ])),
         ]
       ),
-      .testTarget(name: "RubiconTests", dependencies: [ "Rubicon", ], exclude: [ "Info.plist", ], resources: [ .copy("Files"), ]),
+      .testTarget(name: "RubiconTests", dependencies: [ "Rubicon", ], exclude: [ "Info.plist", ], resources: [ .copy("XMLTestFiles"), ]),
       .executableTarget(name: "Experiments", dependencies: [ "Rubicon", ], exclude: [ "Info.plist", ])
   ]
 )

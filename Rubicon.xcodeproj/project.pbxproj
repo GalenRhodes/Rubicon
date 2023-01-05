@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1117D15F353E12A03B8D4FBF /* RedBlackDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DBC07997A38210509AC1 /* RedBlackDictionary.swift */; };
 		1117D21C51D2693249DB1EDC /* Buffers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DE5AF9FD97F43B23698B /* Buffers.swift */; };
 		1117D223DB2A4F9A44D97864 /* UnsafeRawBufferPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DD3B0DBB8E212BC619EC /* UnsafeRawBufferPointer.swift */; };
 		1117D3531FAB9072978EE38D /* AutoUnsafeMutablePointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DA1F1C92598AA9C9C5E3 /* AutoUnsafeMutablePointer.swift */; };
@@ -91,8 +92,15 @@
 		1117D0008072691BE2A8E571 /* UnsafeBufferPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsafeBufferPointer.swift; sourceTree = "<group>"; };
 		1117D3EDC74147679BEC244C /* UnsafePointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsafePointer.swift; sourceTree = "<group>"; };
 		1117D45FF62ADC0E75D08EB9 /* UnsafeMutableBufferPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsafeMutableBufferPointer.swift; sourceTree = "<group>"; };
+		1117D586E0E7B3CF4AE9BBAD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1117D6794505B5C673439D3E /* Format.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Format.md; sourceTree = "<group>"; };
+		1117D75B0609A8A9B9A39A72 /* RegularExpression.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = RegularExpression.md; sourceTree = "<group>"; };
+		1117D83B8D7C1503E5CA0EA5 /* SampleText-UTF16.txt */ = {isa = PBXFileReference; fileEncoding = 2415919360; lastKnownFileType = text; path = "SampleText-UTF16.txt"; sourceTree = "<group>"; };
 		1117D86763E91994CD569420 /* UnsafeMutableRawBufferPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsafeMutableRawBufferPointer.swift; sourceTree = "<group>"; };
+		1117D9C35CDB8E8634C1D783 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		1117D9D73878B488CEA538A8 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		1117DA1F1C92598AA9C9C5E3 /* AutoUnsafeMutablePointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoUnsafeMutablePointer.swift; sourceTree = "<group>"; };
+		1117DBC07997A38210509AC1 /* RedBlackDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedBlackDictionary.swift; sourceTree = "<group>"; };
 		1117DCC4AF682D9EBDDAC042 /* UnsafeRawPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsafeRawPointer.swift; sourceTree = "<group>"; };
 		1117DD3B0DBB8E212BC619EC /* UnsafeRawBufferPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsafeRawBufferPointer.swift; sourceTree = "<group>"; };
 		1117DE5AF9FD97F43B23698B /* Buffers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buffers.swift; sourceTree = "<group>"; };
@@ -125,12 +133,6 @@
 		83C974192966136B007D3ED9 /* IConvError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IConvError.swift; sourceTree = "<group>"; };
 		83C9741A2966136B007D3ED9 /* IConvInputStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IConvInputStream.swift; sourceTree = "<group>"; };
 		83C9741B2966136B007D3ED9 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
-		83C9743E296613D0007D3ED9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		83C97440296613D1007D3ED9 /* Format.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Format.md; sourceTree = "<group>"; };
-		83C97441296613D1007D3ED9 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		83C97442296613D1007D3ED9 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		83C97443296613D1007D3ED9 /* RegularExpression.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = RegularExpression.md; sourceTree = "<group>"; };
-		83C9744A29661447007D3ED9 /* SampleText-UTF16.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "SampleText-UTF16.txt"; sourceTree = "<group>"; };
 		83C9744C296614F1007D3ED9 /* Test_UTF-8_ext.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Test_UTF-8_ext.xml"; sourceTree = "<group>"; };
 		83C9744D296614F1007D3ED9 /* Test_UTF-16BE.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Test_UTF-16BE.xml"; sourceTree = "<group>"; };
 		83C9744E296614F1007D3ED9 /* compname.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = compname.txt; sourceTree = "<group>"; };
@@ -197,18 +199,42 @@
 			path = Buffers;
 			sourceTree = "<group>";
 		};
+		1117D5FF162DE6DBF45E1A32 /* IConvTestFiles */ = {
+			isa = PBXGroup;
+			children = (
+				1117D83B8D7C1503E5CA0EA5 /* SampleText-UTF16.txt */,
+			);
+			path = IConvTestFiles;
+			sourceTree = "<group>";
+		};
+		1117DD02A9119E9CE3DEEBB0 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				1117D6794505B5C673439D3E /* Format.md */,
+				1117D586E0E7B3CF4AE9BBAD /* README.md */,
+				1117D75B0609A8A9B9A39A72 /* RegularExpression.md */,
+				1117D9C35CDB8E8634C1D783 /* Package.swift */,
+				1117D9D73878B488CEA538A8 /* LICENSE */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		1117DFFF46BFF170B2416543 /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				1117DBC07997A38210509AC1 /* RedBlackDictionary.swift */,
+			);
+			path = Collections;
+			sourceTree = "<group>";
+		};
 		837FA973296611BD00B1D01C = {
 			isa = PBXGroup;
 			children = (
-				83C97440296613D1007D3ED9 /* Format.md */,
-				83C9743E296613D0007D3ED9 /* LICENSE */,
-				83C97442296613D1007D3ED9 /* Package.swift */,
-				83C97441296613D1007D3ED9 /* README.md */,
-				83C97443296613D1007D3ED9 /* RegularExpression.md */,
 				837FA997296611CD00B1D01C /* Sources */,
 				837FA998296611DB00B1D01C /* Tests */,
 				837FA97E296611BD00B1D01C /* Products */,
 				83C973F7296612A5007D3ED9 /* Frameworks */,
+				1117DD02A9119E9CE3DEEBB0 /* Other */,
 			);
 			sourceTree = "<group>";
 		};
@@ -236,6 +262,7 @@
 				837FA980296611BD00B1D01C /* Rubicon.h */,
 				837FA981296611BD00B1D01C /* Rubicon.docc */,
 				1117D0B0C393D3AED3A31551 /* Buffers */,
+				1117DFFF46BFF170B2416543 /* Collections */,
 			);
 			path = Rubicon;
 			sourceTree = "<group>";
@@ -243,8 +270,9 @@
 		837FA98B296611BD00B1D01C /* RubiconTests */ = {
 			isa = PBXGroup;
 			children = (
-				83C9744B296614F1007D3ED9 /* Files */,
+				83C9744B296614F1007D3ED9 /* XMLTestFiles */,
 				837FA98C296611BD00B1D01C /* RubiconTests.swift */,
+				1117D5FF162DE6DBF45E1A32 /* IConvTestFiles */,
 			);
 			path = RubiconTests;
 			sourceTree = "<group>";
@@ -263,7 +291,6 @@
 		837FA998296611DB00B1D01C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				83C9744929661447007D3ED9 /* TestFiles */,
 				83C9745A2966151B007D3ED9 /* LinuxMain.swift */,
 				837FA98B296611BD00B1D01C /* RubiconTests */,
 			);
@@ -340,15 +367,7 @@
 			path = IConv;
 			sourceTree = "<group>";
 		};
-		83C9744929661447007D3ED9 /* TestFiles */ = {
-			isa = PBXGroup;
-			children = (
-				83C9744A29661447007D3ED9 /* SampleText-UTF16.txt */,
-			);
-			path = TestFiles;
-			sourceTree = "<group>";
-		};
-		83C9744B296614F1007D3ED9 /* Files */ = {
+		83C9744B296614F1007D3ED9 /* XMLTestFiles */ = {
 			isa = PBXGroup;
 			children = (
 				83C9744C296614F1007D3ED9 /* Test_UTF-8_ext.xml */,
@@ -366,7 +385,7 @@
 				83C97458296614F1007D3ED9 /* Test_UTF-32LE.xml */,
 				83C97459296614F1007D3ED9 /* Test_UTF-8_ext.dtd */,
 			);
-			path = Files;
+			path = XMLTestFiles;
 			sourceTree = "<group>";
 		};
 		83C9745C2966168A007D3ED9 /* semaphore */ = {
@@ -555,6 +574,7 @@
 				1117DD68414472598F9F902F /* UnsafeMutableBufferPointer.swift in Sources */,
 				1117D673BA02FCF694588F57 /* UnsafeRawPointer.swift in Sources */,
 				1117DFD443EF4B5BA70D9957 /* UnsafePointer.swift in Sources */,
+				1117D15F353E12A03B8D4FBF /* RedBlackDictionary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

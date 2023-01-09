@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aeec484-a1dd-415e-9f33-f4f3a7360460" name="Changes" comment="Cleanup">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Collections/RedBlackDictionary.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Collections/RedBlackDictionary.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sources/Rubicon/Functions.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Sources/Rubicon/Functions.swift" afterDir="false" />
-    </list>
+    <list default="true" id="6aeec484-a1dd-415e-9f33-f4f3a7360460" name="Changes" comment="Cleanup" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,7 +105,7 @@
       <workItem from="1672864335838" duration="56000" />
       <workItem from="1672864406972" duration="2763000" />
       <workItem from="1672932101102" duration="18530000" />
-      <workItem from="1673193093388" duration="3134000" />
+      <workItem from="1673193093388" duration="3758000" />
     </task>
     <task id="LOCAL-00001" summary="Commit">
       <created>1672864278843</created>
@@ -153,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672956588836</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Cleanup">
+      <created>1673268090262</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1673268090262</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,9 +174,15 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Commit" />
     <MESSAGE value="Cleanup" />
     <option name="LAST_COMMIT_MESSAGE" value="Cleanup" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

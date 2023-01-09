@@ -27,6 +27,9 @@ open class RedBlackDictionary<Key: Comparable, Value> {
 
     @usableFromInline var root: Node? = nil
 
+    /*==========================================================================================================================================================================*/
+    /// Internal class to hold the data for each node of the tree.
+    ///
     @usableFromInline class Node: Equatable {
         @usableFromInline enum Color { case Black, Red }
 
@@ -37,12 +40,14 @@ open class RedBlackDictionary<Key: Comparable, Value> {
         @usableFromInline var color:  Color = .Black
         @usableFromInline var count:  Int   = 1
         @usableFromInline var parent: Node? = nil
-        @usableFromInline var root:   Node? { ((parent == nil) ? self : parent?.root) }
 
-        @inlinable var isRoot: Bool { parent == nil }
+        /*@f:0==================================================================================================================================================================*/
         @inlinable var left:   Node? { _left }
         @inlinable var right:  Node? { _right }
-        @inlinable var side:   Side { ((parent == nil) ? .Neither : ((parent!._left === self) ? .Left : ((parent!._right === self) ? .Right : .Neither))) }
+        @inlinable var root:   Node  { ((parent == nil) ? self : parent!.root) }
+        @inlinable var isRoot: Bool  { parent == nil }
+        @inlinable var side:   Side  { whenNotNil(parent, { $0._left === self ? .Left : .Right }, else: { .Neither }) }
+        /*@f:1==================================================================================================================================================================*/
 
         @inlinable init(key k: Key, value v: Value, color c: Color = .Black) {
             color = c
@@ -50,32 +55,37 @@ open class RedBlackDictionary<Key: Comparable, Value> {
             value = v
         }
 
-        @inlinable func keyComp(key k: Key) -> Side {
-            ((key == k) ? .Right : .Left)
+        /*======================================================================================================================================================================*/
+        @inlinable subscript(s: Side) -> Node? {
+            get { failIfNot(predicate: (s != .Neither), message: "Illegal Action") { ((s == .Left) ? _left : _right) } }
+            set { add(newChild: newValue, toSide: s) }
         }
 
+        /*======================================================================================================================================================================*/
         @usableFromInline func nodeFor(key k: Key) -> Node? {
-            ((key == k) ? self : self[keyComp(key: k)]?.nodeFor(key: k))
+            ((key == k) ? self : self[compareKey(toOtherKey: k)]?.nodeFor(key: k))
         }
 
+        /*======================================================================================================================================================================*/
         @usableFromInline func insert(key k: Key, value v: Value) -> Node {
             if key == k {
                 value = v
                 return self
             }
-            let s = keyComp(key: k)
+            let s = compareKey(toOtherKey: k)
             guard let n = self[s] else { return addNew(key: k, value: v, side: s) }
             return n.insert(key: k, value: v)
         }
 
+        /*======================================================================================================================================================================*/
         @inlinable func addNew(key k: Key, value v: Value, side s: Side) -> Node {
             let n = Node(key: k, value: v, color: .Red)
             self[s] = n
-            n.insertBalance()
-            return n
+            return n.insertBalance().root
         }
 
-        @usableFromInline func insertBalance() {
+        /*======================================================================================================================================================================*/
+        @usableFromInline func insertBalance() -> Node {
             if let p = parent {
                 if p.color == .Red {
                     if let g = p.parent {
@@ -85,7 +95,7 @@ open class RedBlackDictionary<Key: Comparable, Value> {
                             p.color = .Black
                             u.color = .Black
                             g.color = .Red
-                            g.insertBalance()
+                            return g.insertBalance()
                         }
                         else {
                             if ps == !side { p.rotate(ps) }
@@ -100,8 +110,10 @@ open class RedBlackDictionary<Key: Comparable, Value> {
             else {
                 color = .Black
             }
+            return self
         }
 
+        /*======================================================================================================================================================================*/
         @inlinable func delete() -> Node? {
             if let _ = left, var r = right {
                 while let x = r.left { r = x }
@@ -124,6 +136,7 @@ open class RedBlackDictionary<Key: Comparable, Value> {
             }
         }
 
+        /*======================================================================================================================================================================*/
         @usableFromInline func deleteBalance(parent p: Node) {
             let sd = side
             if let s = p[!sd] {
@@ -138,6 +151,7 @@ open class RedBlackDictionary<Key: Comparable, Value> {
             }
         }
 
+        /*======================================================================================================================================================================*/
         @inlinable func deleteBalance0(parent p: Node, sibling s: Node, side sd: Side) {
             if s.color == .Black && (s.left?.color ?? .Black) == .Black && (s.right?.color ?? .Black) == .Black {
                 deleteBalance1(parent: p, sibling: s)
@@ -147,6 +161,7 @@ open class RedBlackDictionary<Key: Comparable, Value> {
             }
         }
 
+        /*======================================================================================================================================================================*/
         @inlinable func deleteBalance1(parent p: Node, sibling s: Node) {
             s.color = .Red
             if p.color == .Red {
@@ -157,6 +172,7 @@ open class RedBlackDictionary<Key: Comparable, Value> {
             }
         }
 
+        /*======================================================================================================================================================================*/
         @inlinable func deleteBalance2(parent p: Node, sibling s: Node, side sd: Side) {
             if let c = s[sd], c.color == .Red {
                 s.rotate(!sd)
@@ -167,6 +183,7 @@ open class RedBlackDictionary<Key: Comparable, Value> {
             }
         }
 
+        /*======================================================================================================================================================================*/
         @inlinable func deleteBalance3(parent p: Node, sibling s: Node, side sd: Side) {
             if let d = s[!sd], d.color == .Red {
                 p.rotate(sd)
@@ -175,8 +192,9 @@ open class RedBlackDictionary<Key: Comparable, Value> {
             }
         }
 
+        /*======================================================================================================================================================================*/
         @discardableResult @inlinable func rotate(_ dir: Side) -> Node {
-            guard dir != .Neither else { return self }
+            guard dir != .Neither else { fatalError("Illegal Action") }
             guard let c = self[!dir] else { fatalError("No \(!dir) node - cannot rotate \(dir).") }
             let cc = c[dir]
             if let p = parent { p[side] = c }
@@ -186,49 +204,62 @@ open class RedBlackDictionary<Key: Comparable, Value> {
             return c
         }
 
-        @inlinable subscript(s: Side) -> Node? {
-            get {
-                ((s == .Left) ? _left : ((s == .Right) ? _right : nil))
+        /*======================================================================================================================================================================*/
+        @inlinable func add(newChild: Node?, toSide s: Side) {
+            switch s {
+                case .Left:
+                    guard addSetup(forOldChild: _left, andNewChild: newChild) else { return }
+                    _left = newChild
+                case .Right:
+                    guard addSetup(forOldChild: _right, andNewChild: newChild) else { return }
+                    _right = newChild
+                case .Neither: fatalError("Illegal Action")
             }
-            set {
-                switch s {
-                    case .Neither:
-                        break
-                    case .Left:
-                        guard _left !== newValue else { return }
-                        if let n = _left { n.parent = nil }
-                        if let n = newValue, let p = n.parent { p[n.side] = nil }
-                        _left = newValue
-                        reCount()
 
-                    case .Right:
-                        guard _right !== newValue else { return }
-                        if let n = _right { n.parent = nil }
-                        if let n = newValue, let p = n.parent { p[n.side] = nil }
-                        _right = newValue
-                        reCount()
-                }
+            if let n = newChild {
+                if let p = n.parent { p[n.side] = nil }
+                n.parent = self
             }
+
+            reCount()
         }
 
+        /*======================================================================================================================================================================*/
+        @inlinable func addSetup(forOldChild oc: Node?, andNewChild nc: Node?) -> Bool {
+            guard oc !== nc else { return false }
+            oc?.parent = nil
+            return true
+        }
+
+        /*======================================================================================================================================================================*/
         @usableFromInline func reCount() {
             count = (1 + (left?.count ?? 0) + (right?.count ?? 0))
             parent?.reCount()
         }
 
+        /*======================================================================================================================================================================*/
+        @inlinable func compareKey(toOtherKey k: Key) -> Side {
+            ((key == k) ? .Right : .Left)
+        }
+
+        /*======================================================================================================================================================================*/
         @inlinable static func == (lhs: Node, rhs: Node) -> Bool { lhs === rhs }
 
+        /*======================================================================================================================================================================*/
         @usableFromInline var _left:  Node? = nil
         @usableFromInline var _right: Node? = nil
     }
 }
 
 extension RedBlackDictionary.Node.Color {
+    /*==========================================================================================================================================================================*/
     @inlinable static prefix func ! (_ c: RedBlackDictionary.Node.Color) -> RedBlackDictionary.Node.Color { c == .Black ? .Red : .Black }
 }
 
 extension RedBlackDictionary.Node.Side: CustomStringConvertible {
+    /*==========================================================================================================================================================================*/
     @inlinable static prefix func ! (_ s: RedBlackDictionary.Node.Side) -> RedBlackDictionary.Node.Side { ((s == .Left) ? .Right : ((s == .Right) ? .Left : .Neither)) }
 
+    /*==========================================================================================================================================================================*/
     @inlinable var description: String { ((self == .Left) ? "left" : ((self == .Right) ? "right" : "neither")) }
 }

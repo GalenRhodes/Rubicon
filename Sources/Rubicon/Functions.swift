@@ -85,3 +85,9 @@ import CoreFoundation
 /// - Returns: `true` if the type of `o` is equal to `t`.
 ///
 @inlinable public func isType<O, T>(_ o: O, _ t: T.Type) -> Bool { (type(of: o) == t) }
+
+
+@inlinable public func failIfNot<T>(predicate: @autoclosure () -> Bool, message: String, _ successAction: () throws -> T) rethrows -> T {
+    guard predicate() else { fatalError(message) }
+    return try successAction()
+}

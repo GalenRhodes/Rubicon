@@ -35,11 +35,11 @@ public class ReadWriteLock {
 
     public init() {
         #if os(Windows)
-            fatalError("Windows is not yet supported.")
+            fatalError(ErrMsgWindowsNotSupported)
         #else
             _lock = pthread_rwlock_t()
             let r = pthread_rwlock_init(&_lock, nil)
-            guard r == 0 else { fatalError("Unable to create read/write lock: \(errorType(r))") }
+            guard r == 0 else { fatalError(String(format: ErrMsgUnableToCreateLock, StrReadWrite, errorType(r))) }
         #endif
     }
 
@@ -55,28 +55,28 @@ public class ReadWriteLock {
 
     public func readLock() {
         let r = pthread_rwlock_rdlock(&_lock)
-        guard (r == 0) else { fatalError("Unable to obtain read lock: \(errorType(r))") }
+        guard (r == 0) else { fatalError(String(format: ErrMsgUnableToObtainLock, StrRead, errorType(r))) }
     }
 
     public func writeLock() {
         let r = pthread_rwlock_wrlock(&_lock)
-        guard (r == 0) else { fatalError("Unable to obtain write lock: \(errorType(r))") }
+        guard (r == 0) else { fatalError(String(format: ErrMsgUnableToObtainLock, StrWrite, errorType(r))) }
     }
 
     public func tryReadLock() -> Bool {
-        yyy(results: pthread_rwlock_tryrdlock(&_lock), type: "read")
+        yyy(results: pthread_rwlock_tryrdlock(&_lock), type: StrRead)
     }
 
     public func tryWriteLock() -> Bool {
-        yyy(results: pthread_rwlock_trywrlock(&_lock), type: "write")
+        yyy(results: pthread_rwlock_trywrlock(&_lock), type: StrWrite)
     }
 
     public func readLock(before limit: Date) -> Bool {
-        xxx(before: limit, type: "read") { pthread_rwlock_tryrdlock(&_lock) }
+        xxx(before: limit, type: StrRead) { pthread_rwlock_tryrdlock(&_lock) }
     }
 
     public func writeLock(before limit: Date) -> Bool {
-        xxx(before: limit, type: "write") { pthread_rwlock_trywrlock(&_lock) }
+        xxx(before: limit, type: StrWrite) { pthread_rwlock_trywrlock(&_lock) }
     }
 
     private func xxx(before limit: Date, type s: String, _ b: () -> Int32) -> Bool {
@@ -89,7 +89,7 @@ public class ReadWriteLock {
         switch results {
             case 0:     return true
             case EBUSY: return false
-            default:    fatalError("Unable to obtain \(type) lock: \(errorType(results))")
+            default:    fatalError(String(format: ErrMsgUnableToObtainLock, type, errorType(results)))
         }
     }
 }
@@ -134,11 +134,11 @@ extension ReadWriteLock {
 
 fileprivate func errorType(_ err: Int32) -> String {
     switch err {
-        case EBUSY:   return "[EBUSY] The lock is currently owned by another thread."
-        case EAGAIN:  return "[EAGAIN] Insufficient resources."
-        case ENOMEM:  return "[ENOMEM] Insufficient memory."
-        case EPERM:   return "[EPERM] Insufficient permissions."
-        case EDEADLK: return "[EDEADLK] A deadlock has occurred."
-        default:      return "[\(err)] Unknown Error."
+        case EBUSY:   return ErrDescLockOwnedByAnotherThread
+        case EAGAIN:  return ErrDescInsufficientResources
+        case ENOMEM:  return ErrDescInsufficientMemory
+        case EPERM:   return ErrDescInsufficientPermissions
+        case EDEADLK: return ErrDescDeadLock
+        default:      return String(format: ErrDescUnknownError, err)
     }
 }

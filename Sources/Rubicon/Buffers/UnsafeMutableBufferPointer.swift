@@ -24,9 +24,10 @@ import Foundation
 import CoreFoundation
 
 /*==============================================================================================================================================================================*/
+
 extension UnsafeMutableBufferPointer {
     /*==========================================================================================================================================================================*/
-    @inlinable public func withBaseAddress<R>(errorMessage: String = "Internal Error", _ block: (UnsafeMutablePointer<Element>, Int) throws -> R) rethrows -> R {
+    @inlinable public func withBaseAddress<R>(errorMessage: String = ErrMsgInternalError, _ block: (UnsafeMutablePointer<Element>, Int) throws -> R) rethrows -> R {
         guard let ptr = baseAddress else { fatalError(errorMessage) }
         return try block(ptr, count)
     }

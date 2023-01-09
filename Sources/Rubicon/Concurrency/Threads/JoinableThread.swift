@@ -56,7 +56,7 @@ open class JoinableThread: Hashable {
 
     /*==========================================================================================================================================================================*/
     open func main() {
-        guard let b = data.block else { fatalError(NoMainErrorMessage) }
+        guard let b = data.block else { fatalError(ErrMsgNoMain) }
         b()
     }
 

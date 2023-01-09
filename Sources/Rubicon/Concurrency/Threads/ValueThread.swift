@@ -78,7 +78,7 @@ open class ValueThread<T> {
     /// - Returns:
     /// - Throws:
     open func main(isCancelled: Predicate) throws -> T {
-        guard let b = data.block else { fatalError(NoMainErrorMessage) }
+        guard let b = data.block else { fatalError(ErrMsgNoMain) }
         return try b(isCancelled)
     }
 
@@ -113,7 +113,7 @@ open class ValueThread<T> {
     @inlinable func getValue() throws -> T {
         if let e = error { throw e }
         if let v = value { return v }
-        fatalError(NoValueErrorMessage)
+        fatalError(ErrMsgNoValue)
     }
 
     /*@f0======================================================================================================================================================================*/

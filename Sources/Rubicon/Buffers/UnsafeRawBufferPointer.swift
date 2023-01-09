@@ -26,7 +26,7 @@ import CoreFoundation
 /*==============================================================================================================================================================================*/
 extension UnsafeRawBufferPointer {
     /*==========================================================================================================================================================================*/
-    @inlinable public func withBaseAddress<R>(errorMessage: String = "Internal Error", _ block: (UnsafeRawPointer, Int) throws -> R) rethrows -> R {
+    @inlinable public func withBaseAddress<R>(errorMessage: String = ErrMsgInternalError, _ block: (UnsafeRawPointer, Int) throws -> R) rethrows -> R {
         guard let ptr = baseAddress else { fatalError(errorMessage) }
         return try block(ptr, count)
     }

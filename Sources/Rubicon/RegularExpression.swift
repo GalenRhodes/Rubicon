@@ -145,7 +145,7 @@ open class RegularExpression {
 
         init?(_ index: Int, _ string: String, _ nsRange: NSRange) {
             guard nsRange.location != NSNotFound else { return nil }
-            guard let r = StringRange(nsRange, in: string) else { fatalError("ERROR: Invalid string range.") }
+            guard let r = StringRange(nsRange, in: string) else { fatalError(ErrMsgInvalidRange) }
             self.index = index
             self.range = r
             self.substring = String(string[r])

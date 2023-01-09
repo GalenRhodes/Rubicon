@@ -1,4 +1,3 @@
-//
 // ===========================================================================
 //     PROJECT: Rubicon
 //    FILENAME: RedBlackDictionary.swift
@@ -23,6 +22,7 @@
 import Foundation
 import CoreFoundation
 
+
 open class RedBlackDictionary<Key: Comparable, Value> {
 
     @usableFromInline var root: Node? = nil
@@ -42,14 +42,18 @@ open class RedBlackDictionary<Key: Comparable, Value> {
         @usableFromInline var parent: Node? = nil
 
         /*@f:0==================================================================================================================================================================*/
-        @inlinable var left:   Node? { _left }
-        @inlinable var right:  Node? { _right }
-        @inlinable var root:   Node  { ((parent == nil) ? self : parent!.root) }
-        @inlinable var isRoot: Bool  { parent == nil }
+        @inlinable var left:   Node? { _left                                                                          }
+        @inlinable var right:  Node? { _right                                                                         }
+        @inlinable var root:   Node  { ((parent == nil) ? self : parent!.root)                                        }
+        @inlinable var isRoot: Bool  { parent == nil                                                                  }
         @inlinable var side:   Side  { whenNotNil(parent, { $0._left === self ? .Left : .Right }, else: { .Neither }) }
-        /*@f:1==================================================================================================================================================================*/
+        @inlinable var index:  Int   { ((side == .Right) ? (pIndex + lCount + 1) : (pIndex - rCount - 1))             }
+        @inlinable var pIndex: Int   { (parent?.index ?? 0)                                                           }
+        @inlinable var lCount: Int   { (_left?.count ?? 0)                                                            }
+        @inlinable var rCount: Int   { (_right?.count ?? 0)                                                           }
 
-        @inlinable init(key k: Key, value v: Value, color c: Color = .Black) {
+        /*@f:1==================================================================================================================================================================*/
+        @inlinable init(key k: Key, value v: Value, color c: Color) {
             color = c
             key = k
             value = v
@@ -57,7 +61,7 @@ open class RedBlackDictionary<Key: Comparable, Value> {
 
         /*======================================================================================================================================================================*/
         @inlinable subscript(s: Side) -> Node? {
-            get { failIfNot(predicate: (s != .Neither), message: "Illegal Action") { ((s == .Left) ? _left : _right) } }
+            get { failIfNot(predicate: (s != .Neither), message: ErrMsgIllegalAction) { ((s == .Left) ? _left : _right) } }
             set { add(newChild: newValue, toSide: s) }
         }
 
@@ -142,27 +146,27 @@ open class RedBlackDictionary<Key: Comparable, Value> {
             if let s = p[!sd] {
                 if s.color == .Red {
                     p.rotate(sd)
-                    guard let s = p[!sd] else { fatalError("RedBlackDictionary Inconsistent State") }
-                    deleteBalance0(parent: p, sibling: s, side: sd)
+                    guard let s = p[!sd] else { fatalError(String(format: ErrMsgInconsistentState, StrRedBlackDictionary)) }
+                    deleteBalance1(parent: p, sibling: s, side: sd)
                 }
                 else {
-                    deleteBalance0(parent: p, sibling: s, side: sd)
+                    deleteBalance1(parent: p, sibling: s, side: sd)
                 }
             }
         }
 
         /*======================================================================================================================================================================*/
-        @inlinable func deleteBalance0(parent p: Node, sibling s: Node, side sd: Side) {
+        @inlinable func deleteBalance1(parent p: Node, sibling s: Node, side sd: Side) {
             if s.color == .Black && (s.left?.color ?? .Black) == .Black && (s.right?.color ?? .Black) == .Black {
-                deleteBalance1(parent: p, sibling: s)
+                deleteBalance2(parent: p, sibling: s)
             }
             else {
-                deleteBalance2(parent: p, sibling: s, side: sd)
+                deleteBalance3(parent: p, sibling: s, side: sd)
             }
         }
 
         /*======================================================================================================================================================================*/
-        @inlinable func deleteBalance1(parent p: Node, sibling s: Node) {
+        @inlinable func deleteBalance2(parent p: Node, sibling s: Node) {
             s.color = .Red
             if p.color == .Red {
                 p.color = .Black
@@ -173,18 +177,18 @@ open class RedBlackDictionary<Key: Comparable, Value> {
         }
 
         /*======================================================================================================================================================================*/
-        @inlinable func deleteBalance2(parent p: Node, sibling s: Node, side sd: Side) {
+        @inlinable func deleteBalance3(parent p: Node, sibling s: Node, side sd: Side) {
             if let c = s[sd], c.color == .Red {
                 s.rotate(!sd)
-                deleteBalance3(parent: p, sibling: c, side: sd)
+                deleteBalance4(parent: p, sibling: c, side: sd)
             }
             else {
-                deleteBalance3(parent: p, sibling: s, side: sd)
+                deleteBalance4(parent: p, sibling: s, side: sd)
             }
         }
 
         /*======================================================================================================================================================================*/
-        @inlinable func deleteBalance3(parent p: Node, sibling s: Node, side sd: Side) {
+        @inlinable func deleteBalance4(parent p: Node, sibling s: Node, side sd: Side) {
             if let d = s[!sd], d.color == .Red {
                 p.rotate(sd)
                 p.color = .Black
@@ -193,15 +197,14 @@ open class RedBlackDictionary<Key: Comparable, Value> {
         }
 
         /*======================================================================================================================================================================*/
-        @discardableResult @inlinable func rotate(_ dir: Side) -> Node {
-            guard dir != .Neither else { fatalError("Illegal Action") }
-            guard let c = self[!dir] else { fatalError("No \(!dir) node - cannot rotate \(dir).") }
+        @inlinable func rotate(_ dir: Side) {
+            guard dir != .Neither else { fatalError(ErrMsgIllegalAction) }
+            guard let c = self[!dir] else { fatalError(String(format: ErrMsgCannotRotate, (!dir).description, dir.description)) }
             let cc = c[dir]
             if let p = parent { p[side] = c }
             self[!dir] = cc
             c[dir] = self
             swap(&c.color, &color)
-            return c
         }
 
         /*======================================================================================================================================================================*/
@@ -213,7 +216,7 @@ open class RedBlackDictionary<Key: Comparable, Value> {
                 case .Right:
                     guard addSetup(forOldChild: _right, andNewChild: newChild) else { return }
                     _right = newChild
-                case .Neither: fatalError("Illegal Action")
+                case .Neither: fatalError(ErrMsgIllegalAction)
             }
 
             if let n = newChild {
@@ -233,7 +236,7 @@ open class RedBlackDictionary<Key: Comparable, Value> {
 
         /*======================================================================================================================================================================*/
         @usableFromInline func reCount() {
-            count = (1 + (left?.count ?? 0) + (right?.count ?? 0))
+            count = (1 + lCount + rCount)
             parent?.reCount()
         }
 
@@ -253,13 +256,14 @@ open class RedBlackDictionary<Key: Comparable, Value> {
 
 extension RedBlackDictionary.Node.Color {
     /*==========================================================================================================================================================================*/
-    @inlinable static prefix func ! (_ c: RedBlackDictionary.Node.Color) -> RedBlackDictionary.Node.Color { c == .Black ? .Red : .Black }
+    @inlinable static prefix func ! (_ c: RedBlackDictionary.Node.Color) -> RedBlackDictionary.Node.Color { ((c == .Black) ? .Red : .Black) }
 }
 
 extension RedBlackDictionary.Node.Side: CustomStringConvertible {
+
     /*==========================================================================================================================================================================*/
     @inlinable static prefix func ! (_ s: RedBlackDictionary.Node.Side) -> RedBlackDictionary.Node.Side { ((s == .Left) ? .Right : ((s == .Right) ? .Left : .Neither)) }
 
     /*==========================================================================================================================================================================*/
-    @inlinable var description: String { ((self == .Left) ? "left" : ((self == .Right) ? "right" : "neither")) }
+    @inlinable var description: String { ((self == .Left) ? StrLeft : ((self == .Right) ? StrRight : StrNeither)) }
 }

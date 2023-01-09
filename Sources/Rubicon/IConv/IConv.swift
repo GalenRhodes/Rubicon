@@ -20,7 +20,7 @@
 // IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 // ===========================================================================
 
-#if os(Linux) || os(iOS) || os(tvOS) || os(watchOS) || os(macOS) || os(macOS)
+#if os(Linux) || os(iOS) || os(tvOS) || os(watchOS) || os(macOS) || os(OSX)
 
     import Foundation
     import CoreFoundation
@@ -75,7 +75,7 @@
         ///   - option: One of `IConv.Option.None`, `IConv.Option.Ignore`, or `IConv.Option.Transliterate`. (Defaults to `IConv.Option.None`)
         /// - Throws: If either the `outputEncoding` or the `inputEncoding` are not valid or some other error occurs.
         ///
-        public init(fromEncoding inputEncoding: String, toEncoding outputEncoding: String = "UTF-8", option: Option = .None) throws {
+        public init(fromEncoding inputEncoding: String, toEncoding outputEncoding: String = StrUTF8, option: Option = .None) throws {
             self.inputEncoding = inputEncoding
             self.outputEncoding = outputEncoding
             self.option = option
@@ -231,8 +231,8 @@
         @inlinable var flag: String {
             switch self {
                 case .None:          return ""
-                case .Ignore:        return "//IGNORE"
-                case .Transliterate: return "//TRANSLIT"
+                case .Ignore:        return StrIConvIgnore
+                case .Transliterate: return StrIConvTranslit
             }
         }
     }

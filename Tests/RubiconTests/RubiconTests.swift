@@ -32,7 +32,13 @@ public class RubiconTests: XCTestCase {
 
     public override func tearDown() {}
 
-    public func testWhich() {
+    public func testStringFormat() {
+        let dir = RedBlackDictionary<String, String>.Node.Side.Left
+        let s   = String(format: ErrMsgCannotRotate, (!dir).description, dir.description)
+        print(s)
+    }
+
+    public func t_estWhich() {
         do {
             print(testBar)
             try whichExample(exe: "iconv")
@@ -48,7 +54,7 @@ public class RubiconTests: XCTestCase {
         else { print("\"\(exe)\" was not found!") }
     }
 
-    public func testProcessExecute() {
+    public func t_estProcessExecute() {
         do {
             var stdOutData: Data = Data()
             var stdErrData: Data = Data()
@@ -76,7 +82,7 @@ public class RubiconTests: XCTestCase {
         }
     }
 
-    public func testIConvList() {
+    public func t_estIConvList() {
         do {
             print(testBar)
             let list: [String] = try IConv.getEncodingList()

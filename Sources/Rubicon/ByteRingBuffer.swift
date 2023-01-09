@@ -48,11 +48,11 @@ public class ByteRingBuffer {
     /*==========================================================================================================================================================================*/
     @inlinable public subscript(index: Int) -> UInt8 {
         get {
-            guard index >= 0 && index < count else { fatalError(IndexOutOfBoundsError) }
+            guard index >= 0 && index < count else { fatalError(ErrMsgIndexOutOfBounds) }
             return PGGetByteFromRingBuffer(ringBuffer, index)
         }
         set {
-            guard index >= 0 && index < count else { fatalError(IndexOutOfBoundsError) }
+            guard index >= 0 && index < count else { fatalError(ErrMsgIndexOutOfBounds) }
             PGSetByteOnRingBuffer(ringBuffer, index, newValue)
         }
     }
@@ -189,12 +189,12 @@ public class ByteRingBuffer {
 
     /*==========================================================================================================================================================================*/
     @inlinable func _prepend(data: UnsafeRawPointer, length: Int) {
-        guard PGPrependToRingBuffer(ringBuffer, data, length) else { fatalError(InsufficientMemoryError) }
+        guard PGPrependToRingBuffer(ringBuffer, data, length) else { fatalError(ErrMsgInsufficientMemory) }
     }
 
     /*==========================================================================================================================================================================*/
     @inlinable func _append(data: UnsafeRawPointer, length: Int) {
-        guard PGAppendToRingBuffer(ringBuffer, data, length) else { fatalError(InsufficientMemoryError) }
+        guard PGAppendToRingBuffer(ringBuffer, data, length) else { fatalError(ErrMsgInsufficientMemory) }
     }
 
     /*==========================================================================================================================================================================*/

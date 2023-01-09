@@ -46,7 +46,7 @@
         @usableFromInline let thread: IConvThread
 
         /*======================================================================================================================================================================*/
-        public init(inputStream: InputStream, fromEncoding from: String, toEncoding to: String = "UTF-8", option: IConv.Option = .None) throws {
+        public init(inputStream: InputStream, fromEncoding from: String, toEncoding to: String = StrUTF8, option: IConv.Option = .None) throws {
             self.thread = try IConvThread(inputStream, from, to, option)
             super.init(data: Data())
         }
@@ -58,7 +58,7 @@
 
         /*======================================================================================================================================================================*/
         public override func getBuffer(_ buffer: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>, length len: UnsafeMutablePointer<Int>) -> Bool {
-            fatalError("ERROR: Not implemented.")
+            fatalError(ErrMsgNotImplemented)
         }
 
         /*======================================================================================================================================================================*/
@@ -196,18 +196,18 @@
     extension IConvInputStream {
 
         /*======================================================================================================================================================================*/
-        public convenience init(data: Data, fromEncoding from: String, toEncoding to: String = "UTF-8", option: IConv.Option = .None) throws {
+        public convenience init(data: Data, fromEncoding from: String, toEncoding to: String = StrUTF8, option: IConv.Option = .None) throws {
             try self.init(inputStream: InputStream(data: data), fromEncoding: from, toEncoding: to, option: option)
         }
 
         /*======================================================================================================================================================================*/
-        public convenience init(url: URL, fromEncoding from: String, toEncoding to: String = "UTF-8", option: IConv.Option = .None) throws {
+        public convenience init(url: URL, fromEncoding from: String, toEncoding to: String = StrUTF8, option: IConv.Option = .None) throws {
             guard let i = InputStream(url: url) else { throw IConvInputStreamErrors.FileNotFoundAtURL(url: url) }
             try self.init(inputStream: i, fromEncoding: from, toEncoding: to, option: option)
         }
 
         /*======================================================================================================================================================================*/
-        public convenience init(fileAtPath path: String, fromEncoding from: String, toEncoding to: String = "UTF-8", option: IConv.Option = .None) throws {
+        public convenience init(fileAtPath path: String, fromEncoding from: String, toEncoding to: String = StrUTF8, option: IConv.Option = .None) throws {
             guard let i = InputStream(fileAtPath: path) else { throw IConvInputStreamErrors.FileNotFoundAtPath(path: path) }
             try self.init(inputStream: i, fromEncoding: from, toEncoding: to, option: option)
         }

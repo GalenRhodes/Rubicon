@@ -85,7 +85,7 @@ extension String {
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     @inlinable public func range(_ nsRange: NSRange) -> StringRange {
-        whenNotNil(StringRange(nsRange, in: self), { $0 }, else: { fatalError("Range indices not valid.") })
+        whenNotNil(StringRange(nsRange, in: self), { $0 }, else: { fatalError(ErrMsgInvalidRange) })
     }
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -244,7 +244,7 @@ extension String {
         var list:      [StringRange] = []
         var lastIndex: StringIndex   = startIndex
 
-        guard let rx = RegularExpression(pattern: regex, error: &error) else { fatalError(error?.localizedDescription ?? "InvalidPattern: \(regex)") }
+        guard let rx = RegularExpression(pattern: regex, error: &error) else { fatalError(String(format: ErrMsgUnknownError, (error?.localizedDescription ?? "\(MsgInvalidPattern): \(regex)"))) }
         rx.enumerateMatches(in: self) { match, _, stop in if let range = match?.range { doSplit(range, limit, keepSeparators, &lastIndex, &stop, &list) } }
         return limit == 0 ? trimRangeList(&list) : strings(fromRanges: list)
     }

@@ -23,7 +23,27 @@
 import Foundation
 import CoreFoundation
 
-public typealias Predicate = () -> Bool
+public typealias ThreadPredicate = () -> Bool
+
+public protocol VThread {
+    associatedtype T
+
+    var isFinished:  Bool { get }
+    var isExecuting: Bool { get }
+    var isCancelled: Bool { get }
+    var isStarted:   Bool { get }
+    var error:       Error? { get }
+
+    func main(isCancelled: ThreadPredicate) throws -> T
+
+    func start()
+
+    func cancel()
+
+    func get() throws -> T
+
+    func get(until limit: Date) throws -> T?
+}
 
 /*==============================================================================================================================================================================*/
 /// This class offers a little bit more flexibility over the standard Foundation [Thread](https://developer.apple.com/documentation/foundation/thread) class.
@@ -39,20 +59,19 @@ public typealias Predicate = () -> Bool
 /// library's [Callable](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Callable.html)/[Future](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html)
 /// interface paradigm.
 ///
-open class ValueThread<T> {
-
+open class ValueThread<T>: VThread, Hashable {
     /*==========================================================================================================================================================================*/
     /// The closure type for this class. Note that it can throw an error AND return a value. The closure accepts a single parameter which, itself, is a closure
     /// that can be called to check to see if the thread has been cancelled.
     ///
-    public typealias ThreadBlock = (Predicate) throws -> T
+    public typealias ThreadBlock = (ThreadPredicate) throws -> T
 
     /*@f0======================================================================================================================================================================*/
-    @inlinable public    var isFinished:  Bool   { thread.isFinished  }
-    @inlinable public    var isExecuting: Bool   { thread.isExecuting }
-    @inlinable public    var isCancelled: Bool   { thread.isCancelled }
-    @inlinable public    var isStarted:   Bool   { thread.isStarted   }
-    public internal(set) var error:       Error? = nil
+    @inlinable public    var isFinished:  Bool   { lock.withLock { thread.isFinished  } }
+    @inlinable public    var isExecuting: Bool   { lock.withLock { thread.isExecuting } }
+    @inlinable public    var isCancelled: Bool   { lock.withLock { thread.isCancelled } }
+    @inlinable public    var isStarted:   Bool   { lock.withLock { thread.isStarted   } }
+    @inlinable public    var error:       Error? { lock.withLock { err                } }
 
     /*@f1======================================================================================================================================================================*/
     public init(name: String? = nil, qualityOfService qos: QualityOfService? = nil, stackSize ss: Int? = nil, start st: Bool = false) {
@@ -77,7 +96,7 @@ open class ValueThread<T> {
     /// - Parameter isCancelled:
     /// - Returns:
     /// - Throws:
-    open func main(isCancelled: Predicate) throws -> T {
+    open func main(isCancelled: ThreadPredicate) throws -> T {
         guard let b = data.block else { fatalError(ErrMsgNoMain) }
         return try b(isCancelled)
     }
@@ -110,41 +129,41 @@ open class ValueThread<T> {
     }
 
     /*==========================================================================================================================================================================*/
-    @inlinable func getValue() throws -> T {
-        if let e = error { throw e }
-        if let v = value { return v }
-        fatalError(ErrMsgNoValue)
+    private func getValue() throws -> T {
+        try lock.withLock {
+            if let e = err { throw e }
+            if let v = value { return v }
+            fatalError(ErrMsgNoValue)
+        }
     }
 
     /*@f0======================================================================================================================================================================*/
-    @usableFromInline typealias TInfo = (name: String?, qualityOfService: QualityOfService?, stackSize: Int?, block: ThreadBlock?)
+    @usableFromInline typealias ThInfo = (name: String?, qualityOfService: QualityOfService?, stackSize: Int?, block: ThreadBlock?)
 
-    @usableFromInline      let data:   TInfo
-    @usableFromInline      var value:  T?      = nil
-    @usableFromInline lazy var thread: JoinableThread = JoinableThread(name: data.name, qualityOfService: data.qualityOfService, stackSize: data.stackSize) { self.main() }
+    @usableFromInline      let data:   ThInfo
+    @usableFromInline      var value:  T?            = nil
+    @usableFromInline lazy var thread: JoiningThread = JoiningThread(name: data.name, qualityOfService: data.qualityOfService, stackSize: data.stackSize) { self.main() }
+    @usableFromInline      let lock:   NSLock        = NSLock()
+    @usableFromInline      var err:    Error?        = nil
 
     /*==========================================================================================================================================================================*/
     private func main() {
         do {
-            value = try main(isCancelled: { thread.isCancelled })
+            let v = try main(isCancelled: { thread.isCancelled })
+            lock.withLock { value = v }
         }
         catch let e {
-            error = e
+            lock.withLock { err = e }
         }
     }
 }/*@f1*/
 
-extension ValueThread {
-
-    @inlinable public func hash(into hasher: inout Hasher) { thread.hash(into: &hasher) }
-
-    @inlinable public static func == (lhs: ValueThread, rhs: JoinableThread) -> Bool { lhs.thread === rhs }
-
-    @inlinable public static func == (lhs: JoinableThread, rhs: ValueThread) -> Bool { lhs === rhs.thread }
-
-    @inlinable public static func == (lhs: ValueThread, rhs: Thread) -> Bool { lhs.thread === rhs }
-
-    @inlinable public static func == (lhs: Thread, rhs: ValueThread) -> Bool { lhs === rhs.thread }
-
-    @inlinable public static func == (lhs: ValueThread, rhs: ValueThread) -> Bool { lhs === rhs }
+extension ValueThread {/*@f0*/
+    @inlinable public        func hash(into hasher: inout Hasher)                   { thread.hash(into: &hasher) }
+    @inlinable public static func == (lhs: ValueThread, rhs: JoiningThread) -> Bool { (lhs.thread === rhs)       }
+    @inlinable public static func == (lhs: JoiningThread, rhs: ValueThread) -> Bool { (lhs === rhs.thread)       }
+    @inlinable public static func == (lhs: ValueThread, rhs: Thread) -> Bool        { (lhs.thread === rhs)       }
+    @inlinable public static func == (lhs: Thread, rhs: ValueThread) -> Bool        { (lhs === rhs.thread)       }
+    @inlinable public static func == (lhs: ValueThread, rhs: ValueThread) -> Bool   { (lhs === rhs)              }
+/*@f1*/
 }

@@ -64,33 +64,49 @@ public class ReadWriteLock {
     }
 
     public func tryReadLock() -> Bool {
-        yyy(results: pthread_rwlock_tryrdlock(&_lock), type: StrRead)
+        yyy(results: pthread_rwlock_tryrdlock(&_lock), busy: EBUSY, type: StrRead)
     }
 
     public func tryWriteLock() -> Bool {
-        yyy(results: pthread_rwlock_trywrlock(&_lock), type: StrWrite)
+        yyy(results: pthread_rwlock_trywrlock(&_lock), busy: EBUSY, type: StrWrite)
     }
 
     public func readLock(before limit: Date) -> Bool {
-        xxx(before: limit, type: StrRead) { pthread_rwlock_tryrdlock(&_lock) }
+        return xxx(before: limit, type: StrRead) { t in
+            #if os(OSX) || os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
+            return pthread_rwlock_tryrdlock(&_lock)
+            #else
+            return pthread_rwlock_timedrdlock(&_lock, &t)
+            #endif
+        }
     }
 
     public func writeLock(before limit: Date) -> Bool {
-        xxx(before: limit, type: StrWrite) { pthread_rwlock_trywrlock(&_lock) }
-    }
-
-    private func xxx(before limit: Date, type s: String, _ b: () -> Int32) -> Bool {
-        var r = b()
-        while (r == EBUSY) && (Date() < limit) { r = b() }
-        return yyy(results: r, type: s)
-    }
-
-    private func yyy(results: Int32, type: String) -> Bool {
-        switch results {
-            case 0:     return true
-            case EBUSY: return false
-            default:    fatalError(String(format: ErrMsgUnableToObtainLock, type, errorType(results)))
+        return xxx(before: limit, type: StrWrite) { t in
+            #if os(OSX) || os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
+            return pthread_rwlock_trywrlock(&_lock)
+            #else
+            return pthread_rwlock_timedwrlock(&_lock, &t)
+            #endif
         }
+    }
+
+    private func xxx(before limit: Date, type s: String, _ b: (inout timespec) -> Int32) -> Bool {
+        guard var t = limit.futureTimeSpec() else { return false }
+        #if os(OSX) || os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
+        var r = b(&t)
+        while (r == EBUSY) && (Date() < limit) { r = b(&t) }
+        return yyy(results: r, busy: EBUSY, type: s)
+        #else
+        let r = b(&t)
+        return yyy(results: r, busy: ETIMEDOUT, type: s)
+        #endif
+    }
+
+    private func yyy(results: Int32, busy: Int32, type: String) -> Bool {
+        if results == 0 { return true }
+        if results == busy { return false }
+        fatalError(String(format: ErrMsgUnableToObtainLock, type, errorType(results)))
     }
 }
 

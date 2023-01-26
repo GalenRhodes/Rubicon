@@ -29,6 +29,16 @@ let stringsFile:     String = "StringsFile.swift"
 let stringsFilePath: String = "\(sourcePath)/\(stringsFile)"
 
 func doIt() throws {
+    let x: Double = 8.625
+    let y: Double = x.truncate()
+    let z: Double = x.fraction()
+
+    print("x = \(x)")
+    print("y = \(y)")
+    print("z = \(z)")
+}
+
+private func doIt2() throws {
     let propKeys:   [URLResourceKey]  = [ .nameKey, .pathKey, .isDirectoryKey, .parentDirectoryURLKey ]
     let fm:         FileManager       = FileManager.default
     var enc:        String.Encoding   = .ascii

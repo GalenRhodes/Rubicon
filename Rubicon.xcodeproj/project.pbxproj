@@ -13,6 +13,7 @@
 		1117D5EB0CADB82028C8E4F8 /* UnsafeBufferPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D0008072691BE2A8E571 /* UnsafeBufferPointer.swift */; };
 		1117D673BA02FCF694588F57 /* UnsafeRawPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117DCC4AF682D9EBDDAC042 /* UnsafeRawPointer.swift */; };
 		1117D6D52E3D612D6CEA301B /* UnsafeMutableRawBufferPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D86763E91994CD569420 /* UnsafeMutableRawBufferPointer.swift */; };
+		1117DB912B4C4CFD2BEA57A8 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D17959676AD044799251 /* Double.swift */; };
 		1117DD68414472598F9F902F /* UnsafeMutableBufferPointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D45FF62ADC0E75D08EB9 /* UnsafeMutableBufferPointer.swift */; };
 		1117DFD443EF4B5BA70D9957 /* UnsafePointer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117D3EDC74147679BEC244C /* UnsafePointer.swift */; };
 		837FA982296611BD00B1D01C /* Rubicon.docc in Sources */ = {isa = PBXBuildFile; fileRef = 837FA981296611BD00B1D01C /* Rubicon.docc */; };
@@ -90,6 +91,7 @@
 /* Begin PBXFileReference section */
 		1117D0008072691BE2A8E571 /* UnsafeBufferPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsafeBufferPointer.swift; sourceTree = "<group>"; };
 		1117D1093023C3B9D03DD6F3 /* iconv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iconv.h; sourceTree = "<group>"; };
+		1117D17959676AD044799251 /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		1117D3EDC74147679BEC244C /* UnsafePointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsafePointer.swift; sourceTree = "<group>"; };
 		1117D45FF62ADC0E75D08EB9 /* UnsafeMutableBufferPointer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsafeMutableBufferPointer.swift; sourceTree = "<group>"; };
 		1117D586E0E7B3CF4AE9BBAD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 				83C974132966136A007D3ED9 /* Data.swift */,
 				83C974142966136A007D3ED9 /* Pipe.swift */,
 				83C974152966136A007D3ED9 /* String.swift */,
+				1117D17959676AD044799251 /* Double.swift */,
 			);
 			path = Extenstions;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				1117D673BA02FCF694588F57 /* UnsafeRawPointer.swift in Sources */,
 				1117DFD443EF4B5BA70D9957 /* UnsafePointer.swift in Sources */,
 				1117D15F353E12A03B8D4FBF /* RedBlackDictionary.swift in Sources */,
+				1117DB912B4C4CFD2BEA57A8 /* Double.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

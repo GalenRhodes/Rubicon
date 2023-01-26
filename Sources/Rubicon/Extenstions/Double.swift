@@ -1,11 +1,11 @@
+//
 // ===========================================================================
 //     PROJECT: Rubicon
-//    FILENAME: Date.swift
+//    FILENAME: Double.swift
 //         IDE: AppCode
 //      AUTHOR: Galen Rhodes
-//        DATE: July 09, 2022
+//        DATE: January 11, 2023
 //
-// Copyright © 2022 Project Galen. All rights reserved.
 //
 // Permission to use, copy, modify, and distribute this software for any
 // purpose with or without fee is hereby granted, provided that the above
@@ -22,30 +22,16 @@
 
 import Foundation
 import CoreFoundation
-#if canImport(Darwin)
-    import Darwin
-#elseif canImport(Glibc)
-    import Glibc
-#elseif canImport(WinSDK)
-    import WinSDK
-#endif
 
-extension Date {
-    #if os(Windows)
-    @inlinable public func futureTimeSpec() -> DWORD? {
-        let t = timeIntervalSinceNow
-        guard t > 0 else { return nil }
-        return DWORD(t * 1_000_000_000.0)
-    }
+extension Double {
 
-    #else
-    @inlinable public func futureTimeSpec() -> timespec? {
-        return ((timeIntervalSinceNow > 0) ? absoluteTimeSpec() : nil)
-    }
+    @inlinable public func fraction() -> Double { truncatingRemainder(dividingBy: 1.0) }
 
-    @inlinable public func absoluteTimeSpec() -> timespec {
-        let t = timeIntervalSince1970
-        return timespec(tv_sec: Int(t), tv_nsec: Int(t.fraction() * 1_000_000_000.0))
-    }
-    #endif
+    @inlinable public func truncate() -> Double { rounded(.towardZero) }
+}
+
+extension Float {
+    @inlinable public func fraction() -> Float { truncatingRemainder(dividingBy: 1.0) }
+
+    @inlinable public func truncate() -> Float { rounded(.towardZero) }
 }

@@ -27,15 +27,29 @@ import CoreFoundation
 /// Simpler handling of taking one of two actions depending on if the given value is `nil` or not `nil`.
 ///
 /// - Parameters:
-///   - value:        The value to test for `nil`.
-///   - notNilAction: The closure to execute if the value is NOT `nil`. This closure takes the non-`nil` value as it's only parameter.
-///   - nilAction:    The closure to execute if the value IS `nil`. This closure takes no parameters.
+///   - value: The value to test for `nil`.
+///   - a:     The closure to execute if the value is NOT `nil`. This closure takes the non-`nil` value as it's only parameter.
+///   - b:     The closure to execute if the value IS `nil`. This closure takes no parameters.
 /// - Returns: The value returned by the closure that was executed.
 /// - Throws:  Any error thrown by the closure that was executed.
 ///
-@discardableResult @inlinable public func whenNotNil<T, R>(_ value: T?, _ notNilAction: (T) throws -> R, else nilAction: () throws -> R) rethrows -> R {
-    guard let value = value else { return try nilAction() }
-    return try notNilAction(value)
+@discardableResult @inlinable public func ifVal<T, R>(_ value: T?, notNil a: (T) throws -> R, else b: () throws -> R) rethrows -> R {
+    guard let v = value else { return try b() }
+    return try a(v)
+}
+
+/*==============================================================================================================================================================================*/
+/// Simpler handling of taking one an actions depending on if the given value is `nil` or not `nil`.
+///
+/// - Parameters:
+///   - value: The value to test for `nil`.
+///   - a:     The closure to execute if the value is NOT `nil`. This closure takes the non-`nil` value as it's only parameter.
+/// - Returns: The value returned by the closure that was executed or `nil` if the value was `nil`.
+/// - Throws:  Any error thrown by the closure that was executed.
+///
+@discardableResult @inlinable public func ifVal<T, R>(_ value: T?, notNil a: (T) throws -> R?) rethrows -> R? {
+    guard let v = value else { return nil }
+    return try a(v)
 }
 
 /*==============================================================================================================================================================================*/
@@ -71,7 +85,7 @@ import CoreFoundation
 /// - Parameter v: The item you want the hash of.
 /// - Returns: The hash.
 ///
-@inlinable public func HashOfAnything(_ v: Any) -> Int {
+@inlinable public func hashOfAnything(_ v: Any) -> Int {
     if let x = (v as? AnyHashable) { return x.hashValue }
     return ObjectIdentifier(v as AnyObject).hashValue
 }
@@ -86,8 +100,17 @@ import CoreFoundation
 ///
 @inlinable public func isType<O, T>(_ o: O, _ t: T.Type) -> Bool { (type(of: o) == t) }
 
+@inlinable public func fatal<T>(if predicate: Bool, message msg: String, else value: @autoclosure () -> T) -> T {
+    guard !predicate else { fatalError(msg) }
+    return value()
+}
 
-@inlinable public func failIfNot<T>(predicate: @autoclosure () -> Bool, message: String, _ successAction: () throws -> T) rethrows -> T {
-    guard predicate() else { fatalError(message) }
-    return try successAction()
+@inlinable public func fatal<R, T>(ifNil o: T?, message msg: String, else value: (T) throws -> R) rethrows -> R {
+    guard let o = o else { fatalError(msg) }
+    return try value(o)
+}
+
+@inlinable public func fatal<T>(ifNil o: T?, message msg: String) -> T {
+    guard let o = o else { fatalError(msg) }
+    return o
 }
